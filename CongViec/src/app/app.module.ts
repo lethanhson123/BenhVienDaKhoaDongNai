@@ -25,6 +25,9 @@ import { DanhMucThanhVienComponent } from './danh-muc-thanh-vien/danh-muc-thanh-
 import { CongViecComponent } from './cong-viec/cong-viec.component';
 import { CongViecDetailComponent } from './cong-viec-detail/cong-viec-detail.component';
 import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-trang.component';
+import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
+import { CongViec001Component } from './cong-viec001/cong-viec001.component';
+import { CongViecDetail001Component } from './cong-viec-detail001/cong-viec-detail001.component';
 
 
 
@@ -44,7 +47,10 @@ import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-t
     DanhMucThanhVienComponent,
     CongViecComponent,
     CongViecDetailComponent,
-    DanhMucTinhTrangComponent,    
+    DanhMucTinhTrangComponent,
+    GioiThieuComponent,
+    CongViec001Component,
+    CongViecDetail001Component,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

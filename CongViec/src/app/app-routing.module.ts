@@ -12,6 +12,8 @@ import { DanhMucPhongBanComponent } from './danh-muc-phong-ban/danh-muc-phong-ba
 import { DanhMucThanhVienComponent } from './danh-muc-thanh-vien/danh-muc-thanh-vien.component';
 import { CongViecComponent } from './cong-viec/cong-viec.component';
 import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-trang.component';
+import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
+import { CongViec001Component } from './cong-viec001/cong-viec001.component';
 
 
 
@@ -22,6 +24,9 @@ const routes: Routes = [
   },
   {
     path: 'Login', component: LoginComponent,
+  },  
+  {
+    path: 'GioiThieu', component: GioiThieuComponent,
   },  
   {
     path: 'DanhMucBenhVien', component: DanhMucBenhVienComponent,
@@ -49,7 +54,10 @@ const routes: Routes = [
 
   {
     path: 'CongViec', component: CongViecComponent,
-  },   
+  },  
+  {
+    path: 'CongViec001', component: CongViec001Component,
+  },  
 
 ];
 

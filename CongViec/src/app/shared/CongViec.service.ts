@@ -19,5 +19,28 @@ export class CongViecService extends BaseService{
         super(httpClient);
         this.Controller = "CongViec";
     }
+
+    GetBySearchString_BatDau_KetThucToListAsync() {
+        var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+        if (ThanhVienID) {
+            this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+        }
+        this.BaseParameter.Active = true;
+        let url = this.APIURL + this.Controller + '/GetBySearchString_BatDau_KetThucToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByThanhVienIDToListAsync() {
+        var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+        if (ThanhVienID) {
+            this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+        }
+        this.BaseParameter.Active = true;
+        let url = this.APIURL + this.Controller + '/GetByThanhVienIDToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

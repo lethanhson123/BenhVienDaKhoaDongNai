@@ -24,9 +24,9 @@ export class ThanhVienService extends BaseService{
         this.FormDataLogin = {
         }
         this.FormDataLogin.Name = localStorage.getItem(environment.ThanhVienHoTen);
-        var LastUpdatedMembershipID = localStorage.getItem(environment.ThanhVienID);
-        if (LastUpdatedMembershipID) {
-            this.FormDataLogin.ID = Number(LastUpdatedMembershipID);
+        var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+        if (ThanhVienID) {
+            this.FormDataLogin.ID = Number(ThanhVienID);
         }
        
     }

@@ -9,14 +9,14 @@ import { DownloadService } from 'src/app/shared/Download.service';
 
 import { CongViec } from 'src/app/shared/CongViec.model';
 import { CongViecService } from 'src/app/shared/CongViec.service';
-import { CongViecDetailComponent } from '../cong-viec-detail/cong-viec-detail.component';
+import { CongViecDetail001Component } from '../cong-viec-detail001/cong-viec-detail001.component';
 
 @Component({
-  selector: 'app-cong-viec',
-  templateUrl: './cong-viec.component.html',
-  styleUrls: ['./cong-viec.component.css']
+  selector: 'app-cong-viec001',
+  templateUrl: './cong-viec001.component.html',
+  styleUrls: ['./cong-viec001.component.css']
 })
-export class CongViecComponent implements OnInit {
+export class CongViec001Component implements OnInit {
 
   @ViewChild('CongViecSort') CongViecSort: MatSort;
   @ViewChild('CongViecPaginator') CongViecPaginator: MatPaginator;
@@ -34,16 +34,10 @@ export class CongViecComponent implements OnInit {
 
   ngOnInit(): void {
     this.CongViecSearch();
-  }
-  DateBatDau(value) {
-    this.CongViecService.BaseParameter.BatDau = new Date(value);
-  }
-  DateKetThuc(value) {
-    this.CongViecService.BaseParameter.KetThuc = new Date(value);
-  }
+  }  
   CongViecSearch() {
     this.CongViecService.IsShowLoading = true;
-    this.CongViecService.GetBySearchString_BatDau_KetThucToListAsync().subscribe(
+    this.CongViecService.GetByThanhVienIDToListAsync().subscribe(
       res => {
         this.CongViecService.List = (res as CongViec[]).sort((a, b) => (a.NgayYeuCau < b.NgayYeuCau ? 1 : -1));        
         this.CongViecService.DataSource = new MatTableDataSource(this.CongViecService.List);
@@ -64,7 +58,7 @@ export class CongViecComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = environment.DialogConfigWidth;
     dialogConfig.data = { ID: ID };
-    const dialog = this.Dialog.open(CongViecDetailComponent, dialogConfig);
+    const dialog = this.Dialog.open(CongViecDetail001Component, dialogConfig);
     dialog.afterClosed().subscribe(() => {
       this.CongViecSearch();
     });
