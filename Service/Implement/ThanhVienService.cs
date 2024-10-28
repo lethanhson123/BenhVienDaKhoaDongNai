@@ -34,7 +34,11 @@ namespace Service.Implement
             if (string.IsNullOrEmpty(model.MatKhau))
             {
                 model.MatKhau = GlobalHelper.MatKhauMacDinh;
-            }                       
+            }
+            if (string.IsNullOrEmpty(model.DienThoai))
+            {
+                model.DienThoai = model.TaiKhoan;
+            }
             if (model.ParentID == null)
             {
                 model.ParentID = GlobalHelper.DanhMucThanhVienID;

@@ -24,6 +24,7 @@ import { ThanhVienDetailComponent } from './thanh-vien-detail/thanh-vien-detail.
 import { DanhMucThanhVienComponent } from './danh-muc-thanh-vien/danh-muc-thanh-vien.component';
 import { CongViecComponent } from './cong-viec/cong-viec.component';
 import { CongViecDetailComponent } from './cong-viec-detail/cong-viec-detail.component';
+import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-trang.component';
 
 
 
@@ -42,7 +43,8 @@ import { CongViecDetailComponent } from './cong-viec-detail/cong-viec-detail.com
     ThanhVienDetailComponent,
     DanhMucThanhVienComponent,
     CongViecComponent,
-    CongViecDetailComponent,    
+    CongViecDetailComponent,
+    DanhMucTinhTrangComponent,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

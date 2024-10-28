@@ -15,10 +15,17 @@ namespace Data.Context
         public virtual DbSet<Data.Model.DanhMucChucNang> DanhMucChucNang { get; set; }
         public virtual DbSet<Data.Model.DanhMucPhongBan> DanhMucPhongBan { get; set; }
         public virtual DbSet<Data.Model.DanhMucThanhVien> DanhMucThanhVien { get; set; }
+        public virtual DbSet<Data.Model.DanhMucTinhTrang> DanhMucTinhTrang { get; set; }
+
         public virtual DbSet<Data.Model.ThanhVien> ThanhVien { get; set; }
         public virtual DbSet<Data.Model.ThanhVienChucNang> ThanhVienChucNang { get; set; }
         public virtual DbSet<Data.Model.ThanhVienLichSuTruyCap> ThanhVienLichSuTruyCap { get; set; }
-        public virtual DbSet<Data.Model.ThanhVienToken> ThanhVienToken { get; set; }        
+        public virtual DbSet<Data.Model.ThanhVienToken> ThanhVienToken { get; set; }
+
+        public virtual DbSet<Data.Model.CongViec> CongViec { get; set; }
+        public virtual DbSet<Data.Model.CongViecTapTinDinhKem> CongViecTapTinDinhKem { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

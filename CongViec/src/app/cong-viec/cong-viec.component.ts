@@ -22,7 +22,7 @@ export class CongViecComponent implements OnInit {
   @ViewChild('CongViecPaginator') CongViecPaginator: MatPaginator;
 
   constructor(
-    private dialog: MatDialog,
+    private Dialog: MatDialog,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -45,7 +45,7 @@ export class CongViecComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = environment.DialogConfigWidth;
     dialogConfig.data = { ID: ID };
-    const dialog = this.dialog.open(CongViecDetailComponent, dialogConfig);
+    const dialog = this.Dialog.open(CongViecDetailComponent, dialogConfig);
     dialog.afterClosed().subscribe(() => {
       this.CongViecSearch();
     });

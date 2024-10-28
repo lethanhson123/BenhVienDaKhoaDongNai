@@ -22,7 +22,7 @@ export class ThanhVienComponent implements OnInit {
   @ViewChild('ThanhVienPaginator') ThanhVienPaginator: MatPaginator;
 
   constructor(
-    private dialog: MatDialog,
+    private Dialog: MatDialog,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -45,7 +45,7 @@ export class ThanhVienComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = environment.DialogConfigWidth;
     dialogConfig.data = { ID: ID };
-    const dialog = this.dialog.open(ThanhVienDetailComponent, dialogConfig);
+    const dialog = this.Dialog.open(ThanhVienDetailComponent, dialogConfig);
     dialog.afterClosed().subscribe(() => {
       this.ThanhVienSearch();
     });

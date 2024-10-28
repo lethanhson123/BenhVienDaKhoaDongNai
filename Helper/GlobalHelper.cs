@@ -125,6 +125,14 @@
                 return builder.Build().GetSection("AppSettings").GetSection("MatKhauMacDinh").Value;
             }
         }
+        public static int DanhMucTinhTrangID
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucTinhTrangID").Value);
+            }
+        }
         public static int DanhMucThanhVienID
         {
             get

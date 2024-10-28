@@ -7,6 +7,9 @@ import { BaseService } from './Base.service';
     providedIn: 'root'
 })
 export class CongViecTapTinDinhKemService extends BaseService{
+
+    DisplayColumns001: string[] = ['Name', 'Save'];
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "CongViecTapTinDinhKem";

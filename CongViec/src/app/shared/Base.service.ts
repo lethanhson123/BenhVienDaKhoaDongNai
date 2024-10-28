@@ -196,7 +196,7 @@ export class BaseService {
     SearchBySearchString(sort: MatSort, paginator: MatPaginator) {
         this.ComponentGetBySearchStringAndEmptyToListAsync(sort, paginator);
     }
-    SearchByParentIDNotEmpty(sort: MatSort, paginator: MatPaginator) {
+    SearchByParentIDNotEmpty(sort: MatSort, paginator: MatPaginator, Service: BaseService) {
         if (this.BaseParameter.SearchString.length > 0) {
             this.BaseParameter.SearchString = this.BaseParameter.SearchString.trim();
             if (this.DataSource) {
@@ -204,7 +204,7 @@ export class BaseService {
             }
         }
         else {
-            this.ComponentGetByParentIDNotEmptyToListAsync(sort, paginator);
+            this.ComponentGetByParentIDNotEmptyToListAsync(sort, paginator, Service);
         }
     }
     SearchByDanhMucUngDungID(sort: MatSort, paginator: MatPaginator) {
@@ -324,8 +324,8 @@ export class BaseService {
             }
         );
     }
-    ComponentGetByParentIDNotEmptyToListAsync(sort: MatSort, paginator: MatPaginator) {
-        this.IsShowLoading = true;
+    ComponentGetByParentIDNotEmptyToListAsync(sort: MatSort, paginator: MatPaginator, Service: BaseService) {
+        Service.IsShowLoading = true;
         this.GetByParentIDToListAsync().subscribe(
             res => {
                 this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
@@ -337,7 +337,7 @@ export class BaseService {
             err => {
             },
             () => {
-                this.IsShowLoading = false;
+                Service.IsShowLoading = false;
             }
         );
     }
@@ -729,11 +729,11 @@ export class BaseService {
         );
         return environment.SaveSuccess;
     }
-    ComponentSaveByParentIDNotEmpty(sort: MatSort, paginator: MatPaginator) {
+    ComponentSaveByParentIDNotEmpty(sort: MatSort, paginator: MatPaginator, Service: BaseService) {
         this.IsShowLoading = true;
         this.SaveAsync().subscribe(
             res => {
-                this.SearchByParentIDNotEmpty(sort, paginator);
+                this.SearchByParentIDNotEmpty(sort, paginator, Service);
                 return environment.SaveSuccess;
             },
             err => {
@@ -869,12 +869,12 @@ export class BaseService {
             return environment.SaveSuccess;
         }
     }
-    ComponentDeleteByParentIDNotEmpty(sort: MatSort, paginator: MatPaginator) {
+    ComponentDeleteByParentIDNotEmpty(sort: MatSort, paginator: MatPaginator, Service: BaseService) {
         if (confirm(environment.DeleteConfirm)) {
             this.IsShowLoading = true;
             this.RemoveAsync().subscribe(
                 res => {
-                    this.SearchByParentIDNotEmpty(sort, paginator);
+                    this.SearchByParentIDNotEmpty(sort, paginator, Service);
                     return environment.SaveSuccess;
                 },
                 err => {

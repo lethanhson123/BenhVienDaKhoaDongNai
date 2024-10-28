@@ -40,11 +40,16 @@ namespace Service
             services.AddTransient<IDanhMucChucNangService, DanhMucChucNangService>();
             services.AddTransient<IDanhMucPhongBanService, DanhMucPhongBanService>();
             services.AddTransient<IDanhMucThanhVienService, DanhMucThanhVienService>();
+            services.AddTransient<IDanhMucTinhTrangService, DanhMucTinhTrangService>();
+
             services.AddTransient<IThanhVienChucNangService, ThanhVienChucNangService>();
             services.AddTransient<IThanhVienLichSuTruyCapService, ThanhVienLichSuTruyCapService>();
             services.AddTransient<IThanhVienService, ThanhVienService>();
             services.AddTransient<IThanhVienTokenService, ThanhVienTokenService>();
-            
+
+            services.AddTransient<ICongViecService, CongViecService>();
+            services.AddTransient<ICongViecTapTinDinhKemService, CongViecTapTinDinhKemService>();
+
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
 
@@ -58,10 +63,15 @@ namespace Service
             services.AddTransient<IDanhMucChucNangRepository, DanhMucChucNangRepository>();
             services.AddTransient<IDanhMucPhongBanRepository, DanhMucPhongBanRepository>();
             services.AddTransient<IDanhMucThanhVienRepository, DanhMucThanhVienRepository>();
+            services.AddTransient<IDanhMucTinhTrangRepository, DanhMucTinhTrangRepository>();
+
             services.AddTransient<IThanhVienChucNangRepository, ThanhVienChucNangRepository>();
             services.AddTransient<IThanhVienLichSuTruyCapRepository, ThanhVienLichSuTruyCapRepository>();
             services.AddTransient<IThanhVienRepository, ThanhVienRepository>();
             services.AddTransient<IThanhVienTokenRepository, ThanhVienTokenRepository>();
+
+            services.AddTransient<ICongViecRepository, CongViecRepository>();
+            services.AddTransient<ICongViecTapTinDinhKemRepository, CongViecTapTinDinhKemRepository>();
 
             return services;
         }

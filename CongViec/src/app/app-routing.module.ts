@@ -11,6 +11,7 @@ import { DanhMucChucDanhComponent } from './danh-muc-chuc-danh/danh-muc-chuc-dan
 import { DanhMucPhongBanComponent } from './danh-muc-phong-ban/danh-muc-phong-ban.component';
 import { DanhMucThanhVienComponent } from './danh-muc-thanh-vien/danh-muc-thanh-vien.component';
 import { CongViecComponent } from './cong-viec/cong-viec.component';
+import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-trang.component';
 
 
 
@@ -36,6 +37,9 @@ const routes: Routes = [
   },  
   {
     path: 'DanhMucThanhVien', component: DanhMucThanhVienComponent,
+  }, 
+  {
+    path: 'DanhMucTinhTrang', component: DanhMucTinhTrangComponent,
   }, 
 
   

@@ -8,7 +8,7 @@ import { BaseService } from './Base.service';
 })
 export class CongViecService extends BaseService{
 
-    DisplayColumns001: string[] = ['STT', 'NgayYeuCau', 'ThanhVienYeuCauName', 'ThanhVienGiaiQuyetName', 'DanhMucTinhTrangName', 'Save'];
+    DisplayColumns001: string[] = ['STT', 'NgayYeuCau', 'Name', 'ThanhVienYeuCauName', 'ThanhVienGiaiQuyetName', 'DanhMucTinhTrangName', 'Save'];
         
     List: CongViec[] | undefined;
     ListFilter: CongViec[] | undefined;
