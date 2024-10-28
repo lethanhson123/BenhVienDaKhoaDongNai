@@ -1,0 +1,54 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { environment } from 'src/environments/environment';
+import { NotificationService } from 'src/app/shared/Notification.service';
+import { DownloadService } from 'src/app/shared/Download.service';
+
+import { CongViec } from 'src/app/shared/CongViec.model';
+import { CongViecService } from 'src/app/shared/CongViec.service';
+import { CongViecDetailComponent } from '../cong-viec-detail/cong-viec-detail.component';
+
+@Component({
+  selector: 'app-cong-viec',
+  templateUrl: './cong-viec.component.html',
+  styleUrls: ['./cong-viec.component.css']
+})
+export class CongViecComponent implements OnInit {
+
+  @ViewChild('CongViecSort') CongViecSort: MatSort;
+  @ViewChild('CongViecPaginator') CongViecPaginator: MatPaginator;
+
+  constructor(
+    private dialog: MatDialog,
+    public NotificationService: NotificationService,
+    public DownloadService: DownloadService,
+
+    public CongViecService: CongViecService,
+
+
+
+  ) { }
+
+  ngOnInit(): void {
+    this.CongViecSearch();
+  }
+  CongViecSearch() {
+    this.CongViecService.SearchAllNotEmpty(this.CongViecSort, this.CongViecPaginator);
+  }
+  CongViecAdd(ID: number) {
+    this.CongViecService.BaseParameter.ID = ID;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = environment.DialogConfigWidth;
+    dialogConfig.data = { ID: ID };
+    const dialog = this.dialog.open(CongViecDetailComponent, dialogConfig);
+    dialog.afterClosed().subscribe(() => {
+      this.CongViecSearch();
+    });
+  }
+
+}

@@ -35,6 +35,15 @@ namespace Service
         }
         public static IServiceCollection AddService(this IServiceCollection services)
         {
+            services.AddTransient<IDanhMucBenhVienService, DanhMucBenhVienService>();
+            services.AddTransient<IDanhMucChucDanhService, DanhMucChucDanhService>();
+            services.AddTransient<IDanhMucChucNangService, DanhMucChucNangService>();
+            services.AddTransient<IDanhMucPhongBanService, DanhMucPhongBanService>();
+            services.AddTransient<IDanhMucThanhVienService, DanhMucThanhVienService>();
+            services.AddTransient<IThanhVienChucNangService, ThanhVienChucNangService>();
+            services.AddTransient<IThanhVienLichSuTruyCapService, ThanhVienLichSuTruyCapService>();
+            services.AddTransient<IThanhVienService, ThanhVienService>();
+            services.AddTransient<IThanhVienTokenService, ThanhVienTokenService>();
             
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
@@ -44,7 +53,15 @@ namespace Service
 
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
-           
+            services.AddTransient<IDanhMucBenhVienRepository, DanhMucBenhVienRepository>();
+            services.AddTransient<IDanhMucChucDanhRepository, DanhMucChucDanhRepository>();
+            services.AddTransient<IDanhMucChucNangRepository, DanhMucChucNangRepository>();
+            services.AddTransient<IDanhMucPhongBanRepository, DanhMucPhongBanRepository>();
+            services.AddTransient<IDanhMucThanhVienRepository, DanhMucThanhVienRepository>();
+            services.AddTransient<IThanhVienChucNangRepository, ThanhVienChucNangRepository>();
+            services.AddTransient<IThanhVienLichSuTruyCapRepository, ThanhVienLichSuTruyCapRepository>();
+            services.AddTransient<IThanhVienRepository, ThanhVienRepository>();
+            services.AddTransient<IThanhVienTokenRepository, ThanhVienTokenRepository>();
 
             return services;
         }

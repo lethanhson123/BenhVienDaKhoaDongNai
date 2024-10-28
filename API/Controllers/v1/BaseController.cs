@@ -1,6 +1,6 @@
 ﻿namespace API.Controllers.v1
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BaseController<T, TBaseService> : Controller
         where T : BaseModel
         where TBaseService : IBaseService<T>
@@ -1708,7 +1708,7 @@
             {
                 string mes = e.Message;
             }
-            
+
             return model;
         }
         [HttpPost]
@@ -1748,7 +1748,7 @@
             catch (Exception e)
             {
                 string mes = e.Message;
-            }            
+            }
             return model;
         }
         [HttpPost]
