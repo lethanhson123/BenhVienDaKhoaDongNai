@@ -24,18 +24,18 @@ import { CongViecTapTinDinhKem } from 'src/app/shared/CongViecTapTinDinhKem.mode
 import { CongViecTapTinDinhKemService } from 'src/app/shared/CongViecTapTinDinhKem.service';
 
 @Component({
-  selector: 'app-cong-viec-detail',
-  templateUrl: './cong-viec-detail.component.html',
-  styleUrls: ['./cong-viec-detail.component.css']
+  selector: 'app-cong-viec002-detail',
+  templateUrl: './cong-viec002-detail.component.html',
+  styleUrls: ['./cong-viec002-detail.component.css']
 })
-export class CongViecDetailComponent implements OnInit {
+export class CongViec002DetailComponent implements OnInit {
 
   @ViewChild('CongViecTapTinDinhKemSort') CongViecTapTinDinhKemSort: MatSort;
   @ViewChild('CongViecTapTinDinhKemPaginator') CongViecTapTinDinhKemPaginator: MatPaginator;
 
   constructor(
     private Dialog: MatDialog,
-    public DialogRef: MatDialogRef<CongViecDetailComponent>,
+    public DialogRef: MatDialogRef<CongViec002DetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
 
     public NotificationService: NotificationService,
@@ -72,17 +72,17 @@ export class CongViecDetailComponent implements OnInit {
   ThanhVienSearch() {
     this.ThanhVienService.ComponentGetAllToListAsync(this.CongViecService);
   }
-  ThanhVienFilter(searchString: string) {
-    this.ThanhVienService.Filter(searchString);
-  }
-  ThanhVienFilter001(searchString: string) {
-    this.ThanhVienService.Filter001(searchString);
-  }
+
   CongViecSearch() {
     this.CongViecService.GetByIDAsync().subscribe(
       res => {
         this.CongViecService.FormData = res as CongViec;
-
+        if (this.CongViecService.FormData.ID == environment.InitializationNumber) {
+          var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+          if (ThanhVienID) {
+            this.CongViecService.FormData.ThanhVienYeuCauID = Number(ThanhVienID);
+          }
+        }
         this.DanhMucPhongBanSearch();
         this.DanhMucTinhTrangSearch();
         this.ThanhVienSearch();
@@ -98,30 +98,6 @@ export class CongViecDetailComponent implements OnInit {
     this.CongViecService.SaveAsync().subscribe(
       res => {
         this.CongViecService.FormData = res as CongViec;
-        
-        // if (this.CongViecService.FormData.ID > 0) {
-        //   this.CongViecTapTinDinhKemService.BaseParameter.ID = environment.InitializationNumber;
-        //   this.CongViecTapTinDinhKemService.GetByIDAsync().subscribe(
-        //     res => {
-        //       this.CongViecTapTinDinhKemService.FormData = res as CongViec;
-        //       this.CongViecTapTinDinhKemService.FormData.ParentID = this.CongViecService.FormData.ID;
-              
-        //       this.CongViecTapTinDinhKemService.SaveAndUploadFilesAsync().subscribe(
-        //         res => {
-        //         },
-        //         err => {
-        //         },
-        //         () => {
-        //         }
-        //       );
-              
-        //     },
-        //     err => {
-        //     },
-        //     () => {
-        //     }
-        //   );
-        // }
 
         this.NotificationService.warn(environment.SaveSuccess);
       },

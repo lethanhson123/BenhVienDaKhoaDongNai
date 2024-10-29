@@ -14,6 +14,7 @@ import { CongViecComponent } from './cong-viec/cong-viec.component';
 import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-trang.component';
 import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
 import { CongViec001Component } from './cong-viec001/cong-viec001.component';
+import { CongViec002Component } from './cong-viec002/cong-viec002.component';
 
 
 
@@ -58,6 +59,9 @@ const routes: Routes = [
   {
     path: 'CongViec001', component: CongViec001Component,
   },  
+  {
+    path: 'CongViec002', component: CongViec002Component,
+  },
 
 ];
 

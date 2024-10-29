@@ -9,14 +9,14 @@ import { DownloadService } from 'src/app/shared/Download.service';
 
 import { CongViec } from 'src/app/shared/CongViec.model';
 import { CongViecService } from 'src/app/shared/CongViec.service';
-import { CongViecDetail001Component } from '../cong-viec-detail001/cong-viec-detail001.component';
+import { CongViec002DetailComponent } from '../cong-viec002-detail/cong-viec002-detail.component';
 
 @Component({
-  selector: 'app-cong-viec001',
-  templateUrl: './cong-viec001.component.html',
-  styleUrls: ['./cong-viec001.component.css']
+  selector: 'app-cong-viec002',
+  templateUrl: './cong-viec002.component.html',
+  styleUrls: ['./cong-viec002.component.css']
 })
-export class CongViec001Component implements OnInit {
+export class CongViec002Component implements OnInit {
 
   @ViewChild('CongViecSort') CongViecSort: MatSort;
   @ViewChild('CongViecPaginator') CongViecPaginator: MatPaginator;
@@ -37,7 +37,7 @@ export class CongViec001Component implements OnInit {
   }  
   CongViecSearch() {
     this.CongViecService.IsShowLoading = true;
-    this.CongViecService.GetByThanhVienID001ToListAsync().subscribe(
+    this.CongViecService.GetByThanhVienID002ToListAsync().subscribe(
       res => {
         this.CongViecService.List = (res as CongViec[]).sort((a, b) => (a.NgayYeuCau < b.NgayYeuCau ? 1 : -1));        
         this.CongViecService.DataSource = new MatTableDataSource(this.CongViecService.List);
@@ -58,7 +58,7 @@ export class CongViec001Component implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = environment.DialogConfigWidth;
     dialogConfig.data = { ID: ID };
-    const dialog = this.Dialog.open(CongViecDetail001Component, dialogConfig);
+    const dialog = this.Dialog.open(CongViec002DetailComponent, dialogConfig);
     dialog.afterClosed().subscribe(() => {
       this.CongViecSearch();
     });

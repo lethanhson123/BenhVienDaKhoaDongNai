@@ -10,12 +10,24 @@ namespace Service.Implement
         private readonly IThanhVienTokenService _ThanhVienTokenService;
 
         private readonly IDanhMucThanhVienService _DanhMucThanhVienService;
+
+        private readonly IDanhMucBenhVienService _DanhMucBenhVienService;
+
+        private readonly IDanhMucPhongBanService _DanhMucPhongBanService;
+
+        private readonly IDanhMucChucDanhService _DanhMucChucDanhService;
         public ThanhVienService(IThanhVienRepository ThanhVienRepository
 
             , IThanhVienTokenService ThanhVienTokenService
 
             , IDanhMucThanhVienService DanhMucThanhVienService
-            
+
+            , IDanhMucBenhVienService DanhMucBenhVienService
+
+            , IDanhMucPhongBanService DanhMucPhongBanService
+
+            , IDanhMucChucDanhService DanhMucChucDanhService
+
             ) : base(ThanhVienRepository)
         {
             _ThanhVienRepository = ThanhVienRepository;
@@ -23,6 +35,12 @@ namespace Service.Implement
             _ThanhVienTokenService = ThanhVienTokenService;
 
             _DanhMucThanhVienService = DanhMucThanhVienService;
+
+            _DanhMucBenhVienService = DanhMucBenhVienService;
+
+            _DanhMucPhongBanService = DanhMucPhongBanService;
+
+            _DanhMucChucDanhService = DanhMucChucDanhService;
         }
         public override void Initialization(ThanhVien model)
         {
@@ -51,6 +69,30 @@ namespace Service.Implement
                     model.ParentName = _DanhMucThanhVienService.GetByID(model.ParentID.Value).Name;
                 }
             }
+
+            if (model.DanhMucBenhVienID > 0)
+            {
+                if (string.IsNullOrEmpty(model.DanhMucBenhVienName))
+                {
+                    model.DanhMucBenhVienName = _DanhMucBenhVienService.GetByID(model.DanhMucBenhVienID.Value).Name;
+                }
+            }
+
+            if (model.DanhMucPhongBanID > 0)
+            {
+                if (string.IsNullOrEmpty(model.DanhMucPhongBanName))
+                {
+                    model.DanhMucPhongBanName = _DanhMucPhongBanService.GetByID(model.DanhMucPhongBanID.Value).Name;
+                }
+            }
+
+            if (model.DanhMucChucDanhID > 0)
+            {
+                if (string.IsNullOrEmpty(model.DanhMucChucDanhName))
+                {
+                    model.DanhMucChucDanhName = _DanhMucChucDanhService.GetByID(model.DanhMucChucDanhID.Value).Name;
+                }
+            }            
         }
         public override async Task<ThanhVien> SaveAsync(ThanhVien model)
         {

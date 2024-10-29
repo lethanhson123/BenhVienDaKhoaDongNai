@@ -30,14 +30,25 @@ export class CongViecService extends BaseService{
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    GetByThanhVienIDToListAsync() {
+    }    
+    GetByThanhVienID001ToListAsync() {
         var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
         if (ThanhVienID) {
             this.BaseParameter.ThanhVienID = Number(ThanhVienID);
         }
         this.BaseParameter.Active = true;
-        let url = this.APIURL + this.Controller + '/GetByThanhVienIDToListAsync';
+        let url = this.APIURL + this.Controller + '/GetByThanhVienID001ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByThanhVienID002ToListAsync() {
+        var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+        if (ThanhVienID) {
+            this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+        }
+        this.BaseParameter.Active = true;
+        let url = this.APIURL + this.Controller + '/GetByThanhVienID002ToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

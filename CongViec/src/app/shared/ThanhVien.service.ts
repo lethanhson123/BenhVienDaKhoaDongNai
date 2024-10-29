@@ -8,10 +8,11 @@ import { BaseService } from './Base.service';
 })
 export class ThanhVienService extends BaseService{
 
-    DisplayColumns001: string[] = ['STT', 'ID', 'ParentName', 'Name', 'TaiKhoan', 'Email', 'Active'];
+    DisplayColumns001: string[] = ['STT', 'ID', 'ParentName', 'TaiKhoan', 'Name', 'Email', 'Active'];
         
     List: ThanhVien[] | undefined;
     ListFilter: ThanhVien[] | undefined;
+    ListFilter001: ThanhVien[] | undefined;
     FormData!: ThanhVien;
     FormDataLogin!: ThanhVien;
 
@@ -19,7 +20,53 @@ export class ThanhVienService extends BaseService{
         super(httpClient);
         this.Controller = "ThanhVien";
     }
-
+    ComponentGetAllToListAsync(Service: BaseService) {              
+        if (this.List) {
+            if (this.List.length == 0) {
+                this.GetAllToListAsync().subscribe(
+                    res => {
+                        this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+                        this.ListFilter = this.List;
+                        this.ListFilter001 = this.List;
+                    },
+                    err => {
+                    },
+                    () => {                        
+                    }
+                );
+            }
+            else{            
+            }
+        }
+        else{           
+        }
+    }
+    Filter(searchString: string) {
+        if (searchString.length > 0) {
+            searchString = searchString.trim();
+            searchString = searchString.toLocaleLowerCase();            
+            this.ListFilter = this.List.filter((item: any) =>
+                (item.Name && item.Name.toLocaleLowerCase().indexOf(searchString) !== -1)
+             || (item.Code && item.Code.toLocaleLowerCase().indexOf(searchString) !== -1)
+              || (item.TaiKhoan && item.TaiKhoan.toLocaleLowerCase().indexOf(searchString) !== -1));
+        }
+        else {
+            this.ListFilter = this.List;
+        }
+    }
+    Filter001(searchString: string) {
+        if (searchString.length > 0) {
+            searchString = searchString.trim();
+            searchString = searchString.toLocaleLowerCase();            
+            this.ListFilter001 = this.List.filter((item: any) =>
+                (item.Name && item.Name.toLocaleLowerCase().indexOf(searchString) !== -1)
+             || (item.Code && item.Code.toLocaleLowerCase().indexOf(searchString) !== -1)
+              || (item.TaiKhoan && item.TaiKhoan.toLocaleLowerCase().indexOf(searchString) !== -1));
+        }
+        else {
+            this.ListFilter001 = this.List;
+        }
+    }
     GetLogin() {
         this.FormDataLogin = {
         }

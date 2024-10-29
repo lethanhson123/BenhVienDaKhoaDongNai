@@ -27,16 +27,32 @@
                 string mes = ex.Message;
             }
             return result;
-        }
+        }       
         [HttpPost]
-        [Route("GetByThanhVienIDToListAsync")]
-        public async Task<List<CongViec>> GetByThanhVienIDToListAsync()
+        [Route("GetByThanhVienID001ToListAsync")]
+        public async Task<List<CongViec>> GetByThanhVienID001ToListAsync()
         {
             List<CongViec> result = new List<CongViec>();
             try
             {
                 BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
-                result = await _CongViecService.GetByThanhVienIDToListAsync(model.ThanhVienID.Value);
+                result = await _CongViecService.GetByThanhVienID001ToListAsync(model.ThanhVienID.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByThanhVienID002ToListAsync")]
+        public async Task<List<CongViec>> GetByThanhVienID002ToListAsync()
+        {
+            List<CongViec> result = new List<CongViec>();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _CongViecService.GetByThanhVienID002ToListAsync(model.ThanhVienID.Value);
             }
             catch (Exception ex)
             {

@@ -49,22 +49,22 @@
             {
                 ThanhVien ThanhVien = _ThanhVienRepository.GetByID(model.ThanhVienYeuCauID.Value);
                 model.ThanhVienYeuCauName = ThanhVien.Name;
-                model.ThanhVienYeuCauDienThoai = ThanhVien.DienThoai;
+                model.ThanhVienYeuCauDienThoai = ThanhVien.TaiKhoan;
                 model.ThanhVienYeuCauEmail = ThanhVien.Email;
 
-                model.DanhMucPhongBanYeuCauID = ThanhVien.ParentID;
-                model.DanhMucPhongBanYeuCauName = ThanhVien.ParentName;
+                model.DanhMucPhongBanYeuCauID = ThanhVien.DanhMucPhongBanID;
+                model.DanhMucPhongBanYeuCauName = ThanhVien.DanhMucPhongBanName;
             }
 
             if (model.ThanhVienGiaiQuyetID > 0)
             {
                 ThanhVien ThanhVien = _ThanhVienRepository.GetByID(model.ThanhVienGiaiQuyetID.Value);
                 model.ThanhVienGiaiQuyetName = ThanhVien.Name;
-                model.ThanhVienGiaiQuyetDienThoai = ThanhVien.DienThoai;
+                model.ThanhVienGiaiQuyetDienThoai = ThanhVien.TaiKhoan;
                 model.ThanhVienGiaiQuyetEmail = ThanhVien.Email;
 
-                model.DanhMucPhongBanGiaiQuyetID = ThanhVien.ParentID;
-                model.DanhMucPhongBanGiaiQuyetName = ThanhVien.ParentName;
+                model.DanhMucPhongBanGiaiQuyetID = ThanhVien.DanhMucPhongBanID;
+                model.DanhMucPhongBanGiaiQuyetName = ThanhVien.DanhMucPhongBanName;
             }
         }
 
@@ -137,16 +137,25 @@
             }
             return result;
         }
-        public virtual async Task<List<CongViec>> GetByThanhVienIDToListAsync(long ThanhVienID)
+        public virtual async Task<List<CongViec>> GetByThanhVienID001ToListAsync(long ThanhVienID)
         {
             List<CongViec> result = new List<CongViec>();
             try
             {               
-                    result = await GetByCondition(item => item.ThanhVienYeuCauID == ThanhVienID
-
-                    || item.ThanhVienGiaiQuyetID == ThanhVienID
-                    
-                    ).ToListAsync();                
+                    result = await GetByCondition(item => item.ThanhVienYeuCauID == ThanhVienID).ToListAsync();                
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<List<CongViec>> GetByThanhVienID002ToListAsync(long ThanhVienID)
+        {
+            List<CongViec> result = new List<CongViec>();
+            try
+            {
+                result = await GetByCondition(item => item.ThanhVienGiaiQuyetID == ThanhVienID).ToListAsync();
             }
             catch (Exception ex)
             {
