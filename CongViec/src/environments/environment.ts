@@ -70,7 +70,7 @@ export const environment = {
   ToChucExists: "Tổ chức đã tồn tại.",
   PageTitle: "Bệnh viện đa khoa Đồng Nai",
   PageTitleShort: "Đa khoa Đồng Nai",
-  PageDescription: "Hệ sinh thái số bệnh viện đa khoa Đồng Nai | Chương trình mục tiêu chuyển đổi số quốc gia",
+  PageDescription: "Hệ sinh thái số bệnh viện đa khoa Đồng Nai | Chương trình chuyển đổi số quốc gia",
   
   IPRegistryIP: "IPRegistryIP",
   IPRegistryDevice: "IPRegistryDevice",
