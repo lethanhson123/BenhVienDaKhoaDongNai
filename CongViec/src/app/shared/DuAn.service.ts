@@ -8,7 +8,7 @@ import { BaseService } from './Base.service';
 })
 export class DuAnService extends BaseService {
 
-    DisplayColumns001: string[] = ['STT', 'NgayBatDau', 'Name', 'SoHoSo', 'SoQuyetDinh', 'BenDauTuName', 'BenThucHienName', 'TongTien', 'DanhMucTinhTrangName', 'Save'];
+    DisplayColumns001: string[] = ['STT', 'ID', 'NgayBatDau', 'Name', 'SoHoSo', 'SoQuyetDinh', 'BenDauTuName', 'BenThucHienName', 'TongTien', 'DaChi', 'ConLai', 'DanhMucTinhTrangName', 'Save'];
 
     List: DuAn[] | undefined;
     ListFilter: DuAn[] | undefined;

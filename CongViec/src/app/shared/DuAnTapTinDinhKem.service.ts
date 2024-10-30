@@ -7,7 +7,12 @@ import { BaseService } from './Base.service';
     providedIn: 'root'
 })
 export class DuAnTapTinDinhKemService extends BaseService{
-    DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'DanhMucUngDungID', 'DanhMucNgonNguName', 'DanhMucUngDungName'];
+
+    DisplayColumns001: string[] = ['STT', 'Name', 'FileName', 'Save'];
+    List: DuAnTapTinDinhKem[] | undefined;
+    ListFilter: DuAnTapTinDinhKem[] | undefined;
+    FormData!: DuAnTapTinDinhKem;
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "DuAnTapTinDinhKem";

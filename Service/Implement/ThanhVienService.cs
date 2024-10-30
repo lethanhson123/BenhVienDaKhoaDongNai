@@ -44,7 +44,7 @@ namespace Service.Implement
         }
         public override void Initialization(ThanhVien model)
         {
-            BaseInitialization(model);                       
+            BaseInitialization(model);
             if (string.IsNullOrEmpty(model.GUIDCode))
             {
                 model.GUIDCode = GlobalHelper.InitializationGUICode;
@@ -60,45 +60,47 @@ namespace Service.Implement
             if (model.ParentID == null)
             {
                 model.ParentID = GlobalHelper.DanhMucThanhVienID;
-            }            
+            }
 
             if (model.ParentID > 0)
             {
-                if (string.IsNullOrEmpty(model.ParentName))
-                {
-                    model.ParentName = _DanhMucThanhVienService.GetByID(model.ParentID.Value).Name;
-                }
+                model.ParentName = _DanhMucThanhVienService.GetByID(model.ParentID.Value).Name;
             }
 
             if (model.DanhMucBenhVienID > 0)
             {
-                if (string.IsNullOrEmpty(model.DanhMucBenhVienName))
-                {
-                    model.DanhMucBenhVienName = _DanhMucBenhVienService.GetByID(model.DanhMucBenhVienID.Value).Name;
-                }
+                model.DanhMucBenhVienName = _DanhMucBenhVienService.GetByID(model.DanhMucBenhVienID.Value).Name;
             }
 
             if (model.DanhMucPhongBanID > 0)
             {
-                if (string.IsNullOrEmpty(model.DanhMucPhongBanName))
-                {
-                    model.DanhMucPhongBanName = _DanhMucPhongBanService.GetByID(model.DanhMucPhongBanID.Value).Name;
-                }
+                model.DanhMucPhongBanName = _DanhMucPhongBanService.GetByID(model.DanhMucPhongBanID.Value).Name;
             }
 
             if (model.DanhMucChucDanhID > 0)
             {
-                if (string.IsNullOrEmpty(model.DanhMucChucDanhName))
+                model.DanhMucChucDanhName = _DanhMucChucDanhService.GetByID(model.DanhMucChucDanhID.Value).Name;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(model.DanhMucChucDanhName))
                 {
-                    model.DanhMucChucDanhName = _DanhMucChucDanhService.GetByID(model.DanhMucChucDanhID.Value).Name;
+                    DanhMucChucDanh DanhMucChucDanh = _DanhMucChucDanhService.GetByName(model.DanhMucChucDanhName);
+                    if (DanhMucChucDanh == null)
+                    {
+                        DanhMucChucDanh = new DanhMucChucDanh();
+                        DanhMucChucDanh.Name = model.DanhMucChucDanhName;
+                        _DanhMucChucDanhService.Add(DanhMucChucDanh);
+                    }
+                    model.DanhMucChucDanhID = DanhMucChucDanh.ID;
                 }
-            }            
+            }
         }
         public override async Task<ThanhVien> SaveAsync(ThanhVien model)
         {
             int result = await SaveSubAsync(model);
             if (result > 0)
-            {              
+            {
             }
             return model;
         }

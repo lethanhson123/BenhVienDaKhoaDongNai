@@ -41,6 +41,8 @@
         public DuAn()
         {
             NgayBatDau = GlobalHelper.InitializationDateTime;
+            Code = GlobalHelper.InitializationGUICode;
+            TypeName = GlobalHelper.InitializationGUICode;
         }
     }
 }

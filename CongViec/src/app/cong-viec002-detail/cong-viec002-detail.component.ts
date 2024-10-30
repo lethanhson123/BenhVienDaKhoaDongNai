@@ -74,6 +74,7 @@ export class CongViec002DetailComponent implements OnInit {
   }
 
   CongViecSearch() {
+    this.CongViecService.IsShowLoading = true;
     this.CongViecService.GetByIDAsync().subscribe(
       res => {
         this.CongViecService.FormData = res as CongViec;
@@ -89,6 +90,9 @@ export class CongViec002DetailComponent implements OnInit {
         this.CongViecTapTinDinhKemSearch();
       },
       err => {
+      },
+      () => {
+        this.CongViecService.IsShowLoading = false;
       }
     );
   }

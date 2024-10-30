@@ -125,6 +125,22 @@
                 return builder.Build().GetSection("AppSettings").GetSection("MatKhauMacDinh").Value;
             }
         }
+        public static int DanhMucHinhThucThanhToanID
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucHinhThucThanhToanID").Value);
+            }
+        }
+        public static int DanhMucBieuMauID
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucBieuMauID").Value);
+            }
+        }
         public static int DanhMucTinhTrangID
         {
             get

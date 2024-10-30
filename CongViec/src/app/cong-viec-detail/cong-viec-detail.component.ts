@@ -79,6 +79,7 @@ export class CongViecDetailComponent implements OnInit {
     this.ThanhVienService.Filter001(searchString);
   }
   CongViecSearch() {
+    this.CongViecService.IsShowLoading = true;
     this.CongViecService.GetByIDAsync().subscribe(
       res => {
         this.CongViecService.FormData = res as CongViec;
@@ -89,6 +90,9 @@ export class CongViecDetailComponent implements OnInit {
         this.CongViecTapTinDinhKemSearch();
       },
       err => {
+      },
+      () => {
+        this.CongViecService.IsShowLoading = false;
       }
     );
   }

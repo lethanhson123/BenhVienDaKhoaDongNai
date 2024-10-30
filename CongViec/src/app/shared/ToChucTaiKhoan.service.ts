@@ -10,6 +10,9 @@ export class ToChucTaiKhoanService extends BaseService {
 
     DisplayColumns001: string[] = ['STT', 'Name', 'Display', 'Description', 'Save'];
     
+    ListFilter001: ToChucTaiKhoan[] | undefined;
+    ListFilter002: ToChucTaiKhoan[] | undefined;
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "ToChucTaiKhoan";

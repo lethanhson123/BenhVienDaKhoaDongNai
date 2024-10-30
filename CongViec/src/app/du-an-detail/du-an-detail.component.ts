@@ -20,6 +20,11 @@ import { ToChucTaiKhoanService } from 'src/app/shared/ToChucTaiKhoan.service';
 
 import { DuAn } from 'src/app/shared/DuAn.model';
 import { DuAnService } from 'src/app/shared/DuAn.service';
+import { DuAnThuChi } from 'src/app/shared/DuAnThuChi.model';
+import { DuAnThuChiService } from 'src/app/shared/DuAnThuChi.service';
+import { DuAnTapTinDinhKem } from 'src/app/shared/DuAnTapTinDinhKem.model';
+import { DuAnTapTinDinhKemService } from 'src/app/shared/DuAnTapTinDinhKem.service';
+import { DuAnThuChiDetailComponent } from '../du-an-thu-chi-detail/du-an-thu-chi-detail.component';
 
 @Component({
   selector: 'app-du-an-detail',
@@ -27,6 +32,12 @@ import { DuAnService } from 'src/app/shared/DuAn.service';
   styleUrls: ['./du-an-detail.component.css']
 })
 export class DuAnDetailComponent implements OnInit {
+
+  @ViewChild('DuAnThuChiSort') DuAnThuChiSort: MatSort;
+  @ViewChild('DuAnThuChiPaginator') DuAnThuChiPaginator: MatPaginator;
+
+  @ViewChild('DuAnTapTinDinhKemSort') DuAnTapTinDinhKemSort: MatSort;
+  @ViewChild('DuAnTapTinDinhKemPaginator') DuAnTapTinDinhKemPaginator: MatPaginator;
 
   constructor(
     private Dialog: MatDialog,
@@ -42,6 +53,8 @@ export class DuAnDetailComponent implements OnInit {
     public ToChucTaiKhoanService: ToChucTaiKhoanService,
 
     public DuAnService: DuAnService,
+    public DuAnThuChiService: DuAnThuChiService,
+    public DuAnTapTinDinhKemService: DuAnTapTinDinhKemService,
 
   ) { }
 
@@ -93,6 +106,7 @@ export class DuAnDetailComponent implements OnInit {
     if (ListFilter) {
       if (ListFilter.length > 0) {
         this.DuAnService.FormData.NguoiDauTuName = ListFilter[0].Name;
+        this.DuAnService.FormData.NguoiDauTuChucDanh = ListFilter[0].DanhMucChucDanhName;
       }
     }
   }
@@ -101,18 +115,25 @@ export class DuAnDetailComponent implements OnInit {
     if (ListFilter) {
       if (ListFilter.length > 0) {
         this.DuAnService.FormData.NguoiThucHienName = ListFilter[0].Name;
+        this.DuAnService.FormData.NguoiThucHienChucDanh = ListFilter[0].DanhMucChucDanhName;
       }
     }
   }
   DuAnSearch() {
+    this.DuAnService.IsShowLoading = true;
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
         this.DuAnService.FormData = res as DuAn;
         this.DanhMucTinhTrangSearch();
         this.ToChucSearch();
         this.ThanhVienSearch();
+        this.DuAnTapTinDinhKemSearch();
+        this.DuAnThuChiSearch();
       },
       err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
@@ -132,5 +153,75 @@ export class DuAnDetailComponent implements OnInit {
         this.DuAnService.IsShowLoading = false;
       }
     );
+  }
+
+  DuAnTapTinDinhKemSearch() {
+    this.DuAnTapTinDinhKemService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
+    this.DuAnTapTinDinhKemService.BaseParameter.Code = this.DuAnService.FormData.Code;
+    this.DuAnTapTinDinhKemService.SearchByCode(this.DuAnTapTinDinhKemSort, this.DuAnTapTinDinhKemPaginator, this.DuAnService);
+  }
+  DuAnTapTinDinhKemSave(element: DuAnTapTinDinhKem) {
+    this.DuAnService.IsShowLoading = true;
+    element.ParentID = this.DuAnService.FormData.ID;
+    element.Code = this.DuAnService.FormData.Code;
+    this.DuAnTapTinDinhKemService.FormData = element;
+    this.DuAnTapTinDinhKemService.SaveAndUploadFilesAsync().subscribe(
+      res => {
+        this.DuAnTapTinDinhKemSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
+  }
+  DuAnTapTinDinhKemDelete(element: DuAnTapTinDinhKem) {
+    this.DuAnTapTinDinhKemService.BaseParameter.ID = element.ID;
+    this.NotificationService.warn(this.DuAnTapTinDinhKemService.ComponentDeleteByCode(this.DuAnTapTinDinhKemSort, this.DuAnTapTinDinhKemPaginator, this.DuAnService));
+  }
+  DuAnTapTinDinhKemChangeFile(files: FileList) {
+    if (files) {
+      this.DuAnTapTinDinhKemService.FileToUpload = files;
+    }
+  }
+
+  DuAnThuChiSearch() {
+    this.DuAnThuChiService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
+    this.DuAnThuChiService.BaseParameter.Code = this.DuAnService.FormData.Code;
+    this.DuAnThuChiService.SearchByCodeNotEmpty(this.DuAnThuChiSort, this.DuAnThuChiPaginator, this.DuAnService);
+  }
+  DuAnThuChiDelete(element: DuAnThuChi) {
+    if (confirm(environment.DeleteConfirm)) {
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnThuChiService.BaseParameter.ID = element.ID;
+      this.DuAnThuChiService.RemoveAsync().subscribe(
+        res => {
+          this.DuAnSearch();
+          this.NotificationService.warn(environment.DeleteSuccess);
+        },
+        err => {
+          this.NotificationService.warn(environment.DeleteNotSuccess);
+        },
+        () => {
+          this.DuAnService.IsShowLoading = false;
+        }
+      );
+    }
+  }
+  DuAnThuChiAdd(ID: number) {
+    this.DuAnThuChiService.BaseParameter.ID = ID;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = environment.DialogConfigWidth;
+    dialogConfig.data = { ID: ID };
+    const dialog = this.Dialog.open(DuAnThuChiDetailComponent, dialogConfig);
+    dialog.afterClosed().subscribe(() => {
+      this.DuAnSearch();
+
+    });
   }
 }

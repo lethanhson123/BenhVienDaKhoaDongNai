@@ -15,7 +15,7 @@ namespace Service.Implement
 
         private readonly IToChucTaiKhoanRepository _ToChucTaiKhoanRepository;
 
-        private readonly IThanhVienRepository _ThanhVienRepository;
+        private readonly IThanhVienService _ThanhVienService;
 
         private readonly IDanhMucTinhTrangRepository _DanhMucTinhTrangRepository;
 
@@ -30,7 +30,7 @@ namespace Service.Implement
 
             , IToChucTaiKhoanRepository ToChucTaiKhoanRepository
 
-            , IThanhVienRepository ThanhVienRepository
+            , IThanhVienService ThanhVienService
 
             , IDanhMucTinhTrangRepository DanhMucTinhTrangRepository
 
@@ -48,7 +48,7 @@ namespace Service.Implement
 
             _ToChucTaiKhoanRepository = ToChucTaiKhoanRepository;
 
-            _ThanhVienRepository = ThanhVienRepository;
+            _ThanhVienService = ThanhVienService;
 
             _DanhMucTinhTrangRepository = DanhMucTinhTrangRepository;
 
@@ -128,6 +128,21 @@ namespace Service.Implement
                 model.BenDauTuSoTaiKhoan = ToChucTaiKhoan.Display;
                 model.BenDauTuNganHang = ToChucTaiKhoan.Description;
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(model.BenDauTuSoTaiKhoan))
+                {
+                    ToChucTaiKhoan ToChucTaiKhoan = _ToChucTaiKhoanRepository.GetByName(model.BenDauTuSoTaiKhoan);
+                    if (ToChucTaiKhoan == null)
+                    {
+                        ToChucTaiKhoan = new ToChucTaiKhoan();
+                        ToChucTaiKhoan.Display = model.BenDauTuSoTaiKhoan;
+                        ToChucTaiKhoan.Description = model.BenDauTuNganHang;
+                        _ToChucTaiKhoanRepository.Add(ToChucTaiKhoan);
+                    }
+                    model.BenDauTuTaiKhoanID = ToChucTaiKhoan.ID;
+                }
+            }
 
             if (model.BenThucHienID > 0)
             {
@@ -159,10 +174,25 @@ namespace Service.Implement
                 model.BenThucHienSoTaiKhoan = ToChucTaiKhoan.Display;
                 model.BenThucHienNganHang = ToChucTaiKhoan.Description;
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(model.BenThucHienSoTaiKhoan))
+                {
+                    ToChucTaiKhoan ToChucTaiKhoan = _ToChucTaiKhoanRepository.GetByName(model.BenThucHienSoTaiKhoan);
+                    if (ToChucTaiKhoan == null)
+                    {
+                        ToChucTaiKhoan = new ToChucTaiKhoan();
+                        ToChucTaiKhoan.Display = model.BenThucHienSoTaiKhoan;
+                        ToChucTaiKhoan.Description = model.BenThucHienNganHang;
+                        _ToChucTaiKhoanRepository.Add(ToChucTaiKhoan);
+                    }
+                    model.BenThucHienTaiKhoanID = ToChucTaiKhoan.ID;
+                }
+            }
 
             if (model.NguoiDauTuID > 0)
             {
-                ThanhVien ThanhVien = _ThanhVienRepository.GetByID(model.NguoiDauTuID.Value);
+                ThanhVien ThanhVien = _ThanhVienService.GetByID(model.NguoiDauTuID.Value);
                 model.NguoiDauTuName = ThanhVien.Name;
                 model.NguoiDauTuChucDanh = ThanhVien.DanhMucChucDanhName;
             }
@@ -170,12 +200,13 @@ namespace Service.Implement
             {
                 if (!string.IsNullOrEmpty(model.NguoiDauTuName))
                 {
-                    ThanhVien ThanhVien = _ThanhVienRepository.GetByName(model.NguoiDauTuName);
+                    ThanhVien ThanhVien = _ThanhVienService.GetByName(model.NguoiDauTuName);
                     if (ThanhVien == null)
                     {
                         ThanhVien = new ThanhVien();
                         ThanhVien.Name = model.NguoiDauTuName;
-                        _ThanhVienRepository.Add(ThanhVien);
+                        ThanhVien.DanhMucChucDanhName = model.NguoiDauTuChucDanh;
+                        _ThanhVienService.Save(ThanhVien);
                     }
                     model.NguoiDauTuID = ThanhVien.ID;
                 }
@@ -183,7 +214,7 @@ namespace Service.Implement
 
             if (model.NguoiThucHienID > 0)
             {
-                ThanhVien ThanhVien = _ThanhVienRepository.GetByID(model.NguoiThucHienID.Value);
+                ThanhVien ThanhVien = _ThanhVienService.GetByID(model.NguoiThucHienID.Value);
                 model.NguoiThucHienName = ThanhVien.Name;
                 model.NguoiThucHienChucDanh = ThanhVien.DanhMucChucDanhName;
             }
@@ -191,12 +222,13 @@ namespace Service.Implement
             {
                 if (!string.IsNullOrEmpty(model.NguoiThucHienName))
                 {
-                    ThanhVien ThanhVien = _ThanhVienRepository.GetByName(model.NguoiThucHienName);
+                    ThanhVien ThanhVien = _ThanhVienService.GetByName(model.NguoiThucHienName);
                     if (ThanhVien == null)
                     {
                         ThanhVien = new ThanhVien();
                         ThanhVien.Name = model.NguoiThucHienName;
-                        _ThanhVienRepository.Add(ThanhVien);
+                        ThanhVien.DanhMucChucDanhName = model.NguoiThucHienChucDanh;
+                        _ThanhVienService.Save(ThanhVien);
                     }
                     model.NguoiThucHienID = ThanhVien.ID;
                 }
@@ -227,7 +259,7 @@ namespace Service.Implement
             {
                 if (model.ID > 0)
                 {
-                    List<DuAnThuChi> ListDuAnThuChi = await _DuAnThuChiService.GetBySearchStringToListAsync(model.Code);
+                    List<DuAnThuChi> ListDuAnThuChi = await _DuAnThuChiService.GetByCodeToListAsync(model.Code);
                     for (int i = 0; i < ListDuAnThuChi.Count; i++)
                     {
                         DuAnThuChi DuAnThuChiItem = ListDuAnThuChi[i];
@@ -236,7 +268,7 @@ namespace Service.Implement
                         await _DuAnThuChiService.SaveAsync(DuAnThuChiItem);
                     }
 
-                    List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetBySearchStringToListAsync(model.Code);
+                    List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByCodeToListAsync(model.Code);
                     for (int i = 0; i < ListDuAnThuChi.Count; i++)
                     {
                         DuAnTapTinDinhKem DuAnTapTinDinhKemItem = ListDuAnTapTinDinhKem[i];
@@ -244,10 +276,15 @@ namespace Service.Implement
                         DuAnTapTinDinhKemItem.TypeName = model.TypeName;
                         await _DuAnTapTinDinhKemService.SaveAsync(DuAnTapTinDinhKemItem);
                     }
+
+                    string ResultSync = await _DuAnRepository.SyncSQLByIDAsync(model.ID);
+                    model = await GetByIDAsync(model.ID);
                 }
             }
             return result;
         }
+
+        
         public virtual async Task<List<DuAn>> GetByBatDau_KetThucToListAsync(DateTime BatDau, DateTime KetThuc)
         {
             List<DuAn> result = new List<DuAn>();

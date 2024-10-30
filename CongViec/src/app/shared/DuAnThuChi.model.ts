@@ -1,35 +1,48 @@
 ﻿import { Base } from "./Base.model";
 
-export class DuAnThuChi extends Base{
+export class DuAnThuChi extends Base {
 
-SoHoSo?: string;
-SoButToan?: string;
-BenDauTuID?: string;
-BenDauTuName?: string;
-BenDauTuSoTaiKhoan?: string;
-BenDauTuNganHang?: string;
-BenThucHienID?: string;
-BenThucHienName?: string;
-BenThucHienSoTaiKhoan?: string;
-BenThucHienNganHang?: string;
-NgayBatDau?: Date;
-NgayKetThuc?: Date;
-SoLuong?: number;
-DonGia?: number;
-ThanhTien?: number;
-HeSo?: number;
-GhiCo?: number;
-GhiNo?: number;
-NguoiDauTuID?: number;
-NguoiDauTuName?: string;
-NguoiThucHienID?: number;
-NguoiThucHienName?: string;
-DanhMucBieuMauID?: number;
-DanhMucBieuMauName?: string;
-DanhMucHinhThucThanhToanID?: number;
-DanhMucHinhThucThanhToanName?: string;
-DanhMucTinhTrangID?: number;
-DanhMucTinhTrangName?: string;
+    SoChungTu?: string;
+    SoHoSo?: string;
+    SoButToan?: string;
+    BenDauTuID?: number;
+    BenDauTuName?: string;
+    BenDauTuMaSoThue?: string;
+    BenDauTuDienThoai?: string;
+    BenDauTuDiaChi?: string;
+    BenDauTuEmail?: string;
+    BenDauTuTaiKhoanID?: number;
+    BenDauTuSoTaiKhoan?: string;
+    BenDauTuNganHang?: string;
+    BenThucHienID?: number;
+    BenThucHienName?: string;
+    BenThucHienMaSoThue?: string;
+    BenThucHienDienThoai?: string;
+    BenThucHienDiaChi?: string;
+    BenThucHienEmail?: string;
+    BenThucHienTaiKhoanID?: number;
+    BenThucHienSoTaiKhoan?: string;
+    BenThucHienNganHang?: string;
+    NgayBatDau?: Date;
+    NgayKetThuc?: Date;
+    SoLuong?: number;
+    DonGia?: number;
+    ThanhTien?: number;
+    HeSo?: number;
+    GhiCo?: number;
+    GhiNo?: number;
+    NguoiDauTuID?: number;
+    NguoiDauTuName?: string;
+    NguoiDauTuChucDanh?: string;
+    NguoiThucHienID?: number;
+    NguoiThucHienName?: string;
+    NguoiThucHienChucDanh?: string;
+    DanhMucBieuMauID?: number;
+    DanhMucBieuMauName?: string;
+    DanhMucHinhThucThanhToanID?: number;
+    DanhMucHinhThucThanhToanName?: string;
+    DanhMucTinhTrangID?: number;
+    DanhMucTinhTrangName?: string;
 
 }
 

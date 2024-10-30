@@ -72,15 +72,15 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12 col-12">
-                    <div class="card mb-4 card-info">
+                    <div class="card mb-4 card-primary">
                         <div class="card-header">
-                            <h5 class="card-title text-white">Đính kèm
+                            <h5 class="card-title text-white bg-primary">Đính kèm
                                 <span
                                     *ngIf="CongViecTapTinDinhKemService.List">({{CongViecTapTinDinhKemService.List.length-1}}
                                     items)</span>
                             </h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body bg-primary">
                             <div class="table-outer">
                                 <div class="table-responsive">
                                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort

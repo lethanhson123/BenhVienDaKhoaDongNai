@@ -39,6 +39,7 @@ import { ToChucDetailComponent } from './to-chuc-detail/to-chuc-detail.component
 import { DuAnComponent } from './du-an/du-an.component';
 import { DuAnDetailComponent } from './du-an-detail/du-an-detail.component';
 import { DanhMucBieuMauDetailComponent } from './danh-muc-bieu-mau-detail/danh-muc-bieu-mau-detail.component';
+import { DuAnThuChiDetailComponent } from './du-an-thu-chi-detail/du-an-thu-chi-detail.component';
 
 
 
@@ -72,7 +73,8 @@ import { DanhMucBieuMauDetailComponent } from './danh-muc-bieu-mau-detail/danh-m
     ToChucDetailComponent,
     DuAnComponent,
     DuAnDetailComponent,
-    DanhMucBieuMauDetailComponent,    
+    DanhMucBieuMauDetailComponent,
+    DuAnThuChiDetailComponent,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
