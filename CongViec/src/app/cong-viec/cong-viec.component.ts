@@ -45,7 +45,7 @@ export class CongViecComponent implements OnInit {
     this.CongViecService.IsShowLoading = true;
     this.CongViecService.GetBySearchString_BatDau_KetThucToListAsync().subscribe(
       res => {
-        this.CongViecService.List = (res as CongViec[]).sort((a, b) => (a.NgayYeuCau < b.NgayYeuCau ? 1 : -1));        
+        this.CongViecService.List = (res as CongViec[]).sort((a, b) => (a.NgayYeuCau < b.NgayYeuCau ? 1 : -1));
         this.CongViecService.DataSource = new MatTableDataSource(this.CongViecService.List);
         this.CongViecService.DataSource.sort = this.CongViecSort;
         this.CongViecService.DataSource.paginator = this.CongViecPaginator;
@@ -69,5 +69,20 @@ export class CongViecComponent implements OnInit {
       this.CongViecSearch();
     });
   }
-
+  CongViecDelete(element: CongViec) {
+    this.CongViecService.BaseParameter.ID = element.ID;
+    this.CongViecService.IsShowLoading = true;
+    this.CongViecService.RemoveAsync().subscribe(
+      res => {
+        this.CongViecSearch();
+        this.NotificationService.warn(environment.DeleteSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.DeleteNotSuccess);
+      },
+      () => {
+        this.CongViecService.IsShowLoading = false;
+      }
+    );
+  }
 }

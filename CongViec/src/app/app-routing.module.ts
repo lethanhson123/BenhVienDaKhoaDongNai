@@ -15,6 +15,11 @@ import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-t
 import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
 import { CongViec001Component } from './cong-viec001/cong-viec001.component';
 import { CongViec002Component } from './cong-viec002/cong-viec002.component';
+import { CongViec003Component } from './cong-viec003/cong-viec003.component';
+import { DanhMucBieuMauComponent } from './danh-muc-bieu-mau/danh-muc-bieu-mau.component';
+import { DanhMucHinhThucThanhToanComponent } from './danh-muc-hinh-thuc-thanh-toan/danh-muc-hinh-thuc-thanh-toan.component';
+import { ToChucComponent } from './to-chuc/to-chuc.component';
+import { DuAnComponent } from './du-an/du-an.component';
 
 
 
@@ -47,6 +52,12 @@ const routes: Routes = [
   {
     path: 'DanhMucTinhTrang', component: DanhMucTinhTrangComponent,
   }, 
+  {
+    path: 'DanhMucBieuMau', component: DanhMucBieuMauComponent,
+  }, 
+  {
+    path: 'DanhMucHinhThucThanhToan', component: DanhMucHinhThucThanhToanComponent,
+  }, 
 
   
   {
@@ -62,6 +73,17 @@ const routes: Routes = [
   {
     path: 'CongViec002', component: CongViec002Component,
   },
+  {
+    path: 'CongViec003', component: CongViec003Component,
+  },
+
+  {
+    path: 'ToChuc', component: ToChucComponent,
+  },  
+
+  {
+    path: 'DuAn', component: DuAnComponent,
+  },  
 
 ];
 

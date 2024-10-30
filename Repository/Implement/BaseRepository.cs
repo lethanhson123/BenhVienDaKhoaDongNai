@@ -557,7 +557,7 @@ namespace Repository.Implement
         {
             if (!string.IsNullOrEmpty(searchString))
             {
-                return _context.Set<T>().AsNoTracking().Where(item => item.ID.ToString().Contains(searchString) || item.Name.Contains(searchString) || item.Code.Contains(searchString) || item.Display.Contains(searchString)).ToList();
+                return _context.Set<T>().AsNoTracking().Where(item => item.ID.ToString().Contains(searchString) || item.Name.Contains(searchString) || item.Code.Contains(searchString) || item.TypeName.Contains(searchString)).ToList();
             }
             else
             {
@@ -568,7 +568,7 @@ namespace Repository.Implement
         {
             if (!string.IsNullOrEmpty(searchString))
             {
-                return await _context.Set<T>().AsNoTracking().Where(item => item.ID.ToString().Contains(searchString) || item.Name.Contains(searchString) || item.Code.Contains(searchString) || item.Display.Contains(searchString)).ToListAsync();
+                return await _context.Set<T>().AsNoTracking().Where(item => item.ID.ToString().Contains(searchString) || item.Name.Contains(searchString) || item.Code.Contains(searchString) || item.TypeName.Contains(searchString)).ToListAsync();
             }
             else
             {

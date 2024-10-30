@@ -41,6 +41,8 @@ namespace Service
             services.AddTransient<IDanhMucPhongBanService, DanhMucPhongBanService>();
             services.AddTransient<IDanhMucThanhVienService, DanhMucThanhVienService>();
             services.AddTransient<IDanhMucTinhTrangService, DanhMucTinhTrangService>();
+            services.AddTransient<IDanhMucBieuMauService, DanhMucBieuMauService>();
+            services.AddTransient<IDanhMucHinhThucThanhToanService, DanhMucHinhThucThanhToanService>();
 
             services.AddTransient<IThanhVienChucNangService, ThanhVienChucNangService>();
             services.AddTransient<IThanhVienLichSuTruyCapService, ThanhVienLichSuTruyCapService>();
@@ -49,6 +51,13 @@ namespace Service
 
             services.AddTransient<ICongViecService, CongViecService>();
             services.AddTransient<ICongViecTapTinDinhKemService, CongViecTapTinDinhKemService>();
+
+            services.AddTransient<IToChucService, ToChucService>();
+            services.AddTransient<IToChucTaiKhoanService, ToChucTaiKhoanService>();
+
+            services.AddTransient<IDuAnService, DuAnService>();
+            services.AddTransient<IDuAnTapTinDinhKemService, DuAnTapTinDinhKemService>();
+            services.AddTransient<IDuAnThuChiService, DuAnThuChiService>();
 
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
@@ -64,6 +73,8 @@ namespace Service
             services.AddTransient<IDanhMucPhongBanRepository, DanhMucPhongBanRepository>();
             services.AddTransient<IDanhMucThanhVienRepository, DanhMucThanhVienRepository>();
             services.AddTransient<IDanhMucTinhTrangRepository, DanhMucTinhTrangRepository>();
+            services.AddTransient<IDanhMucBieuMauRepository, DanhMucBieuMauRepository>();
+            services.AddTransient<IDanhMucHinhThucThanhToanRepository, DanhMucHinhThucThanhToanRepository>();
 
             services.AddTransient<IThanhVienChucNangRepository, ThanhVienChucNangRepository>();
             services.AddTransient<IThanhVienLichSuTruyCapRepository, ThanhVienLichSuTruyCapRepository>();
@@ -72,6 +83,13 @@ namespace Service
 
             services.AddTransient<ICongViecRepository, CongViecRepository>();
             services.AddTransient<ICongViecTapTinDinhKemRepository, CongViecTapTinDinhKemRepository>();
+
+            services.AddTransient<IToChucRepository, ToChucRepository>();
+            services.AddTransient<IToChucTaiKhoanRepository, ToChucTaiKhoanRepository>();
+
+            services.AddTransient<IDuAnRepository, DuAnRepository>();
+            services.AddTransient<IDuAnTapTinDinhKemRepository, DuAnTapTinDinhKemRepository>();
+            services.AddTransient<IDuAnThuChiRepository, DuAnThuChiRepository>();
 
             return services;
         }

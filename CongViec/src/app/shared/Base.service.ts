@@ -349,7 +349,7 @@ export class BaseService {
                 this.ListFilter = this.List.filter(item => item.ID > 0);
                 this.DataSource = new MatTableDataSource(this.List);
                 this.DataSource.sort = sort;
-                this.DataSource.paginator = paginator;
+                this.DataSource.paginator = paginator;                
             },
             err => {
             },

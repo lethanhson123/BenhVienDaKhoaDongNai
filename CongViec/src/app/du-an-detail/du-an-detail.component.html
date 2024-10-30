@@ -1,0 +1,152 @@
+<div class="custom-tabs-container">
+    <ul class="nav nav-tabs justify-content-end" id="customTab5" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="tab-DuAnDetail" data-bs-toggle="tab" href="#DuAnDetail" role="tab"
+                aria-controls="DuAnDetail" aria-selected="true">
+                <span class="badge bg-info" style="font-size: 16px;">Dự án
+                    [{{DuAnService.FormData.ID}}]</span>
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a style="cursor: pointer;" class="nav-link" id="tab-Close" data-bs-toggle="tab" (click)="Close()"
+                role="tab" aria-controls="Close" aria-selected="false">
+                <span class="badge bg-danger" style="font-size: 16px;"><i class="bi bi-x-lg"></i></span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" id="customTabContent">
+        <div class="tab-pane fade show active" id="DuAnDetail" role="tabpanel">
+            <div class="row gx-4">
+                <div class="col-lg-6 col-sm-12 col-12">
+                    <a style="width: 100%;" title="Lưu thay đổi" (click)="DuAnSave()" class="btn btn-info"><i
+                            class="bi bi-sd-card"></i> Lưu thay đổi</a>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-12">
+                    <div class="form-check form-check-inline mb-6">
+                        <input type="checkbox" class="form-check-input" name="Active"
+                            [(ngModel)]="DuAnService.FormData.Active" />
+                        <label class="form-check-label" for="Active">Kích hoạt</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-4">
+                <div class="col-lg-6 col-sm-12 col-12">
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Ngày bắt đầu</label>
+                        <input [ngModel]="DuAnService.FormData.NgayBatDau | date:'yyyy-MM-dd'"
+                            style="text-align: right;" (ngModelChange)="DateNgayBatDau($event)"
+                            [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Ngày kết thúc</label>
+                        <input [ngModel]="DuAnService.FormData.NgayKetThuc | date:'yyyy-MM-dd'"
+                            style="text-align: right;" (ngModelChange)="DateNgayKetThuc($event)"
+                            [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Tiêu đề</label>
+                        <input name="Name" [(ngModel)]="DuAnService.FormData.Name" placeholder="Tiêu đề" type="text"
+                            class="form-control">
+                    </div>
+                    <!-- <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Mô tả</label>
+                        <input name="Description" [(ngModel)]="DuAnService.FormData.Description" placeholder="Mô tả"
+                            type="text" class="form-control">
+                    </div> -->
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Số hồ sơ</label>
+                        <input name="SoHoSo" [(ngModel)]="DuAnService.FormData.SoHoSo" placeholder="Số hồ sơ"
+                            type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Số quyết định</label>
+                        <input name="SoQuyetDinh" [(ngModel)]="DuAnService.FormData.SoQuyetDinh"
+                            placeholder="Số quyết định" type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Tổng tiền</label>
+                        <input name="TongTien" [(ngModel)]="DuAnService.FormData.TongTien" placeholder="Tổng tiền"
+                            type="number" class="form-control" style="text-align: right;">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Đã chi</label>
+                        <input name="DaChi" [(ngModel)]="DuAnService.FormData.DaChi" placeholder="Đã chi"
+                            type="number" class="form-control" style="text-align: right; color: red;" disabled>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Còn lại</label>
+                        <input name="ConLai" [(ngModel)]="DuAnService.FormData.ConLai" placeholder="Còn lại"
+                            type="number" class="form-control" style="text-align: right; color: green;" disabled>
+                    </div>
+                    <!-- <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Ghi chú</label>
+                        <input name="Note" [(ngModel)]="DuAnService.FormData.Note"
+                            placeholder="Ghi chú" type="text" class="form-control">
+                    </div> -->
+                </div>
+                <div class="col-lg-6 col-sm-12 col-12">
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Bên A (Bên duyệt)
+                            [{{DuAnService.FormData.BenDauTuID}}]</label>
+                        <select class="form-select" name="BenDauTuID" [(ngModel)]="DuAnService.FormData.BenDauTuID" (change)="BenDauTuSearch()">
+                            <option *ngFor="let item of ToChucService.List;" [value]="item.ID">
+                                {{item.Display}} - {{item.Name}} [{{item.ID}}]</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Bên A (Bên duyệt)</label>
+                        <input name="BenDauTuName" [(ngModel)]="DuAnService.FormData.BenDauTuName"
+                            placeholder="Bên A (Bên duyệt)" type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Đại diện bên A [{{DuAnService.FormData.NguoiDauTuID}}]</label>
+                        <mat-select class="form-control" name="DuAnService.FormData.NguoiDauTuID" (selectionChange)="NguoiDauTuSearch()"
+                            [(ngModel)]="DuAnService.FormData.NguoiDauTuID">
+                            <input placeholder="Tìm..." class="form-control"
+                                (keyup)="ThanhVienFilter($event.target.value)">
+                            <mat-option *ngFor="let item of ThanhVienService.ListFilter" [value]="item.ID">
+                                {{item.Name}} - {{item.TaiKhoan}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Đại diện bên A</label>
+                        <input name="NguoiDauTuName" [(ngModel)]="DuAnService.FormData.NguoiDauTuName"
+                            placeholder="Đại diện bên A" type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Bên B (Bên thực hiện)
+                            [{{DuAnService.FormData.BenThucHienID}}]</label>
+                        <select class="form-select" name="BenThucHienID"
+                            [(ngModel)]="DuAnService.FormData.BenThucHienID" (change)="BenThucHienSearch()">
+                            <option *ngFor="let item of ToChucService.List;" [value]="item.ID">
+                                {{item.Display}} - {{item.Name}} [{{item.ID}}]</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Bên B (Bên thực hiện)</label>
+                        <input name="BenThucHienName" [(ngModel)]="DuAnService.FormData.BenThucHienName"
+                            placeholder="Bên B (Bên thực hiện)" type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Đại diện bên B [{{DuAnService.FormData.NguoiThucHienID}}]</label>                        
+                        <mat-select class="form-control" name="DuAnService.FormData.NguoiThucHienID" (selectionChange)="NguoiThucHienSearch()"
+                            [(ngModel)]="DuAnService.FormData.NguoiThucHienID">
+                            <input placeholder="Tìm..." class="form-control"
+                                (keyup)="ThanhVienFilter001($event.target.value)">
+                            <mat-option *ngFor="let item of ThanhVienService.ListFilter001" [value]="item.ID">
+                                {{item.Name}} - {{item.TaiKhoan}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Đại diện bên B</label>
+                        <input name="NguoiThucHienName" [(ngModel)]="DuAnService.FormData.NguoiThucHienName"
+                            placeholder="Đại diện bên B" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="DuAnService.IsShowLoading"></app-loading>

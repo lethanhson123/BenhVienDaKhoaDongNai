@@ -88,7 +88,7 @@ export class ThanhVienDetailComponent implements OnInit {
         this.DanhMucBenhVienSearch();
         this.DanhMucPhongBanSearch();
         this.DanhMucChucDanhSearch();
-        this.ThanhVienChucNangSearch();
+        this.ThanhVienChucNangSearch();  
       },
       err => {
       }

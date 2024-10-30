@@ -27,9 +27,6 @@ export class ThanhVienComponent implements OnInit {
     public DownloadService: DownloadService,
 
     public ThanhVienService: ThanhVienService,
-
-
-
   ) { }
 
   ngOnInit(): void {

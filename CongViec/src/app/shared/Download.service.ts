@@ -13,7 +13,7 @@ export class DownloadService {
     ListThang001: NamThang[] | undefined;
 
     BaseParameter!: BaseParameter;
-    APIURL: string = environment.APIUploadURL;
+    APIURL: string = environment.APIURL;
     Controller: string = "Download";
     Headers: HttpHeaders = new HttpHeaders();
 

@@ -9,7 +9,7 @@ import { BaseService } from './Base.service';
 export class CongViecService extends BaseService{
 
     DisplayColumns001: string[] = ['STT', 'NgayYeuCau', 'Name', 'ThanhVienYeuCauName', 'ThanhVienGiaiQuyetName', 'DanhMucTinhTrangName', 'Save'];
-        
+    DisplayColumns002: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'DanhMucUngDungID', 'DanhMucNgonNguName', 'DanhMucUngDungName', 'DanhMucPhongBanYeuCauID', 'DanhMucPhongBanYeuCauName', 'DanhMucPhongBanGiaiQuyetID', 'DanhMucPhongBanGiaiQuyetName', 'ThanhVienYeuCauID', 'ThanhVienYeuCauName', 'ThanhVienYeuCauDienThoai', 'ThanhVienYeuCauEmail', 'ThanhVienGiaiQuyetID', 'ThanhVienGiaiQuyetName', 'ThanhVienGiaiQuyetDienThoai', 'ThanhVienGiaiQuyetEmail', 'DanhMucTinhTrangID', 'DanhMucTinhTrangName', 'NgayYeuCau', 'NgayGiaiQuyet', 'NgayHoanThanh'];
     List: CongViec[] | undefined;
     ListFilter: CongViec[] | undefined;
     FormData!: CongViec;
