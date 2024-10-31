@@ -363,6 +363,16 @@ namespace Repository.Implement
             var result = await _context.Set<T>().AsNoTracking().Where(item => item.Code == Code).ToListAsync();
             return result ?? new List<T>();
         }
+        public virtual List<T> GetByTypeNameToList(string TypeName)
+        {
+            var result = _context.Set<T>().AsNoTracking().Where(item => item.TypeName == TypeName).ToList();
+            return result ?? new List<T>();
+        }
+        public virtual async Task<List<T>> GetByTypeNameToListAsync(string TypeName)
+        {
+            var result = await _context.Set<T>().AsNoTracking().Where(item => item.TypeName == TypeName).ToListAsync();
+            return result ?? new List<T>();
+        }
         public virtual List<T> GetByActiveToList(bool active)
         {
             var result = _context.Set<T>().AsNoTracking().Where(item => item.Active == active).ToList();

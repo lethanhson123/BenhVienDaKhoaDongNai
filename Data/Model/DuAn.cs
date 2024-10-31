@@ -5,6 +5,7 @@
 
         public DateTime? NgayBatDau { get; set; }
         public DateTime? NgayKetThuc { get; set; }
+        public DateTime? NgayKy { get; set; }
         public string? SoHoSo { get; set; }
         public string? SoQuyetDinh { get; set; }
         public long? BenDauTuID { get; set; }
@@ -36,13 +37,21 @@
         public decimal? GhiCo { get; set; }
         public decimal? GhiNo { get; set; }
         public decimal? ConLai { get; set; }
+        public decimal? MucDauTu { get; set; }
         public string? FileNameQRCode { get; set; }
+        public decimal? ThoiHan { get; set; }
 
         public DuAn()
         {
+            Active = true;
             NgayBatDau = GlobalHelper.InitializationDateTime;
             Code = GlobalHelper.InitializationGUICode;
             TypeName = GlobalHelper.InitializationGUICode;
+            GhiCo = GlobalHelper.InitializationNumber;
+            GhiNo = GlobalHelper.InitializationNumber;
+            ConLai = GlobalHelper.InitializationNumber;
+            MucDauTu = GlobalHelper.InitializationNumber;
+            ThoiHan = GlobalHelper.InitializationNumber;
         }
     }
 }

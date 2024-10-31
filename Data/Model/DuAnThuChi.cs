@@ -1,7 +1,7 @@
 ﻿namespace Data.Model
 {
     public partial class DuAnThuChi : BaseModel
-    {       
+    {
         public string? SoChungTu { get; set; }
         public string? SoHoSo { get; set; }
         public string? SoButToan { get; set; }
@@ -44,10 +44,13 @@
         public string? DanhMucHinhThucThanhToanName { get; set; }
         public long? DanhMucTinhTrangID { get; set; }
         public string? DanhMucTinhTrangName { get; set; }
+        public long? DuAnQuyetDinhID { get; set; }
+        public string? DuAnQuyetDinhSoQuyetDinh { get; set; }
 
         public DuAnThuChi()
         {
             DonGia = GlobalHelper.InitializationNumber;
+            TypeName = GlobalHelper.InitializationGUICode;
             NgayBatDau = GlobalHelper.InitializationDateTime;
         }
     }

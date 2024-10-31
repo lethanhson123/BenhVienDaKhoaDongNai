@@ -345,6 +345,38 @@
             return result;
         }
         [HttpPost]
+        [Route("GetByTypeNameToList")]
+        public virtual List<T> GetByTypeNameToList()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = _BaseService.GetByTypeNameToList(baseParameter.TypeName);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByTypeNameToListAsync")]
+        public virtual async Task<List<T>> GetByTypeNameToListAsync()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByTypeNameToListAsync(baseParameter.TypeName);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByActiveToList")]
         public virtual List<T> GetByActiveToList()
         {
@@ -1439,6 +1471,38 @@
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
                 result = await _BaseService.GetByCodeAndEmptyToListAsync(baseParameter.Code);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByTypeNameAndEmptyToList")]
+        public virtual List<T> GetByTypeNameAndEmptyToList()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = _BaseService.GetByTypeNameAndEmptyToList(baseParameter.TypeName);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByTypeNameAndEmptyToListAsync")]
+        public virtual async Task<List<T>> GetByTypeNameAndEmptyToListAsync()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByTypeNameAndEmptyToListAsync(baseParameter.TypeName);
             }
             catch (Exception ex)
             {

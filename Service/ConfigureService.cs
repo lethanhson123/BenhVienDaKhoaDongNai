@@ -58,6 +58,8 @@ namespace Service
             services.AddTransient<IDuAnService, DuAnService>();
             services.AddTransient<IDuAnTapTinDinhKemService, DuAnTapTinDinhKemService>();
             services.AddTransient<IDuAnThuChiService, DuAnThuChiService>();
+            services.AddTransient<IDuAnQuyetDinhService, DuAnQuyetDinhService>();
+            services.AddTransient<IDuAnQuyetToanService, DuAnQuyetToanService>();
 
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
@@ -90,6 +92,8 @@ namespace Service
             services.AddTransient<IDuAnRepository, DuAnRepository>();
             services.AddTransient<IDuAnTapTinDinhKemRepository, DuAnTapTinDinhKemRepository>();
             services.AddTransient<IDuAnThuChiRepository, DuAnThuChiRepository>();
+            services.AddTransient<IDuAnQuyetDinhRepository, DuAnQuyetDinhRepository>();
+            services.AddTransient<IDuAnQuyetToanRepository, DuAnQuyetToanRepository>();
 
             return services;
         }

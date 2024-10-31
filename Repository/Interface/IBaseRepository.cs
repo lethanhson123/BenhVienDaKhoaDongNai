@@ -30,6 +30,8 @@
         Task<List<T>> GetByListIDToListAsync(List<long> ListID);
         List<T> GetByCodeToList(string Code);
         Task<List<T>> GetByCodeToListAsync(string Code);
+        List<T> GetByTypeNameToList(string TypeName);
+        Task<List<T>> GetByTypeNameToListAsync(string TypeName);
         List<T> GetByActiveToList(bool active);
         Task<List<T>> GetByActiveToListAsync(bool active);
         List<T> GetByParentIDToList(long parentID);

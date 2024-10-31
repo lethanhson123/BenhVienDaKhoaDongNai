@@ -265,8 +265,7 @@ namespace Service.Implement
                     {
                         DuAnThuChi DuAnThuChiItem = ListDuAnThuChi[i];
                         DuAnThuChiItem.ParentID = model.ID;
-                        DuAnThuChiItem.ParentName = model.Name;
-                        DuAnThuChiItem.TypeName = model.TypeName;
+                        DuAnThuChiItem.ParentName = model.Name;                        
                         await _DuAnThuChiService.SaveAsync(DuAnThuChiItem);
                     }
 
@@ -276,8 +275,7 @@ namespace Service.Implement
                         DuAnTapTinDinhKem DuAnTapTinDinhKemItem = ListDuAnTapTinDinhKem[i];
                         DuAnTapTinDinhKemItem.DuAnID = model.ID;
                         DuAnTapTinDinhKemItem.ParentID = model.ID;
-                        DuAnTapTinDinhKemItem.ParentName = model.Name;
-                        DuAnTapTinDinhKemItem.TypeName = model.TypeName;
+                        DuAnTapTinDinhKemItem.ParentName = model.Name;                        
                         await _DuAnTapTinDinhKemService.SaveAsync(DuAnTapTinDinhKemItem);
                     }
 
@@ -458,31 +456,30 @@ namespace Service.Implement
                     catch (Exception ex)
                     {
                     }                    
-                    DuAnThuChiDetail.AppendLine(@"<td>" + item.SoChungTu + "</td>");
-                    try
-                    {                        
-                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'><b>" + item.GhiCo.Value.ToString("N0") + "</b></td>");
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                    try
-                    {                        
-                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'><b>" + item.GhiNo.Value.ToString("N0") + "</b></td>");
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                    try
-                    {                        
-                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
-                    }
-                    catch (Exception ex)
-                    {
-                    }                   
-                    
+                    DuAnThuChiDetail.AppendLine(@"<td>" + item.SoChungTu + "</td>");           
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.DanhMucHinhThucThanhToanName + "</td>");
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.Name + "</td>");
+                    try
+                    {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.GhiCo.Value.ToString("N0") + "</b></td>");
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                    try
+                    {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right; color: red;'><b>" + item.GhiNo.Value.ToString("N0") + "</b></td>");
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                    try
+                    {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                    }
+                    catch (Exception ex)
+                    {
+                    }
                     DuAnThuChiDetail.AppendLine(@"</tr>");
                 }
                 contentHTML = contentHTML.Replace("[DuAnThuChiDetail]", DuAnThuChiDetail.ToString());

@@ -59,6 +59,11 @@ namespace Service.Implement
         {
             BaseInitialization(model);
 
+            if (model.TypeName == null)
+            {
+                model.TypeName = GlobalHelper.InitializationGUICode;
+            }
+
             if (model.NgayBatDau == null)
             {
                 model.NgayBatDau = GlobalHelper.InitializationDateTime;
@@ -257,17 +262,23 @@ namespace Service.Implement
         public override async Task<DuAnThuChi> SaveAsync(DuAnThuChi model)
         {
             int result = GlobalHelper.InitializationNumber;
-            if (model.ID > 0)
+            if (model.Active == true)
             {
-                result = await UpdateAsync(model);
             }
             else
             {
-                result = await AddAsync(model);
-            }
-            if (result > 0)
-            {
-                await Sync(model);
+                if (model.ID > 0)
+                {
+                    result = await UpdateAsync(model);
+                }
+                else
+                {
+                    result = await AddAsync(model);
+                }
+                if (result > 0)
+                {
+                    await Sync(model);
+                }
             }
             return model;
         }

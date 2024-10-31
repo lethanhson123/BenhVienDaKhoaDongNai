@@ -186,6 +186,14 @@ namespace Service.Implement
         {
             return await _repository.GetByCodeToListAsync(Code);
         }
+        public virtual List<T> GetByTypeNameToList(string TypeName)
+        {
+            return _repository.GetByTypeNameToList(TypeName);
+        }
+        public virtual async Task<List<T>> GetByTypeNameToListAsync(string TypeName)
+        {
+            return await _repository.GetByTypeNameToListAsync(TypeName);
+        }
         public virtual List<T> GetByActiveToList(bool active)
         {
             return _repository.GetByActiveToList(active);
@@ -598,6 +606,44 @@ namespace Service.Implement
                 T empty = (T)Activator.CreateInstance(typeof(T));
                 result.Add(empty);
                 List<T> list = await GetByCodeToListAsync(Code);
+                if (list.Count > 0)
+                {
+                    result.AddRange(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return result;
+        }
+        public virtual List<T> GetByTypeNameAndEmptyToList(string TypeName)
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                T empty = (T)Activator.CreateInstance(typeof(T));
+                result.Add(empty);
+                List<T> list = GetByTypeNameToList(TypeName);
+                if (list.Count > 0)
+                {
+                    result.AddRange(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<List<T>> GetByTypeNameAndEmptyToListAsync(string TypeName)
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                T empty = (T)Activator.CreateInstance(typeof(T));
+                result.Add(empty);
+                List<T> list = await GetByTypeNameToListAsync(TypeName);
                 if (list.Count > 0)
                 {
                     result.AddRange(list);

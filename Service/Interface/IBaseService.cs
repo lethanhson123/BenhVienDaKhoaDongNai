@@ -34,6 +34,8 @@
         Task<List<T>> GetByListIDToListAsync(List<long> ListID);
         List<T> GetByCodeToList(string Code);
         Task<List<T>> GetByCodeToListAsync(string Code);
+        List<T> GetByTypeNameToList(string TypeName);
+        Task<List<T>> GetByTypeNameToListAsync(string TypeName);
         List<T> GetByActiveToList(bool active);
         Task<List<T>> GetByActiveToListAsync(bool active);
         List<T> GetByParentIDToList(long parentID);
@@ -104,6 +106,8 @@
         Task<List<T>> GetByParentIDAndEmptyToListAsync(long parentID);
         List<T> GetByCodeAndEmptyToList(string Code);
         Task<List<T>> GetByCodeAndEmptyToListAsync(string Code);
+        List<T> GetByTypeNameAndEmptyToList(string TypeName);
+        Task<List<T>> GetByTypeNameAndEmptyToListAsync(string TypeName);
         List<T> GetByParentID_SearchString_EmptyToList(long parentID, string SearchString);
         Task<List<T>> GetByParentID_SearchString_EmptyToListAsync(long parentID, string SearchString);
         List<T> GetByDanhMucUngDungIDAndEmptyToList(long DanhMucUngDungID);
