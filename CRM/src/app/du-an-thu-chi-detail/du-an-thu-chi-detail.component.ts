@@ -24,6 +24,8 @@ import { DuAn } from 'src/app/shared/DuAn.model';
 import { DuAnService } from 'src/app/shared/DuAn.service';
 import { DuAnThuChi } from 'src/app/shared/DuAnThuChi.model';
 import { DuAnThuChiService } from 'src/app/shared/DuAnThuChi.service';
+import { DuAnQuyetDinh } from 'src/app/shared/DuAnQuyetDinh.model';
+import { DuAnQuyetDinhService } from 'src/app/shared/DuAnQuyetDinh.service';
 import { DuAnTapTinDinhKem } from 'src/app/shared/DuAnTapTinDinhKem.model';
 import { DuAnTapTinDinhKemService } from 'src/app/shared/DuAnTapTinDinhKem.service';
 
@@ -55,6 +57,7 @@ export class DuAnThuChiDetailComponent implements OnInit {
 
     public DuAnService: DuAnService,
     public DuAnThuChiService: DuAnThuChiService,
+    public DuAnQuyetDinhService: DuAnQuyetDinhService,
     public DuAnTapTinDinhKemService: DuAnTapTinDinhKemService,
   ) { }
 
@@ -72,6 +75,21 @@ export class DuAnThuChiDetailComponent implements OnInit {
   }
   DanhMucHinhThucThanhToanSearch() {
     this.DanhMucHinhThucThanhToanService.ComponentGetAllToListAsync(this.DuAnThuChiService);
+  }
+  DuAnQuyetDinhSearch() {
+    this.DuAnThuChiService.IsShowLoading = true;
+    this.DuAnQuyetDinhService.BaseParameter.Code=this.DuAnThuChiService.FormData.Code;
+    this.DuAnQuyetDinhService.GetByCodeToListAsync().subscribe(
+      res => {
+          this.DuAnQuyetDinhService.List = (res as DuAnQuyetDinh[]).sort((a, b) => (a.NgayKy > b.NgayKy ? 1 : -1));
+          this.DuAnQuyetDinhService.ListFilter = this.DuAnQuyetDinhService.List;
+      },
+      err => {
+      },
+      () => {         
+        this.DuAnThuChiService.IsShowLoading = false;               
+      }
+  );
   }
   ToChucSearch() {
     this.ToChucService.ComponentGetAllToListAsync(this.DuAnThuChiService);
@@ -165,12 +183,15 @@ export class DuAnThuChiDetailComponent implements OnInit {
     this.DuAnThuChiService.GetByIDAsync().subscribe(
       res => {
         this.DuAnThuChiService.FormData = res as DuAnThuChi;
+        this.DuAnThuChiService.FormData.ParentID = this.DuAnService.FormData.ID;
+        this.DuAnThuChiService.FormData.ParentName = this.DuAnService.FormData.Name;
         this.DanhMucBieuMauSearch();
         this.DanhMucHinhThucThanhToanSearch();
         this.ToChucSearch();
         this.ToChucTaiKhoanSearch();
         this.ThanhVienSearch();
         this.DuAnTapTinDinhKemSearch();
+        this.DuAnQuyetDinhSearch();
       },
       err => {
       },

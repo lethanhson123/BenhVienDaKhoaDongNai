@@ -1,0 +1,113 @@
+<div class="custom-tabs-container">
+    <div class="row gx-4">
+        <div class="col-lg-8 col-sm-12 col-12">
+            Dự án : <b>{{DuAnQuyetDinhService.FormData.ParentName}} [{{DuAnQuyetDinhService.FormData.ParentID}}]</b> | Quyết định: <b>{{DuAnQuyetDinhService.FormData.Name}} [{{DuAnQuyetDinhService.FormData.ID}}]</b>
+        </div>
+        <div class="col-lg-4 col-sm-12 col-12">
+            <ul class="nav nav-tabs justify-content-end" id="customTab5" role="tablist">       
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="tab-DuAnQuyetDinhDetail" data-bs-toggle="tab" href="#DuAnQuyetDinhDetail"
+                        role="tab" aria-controls="DuAnQuyetDinhDetail" aria-selected="true">
+                        <span class="badge bg-info" style="font-size: 12px;">Quyết định</span>
+                    </a>
+                </li>                
+                <li class="nav-item" role="presentation">
+                    <a style="cursor: pointer;" class="nav-link" id="tab-Close" data-bs-toggle="tab" (click)="Close()"
+                        role="tab" aria-controls="Close" aria-selected="false">
+                        <span class="badge bg-danger" style="font-size: 12px; padding: 0px; padding-left: 5px; padding-top: 2px;"><i class="bi bi-x"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>    
+    <div class="tab-content" id="customTabContent">
+        <div class="tab-pane fade show active" id="DuAnQuyetDinhDetail" role="tabpanel">
+            <div class="row gx-4">
+                <div class="col-lg-6 col-sm-12 col-12">
+                    <a style="width: 100%;" title="Lưu thay đổi" (click)="DuAnQuyetDinhSave()" class="btn btn-info" *ngIf="!DuAnQuyetDinhService.FormData.Active"><i
+                            class="bi bi-sd-card"></i> Lưu thay đổi</a>
+                </div>                
+            </div>
+            <div class="row gx-4">
+                <div class="col-lg-6 col-sm-12 col-12">                    
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Ngày ký</label>
+                        <input [ngModel]="DuAnQuyetDinhService.FormData.NgayKy | date:'yyyy-MM-dd'"
+                            style="text-align: right;" (ngModelChange)="DateNgayKy($event)"
+                            [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Ngày hiệu lực</label>
+                        <input [ngModel]="DuAnQuyetDinhService.FormData.NgayHieuLuc | date:'yyyy-MM-dd'"
+                            style="text-align: right;" (ngModelChange)="DateNgayHieuLuc($event)"
+                            [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off">
+                    </div>                    
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Số hồ sơ</label>
+                        <input name="SoHoSo" [(ngModel)]="DuAnQuyetDinhService.FormData.SoHoSo"
+                            placeholder="Số hồ sơ" type="text" class="form-control">
+                    </div>  
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Số quyết định</label>
+                        <input name="SoQuyetDinh" [(ngModel)]="DuAnQuyetDinhService.FormData.SoQuyetDinh"
+                            placeholder="Số quyết định" type="text" class="form-control">
+                    </div>  
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Tiêu đề</label>
+                        <input name="Name" [(ngModel)]="DuAnQuyetDinhService.FormData.Name" placeholder="Tiêu đề"
+                            type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Mức đầu tư</label>
+                        <input name="MucDauTu" [(ngModel)]="DuAnQuyetDinhService.FormData.MucDauTu" placeholder="Mức đầu tư"
+                            type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-12">
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Bên A (Bên duyệt)
+                            [{{DuAnQuyetDinhService.FormData.BenDauTuID}}]</label>
+                        <select class="form-select" name="BenDauTuID"
+                            [(ngModel)]="DuAnQuyetDinhService.FormData.BenDauTuID" (change)="BenDauTuSearch()">
+                            <option *ngFor="let item of ToChucService.List;" [value]="item.ID">
+                                {{item.Display}} - {{item.Name}} [{{item.ID}}]</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Bên A (Bên duyệt)</label>
+                        <input name="BenDauTuName" [(ngModel)]="DuAnQuyetDinhService.FormData.BenDauTuName"
+                            placeholder="Bên A (Bên duyệt)" type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Đại diện bên A [{{DuAnQuyetDinhService.FormData.NguoiDauTuID}}]</label>
+                        <mat-select class="form-control" name="DuAnQuyetDinhService.FormData.NguoiDauTuID"
+                            (selectionChange)="NguoiDauTuSearch()"
+                            [(ngModel)]="DuAnQuyetDinhService.FormData.NguoiDauTuID">
+                            <input placeholder="Tìm..." class="form-control"
+                                (keyup)="ThanhVienFilter($event.target.value)">
+                            <mat-option *ngFor="let item of ThanhVienService.ListFilter" [value]="item.ID">
+                                {{item.Name}} - {{item.TaiKhoan}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Đại diện bên A (người ký)</label>
+                        <input name="NguoiDauTuName" [(ngModel)]="DuAnQuyetDinhService.FormData.NguoiDauTuName"
+                            placeholder="Đại diện bên A" type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Chức danh</label>
+                        <input name="NguoiDauTuChucDanh" [(ngModel)]="DuAnQuyetDinhService.FormData.NguoiDauTuChucDanh"
+                            placeholder="Chức danh" type="text" class="form-control">
+                    </div>       
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Ghi chú</label>
+                        <input name="Note" [(ngModel)]="DuAnQuyetDinhService.FormData.Note" placeholder="Ghi chú"
+                            type="text" class="form-control">
+                    </div>             
+                </div>              
+            </div>
+        </div>        
+    </div>
+</div>
+<app-loading *ngIf="DuAnQuyetDinhService.IsShowLoading"></app-loading>

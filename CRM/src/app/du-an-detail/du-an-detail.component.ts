@@ -22,9 +22,12 @@ import { DuAn } from 'src/app/shared/DuAn.model';
 import { DuAnService } from 'src/app/shared/DuAn.service';
 import { DuAnThuChi } from 'src/app/shared/DuAnThuChi.model';
 import { DuAnThuChiService } from 'src/app/shared/DuAnThuChi.service';
+import { DuAnQuyetDinh } from 'src/app/shared/DuAnQuyetDinh.model';
+import { DuAnQuyetDinhService } from 'src/app/shared/DuAnQuyetDinh.service';
 import { DuAnTapTinDinhKem } from 'src/app/shared/DuAnTapTinDinhKem.model';
 import { DuAnTapTinDinhKemService } from 'src/app/shared/DuAnTapTinDinhKem.service';
 import { DuAnThuChiDetailComponent } from '../du-an-thu-chi-detail/du-an-thu-chi-detail.component';
+import { DuAnQuyetDinhDetailComponent } from '../du-an-quyet-dinh-detail/du-an-quyet-dinh-detail.component';
 
 @Component({
   selector: 'app-du-an-detail',
@@ -35,6 +38,9 @@ export class DuAnDetailComponent implements OnInit {
 
   @ViewChild('DuAnThuChiSort') DuAnThuChiSort: MatSort;
   @ViewChild('DuAnThuChiPaginator') DuAnThuChiPaginator: MatPaginator;
+
+  @ViewChild('DuAnQuyetDinhSort') DuAnQuyetDinhSort: MatSort;
+  @ViewChild('DuAnQuyetDinhPaginator') DuAnQuyetDinhPaginator: MatPaginator;
 
   @ViewChild('DuAnTapTinDinhKemSort') DuAnTapTinDinhKemSort: MatSort;
   @ViewChild('DuAnTapTinDinhKemPaginator') DuAnTapTinDinhKemPaginator: MatPaginator;
@@ -54,6 +60,7 @@ export class DuAnDetailComponent implements OnInit {
 
     public DuAnService: DuAnService,
     public DuAnThuChiService: DuAnThuChiService,
+    public DuAnQuyetDinhService: DuAnQuyetDinhService,
     public DuAnTapTinDinhKemService: DuAnTapTinDinhKemService,
 
   ) { }
@@ -132,6 +139,7 @@ export class DuAnDetailComponent implements OnInit {
         this.ThanhVienSearch();
         this.DuAnTapTinDinhKemSearch();
         this.DuAnThuChiSearch();
+        this.DuAnQuyetDinhSearch();
       },
       err => {
       },
@@ -163,9 +171,9 @@ export class DuAnDetailComponent implements OnInit {
     this.DuAnService.CreateHTMLByIDAsync().subscribe(
       res => {
         this.DuAnService.FormData = res as DuAn;
-        this.NotificationService.OpenWindowByURL(this.DuAnService.FormData.FileName);        
+        this.NotificationService.OpenWindowByURL(this.DuAnService.FormData.FileName);
       },
-      err => {        
+      err => {
       },
       () => {
         this.DuAnService.IsShowLoading = false;
@@ -217,9 +225,9 @@ export class DuAnDetailComponent implements OnInit {
       this.DuAnService.IsShowLoading = true;
       this.DuAnThuChiService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
       this.DuAnThuChiService.BaseParameter.Code = this.DuAnService.FormData.Code;
-      this.DuAnThuChiService.GetByCodeToListAsync().subscribe(
+      this.DuAnThuChiService.GetSQLByCodeToListAsync().subscribe(
         res => {
-          this.DuAnThuChiService.List = (res as any[]).sort((a, b) => (a.NgayBatDau > b.NgayBatDau ? 1 : -1));
+          this.DuAnThuChiService.List = (res as any[]);
           this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
           this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.List);
           this.DuAnThuChiService.DataSource.sort = this.DuAnThuChiSort;
@@ -252,16 +260,99 @@ export class DuAnDetailComponent implements OnInit {
     }
   }
   DuAnThuChiAdd(ID: number) {
+    this.DuAnService.IsShowLoading = true;
     this.DuAnThuChiService.BaseParameter.ID = ID;
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = environment.DialogConfigWidth;
-    dialogConfig.data = { ID: ID };
-    const dialog = this.Dialog.open(DuAnThuChiDetailComponent, dialogConfig);
-    dialog.afterClosed().subscribe(() => {
-      this.DuAnSearch();
+    this.DuAnThuChiService.GetByIDAsync().subscribe(
+      res => {
+        this.DuAnThuChiService.FormData = (res as DuAnThuChi);
+        this.DuAnThuChiService.FormData.ParentID = this.DuAnService.FormData.ID;
+        this.DuAnThuChiService.FormData.ParentName = this.DuAnService.FormData.Name;
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = environment.DialogConfigWidth;
+        dialogConfig.data = { ID: ID };
+        const dialog = this.Dialog.open(DuAnThuChiDetailComponent, dialogConfig);
+        dialog.afterClosed().subscribe(() => {
+          this.DuAnSearch();
+        });
+      },
+      err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
+  }
 
-    });
+  DuAnQuyetDinhSearch() {
+    if (this.DuAnQuyetDinhService.BaseParameter.SearchString.length > 0) {
+      this.DuAnQuyetDinhService.BaseParameter.SearchString = this.DuAnQuyetDinhService.BaseParameter.SearchString.trim();
+      if (this.DuAnQuyetDinhService.DataSource) {
+        this.DuAnQuyetDinhService.DataSource.filter = this.DuAnQuyetDinhService.BaseParameter.SearchString.toLowerCase();
+      }
+    }
+    else {
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetDinhService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
+      this.DuAnQuyetDinhService.BaseParameter.Code = this.DuAnService.FormData.Code;
+      this.DuAnQuyetDinhService.GetByCodeToListAsync().subscribe(
+        res => {
+          this.DuAnQuyetDinhService.List = (res as any[]);
+          this.DuAnQuyetDinhService.ListFilter = this.DuAnQuyetDinhService.List.filter(item => item.ID > 0);
+          this.DuAnQuyetDinhService.DataSource = new MatTableDataSource(this.DuAnQuyetDinhService.List);
+          this.DuAnQuyetDinhService.DataSource.sort = this.DuAnQuyetDinhSort;
+          this.DuAnQuyetDinhService.DataSource.paginator = this.DuAnQuyetDinhPaginator;
+        },
+        err => {
+        },
+        () => {
+          this.DuAnService.IsShowLoading = false;
+        }
+      );
+    }
+  }
+  DuAnQuyetDinhDelete(element: DuAnQuyetDinh) {
+    if (confirm(environment.DeleteConfirm)) {
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetDinhService.BaseParameter.ID = element.ID;
+      this.DuAnQuyetDinhService.RemoveAsync().subscribe(
+        res => {
+          this.DuAnSearch();
+          this.NotificationService.warn(environment.DeleteSuccess);
+        },
+        err => {
+          this.NotificationService.warn(environment.DeleteNotSuccess);
+        },
+        () => {
+          this.DuAnService.IsShowLoading = false;
+        }
+      );
+    }
+  }
+  DuAnQuyetDinhAdd(ID: number) {
+    this.DuAnService.IsShowLoading = true;
+    this.DuAnQuyetDinhService.BaseParameter.ID = ID;
+    this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
+      res => {
+        this.DuAnQuyetDinhService.FormData = (res as DuAnQuyetDinh);
+        this.DuAnQuyetDinhService.FormData.ParentID = this.DuAnService.FormData.ID;
+        this.DuAnQuyetDinhService.FormData.ParentName = this.DuAnService.FormData.Name;
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = environment.DialogConfigWidth;
+        dialogConfig.data = { ID: ID };
+        const dialog = this.Dialog.open(DuAnQuyetDinhDetailComponent, dialogConfig);
+        dialog.afterClosed().subscribe(() => {
+          this.DuAnSearch();
+        });
+      },
+      err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
   }
 }

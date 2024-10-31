@@ -1,5 +1,7 @@
 ﻿using Data.Model;
 using Microsoft.AspNetCore.Hosting;
+using Service.Interface;
+using System;
 
 namespace Service.Implement
 {
@@ -9,6 +11,8 @@ namespace Service.Implement
         private readonly IDuAnRepository _DuAnRepository;
 
         private readonly IDuAnThuChiService _DuAnThuChiService;
+
+        private readonly IDuAnQuyetDinhService _DuAnQuyetDinhService;
 
         private readonly IDuAnTapTinDinhKemService _DuAnTapTinDinhKemService;
 
@@ -24,6 +28,8 @@ namespace Service.Implement
         public DuAnService(IDuAnRepository DuAnRepository
 
             , IDuAnThuChiService DuAnThuChiService
+
+            , IDuAnQuyetDinhService DuAnQuyetDinhService
 
             , IDuAnTapTinDinhKemService DuAnTapTinDinhKemService
 
@@ -42,6 +48,8 @@ namespace Service.Implement
             _DuAnRepository = DuAnRepository;
 
             _DuAnThuChiService = DuAnThuChiService;
+
+            _DuAnQuyetDinhService = DuAnQuyetDinhService;
 
             _DuAnTapTinDinhKemService = DuAnTapTinDinhKemService;
 
@@ -260,6 +268,17 @@ namespace Service.Implement
             {
                 if (model.ID > 0)
                 {
+
+                    List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByCodeToListAsync(model.Code);
+                    for (int i = 0; i < ListDuAnTapTinDinhKem.Count; i++)
+                    {
+                        DuAnTapTinDinhKem DuAnTapTinDinhKemItem = ListDuAnTapTinDinhKem[i];
+                        DuAnTapTinDinhKemItem.DuAnID = model.ID;
+                        DuAnTapTinDinhKemItem.ParentID = model.ID;
+                        DuAnTapTinDinhKemItem.ParentName = model.Name;
+                        await _DuAnTapTinDinhKemService.SaveAsync(DuAnTapTinDinhKemItem);
+                    }
+
                     List<DuAnThuChi> ListDuAnThuChi = await _DuAnThuChiService.GetByCodeToListAsync(model.Code);
                     for (int i = 0; i < ListDuAnThuChi.Count; i++)
                     {
@@ -269,14 +288,13 @@ namespace Service.Implement
                         await _DuAnThuChiService.SaveAsync(DuAnThuChiItem);
                     }
 
-                    List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByCodeToListAsync(model.Code);
-                    for (int i = 0; i < ListDuAnTapTinDinhKem.Count; i++)
+                    List<DuAnQuyetDinh> ListDuAnQuyetDinh = await _DuAnQuyetDinhService.GetByCodeToListAsync(model.Code);
+                    for (int i = 0; i < ListDuAnQuyetDinh.Count; i++)
                     {
-                        DuAnTapTinDinhKem DuAnTapTinDinhKemItem = ListDuAnTapTinDinhKem[i];
-                        DuAnTapTinDinhKemItem.DuAnID = model.ID;
-                        DuAnTapTinDinhKemItem.ParentID = model.ID;
-                        DuAnTapTinDinhKemItem.ParentName = model.Name;                        
-                        await _DuAnTapTinDinhKemService.SaveAsync(DuAnTapTinDinhKemItem);
+                        DuAnQuyetDinh DuAnQuyetDinhItem = ListDuAnQuyetDinh[i];
+                        DuAnQuyetDinhItem.ParentID = model.ID;
+                        DuAnQuyetDinhItem.ParentName = model.Name;
+                        await _DuAnQuyetDinhService.SaveAsync(DuAnQuyetDinhItem);
                     }
 
                     string ResultSync = await _DuAnRepository.SyncSQLByIDAsync(model.ID);
@@ -378,7 +396,9 @@ namespace Service.Implement
             {
                 ThanhVien ThanhVien = await _ThanhVienService.GetByIDAsync(ThanhVienID);
                 result = await GetByIDAsync(ID);
-                List<DuAnThuChi> ListDuAnThuChi = await _DuAnThuChiService.GetByCodeToListAsync(result.Code);
+                List<DuAnThuChi> ListDuAnThuChi = await _DuAnThuChiService.GetSQLByCodeToListAsync(result.Code);
+                List<DuAnQuyetDinh> ListDuAnQuyetDinh = await _DuAnQuyetDinhService.GetByCodeToListAsync(result.Code);
+                ListDuAnQuyetDinh= ListDuAnQuyetDinh.OrderBy(x => x.NgayKy).ToList();
                 List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByCodeToListAsync(result.Code);
                 string contentHTML = GlobalHelper.InitializationString;
                 string physicalPathOpen = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Download, result.GetType().Name + ".html");
@@ -411,6 +431,13 @@ namespace Service.Implement
                 catch (Exception ex)
                 {
                 }
+                try
+                {
+                    contentHTML = contentHTML.Replace("[NgayKy]", result.NgayKy.Value.ToString("dd/MM/yyyy"));
+                }
+                catch (Exception ex)
+                {
+                }
                 contentHTML = contentHTML.Replace("[SoHoSo]", result.SoHoSo);
                 contentHTML = contentHTML.Replace("[SoQuyetDinh]", result.SoQuyetDinh);
                 contentHTML = contentHTML.Replace("[BenDauTuName]", result.BenDauTuName);
@@ -421,10 +448,27 @@ namespace Service.Implement
                 contentHTML = contentHTML.Replace("[NguoiThucHienChucDanh]", result.NguoiThucHienChucDanh);
                 try
                 {
+                    contentHTML = contentHTML.Replace("[ThoiHan]", result.ThoiHan.Value.ToString("N0"));
+                }
+                catch (Exception ex)
+                {
+                    contentHTML = contentHTML.Replace("[ThoiHan]", "");
+                }
+                try
+                {
+                    contentHTML = contentHTML.Replace("[MucDauTu]", result.MucDauTu.Value.ToString("N0"));
+                }
+                catch (Exception ex)
+                {
+                    contentHTML = contentHTML.Replace("[MucDauTu]", "");
+                }
+                try
+                {
                     contentHTML = contentHTML.Replace("[GhiCo]", result.GhiCo.Value.ToString("N0"));
                 }
                 catch (Exception ex)
                 {
+                    contentHTML = contentHTML.Replace("[GhiCo]", "");
                 }
                 try
                 {
@@ -432,6 +476,7 @@ namespace Service.Implement
                 }
                 catch (Exception ex)
                 {
+                    contentHTML = contentHTML.Replace("[GhiNo]", "");
                 }
                 try
                 {
@@ -439,24 +484,41 @@ namespace Service.Implement
                 }
                 catch (Exception ex)
                 {
+                    contentHTML = contentHTML.Replace("[ConLai]", "");
                 }
 
-                StringBuilder DuAnThuChiDetail = new StringBuilder();
+                StringBuilder DuAnTapTinDinhKemDetail = new StringBuilder();
                 int stt = 0;
+                foreach (DuAnTapTinDinhKem item in ListDuAnTapTinDinhKem)
+                {
+                    stt = stt + 1;
+                    DuAnTapTinDinhKemDetail.AppendLine(@"<tr>");
+                    DuAnTapTinDinhKemDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
+                    DuAnTapTinDinhKemDetail.AppendLine(@"<td><a href='" + item.FileName + "' title='" + item.FileName + "' target='_blank'>" + item.Name + "</a></td>");
+                    DuAnTapTinDinhKemDetail.AppendLine(@"<td><a href='" + item.FileName + "' title='" + item.FileName + "' target='_blank'>" + item.FileName + "</a></td>");
+                    DuAnTapTinDinhKemDetail.AppendLine(@"</tr>");
+                }
+                contentHTML = contentHTML.Replace("[DuAnTapTinDinhKemDetail]", DuAnTapTinDinhKemDetail.ToString());
+
+                StringBuilder DuAnThuChiDetail = new StringBuilder();
+                stt = 0;
                 foreach (DuAnThuChi item in ListDuAnThuChi)
                 {
                     stt = stt + 1;
                     DuAnThuChiDetail.AppendLine(@"<tr>");
                     DuAnThuChiDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.ID + "</td>");
+                    DuAnThuChiDetail.AppendLine(@"<td>" + item.DuAnQuyetDinhSoQuyetDinh + "</td>");                    
                     try
                     {
                         DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'>" + item.NgayBatDau.Value.ToString("dd/MM/yyyy") + "</td>");
                     }
                     catch (Exception ex)
                     {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'></td>");
                     }                    
-                    DuAnThuChiDetail.AppendLine(@"<td>" + item.SoChungTu + "</td>");           
+                    DuAnThuChiDetail.AppendLine(@"<td>" + item.SoChungTu + "</td>");
+                    DuAnThuChiDetail.AppendLine(@"<td>" + item.SoButToan + "</td>");
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.DanhMucHinhThucThanhToanName + "</td>");
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.Name + "</td>");
                     try
@@ -465,6 +527,7 @@ namespace Service.Implement
                     }
                     catch (Exception ex)
                     {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'></td>");
                     }
                     try
                     {
@@ -472,6 +535,7 @@ namespace Service.Implement
                     }
                     catch (Exception ex)
                     {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'></td>");
                     }
                     try
                     {
@@ -479,23 +543,76 @@ namespace Service.Implement
                     }
                     catch (Exception ex)
                     {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'></td>");
                     }
                     DuAnThuChiDetail.AppendLine(@"</tr>");
                 }
                 contentHTML = contentHTML.Replace("[DuAnThuChiDetail]", DuAnThuChiDetail.ToString());
 
-                StringBuilder DuAnTapTinDinhKemDetail = new StringBuilder();
+                StringBuilder DuAnQuyetDinhDetail = new StringBuilder();
                 stt = 0;
-                foreach (DuAnTapTinDinhKem item in ListDuAnTapTinDinhKem)
+                foreach (DuAnQuyetDinh item in ListDuAnQuyetDinh)
                 {
                     stt = stt + 1;
-                    DuAnTapTinDinhKemDetail.AppendLine(@"<tr>");
-                    DuAnTapTinDinhKemDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
-                    DuAnTapTinDinhKemDetail.AppendLine(@"<td><a href='"+ item.FileName + "' title='"+ item.FileName + "' target='_blank'>" + item.Name + "</a></td>");
-                    DuAnTapTinDinhKemDetail.AppendLine(@"<td><a href='"+ item.FileName + "' title='"+ item.FileName + "' target='_blank'>" + item.FileName + "</a></td>");
-                    DuAnTapTinDinhKemDetail.AppendLine(@"</tr>");
+                    DuAnQuyetDinhDetail.AppendLine(@"<tr>");
+                    DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
+                    DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.ID + "</td>");
+                    try
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'>" + item.NgayKy.Value.ToString("dd/MM/yyyy") + "</td>");
+                    }
+                    catch (Exception ex)
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                    }
+                    try
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'>" + item.NgayHieuLuc.Value.ToString("dd/MM/yyyy") + "</td>");
+                    }
+                    catch (Exception ex)
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                    }
+                    DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.SoQuyetDinh + "</td>");
+                    DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.Name + "</td>");
+                    DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.BenDauTuName + "</td>");
+                    try
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'><b>" + item.MucDauTu.Value.ToString("N0") + "</b></td>");
+                    }
+                    catch (Exception ex)
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                    }
+                    try
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.GhiCo.Value.ToString("N0") + "</b></td>");
+                    }
+                    catch (Exception ex)
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                    }
+                    try
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right; color: red;'><b>" + item.GhiNo.Value.ToString("N0") + "</b></td>");
+                    }
+                    catch (Exception ex)
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                    }
+                    try
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                    }
+                    catch (Exception ex)
+                    {
+                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                    }
+                    DuAnQuyetDinhDetail.AppendLine(@"</tr>");
                 }
-                contentHTML = contentHTML.Replace("[DuAnTapTinDinhKemDetail]", DuAnTapTinDinhKemDetail.ToString());
+                contentHTML = contentHTML.Replace("[DuAnQuyetDinhDetail]", DuAnQuyetDinhDetail.ToString());
+
+
 
 
                 string physicalPathCreate = Path.Combine(_WebHostEnvironment.WebRootPath, result.GetType().Name);

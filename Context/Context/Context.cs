@@ -33,6 +33,8 @@ namespace Data.Context
         public virtual DbSet<Data.Model.DuAn> DuAn { get; set; }
         public virtual DbSet<Data.Model.DuAnTapTinDinhKem> DuAnTapTinDinhKem { get; set; }
         public virtual DbSet<Data.Model.DuAnThuChi> DuAnThuChi { get; set; }
+        public virtual DbSet<Data.Model.DuAnQuyetDinh> DuAnQuyetDinh { get; set; }
+        public virtual DbSet<Data.Model.DuAnQuyetToan> DuAnQuyetToan { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

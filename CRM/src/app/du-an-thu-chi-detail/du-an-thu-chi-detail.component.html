@@ -1,10 +1,11 @@
 <div class="custom-tabs-container">
     <div class="row gx-4">
         <div class="col-lg-8 col-sm-12 col-12">
-            Dự án : <b>{{DuAnThuChiService.FormData.ParentName}} [{{DuAnThuChiService.FormData.ParentID}}]</b> | Thu chi: <b>{{DuAnThuChiService.FormData.Name}} [{{DuAnThuChiService.FormData.ID}}]</b>
+            Dự án : <b>{{DuAnThuChiService.FormData.ParentName}} [{{DuAnThuChiService.FormData.ParentID}}]</b> | Thu
+            chi: <b>{{DuAnThuChiService.FormData.Name}} [{{DuAnThuChiService.FormData.ID}}]</b>
         </div>
         <div class="col-lg-4 col-sm-12 col-12">
-            <ul class="nav nav-tabs justify-content-end" id="customTab5" role="tablist">       
+            <ul class="nav nav-tabs justify-content-end" id="customTab5" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="tab-DuAnThuChiDetail" data-bs-toggle="tab" href="#DuAnThuChiDetail"
                         role="tab" aria-controls="DuAnThuChiDetail" aria-selected="true">
@@ -12,26 +13,29 @@
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="tab-DuAnThuChiTapTinDinhKem" data-bs-toggle="tab" href="#DuAnThuChiTapTinDinhKem" role="tab"
-                        aria-controls="DuAnThuChiTapTinDinhKem" aria-selected="true">
+                    <a class="nav-link" id="tab-DuAnThuChiTapTinDinhKem" data-bs-toggle="tab"
+                        href="#DuAnThuChiTapTinDinhKem" role="tab" aria-controls="DuAnThuChiTapTinDinhKem"
+                        aria-selected="true">
                         <span class="badge bg-primary" style="font-size: 12px;">Đính kèm</span>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a style="cursor: pointer;" class="nav-link" id="tab-Close" data-bs-toggle="tab" (click)="Close()"
                         role="tab" aria-controls="Close" aria-selected="false">
-                        <span class="badge bg-danger" style="font-size: 12px; padding: 0px; padding-left: 5px; padding-top: 2px;"><i class="bi bi-x"></i></span>
+                        <span class="badge bg-danger"
+                            style="font-size: 12px; padding: 0px; padding-left: 5px; padding-top: 2px;"><i
+                                class="bi bi-x"></i></span>
                     </a>
                 </li>
             </ul>
         </div>
-    </div>    
+    </div>
     <div class="tab-content" id="customTabContent">
         <div class="tab-pane fade show active" id="DuAnThuChiDetail" role="tabpanel">
             <div class="row gx-4">
                 <div class="col-lg-4 col-sm-12 col-12">
-                    <a style="width: 100%;" title="Lưu thay đổi" (click)="DuAnThuChiSave()" class="btn btn-info" *ngIf="!DuAnThuChiService.FormData.Active"><i
-                            class="bi bi-sd-card"></i> Lưu thay đổi</a>
+                    <a style="width: 100%;" title="Lưu thay đổi" (click)="DuAnThuChiSave()" class="btn btn-info"
+                        *ngIf="!DuAnThuChiService.FormData.Active"><i class="bi bi-sd-card"></i> Lưu thay đổi</a>
                 </div>
                 <div class="col-lg-4 col-sm-12 col-12">
                     <div class="form-check form-check-inline mb-6">
@@ -62,6 +66,17 @@
                         </select>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-12">
+                        <label class="form-label">Quyết định
+                            [{{DuAnThuChiService.FormData.DuAnQuyetDinhID}}]</label>
+                        <select class="form-select" name="DuAnQuyetDinhID"
+                            [(ngModel)]="DuAnThuChiService.FormData.DuAnQuyetDinhID">
+                            <option [value]="0">
+                                Chưa xác định</option>
+                            <option *ngFor="let item of DuAnQuyetDinhService.List;" [value]="item.ID">
+                                {{item.SoQuyetDinh}} - {{item.Name}} [{{item.ID}}]</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
                         <label class="form-label">Ngày ghi nhận</label>
                         <input [ngModel]="DuAnThuChiService.FormData.NgayBatDau | date:'yyyy-MM-dd'"
                             style="text-align: right;" (ngModelChange)="DateNgayBatDau($event)"
@@ -83,14 +98,11 @@
                             placeholder="Số bút toán" type="text" class="form-control">
                     </div>
                     <div class="col-lg-12 col-sm-12 col-12">
-                        <label class="form-label">Đơn giá</label>
+                        <label class="form-label">Đơn giá ({{DuAnThuChiService.FormData.DonGia |
+                            number:
+                            '1.0-0'}})</label>
                         <input name="DonGia" [(ngModel)]="DuAnThuChiService.FormData.DonGia" placeholder="Đơn giá"
                             type="number" class="form-control" style="text-align: right;">
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-12">
-                        <label class="form-label">Ghi chú</label>
-                        <input name="Note" [(ngModel)]="DuAnThuChiService.FormData.Note" placeholder="Ghi chú"
-                            type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 col-12">

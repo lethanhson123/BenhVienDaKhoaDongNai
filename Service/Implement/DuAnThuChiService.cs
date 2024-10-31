@@ -1,4 +1,5 @@
-﻿using Service.Interface;
+﻿using Data.Model;
+using Service.Interface;
 
 namespace Service.Implement
 {
@@ -7,7 +8,11 @@ namespace Service.Implement
     {
         private readonly IDuAnThuChiRepository _DuAnThuChiRepository;
 
+        private readonly IDuAnTapTinDinhKemService _DuAnTapTinDinhKemService;
+
         private readonly IDuAnRepository _DuAnRepository;
+
+        private readonly IDuAnQuyetDinhRepository _DuAnQuyetDinhRepository;
 
         private readonly IToChucRepository _ToChucRepository;
 
@@ -23,7 +28,11 @@ namespace Service.Implement
 
         public DuAnThuChiService(IDuAnThuChiRepository DuAnThuChiRepository
 
+            , IDuAnTapTinDinhKemService DuAnTapTinDinhKemService
+
             , IDuAnRepository DuAnRepository
+
+            , IDuAnQuyetDinhRepository DuAnQuyetDinhRepository
 
             , IToChucRepository ToChucRepository
 
@@ -41,7 +50,11 @@ namespace Service.Implement
         {
             _DuAnThuChiRepository = DuAnThuChiRepository;
 
+            _DuAnTapTinDinhKemService = DuAnTapTinDinhKemService;
+
             _DuAnRepository = DuAnRepository;
+
+            _DuAnQuyetDinhRepository = DuAnQuyetDinhRepository;
 
             _DanhMucBieuMauRepository = DanhMucBieuMauRepository;
 
@@ -258,6 +271,14 @@ namespace Service.Implement
                     model.NguoiThucHienID = ThanhVien.ID;
                 }
             }
+            if (model.DuAnQuyetDinhID > 0)
+            {
+                DuAnQuyetDinh DuAnQuyetDinh = _DuAnQuyetDinhRepository.GetByID(model.DuAnQuyetDinhID.Value);
+                model.DuAnQuyetDinhSoQuyetDinh = DuAnQuyetDinh.SoQuyetDinh;
+            }
+            else
+            {
+            }
         }
         public override async Task<DuAnThuChi> SaveAsync(DuAnThuChi model)
         {
@@ -300,8 +321,32 @@ namespace Service.Implement
             {
                 if (model.ID > 0)
                 {
+                    List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByTypeNameToListAsync(model.TypeName);
+                    for (int i = 0; i < ListDuAnTapTinDinhKem.Count; i++)
+                    {
+                        DuAnTapTinDinhKem DuAnTapTinDinhKemItem = ListDuAnTapTinDinhKem[i];
+                        DuAnTapTinDinhKemItem.DuAnThuChiID = model.ID;
+                        DuAnTapTinDinhKemItem.ParentID = model.ParentID;
+                        DuAnTapTinDinhKemItem.ParentName = model.ParentName;
+                        await _DuAnTapTinDinhKemService.SaveAsync(DuAnTapTinDinhKemItem);
+                    }
+
                     string ResultSync = await _DuAnRepository.SyncSQLByIDAsync(model.ParentID.Value);
                 }
+            }
+            return result;
+        }
+
+        public virtual async Task<List<DuAnThuChi>> GetSQLByCodeToListAsync(string Code)
+        {
+            List<DuAnThuChi> result = new List<DuAnThuChi>();
+            if (!string.IsNullOrEmpty(Code))
+            {
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@Code",Code),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnThuChiSelectItemsByCode", parameters);
             }
             return result;
         }
