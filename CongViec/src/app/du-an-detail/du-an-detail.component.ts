@@ -154,6 +154,21 @@ export class DuAnDetailComponent implements OnInit {
       }
     );
   }
+  DuAnPrint() {
+    this.DuAnService.IsShowLoading = true;
+    this.DuAnService.BaseParameter.ID = this.DuAnService.FormData.ID;
+    this.DuAnService.CreateHTMLByIDAsync().subscribe(
+      res => {
+        this.DuAnService.FormData = res as DuAn;
+        this.NotificationService.OpenWindowByURL(this.DuAnService.FormData.FileName);        
+      },
+      err => {        
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
+  }
 
   DuAnTapTinDinhKemSearch() {
     this.DuAnTapTinDinhKemService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
@@ -189,9 +204,31 @@ export class DuAnDetailComponent implements OnInit {
   }
 
   DuAnThuChiSearch() {
-    this.DuAnThuChiService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
-    this.DuAnThuChiService.BaseParameter.Code = this.DuAnService.FormData.Code;
-    this.DuAnThuChiService.SearchByCodeNotEmpty(this.DuAnThuChiSort, this.DuAnThuChiPaginator, this.DuAnService);
+    if (this.DuAnThuChiService.BaseParameter.SearchString.length > 0) {
+      this.DuAnThuChiService.BaseParameter.SearchString = this.DuAnThuChiService.BaseParameter.SearchString.trim();
+      if (this.DuAnThuChiService.DataSource) {
+        this.DuAnThuChiService.DataSource.filter = this.DuAnThuChiService.BaseParameter.SearchString.toLowerCase();
+      }
+    }
+    else {
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnThuChiService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
+      this.DuAnThuChiService.BaseParameter.Code = this.DuAnService.FormData.Code;
+      this.DuAnThuChiService.GetByCodeToListAsync().subscribe(
+        res => {
+          this.DuAnThuChiService.List = (res as any[]).sort((a, b) => (a.NgayBatDau > b.NgayBatDau ? 1 : -1));
+          this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
+          this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.List);
+          this.DuAnThuChiService.DataSource.sort = this.DuAnThuChiSort;
+          this.DuAnThuChiService.DataSource.paginator = this.DuAnThuChiPaginator;
+        },
+        err => {
+        },
+        () => {
+          this.DuAnService.IsShowLoading = false;
+        }
+      );
+    }
   }
   DuAnThuChiDelete(element: DuAnThuChi) {
     if (confirm(environment.DeleteConfirm)) {

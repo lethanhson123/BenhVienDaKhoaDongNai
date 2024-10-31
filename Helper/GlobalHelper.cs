@@ -109,6 +109,14 @@
         }
         #endregion
         #region AppSettings 
+        public static string Download
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("Download").Value;
+            }
+        }
         public static string Token
         {
             get

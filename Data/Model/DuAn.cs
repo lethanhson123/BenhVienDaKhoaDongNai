@@ -33,8 +33,8 @@
         public string? NguoiThucHienChucDanh { get; set; }       
         public long? DanhMucTinhTrangID { get; set; }
         public string? DanhMucTinhTrangName { get; set; }
-        public decimal? TongTien { get; set; }
-        public decimal? DaChi { get; set; }
+        public decimal? GhiCo { get; set; }
+        public decimal? GhiNo { get; set; }
         public decimal? ConLai { get; set; }
         public string? FileNameQRCode { get; set; }
 

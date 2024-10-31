@@ -32,8 +32,8 @@ NguoiThucHienName?: string;
 NguoiThucHienChucDanh?: string;
 DanhMucTinhTrangID?: number;
 DanhMucTinhTrangName?: string;
-TongTien?: number;
-DaChi?: number;
+GhiCo?: number;
+GhiNo?: number;
 ConLai?: number;
 
 }

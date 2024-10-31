@@ -113,11 +113,11 @@ namespace Service.Implement
             model.ThanhTien = model.SoLuong * model.DonGia * model.HeSo;
             if (model.ThanhTien > 0)
             {
-                model.GhiCo = model.ThanhTien;
+                model.GhiCo = model.DonGia;
             }
             else
             {
-                model.GhiNo = model.ThanhTien;
+                model.GhiNo = model.DonGia;
             }
 
             if (model.BenDauTuID > 0)

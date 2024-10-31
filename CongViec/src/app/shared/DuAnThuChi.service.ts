@@ -8,7 +8,7 @@ import { BaseService } from './Base.service';
 })
 export class DuAnThuChiService extends BaseService{
 
-    DisplayColumns001: string[] = ['STT', 'NgayBatDau', 'SoChungTu', 'DonGia', 'GhiCo', 'GhiNo', 'DanhMucBieuMauName', 'DanhMucHinhThucThanhToanName', 'Name', 'NguoiThucHienName', 'Save'];
+    DisplayColumns001: string[] = ['STT', 'ID', 'NgayBatDau', 'SoChungTu', 'GhiCo', 'GhiNo', 'ConLai', 'DanhMucBieuMauName', 'DanhMucHinhThucThanhToanName', 'Name', 'NguoiThucHienName', 'Save'];
     List: DuAnThuChi[] | undefined;
     ListFilter: DuAnThuChi[] | undefined;
     FormData!: DuAnThuChi;

@@ -28,6 +28,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("CreateHTMLByIDAsync")]
+        public async Task<DuAn> CreateHTMLByIDAsync()
+        {
+            DuAn result = new DuAn();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DuAnService.CreateHTMLByIDAsync(model.ID, model.ThanhVienID.Value);                
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

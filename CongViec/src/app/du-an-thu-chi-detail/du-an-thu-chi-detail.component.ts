@@ -70,7 +70,20 @@ export class DuAnThuChiDetailComponent implements OnInit {
     this.ToChucService.ComponentGetAllToListAsync(this.DuAnThuChiService);
   }
   ToChucTaiKhoanSearch() {
-    this.ToChucTaiKhoanService.ComponentGetAllToListAsync(this.DuAnThuChiService);
+    this.DuAnThuChiService.IsShowLoading = true;
+    this.ToChucTaiKhoanService.GetAllToListAsync().subscribe(
+      res => {
+        this.ToChucTaiKhoanService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        this.ToChucTaiKhoanService.ListFilter = this.ToChucTaiKhoanService.List;
+        this.ToChucTaiKhoanService.ListFilter001 = this.ToChucTaiKhoanService.List.filter(item => item.ParentID == this.DuAnThuChiService.FormData.BenDauTuID);
+        this.ToChucTaiKhoanService.ListFilter002 = this.ToChucTaiKhoanService.List.filter(item => item.ParentID == this.DuAnThuChiService.FormData.BenThucHienID);
+      },
+      err => {
+      },
+      () => {
+        this.DuAnThuChiService.IsShowLoading = false;
+      }
+    );
   }
   ThanhVienSearch() {
     this.ThanhVienService.ComponentGetAllToListAsync(this.DuAnThuChiService);
@@ -119,7 +132,7 @@ export class DuAnThuChiDetailComponent implements OnInit {
   }
   BenDauTuTaiKhoanSearch() {
     this.DuAnThuChiService.FormData.BenDauTuSoTaiKhoan = environment.InitializationString;
-        this.DuAnThuChiService.FormData.BenDauTuNganHang = environment.InitializationString;
+    this.DuAnThuChiService.FormData.BenDauTuNganHang = environment.InitializationString;
     let ListFilter = this.ToChucTaiKhoanService.List.filter(item => item.ID == this.DuAnThuChiService.FormData.BenDauTuTaiKhoanID);
     if (ListFilter) {
       if (ListFilter.length > 0) {

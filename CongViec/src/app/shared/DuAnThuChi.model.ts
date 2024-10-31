@@ -31,6 +31,7 @@ export class DuAnThuChi extends Base {
     HeSo?: number;
     GhiCo?: number;
     GhiNo?: number;
+    ConLai?: number;
     NguoiDauTuID?: number;
     NguoiDauTuName?: string;
     NguoiDauTuChucDanh?: string;

@@ -31,6 +31,7 @@
         public int? HeSo { get; set; }
         public decimal? GhiCo { get; set; }
         public decimal? GhiNo { get; set; }
+        public decimal? ConLai { get; set; }
         public long? NguoiDauTuID { get; set; }
         public string? NguoiDauTuName { get; set; }
         public string? NguoiDauTuChucDanh { get; set; }

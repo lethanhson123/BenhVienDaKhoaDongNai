@@ -8,7 +8,7 @@ import { BaseService } from './Base.service';
 })
 export class DuAnService extends BaseService {
 
-    DisplayColumns001: string[] = ['STT', 'ID', 'NgayBatDau', 'Name', 'SoHoSo', 'SoQuyetDinh', 'BenDauTuName', 'BenThucHienName', 'TongTien', 'DaChi', 'ConLai', 'DanhMucTinhTrangName', 'Save'];
+    DisplayColumns001: string[] = ['STT', 'ID', 'NgayBatDau', 'NgayKetThuc', 'Name', 'SoHoSo', 'SoQuyetDinh', 'BenDauTuName', 'BenThucHienName', 'GhiCo', 'GhiNo', 'ConLai', 'DanhMucTinhTrangName', 'Save'];
 
     List: DuAn[] | undefined;
     ListFilter: DuAn[] | undefined;
@@ -27,6 +27,19 @@ export class DuAnService extends BaseService {
             }
         }
         let url = this.APIURL + this.Controller + '/GetBySearchString_BatDau_KetThucToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+
+    CreateHTMLByIDAsync() {
+        if (this.BaseParameter.ThanhVienID == null) {
+            var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+            if (ThanhVienID) {
+                this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+            }
+        }
+        let url = this.APIURL + this.Controller + '/CreateHTMLByIDAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

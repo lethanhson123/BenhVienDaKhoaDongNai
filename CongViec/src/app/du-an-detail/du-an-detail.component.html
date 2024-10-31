@@ -29,11 +29,15 @@
     <div class="tab-content" id="customTabContent">
         <div class="tab-pane fade show active" id="DuAnDetail" role="tabpanel">
             <div class="row gx-4">
-                <div class="col-lg-6 col-sm-12 col-12">
+                <div class="col-lg-3 col-sm-12 col-12">
                     <a style="width: 100%;" title="Lưu thay đổi" (click)="DuAnSave()" class="btn btn-info"><i
                             class="bi bi-sd-card"></i> Lưu thay đổi</a>
                 </div>
-                <div class="col-lg-6 col-sm-12 col-12">
+                <div class="col-lg-3 col-sm-12 col-12">
+                    <a style="width: 100%;" title="In hoặc xuất PDF" (click)="DuAnPrint()" class="btn btn-success"><i
+                            class="bi bi-printer"></i> In hoặc xuất PDF</a>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12">
                     <div class="form-check form-check-inline mb-6">
                         <input type="checkbox" class="form-check-input" name="Active"
                             [(ngModel)]="DuAnService.FormData.Active" />
@@ -59,12 +63,12 @@
                         <label class="form-label">Tiêu đề</label>
                         <input name="Name" [(ngModel)]="DuAnService.FormData.Name" placeholder="Tiêu đề" type="text"
                             class="form-control">
-                    </div>  
+                    </div>
                     <div class="col-lg-12 col-sm-12 col-12">
                         <label class="form-label">Số hồ sơ</label>
-                        <input name="SoHoSo" [(ngModel)]="DuAnService.FormData.SoHoSo"
-                            placeholder="Số hồ sơ" type="text" class="form-control">
-                    </div>                  
+                        <input name="SoHoSo" [(ngModel)]="DuAnService.FormData.SoHoSo" placeholder="Số hồ sơ"
+                            type="text" class="form-control">
+                    </div>
                     <div class="col-lg-12 col-sm-12 col-12">
                         <label class="form-label">Số quyết định</label>
                         <input name="SoQuyetDinh" [(ngModel)]="DuAnService.FormData.SoQuyetDinh"
@@ -101,12 +105,12 @@
                         <label class="form-label">Đại diện bên A</label>
                         <input name="NguoiDauTuName" [(ngModel)]="DuAnService.FormData.NguoiDauTuName"
                             placeholder="Đại diện bên A" type="text" class="form-control">
-                    </div>      
+                    </div>
                     <div class="col-lg-12 col-sm-12 col-12">
                         <label class="form-label">Chức danh</label>
                         <input name="NguoiDauTuChucDanh" [(ngModel)]="DuAnService.FormData.NguoiDauTuChucDanh"
                             placeholder="Chức danh" type="text" class="form-control">
-                    </div>                  
+                    </div>
                 </div>
                 <div class="col-lg-3 col-sm-12 col-12">
                     <div class="col-lg-12 col-sm-12 col-12">
@@ -144,28 +148,34 @@
                         <label class="form-label">Chức danh</label>
                         <input name="NguoiThucHienChucDanh" [(ngModel)]="DuAnService.FormData.NguoiThucHienChucDanh"
                             placeholder="Chức danh" type="text" class="form-control">
-                    </div>    
+                    </div>
                 </div>
                 <div class="col-lg-3 col-sm-12 col-12">
                     <div class="col-lg-12 col-sm-12 col-12">
-                        <label class="form-label">Tổng tiền</label>
-                        <input name="TongTien" [(ngModel)]="DuAnService.FormData.TongTien" placeholder="Tổng tiền"
-                            type="number" class="form-control" style="text-align: right;" disabled>
+                        <label class="form-label">Ghi có</label>
+                        <br />
+                        <label class="form-control" style="text-align: right; color: green;">{{DuAnService.FormData.GhiCo |
+                            number:
+                            '1.0-0'}}</label>                        
                     </div>
                     <div class="col-lg-12 col-sm-12 col-12">
-                        <label class="form-label">Đã chi</label>
-                        <input name="DaChi" [(ngModel)]="DuAnService.FormData.DaChi" placeholder="Đã chi" type="number"
-                            class="form-control" style="text-align: right; color: red;" disabled>
+                        <label class="form-label">Ghi nợ</label>
+                        <br/>
+                        <label class="form-control" style="text-align: right; color: red;">{{DuAnService.FormData.GhiNo |
+                            number:
+                            '1.0-0'}}</label>                        
                     </div>
                     <div class="col-lg-12 col-sm-12 col-12">
                         <label class="form-label">Còn lại</label>
-                        <input name="ConLai" [(ngModel)]="DuAnService.FormData.ConLai" placeholder="Còn lại"
-                            type="number" class="form-control" style="text-align: right; color: green;" disabled>
+                        <br/>
+                        <label class="form-control" style="text-align: right; color: green;">{{DuAnService.FormData.ConLai |
+                            number:
+                            '1.0-0'}}</label>                        
                     </div>
                     <div class="col-lg-12 col-sm-12 col-12">
                         <label class="form-label">Ghi chú</label>
-                        <input name="Note" [(ngModel)]="DuAnService.FormData.Note" placeholder="Ghi chú"
-                            type="text" class="form-control">
+                        <input name="Note" [(ngModel)]="DuAnService.FormData.Note" placeholder="Ghi chú" type="text"
+                            class="form-control">
                     </div>
                 </div>
             </div>
@@ -343,14 +353,20 @@
                                         </div>
                                     </td>
                                 </ng-container>
+                                <ng-container matColumnDef="ID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.ID}}
+                                    </td>
+                                </ng-container>
                                 <ng-container matColumnDef="NgayBatDau">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày bắt
-                                        đầu</th>
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày ghi nhận</th>
                                     <td mat-cell *matCellDef="let element">
                                         <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
                                             (click)="DuAnThuChiAdd(element.ID)"><b>{{element.NgayBatDau
                                                 |
-                                                date:'dd/MM/yyyy HH:mm:ss'}}</b></a>
+                                                date:'dd/MM/yyyy'}}</b></a>
                                     </td>
                                 </ng-container>
                                 <ng-container matColumnDef="SoChungTu">
@@ -359,18 +375,7 @@
                                     <td mat-cell *matCellDef="let element">
                                         {{element.SoChungTu}}
                                     </td>
-                                </ng-container>
-                                <ng-container matColumnDef="DonGia">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Đơn giá
-                                    </th>
-                                    <td mat-cell *matCellDef="let element">
-                                        <div style="text-align: right; font-weight: bold;">
-                                            {{element.DonGia |
-                                            number:
-                                            '1.0-0'}}
-                                        </div>
-                                    </td>
-                                </ng-container>
+                                </ng-container>                                
                                 <ng-container matColumnDef="GhiCo">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
                                     </th>
@@ -388,6 +393,17 @@
                                     <td mat-cell *matCellDef="let element">
                                         <div style="text-align: right; font-weight: bold; color: red;">
                                             {{element.GhiNo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ConLai">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn lại
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.ConLai |
                                             number:
                                             '1.0-0'}}
                                         </div>
