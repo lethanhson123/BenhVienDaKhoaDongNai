@@ -183,9 +183,11 @@ export class DuAnThuChiInfoComponent implements OnInit {
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
         this.DuAnService.FormData = res as DuAn;
+        this.DuAnThuChiService.IsShowLoading = true;
         this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
           res => {
             this.DuAnQuyetDinhService.FormData = res as DuAn;
+            this.DuAnThuChiService.IsShowLoading = true;
             this.DuAnThuChiService.GetByIDAsync().subscribe(
               res => {
                 this.DuAnThuChiService.FormData = res as DuAnThuChi;

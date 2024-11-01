@@ -107,6 +107,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
         this.DuAnService.FormData = res as DuAnQuyetDinh;
+        this.DuAnQuyetDinhService.IsShowLoading = true; 
         this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
           res => {
             this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
