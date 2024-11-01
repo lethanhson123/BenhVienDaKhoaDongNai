@@ -20,6 +20,10 @@ import { DanhMucBieuMauComponent } from './danh-muc-bieu-mau/danh-muc-bieu-mau.c
 import { DanhMucHinhThucThanhToanComponent } from './danh-muc-hinh-thuc-thanh-toan/danh-muc-hinh-thuc-thanh-toan.component';
 import { ToChucComponent } from './to-chuc/to-chuc.component';
 import { DuAnComponent } from './du-an/du-an.component';
+import { DuAn001Component } from './du-an001/du-an001.component';
+import { DuAnInfoComponent } from './du-an-info/du-an-info.component';
+import { DuAnThuChiInfoComponent } from './du-an-thu-chi-info/du-an-thu-chi-info.component';
+import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-dinh-info.component';
 
 
 
@@ -84,6 +88,18 @@ const routes: Routes = [
   {
     path: 'DuAn', component: DuAnComponent,
   },  
+  {
+    path: 'DuAn001', component: DuAn001Component,
+  },  
+  {
+    path: 'DuAnInfo/:ID', component: DuAnInfoComponent,
+  }, 
+  {
+    path: 'DuAnQuyetDinhInfo/:DuAnID/:ID', component: DuAnQuyetDinhInfoComponent,
+  }, 
+  {
+    path: 'DuAnThuChiInfo/:DuAnID/:DuAnQuyetDinhID/:ID', component: DuAnThuChiInfoComponent,
+  }, 
 
 ];
 
