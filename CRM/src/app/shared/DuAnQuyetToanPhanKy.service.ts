@@ -8,7 +8,7 @@ import { BaseService } from './Base.service';
 })
 export class DuAnQuyetToanPhanKyService extends BaseService{
 
-    DisplayColumns001: string[] = ['STT', 'ID', 'DuAnQuyetDinhSoQuyetDinh', 'Nam', 'Thang', 'GhiCo', 'GhiNo', 'ConLai', 'Active'];
+    DisplayColumns001: string[] = ['STT', 'ID', 'DuAnQuyetDinhSoQuyetDinh', 'Nam', 'Thang', 'DauKy', 'GhiCo', 'GhiNo', 'CuoiKy', 'Active'];
 
     List: DuAnQuyetToanPhanKy[] | undefined;
     ListFilter: DuAnQuyetToanPhanKy[] | undefined;

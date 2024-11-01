@@ -458,6 +458,17 @@
                                         {{element.Thang}}
                                     </td>
                                 </ng-container>
+                                <ng-container matColumnDef="DauKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Đầu kỳ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.DauKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
                                 <ng-container matColumnDef="GhiCo">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
                                     </th>
@@ -480,19 +491,19 @@
                                         </div>
                                     </td>
                                 </ng-container>
-                                <ng-container matColumnDef="ConLai">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn lại
+                                <ng-container matColumnDef="CuoiKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cuối kỳ
                                     </th>
                                     <td mat-cell *matCellDef="let element">
-                                        <div *ngIf="element.ConLai>=0"
+                                        <div *ngIf="element.CuoiKy>=0"
                                             style="text-align: right; font-weight: bold; color: green;">
-                                            {{element.ConLai |
+                                            {{element.CuoiKy |
                                             number:
                                             '1.0-0'}}
                                         </div>
-                                        <div *ngIf="element.ConLai<0"
+                                        <div *ngIf="element.CuoiKy<0"
                                             style="text-align: right; font-weight: bold; color: red;">
-                                            {{element.ConLai |
+                                            {{element.CuoiKy |
                                             number:
                                             '1.0-0'}}
                                         </div>
@@ -504,7 +515,7 @@
                                     <td mat-cell *matCellDef="let element">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox"
-                                                name="Active{{element.ID}}" [(ngModel)]="element.Active">
+                                                name="Active{{element.ID}}" [(ngModel)]="element.Active" (change)="DuAnQuyetToanPhanKyActiveChange(element)">
                                         </div>
                                     </td>
                                 </ng-container>
@@ -547,6 +558,12 @@
                                                     number:'1.0-0'}}</label>
                                             </div>
                                             <div class="col-lg-12 col-sm-12 col-12">
+                                                <label>Đầu kỳ</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.DauKy |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 col-12">
                                                 <label>Ghi có</label>
                                                 <br />
                                                 <label class="form-label" style="color: green;">{{element.GhiCo |
@@ -559,19 +576,19 @@
                                                     number:'1.0-0'}}</label>
                                             </div>
                                             <div class="col-lg-12 col-sm-12 col-12">
-                                                <label>Còn lại</label>
+                                                <label>Cuối kỳ</label>
                                                 <br />
-                                                <label *ngIf="element.ConLai>=0" class="form-label"
-                                                    style="color: green;">{{element.ConLai |
+                                                <label *ngIf="element.CuoiKy>=0" class="form-label"
+                                                    style="color: green;">{{element.CuoiKy |
                                                     number:'1.0-0'}}</label>
-                                                <label *ngIf="element.ConLai<0" class="form-label"
-                                                    style="color: red;">{{element.ConLai |
+                                                <label *ngIf="element.CuoiKy<0" class="form-label"
+                                                    style="color: red;">{{element.CuoiKy |
                                                     number:'1.0-0'}}</label>
                                             </div>
                                             <div class="col-lg-12 col-sm-12 col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox"
-                                                        name="Active{{element.ID}}" [(ngModel)]="element.Active">
+                                                        name="Active{{element.ID}}" [(ngModel)]="element.Active" (change)="DuAnQuyetToanPhanKyActiveChange(element)">
                                                     <label class="form-label">&nbsp;&nbsp;&nbsp;Quyết toán
                                                         (Khoá)</label>
                                                 </div>
@@ -658,6 +675,17 @@
                                         {{element.Thang}}
                                     </td>
                                 </ng-container>
+                                <ng-container matColumnDef="DauKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Đầu kỳ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.DauKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
                                 <ng-container matColumnDef="GhiCo">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
                                     </th>
@@ -680,19 +708,19 @@
                                         </div>
                                     </td>
                                 </ng-container>
-                                <ng-container matColumnDef="ConLai">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn lại
+                                <ng-container matColumnDef="CuoiKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cuối kỳ
                                     </th>
                                     <td mat-cell *matCellDef="let element">
-                                        <div *ngIf="element.ConLai>=0"
+                                        <div *ngIf="element.CuoiKy>=0"
                                             style="text-align: right; font-weight: bold; color: green;">
-                                            {{element.ConLai |
+                                            {{element.CuoiKy |
                                             number:
                                             '1.0-0'}}
                                         </div>
-                                        <div *ngIf="element.ConLai<0"
+                                        <div *ngIf="element.CuoiKy<0"
                                             style="text-align: right; font-weight: bold; color: red;">
-                                            {{element.ConLai |
+                                            {{element.CuoiKy |
                                             number:
                                             '1.0-0'}}
                                         </div>
@@ -704,7 +732,7 @@
                                     <td mat-cell *matCellDef="let element">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox"
-                                                name="Active{{element.ID}}" [(ngModel)]="element.Active">
+                                                name="Active{{element.ID}}" [(ngModel)]="element.Active" (change)="DuAnQuyetToanLuyKeActiveChange(element)">
                                         </div>
                                     </td>
                                 </ng-container>
@@ -747,6 +775,12 @@
                                                     number:'1.0-0'}}</label>
                                             </div>
                                             <div class="col-lg-12 col-sm-12 col-12">
+                                                <label>Đầu kỳ</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.DauKy |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 col-12">
                                                 <label>Ghi có</label>
                                                 <br />
                                                 <label class="form-label" style="color: green;">{{element.GhiCo |
@@ -759,19 +793,19 @@
                                                     number:'1.0-0'}}</label>
                                             </div>
                                             <div class="col-lg-12 col-sm-12 col-12">
-                                                <label>Còn lại</label>
+                                                <label>Cuối kỳ</label>
                                                 <br />
-                                                <label *ngIf="element.ConLai>=0" class="form-label"
-                                                    style="color: green;">{{element.ConLai |
+                                                <label *ngIf="element.CuoiKy>=0" class="form-label"
+                                                    style="color: green;">{{element.CuoiKy |
                                                     number:'1.0-0'}}</label>
-                                                <label *ngIf="element.ConLai<0" class="form-label"
-                                                    style="color: red;">{{element.ConLai |
+                                                <label *ngIf="element.CuoiKy<0" class="form-label"
+                                                    style="color: red;">{{element.CuoiKy |
                                                     number:'1.0-0'}}</label>
                                             </div>
                                             <div class="col-lg-12 col-sm-12 col-12">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox"
-                                                        name="Active{{element.ID}}" [(ngModel)]="element.Active">
+                                                        name="Active{{element.ID}}" [(ngModel)]="element.Active" (change)="DuAnQuyetToanLuyKeActiveChange(element)">
                                                     <label class="form-label">&nbsp;&nbsp;&nbsp;Quyết toán
                                                         (Khoá)</label>
                                                 </div>

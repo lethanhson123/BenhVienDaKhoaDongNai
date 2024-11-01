@@ -8,10 +8,11 @@ export class DuAnQuyetToanPhanKy extends Base {
     Quy?: number;
     Thang?: number;
     Ngay?: number;
+    DauKy?: number;
     GhiCo?: number;
     GhiNo?: number;
     ConLai?: number;
-
+    CuoiKy?: number;
 }
 
 

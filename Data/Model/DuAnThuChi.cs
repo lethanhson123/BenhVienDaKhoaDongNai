@@ -28,9 +28,11 @@
         public decimal? DonGia { get; set; }
         public decimal? ThanhTien { get; set; }
         public int? HeSo { get; set; }
+        public decimal? DauKy { get; set; }
         public decimal? GhiCo { get; set; }
         public decimal? GhiNo { get; set; }
         public decimal? ConLai { get; set; }
+        public decimal? CuoiKy { get; set; }
         public long? NguoiDauTuID { get; set; }
         public string? NguoiDauTuName { get; set; }
         public string? NguoiDauTuChucDanh { get; set; }

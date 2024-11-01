@@ -33,7 +33,7 @@ export class DuAnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DuAnSearch();
+    //this.DuAnSearch();
   }
   DateBatDau(value) {
     this.DuAnService.BaseParameter.BatDau = new Date(value);

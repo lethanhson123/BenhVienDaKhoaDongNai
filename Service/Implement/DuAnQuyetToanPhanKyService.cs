@@ -8,6 +8,36 @@
         {
             _DuAnQuyetToanPhanKyRepository = DuAnQuyetToanPhanKyRepository;
         }
+        public override async Task<DuAnQuyetToanPhanKy> SaveAsync(DuAnQuyetToanPhanKy model)
+        {
+            int result = GlobalHelper.InitializationNumber;
+            if (model.ID > 0)
+            {
+                result = await UpdateAsync(model);
+            }
+            else
+            {
+                result = await AddAsync(model);
+            }
+            if (result > 0)
+            {
+                await Sync(model);
+            }
+            return model;
+        }
+        private async Task<int> Sync(DuAnQuyetToanPhanKy model)
+        {
+            int result = GlobalHelper.InitializationNumber;
+            if (model != null)
+            {
+                if (model.ID > 0)
+                {
+
+                    string ResultSync = await _DuAnQuyetToanPhanKyRepository.SyncSQLByIDAsync(model.ID);
+                }
+            }
+            return result;
+        }
         public virtual async Task<List<DuAnQuyetToanPhanKy>> GetBySoQuyetDinhToListAsync(string SoQuyetDinh)
         {
             List<DuAnQuyetToanPhanKy> result = new List<DuAnQuyetToanPhanKy>();

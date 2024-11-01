@@ -28,9 +28,11 @@ export class DuAnThuChi extends Base {
     DonGia?: number;
     ThanhTien?: number;
     HeSo?: number;
+    DauKy?: number;
     GhiCo?: number;
     GhiNo?: number;
     ConLai?: number;
+    CuoiKy?: number;
     NguoiDauTuID?: number;
     NguoiDauTuName?: string;
     NguoiDauTuChucDanh?: string;

@@ -267,4 +267,40 @@ export class DuAnQuyetDinhDetailComponent implements OnInit {
     }
   }
 
+  DuAnQuyetToanLuyKeActiveChange(element: DuAnQuyetToanLuyKe) {
+    this.DuAnQuyetDinhService.IsShowLoading = true;    
+    this.DuAnQuyetToanLuyKeService.FormData = element;
+    this.DuAnQuyetToanLuyKeService.SaveAsync().subscribe(
+      res => {
+        this.DuAnQuyetToanLuyKeService.FormData = res as DuAnQuyetToanLuyKe;
+        this.DuAnThuChiSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.DuAnQuyetDinhService.IsShowLoading = false;
+      }
+    );
+  }
+
+  DuAnQuyetToanPhanKyActiveChange(element: DuAnQuyetToanPhanKy) {
+    this.DuAnQuyetDinhService.IsShowLoading = true;    
+    this.DuAnQuyetToanPhanKyService.FormData = element;
+    this.DuAnQuyetToanPhanKyService.SaveAsync().subscribe(
+      res => {
+        this.DuAnQuyetToanPhanKyService.FormData = res as DuAnQuyetToanPhanKy;
+        this.DuAnThuChiSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.DuAnQuyetDinhService.IsShowLoading = false;
+      }
+    );
+  }
+
 }
