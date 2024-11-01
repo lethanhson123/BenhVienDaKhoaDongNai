@@ -28,6 +28,38 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetSQLBySoQuyetDinhToListAsync")]
+        public async Task<List<DuAnQuyetToanLuyKe>> GetSQLBySoQuyetDinhToListAsync()
+        {
+            List<DuAnQuyetToanLuyKe> result = new List<DuAnQuyetToanLuyKe>();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DuAnQuyetToanLuyKeService.GetSQLBySoQuyetDinhToListAsync(model.SoQuyetDinh);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetSQLByParentIDToListAsync")]
+        public async Task<List<DuAnQuyetToanLuyKe>> GetSQLByParentIDToListAsync()
+        {
+            List<DuAnQuyetToanLuyKe> result = new List<DuAnQuyetToanLuyKe>();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DuAnQuyetToanLuyKeService.GetSQLByParentIDToListAsync(model.ParentID.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

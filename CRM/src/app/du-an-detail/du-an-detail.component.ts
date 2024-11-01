@@ -155,8 +155,8 @@ export class DuAnDetailComponent implements OnInit {
         this.DuAnTapTinDinhKemSearch();
         this.DuAnThuChiSearch();
         this.DuAnQuyetDinhSearch();
-        this.DuAnQuyetToanPhanKySearch();
-        this.DuAnQuyetToanLuyKeSearch();
+        //this.DuAnQuyetToanPhanKySearch();
+        //this.DuAnQuyetToanLuyKeSearch();
       },
       err => {
       },
@@ -383,7 +383,7 @@ export class DuAnDetailComponent implements OnInit {
     else {
       this.DuAnService.IsShowLoading = true;
       this.DuAnQuyetToanPhanKyService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
-      this.DuAnQuyetToanPhanKyService.GetByParentIDToListAsync().subscribe(
+      this.DuAnQuyetToanPhanKyService.GetSQLByParentIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanPhanKyService.List = (res as DuAnQuyetToanPhanKy[]);
           if (this.IsDuAnQuyetToanPhanKy == true) {
@@ -412,7 +412,7 @@ export class DuAnDetailComponent implements OnInit {
     else {
       this.DuAnService.IsShowLoading = true;
       this.DuAnQuyetToanLuyKeService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
-      this.DuAnQuyetToanLuyKeService.GetByParentIDToListAsync().subscribe(
+      this.DuAnQuyetToanLuyKeService.GetSQLByParentIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanLuyKeService.List = (res as DuAnQuyetToanLuyKe[]);
           if (this.IsDuAnQuyetToanLuyKe == true) {

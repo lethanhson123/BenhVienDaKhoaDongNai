@@ -116,8 +116,8 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
             this.ToChucSearch();
             this.ThanhVienSearch();
             this.DuAnThuChiSearch();
-            this.DuAnQuyetToanLuyKeSearch();
-            this.DuAnQuyetToanPhanKySearch();
+            //this.DuAnQuyetToanLuyKeSearch();
+            //this.DuAnQuyetToanPhanKySearch();
           },
           err => {
           },
@@ -225,7 +225,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     else {
       this.DuAnService.IsShowLoading = true;
       this.DuAnQuyetToanPhanKyService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnQuyetToanPhanKyService.GetBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnQuyetToanPhanKyService.GetSQLBySoQuyetDinhToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanPhanKyService.List = (res as DuAnQuyetToanPhanKy[]);
           if (this.IsDuAnQuyetToanPhanKy == true) {
@@ -254,7 +254,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     else {
       this.DuAnService.IsShowLoading = true;
       this.DuAnQuyetToanLuyKeService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnQuyetToanLuyKeService.GetBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnQuyetToanLuyKeService.GetSQLBySoQuyetDinhToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanLuyKeService.List = (res as DuAnQuyetToanLuyKe[]);
           if (this.IsDuAnQuyetToanLuyKe == true) {

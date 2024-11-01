@@ -54,6 +54,32 @@
             }
             return result;
         }
+        public virtual async Task<List<DuAnQuyetToanPhanKy>> GetSQLByParentIDToListAsync(long ParentID)
+        {
+            List<DuAnQuyetToanPhanKy> result = new List<DuAnQuyetToanPhanKy>();
+            if (ParentID>0)
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@ParentID",ParentID),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanLuyKeSelectItemsByParentID", parameters);
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAnQuyetToanPhanKy>> GetSQLBySoQuyetDinhToListAsync(string SoQuyetDinh)
+        {
+            List<DuAnQuyetToanPhanKy> result = new List<DuAnQuyetToanPhanKy>();
+            if (!string.IsNullOrEmpty(SoQuyetDinh))
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@SoQuyetDinh",SoQuyetDinh),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanPhanKySelectItemsBySoQuyetDinh", parameters);
+            }
+            return result;
+        }
     }
 }
 

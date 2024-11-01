@@ -33,7 +33,7 @@ namespace Service.Implement
             if (model != null)
             {
                 if (model.ID > 0)
-                {                    
+                {
 
                     string ResultSync = await _DuAnQuyetToanLuyKeRepository.SyncSQLByIDAsync(model.ID);
                 }
@@ -53,6 +53,32 @@ namespace Service.Implement
             catch (Exception ex)
             {
                 string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAnQuyetToanLuyKe>> GetSQLByParentIDToListAsync(long ParentID)
+        {
+            List<DuAnQuyetToanLuyKe> result = new List<DuAnQuyetToanLuyKe>();
+            if (ParentID>0)
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@ParentID",ParentID),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanLuyKeSelectItemsByParentID", parameters);
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAnQuyetToanLuyKe>> GetSQLBySoQuyetDinhToListAsync(string SoQuyetDinh)
+        {
+            List<DuAnQuyetToanLuyKe> result = new List<DuAnQuyetToanLuyKe>();
+            if (!string.IsNullOrEmpty(SoQuyetDinh))
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@SoQuyetDinh",SoQuyetDinh),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanLuyKeSelectItemsBySoQuyetDinh", parameters);
             }
             return result;
         }
