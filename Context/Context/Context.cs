@@ -35,6 +35,8 @@ namespace Data.Context
         public virtual DbSet<Data.Model.DuAnThuChi> DuAnThuChi { get; set; }
         public virtual DbSet<Data.Model.DuAnQuyetDinh> DuAnQuyetDinh { get; set; }
         public virtual DbSet<Data.Model.DuAnQuyetToan> DuAnQuyetToan { get; set; }
+        public virtual DbSet<Data.Model.DuAnQuyetToanLuyKe> DuAnQuyetToanLuyKe { get; set; }
+        public virtual DbSet<Data.Model.DuAnQuyetToanPhanKy> DuAnQuyetToanPhanKy { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

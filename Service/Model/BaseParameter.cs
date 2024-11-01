@@ -17,22 +17,10 @@
 		public DateTime? NgayGhiNhan { get; set; }
 		public DateTime? BatDau { get; set; }
 		public DateTime? KetThuc { get; set; }	
-		public long? ThanhVienID { get; set; }
-        public long? DanhMucThanhVienID { get; set; }
-        public long? DanhMucTapTinDinhKemPhanLoaiID { get; set; }
+		public long? ThanhVienID { get; set; }       
         public string? QRCode { get; set; }
         public string? URL { get; set; }
-        public long? ToChucID { get; set; }
-        public string? MaSo { get; set; }
-        public string? MaLoHang { get; set; }
-        public string? VanChuyenGTIN { get; set; }
-        public long? LoHangID { get; set; }
-        public long? DanhMucChucNangID { get; set; }
-        public long? IDToken { get; set; }
-        public long? DanhMucQuanHuyenID { get; set; }
-        public long? DanhMucXaPhuongID { get; set; }
-        public long? ToChucVungNuoiID { get; set; }
-        public long? DanhMucGiongID { get; set; }
+        public string? SoQuyetDinh { get; set; }
         public BaseParameter()
 		{
 		}

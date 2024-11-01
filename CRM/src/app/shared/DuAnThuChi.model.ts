@@ -23,8 +23,7 @@ export class DuAnThuChi extends Base {
     BenThucHienTaiKhoanID?: number;
     BenThucHienSoTaiKhoan?: string;
     BenThucHienNganHang?: string;
-    NgayBatDau?: Date;
-    NgayKetThuc?: Date;
+    NgayGhiNhan?: Date;    
     SoLuong?: number;
     DonGia?: number;
     ThanhTien?: number;

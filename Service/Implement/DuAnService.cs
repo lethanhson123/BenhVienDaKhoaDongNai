@@ -511,7 +511,7 @@ namespace Service.Implement
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.DuAnQuyetDinhSoQuyetDinh + "</td>");                    
                     try
                     {
-                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'>" + item.NgayBatDau.Value.ToString("dd/MM/yyyy") + "</td>");
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'>" + item.NgayGhiNhan.Value.ToString("dd/MM/yyyy") + "</td>");
                     }
                     catch (Exception ex)
                     {

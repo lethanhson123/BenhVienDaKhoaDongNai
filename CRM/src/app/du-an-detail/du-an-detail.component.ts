@@ -20,12 +20,16 @@ import { ToChucTaiKhoanService } from 'src/app/shared/ToChucTaiKhoan.service';
 
 import { DuAn } from 'src/app/shared/DuAn.model';
 import { DuAnService } from 'src/app/shared/DuAn.service';
+import { DuAnTapTinDinhKem } from 'src/app/shared/DuAnTapTinDinhKem.model';
+import { DuAnTapTinDinhKemService } from 'src/app/shared/DuAnTapTinDinhKem.service';
 import { DuAnThuChi } from 'src/app/shared/DuAnThuChi.model';
 import { DuAnThuChiService } from 'src/app/shared/DuAnThuChi.service';
 import { DuAnQuyetDinh } from 'src/app/shared/DuAnQuyetDinh.model';
 import { DuAnQuyetDinhService } from 'src/app/shared/DuAnQuyetDinh.service';
-import { DuAnTapTinDinhKem } from 'src/app/shared/DuAnTapTinDinhKem.model';
-import { DuAnTapTinDinhKemService } from 'src/app/shared/DuAnTapTinDinhKem.service';
+import { DuAnQuyetToanPhanKy } from 'src/app/shared/DuAnQuyetToanPhanKy.model';
+import { DuAnQuyetToanPhanKyService } from 'src/app/shared/DuAnQuyetToanPhanKy.service';
+import { DuAnQuyetToanLuyKe } from 'src/app/shared/DuAnQuyetToanLuyKe.model';
+import { DuAnQuyetToanLuyKeService } from 'src/app/shared/DuAnQuyetToanLuyKe.service';
 import { DuAnThuChiDetailComponent } from '../du-an-thu-chi-detail/du-an-thu-chi-detail.component';
 import { DuAnQuyetDinhDetailComponent } from '../du-an-quyet-dinh-detail/du-an-quyet-dinh-detail.component';
 
@@ -36,14 +40,20 @@ import { DuAnQuyetDinhDetailComponent } from '../du-an-quyet-dinh-detail/du-an-q
 })
 export class DuAnDetailComponent implements OnInit {
 
+  @ViewChild('DuAnTapTinDinhKemSort') DuAnTapTinDinhKemSort: MatSort;
+  @ViewChild('DuAnTapTinDinhKemPaginator') DuAnTapTinDinhKemPaginator: MatPaginator;
+
   @ViewChild('DuAnThuChiSort') DuAnThuChiSort: MatSort;
   @ViewChild('DuAnThuChiPaginator') DuAnThuChiPaginator: MatPaginator;
 
   @ViewChild('DuAnQuyetDinhSort') DuAnQuyetDinhSort: MatSort;
-  @ViewChild('DuAnQuyetDinhPaginator') DuAnQuyetDinhPaginator: MatPaginator;
+  @ViewChild('DuAnQuyetDinhPaginator') DuAnQuyetDinhPaginator: MatPaginator; 
 
-  @ViewChild('DuAnTapTinDinhKemSort') DuAnTapTinDinhKemSort: MatSort;
-  @ViewChild('DuAnTapTinDinhKemPaginator') DuAnTapTinDinhKemPaginator: MatPaginator;
+  @ViewChild('DuAnQuyetToanLuyKeSort') DuAnQuyetToanLuyKeSort: MatSort;
+  @ViewChild('DuAnQuyetToanLuyKePaginator') DuAnQuyetToanLuyKePaginator: MatPaginator; 
+
+  @ViewChild('DuAnQuyetToanPhanKySort') DuAnQuyetToanPhanKySort: MatSort;
+  @ViewChild('DuAnQuyetToanPhanKyPaginator') DuAnQuyetToanPhanKyPaginator: MatPaginator; 
 
   constructor(
     private Dialog: MatDialog,
@@ -59,9 +69,11 @@ export class DuAnDetailComponent implements OnInit {
     public ToChucTaiKhoanService: ToChucTaiKhoanService,
 
     public DuAnService: DuAnService,
+    public DuAnTapTinDinhKemService: DuAnTapTinDinhKemService,
     public DuAnThuChiService: DuAnThuChiService,
     public DuAnQuyetDinhService: DuAnQuyetDinhService,
-    public DuAnTapTinDinhKemService: DuAnTapTinDinhKemService,
+    public DuAnQuyetToanPhanKyService: DuAnQuyetToanPhanKyService,
+    public DuAnQuyetToanLuyKeService: DuAnQuyetToanLuyKeService,
 
   ) { }
 
@@ -140,6 +152,8 @@ export class DuAnDetailComponent implements OnInit {
         this.DuAnTapTinDinhKemSearch();
         this.DuAnThuChiSearch();
         this.DuAnQuyetDinhSearch();
+        this.DuAnQuyetToanPhanKySearch();
+        this.DuAnQuyetToanLuyKeSearch();
       },
       err => {
       },
@@ -227,7 +241,7 @@ export class DuAnDetailComponent implements OnInit {
       this.DuAnThuChiService.BaseParameter.Code = this.DuAnService.FormData.Code;
       this.DuAnThuChiService.GetSQLByCodeToListAsync().subscribe(
         res => {
-          this.DuAnThuChiService.List = (res as any[]);
+          this.DuAnThuChiService.List = (res as DuAnThuChi[]);          
           this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
           this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.List);
           this.DuAnThuChiService.DataSource.sort = this.DuAnThuChiSort;
@@ -354,5 +368,58 @@ export class DuAnDetailComponent implements OnInit {
         this.DuAnService.IsShowLoading = false;
       }
     );
+  }
+
+  DuAnQuyetToanPhanKySearch() {
+    if (this.DuAnQuyetToanPhanKyService.BaseParameter.SearchString.length > 0) {
+      this.DuAnQuyetToanPhanKyService.BaseParameter.SearchString = this.DuAnQuyetToanPhanKyService.BaseParameter.SearchString.trim();
+      if (this.DuAnQuyetToanPhanKyService.DataSource) {
+        this.DuAnQuyetToanPhanKyService.DataSource.filter = this.DuAnQuyetToanPhanKyService.BaseParameter.SearchString.toLowerCase();
+      }
+    }
+    else {
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetToanPhanKyService.BaseParameter.ParentID = this.DuAnService.FormData.ID;      
+      this.DuAnQuyetToanPhanKyService.GetByParentIDToListAsync().subscribe(
+        res => {
+          this.DuAnQuyetToanPhanKyService.List = (res as DuAnQuyetToanPhanKy[]);
+          this.DuAnQuyetToanPhanKyService.ListFilter = this.DuAnQuyetToanPhanKyService.List.filter(item => item.ID > 0);
+          this.DuAnQuyetToanPhanKyService.DataSource = new MatTableDataSource(this.DuAnQuyetToanPhanKyService.List);
+          this.DuAnQuyetToanPhanKyService.DataSource.sort = this.DuAnQuyetToanPhanKySort;
+          this.DuAnQuyetToanPhanKyService.DataSource.paginator = this.DuAnQuyetToanPhanKyPaginator;
+        },
+        err => {
+        },
+        () => {
+          this.DuAnService.IsShowLoading = false;
+        }
+      );
+    }
+  }
+  DuAnQuyetToanLuyKeSearch() {
+    if (this.DuAnQuyetToanLuyKeService.BaseParameter.SearchString.length > 0) {
+      this.DuAnQuyetToanLuyKeService.BaseParameter.SearchString = this.DuAnQuyetToanLuyKeService.BaseParameter.SearchString.trim();
+      if (this.DuAnQuyetToanLuyKeService.DataSource) {
+        this.DuAnQuyetToanLuyKeService.DataSource.filter = this.DuAnQuyetToanLuyKeService.BaseParameter.SearchString.toLowerCase();
+      }
+    }
+    else {
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetToanLuyKeService.BaseParameter.ParentID = this.DuAnService.FormData.ID;      
+      this.DuAnQuyetToanLuyKeService.GetByParentIDToListAsync().subscribe(
+        res => {
+          this.DuAnQuyetToanLuyKeService.List = (res as DuAnQuyetToanLuyKe[]);
+          this.DuAnQuyetToanLuyKeService.ListFilter = this.DuAnQuyetToanLuyKeService.List.filter(item => item.ID > 0);
+          this.DuAnQuyetToanLuyKeService.DataSource = new MatTableDataSource(this.DuAnQuyetToanLuyKeService.List);
+          this.DuAnQuyetToanLuyKeService.DataSource.sort = this.DuAnQuyetToanLuyKeSort;
+          this.DuAnQuyetToanLuyKeService.DataSource.paginator = this.DuAnQuyetToanLuyKePaginator;
+        },
+        err => {
+        },
+        () => {
+          this.DuAnService.IsShowLoading = false;
+        }
+      );
+    }
   }
 }

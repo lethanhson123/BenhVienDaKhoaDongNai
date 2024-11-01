@@ -1,6 +1,6 @@
 ﻿import { Base } from "./Base.model";
 
-export class DuAnQuyetToan extends Base {
+export class DuAnQuyetToanPhanKy extends Base {
 
     DuAnQuyetDinhID?: number;
     DuAnQuyetDinhSoQuyetDinh?: string;

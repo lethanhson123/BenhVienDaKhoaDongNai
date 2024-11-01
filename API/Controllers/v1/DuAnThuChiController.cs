@@ -28,6 +28,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetBySoQuyetDinhToListAsync")]
+        public async Task<List<DuAnThuChi>> GetBySoQuyetDinhToListAsync()
+        {
+            List<DuAnThuChi> result = new List<DuAnThuChi>();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DuAnThuChiService.GetBySoQuyetDinhToListAsync(model.SoQuyetDinh);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

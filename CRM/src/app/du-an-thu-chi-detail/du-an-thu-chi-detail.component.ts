@@ -40,6 +40,8 @@ export class DuAnThuChiDetailComponent implements OnInit {
   @ViewChild('DuAnTapTinDinhKemSort') DuAnTapTinDinhKemSort: MatSort;
   @ViewChild('DuAnTapTinDinhKemPaginator') DuAnTapTinDinhKemPaginator: MatPaginator;
 
+  IsDuAnThuChiSave: boolean = true;
+
   constructor(
     private Dialog: MatDialog,
     public DialogRef: MatDialogRef<DuAnThuChiDetailComponent>,
@@ -67,8 +69,8 @@ export class DuAnThuChiDetailComponent implements OnInit {
   Close() {
     this.DialogRef.close();
   }
-  DateNgayBatDau(value) {
-    this.DuAnThuChiService.FormData.NgayBatDau = new Date(value);
+  DateNgayGhiNhan(value) {
+    this.DuAnThuChiService.FormData.NgayGhiNhan = new Date(value);
   }
   DanhMucBieuMauSearch() {
     this.DanhMucBieuMauService.ComponentGetAllToListAsync(this.DuAnThuChiService);
@@ -78,18 +80,18 @@ export class DuAnThuChiDetailComponent implements OnInit {
   }
   DuAnQuyetDinhSearch() {
     this.DuAnThuChiService.IsShowLoading = true;
-    this.DuAnQuyetDinhService.BaseParameter.Code=this.DuAnThuChiService.FormData.Code;
-    this.DuAnQuyetDinhService.GetByCodeToListAsync().subscribe(
+    this.DuAnQuyetDinhService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
+    this.DuAnQuyetDinhService.GetByParentIDToListAsync().subscribe(
       res => {
-          this.DuAnQuyetDinhService.List = (res as DuAnQuyetDinh[]).sort((a, b) => (a.NgayKy > b.NgayKy ? 1 : -1));
-          this.DuAnQuyetDinhService.ListFilter = this.DuAnQuyetDinhService.List;
+        this.DuAnQuyetDinhService.List = (res as DuAnQuyetDinh[]).sort((a, b) => (a.NgayKy > b.NgayKy ? 1 : -1));
+        this.DuAnQuyetDinhService.ListFilter = this.DuAnQuyetDinhService.List;
       },
       err => {
       },
-      () => {         
-        this.DuAnThuChiService.IsShowLoading = false;               
+      () => {
+        this.DuAnThuChiService.IsShowLoading = false;
       }
-  );
+    );
   }
   ToChucSearch() {
     this.ToChucService.ComponentGetAllToListAsync(this.DuAnThuChiService);
@@ -185,6 +187,8 @@ export class DuAnThuChiDetailComponent implements OnInit {
         this.DuAnThuChiService.FormData = res as DuAnThuChi;
         this.DuAnThuChiService.FormData.ParentID = this.DuAnService.FormData.ID;
         this.DuAnThuChiService.FormData.ParentName = this.DuAnService.FormData.Name;
+        this.DuAnThuChiService.FormData.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+        this.DuAnThuChiService.FormData.DuAnQuyetDinhSoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
         this.DanhMucBieuMauSearch();
         this.DanhMucHinhThucThanhToanSearch();
         this.ToChucSearch();
@@ -192,6 +196,9 @@ export class DuAnThuChiDetailComponent implements OnInit {
         this.ThanhVienSearch();
         this.DuAnTapTinDinhKemSearch();
         this.DuAnQuyetDinhSearch();
+        if (this.DuAnThuChiService.FormData.Active == true) {
+          this.IsDuAnThuChiSave = false;
+        }
       },
       err => {
       },
@@ -207,7 +214,9 @@ export class DuAnThuChiDetailComponent implements OnInit {
     this.DuAnThuChiService.SaveAsync().subscribe(
       res => {
         this.DuAnThuChiService.FormData = res as DuAnThuChi;
-
+        if (this.DuAnThuChiService.FormData.Active == true) {
+          this.IsDuAnThuChiSave = false;
+        }
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
@@ -219,7 +228,7 @@ export class DuAnThuChiDetailComponent implements OnInit {
     );
   }
 
-  DuAnTapTinDinhKemSearch() {    
+  DuAnTapTinDinhKemSearch() {
     this.DuAnTapTinDinhKemService.BaseParameter.TypeName = this.DuAnThuChiService.FormData.TypeName;
     this.DuAnTapTinDinhKemService.SearchByTypeName(this.DuAnTapTinDinhKemSort, this.DuAnTapTinDinhKemPaginator, this.DuAnThuChiService);
   }

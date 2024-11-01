@@ -23,8 +23,7 @@
         public long? BenThucHienTaiKhoanID { get; set; }
         public string? BenThucHienSoTaiKhoan { get; set; }
         public string? BenThucHienNganHang { get; set; }
-        public DateTime? NgayBatDau { get; set; }
-        public DateTime? NgayKetThuc { get; set; }
+        public DateTime? NgayGhiNhan { get; set; }        
         public decimal? SoLuong { get; set; }
         public decimal? DonGia { get; set; }
         public decimal? ThanhTien { get; set; }
@@ -51,7 +50,7 @@
         {
             DonGia = GlobalHelper.InitializationNumber;
             TypeName = GlobalHelper.InitializationGUICode;
-            NgayBatDau = GlobalHelper.InitializationDateTime;
+            NgayGhiNhan = GlobalHelper.InitializationDateTime;
         }
     }
 }

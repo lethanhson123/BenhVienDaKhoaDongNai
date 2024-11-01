@@ -60,6 +60,8 @@ namespace Service
             services.AddTransient<IDuAnThuChiService, DuAnThuChiService>();
             services.AddTransient<IDuAnQuyetDinhService, DuAnQuyetDinhService>();
             services.AddTransient<IDuAnQuyetToanService, DuAnQuyetToanService>();
+            services.AddTransient<IDuAnQuyetToanLuyKeService, DuAnQuyetToanLuyKeService>();
+            services.AddTransient<IDuAnQuyetToanPhanKyService, DuAnQuyetToanPhanKyService>();
 
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
@@ -94,6 +96,8 @@ namespace Service
             services.AddTransient<IDuAnThuChiRepository, DuAnThuChiRepository>();
             services.AddTransient<IDuAnQuyetDinhRepository, DuAnQuyetDinhRepository>();
             services.AddTransient<IDuAnQuyetToanRepository, DuAnQuyetToanRepository>();
+            services.AddTransient<IDuAnQuyetToanLuyKeRepository, DuAnQuyetToanLuyKeRepository>();
+            services.AddTransient<IDuAnQuyetToanPhanKyRepository, DuAnQuyetToanPhanKyRepository>();
 
             return services;
         }

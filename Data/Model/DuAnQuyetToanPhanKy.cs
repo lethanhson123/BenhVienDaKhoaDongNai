@@ -1,6 +1,6 @@
 ﻿namespace Data.Model
 {
-    public partial class DuAnQuyetToan : BaseModel
+    public partial class DuAnQuyetToanPhanKy : BaseModel
     {
         public long? DuAnQuyetDinhID { get; set; }
         public string? DuAnQuyetDinhSoQuyetDinh { get; set; }
@@ -12,7 +12,7 @@
         public decimal? GhiNo { get; set; }
         public decimal? ConLai { get; set; }
 
-        public DuAnQuyetToan()
+        public DuAnQuyetToanPhanKy()
         {
         }
     }

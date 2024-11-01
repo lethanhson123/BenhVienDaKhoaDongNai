@@ -77,9 +77,9 @@ namespace Service.Implement
                 model.TypeName = GlobalHelper.InitializationGUICode;
             }
 
-            if (model.NgayBatDau == null)
+            if (model.NgayGhiNhan == null)
             {
-                model.NgayBatDau = GlobalHelper.InitializationDateTime;
+                model.NgayGhiNhan = GlobalHelper.InitializationDateTime;
             }
 
             if (model.DanhMucHinhThucThanhToanID == null)
@@ -283,23 +283,24 @@ namespace Service.Implement
         public override async Task<DuAnThuChi> SaveAsync(DuAnThuChi model)
         {
             int result = GlobalHelper.InitializationNumber;
-            if (model.Active == true)
+            if (model.ID > 0)
             {
-            }
-            else
-            {
-                if (model.ID > 0)
+                DuAnThuChi modelExist = await GetByIDAsync(model.ID);
+                if (modelExist.Active == true)
                 {
-                    result = await UpdateAsync(model);
                 }
                 else
                 {
-                    result = await AddAsync(model);
+                    result = await UpdateAsync(model);
                 }
-                if (result > 0)
-                {
-                    await Sync(model);
-                }
+            }
+            else
+            {
+                result = await AddAsync(model);
+            }
+            if (result > 0)
+            {
+                await Sync(model);
             }
             return model;
         }
@@ -347,6 +348,22 @@ namespace Service.Implement
                     new SqlParameter("@Code",Code),
                 };
                 result = await GetByStoredProcedureToListAsync("sp_DuAnThuChiSelectItemsByCode", parameters);
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAnThuChi>> GetBySoQuyetDinhToListAsync(string SoQuyetDinh)
+        {
+            List<DuAnThuChi> result = new List<DuAnThuChi>();
+            try
+            {
+                if (!string.IsNullOrEmpty(SoQuyetDinh))
+                {
+                    result = await GetByCondition(item => item.DuAnQuyetDinhSoQuyetDinh == SoQuyetDinh).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
             }
             return result;
         }
