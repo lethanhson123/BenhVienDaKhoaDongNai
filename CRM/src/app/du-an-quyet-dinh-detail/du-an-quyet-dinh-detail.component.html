@@ -396,9 +396,16 @@
         </div>
         <div class="tab-pane fade" id="DuAnQuyetDinhDuAnQuyetToanPhanKy" role="tabpanel">
             <div class="row gx-4">
-                <div class="col-lg-11 col-sm-12 col-12">
+                <div class="col-lg-9 col-sm-12 col-12">
                     <input [(ngModel)]="DuAnQuyetToanPhanKyService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DuAnQuyetToanPhanKySearch()">
+                </div>
+                <div class="col-lg-2 col-sm-12 col-12">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" name="IsDuAnQuyetToanPhanKy"
+                            [(ngModel)]="IsDuAnQuyetToanPhanKy" />
+                        <label class="form-check-label" for="IsDuAnQuyetToanPhanKy">Lớn hơn 0</label>
+                    </div>
                 </div>
                 <div class="col-lg-1 col-sm-6 col-12">
                     <a style="width: 100%;" class="btn btn-success" title="Tìm"
@@ -613,9 +620,16 @@
         </div>
         <div class="tab-pane fade" id="DuAnQuyetDinhDuAnQuyetToanLuyKe" role="tabpanel">
             <div class="row gx-4">
-                <div class="col-lg-11 col-sm-12 col-12">
+                <div class="col-lg-9 col-sm-12 col-12">
                     <input [(ngModel)]="DuAnQuyetToanLuyKeService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DuAnQuyetToanLuyKeSearch()">
+                </div>
+                <div class="col-lg-2 col-sm-12 col-12">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" name="IsDuAnQuyetToanLuyKe"
+                            [(ngModel)]="IsDuAnQuyetToanLuyKe" />
+                        <label class="form-check-label" for="IsDuAnQuyetToanLuyKe">Lớn hơn 0</label>
+                    </div>
                 </div>
                 <div class="col-lg-1 col-sm-6 col-12">
                     <a style="width: 100%;" class="btn btn-success" title="Tìm"

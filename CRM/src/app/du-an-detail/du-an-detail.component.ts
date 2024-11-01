@@ -47,13 +47,16 @@ export class DuAnDetailComponent implements OnInit {
   @ViewChild('DuAnThuChiPaginator') DuAnThuChiPaginator: MatPaginator;
 
   @ViewChild('DuAnQuyetDinhSort') DuAnQuyetDinhSort: MatSort;
-  @ViewChild('DuAnQuyetDinhPaginator') DuAnQuyetDinhPaginator: MatPaginator; 
+  @ViewChild('DuAnQuyetDinhPaginator') DuAnQuyetDinhPaginator: MatPaginator;
 
   @ViewChild('DuAnQuyetToanLuyKeSort') DuAnQuyetToanLuyKeSort: MatSort;
-  @ViewChild('DuAnQuyetToanLuyKePaginator') DuAnQuyetToanLuyKePaginator: MatPaginator; 
+  @ViewChild('DuAnQuyetToanLuyKePaginator') DuAnQuyetToanLuyKePaginator: MatPaginator;
 
   @ViewChild('DuAnQuyetToanPhanKySort') DuAnQuyetToanPhanKySort: MatSort;
-  @ViewChild('DuAnQuyetToanPhanKyPaginator') DuAnQuyetToanPhanKyPaginator: MatPaginator; 
+  @ViewChild('DuAnQuyetToanPhanKyPaginator') DuAnQuyetToanPhanKyPaginator: MatPaginator;
+
+  IsDuAnQuyetToanLuyKe: boolean = true;
+  IsDuAnQuyetToanPhanKy: boolean = true;
 
   constructor(
     private Dialog: MatDialog,
@@ -241,7 +244,7 @@ export class DuAnDetailComponent implements OnInit {
       this.DuAnThuChiService.BaseParameter.Code = this.DuAnService.FormData.Code;
       this.DuAnThuChiService.GetSQLByCodeToListAsync().subscribe(
         res => {
-          this.DuAnThuChiService.List = (res as DuAnThuChi[]);          
+          this.DuAnThuChiService.List = (res as DuAnThuChi[]);
           this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
           this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.List);
           this.DuAnThuChiService.DataSource.sort = this.DuAnThuChiSort;
@@ -379,10 +382,13 @@ export class DuAnDetailComponent implements OnInit {
     }
     else {
       this.DuAnService.IsShowLoading = true;
-      this.DuAnQuyetToanPhanKyService.BaseParameter.ParentID = this.DuAnService.FormData.ID;      
+      this.DuAnQuyetToanPhanKyService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
       this.DuAnQuyetToanPhanKyService.GetByParentIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanPhanKyService.List = (res as DuAnQuyetToanPhanKy[]);
+          if (this.IsDuAnQuyetToanPhanKy == true) {
+            this.DuAnQuyetToanPhanKyService.List = this.DuAnQuyetToanPhanKyService.List.filter(item => item.GhiCo > 0 || item.GhiNo > 0);
+          }
           this.DuAnQuyetToanPhanKyService.ListFilter = this.DuAnQuyetToanPhanKyService.List.filter(item => item.ID > 0);
           this.DuAnQuyetToanPhanKyService.DataSource = new MatTableDataSource(this.DuAnQuyetToanPhanKyService.List);
           this.DuAnQuyetToanPhanKyService.DataSource.sort = this.DuAnQuyetToanPhanKySort;
@@ -405,10 +411,13 @@ export class DuAnDetailComponent implements OnInit {
     }
     else {
       this.DuAnService.IsShowLoading = true;
-      this.DuAnQuyetToanLuyKeService.BaseParameter.ParentID = this.DuAnService.FormData.ID;      
+      this.DuAnQuyetToanLuyKeService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
       this.DuAnQuyetToanLuyKeService.GetByParentIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanLuyKeService.List = (res as DuAnQuyetToanLuyKe[]);
+          if (this.IsDuAnQuyetToanLuyKe == true) {
+            this.DuAnQuyetToanLuyKeService.List = this.DuAnQuyetToanLuyKeService.List.filter(item => item.GhiCo > 0 || item.GhiNo > 0);
+          }
           this.DuAnQuyetToanLuyKeService.ListFilter = this.DuAnQuyetToanLuyKeService.List.filter(item => item.ID > 0);
           this.DuAnQuyetToanLuyKeService.DataSource = new MatTableDataSource(this.DuAnQuyetToanLuyKeService.List);
           this.DuAnQuyetToanLuyKeService.DataSource.sort = this.DuAnQuyetToanLuyKeSort;
@@ -423,7 +432,7 @@ export class DuAnDetailComponent implements OnInit {
     }
   }
   DuAnQuyetToanLuyKeActiveChange(element: DuAnQuyetToanLuyKe) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;    
+    this.DuAnQuyetDinhService.IsShowLoading = true;
     this.DuAnQuyetToanLuyKeService.FormData = element;
     this.DuAnQuyetToanLuyKeService.SaveAsync().subscribe(
       res => {
@@ -441,7 +450,7 @@ export class DuAnDetailComponent implements OnInit {
   }
 
   DuAnQuyetToanPhanKyActiveChange(element: DuAnQuyetToanPhanKy) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;    
+    this.DuAnQuyetDinhService.IsShowLoading = true;
     this.DuAnQuyetToanPhanKyService.FormData = element;
     this.DuAnQuyetToanPhanKyService.SaveAsync().subscribe(
       res => {

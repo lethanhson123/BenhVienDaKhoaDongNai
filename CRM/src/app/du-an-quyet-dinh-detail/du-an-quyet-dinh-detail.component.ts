@@ -42,6 +42,9 @@ export class DuAnQuyetDinhDetailComponent implements OnInit {
   @ViewChild('DuAnQuyetToanPhanKySort') DuAnQuyetToanPhanKySort: MatSort;
   @ViewChild('DuAnQuyetToanPhanKyPaginator') DuAnQuyetToanPhanKyPaginator: MatPaginator; 
 
+  IsDuAnQuyetToanLuyKe: boolean = true;
+  IsDuAnQuyetToanPhanKy: boolean = true;
+
   constructor(
     private Dialog: MatDialog,
     public DialogRef: MatDialogRef<DuAnQuyetDinhDetailComponent>,
@@ -227,6 +230,9 @@ export class DuAnQuyetDinhDetailComponent implements OnInit {
       this.DuAnQuyetToanPhanKyService.GetBySoQuyetDinhToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanPhanKyService.List = (res as DuAnQuyetToanPhanKy[]);
+          if (this.IsDuAnQuyetToanPhanKy == true) {
+            this.DuAnQuyetToanPhanKyService.List = this.DuAnQuyetToanPhanKyService.List.filter(item => item.GhiCo > 0 || item.GhiNo > 0);
+          }
           this.DuAnQuyetToanPhanKyService.ListFilter = this.DuAnQuyetToanPhanKyService.List.filter(item => item.ID > 0);
           this.DuAnQuyetToanPhanKyService.DataSource = new MatTableDataSource(this.DuAnQuyetToanPhanKyService.List);
           this.DuAnQuyetToanPhanKyService.DataSource.sort = this.DuAnQuyetToanPhanKySort;
@@ -253,6 +259,9 @@ export class DuAnQuyetDinhDetailComponent implements OnInit {
       this.DuAnQuyetToanLuyKeService.GetBySoQuyetDinhToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanLuyKeService.List = (res as DuAnQuyetToanLuyKe[]);
+          if (this.IsDuAnQuyetToanLuyKe == true) {
+            this.DuAnQuyetToanLuyKeService.List = this.DuAnQuyetToanLuyKeService.List.filter(item => item.GhiCo > 0 || item.GhiNo > 0);
+          }
           this.DuAnQuyetToanLuyKeService.ListFilter = this.DuAnQuyetToanLuyKeService.List.filter(item => item.ID > 0);
           this.DuAnQuyetToanLuyKeService.DataSource = new MatTableDataSource(this.DuAnQuyetToanLuyKeService.List);
           this.DuAnQuyetToanLuyKeService.DataSource.sort = this.DuAnQuyetToanLuyKeSort;
