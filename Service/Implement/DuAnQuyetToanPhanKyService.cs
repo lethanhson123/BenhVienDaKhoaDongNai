@@ -63,7 +63,7 @@
                 {
                         new SqlParameter("@ParentID",ParentID),
                 };
-                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanLuyKeSelectItemsByParentID", parameters);
+                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanPhanKySelectItemsByParentID", parameters);
             }
             return result;
         }
