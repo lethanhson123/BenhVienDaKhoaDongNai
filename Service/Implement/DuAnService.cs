@@ -429,6 +429,7 @@ namespace Service.Implement
                 contentHTML = contentHTML.Replace("[DanhMucBenhVienWebsite]", DanhMucBenhVien.Website);
                 contentHTML = contentHTML.Replace("[DanhMucBenhVienWebsite001]", DanhMucBenhVien.Website001);
                 contentHTML = contentHTML.Replace("[DanhMucBenhVienDiaChi]", DanhMucBenhVien.DiaChi);
+                contentHTML = contentHTML.Replace("[DanhMucBenhVienDiaChi001]", DanhMucBenhVien.DiaChi001);
 
                 contentHTML = contentHTML.Replace("[Day]", GlobalHelper.InitializationDateTime.ToString("dd/MM/yyyy hh:mm:ss"));
 
