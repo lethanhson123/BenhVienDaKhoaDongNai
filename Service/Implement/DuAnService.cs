@@ -10,11 +10,13 @@ namespace Service.Implement
     {
         private readonly IDuAnRepository _DuAnRepository;
 
+        private readonly IDuAnTapTinDinhKemService _DuAnTapTinDinhKemService;
+
         private readonly IDuAnThuChiService _DuAnThuChiService;
 
         private readonly IDuAnQuyetDinhService _DuAnQuyetDinhService;
 
-        private readonly IDuAnTapTinDinhKemService _DuAnTapTinDinhKemService;
+        private readonly IDuAnQuyetToanLuyKeService _DuAnQuyetToanLuyKeService;
 
         private readonly IToChucRepository _ToChucRepository;
 
@@ -24,14 +26,18 @@ namespace Service.Implement
 
         private readonly IDanhMucTinhTrangRepository _DanhMucTinhTrangRepository;
 
+        private readonly IDanhMucBenhVienRepository _DanhMucBenhVienRepository;
+
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public DuAnService(IDuAnRepository DuAnRepository
+
+            , IDuAnTapTinDinhKemService DuAnTapTinDinhKemService
 
             , IDuAnThuChiService DuAnThuChiService
 
             , IDuAnQuyetDinhService DuAnQuyetDinhService
 
-            , IDuAnTapTinDinhKemService DuAnTapTinDinhKemService
+            , IDuAnQuyetToanLuyKeService DuAnQuyetToanLuyKeService
 
             , IToChucRepository ToChucRepository
 
@@ -41,17 +47,21 @@ namespace Service.Implement
 
             , IDanhMucTinhTrangRepository DanhMucTinhTrangRepository
 
+            , IDanhMucBenhVienRepository DanhMucBenhVienRepository
+
             , IWebHostEnvironment WebHostEnvironment
 
             ) : base(DuAnRepository)
         {
             _DuAnRepository = DuAnRepository;
 
+            _DuAnTapTinDinhKemService = DuAnTapTinDinhKemService;
+
             _DuAnThuChiService = DuAnThuChiService;
 
             _DuAnQuyetDinhService = DuAnQuyetDinhService;
 
-            _DuAnTapTinDinhKemService = DuAnTapTinDinhKemService;
+            _DuAnQuyetToanLuyKeService = DuAnQuyetToanLuyKeService;
 
             _ToChucRepository = ToChucRepository;
 
@@ -60,6 +70,8 @@ namespace Service.Implement
             _ThanhVienService = ThanhVienService;
 
             _DanhMucTinhTrangRepository = DanhMucTinhTrangRepository;
+
+            _DanhMucBenhVienRepository = DanhMucBenhVienRepository;
 
             _WebHostEnvironment = WebHostEnvironment;
         }
@@ -78,20 +90,19 @@ namespace Service.Implement
                 model.Code = GlobalHelper.InitializationGUICode;
             }
 
-            if (string.IsNullOrEmpty(model.FileName))
+            string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+            bool isFolderExists = System.IO.Directory.Exists(folderPath);
+            if (!isFolderExists)
             {
-                string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
-                bool isFolderExists = System.IO.Directory.Exists(folderPath);
-                if (!isFolderExists)
-                {
-                    System.IO.Directory.CreateDirectory(folderPath);
-                }
-                model.FileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".html";
-
-                model.FileNameQRCode = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".png";
-
-                QRCodeHelper.CreateQRCodeURL(model.Code, model.FileName, folderPath);
+                System.IO.Directory.CreateDirectory(folderPath);
             }
+
+            model.FileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".html";
+
+            model.FileNameQRCode = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".png";
+
+            QRCodeHelper.CreateQRCodeURL(model.Code, model.FileName, folderPath);
+
 
             if (model.NgayBatDau == null)
             {
@@ -284,7 +295,7 @@ namespace Service.Implement
                     {
                         DuAnThuChi DuAnThuChiItem = ListDuAnThuChi[i];
                         DuAnThuChiItem.ParentID = model.ID;
-                        DuAnThuChiItem.ParentName = model.Name;                        
+                        DuAnThuChiItem.ParentName = model.Name;
                         await _DuAnThuChiService.SaveAsync(DuAnThuChiItem);
                     }
 
@@ -394,12 +405,14 @@ namespace Service.Implement
             DuAn result = new DuAn();
             try
             {
+                DanhMucBenhVien DanhMucBenhVien = await _DanhMucBenhVienRepository.GetByIDAsync(GlobalHelper.DanhMucBenhVienID);
                 ThanhVien ThanhVien = await _ThanhVienService.GetByIDAsync(ThanhVienID);
                 result = await GetByIDAsync(ID);
+                List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByCodeToListAsync(result.Code);
                 List<DuAnThuChi> ListDuAnThuChi = await _DuAnThuChiService.GetSQLByCodeToListAsync(result.Code);
                 List<DuAnQuyetDinh> ListDuAnQuyetDinh = await _DuAnQuyetDinhService.GetByCodeToListAsync(result.Code);
-                ListDuAnQuyetDinh= ListDuAnQuyetDinh.OrderBy(x => x.NgayKy).ToList();
-                List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByCodeToListAsync(result.Code);
+                ListDuAnQuyetDinh = ListDuAnQuyetDinh.OrderBy(x => x.NgayKy).ToList();
+                List<DuAnQuyetToanLuyKe> ListDuAnQuyetToanLuyKe = await _DuAnQuyetToanLuyKeService.GetByParentIDToListAsync(result.ID);
                 string contentHTML = GlobalHelper.InitializationString;
                 string physicalPathOpen = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Download, result.GetType().Name + ".html");
                 using (FileStream fs = new FileStream(physicalPathOpen, FileMode.Open))
@@ -409,6 +422,13 @@ namespace Service.Implement
                         contentHTML = r.ReadToEnd();
                     }
                 }
+
+                contentHTML = contentHTML.Replace("[DanhMucBenhVienName]", DanhMucBenhVien.Name);
+                contentHTML = contentHTML.Replace("[DanhMucBenhVienDienThoai]", DanhMucBenhVien.DienThoai);
+                contentHTML = contentHTML.Replace("[DanhMucBenhVienDienThoai001]", DanhMucBenhVien.DienThoai001);
+                contentHTML = contentHTML.Replace("[DanhMucBenhVienWebsite]", DanhMucBenhVien.Website);
+                contentHTML = contentHTML.Replace("[DanhMucBenhVienWebsite001]", DanhMucBenhVien.Website001);
+                contentHTML = contentHTML.Replace("[DanhMucBenhVienDiaChi]", DanhMucBenhVien.DiaChi);
 
                 contentHTML = contentHTML.Replace("[Day]", GlobalHelper.InitializationDateTime.ToString("dd/MM/yyyy hh:mm:ss"));
 
@@ -423,6 +443,7 @@ namespace Service.Implement
                 }
                 catch (Exception ex)
                 {
+                    contentHTML = contentHTML.Replace("[NgayBatDau]", "");
                 }
                 try
                 {
@@ -430,6 +451,7 @@ namespace Service.Implement
                 }
                 catch (Exception ex)
                 {
+                    contentHTML = contentHTML.Replace("[NgayKetThuc]", "");
                 }
                 try
                 {
@@ -437,6 +459,7 @@ namespace Service.Implement
                 }
                 catch (Exception ex)
                 {
+                    contentHTML = contentHTML.Replace("[NgayKy]", "");
                 }
                 contentHTML = contentHTML.Replace("[SoHoSo]", result.SoHoSo);
                 contentHTML = contentHTML.Replace("[SoQuyetDinh]", result.SoQuyetDinh);
@@ -495,7 +518,7 @@ namespace Service.Implement
                     DuAnTapTinDinhKemDetail.AppendLine(@"<tr>");
                     DuAnTapTinDinhKemDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
                     DuAnTapTinDinhKemDetail.AppendLine(@"<td><a href='" + item.FileName + "' title='" + item.FileName + "' target='_blank'>" + item.Name + "</a></td>");
-                    DuAnTapTinDinhKemDetail.AppendLine(@"<td><a href='" + item.FileName + "' title='" + item.FileName + "' target='_blank'>" + item.FileName + "</a></td>");
+                    DuAnTapTinDinhKemDetail.AppendLine(@"<td><a href='" + item.Display + "' title='" + item.Display + "' target='_blank'>" + item.Display + "</a></td>");
                     DuAnTapTinDinhKemDetail.AppendLine(@"</tr>");
                 }
                 contentHTML = contentHTML.Replace("[DuAnTapTinDinhKemDetail]", DuAnTapTinDinhKemDetail.ToString());
@@ -507,8 +530,6 @@ namespace Service.Implement
                     stt = stt + 1;
                     DuAnThuChiDetail.AppendLine(@"<tr>");
                     DuAnThuChiDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
-                    DuAnThuChiDetail.AppendLine(@"<td>" + item.ID + "</td>");
-                    DuAnThuChiDetail.AppendLine(@"<td>" + item.DuAnQuyetDinhSoQuyetDinh + "</td>");                    
                     try
                     {
                         DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'>" + item.NgayGhiNhan.Value.ToString("dd/MM/yyyy") + "</td>");
@@ -516,11 +537,12 @@ namespace Service.Implement
                     catch (Exception ex)
                     {
                         DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'></td>");
-                    }                    
+                    }
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.SoChungTu + "</td>");
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.SoButToan + "</td>");
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.DanhMucHinhThucThanhToanName + "</td>");
                     DuAnThuChiDetail.AppendLine(@"<td>" + item.Name + "</td>");
+                    DuAnThuChiDetail.AppendLine(@"<td>" + item.DuAnQuyetDinhSoQuyetDinh + "</td>");
                     try
                     {
                         DuAnThuChiDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.GhiCo.Value.ToString("N0") + "</b></td>");
@@ -539,11 +561,33 @@ namespace Service.Implement
                     }
                     try
                     {
-                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                        if (item.ConLai >= 0)
+                        {
+                            DuAnThuChiDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                        }
+                        else
+                        {
+                            DuAnThuChiDetail.AppendLine(@"<td style='text-align: right; color: red;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                        }
                     }
                     catch (Exception ex)
                     {
                         DuAnThuChiDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                    }
+                    try
+                    {
+                        if (item.Active == true)
+                        {
+                            DuAnThuChiDetail.AppendLine(@"<td style='text-align: center;'><b>X</b></td>");
+                        }
+                        else
+                        {
+                            DuAnThuChiDetail.AppendLine(@"<td style='text-align: center;'></td>");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        DuAnThuChiDetail.AppendLine(@"<td style='text-align: center;'></td>");
                     }
                     DuAnThuChiDetail.AppendLine(@"</tr>");
                 }
@@ -556,7 +600,6 @@ namespace Service.Implement
                     stt = stt + 1;
                     DuAnQuyetDinhDetail.AppendLine(@"<tr>");
                     DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
-                    DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.ID + "</td>");
                     try
                     {
                         DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'>" + item.NgayKy.Value.ToString("dd/MM/yyyy") + "</td>");
@@ -573,9 +616,9 @@ namespace Service.Implement
                     {
                         DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
                     }
-                    DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.SoQuyetDinh + "</td>");
                     DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.Name + "</td>");
                     DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.BenDauTuName + "</td>");
+                    DuAnQuyetDinhDetail.AppendLine(@"<td>" + item.SoQuyetDinh + "</td>");
                     try
                     {
                         DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'><b>" + item.MucDauTu.Value.ToString("N0") + "</b></td>");
@@ -602,17 +645,115 @@ namespace Service.Implement
                     }
                     try
                     {
-                        DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                        if (item.ConLai >= 0)
+                        {
+                            DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                        }
+                        else
+                        {
+                            DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right; color: red;'><b>" + item.ConLai.Value.ToString("N0") + "</b></td>");
+                        }
                     }
                     catch (Exception ex)
                     {
                         DuAnQuyetDinhDetail.AppendLine(@"<td style='text-align: right;'></td>");
                     }
+
                     DuAnQuyetDinhDetail.AppendLine(@"</tr>");
                 }
                 contentHTML = contentHTML.Replace("[DuAnQuyetDinhDetail]", DuAnQuyetDinhDetail.ToString());
 
-
+                StringBuilder DuAnQuyetToanLuyKeDetail = new StringBuilder();
+                stt = 0;
+                foreach (DuAnQuyetToanLuyKe item in ListDuAnQuyetToanLuyKe)
+                {
+                    if ((item.GhiCo > 0) || (item.GhiNo > 0))
+                    {
+                        stt = stt + 1;
+                        DuAnQuyetToanLuyKeDetail.AppendLine(@"<tr>");
+                        DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: center;'>" + stt + "</td>");
+                        DuAnQuyetToanLuyKeDetail.AppendLine(@"<td>" + item.DuAnQuyetDinhSoQuyetDinh + "</td>");
+                        try
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'><b>" + item.Nam + "</b></td>");
+                        }
+                        catch (Exception ex)
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                        }
+                        try
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'><b>" + item.Thang + "</b></td>");
+                        }
+                        catch (Exception ex)
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                        }
+                        try
+                        {
+                            if (item.DauKy >= 0)
+                            {
+                                DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.DauKy.Value.ToString("N0") + "</b></td>");
+                            }
+                            else
+                            {
+                                DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right; color: red;'><b>" + item.DauKy.Value.ToString("N0") + "</b></td>");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                        }
+                        try
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.GhiCo.Value.ToString("N0") + "</b></td>");
+                        }
+                        catch (Exception ex)
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                        }
+                        try
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right; color: red;'><b>" + item.GhiNo.Value.ToString("N0") + "</b></td>");
+                        }
+                        catch (Exception ex)
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                        }
+                        try
+                        {
+                            if (item.CuoiKy >= 0)
+                            {
+                                DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right; color: green;'><b>" + item.CuoiKy.Value.ToString("N0") + "</b></td>");
+                            }
+                            else
+                            {
+                                DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right; color: red;'><b>" + item.CuoiKy.Value.ToString("N0") + "</b></td>");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: right;'></td>");
+                        }
+                        try
+                        {
+                            if (item.Active == true)
+                            {
+                                DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: center;'><b>X</b></td>");
+                            }
+                            else
+                            {
+                                DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: center;'></td>");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            DuAnQuyetToanLuyKeDetail.AppendLine(@"<td style='text-align: center;'></td>");
+                        }
+                        DuAnQuyetToanLuyKeDetail.AppendLine(@"</tr>");
+                    }
+                }
+                contentHTML = contentHTML.Replace("[DuAnQuyetToanLuyKeDetail]", DuAnQuyetToanLuyKeDetail.ToString());
 
 
                 string physicalPathCreate = Path.Combine(_WebHostEnvironment.WebRootPath, result.GetType().Name);
