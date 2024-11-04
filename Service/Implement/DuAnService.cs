@@ -503,7 +503,7 @@ namespace Service.Implement
                     contentHTML = contentHTML.Replace("[GhiNo]", "");
                 }
                 try
-                {
+                {                  
                     contentHTML = contentHTML.Replace("[ConLai]", result.ConLai.Value.ToString("N0"));
                 }
                 catch (Exception ex)

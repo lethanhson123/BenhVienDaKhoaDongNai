@@ -5,11 +5,13 @@
         </div>
         <div>
             <h5 class="mb-1" style="font-size: 12px;">
-                Dự án: <a routerLink="/DuAnInfo/{{DuAnService.FormData.ID}}" class="link-primary"><b>{{DuAnService.FormData.Name}}
-                    [{{DuAnService.FormData.ID}}]</b></a>
+                Dự án: <a routerLink="/DuAnInfo/{{DuAnService.FormData.ID}}"
+                    class="link-primary"><b>{{DuAnService.FormData.Name}}
+                        [{{DuAnService.FormData.ID}}]</b></a>
                 / Quyết định: <a
-                    routerLink="/DuAnQuyetDinhInfo/{{DuAnService.FormData.ID}}/{{DuAnQuyetDinhService.FormData.ID}}" class="link-primary"><b>{{DuAnQuyetDinhService.FormData.SoQuyetDinh}}
-                    [{{DuAnQuyetDinhService.FormData.ID}}]</b></a>                
+                    routerLink="/DuAnQuyetDinhInfo/{{DuAnService.FormData.ID}}/{{DuAnQuyetDinhService.FormData.ID}}"
+                    class="link-primary"><b>{{DuAnQuyetDinhService.FormData.SoQuyetDinh}}
+                        [{{DuAnQuyetDinhService.FormData.ID}}]</b></a>
             </h5>
             <h6 class="m-0 text-dark fw-light">
                 <a routerLink="/DuAn001" class="link-primary">
@@ -65,7 +67,7 @@
                                     </div>
                                 </div>
                                 <div class="row gx-4">
-                                    <div class="col-lg-6 col-sm-12 col-12">
+                                    <div class="col-lg-4 col-sm-12 col-12">
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Ngày ký</label>
                                             <input [ngModel]="DuAnQuyetDinhService.FormData.NgayKy | date:'yyyy-MM-dd'"
@@ -97,13 +99,9 @@
                                             <input name="Name" [(ngModel)]="DuAnQuyetDinhService.FormData.Name"
                                                 placeholder="Tiêu đề" type="text" class="form-control">
                                         </div>
-                                        <div class="col-lg-12 col-sm-12 col-12">
-                                            <label class="form-label">Mức đầu tư</label>
-                                            <input name="MucDauTu" [(ngModel)]="DuAnQuyetDinhService.FormData.MucDauTu"
-                                                placeholder="Mức đầu tư" type="number" class="form-control">
-                                        </div>
+
                                     </div>
-                                    <div class="col-lg-6 col-sm-12 col-12">
+                                    <div class="col-lg-4 col-sm-12 col-12">
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Bên A (Bên duyệt)
                                                 [{{DuAnQuyetDinhService.FormData.BenDauTuID}}]</label>
@@ -146,6 +144,51 @@
                                             <input name="NguoiDauTuChucDanh"
                                                 [(ngModel)]="DuAnQuyetDinhService.FormData.NguoiDauTuChucDanh"
                                                 placeholder="Chức danh" type="text" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 col-12">
+                                        <div class="col-lg-12 col-sm-12 col-12">
+                                            <label class="form-label">Mức đầu tư
+                                                ({{DuAnQuyetDinhService.FormData.MucDauTu
+                                                |
+                                                number:
+                                                '1.0-0'}})</label>
+                                            <input name="MucDauTu" [(ngModel)]="DuAnQuyetDinhService.FormData.MucDauTu"
+                                                placeholder="Mức đầu tư" type="number" class="form-control"
+                                                style="text-align: right;">
+                                        </div>
+                                        <div class="col-lg-12 col-sm-12 col-12">
+                                            <label class="form-label">Ghi có</label>
+                                            <br />
+                                            <label class="form-control"
+                                                style="text-align: right; color: green;">{{DuAnQuyetDinhService.FormData.GhiCo
+                                                |
+                                                number:
+                                                '1.0-0'}}</label>
+                                        </div>
+                                        <div class="col-lg-12 col-sm-12 col-12">
+                                            <label class="form-label">Ghi nợ</label>
+                                            <br />
+                                            <label class="form-control"
+                                                style="text-align: right; color: red;">{{DuAnQuyetDinhService.FormData.GhiNo
+                                                |
+                                                number:
+                                                '1.0-0'}}</label>
+                                        </div>
+                                        <div class="col-lg-12 col-sm-12 col-12">
+                                            <label class="form-label">Còn lại</label>
+                                            <br />
+                                            <label *ngIf="DuAnQuyetDinhService.FormData.ConLai>=0" class="form-control"
+                                                style="text-align: right; color: green;">{{DuAnQuyetDinhService.FormData.ConLai
+                                                |
+                                                number:
+                                                '1.0-0'}}</label>
+                                            <label *ngIf="DuAnQuyetDinhService.FormData.ConLai<0" class="form-control"
+                                                style="text-align: right; color: red;">{{DuAnQuyetDinhService.FormData.ConLai
+                                                |
+                                                number:
+                                                '1.0-0'}}</label>
                                         </div>
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Ghi chú</label>
