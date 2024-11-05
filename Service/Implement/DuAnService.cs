@@ -314,92 +314,6 @@ namespace Service.Implement
             }
             return result;
         }
-
-
-        public virtual async Task<List<DuAn>> GetByBatDau_KetThucToListAsync(DateTime BatDau, DateTime KetThuc)
-        {
-            List<DuAn> result = new List<DuAn>();
-            try
-            {
-                BatDau = new DateTime(BatDau.Year, BatDau.Month, BatDau.Day, 0, 0, 0);
-                KetThuc = new DateTime(KetThuc.Year, KetThuc.Month, KetThuc.Day, 23, 59, 59);
-                result = await GetByCondition(item => item.NgayBatDau >= BatDau && item.NgayBatDau <= KetThuc).ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-            }
-            return result;
-        }
-        public override async Task<List<DuAn>> GetBySearchStringToListAsync(string SearchString)
-        {
-            List<DuAn> result = new List<DuAn>();
-            try
-            {
-                if (!string.IsNullOrEmpty(SearchString))
-                {
-
-                    result = await GetByCondition(item => item.Name.Contains(SearchString)
-
-                    || item.SoHoSo.Contains(SearchString)
-
-                    || item.SoQuyetDinh.Contains(SearchString)
-
-                    || item.BenDauTuName.Contains(SearchString)
-
-                    || item.BenDauTuMaSoThue.Contains(SearchString)
-
-                    || item.BenDauTuDienThoai.Contains(SearchString)
-
-                    || item.BenDauTuEmail.Contains(SearchString)
-
-                    || item.BenDauTuSoTaiKhoan.Contains(SearchString)
-
-                    || item.BenThucHienName.Contains(SearchString)
-
-                    || item.BenThucHienMaSoThue.Contains(SearchString)
-
-                    || item.BenThucHienDienThoai.Contains(SearchString)
-
-                    || item.BenThucHienEmail.Contains(SearchString)
-
-                    || item.BenThucHienSoTaiKhoan.Contains(SearchString)
-
-                    || item.NguoiDauTuName.Contains(SearchString)
-
-                    || item.NguoiThucHienName.Contains(SearchString)
-
-                    || item.DanhMucTinhTrangName.Contains(SearchString)
-
-                    ).ToListAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-            }
-            return result;
-        }
-        public virtual async Task<List<DuAn>> GetBySearchString_BatDau_KetThucToListAsync(string SearchString, DateTime BatDau, DateTime KetThuc)
-        {
-            List<DuAn> result = new List<DuAn>();
-            try
-            {
-                if (!string.IsNullOrEmpty(SearchString))
-                {
-                    result = await GetBySearchStringToListAsync(SearchString);
-                }
-                else
-                {
-                    result = await GetByBatDau_KetThucToListAsync(BatDau, KetThuc);
-                }
-            }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-            }
-            return result;
-        }
         public virtual async Task<DuAn> CreateHTMLByIDAsync(long ID, long ThanhVienID)
         {
             DuAn result = new DuAn();
@@ -503,7 +417,7 @@ namespace Service.Implement
                     contentHTML = contentHTML.Replace("[GhiNo]", "");
                 }
                 try
-                {                  
+                {
                     contentHTML = contentHTML.Replace("[ConLai]", result.ConLai.Value.ToString("N0"));
                 }
                 catch (Exception ex)
@@ -772,6 +686,112 @@ namespace Service.Implement
                         w.WriteLine(contentHTML);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAn>> GetByBatDau_KetThucToListAsync(DateTime BatDau, DateTime KetThuc)
+        {
+            List<DuAn> result = new List<DuAn>();
+            try
+            {
+                BatDau = GlobalHelper.SetBatDau(BatDau);
+                KetThuc = GlobalHelper.SetKetThuc(KetThuc);
+                result = await GetByCondition(item => item.NgayBatDau >= BatDau && item.NgayBatDau <= KetThuc).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public override async Task<List<DuAn>> GetBySearchStringToListAsync(string SearchString)
+        {
+            List<DuAn> result = new List<DuAn>();
+            try
+            {
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+
+                    result = await GetByCondition(item => item.Name.Contains(SearchString)
+
+                    || item.SoHoSo.Contains(SearchString)
+
+                    || item.SoQuyetDinh.Contains(SearchString)
+
+                    || item.BenDauTuName.Contains(SearchString)
+
+                    || item.BenDauTuMaSoThue.Contains(SearchString)
+
+                    || item.BenDauTuDienThoai.Contains(SearchString)
+
+                    || item.BenDauTuEmail.Contains(SearchString)
+
+                    || item.BenDauTuSoTaiKhoan.Contains(SearchString)
+
+                    || item.BenThucHienName.Contains(SearchString)
+
+                    || item.BenThucHienMaSoThue.Contains(SearchString)
+
+                    || item.BenThucHienDienThoai.Contains(SearchString)
+
+                    || item.BenThucHienEmail.Contains(SearchString)
+
+                    || item.BenThucHienSoTaiKhoan.Contains(SearchString)
+
+                    || item.NguoiDauTuName.Contains(SearchString)
+
+                    || item.NguoiThucHienName.Contains(SearchString)
+
+                    || item.DanhMucTinhTrangName.Contains(SearchString)
+
+                    ).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAn>> GetBySearchString_BatDau_KetThucToListAsync(string SearchString, DateTime BatDau, DateTime KetThuc)
+        {
+            List<DuAn> result = new List<DuAn>();
+            try
+            {
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    result = await GetBySearchStringToListAsync(SearchString);
+                }
+                else
+                {
+                    result = await GetByBatDau_KetThucToListAsync(BatDau, KetThuc);
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAn>> GetSQLByThanhVienIDAndBatDau_KetThuc_SearchStringToListAsync(long ThanhVienID, DateTime BatDau, DateTime KetThuc, string SearchString)
+        {
+            List<DuAn> result = new List<DuAn>();
+            try
+            {
+                BatDau = GlobalHelper.SetBatDau(BatDau);
+                KetThuc = GlobalHelper.SetKetThuc(KetThuc);
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@ThanhVienID",ThanhVienID),
+                        new SqlParameter("@BatDau",BatDau),
+                        new SqlParameter("@KetThuc",KetThuc),
+                        new SqlParameter("@SearchString",SearchString),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnSelectItemsByThanhVienIDAndBatDau_KetThuc_SearchString", parameters);
             }
             catch (Exception ex)
             {

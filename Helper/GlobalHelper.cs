@@ -1,4 +1,6 @@
-﻿namespace Helper
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Helper
 {
 	public class GlobalHelper
 	{
@@ -212,10 +214,20 @@
 				var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 				return builder.Build().GetSection("AppSettings").GetSection("SQLServerConectionString").Value;
 			}
-		}     
-       
+		}
+
         #endregion
         #region Functions
+        public static DateTime SetBatDau(DateTime BatDau)
+        {
+            BatDau = new DateTime(BatDau.Year, BatDau.Month, BatDau.Day, 0, 0, 0);
+            return BatDau;
+        }
+        public static DateTime SetKetThuc(DateTime KetThuc)
+        {
+            KetThuc = new DateTime(KetThuc.Year, KetThuc.Month, KetThuc.Day, 23, 59, 59);
+            return KetThuc;
+        }
         public static byte[] StringToByteArray(string hex)
         {
             if (hex.Length % 2 != 0)

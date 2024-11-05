@@ -64,6 +64,8 @@ namespace Service
             services.AddTransient<IDuAnQuyetToanPhanKyService, DuAnQuyetToanPhanKyService>();
 
 
+            services.AddTransient<IReportService, ReportService>();
+
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
 
             return services;
@@ -98,6 +100,9 @@ namespace Service
             services.AddTransient<IDuAnQuyetToanRepository, DuAnQuyetToanRepository>();
             services.AddTransient<IDuAnQuyetToanLuyKeRepository, DuAnQuyetToanLuyKeRepository>();
             services.AddTransient<IDuAnQuyetToanPhanKyRepository, DuAnQuyetToanPhanKyRepository>();
+
+
+            services.AddTransient<IReportRepository, ReportRepository>();
 
             return services;
         }

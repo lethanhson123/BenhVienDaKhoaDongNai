@@ -13,6 +13,22 @@
             _WebHostEnvironment = WebHostEnvironment;
         }
         [HttpPost]
+        [Route("CreateHTMLByIDAsync")]
+        public async Task<DuAn> CreateHTMLByIDAsync()
+        {
+            DuAn result = new DuAn();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DuAnService.CreateHTMLByIDAsync(model.ID, model.ThanhVienID.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetBySearchString_BatDau_KetThucToListAsync")]
         public async Task<List<DuAn>> GetBySearchString_BatDau_KetThucToListAsync()
         {
@@ -29,14 +45,14 @@
             return result;
         }
         [HttpPost]
-        [Route("CreateHTMLByIDAsync")]
-        public async Task<DuAn> CreateHTMLByIDAsync()
+        [Route("GetSQLByThanhVienIDAndBatDau_KetThuc_SearchStringToListAsync")]
+        public async Task<List<DuAn>> GetSQLByThanhVienIDAndBatDau_KetThuc_SearchStringToListAsync()
         {
-            DuAn result = new DuAn();
+            List<DuAn> result = new List<DuAn>();
             try
             {
                 BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
-                result = await _DuAnService.CreateHTMLByIDAsync(model.ID, model.ThanhVienID.Value);                
+                result = await _DuAnService.GetSQLByThanhVienIDAndBatDau_KetThuc_SearchStringToListAsync(model.ThanhVienID.Value, model.BatDau.Value, model.KetThuc.Value, model.SearchString);
             }
             catch (Exception ex)
             {

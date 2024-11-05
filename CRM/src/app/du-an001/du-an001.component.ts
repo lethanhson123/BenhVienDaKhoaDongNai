@@ -40,9 +40,9 @@ export class DuAn001Component implements OnInit {
   DateKetThuc(value) {
     this.DuAnService.BaseParameter.KetThuc = new Date(value);
   }
-  DuAnSearch() {
+  DuAnSearch() {    
     this.DuAnService.IsShowLoading = true;
-    this.DuAnService.GetBySearchString_BatDau_KetThucToListAsync().subscribe(
+    this.DuAnService.GetSQLByThanhVienIDAndBatDau_KetThuc_SearchStringToListAsync().subscribe(
       res => {
         this.DuAnService.List = (res as DuAn[]).sort((a, b) => (a.NgayBatDau < b.NgayBatDau ? 1 : -1));
         this.DuAnService.DataSource = new MatTableDataSource(this.DuAnService.List);

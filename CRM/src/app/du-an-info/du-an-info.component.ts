@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { ChartOptions, ChartType, ChartDataSets, Chart, ChartConfiguration, ChartData } from 'chart.js';
+import { Color, Label, SingleDataSet, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -31,8 +33,9 @@ import { DuAnQuyetToanPhanKy } from 'src/app/shared/DuAnQuyetToanPhanKy.model';
 import { DuAnQuyetToanPhanKyService } from 'src/app/shared/DuAnQuyetToanPhanKy.service';
 import { DuAnQuyetToanLuyKe } from 'src/app/shared/DuAnQuyetToanLuyKe.model';
 import { DuAnQuyetToanLuyKeService } from 'src/app/shared/DuAnQuyetToanLuyKe.service';
-import { DuAnThuChiDetailComponent } from '../du-an-thu-chi-detail/du-an-thu-chi-detail.component';
-import { DuAnQuyetDinhDetailComponent } from '../du-an-quyet-dinh-detail/du-an-quyet-dinh-detail.component';
+
+import { Report } from 'src/app/shared/Report.model';
+import { ReportService } from 'src/app/shared/Report.service';
 
 @Component({
   selector: 'app-du-an-info',
@@ -76,12 +79,14 @@ export class DuAnInfoComponent implements OnInit {
     public DuAnQuyetToanPhanKyService: DuAnQuyetToanPhanKyService,
     public DuAnQuyetToanLuyKeService: DuAnQuyetToanLuyKeService,
 
+    public ReportService: ReportService,
+
   ) { }
 
   ngOnInit(): void {
-    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);    
+    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.DuAnSearch();
-  } 
+  }
   DateNgayBatDau(value) {
     this.DuAnService.FormData.NgayBatDau = new Date(value);
   }
@@ -153,6 +158,9 @@ export class DuAnInfoComponent implements OnInit {
         this.DuAnQuyetDinhSearch();
         //this.DuAnQuyetToanPhanKySearch();
         //this.DuAnQuyetToanLuyKeSearch();
+        this.Report0001();
+        this.Report0002();
+        this.Report0003();
       },
       err => {
       },
@@ -279,7 +287,7 @@ export class DuAnInfoComponent implements OnInit {
       res => {
         this.DuAnThuChiService.FormData = (res as DuAnThuChi);
         this.DuAnThuChiService.FormData.ParentID = this.DuAnService.FormData.ID;
-        this.DuAnThuChiService.FormData.ParentName = this.DuAnService.FormData.Name;       
+        this.DuAnThuChiService.FormData.ParentName = this.DuAnService.FormData.Name;
       },
       err => {
       },
@@ -341,7 +349,7 @@ export class DuAnInfoComponent implements OnInit {
       res => {
         this.DuAnQuyetDinhService.FormData = (res as DuAnQuyetDinh);
         this.DuAnQuyetDinhService.FormData.ParentID = this.DuAnService.FormData.ID;
-        this.DuAnQuyetDinhService.FormData.ParentName = this.DuAnService.FormData.Name;       
+        this.DuAnQuyetDinhService.FormData.ParentName = this.DuAnService.FormData.Name;
       },
       err => {
       },
@@ -410,7 +418,7 @@ export class DuAnInfoComponent implements OnInit {
     }
   }
   DuAnQuyetToanLuyKeActiveChange(element: DuAnQuyetToanLuyKe) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnQuyetToanLuyKeService.FormData = element;
     this.DuAnQuyetToanLuyKeService.SaveAsync().subscribe(
       res => {
@@ -422,13 +430,13 @@ export class DuAnInfoComponent implements OnInit {
         this.NotificationService.warn(environment.SaveNotSuccess);
       },
       () => {
-        this.DuAnQuyetDinhService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
 
   DuAnQuyetToanPhanKyActiveChange(element: DuAnQuyetToanPhanKy) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnQuyetToanPhanKyService.FormData = element;
     this.DuAnQuyetToanPhanKyService.SaveAsync().subscribe(
       res => {
@@ -440,8 +448,285 @@ export class DuAnInfoComponent implements OnInit {
         this.NotificationService.warn(environment.SaveNotSuccess);
       },
       () => {
-        this.DuAnQuyetDinhService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
+
+
+  public Report0001_0001_Option: ChartOptions = {
+    responsive: true,
+    legend: {
+      display: true,
+      position: 'bottom'
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          var label = data.labels[tooltipItem.index];
+          var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return label + '';
+        }
+      }
+    }
+  };
+  public Report0001_0001_Color: Color[] = [
+  ]
+  public Report0001_0001_Label: Label[] = [];
+  public Report0001_0001_Type: ChartType = 'doughnut';
+  public Report0001_0001_Legend = true;
+  public Report0001_0001_Plugins = [];
+
+  public Report0001_0001_Data: ChartDataSets[] = [
+  ];
+
+  public Report0001_0002_Option: ChartOptions = {
+    responsive: true,
+    legend: {
+      display: true,
+      position: 'bottom'
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          var label = data.labels[tooltipItem.index];
+          var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return label + '';
+        }
+      }
+    }
+  };
+  public Report0001_0002_Color: Color[] = [
+  ]
+  public Report0001_0002_Label: Label[] = [];
+  public Report0001_0002_Type: ChartType = 'pie';
+  public Report0001_0002_Legend = true;
+  public Report0001_0002_Plugin = [];
+
+  public Report0001_0002_Data: ChartDataSets[] = [
+  ];
+
+  public Report0001_0003_Option: ChartOptions = {
+    responsive: true,
+    legend: {
+      display: true,
+      position: 'bottom'
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          var label = data.labels[tooltipItem.index];
+          var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return label + '';
+        }
+      }
+    }
+  };
+  public Report0001_0003_Color: Color[] = [
+  ]
+  public Report0001_0003_Label: Label[] = [];
+  public Report0001_0003_Type: ChartType = 'pie';
+  public Report0001_0003_Legend = true;
+  public Report0001_0003_Plugin = [];
+
+  public Report0001_0003_Data: ChartDataSets[] = [
+  ];
+
+  public Report0002_0001_Option: ChartOptions = {
+    responsive: true,
+    legend: {
+      display: true,
+      position: 'bottom'
+    },
+    animation: {
+      duration: 1,
+      onComplete: function () {
+        var chartInstance = this.chart,
+          ctx = chartInstance.ctx;
+        ctx.textAlign = 'center';
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        ctx.textBaseline = 'bottom';
+        this.data.datasets.forEach(function (dataset, i) {
+          var meta = chartInstance.controller.getDatasetMeta(i);
+          meta.data.forEach(function (bar, index) {
+            var data = dataset.data[index];
+            ctx.fillText(data, bar._model.x, bar._model.y - 5);
+
+          });
+        });
+      }
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          return Number(tooltipItem.yLabel).toFixed(0).replace(/./g, function (c, i, a) {
+            return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "." + c : c;
+          });
+        }
+      }
+    },
+    scales: {
+      yAxes: [
+        {
+          id: 'A',
+          position: 'left',
+        }, {
+          id: 'B',
+          position: 'right',
+        }
+      ]
+    },
+  };
+  public Report0002_0001_Color: Color[] = [
+  ]
+  public Report0002_0001_Label: Label[] = [];
+  public Report0002_0001_Type: ChartType = 'bar';
+  public Report0002_0001_Legend = true;
+  public Report0002_0001_Plugin = [];
+
+  public Report0002_0001_Data: ChartDataSets[] = [
+  ];
+
+  public Report0003_0001_Option: ChartOptions = {
+    responsive: true,
+    legend: {
+      display: true,
+      position: 'right'
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          var label = data.labels[tooltipItem.index];
+          var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return value + '';
+        }
+      }
+    }
+  };
+  public Report0003_0001_Color: Color[] = [
+  ]
+  public Report0003_0001_Label: Label[] = [];
+  public Report0003_0001_Type: ChartType = 'line';
+  public Report0003_0001_Legend = true;
+  public Report0003_0001_Plugin = [];
+
+  public Report0003_0001_Data: ChartDataSets[] = [
+  ];
+
+  Report0001() {
+    this.DuAnService.IsShowLoading = true;
+    this.ReportService.BaseParameter.ID = this.DuAnService.FormData.ID;
+    this.ReportService.Report0001ToListAsync().subscribe(
+      res => {
+        this.ReportService.List0001 = (res as Report[]);
+        let LabelArray001 = [];        
+        let DataArray001 = [];
+        let LabelArray002 = [];
+        let DataArray002 = [];
+        let LabelArray003 = [];
+        let DataArray003 = [];
+        for (let i = 0; i < this.ReportService.List0001.length; i++) {          
+          LabelArray001.push(this.ReportService.List0001[i].Display);
+          DataArray001.push(this.ReportService.List0001[i].MucDauTu);
+
+          LabelArray002.push(this.ReportService.List0001[i].Note);
+          DataArray002.push(this.ReportService.List0001[i].ConLai);
+
+          LabelArray003.push(this.ReportService.List0001[i].Description);
+          DataArray003.push(this.ReportService.List0001[i].GhiCo);
+        }
+        this.Report0001_0001_Label = LabelArray001;
+        this.Report0001_0001_Data = [
+          { data: DataArray001, stack: 'a' },
+        ];
+
+        this.Report0001_0002_Label = LabelArray002;
+        this.Report0001_0002_Data = [
+          { data: DataArray002, stack: 'a' },
+        ];
+
+        this.Report0001_0003_Label = LabelArray003;
+        this.Report0001_0003_Data = [
+          { data: DataArray003, stack: 'a' },
+        ];
+      },
+      err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
+  }
+  Report0002() {
+    this.DuAnService.IsShowLoading = true;
+    this.ReportService.BaseParameter.ID = this.DuAnService.FormData.ID;
+    this.ReportService.Report0002ToListAsync().subscribe(
+      res => {
+        this.ReportService.List0002 = (res as Report[]);
+        let LabelArray001 = [];        
+        let DataArray001 = [];
+        for (let i = 0; i < this.ReportService.List0002.length; i++) {
+          LabelArray001.push(this.ReportService.List0002[i].Display);
+          DataArray001.push(this.ReportService.List0002[i].GhiNoTongCong);
+        }
+        this.Report0002_0001_Label = LabelArray001;
+        let Label001: string = 'Biểu mẫu (đồng)';
+        this.Report0002_0001_Data = [          
+          { data: DataArray001, label: Label001, stack: 'b', yAxisID: 'B', }
+        ];
+      },
+      err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
+  }
+  Report0003() {
+    this.DuAnService.IsShowLoading = true;
+    this.ReportService.BaseParameter.ID = this.DuAnService.FormData.ID;
+    this.ReportService.Report0003ToListAsync().subscribe(
+      res => {
+        this.ReportService.List0003 = (res as Report[]);
+        let LabelArray001 = [];     
+        let NameArray001 = [];               
+        for (let i = 0; i < this.ReportService.List0003.length; i++) {          
+          let Code = LabelArray001.filter(item => item == this.ReportService.List0003[i].Code);
+          if (Code) {
+            if (Code.length == 0) {
+              LabelArray001.push(this.ReportService.List0003[i].Code);
+            }
+          } 
+          let NameArraySub = NameArray001.filter(item => item == this.ReportService.List0003[i].Name);
+          if (NameArraySub) {
+            if (NameArraySub.length == 0) {
+              let Name = this.ReportService.List0003[i].Name;
+              NameArray001.push(Name);
+              let DataArray = this.ReportService.List0003.filter(item => item.Name == Name); 
+              let GhiNo = []; 
+              for (let j = 0; j < DataArray.length; j++) {                
+                GhiNo.push(DataArray[j].GhiNo);
+              }            
+              let Data: any = {
+                type: "line",
+                fill: false,
+                data: GhiNo,
+                label: Name,
+                borderColor: this.DownloadService.GetRandomColor(GhiNo.length)
+              }
+              this.Report0003_0001_Data.push(Data);
+            }
+          }       
+        }
+        this.Report0003_0001_Label = LabelArray001;
+        this.Report0003_0001_Data.splice(0, 1)                
+      },
+      err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
+  }
+
 }
