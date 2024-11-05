@@ -1,0 +1,129 @@
+<div class="app-hero-header d-flex align-items-center">
+    <div class="d-flex align-items-center">
+        <div class="me-3 icon-box md bg-white rounded-4">
+            <i class="bi bi-bar-chart fs-3 text-primary"></i>
+        </div>
+        <div>            
+            <h5 class="mb-1">
+                <a routerLink="/Dashboard001"
+                    class="link-primary" style="font-size: 18px;"><b>Dashboard Dự án</b></a>
+            </h5>
+            <h6 class="m-0 text-dark fw-light">
+                <a routerLink="/DuAn001" class="link-primary">
+                    <b>Dự án</b>
+                </a>
+            </h6>
+        </div>
+    </div>
+    <div class="ms-auto d-lg-flex d-none flex-row">
+        <div class="d-flex flex-row gap-2">           
+        </div>
+    </div>
+</div>
+<div class="app-body">
+    <div class="row gx-4">
+        <div class="col-lg-2 col-sm-12 col-12">
+            <div class="card my-2 card-info">
+                <div class="card-header">
+                    <h5 class="card-title text-white">Dự án</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class=" text-white">
+                            <h2 class="display-6 mb-2 fw-semibold">{{ReportService.FormData.ThongKe0001 |
+                                number:
+                                '1.0-0'}}</h2>
+                            <h5 class="mb-3 fw-light opacity-75">Đầu tư hiệu lực</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-12 col-12">
+            <div class="card my-2 card-warning">
+                <div class="card-header">
+                    <h5 class="card-title text-white">Quyết định</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class=" text-white">
+                            <h2 class="display-6 mb-2 fw-semibold">{{ReportService.FormData.ThongKe0002 |
+                                number:
+                                '1.0-0'}}</h2>
+                            <h5 class="mb-3 fw-light opacity-75">Phân bổ đầu tư</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-12 col-12">
+            <div class="card my-2 card-dark">
+                <div class="card-header">
+                    <h5 class="card-title text-white">Vốn kế hoạch</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class=" text-white">
+                            <h5 class="display-6 mb-2 fw-semibold">{{ReportService.FormData.ThongKe0003 |
+                                number:
+                                '1.1-1'}}</h5>
+                            <h5 class="mb-3 fw-light opacity-75">Triệu đồng</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-12 col-12">
+            <div class="card my-2 card-success">
+                <div class="card-header">
+                    <h5 class="card-title text-white">Ghi có</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-white">
+                            <h2 class="display-6 mb-2 fw-semibold">{{ReportService.FormData.ThongKe0004 |
+                                number:
+                                '1.1-1'}}</h2>
+                            <h5 class="mb-3 fw-light opacity-75">Triệu đồng</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-12 col-12">
+            <div class="card my-2 card-danger">
+                <div class="card-header">
+                    <h5 class="card-title text-white bg-danger">Ghi nợ</h5>
+                </div>
+                <div class="card-body bg-danger">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-white">
+                            <h2 class="display-6 mb-2 fw-semibold">{{ReportService.FormData.ThongKe0005 |
+                                number:
+                                '1.1-1'}}</h2>
+                            <h5 class="mb-3 fw-light opacity-75">Triệu đồng</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-12 col-12">
+            <div class="card my-2 card-success">
+                <div class="card-header">
+                    <h5 class="card-title text-white">Còn lại</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-white">
+                            <h2 class="display-6 mb-2 fw-semibold">{{ReportService.FormData.ThongKe0006 |
+                                number:
+                                '1.1-1'}}</h2>
+                                <h5 class="mb-3 fw-light opacity-75">Triệu đồng</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<app-loading *ngIf="ReportService.IsShowLoading"></app-loading>

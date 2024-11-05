@@ -16,6 +16,12 @@
         public decimal? GhiNoTyLe { get; set; }
         public decimal? ConLaiTyLe { get; set; }
         public decimal? MucDauTuTyLe { get; set; }
+        public decimal? ThongKe0001 { get; set; }
+        public decimal? ThongKe0002 { get; set; }
+        public decimal? ThongKe0003 { get; set; }
+        public decimal? ThongKe0004 { get; set; }
+        public decimal? ThongKe0005 { get; set; }
+        public decimal? ThongKe0006 { get; set; }       
         public Report()
         {
         }

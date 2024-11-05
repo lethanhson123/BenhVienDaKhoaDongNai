@@ -16,7 +16,12 @@ GhiCoTyLe?: number;
 GhiNoTyLe?: number;
 ConLaiTyLe?: number;
 MucDauTuTyLe?: number;
-
+ThongKe0001?: number;
+ThongKe0002?: number;
+ThongKe0003?: number;
+ThongKe0004?: number;
+ThongKe0005?: number;
+ThongKe0006?: number;
 
 }
 

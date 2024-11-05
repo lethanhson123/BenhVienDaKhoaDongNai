@@ -60,6 +60,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("Report0004ToAsync")]
+        public async Task<Report> Report0004ToAsync()
+        {
+            Report result = new Report();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _ReportService.Report0004ToAsync(model.ThanhVienID.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 
