@@ -9,7 +9,7 @@ import { DownloadService } from 'src/app/shared/Download.service';
 
 import { DuAn } from 'src/app/shared/DuAn.model';
 import { DuAnService } from 'src/app/shared/DuAn.service';
-import { DuAnDetailComponent } from '../du-an-detail/du-an-detail.component';
+
 @Component({
   selector: 'app-du-an001',
   templateUrl: './du-an001.component.html',
@@ -26,9 +26,6 @@ export class DuAn001Component implements OnInit {
     public DownloadService: DownloadService,
 
     public DuAnService: DuAnService,
-
-
-
   ) { }
 
   ngOnInit(): void {

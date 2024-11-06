@@ -1,4 +1,6 @@
-﻿namespace Service.Implement
+﻿using Data.Model;
+
+namespace Service.Implement
 {
     public class ReportService : BaseService<Report, IReportRepository>
     , IReportService
@@ -73,6 +75,23 @@
                 {
                     result = list[0];
                 }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<List<Report>> Report0005ToListAsync(long ThanhVienID)
+        {
+            List<Report> result = new List<Report>();
+            try
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@ThanhVienID",ThanhVienID),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_Report0005", parameters);
             }
             catch (Exception ex)
             {

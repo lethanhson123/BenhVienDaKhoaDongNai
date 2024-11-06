@@ -59,8 +59,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="tab-Report" data-bs-toggle="tab" href="#Report"
-                                        role="tab" aria-controls="Report" aria-selected="true">
+                                    <a class="nav-link" id="tab-Report" data-bs-toggle="tab" href="#Report" role="tab"
+                                        aria-controls="Report" aria-selected="true">
                                         <span class="badge bg-danger" style="font-size: 12px;">Thống kê</span>
                                     </a>
                                 </li>
@@ -281,12 +281,12 @@
                                                     number:
                                                     '1.0-0'}}</label>
                                                 <label *ngIf="DuAnService.FormData.ConLai<0" class="form-control"
-                                                        style="text-align: right; color: red;">{{DuAnService.FormData.ConLai
-                                                        |
-                                                        number:
-                                                        '1.0-0'}}</label>
+                                                    style="text-align: right; color: red;">{{DuAnService.FormData.ConLai
+                                                    |
+                                                    number:
+                                                    '1.0-0'}}</label>
                                             </div>
-                                        </div>                                       
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="DuAnTapTinDinhKem" role="tabpanel">
@@ -553,7 +553,9 @@
                                                                 chứng từ
                                                             </th>
                                                             <td mat-cell *matCellDef="let element">
-                                                                {{element.SoChungTu}}
+                                                                <a style="cursor: pointer;"
+                                                                    title="{{element.SoChungTu}}" class="link-primary"
+                                                                    routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.SoChungTu}}</b></a>
                                                             </td>
                                                         </ng-container>
                                                         <ng-container matColumnDef="SoButToan">
@@ -561,7 +563,9 @@
                                                                 toán
                                                             </th>
                                                             <td mat-cell *matCellDef="let element">
-                                                                {{element.SoButToan}}
+                                                                <a style="cursor: pointer;"
+                                                                    title="{{element.SoButToan}}" class="link-primary"
+                                                                    routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.SoButToan}}</b></a>
                                                             </td>
                                                         </ng-container>
                                                         <ng-container matColumnDef="Name">
@@ -569,7 +573,9 @@
                                                                 đề
                                                             </th>
                                                             <td mat-cell *matCellDef="let element">
-                                                                {{element.Name}}
+                                                                <a style="cursor: pointer;" title="{{element.Name}}"
+                                                                    class="link-primary"
+                                                                    routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.Name}}</b></a>
                                                             </td>
                                                         </ng-container>
                                                         <ng-container matColumnDef="DuAnQuyetDinhSoQuyetDinh">
@@ -880,7 +886,9 @@
                                                                 sơ
                                                             </th>
                                                             <td mat-cell *matCellDef="let element">
-                                                                {{element.SoHoSo}}
+                                                                <a style="cursor: pointer;" title="{{element.SoHoSo}}"
+                                                                    class="link-primary"
+                                                                    routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.SoHoSo}}</b></a>
                                                             </td>
                                                         </ng-container>
                                                         <ng-container matColumnDef="SoQuyetDinh">
@@ -888,7 +896,9 @@
                                                                 quyết định
                                                             </th>
                                                             <td mat-cell *matCellDef="let element">
-                                                                {{element.SoQuyetDinh}}
+                                                                <a style="cursor: pointer;"
+                                                                    title="{{element.SoQuyetDinh}}" class="link-primary"
+                                                                    routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.SoQuyetDinh}}</b></a>
                                                             </td>
                                                         </ng-container>
                                                         <ng-container matColumnDef="Name">
@@ -896,7 +906,9 @@
                                                                 đề
                                                             </th>
                                                             <td mat-cell *matCellDef="let element">
-                                                                {{element.Name}}
+                                                                <a style="cursor: pointer;" title="{{element.Name}}"
+                                                                    class="link-primary"
+                                                                    routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.Name}}</b></a>
                                                             </td>
                                                         </ng-container>
                                                         <ng-container matColumnDef="BenDauTuName">
@@ -1597,46 +1609,61 @@
                                 <div class="tab-pane fade" id="Report" role="tabpanel">
                                     <div class="row gx-4">
                                         <div class="col-lg-6 col-sm-12 col-12" style="padding: 10px;">
-                                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                                <h4 class="text-center" style="text-transform: uppercase;">Mức đầu tư theo quyết định</h4>                                                
-                                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
-                                                    [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type"
-                                                    [colors]="Report0001_0001_Color" [options]="Report0001_0001_Option">
+                                            <div
+                                                style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                                <h4 class="text-center" style="text-transform: uppercase;">Mức đầu tư
+                                                    theo quyết định</h4>
+                                                <canvas style="font-size: 30px;" baseChart
+                                                    [datasets]="Report0001_0001_Data" [labels]="Report0001_0001_Label"
+                                                    [chartType]="Report0001_0001_Type" [colors]="Report0001_0001_Color"
+                                                    [options]="Report0001_0001_Option">
                                                 </canvas>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-12 col-12" style="padding: 10px;">
-                                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                                <h4 class="text-center" style="text-transform: uppercase;">Ghi có theo quyết định</h4>                                                
-                                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0003_Data"
-                                                    [labels]="Report0001_0003_Label" [chartType]="Report0001_0003_Type"
-                                                    [colors]="Report0001_0003_Color" [options]="Report0001_0003_Option">
+                                            <div
+                                                style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                                <h4 class="text-center" style="text-transform: uppercase;">Ghi có theo
+                                                    quyết định</h4>
+                                                <canvas style="font-size: 30px;" baseChart
+                                                    [datasets]="Report0001_0003_Data" [labels]="Report0001_0003_Label"
+                                                    [chartType]="Report0001_0003_Type" [colors]="Report0001_0003_Color"
+                                                    [options]="Report0001_0003_Option">
                                                 </canvas>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-sm-12 col-12" style="padding: 10px;"> 
-                                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                                <h4 class="text-center" style="text-transform: uppercase;">Còn lại theo quyết định</h4>                                                
-                                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
-                                                    [labels]="Report0001_0002_Label" [chartType]="Report0001_0002_Type"
-                                                    [colors]="Report0001_0002_Color" [options]="Report0001_0002_Option">
+                                        <div class="col-lg-6 col-sm-12 col-12" style="padding: 10px;">
+                                            <div
+                                                style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                                <h4 class="text-center" style="text-transform: uppercase;">Còn lại theo
+                                                    quyết định</h4>
+                                                <canvas style="font-size: 30px;" baseChart
+                                                    [datasets]="Report0001_0002_Data" [labels]="Report0001_0002_Label"
+                                                    [chartType]="Report0001_0002_Type" [colors]="Report0001_0002_Color"
+                                                    [options]="Report0001_0002_Option">
                                                 </canvas>
-                                            </div>                                          
+                                            </div>
                                         </div>
-                                        <div class="col-lg-6 col-sm-12 col-12" style="padding: 10px;"> 
-                                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                                <h4 class="text-center" style="text-transform: uppercase;">Biểu mẫu theo quyết định</h4>                                                
-                                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0001_Data"
-                                                    [labels]="Report0002_0001_Label" [chartType]="Report0002_0001_Type" [colors]="Report0002_0001_Color"
+                                        <div class="col-lg-6 col-sm-12 col-12" style="padding: 10px;">
+                                            <div
+                                                style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                                <h4 class="text-center" style="text-transform: uppercase;">Biểu mẫu theo
+                                                    quyết định</h4>
+                                                <canvas style="font-size: 30px;" baseChart
+                                                    [datasets]="Report0002_0001_Data" [labels]="Report0002_0001_Label"
+                                                    [chartType]="Report0002_0001_Type" [colors]="Report0002_0001_Color"
                                                     [options]="Report0002_0001_Option">
                                                 </canvas>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-sm-12 col-12" style="padding: 10px;"> 
-                                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                                <h4 class="text-center" style="text-transform: uppercase;">Ghi nợ (tháng) theo quyết định</h4>                                                
-                                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0003_0001_Data"
-                                                    [labels]="Report0003_0001_Label" [chartType]="Report0003_0001_Type" [colors]="Report0003_0001_Color"
+                                        <div class="col-lg-12 col-sm-12 col-12" style="padding: 10px;">
+                                            <div
+                                                style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                                <h4 class="text-center" style="text-transform: uppercase;">Ghi nợ
+                                                    (tháng) theo quyết định</h4>
+                                                <canvas style="font-size: 30px;" baseChart
+                                                    [datasets]="Report0003_0001_Data" [labels]="Report0003_0001_Label"
+                                                    [chartType]="Report0003_0001_Type" [colors]="Report0003_0001_Color"
                                                     [options]="Report0003_0001_Option">
                                                 </canvas>
                                             </div>

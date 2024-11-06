@@ -17,6 +17,7 @@ export class ReportService extends BaseService {
     List0001: Report[] | undefined;
     List0002: Report[] | undefined;
     List0003: Report[] | undefined;
+    List0005: Report[] | undefined;
 
     constructor(public httpClient: HttpClient) {
         super(httpClient);
@@ -70,5 +71,17 @@ export class ReportService extends BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }   
+    Report0005ToListAsync() {
+        if (this.BaseParameter.ThanhVienID == null) {
+            var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+            if (ThanhVienID) {
+                this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+            }
+        }
+        let url = this.APIURL + this.Controller + '/Report0005ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }    
 }
 

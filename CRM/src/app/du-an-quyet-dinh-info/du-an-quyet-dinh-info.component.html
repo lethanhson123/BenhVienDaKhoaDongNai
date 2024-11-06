@@ -268,7 +268,9 @@
                                                             từ
                                                         </th>
                                                         <td mat-cell *matCellDef="let element">
-                                                            {{element.SoChungTu}}
+                                                            <a style="cursor: pointer;" title="{{element.SoChungTu}}"
+                                                                class="link-primary"
+                                                                routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.SoChungTu}}</b></a>
                                                         </td>
                                                     </ng-container>
                                                     <ng-container matColumnDef="SoButToan">
@@ -276,14 +278,18 @@
                                                             toán
                                                         </th>
                                                         <td mat-cell *matCellDef="let element">
-                                                            {{element.SoButToan}}
+                                                            <a style="cursor: pointer;" title="{{element.SoButToan}}"
+                                                                class="link-primary"
+                                                                routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.SoButToan}}</b></a>
                                                         </td>
                                                     </ng-container>
                                                     <ng-container matColumnDef="Name">
                                                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề
                                                         </th>
                                                         <td mat-cell *matCellDef="let element">
-                                                            {{element.Name}}
+                                                            <a style="cursor: pointer;" title="{{element.Name}}"
+                                                                class="link-primary"
+                                                                routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.Name}}</b></a>
                                                         </td>
                                                     </ng-container>
                                                     <ng-container matColumnDef="DuAnQuyetDinhSoQuyetDinh">

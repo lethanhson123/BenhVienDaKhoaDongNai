@@ -9,6 +9,7 @@ import { BaseService } from './Base.service';
 export class DuAnService extends BaseService {
 
     DisplayColumns001: string[] = ['STT', 'ID', 'NgayBatDau', 'NgayKetThuc', 'NgayKy', 'Name', 'SoHoSo', 'SoQuyetDinh', 'BenDauTuName', 'BenThucHienName', 'ThoiHan', 'MucDauTu', 'GhiCo', 'GhiNo', 'ConLai', 'Save'];
+    DisplayColumns002: string[] = ['STT', 'NgayBatDau', 'Name'];
 
     List: DuAn[] | undefined;
     ListFilter: DuAn[] | undefined;
@@ -54,6 +55,17 @@ export class DuAnService extends BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    
+    GetSQLByThanhVienIDToListAsync() {
+        if (this.BaseParameter.ThanhVienID == null) {
+            var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+            if (ThanhVienID) {
+                this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+            }
+        }
+        let url = this.APIURL + this.Controller + '/GetSQLByThanhVienIDToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

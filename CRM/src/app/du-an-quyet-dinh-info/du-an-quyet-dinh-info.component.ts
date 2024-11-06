@@ -24,7 +24,7 @@ import { DuAnQuyetToanPhanKy } from 'src/app/shared/DuAnQuyetToanPhanKy.model';
 import { DuAnQuyetToanPhanKyService } from 'src/app/shared/DuAnQuyetToanPhanKy.service';
 import { DuAnQuyetToanLuyKe } from 'src/app/shared/DuAnQuyetToanLuyKe.model';
 import { DuAnQuyetToanLuyKeService } from 'src/app/shared/DuAnQuyetToanLuyKe.service';
-import { DuAnThuChiDetailComponent } from '../du-an-thu-chi-detail/du-an-thu-chi-detail.component';
+
 
 @Component({
   selector: 'app-du-an-quyet-dinh-info',

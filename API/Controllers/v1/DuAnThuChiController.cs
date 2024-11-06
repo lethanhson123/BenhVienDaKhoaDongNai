@@ -44,6 +44,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetSQLByThanhVienIDToListAsync")]
+        public async Task<List<DuAnThuChi>> GetSQLByThanhVienIDToListAsync()
+        {
+            List<DuAnThuChi> result = new List<DuAnThuChi>();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DuAnThuChiService.GetSQLByThanhVienIDToListAsync(model.ThanhVienID.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

@@ -799,6 +799,23 @@ namespace Service.Implement
             }
             return result;
         }
+        public virtual async Task<List<DuAn>> GetSQLByThanhVienIDToListAsync(long ThanhVienID)
+        {
+            List<DuAn> result = new List<DuAn>();
+            try
+            {                
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@ThanhVienID",ThanhVienID),                      
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnSelectItemsByThanhVienID", parameters);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

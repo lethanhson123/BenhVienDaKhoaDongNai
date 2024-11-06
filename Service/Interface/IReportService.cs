@@ -6,6 +6,7 @@
         Task<List<Report>> Report0002ToListAsync(long ID);
         Task<List<Report>> Report0003ToListAsync(long ID);
         Task<Report> Report0004ToAsync(long ThanhVienID);
+        Task<List<Report>> Report0005ToListAsync(long ThanhVienID);
     }
 }
 

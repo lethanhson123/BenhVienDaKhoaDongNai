@@ -9,6 +9,7 @@ import { BaseService } from './Base.service';
 export class DuAnThuChiService extends BaseService{
 
     DisplayColumns001: string[] = ['STT', 'ID', 'NgayGhiNhan', 'SoChungTu', 'SoButToan', 'Name', 'DuAnQuyetDinhSoQuyetDinh', 'GhiCo', 'GhiNo', 'ConLai', 'DanhMucBieuMauName', 'DanhMucHinhThucThanhToanName', 'Active', 'Save'];
+    DisplayColumns002: string[] = ['STT', 'NgayGhiNhan', 'SoChungTu', 'SoButToan', 'Name', 'DuAnQuyetDinhSoQuyetDinh', 'GhiCo', 'GhiNo', 'ConLai', 'DanhMucBieuMauName'];
     List: DuAnThuChi[] | undefined;
     ListFilter: DuAnThuChi[] | undefined;
     FormData!: DuAnThuChi;
@@ -38,6 +39,18 @@ export class DuAnThuChiService extends BaseService{
             }
         }
         let url = this.APIURL + this.Controller + '/GetBySoQuyetDinhToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetSQLByThanhVienIDToListAsync() {
+        if (this.BaseParameter.ThanhVienID == null) {
+            var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+            if (ThanhVienID) {
+                this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+            }
+        }
+        let url = this.APIURL + this.Controller + '/GetSQLByThanhVienIDToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

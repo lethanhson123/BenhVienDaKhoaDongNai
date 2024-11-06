@@ -122,22 +122,28 @@
                                                     <ng-container matColumnDef="Name">
                                                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề
                                                         </th>
-                                                        <td mat-cell *matCellDef="let element">
-                                                            {{element.Name}}
+                                                        <td mat-cell *matCellDef="let element">                                                            
+                                                            <a style="cursor: pointer;" title="{{element.Name}}"
+                                                                class="link-primary"
+                                                                routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.Name}}</b></a>
                                                         </td>
                                                     </ng-container>
                                                     <ng-container matColumnDef="SoHoSo">
                                                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Số hồ sơ
                                                         </th>
-                                                        <td mat-cell *matCellDef="let element">
-                                                            {{element.SoHoSo}}
+                                                        <td mat-cell *matCellDef="let element">                                                            
+                                                            <a style="cursor: pointer;" title="{{element.Name}}"
+                                                                class="link-primary"
+                                                                routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.SoHoSo}}</b></a>
                                                         </td>
                                                     </ng-container>
                                                     <ng-container matColumnDef="SoQuyetDinh">
                                                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Số quyết
                                                             định</th>
-                                                        <td mat-cell *matCellDef="let element">
-                                                            {{element.SoQuyetDinh}}
+                                                        <td mat-cell *matCellDef="let element">                                                            
+                                                            <a style="cursor: pointer;" title="{{element.Name}}"
+                                                                class="link-primary"
+                                                                routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.SoQuyetDinh}}</b></a>
                                                         </td>
                                                     </ng-container>
                                                     <ng-container matColumnDef="BenDauTuName">

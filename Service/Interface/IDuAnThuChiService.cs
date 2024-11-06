@@ -4,6 +4,7 @@
     {
         Task<List<DuAnThuChi>> GetSQLByCodeToListAsync(string Code);
         Task<List<DuAnThuChi>> GetBySoQuyetDinhToListAsync(string SoQuyetDinh);
+        Task<List<DuAnThuChi>> GetSQLByThanhVienIDToListAsync(long ThanhVienID);
     }
 }
 
