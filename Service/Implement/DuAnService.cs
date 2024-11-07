@@ -698,8 +698,17 @@ namespace Service.Implement
             List<DuAn> result = new List<DuAn>();
             try
             {
-                BatDau = GlobalHelper.SetBatDau(BatDau);
-                KetThuc = GlobalHelper.SetKetThuc(KetThuc);
+                try
+                {
+                    BatDau = GlobalHelper.SetBatDau(BatDau);
+                    KetThuc = GlobalHelper.SetKetThuc(KetThuc);
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
+                    KetThuc = GlobalHelper.InitializationDateTime;
+                    BatDau = new DateTime(KetThuc.Year, KetThuc.Month, 1, 0, 0, 0);
+                }
                 result = await GetByCondition(item => item.NgayBatDau >= BatDau && item.NgayBatDau <= KetThuc).ToListAsync();
             }
             catch (Exception ex)
@@ -782,10 +791,19 @@ namespace Service.Implement
             List<DuAn> result = new List<DuAn>();
             try
             {
-                BatDau = GlobalHelper.SetBatDau(BatDau);
-                KetThuc = GlobalHelper.SetKetThuc(KetThuc);
-                SqlParameter[] parameters =
+                try
                 {
+                    BatDau = GlobalHelper.SetBatDau(BatDau);
+                    KetThuc = GlobalHelper.SetKetThuc(KetThuc);
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
+                    KetThuc = GlobalHelper.InitializationDateTime;
+                    BatDau = new DateTime(KetThuc.Year, KetThuc.Month, 1, 0, 0, 0);
+                }
+                SqlParameter[] parameters =
+                    {
                         new SqlParameter("@ThanhVienID",ThanhVienID),
                         new SqlParameter("@BatDau",BatDau),
                         new SqlParameter("@KetThuc",KetThuc),
@@ -803,10 +821,10 @@ namespace Service.Implement
         {
             List<DuAn> result = new List<DuAn>();
             try
-            {                
+            {
                 SqlParameter[] parameters =
                 {
-                        new SqlParameter("@ThanhVienID",ThanhVienID),                      
+                        new SqlParameter("@ThanhVienID",ThanhVienID),
                 };
                 result = await GetByStoredProcedureToListAsync("sp_DuAnSelectItemsByThanhVienID", parameters);
             }
