@@ -1,6 +1,4 @@
-﻿using Service.Interface;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class ThanhVienService : BaseService<ThanhVien, IThanhVienRepository>
     , IThanhVienService

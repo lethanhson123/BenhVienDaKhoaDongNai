@@ -1,7 +1,4 @@
-﻿using Data.Model;
-using Service.Interface;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class DuAnThuChiService : BaseService<DuAnThuChi, IDuAnThuChiRepository>
     , IDuAnThuChiService

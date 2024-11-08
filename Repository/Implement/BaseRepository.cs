@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Repository.Implement
+﻿namespace Repository.Implement
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseModel
     {

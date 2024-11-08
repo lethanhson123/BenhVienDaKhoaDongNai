@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class BaseService<T, TRepository> : IBaseService<T>
         where T : BaseModel

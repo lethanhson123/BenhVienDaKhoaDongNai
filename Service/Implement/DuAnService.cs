@@ -1,9 +1,4 @@
-﻿using Data.Model;
-using Microsoft.AspNetCore.Hosting;
-using Service.Interface;
-using System;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class DuAnService : BaseService<DuAn, IDuAnRepository>
     , IDuAnService

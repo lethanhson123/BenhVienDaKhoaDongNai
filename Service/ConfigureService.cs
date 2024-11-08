@@ -1,10 +1,4 @@
-﻿using Data.Model;
-using Repository.Implement;
-using Repository.Interface;
-using Service.Implement;
-using Service.Interface;
-
-namespace Service
+﻿namespace Service
 {
     public static class ConfigureService
     {
