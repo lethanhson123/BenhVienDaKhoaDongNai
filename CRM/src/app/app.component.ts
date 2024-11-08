@@ -182,6 +182,9 @@ export class AppComponent {
             this.DanhMucChucNangService.ListParent.push(this.DanhMucChucNangService.ListChild[i]);
           }
         }
+        if (this.queryStringSub.indexOf("Info") > -1) {
+          isLogin = true;
+        } 
         if (this.queryStringSub.indexOf("ThanhVienThongTin") > -1) {
           isLogin = true;
         }       
