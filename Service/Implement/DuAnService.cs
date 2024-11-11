@@ -672,7 +672,7 @@
                 {
                     System.IO.Directory.CreateDirectory(physicalPathCreate);
                 }
-                string fileName = result.Code + ".html";
+                string fileName = GlobalHelper.InitializationDateTimeCode + ".html";
                 physicalPathCreate = Path.Combine(physicalPathCreate, fileName);
                 using (FileStream fs = new FileStream(physicalPathCreate, FileMode.Create))
                 {
@@ -681,6 +681,7 @@
                         w.WriteLine(contentHTML);
                     }
                 }
+                result.FileName = GlobalHelper.APISite + "/" + result.GetType().Name + "/" + fileName;
             }
             catch (Exception ex)
             {
