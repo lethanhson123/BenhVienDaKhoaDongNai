@@ -85,18 +85,18 @@
                 model.Code = GlobalHelper.InitializationGUICode;
             }
 
-            string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
-            bool isFolderExists = System.IO.Directory.Exists(folderPath);
-            if (!isFolderExists)
-            {
-                System.IO.Directory.CreateDirectory(folderPath);
-            }
+            //string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+            //bool isFolderExists = System.IO.Directory.Exists(folderPath);
+            //if (!isFolderExists)
+            //{
+            //    System.IO.Directory.CreateDirectory(folderPath);
+            //}
 
-            model.FileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".html";
+            //model.FileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".html";
 
-            model.FileNameQRCode = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".png";
+            //model.FileNameQRCode = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".png";
 
-            QRCodeHelper.CreateQRCodeURL(model.Code, model.FileName, folderPath);
+            //QRCodeHelper.CreateQRCodeURL(model.Code, model.FileName, folderPath);
 
 
             if (model.NgayBatDau == null)
@@ -317,6 +317,22 @@
                 DanhMucBenhVien DanhMucBenhVien = await _DanhMucBenhVienRepository.GetByIDAsync(GlobalHelper.DanhMucBenhVienID);
                 ThanhVien ThanhVien = await _ThanhVienService.GetByIDAsync(ThanhVienID);
                 result = await GetByIDAsync(ID);
+
+                string Code = GlobalHelper.InitializationDateTimeCode;
+
+                string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, result.GetType().Name);
+                bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(folderPath);
+                }
+
+                result.FileName = GlobalHelper.APISite + "/" + result.GetType().Name + "/" + Code + ".html";
+
+                result.FileNameQRCode = GlobalHelper.APISite + "/" + result.GetType().Name + "/" + Code + ".png";
+
+                QRCodeHelper.CreateQRCodeURL(Code, result.FileName, folderPath);
+
                 List<DuAnTapTinDinhKem> ListDuAnTapTinDinhKem = await _DuAnTapTinDinhKemService.GetByCodeToListAsync(result.Code);
                 List<DuAnThuChi> ListDuAnThuChi = await _DuAnThuChiService.GetSQLByCodeToListAsync(result.Code);
                 List<DuAnQuyetDinh> ListDuAnQuyetDinh = await _DuAnQuyetDinhService.GetByCodeToListAsync(result.Code);
@@ -667,12 +683,13 @@
 
 
                 string physicalPathCreate = Path.Combine(_WebHostEnvironment.WebRootPath, result.GetType().Name);
-                bool isFolderExists = System.IO.Directory.Exists(physicalPathCreate);
+                isFolderExists = System.IO.Directory.Exists(physicalPathCreate);
                 if (!isFolderExists)
                 {
                     System.IO.Directory.CreateDirectory(physicalPathCreate);
-                }
-                string fileName = GlobalHelper.InitializationDateTimeCode + ".html";
+                }                
+
+                string fileName = Code + ".html";
                 physicalPathCreate = Path.Combine(physicalPathCreate, fileName);
                 using (FileStream fs = new FileStream(physicalPathCreate, FileMode.Create))
                 {
@@ -681,7 +698,8 @@
                         w.WriteLine(contentHTML);
                     }
                 }
-                result.FileName = GlobalHelper.APISite + "/" + result.GetType().Name + "/" + fileName;
+
+                await UpdateAsync(result);
             }
             catch (Exception ex)
             {
