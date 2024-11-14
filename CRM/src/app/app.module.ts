@@ -46,6 +46,7 @@ import { DuAnInfoComponent } from './du-an-info/du-an-info.component';
 import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-dinh-info.component';
 import { DuAnThuChiInfoComponent } from './du-an-thu-chi-info/du-an-thu-chi-info.component';
 import { Dashboard001Component } from './dashboard001/dashboard001.component';
+import { ThanhVienThongTinComponent } from './thanh-vien-thong-tin/thanh-vien-thong-tin.component';
 
 
 
@@ -86,7 +87,8 @@ import { Dashboard001Component } from './dashboard001/dashboard001.component';
     DuAnInfoComponent,
     DuAnQuyetDinhInfoComponent,
     DuAnThuChiInfoComponent,
-    Dashboard001Component,    
+    Dashboard001Component,
+    ThanhVienThongTinComponent,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
