@@ -10,6 +10,7 @@ export class DuAnService extends BaseService {
 
     DisplayColumns001: string[] = ['STT', 'ID', 'NgayBatDau', 'NgayKetThuc', 'NgayKy', 'Name', 'SoHoSo', 'SoQuyetDinh', 'BenDauTuName', 'BenThucHienName', 'ThoiHan', 'MucDauTu', 'GhiCo', 'GhiNo', 'ConLai', 'Save'];
     DisplayColumns002: string[] = ['STT', 'NgayBatDau', 'Name'];
+    DisplayColumns003: string[] = ['STT', 'ID', 'NgayBatDau', 'NgayKetThuc', 'NgayKy', 'Name', 'SoHoSo', 'SoQuyetDinh', 'ThoiHan', 'MucDauTu', 'GhiCo', 'GhiNo', 'ConLai', 'Save'];
 
     List: DuAn[] | undefined;
     ListFilter: DuAn[] | undefined;

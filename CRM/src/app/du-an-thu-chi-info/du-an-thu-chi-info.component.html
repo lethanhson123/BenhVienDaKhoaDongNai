@@ -47,6 +47,10 @@
                             <div class="tab-pane fade show active" id="DuAnThuChiDetail" role="tabpanel">
                                 <div class="row gx-4">
                                     <div class="col-lg-4 col-sm-12 col-12">
+                                        <a style="width: 100%;" title="Quay lại danh sách" (click)="DuAnThuChiIsBack()" class="btn btn-success"><i
+                                                class="bi bi-arrow-90deg-left"></i> Quay lại danh sách</a>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 col-12">
                                         <a style="width: 100%;" title="Lưu thay đổi" (click)="DuAnThuChiSave()" class="btn btn-info" *ngIf="IsDuAnThuChiSave"><i
                                                 class="bi bi-sd-card"></i> Lưu thay đổi</a>
                                     </div>
@@ -82,19 +86,15 @@
                                             <label class="form-label">Quyết định
                                                 [{{DuAnThuChiService.FormData.DuAnQuyetDinhID}}]</label>
                                             <select class="form-select" name="DuAnQuyetDinhID"
-                                                [(ngModel)]="DuAnThuChiService.FormData.DuAnQuyetDinhID">
+                                                [(ngModel)]="DuAnThuChiService.FormData.DuAnQuyetDinhID" (change)="DuAnQuyetDinhChange($event)">
                                                 <option [value]="0">
                                                     Chưa xác định</option>
                                                 <option *ngFor="let item of DuAnQuyetDinhService.List;" [value]="item.ID">
                                                     {{item.SoQuyetDinh}} - {{item.Name}} [{{item.ID}}]</option>
                                             </select>
-                                        </div>
-                                        <div class="col-lg-12 col-sm-12 col-12">
-                                            <label class="form-label">Ngày ghi nhận</label>
-                                            <input [ngModel]="DuAnThuChiService.FormData.NgayGhiNhan | date:'yyyy-MM-dd'"
-                                                style="text-align: right;" (ngModelChange)="DateNgayGhiNhan($event)"
-                                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off">
-                                        </div>
+                                        </div>                                                              
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 col-12">
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Tiêu đề</label>
                                             <input name="Name" [(ngModel)]="DuAnThuChiService.FormData.Name" placeholder="Tiêu đề"
@@ -110,15 +110,28 @@
                                             <input name="SoButToan" [(ngModel)]="DuAnThuChiService.FormData.SoButToan"
                                                 placeholder="Số bút toán" type="text" class="form-control">
                                         </div>
-                                        <div class="col-lg-12 col-sm-12 col-12">
-                                            <label class="form-label">Đơn giá ({{DuAnThuChiService.FormData.DonGia |
-                                                number:
-                                                '1.0-0'}})</label>
-                                            <input name="DonGia" [(ngModel)]="DuAnThuChiService.FormData.DonGia" placeholder="Đơn giá"
-                                                type="number" class="form-control" style="text-align: right;">
-                                        </div>
                                     </div>
                                     <div class="col-lg-4 col-sm-12 col-12">
+                                        <div class="col-lg-12 col-sm-12 col-12">
+                                            <label class="form-label">Ngày ghi nhận</label>
+                                            <input [ngModel]="DuAnThuChiService.FormData.NgayGhiNhan | date:'yyyy-MM-dd'"
+                                                style="text-align: right;" (ngModelChange)="DateNgayGhiNhan($event)"
+                                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off">
+                                        </div>       
+                                        <div class="col-lg-12 col-sm-12 col-12">
+                                            <label class="form-label">Số tiền ({{DuAnThuChiService.FormData.DonGia |
+                                                number:
+                                                '1.0-0'}})</label>
+                                            <input name="DonGia" [(ngModel)]="DuAnThuChiService.FormData.DonGia" placeholder="Số tiền"
+                                                type="number" class="form-control" style="text-align: right;">
+                                        </div>
+                                        <div class="col-lg-12 col-sm-12 col-12">
+                                            <label class="form-label">Ghi chú</label>
+                                            <input name="Note" [(ngModel)]="DuAnThuChiService.FormData.Note" placeholder="Ghi chú"
+                                                type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-lg-4 col-sm-12 col-12">
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Bên A (Bên duyệt)
                                                 [{{DuAnThuChiService.FormData.BenDauTuID}}]</label>
@@ -240,7 +253,7 @@
                                             <input name="BenThucHienNganHang" [(ngModel)]="DuAnThuChiService.FormData.BenThucHienNganHang"
                                                 placeholder="Nguồn bên B" type="text" class="form-control">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="DuAnThuChiTapTinDinhKem" role="tabpanel">

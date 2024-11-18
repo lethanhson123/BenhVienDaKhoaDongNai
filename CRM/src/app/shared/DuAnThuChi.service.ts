@@ -6,7 +6,7 @@ import { BaseService } from './Base.service';
 @Injectable({
     providedIn: 'root'
 })
-export class DuAnThuChiService extends BaseService{
+export class DuAnThuChiService extends BaseService {
 
     DisplayColumns001: string[] = ['STT', 'ID', 'NgayGhiNhan', 'SoChungTu', 'SoButToan', 'Name', 'DuAnQuyetDinhSoQuyetDinh', 'GhiCo', 'GhiNo', 'ConLai', 'DanhMucBieuMauName', 'DanhMucHinhThucThanhToanName', 'Active', 'Save'];
     DisplayColumns002: string[] = ['STT', 'NgayGhiNhan', 'SoChungTu', 'SoButToan', 'Name', 'DuAnQuyetDinhSoQuyetDinh', 'GhiCo', 'GhiNo', 'ConLai', 'DanhMucBieuMauName'];
@@ -14,9 +14,12 @@ export class DuAnThuChiService extends BaseService{
     ListFilter: DuAnThuChi[] | undefined;
     FormData!: DuAnThuChi;
 
+    IsBack: boolean = false;
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "DuAnThuChi";
+        this.IsBack = false;
     }
 
     GetSQLByCodeToListAsync() {

@@ -43,7 +43,8 @@ export class DuAnThuChiInfoComponent implements OnInit {
   IsDuAnThuChiSave: boolean = true;
 
   constructor(
-    private ActiveRouter: ActivatedRoute,
+    public Router: Router,
+    public ActiveRouter: ActivatedRoute,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -61,12 +62,12 @@ export class DuAnThuChiInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DuAnThuChiService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);        
+    this.DuAnThuChiService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnQuyetDinhID);
-    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);        
+    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);
     this.DuAnThuChiSearch();
   }
-  
+
   DateNgayGhiNhan(value) {
     this.DuAnThuChiService.FormData.NgayGhiNhan = new Date(value);
   }
@@ -81,8 +82,15 @@ export class DuAnThuChiInfoComponent implements OnInit {
     this.DuAnQuyetDinhService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
     this.DuAnQuyetDinhService.GetByParentIDToListAsync().subscribe(
       res => {
-        this.DuAnQuyetDinhService.List = (res as DuAnQuyetDinh[]).sort((a, b) => (a.NgayKy > b.NgayKy ? 1 : -1));
-        this.DuAnQuyetDinhService.ListFilter = this.DuAnQuyetDinhService.List;
+        let ListDuAnQuyetDinh = (res as DuAnQuyetDinh[]).sort((a, b) => (a.NgayKy > b.NgayKy ? 1 : -1));
+        if (ListDuAnQuyetDinh) {
+          if (ListDuAnQuyetDinh.length > 0) {
+            if (ListDuAnQuyetDinh.length != this.DuAnQuyetDinhService.List.length) {
+              this.DuAnQuyetDinhService.List = ListDuAnQuyetDinh;
+              this.DuAnQuyetDinhService.ListFilter = this.DuAnQuyetDinhService.List;
+            }
+          }
+        }
       },
       err => {
       },
@@ -90,6 +98,18 @@ export class DuAnThuChiInfoComponent implements OnInit {
         this.DuAnThuChiService.IsShowLoading = false;
       }
     );
+  }
+  DuAnQuyetDinhChange(value: any) {
+    if (value) {
+      if (value.target.value) {
+        let ListDuAnQuyetDinh = this.DuAnQuyetDinhService.List.filter(item => item.ID == value.target.value);
+        if (ListDuAnQuyetDinh) {
+          if (ListDuAnQuyetDinh.length > 0) {
+            this.DuAnQuyetDinhService.FormData = ListDuAnQuyetDinh[0];
+          }
+        }
+      }
+    }
   }
   ToChucSearch() {
     this.ToChucService.ComponentGetAllToListAsync(this.DuAnThuChiService);
@@ -197,9 +217,9 @@ export class DuAnThuChiInfoComponent implements OnInit {
                 this.DuAnThuChiService.FormData.DuAnQuyetDinhSoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
                 this.DanhMucBieuMauSearch();
                 this.DanhMucHinhThucThanhToanSearch();
-                this.ToChucSearch();
-                this.ToChucTaiKhoanSearch();
-                this.ThanhVienSearch();
+                //this.ToChucSearch();
+                //this.ToChucTaiKhoanSearch();
+                //this.ThanhVienSearch();
                 this.DuAnTapTinDinhKemSearch();
                 this.DuAnQuyetDinhSearch();
                 if (this.DuAnThuChiService.FormData.Active == true) {
@@ -225,7 +245,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
       () => {
         this.DuAnThuChiService.IsShowLoading = false;
       }
-    );    
+    );
   }
   DuAnThuChiSave() {
     this.DuAnThuChiService.IsShowLoading = true;
@@ -246,6 +266,10 @@ export class DuAnThuChiInfoComponent implements OnInit {
         this.DuAnThuChiService.IsShowLoading = false;
       }
     );
+  }
+  DuAnThuChiIsBack() {
+    this.DuAnThuChiService.IsBack = true;
+    this.Router.navigate(['/DuAnQuyetDinhInfo/' + this.DuAnService.FormData.ID + '/' + this.DuAnQuyetDinhService.FormData.ID]);
   }
 
   DuAnTapTinDinhKemSearch() {

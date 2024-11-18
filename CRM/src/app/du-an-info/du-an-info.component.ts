@@ -150,14 +150,16 @@ export class DuAnInfoComponent implements OnInit {
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
         this.DuAnService.FormData = res as DuAn;
-        this.DanhMucTinhTrangSearch();
-        this.ToChucSearch();
-        this.ThanhVienSearch();
+        //this.DanhMucTinhTrangSearch();
+        //this.ToChucSearch();
+        //this.ThanhVienSearch();
         this.DuAnTapTinDinhKemSearch();
         this.DuAnThuChiSearch();
         this.DuAnQuyetDinhSearch();
         //this.DuAnQuyetToanPhanKySearch();
         //this.DuAnQuyetToanLuyKeSearch();
+        this.DuAnQuyetToanLuyKeService.List = [];
+        this.DuAnQuyetToanPhanKyService.List = [];
         this.Report0001();
         this.Report0002();
         this.Report0003();
@@ -323,6 +325,20 @@ export class DuAnInfoComponent implements OnInit {
         }
       );
     }
+
+    this.DuAnService.IsShowLoading = true;
+    this.DuAnQuyetDinhService.BaseParameter.ID = environment.InitializationNumber;
+    this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
+      res => {
+        this.DuAnQuyetDinhService.FormData = (res as any);
+      },
+      err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
+
   }
   DuAnQuyetDinhDelete(element: DuAnQuyetDinh) {
     if (confirm(environment.DeleteConfirm)) {
@@ -619,13 +635,13 @@ export class DuAnInfoComponent implements OnInit {
     this.ReportService.Report0001ToListAsync().subscribe(
       res => {
         this.ReportService.List0001 = (res as Report[]);
-        let LabelArray001 = [];        
+        let LabelArray001 = [];
         let DataArray001 = [];
         let LabelArray002 = [];
         let DataArray002 = [];
         let LabelArray003 = [];
         let DataArray003 = [];
-        for (let i = 0; i < this.ReportService.List0001.length; i++) {          
+        for (let i = 0; i < this.ReportService.List0001.length; i++) {
           LabelArray001.push(this.ReportService.List0001[i].Display);
           DataArray001.push(this.ReportService.List0001[i].MucDauTu);
 
@@ -663,7 +679,7 @@ export class DuAnInfoComponent implements OnInit {
     this.ReportService.Report0002ToListAsync().subscribe(
       res => {
         this.ReportService.List0002 = (res as Report[]);
-        let LabelArray001 = [];        
+        let LabelArray001 = [];
         let DataArray001 = [];
         for (let i = 0; i < this.ReportService.List0002.length; i++) {
           LabelArray001.push(this.ReportService.List0002[i].Display);
@@ -671,7 +687,7 @@ export class DuAnInfoComponent implements OnInit {
         }
         this.Report0002_0001_Label = LabelArray001;
         let Label001: string = 'Biểu mẫu (đồng)';
-        this.Report0002_0001_Data = [          
+        this.Report0002_0001_Data = [
           { data: DataArray001, label: Label001, stack: 'b', yAxisID: 'B', }
         ];
       },
@@ -688,25 +704,25 @@ export class DuAnInfoComponent implements OnInit {
     this.ReportService.Report0003ToListAsync().subscribe(
       res => {
         this.ReportService.List0003 = (res as Report[]);
-        let LabelArray001 = [];     
-        let NameArray001 = [];               
-        for (let i = 0; i < this.ReportService.List0003.length; i++) {          
+        let LabelArray001 = [];
+        let NameArray001 = [];
+        for (let i = 0; i < this.ReportService.List0003.length; i++) {
           let Code = LabelArray001.filter(item => item == this.ReportService.List0003[i].Code);
           if (Code) {
             if (Code.length == 0) {
               LabelArray001.push(this.ReportService.List0003[i].Code);
             }
-          } 
+          }
           let NameArraySub = NameArray001.filter(item => item == this.ReportService.List0003[i].Name);
           if (NameArraySub) {
             if (NameArraySub.length == 0) {
               let Name = this.ReportService.List0003[i].Name;
               NameArray001.push(Name);
-              let DataArray = this.ReportService.List0003.filter(item => item.Name == Name); 
-              let GhiNo = []; 
-              for (let j = 0; j < DataArray.length; j++) {                
+              let DataArray = this.ReportService.List0003.filter(item => item.Name == Name);
+              let GhiNo = [];
+              for (let j = 0; j < DataArray.length; j++) {
                 GhiNo.push(DataArray[j].GhiNo);
-              }            
+              }
               let Data: any = {
                 type: "line",
                 fill: false,
@@ -716,10 +732,10 @@ export class DuAnInfoComponent implements OnInit {
               }
               this.Report0003_0001_Data.push(Data);
             }
-          }       
+          }
         }
         this.Report0003_0001_Label = LabelArray001;
-        this.Report0003_0001_Data.splice(0, 1)                
+        this.Report0003_0001_Data.splice(0, 1)
       },
       err => {
       },

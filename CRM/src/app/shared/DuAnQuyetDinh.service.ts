@@ -9,6 +9,7 @@ import { BaseService } from './Base.service';
 export class DuAnQuyetDinhService extends BaseService{
     DisplayColumns001: string[] = ['STT', 'ID', 'NgayKy', 'NgayHieuLuc', 'SoHoSo', 'SoQuyetDinh', 'Name', 'BenDauTuName', 'MucDauTu', 'GhiCo', 'GhiNo', 'ConLai', 'Save'];
     DisplayColumns002: string[] = ['STT', 'NgayKy', 'SoQuyetDinh', 'Name', 'GhiCo', 'GhiNo', 'ConLai'];
+    DisplayColumns003: string[] = ['STT', 'ID', 'NgayKy', 'NgayHieuLuc', 'SoHoSo', 'SoQuyetDinh', 'Name', 'MucDauTu', 'GhiCo', 'GhiNo', 'ConLai', 'Save'];
 
     List: DuAnQuyetDinh[] | undefined;
     ListFilter: DuAnQuyetDinh[] | undefined;

@@ -32,7 +32,7 @@ export class AppComponent {
   queryStringSub: string = environment.InitializationString;
   Token: string = environment.InitializationString;
   constructor(
-    public router: Router,
+    public Router: Router,
     public DownloadService: DownloadService,
     public NotificationService: NotificationService,
 
@@ -52,7 +52,7 @@ export class AppComponent {
   }
 
   GetByQueryString() {
-    this.router.events.forEach((event) => {
+    this.Router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this.queryString = event.url;
         if (this.queryString.indexOf(environment.Token) > -1) {
@@ -101,14 +101,14 @@ export class AppComponent {
                   else {
                     isLogin = false;
                     if (isLogin == false) {
-                      this.router.navigate(['/' + environment.Login]);
+                      this.Router.navigate(['/' + environment.Login]);
                     }
                   }
                 },
                 err => {
                   isLogin = false;
                   if (isLogin == false) {
-                    this.router.navigate(['/' + environment.Login]);
+                    this.Router.navigate(['/' + environment.Login]);
                   }
                 }
               );
@@ -116,27 +116,27 @@ export class AppComponent {
             else {
               isLogin = false;
               if (isLogin == false) {
-                this.router.navigate(['/' + environment.Login]);
+                this.Router.navigate(['/' + environment.Login]);
               }
             }
           }
           else {
             isLogin = false;
             if (isLogin == false) {
-              this.router.navigate(['/' + environment.Login]);
+              this.Router.navigate(['/' + environment.Login]);
             }
           }
         },
         err => {
           isLogin = false;
           if (isLogin == false) {
-            this.router.navigate(['/' + environment.Login]);
+            this.Router.navigate(['/' + environment.Login]);
           }
         }
       );
     }
     if (isLogin == false) {
-      this.router.navigate(['/' + environment.Login]);
+      this.Router.navigate(['/' + environment.Login]);
     }
   }
   DanhMucChucNangGetByThanhVienIDToListAsync() {
@@ -195,7 +195,7 @@ export class AppComponent {
           isLogin = true;
         }
         if (isLogin == false) {
-          this.router.navigate(['/' + environment.Login]);
+          this.Router.navigate(['/' + environment.Login]);
         }
       },
       err => {
@@ -299,7 +299,7 @@ export class AppComponent {
   Logout() {
     localStorage.setItem(environment.Token, environment.InitializationString);
     localStorage.setItem(environment.ThanhVienID, environment.InitializationString);
-    this.router.navigate(['/' + environment.Login]);
+    this.Router.navigate(['/' + environment.Login]);
   }
   interval;
   StartTimer() {

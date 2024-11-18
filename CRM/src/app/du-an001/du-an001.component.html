@@ -146,7 +146,7 @@
                                                                 routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.SoQuyetDinh}}</b></a>
                                                         </td>
                                                     </ng-container>
-                                                    <ng-container matColumnDef="BenDauTuName">
+                                                    <!-- <ng-container matColumnDef="BenDauTuName">
                                                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Bên A
                                                         </th>
                                                         <td mat-cell *matCellDef="let element">
@@ -159,7 +159,7 @@
                                                         <td mat-cell *matCellDef="let element">
                                                             {{element.BenThucHienName}}
                                                         </td>
-                                                    </ng-container>
+                                                    </ng-container> -->
                                                     <ng-container matColumnDef="ThoiHan">
                                                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Thời hạn
                                                             (tháng)
@@ -234,10 +234,10 @@
                                                             </a>
                                                         </td>
                                                     </ng-container>
-                                                    <tr mat-header-row *matHeaderRowDef="DuAnService.DisplayColumns001">
+                                                    <tr mat-header-row *matHeaderRowDef="DuAnService.DisplayColumns003">
                                                     </tr>
                                                     <tr mat-row
-                                                        *matRowDef="let row; columns: DuAnService.DisplayColumns001;">
+                                                        *matRowDef="let row; columns: DuAnService.DisplayColumns003;">
                                                     </tr>
                                                 </table>
                                                 <mat-paginator *ngIf="!NotificationService.IsMobile"
@@ -282,7 +282,7 @@
                                                                     <label
                                                                         class="form-label">{{element.SoQuyetDinh}}</label>
                                                                 </div>
-                                                                <div class="col-lg-12 col-sm-12 col-12">
+                                                                <!-- <div class="col-lg-12 col-sm-12 col-12">
                                                                     <label>Bên A</label>
                                                                     <br />
                                                                     <label
@@ -293,7 +293,7 @@
                                                                     <br />
                                                                     <label
                                                                         class="form-label">{{element.BenThucHienName}}</label>
-                                                                </div>
+                                                                </div> -->
                                                                 <div class="col-lg-12 col-sm-12 col-12">
                                                                     <label>Mức đầu tư</label>
                                                                     <br />

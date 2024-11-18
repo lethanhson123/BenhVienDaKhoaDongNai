@@ -39,12 +39,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="tab-DuAnQuyetToanLuyKe" data-bs-toggle="tab"
-                                        href="#DuAnQuyetToanLuyKe" role="tab" aria-controls="DuAnQuyetToanLuyKe"
-                                        aria-selected="true">
-                                        <span class="badge bg-success" style="font-size: 12px;">Luỹ kế</span>
+                                    <a class="nav-link" id="tab-DuAnThuChi" data-bs-toggle="tab" href="#DuAnThuChi"
+                                        role="tab" aria-controls="DuAnThuChi" aria-selected="true">
+                                        <span class="badge bg-success" style="font-size: 12px;">Thu chi</span>
                                     </a>
-                                </li>
+                                </li>                                
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="tab-DuAnQuyetToanPhanKy" data-bs-toggle="tab"
                                         href="#DuAnQuyetToanPhanKy" role="tab" aria-controls="DuAnQuyetToanPhanKy"
@@ -53,9 +52,10 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="tab-DuAnThuChi" data-bs-toggle="tab" href="#DuAnThuChi"
-                                        role="tab" aria-controls="DuAnThuChi" aria-selected="true">
-                                        <span class="badge bg-success" style="font-size: 12px;">Thu chi</span>
+                                    <a class="nav-link" id="tab-DuAnQuyetToanLuyKe" data-bs-toggle="tab"
+                                        href="#DuAnQuyetToanLuyKe" role="tab" aria-controls="DuAnQuyetToanLuyKe"
+                                        aria-selected="true">
+                                        <span class="badge bg-success" style="font-size: 12px;">Luỹ kế</span>
                                     </a>
                                 </li>
                                 <li class="nav-item" role="presentation">
@@ -114,7 +114,9 @@
                                                     style="text-align: right;" (ngModelChange)="DateNgayKy($event)"
                                                     [ngModelOptions]="{ updateOn: 'blur' }" type="date"
                                                     class="form-control" autocomplete="off">
-                                            </div>
+                                            </div>                                            
+                                        </div>
+                                        <div class="col-lg-3 col-sm-12 col-12">
                                             <div class="col-lg-12 col-sm-12 col-12">
                                                 <label class="form-label">Thời hạn (Tháng)</label>
                                                 <input name="ThoiHan" [(ngModel)]="DuAnService.FormData.ThoiHan"
@@ -132,7 +134,7 @@
                                                     placeholder="Số hồ sơ" type="text" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-sm-12 col-12">
+                                        <!-- <div class="col-lg-3 col-sm-12 col-12">
                                             <div class="col-lg-12 col-sm-12 col-12">
                                                 <label class="form-label">Bên A (Bên duyệt)
                                                     [{{DuAnService.FormData.BenDauTuID}}]</label>
@@ -176,11 +178,7 @@
                                                     [(ngModel)]="DuAnService.FormData.NguoiDauTuChucDanh"
                                                     placeholder="Chức danh" type="text" class="form-control">
                                             </div>
-                                            <div class="col-lg-12 col-sm-12 col-12">
-                                                <label class="form-label">Ghi chú</label>
-                                                <input name="Note" [(ngModel)]="DuAnService.FormData.Note"
-                                                    placeholder="Ghi chú" type="text" class="form-control">
-                                            </div>
+                                            
                                         </div>
                                         <div class="col-lg-3 col-sm-12 col-12">
                                             <div class="col-lg-12 col-sm-12 col-12">
@@ -227,13 +225,8 @@
                                                     [(ngModel)]="DuAnService.FormData.NguoiThucHienChucDanh"
                                                     placeholder="Chức danh" type="text" class="form-control">
                                             </div>
-                                            <div class="col-lg-12 col-sm-12 col-12">
-                                                <label class="form-label">Số tài khoản</label>
-                                                <input name="BenThucHienSoTaiKhoan"
-                                                    [(ngModel)]="DuAnService.FormData.BenThucHienSoTaiKhoan"
-                                                    placeholder="Số tài khoản" type="text" class="form-control">
-                                            </div>
-                                        </div>
+                                            
+                                        </div> -->
                                         <div class="col-lg-3 col-sm-12 col-12">
                                             <div class="col-lg-12 col-sm-12 col-12">
                                                 <label class="form-label">Số quyết định</label>
@@ -241,19 +234,21 @@
                                                     placeholder="Số quyết định" type="text" class="form-control">
                                             </div>
                                             <div class="col-lg-12 col-sm-12 col-12">
-                                                <label class="form-label">Mức đầu tư (Kế hoạch)</label>
+                                                <label class="form-label">Số tài khoản</label>
+                                                <input name="BenThucHienSoTaiKhoan"
+                                                    [(ngModel)]="DuAnService.FormData.BenThucHienSoTaiKhoan"
+                                                    placeholder="Số tài khoản" type="text" class="form-control">
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 col-12">
+                                                <label class="form-label">Mức đầu tư ({{DuAnService.FormData.MucDauTu |
+                                                    number:
+                                                    '1.0-0'}})</label>
                                                 <input name="MucDauTu" [(ngModel)]="DuAnService.FormData.MucDauTu"
                                                     placeholder="Mức đầu tư (Kế hoạch)" type="number"
                                                     class="form-control" style="text-align: right;">
-                                            </div>
-                                            <div class="col-lg-12 col-sm-12 col-12">
-                                                <label class="form-label">Mức đầu tư (Kế hoạch)</label>
-                                                <br />
-                                                <label class="form-control"
-                                                    style="text-align: right;">{{DuAnService.FormData.MucDauTu |
-                                                    number:
-                                                    '1.0-0'}}</label>
-                                            </div>
+                                            </div>                       
+                                        </div>
+                                        <div class="col-lg-3 col-sm-12 col-12">                                                               
                                             <div class="col-lg-12 col-sm-12 col-12">
                                                 <label class="form-label">Ghi có</label>
                                                 <br />
@@ -285,6 +280,11 @@
                                                     |
                                                     number:
                                                     '1.0-0'}}</label>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 col-12">
+                                                <label class="form-label">Ghi chú</label>
+                                                <input name="Note" [(ngModel)]="DuAnService.FormData.Note"
+                                                    placeholder="Ghi chú" type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -484,7 +484,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="DuAnThuChi" role="tabpanel">
                                     <div class="row gx-4">
-                                        <div class="col-lg-11 col-sm-12 col-12">
+                                        <div class="col-lg-10 col-sm-12 col-12">
                                             <input [(ngModel)]="DuAnThuChiService.BaseParameter.SearchString"
                                                 placeholder="Tìm ..." class="form-control"
                                                 (keyup.enter)="DuAnThuChiSearch()">
@@ -493,10 +493,11 @@
                                             <a style="width: 100%;" class="btn btn-success" title="Tìm"
                                                 (click)="DuAnThuChiSearch()"><i class="bi bi-search"></i></a>
                                         </div>
-                                        <!-- <div class="col-lg-1 col-sm-12 col-12">
+                                        <div class="col-lg-1 col-sm-12 col-12">
                                             <a style="width: 100%;" class="btn btn-success" title="Thêm mới"
-                                                (click)="DuAnThuChiAdd(0)"><i class="bi bi-plus"></i></a>
-                                        </div> -->
+                                                routerLink="/DuAnThuChiInfo/{{DuAnService.FormData.ID}}/{{DuAnQuyetDinhService.FormData.ID}}/0"><i
+                                                    class="bi bi-plus"></i></a>
+                                        </div>
                                     </div>
                                     <div class="card mb-4 card-success">
                                         <div class="card-header">
@@ -911,13 +912,13 @@
                                                                     routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.Name}}</b></a>
                                                             </td>
                                                         </ng-container>
-                                                        <ng-container matColumnDef="BenDauTuName">
+                                                        <!-- <ng-container matColumnDef="BenDauTuName">
                                                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Bên A
                                                             </th>
                                                             <td mat-cell *matCellDef="let element">
                                                                 {{element.BenDauTuName}}
                                                             </td>
-                                                        </ng-container>
+                                                        </ng-container> -->
                                                         <ng-container matColumnDef="MucDauTu">
                                                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Mức
                                                                 đầu tư
@@ -985,10 +986,10 @@
                                                             </td>
                                                         </ng-container>
                                                         <tr mat-header-row
-                                                            *matHeaderRowDef="DuAnQuyetDinhService.DisplayColumns001">
+                                                            *matHeaderRowDef="DuAnQuyetDinhService.DisplayColumns003">
                                                         </tr>
                                                         <tr mat-row
-                                                            *matRowDef="let row; columns: DuAnQuyetDinhService.DisplayColumns001;">
+                                                            *matRowDef="let row; columns: DuAnQuyetDinhService.DisplayColumns003;">
                                                         </tr>
                                                     </table>
                                                     <mat-paginator *ngIf="!NotificationService.IsMobile"
@@ -1044,12 +1045,12 @@
                                                                         <label
                                                                             class="form-label">{{element.Name}}</label>
                                                                     </div>
-                                                                    <div class="col-lg-12 col-sm-12 col-12">
+                                                                    <!-- <div class="col-lg-12 col-sm-12 col-12">
                                                                         <label>Bên A</label>
                                                                         <br />
                                                                         <label
                                                                             class="form-label">{{element.BenDauTuName}}</label>
-                                                                    </div>
+                                                                    </div> -->
                                                                     <div class="col-lg-12 col-sm-12 col-12">
                                                                         <label>Mức đầu tư</label>
                                                                         <br />

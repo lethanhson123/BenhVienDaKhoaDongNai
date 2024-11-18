@@ -29,10 +29,24 @@
                     <div class="custom-tabs-container">
                         <ul class="nav nav-tabs justify-content-end" id="customTab5" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="tab-DuAnQuyetDinhDetail" data-bs-toggle="tab"
+                                <a class="nav-link" [ngClass]="DuAnThuChiService.IsBack == true ? '': 'active'" id="tab-DuAnQuyetDinhDetail" data-bs-toggle="tab"
                                     href="#DuAnQuyetDinhDetail" role="tab" aria-controls="DuAnQuyetDinhDetail"
                                     aria-selected="true">
                                     <span class="badge bg-info" style="font-size: 12px;">Quyết định</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" [ngClass]="DuAnThuChiService.IsBack == true ? 'active': ''" id="tab-DuAnQuyetDinhDuAnThuChi" data-bs-toggle="tab"
+                                    href="#DuAnQuyetDinhDuAnThuChi" role="tab" aria-controls="DuAnQuyetDinhDuAnThuChi"
+                                    aria-selected="true">
+                                    <span class="badge bg-success" style="font-size: 12px;">Thu chi</span>
+                                </a>
+                            </li>                            
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tab-DuAnQuyetDinhDuAnQuyetToanPhanKy" data-bs-toggle="tab"
+                                    href="#DuAnQuyetDinhDuAnQuyetToanPhanKy" role="tab"
+                                    aria-controls="DuAnQuyetDinhDuAnQuyetToanPhanKy" aria-selected="true">
+                                    <span class="badge bg-warning" style="font-size: 12px;">Phân kỳ</span>
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -42,32 +56,18 @@
                                     <span class="badge bg-success" style="font-size: 12px;">Luỹ kế</span>
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="tab-DuAnQuyetDinhDuAnQuyetToanPhanKy" data-bs-toggle="tab"
-                                    href="#DuAnQuyetDinhDuAnQuyetToanPhanKy" role="tab"
-                                    aria-controls="DuAnQuyetDinhDuAnQuyetToanPhanKy" aria-selected="true">
-                                    <span class="badge bg-warning" style="font-size: 12px;">Phân kỳ</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="tab-DuAnQuyetDinhDuAnThuChi" data-bs-toggle="tab"
-                                    href="#DuAnQuyetDinhDuAnThuChi" role="tab" aria-controls="DuAnQuyetDinhDuAnThuChi"
-                                    aria-selected="true">
-                                    <span class="badge bg-success" style="font-size: 12px;">Thu chi</span>
-                                </a>
-                            </li>
                         </ul>
                         <div class="tab-content" id="customTabContent">
-                            <div class="tab-pane fade show active" id="DuAnQuyetDinhDetail" role="tabpanel">
+                            <div class="tab-pane fade" [ngClass]="DuAnThuChiService.IsBack == true ? '': 'show active'" id="DuAnQuyetDinhDetail" role="tabpanel">
                                 <div class="row gx-4">
-                                    <div class="col-lg-4 col-sm-12 col-12">
+                                    <div class="col-lg-6 col-sm-12 col-12">
                                         <a style="width: 100%;" title="Lưu thay đổi" (click)="DuAnQuyetDinhSave()"
                                             class="btn btn-info" *ngIf="!DuAnQuyetDinhService.FormData.Active"><i
                                                 class="bi bi-sd-card"></i> Lưu thay đổi</a>
                                     </div>
                                 </div>
                                 <div class="row gx-4">
-                                    <div class="col-lg-4 col-sm-12 col-12">
+                                    <div class="col-lg-6 col-sm-12 col-12">
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Ngày ký</label>
                                             <input [ngModel]="DuAnQuyetDinhService.FormData.NgayKy | date:'yyyy-MM-dd'"
@@ -101,7 +101,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-lg-4 col-sm-12 col-12">
+                                    <!-- <div class="col-lg-4 col-sm-12 col-12">
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Bên A (Bên duyệt)
                                                 [{{DuAnQuyetDinhService.FormData.BenDauTuID}}]</label>
@@ -146,8 +146,8 @@
                                                 placeholder="Chức danh" type="text" class="form-control">
                                         </div>
 
-                                    </div>
-                                    <div class="col-lg-4 col-sm-12 col-12">
+                                    </div> -->
+                                    <div class="col-lg-6 col-sm-12 col-12">
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <label class="form-label">Mức đầu tư
                                                 ({{DuAnQuyetDinhService.FormData.MucDauTu
@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="DuAnQuyetDinhDuAnThuChi" role="tabpanel">
+                            <div class="tab-pane fade" [ngClass]="DuAnThuChiService.IsBack == true ? 'show active': ''" id="DuAnQuyetDinhDuAnThuChi" role="tabpanel">
                                 <div class="row gx-4">
                                     <div class="col-lg-10 col-sm-12 col-12">
                                         <input [(ngModel)]="DuAnThuChiService.BaseParameter.SearchString"

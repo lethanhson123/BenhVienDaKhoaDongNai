@@ -37,15 +37,15 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
   @ViewChild('DuAnThuChiPaginator') DuAnThuChiPaginator: MatPaginator;
 
   @ViewChild('DuAnQuyetToanLuyKeSort') DuAnQuyetToanLuyKeSort: MatSort;
-  @ViewChild('DuAnQuyetToanLuyKePaginator') DuAnQuyetToanLuyKePaginator: MatPaginator; 
+  @ViewChild('DuAnQuyetToanLuyKePaginator') DuAnQuyetToanLuyKePaginator: MatPaginator;
 
   @ViewChild('DuAnQuyetToanPhanKySort') DuAnQuyetToanPhanKySort: MatSort;
-  @ViewChild('DuAnQuyetToanPhanKyPaginator') DuAnQuyetToanPhanKyPaginator: MatPaginator; 
+  @ViewChild('DuAnQuyetToanPhanKyPaginator') DuAnQuyetToanPhanKyPaginator: MatPaginator;
 
   IsDuAnQuyetToanLuyKe: boolean = true;
   IsDuAnQuyetToanPhanKy: boolean = true;
 
-  constructor(  
+  constructor(
     private ActiveRouter: ActivatedRoute,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
@@ -63,9 +63,9 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
-    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);        
+    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);
     this.DuAnQuyetDinhSearch();
-  } 
+  }
   DateNgayHieuLuc(value) {
     this.DuAnQuyetDinhService.FormData.NgayHieuLuc = new Date(value);
   }
@@ -103,11 +103,11 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
   }
 
   DuAnQuyetDinhSearch() {
-    this.DuAnQuyetDinhService.IsShowLoading = true;    
+    this.DuAnQuyetDinhService.IsShowLoading = true;
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
         this.DuAnService.FormData = res as DuAnQuyetDinh;
-        this.DuAnQuyetDinhService.IsShowLoading = true; 
+        this.DuAnQuyetDinhService.IsShowLoading = true;
         this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
           res => {
             this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
@@ -118,20 +118,22 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
             this.DuAnThuChiSearch();
             //this.DuAnQuyetToanLuyKeSearch();
             //this.DuAnQuyetToanPhanKySearch();
+            this.DuAnQuyetToanLuyKeService.List = [];
+            this.DuAnQuyetToanPhanKyService.List = [];
           },
           err => {
           },
           () => {
             this.DuAnQuyetDinhService.IsShowLoading = false;
           }
-        ); 
+        );
       },
       err => {
       },
       () => {
         this.DuAnQuyetDinhService.IsShowLoading = false;
       }
-    );    
+    );
   }
   DuAnQuyetDinhSave() {
     this.DuAnQuyetDinhService.IsShowLoading = true;
@@ -160,11 +162,11 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       }
     }
     else {
-      this.DuAnService.IsShowLoading = true;      
+      this.DuAnService.IsShowLoading = true;
       this.DuAnThuChiService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
       this.DuAnThuChiService.GetBySoQuyetDinhToListAsync().subscribe(
         res => {
-          this.DuAnThuChiService.List = (res as DuAnThuChi[]).sort((a, b) => (a.NgayGhiNhan > b.NgayGhiNhan ? 1 : -1));;          
+          this.DuAnThuChiService.List = (res as DuAnThuChi[]).sort((a, b) => (a.NgayGhiNhan > b.NgayGhiNhan ? 1 : -1));;
           this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
           this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.List);
           this.DuAnThuChiService.DataSource.sort = this.DuAnThuChiSort;
@@ -205,7 +207,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         this.DuAnThuChiService.FormData.ParentID = this.DuAnService.FormData.ID;
         this.DuAnThuChiService.FormData.ParentName = this.DuAnService.FormData.Name;
         this.DuAnThuChiService.FormData.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
-        this.DuAnThuChiService.FormData.DuAnQuyetDinhSoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;     
+        this.DuAnThuChiService.FormData.DuAnQuyetDinhSoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
       },
       err => {
       },
@@ -275,7 +277,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
   }
 
   DuAnQuyetToanLuyKeActiveChange(element: DuAnQuyetToanLuyKe) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;    
+    this.DuAnQuyetDinhService.IsShowLoading = true;
     this.DuAnQuyetToanLuyKeService.FormData = element;
     this.DuAnQuyetToanLuyKeService.SaveAsync().subscribe(
       res => {
@@ -293,7 +295,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
   }
 
   DuAnQuyetToanPhanKyActiveChange(element: DuAnQuyetToanPhanKy) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;    
+    this.DuAnQuyetDinhService.IsShowLoading = true;
     this.DuAnQuyetToanPhanKyService.FormData = element;
     this.DuAnQuyetToanPhanKyService.SaveAsync().subscribe(
       res => {
