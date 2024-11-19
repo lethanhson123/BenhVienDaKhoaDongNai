@@ -48,6 +48,7 @@
             services.AddTransient<IThanhVienLichSuTruyCapService, ThanhVienLichSuTruyCapService>();
             services.AddTransient<IThanhVienService, ThanhVienService>();
             services.AddTransient<IThanhVienTokenService, ThanhVienTokenService>();
+            services.AddTransient<IThanhVienUngDungService, ThanhVienUngDungService>();
 
             services.AddTransient<ICongViecService, CongViecService>();
             services.AddTransient<ICongViecTapTinDinhKemService, CongViecTapTinDinhKemService>();
@@ -94,6 +95,7 @@
             services.AddTransient<IThanhVienLichSuTruyCapRepository, ThanhVienLichSuTruyCapRepository>();
             services.AddTransient<IThanhVienRepository, ThanhVienRepository>();
             services.AddTransient<IThanhVienTokenRepository, ThanhVienTokenRepository>();
+            services.AddTransient<IThanhVienUngDungRepository, ThanhVienUngDungRepository>();
 
             services.AddTransient<ICongViecRepository, CongViecRepository>();
             services.AddTransient<ICongViecTapTinDinhKemRepository, CongViecTapTinDinhKemRepository>();
