@@ -126,13 +126,38 @@
                 model.GhiNo = 0;
             }
             model.ThanhTien = model.SoLuong * model.DonGia * model.HeSo;
-            if (model.ThanhTien > 0)
+            if (model.DuAnThuChiID > 0)
             {
-                model.GhiCo = model.DonGia;
+                DuAnThuChi DuAnThuChi = _DuAnThuChiRepository.GetByID(model.DuAnThuChiID.Value);
+                model.DuAnThuChiName = DuAnThuChi.Name;
+                model.DuAnThuChiSoButToan = DuAnThuChi.SoButToan;
+                if (model.HeSo == DuAnThuChi.HeSo)
+                {
+                    model.GhiCo = 0;
+                    model.GhiNo = 0;
+                }
+                else
+                {
+                    if (model.ThanhTien > 0)
+                    {
+                        model.GhiCo = model.DonGia;
+                    }
+                    else
+                    {
+                        model.GhiNo = model.DonGia;
+                    }
+                }
             }
             else
             {
-                model.GhiNo = model.DonGia;
+                if (model.ThanhTien > 0)
+                {
+                    model.GhiCo = model.DonGia;
+                }
+                else
+                {
+                    model.GhiNo = model.DonGia;
+                }
             }
 
             if (model.BenDauTuID > 0)

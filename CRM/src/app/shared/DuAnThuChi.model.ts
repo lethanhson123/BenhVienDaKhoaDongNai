@@ -47,7 +47,9 @@ export class DuAnThuChi extends Base {
     DanhMucTinhTrangName?: string;
     DuAnQuyetDinhID?: number;
     DuAnQuyetDinhSoQuyetDinh?: string;
-
+    DuAnThuChiID?: number;
+    DuAnThuChiName?: string;
+    DuAnThuChiSoButToan?: string;
 }
 
 

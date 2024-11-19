@@ -99,14 +99,13 @@ export class DuAnThuChiInfoComponent implements OnInit {
       }
     );
   }
-  DuAnQuyetDinhChange(value: any) {
-    if (value) {
-      if (value.target.value) {
-        let ListDuAnQuyetDinh = this.DuAnQuyetDinhService.List.filter(item => item.ID == value.target.value);
-        if (ListDuAnQuyetDinh) {
-          if (ListDuAnQuyetDinh.length > 0) {
-            this.DuAnQuyetDinhService.FormData = ListDuAnQuyetDinh[0];
-          }
+  DuAnQuyetDinhChange() {
+    if (this.DuAnThuChiService.FormData.DuAnQuyetDinhID) {
+      let ListDuAnQuyetDinh = this.DuAnQuyetDinhService.List.filter(item => item.ID == this.DuAnThuChiService.FormData.DuAnQuyetDinhID);
+      if (ListDuAnQuyetDinh) {
+        if (ListDuAnQuyetDinh.length > 0) {
+          this.DuAnQuyetDinhService.FormData = ListDuAnQuyetDinh[0];
+          this.DuAnThuChiSearchList();
         }
       }
     }
@@ -197,7 +196,24 @@ export class DuAnThuChiInfoComponent implements OnInit {
       }
     }
   }
+  DuAnThuChiSearchList() {
+    this.DuAnService.IsShowLoading = true;
+    this.DuAnThuChiService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
+    this.DuAnThuChiService.GetBySoQuyetDinhToListAsync().subscribe(
+      res => {
+        let ListDuAnThuChi = (res as DuAnThuChi[]).sort((a, b) => (a.NgayGhiNhan > b.NgayGhiNhan ? 1 : -1));
+        if (this.DuAnThuChiService.List001.length != ListDuAnThuChi.length) {
+          this.DuAnThuChiService.List001 = ListDuAnThuChi;
+        }
+      },
+      err => {
+      },
+      () => {
+        this.DuAnService.IsShowLoading = false;
+      }
+    );
 
+  }
   DuAnThuChiSearch() {
     this.DuAnThuChiService.IsShowLoading = true;
     this.DuAnService.GetByIDAsync().subscribe(
@@ -222,6 +238,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
                 //this.ThanhVienSearch();
                 this.DuAnTapTinDinhKemSearch();
                 this.DuAnQuyetDinhSearch();
+                this.DuAnThuChiSearchList();
                 if (this.DuAnThuChiService.FormData.Active == true) {
                   this.IsDuAnThuChiSave = false;
                 }

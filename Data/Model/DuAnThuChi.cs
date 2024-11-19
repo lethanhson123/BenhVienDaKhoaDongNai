@@ -47,6 +47,9 @@
         public string? DanhMucTinhTrangName { get; set; }
         public long? DuAnQuyetDinhID { get; set; }
         public string? DuAnQuyetDinhSoQuyetDinh { get; set; }
+        public long? DuAnThuChiID { get; set; }
+        public string? DuAnThuChiName { get; set; }
+        public string? DuAnThuChiSoButToan { get; set; }
 
         public DuAnThuChi()
         {

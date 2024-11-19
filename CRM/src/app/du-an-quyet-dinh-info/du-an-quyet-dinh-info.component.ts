@@ -162,7 +162,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       }
     }
     else {
-      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetDinhService.IsShowLoading = true;
       this.DuAnThuChiService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
       this.DuAnThuChiService.GetBySoQuyetDinhToListAsync().subscribe(
         res => {
@@ -175,14 +175,14 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         err => {
         },
         () => {
-          this.DuAnService.IsShowLoading = false;
+          this.DuAnQuyetDinhService.IsShowLoading = false;
         }
       );
     }
   }
   DuAnThuChiDelete(element: DuAnThuChi) {
     if (confirm(environment.DeleteConfirm)) {
-      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetDinhService.IsShowLoading = true;
       this.DuAnThuChiService.BaseParameter.ID = element.ID;
       this.DuAnThuChiService.RemoveAsync().subscribe(
         res => {
@@ -193,13 +193,13 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
           this.NotificationService.warn(environment.DeleteNotSuccess);
         },
         () => {
-          this.DuAnService.IsShowLoading = false;
+          this.DuAnQuyetDinhService.IsShowLoading = false;
         }
       );
     }
   }
   DuAnThuChiAdd(ID: number) {
-    this.DuAnService.IsShowLoading = true;
+    this.DuAnQuyetDinhService.IsShowLoading = true;
     this.DuAnThuChiService.BaseParameter.ID = ID;
     this.DuAnThuChiService.GetByIDAsync().subscribe(
       res => {
@@ -212,7 +212,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       err => {
       },
       () => {
-        this.DuAnService.IsShowLoading = false;
+        this.DuAnQuyetDinhService.IsShowLoading = false;
       }
     );
   }
@@ -225,7 +225,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       }
     }
     else {
-      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetDinhService.IsShowLoading = true;
       this.DuAnQuyetToanPhanKyService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
       this.DuAnQuyetToanPhanKyService.GetSQLBySoQuyetDinhToListAsync().subscribe(
         res => {
@@ -241,7 +241,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         err => {
         },
         () => {
-          this.DuAnService.IsShowLoading = false;
+          this.DuAnQuyetDinhService.IsShowLoading = false;
         }
       );
     }
@@ -254,7 +254,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       }
     }
     else {
-      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetDinhService.IsShowLoading = true;
       this.DuAnQuyetToanLuyKeService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
       this.DuAnQuyetToanLuyKeService.GetSQLBySoQuyetDinhToListAsync().subscribe(
         res => {
@@ -270,7 +270,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         err => {
         },
         () => {
-          this.DuAnService.IsShowLoading = false;
+          this.DuAnQuyetDinhService.IsShowLoading = false;
         }
       );
     }
