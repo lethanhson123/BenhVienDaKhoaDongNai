@@ -26,6 +26,7 @@ import { DuAnThuChiInfoComponent } from './du-an-thu-chi-info/du-an-thu-chi-info
 import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-dinh-info.component';
 import { Dashboard001Component } from './dashboard001/dashboard001.component';
 import { ThanhVienThongTinComponent } from './thanh-vien-thong-tin/thanh-vien-thong-tin.component';
+import { DanhMucUngDungComponent } from './danh-muc-ung-dung/danh-muc-ung-dung.component';
 
 
 
@@ -64,6 +65,9 @@ const routes: Routes = [
   }, 
   {
     path: 'DanhMucHinhThucThanhToan', component: DanhMucHinhThucThanhToanComponent,
+  }, 
+  {
+    path: 'DanhMucUngDung', component: DanhMucUngDungComponent,
   }, 
 
   

@@ -15,6 +15,7 @@ export class BaseService {
     DataSource: MatTableDataSource<any>;
     DataSourceFilter: MatTableDataSource<any>;
     DisplayColumns: string[] = ['STT', 'ID', 'Name', 'Note', 'SortOrder', 'Active', 'Save'];
+    DisplayColumns01: string[] = ['STT', 'ID', 'Name', 'Code', 'Note', 'SortOrder', 'Active', 'Save'];
     DisplayColumnsMobile: string[] = ['STT'];
     List: Base[] | undefined;
     ListFilter: Base[] | undefined;

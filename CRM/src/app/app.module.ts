@@ -47,6 +47,13 @@ import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-
 import { DuAnThuChiInfoComponent } from './du-an-thu-chi-info/du-an-thu-chi-info.component';
 import { Dashboard001Component } from './dashboard001/dashboard001.component';
 import { ThanhVienThongTinComponent } from './thanh-vien-thong-tin/thanh-vien-thong-tin.component';
+import { DanhMucUngDungComponent } from './danh-muc-ung-dung/danh-muc-ung-dung.component';
+import { DanhMucDichVuComponent } from './danh-muc-dich-vu/danh-muc-dich-vu.component';
+import { DanhMucKhuVucComponent } from './danh-muc-khu-vuc/danh-muc-khu-vuc.component';
+import { DanhMucPhongKhamComponent } from './danh-muc-phong-kham/danh-muc-phong-kham.component';
+import { DanhMucQuayDichVuComponent } from './danh-muc-quay-dich-vu/danh-muc-quay-dich-vu.component';
+import { GoiSoComponent } from './goi-so/goi-so.component';
+import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.component';
 
 
 
@@ -88,7 +95,14 @@ import { ThanhVienThongTinComponent } from './thanh-vien-thong-tin/thanh-vien-th
     DuAnQuyetDinhInfoComponent,
     DuAnThuChiInfoComponent,
     Dashboard001Component,
-    ThanhVienThongTinComponent,    
+    ThanhVienThongTinComponent,
+    DanhMucUngDungComponent,
+    DanhMucDichVuComponent,
+    DanhMucKhuVucComponent,
+    DanhMucPhongKhamComponent,
+    DanhMucQuayDichVuComponent,
+    GoiSoComponent,
+    GoiSoChiTietComponent,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

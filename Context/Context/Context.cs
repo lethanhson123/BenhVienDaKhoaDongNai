@@ -18,6 +18,12 @@ namespace Data.Context
         public virtual DbSet<Data.Model.DanhMucTinhTrang> DanhMucTinhTrang { get; set; }
         public virtual DbSet<Data.Model.DanhMucBieuMau> DanhMucBieuMau { get; set; }
         public virtual DbSet<Data.Model.DanhMucHinhThucThanhToan> DanhMucHinhThucThanhToan { get; set; }
+        public virtual DbSet<Data.Model.DanhMucUngDung> DanhMucUngDung { get; set; }
+
+        public virtual DbSet<Data.Model.DanhMucDichVu> DanhMucDichVu { get; set; }
+        public virtual DbSet<Data.Model.DanhMucKhuVuc> DanhMucKhuVuc { get; set; }
+        public virtual DbSet<Data.Model.DanhMucPhongKham> DanhMucPhongKham { get; set; }
+        public virtual DbSet<Data.Model.DanhMucQuayDichVu> DanhMucQuayDichVu { get; set; }
 
         public virtual DbSet<Data.Model.ThanhVien> ThanhVien { get; set; }
         public virtual DbSet<Data.Model.ThanhVienChucNang> ThanhVienChucNang { get; set; }
@@ -37,6 +43,9 @@ namespace Data.Context
         public virtual DbSet<Data.Model.DuAnQuyetToan> DuAnQuyetToan { get; set; }
         public virtual DbSet<Data.Model.DuAnQuyetToanLuyKe> DuAnQuyetToanLuyKe { get; set; }
         public virtual DbSet<Data.Model.DuAnQuyetToanPhanKy> DuAnQuyetToanPhanKy { get; set; }
+
+        public virtual DbSet<Data.Model.GoiSo> GoiSo { get; set; }
+        public virtual DbSet<Data.Model.GoiSoChiTiet> GoiSoChiTiet { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

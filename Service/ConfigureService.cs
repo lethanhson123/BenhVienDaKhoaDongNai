@@ -37,6 +37,12 @@
             services.AddTransient<IDanhMucTinhTrangService, DanhMucTinhTrangService>();
             services.AddTransient<IDanhMucBieuMauService, DanhMucBieuMauService>();
             services.AddTransient<IDanhMucHinhThucThanhToanService, DanhMucHinhThucThanhToanService>();
+            services.AddTransient<IDanhMucUngDungService, DanhMucUngDungService>();
+
+            services.AddTransient<IDanhMucDichVuService, DanhMucDichVuService>();
+            services.AddTransient<IDanhMucKhuVucService, DanhMucKhuVucService>();
+            services.AddTransient<IDanhMucPhongKhamService, DanhMucPhongKhamService>();
+            services.AddTransient<IDanhMucQuayDichVuService, DanhMucQuayDichVuService>();
 
             services.AddTransient<IThanhVienChucNangService, ThanhVienChucNangService>();
             services.AddTransient<IThanhVienLichSuTruyCapService, ThanhVienLichSuTruyCapService>();
@@ -57,6 +63,8 @@
             services.AddTransient<IDuAnQuyetToanLuyKeService, DuAnQuyetToanLuyKeService>();
             services.AddTransient<IDuAnQuyetToanPhanKyService, DuAnQuyetToanPhanKyService>();
 
+            services.AddTransient<IGoiSoService, GoiSoService>();
+            services.AddTransient<IGoiSoChiTietService, GoiSoChiTietService>();
 
             services.AddTransient<IReportService, ReportService>();
 
@@ -75,6 +83,12 @@
             services.AddTransient<IDanhMucTinhTrangRepository, DanhMucTinhTrangRepository>();
             services.AddTransient<IDanhMucBieuMauRepository, DanhMucBieuMauRepository>();
             services.AddTransient<IDanhMucHinhThucThanhToanRepository, DanhMucHinhThucThanhToanRepository>();
+            services.AddTransient<IDanhMucUngDungRepository, DanhMucUngDungRepository>();
+
+            services.AddTransient<IDanhMucDichVuRepository, DanhMucDichVuRepository>();
+            services.AddTransient<IDanhMucKhuVucRepository, DanhMucKhuVucRepository>();
+            services.AddTransient<IDanhMucPhongKhamRepository, DanhMucPhongKhamRepository>();
+            services.AddTransient<IDanhMucQuayDichVuRepository, DanhMucQuayDichVuRepository>();
 
             services.AddTransient<IThanhVienChucNangRepository, ThanhVienChucNangRepository>();
             services.AddTransient<IThanhVienLichSuTruyCapRepository, ThanhVienLichSuTruyCapRepository>();
@@ -95,6 +109,8 @@
             services.AddTransient<IDuAnQuyetToanLuyKeRepository, DuAnQuyetToanLuyKeRepository>();
             services.AddTransient<IDuAnQuyetToanPhanKyRepository, DuAnQuyetToanPhanKyRepository>();
 
+            services.AddTransient<IGoiSoRepository, GoiSoRepository>();
+            services.AddTransient<IGoiSoChiTietRepository, GoiSoChiTietRepository>();
 
             services.AddTransient<IReportRepository, ReportRepository>();
 
