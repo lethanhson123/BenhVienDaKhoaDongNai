@@ -54,6 +54,15 @@ import { DanhMucPhongKhamComponent } from './danh-muc-phong-kham/danh-muc-phong-
 import { DanhMucQuayDichVuComponent } from './danh-muc-quay-dich-vu/danh-muc-quay-dich-vu.component';
 import { GoiSoComponent } from './goi-so/goi-so.component';
 import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.component';
+import { DanhMucTinhThanhComponent } from './danh-muc-tinh-thanh/danh-muc-tinh-thanh.component';
+import { DanhMucQuanHuyenComponent } from './danh-muc-quan-huyen/danh-muc-quan-huyen.component';
+import { DanhMucXaPhuongComponent } from './danh-muc-xa-phuong/danh-muc-xa-phuong.component';
+import { KhachHangComponent } from './khach-hang/khach-hang.component';
+import { KhachHangDetailComponent } from './khach-hang-detail/khach-hang-detail.component';
+import { KhachHangInfoComponent } from './khach-hang-info/khach-hang-info.component';
+import { DanhMucTinhThanhToaDoComponent } from './danh-muc-tinh-thanh-toa-do/danh-muc-tinh-thanh-toa-do.component';
+import { DanhMucKhoaChuyenMonComponent } from './danh-muc-khoa-chuyen-mon/danh-muc-khoa-chuyen-mon.component';
+import { GoiSo001Component } from './goi-so001/goi-so001.component';
 
 
 
@@ -102,7 +111,16 @@ import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.compone
     DanhMucPhongKhamComponent,
     DanhMucQuayDichVuComponent,
     GoiSoComponent,
-    GoiSoChiTietComponent,    
+    GoiSoChiTietComponent,
+    DanhMucTinhThanhComponent,
+    DanhMucQuanHuyenComponent,
+    DanhMucXaPhuongComponent,
+    KhachHangComponent,
+    KhachHangDetailComponent,
+    KhachHangInfoComponent,
+    DanhMucTinhThanhToaDoComponent,
+    DanhMucKhoaChuyenMonComponent,
+    GoiSo001Component,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

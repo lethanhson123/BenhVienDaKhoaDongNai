@@ -1,28 +1,7 @@
 ﻿import { Base } from "./Base.model";
 
 export class GoiSoChiTiet extends Base{
-ID?: number;
-ParentID?: number;
-ParentName?: string;
-CreatedDate?: Date;
-CreatedMembershipID?: number;
-LastUpdatedDate?: Date;
-LastUpdatedMembershipID?: number;
-RowVersion?: number;
-SortOrder?: number;
-Active?: boolean;
-TypeName?: string;
-Name?: string;
-Code?: string;
-Note?: string;
-Display?: string;
-FileName?: string;
-Description?: string;
-HTMLContent?: string;
-DanhMucNgonNguID?: number;
-DanhMucUngDungID?: number;
-DanhMucNgonNguName?: string;
-DanhMucUngDungName?: string;
+
 DanhMucKhuVucID?: number;
 DanhMucKhuVucName?: string;
 DanhMucKhuVucCode?: string;
@@ -35,17 +14,32 @@ DanhMucQuayDichVuCode?: string;
 DanhMucPhongKhamID?: number;
 DanhMucPhongKhamName?: string;
 DanhMucPhongKhamCode?: string;
-SoThuTu?: string;
+HoTen?: string;
+NamSinh?: string;
+NgaySinh?: Date;
+DienThoai?: string;
+CCCD?: string;
+BHYT?: string;
+DiaChi?: string;
+GioiTinh?: boolean;
+DanhMucTinhThanhID?: number;
+DanhMucTinhThanhName?: string;
+DanhMucQuanHuyenID?: number;
+DanhMucQuanHuyenName?: string;
+DanhMucXaPhuongID?: number;
+DanhMucXaPhuongName?: string;
 NgayCapSo?: Date;
+NgayCapSoSoThuTu?: number;
+NgayCapSoSoThuTuString?: string;
 NgayDangKy?: Date;
+NgayDangKySoThuTu?: number;
+NgayDangKySoThuTuString?: string;
 NgayThanhToan?: Date;
-NgayKham?: Date;
-NguoiKhamHoTen?: string;
-NguoiKhamNamSinh?: string;
-NguoiKhamDienThoai?: string;
-NguoiKhamCCCD?: string;
-NguoiKhamBHYT?: string;
-NguoiKhamDiaChi?: string;
+NgayThanhToanSoThuTu?: number;
+NgayThanhToanSoThuTuString?: string;
+NgayLinhThuoc?: Date;
+NgayLinhThuocSoThuTu?: number;
+NgayLinhThuocSoThuTuString?: string;
 
 }
 

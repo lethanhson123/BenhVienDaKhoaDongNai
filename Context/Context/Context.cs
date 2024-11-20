@@ -19,23 +19,34 @@ namespace Data.Context
         public virtual DbSet<Data.Model.DanhMucBieuMau> DanhMucBieuMau { get; set; }
         public virtual DbSet<Data.Model.DanhMucHinhThucThanhToan> DanhMucHinhThucThanhToan { get; set; }
         public virtual DbSet<Data.Model.DanhMucUngDung> DanhMucUngDung { get; set; }
+        public virtual DbSet<Data.Model.DanhMucQuanHuyen> DanhMucQuanHuyen { get; set; }
+        public virtual DbSet<Data.Model.DanhMucQuocGia> DanhMucQuocGia { get; set; }
+        public virtual DbSet<Data.Model.DanhMucTinhThanh> DanhMucTinhThanh { get; set; }
+        public virtual DbSet<Data.Model.DanhMucTinhThanhToaDo> DanhMucTinhThanhToaDo { get; set; }
+        public virtual DbSet<Data.Model.DanhMucXaPhuong> DanhMucXaPhuong { get; set; }
 
         public virtual DbSet<Data.Model.DanhMucDichVu> DanhMucDichVu { get; set; }
         public virtual DbSet<Data.Model.DanhMucKhuVuc> DanhMucKhuVuc { get; set; }
         public virtual DbSet<Data.Model.DanhMucPhongKham> DanhMucPhongKham { get; set; }
         public virtual DbSet<Data.Model.DanhMucQuayDichVu> DanhMucQuayDichVu { get; set; }
+        public virtual DbSet<Data.Model.DanhMucKhoaChuyenMon> DanhMucKhoaChuyenMon { get; set; }
 
         public virtual DbSet<Data.Model.ThanhVien> ThanhVien { get; set; }
         public virtual DbSet<Data.Model.ThanhVienChucNang> ThanhVienChucNang { get; set; }
         public virtual DbSet<Data.Model.ThanhVienLichSuTruyCap> ThanhVienLichSuTruyCap { get; set; }
         public virtual DbSet<Data.Model.ThanhVienToken> ThanhVienToken { get; set; }
         public virtual DbSet<Data.Model.ThanhVienUngDung> ThanhVienUngDung { get; set; }
+        public virtual DbSet<Data.Model.ThanhVienDichVu> ThanhVienDichVu { get; set; }
+        public virtual DbSet<Data.Model.ThanhVienPhongKham> ThanhVienPhongKham { get; set; }
+        public virtual DbSet<Data.Model.ThanhVienQuayDichVu> ThanhVienQuayDichVu { get; set; }
 
         public virtual DbSet<Data.Model.CongViec> CongViec { get; set; }
         public virtual DbSet<Data.Model.CongViecTapTinDinhKem> CongViecTapTinDinhKem { get; set; }
 
         public virtual DbSet<Data.Model.ToChuc> ToChuc { get; set; }
         public virtual DbSet<Data.Model.ToChucTaiKhoan> ToChucTaiKhoan { get; set; }
+
+        public virtual DbSet<Data.Model.KhachHang> KhachHang { get; set; }
 
         public virtual DbSet<Data.Model.DuAn> DuAn { get; set; }
         public virtual DbSet<Data.Model.DuAnTapTinDinhKem> DuAnTapTinDinhKem { get; set; }

@@ -7,10 +7,28 @@ import { BaseService } from './Base.service';
     providedIn: 'root'
 })
 export class GoiSoService extends BaseService{
-    DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'DanhMucUngDungID', 'DanhMucNgonNguName', 'DanhMucUngDungName', 'DanhMucKhuVucID', 'DanhMucKhuVucName', 'DanhMucKhuVucCode', 'DanhMucDichVuID', 'DanhMucDichVuName', 'DanhMucDichVuCode', 'NgayGhiNhan', 'TongCong', 'SoHienTai'];
+  
+    DisplayColumns001: string[] = ['STT', 'ID', 'Name', 'Active'];   
+    DisplayColumns002: string[] = ['DanhMucThanhVienID', 'Save'];   
+        
+    List: GoiSo[] | undefined;
+    ListFilter: GoiSo[] | undefined;
+    FormData!: GoiSo;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "GoiSo";
+    }
+    CreateHTMLByModelAsync() {
+        let url = this.APIURL + this.Controller + '/CreateHTMLByModelAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.FormData));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    SaveByDanhMucDichVuIDAsync() {
+        let url = this.APIURL + this.Controller + '/SaveByDanhMucDichVuIDAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 }
 

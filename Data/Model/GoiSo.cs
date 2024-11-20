@@ -10,8 +10,9 @@
         public string? DanhMucDichVuCode { get; set; }
         public DateTime? NgayGhiNhan { get; set; }
         public int? TongCong { get; set; }
+        public string? TongCongString { get; set; }
         public int? SoHienTai { get; set; }
-        public string? SoThuTu { get; set; }
+        public string? SoHienTaiString { get; set; }
 
         public GoiSo()
         {

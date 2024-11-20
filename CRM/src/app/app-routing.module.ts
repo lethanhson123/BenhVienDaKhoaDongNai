@@ -27,6 +27,19 @@ import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-
 import { Dashboard001Component } from './dashboard001/dashboard001.component';
 import { ThanhVienThongTinComponent } from './thanh-vien-thong-tin/thanh-vien-thong-tin.component';
 import { DanhMucUngDungComponent } from './danh-muc-ung-dung/danh-muc-ung-dung.component';
+import { KhachHangComponent } from './khach-hang/khach-hang.component';
+import { DanhMucXaPhuongComponent } from './danh-muc-xa-phuong/danh-muc-xa-phuong.component';
+import { DanhMucTinhThanhComponent } from './danh-muc-tinh-thanh/danh-muc-tinh-thanh.component';
+import { DanhMucQuanHuyenComponent } from './danh-muc-quan-huyen/danh-muc-quan-huyen.component';
+import { DanhMucTinhThanhToaDoComponent } from './danh-muc-tinh-thanh-toa-do/danh-muc-tinh-thanh-toa-do.component';
+import { DanhMucQuayDichVuComponent } from './danh-muc-quay-dich-vu/danh-muc-quay-dich-vu.component';
+import { DanhMucPhongKhamComponent } from './danh-muc-phong-kham/danh-muc-phong-kham.component';
+import { DanhMucKhuVucComponent } from './danh-muc-khu-vuc/danh-muc-khu-vuc.component';
+import { DanhMucDichVuComponent } from './danh-muc-dich-vu/danh-muc-dich-vu.component';
+import { DanhMucKhoaChuyenMonComponent } from './danh-muc-khoa-chuyen-mon/danh-muc-khoa-chuyen-mon.component';
+import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.component';
+import { GoiSoComponent } from './goi-so/goi-so.component';
+import { GoiSo001Component } from './goi-so001/goi-so001.component';
 
 
 
@@ -69,6 +82,34 @@ const routes: Routes = [
   {
     path: 'DanhMucUngDung', component: DanhMucUngDungComponent,
   }, 
+  {
+    path: 'DanhMucQuanHuyen', component: DanhMucQuanHuyenComponent,
+  }, 
+  {
+    path: 'DanhMucTinhThanh', component: DanhMucTinhThanhComponent,
+  }, 
+  {
+    path: 'DanhMucTinhThanhToaDo', component: DanhMucTinhThanhToaDoComponent,
+  }, 
+  {
+    path: 'DanhMucXaPhuong', component: DanhMucXaPhuongComponent,
+  }, 
+
+  {
+    path: 'DanhMucKhoaChuyenMon', component: DanhMucKhoaChuyenMonComponent,
+  }, 
+  {
+    path: 'DanhMucDichVu', component: DanhMucDichVuComponent,
+  }, 
+  {
+    path: 'DanhMucKhuVuc', component: DanhMucKhuVucComponent,
+  }, 
+  {
+    path: 'DanhMucPhongKham', component: DanhMucPhongKhamComponent,
+  }, 
+  {
+    path: 'DanhMucQuayDichVu', component: DanhMucQuayDichVuComponent,
+  }, 
 
   
   {
@@ -94,6 +135,21 @@ const routes: Routes = [
   {
     path: 'ToChuc', component: ToChucComponent,
   },  
+
+  {
+    path: 'KhachHang', component: KhachHangComponent,
+  }, 
+
+  {
+    path: 'GoiSo', component: GoiSoComponent,
+  }, 
+  {
+    path: 'GoiSoChiTiet', component: GoiSoChiTietComponent,
+  }, 
+  {
+    path: 'GoiSo001', component: GoiSo001Component,
+  }, 
+
 
   {
     path: 'DuAn', component: DuAnComponent,

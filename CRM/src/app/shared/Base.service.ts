@@ -572,17 +572,18 @@ export class BaseService {
             }
         );
     }
-    ComponentGetByActiveToListAsync() {
-        this.IsShowLoading = true;
+    ComponentGetByActiveToListAsync(Service: BaseService) {
+        Service.IsShowLoading = true;        
         this.GetByActiveToListAsync().subscribe(
             res => {
                 this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
                 this.ListFilter = this.List;
+                console.log(this.List);
             },
             err => {
             },
             () => {
-                this.IsShowLoading = false;
+                Service.IsShowLoading = false;
             }
         );
     }

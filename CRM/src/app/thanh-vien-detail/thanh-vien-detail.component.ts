@@ -25,6 +25,10 @@ import { ThanhVienChucNang } from 'src/app/shared/ThanhVienChucNang.model';
 import { ThanhVienChucNangService } from 'src/app/shared/ThanhVienChucNang.service';
 import { ThanhVienUngDung } from 'src/app/shared/ThanhVienUngDung.model';
 import { ThanhVienUngDungService } from 'src/app/shared/ThanhVienUngDung.service';
+import { ThanhVienDichVu } from 'src/app/shared/ThanhVienDichVu.model';
+import { ThanhVienDichVuService } from 'src/app/shared/ThanhVienDichVu.service';
+import { ThanhVienQuayDichVu } from 'src/app/shared/ThanhVienQuayDichVu.model';
+import { ThanhVienQuayDichVuService } from 'src/app/shared/ThanhVienQuayDichVu.service';
 
 @Component({
   selector: 'app-thanh-vien-detail',
@@ -39,10 +43,20 @@ export class ThanhVienDetailComponent implements OnInit {
   @ViewChild('ThanhVienUngDungSort') ThanhVienUngDungSort: MatSort;
   @ViewChild('ThanhVienUngDungPaginator') ThanhVienUngDungPaginator: MatPaginator;
 
+  @ViewChild('ThanhVienDichVuSort') ThanhVienDichVuSort: MatSort;
+  @ViewChild('ThanhVienDichVuPaginator') ThanhVienDichVuPaginator: MatPaginator;
+
+  @ViewChild('ThanhVienQuayDichVuSort') ThanhVienQuayDichVuSort: MatSort;
+  @ViewChild('ThanhVienQuayDichVuPaginator') ThanhVienQuayDichVuPaginator: MatPaginator;
+
  
   IsThanhVienChucNangActiveAll: boolean = false;
 
   IsThanhVienUngDungActiveAll: boolean = false;
+
+  IsThanhVienDichVuActiveAll: boolean = false;
+
+  IsThanhVienQuayDichVuActiveAll: boolean = false;
 
   MatKhauIsActive: boolean = true;
 
@@ -62,6 +76,8 @@ export class ThanhVienDetailComponent implements OnInit {
     public ThanhVienService: ThanhVienService,
     public ThanhVienChucNangService: ThanhVienChucNangService,
     public ThanhVienUngDungService: ThanhVienUngDungService,
+    public ThanhVienDichVuService: ThanhVienDichVuService,
+    public ThanhVienQuayDichVuService: ThanhVienQuayDichVuService,
  
   ) { }
 
@@ -98,6 +114,8 @@ export class ThanhVienDetailComponent implements OnInit {
         this.DanhMucChucDanhSearch();
         this.ThanhVienChucNangSearch();  
         this.ThanhVienUngDungSearch();
+        this.ThanhVienDichVuSearch();
+        this.ThanhVienQuayDichVuSearch();
       },
       err => {
       }
@@ -220,13 +238,131 @@ export class ThanhVienDetailComponent implements OnInit {
   ThanhVienUngDungActiveAllChange() {
     this.ThanhVienService.IsShowLoading = true;
     for (let i = 0; i < this.ThanhVienUngDungService.List.length; i++) {
-      this.ThanhVienUngDungService.FormData = this.ThanhVienChucNangService.List[i];
+      this.ThanhVienUngDungService.FormData = this.ThanhVienUngDungService.List[i];
       this.ThanhVienUngDungService.FormData.ParentID = this.ThanhVienService.FormData.ID;
       this.ThanhVienUngDungService.FormData.Active = this.IsThanhVienUngDungActiveAll;
     }
     this.ThanhVienUngDungService.SaveListAsync(this.ThanhVienUngDungService.List).subscribe(
       res => {
         this.ThanhVienUngDungSearch();
+        this.NotificationService.warn(environment.SaveSuccess);        
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);        
+      },
+      ()=>{
+        this.ThanhVienService.IsShowLoading = false;
+      }
+    );
+  }
+
+  ThanhVienDichVuSearch() {
+    if (this.ThanhVienDichVuService.BaseParameter.SearchString.length > 0) {
+      this.ThanhVienDichVuService.DataSource.filter = this.ThanhVienDichVuService.BaseParameter.SearchString.toLowerCase();
+    }
+    else {
+      this.ThanhVienService.IsShowLoading = true;
+      this.ThanhVienDichVuService.BaseParameter.ParentID = this.ThanhVienService.FormData.ID;
+      this.ThanhVienDichVuService.GetSQLByParentIDToListAsync().subscribe(
+        res => {
+          this.ThanhVienDichVuService.List = (res as ThanhVienDichVu[]);
+          this.ThanhVienDichVuService.DataSource = new MatTableDataSource(this.ThanhVienDichVuService.List);
+          this.ThanhVienDichVuService.DataSource.sort = this.ThanhVienDichVuSort;
+          this.ThanhVienDichVuService.DataSource.paginator = this.ThanhVienDichVuPaginator;          
+        },
+        err => {          
+        },
+        ()=>{
+          this.ThanhVienService.IsShowLoading = false;
+        }
+      );
+    }
+  }
+  ThanhVienDichVuActiveChange(element: ThanhVienDichVu) {
+    this.ThanhVienService.IsShowLoading = true;
+    this.ThanhVienDichVuService.FormData = element;
+    this.ThanhVienDichVuService.FormData.ParentID = this.ThanhVienService.FormData.ID;
+    this.ThanhVienDichVuService.SaveAsync().subscribe(
+      res => {
+        this.NotificationService.warn(environment.SaveSuccess);        
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);       
+      },
+      ()=>{
+        this.ThanhVienService.IsShowLoading = false;
+      }
+    );
+  }
+  ThanhVienDichVuActiveAllChange() {
+    this.ThanhVienService.IsShowLoading = true;
+    for (let i = 0; i < this.ThanhVienDichVuService.List.length; i++) {
+      this.ThanhVienDichVuService.FormData = this.ThanhVienDichVuService.List[i];
+      this.ThanhVienDichVuService.FormData.ParentID = this.ThanhVienService.FormData.ID;
+      this.ThanhVienDichVuService.FormData.Active = this.IsThanhVienDichVuActiveAll;
+    }
+    this.ThanhVienDichVuService.SaveListAsync(this.ThanhVienDichVuService.List).subscribe(
+      res => {
+        this.ThanhVienDichVuSearch();
+        this.NotificationService.warn(environment.SaveSuccess);        
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);        
+      },
+      ()=>{
+        this.ThanhVienService.IsShowLoading = false;
+      }
+    );
+  }
+
+  ThanhVienQuayDichVuSearch() {
+    if (this.ThanhVienQuayDichVuService.BaseParameter.SearchString.length > 0) {
+      this.ThanhVienQuayDichVuService.DataSource.filter = this.ThanhVienQuayDichVuService.BaseParameter.SearchString.toLowerCase();
+    }
+    else {
+      this.ThanhVienService.IsShowLoading = true;
+      this.ThanhVienQuayDichVuService.BaseParameter.ParentID = this.ThanhVienService.FormData.ID;
+      this.ThanhVienQuayDichVuService.GetSQLByParentIDToListAsync().subscribe(
+        res => {
+          this.ThanhVienQuayDichVuService.List = (res as ThanhVienQuayDichVu[]);
+          this.ThanhVienQuayDichVuService.DataSource = new MatTableDataSource(this.ThanhVienQuayDichVuService.List);
+          this.ThanhVienQuayDichVuService.DataSource.sort = this.ThanhVienQuayDichVuSort;
+          this.ThanhVienQuayDichVuService.DataSource.paginator = this.ThanhVienQuayDichVuPaginator;          
+        },
+        err => {          
+        },
+        ()=>{
+          this.ThanhVienService.IsShowLoading = false;
+        }
+      );
+    }
+  }
+  ThanhVienQuayDichVuActiveChange(element: ThanhVienQuayDichVu) {
+    this.ThanhVienService.IsShowLoading = true;
+    this.ThanhVienQuayDichVuService.FormData = element;
+    this.ThanhVienQuayDichVuService.FormData.ParentID = this.ThanhVienService.FormData.ID;
+    this.ThanhVienQuayDichVuService.SaveAsync().subscribe(
+      res => {
+        this.NotificationService.warn(environment.SaveSuccess);        
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);       
+      },
+      ()=>{
+        this.ThanhVienService.IsShowLoading = false;
+      }
+    );
+  }
+  ThanhVienQuayDichVuActiveAllChange() {
+    this.ThanhVienService.IsShowLoading = true;
+    for (let i = 0; i < this.ThanhVienQuayDichVuService.List.length; i++) {
+      this.ThanhVienQuayDichVuService.FormData = this.ThanhVienQuayDichVuService.List[i];
+      this.ThanhVienQuayDichVuService.FormData.ParentID = this.ThanhVienService.FormData.ID;
+      this.ThanhVienQuayDichVuService.FormData.Active = this.IsThanhVienQuayDichVuActiveAll;
+    }
+    this.ThanhVienQuayDichVuService.SaveListAsync(this.ThanhVienQuayDichVuService.List).subscribe(
+      res => {
+        this.ThanhVienQuayDichVuSearch();
         this.NotificationService.warn(environment.SaveSuccess);        
       },
       err => {

@@ -21,6 +21,7 @@
         public string? QRCode { get; set; }
         public string? URL { get; set; }
         public string? SoQuyetDinh { get; set; }
+        public long? DanhMucDichVuID { get; set; }
         public BaseParameter()
 		{
 		}
