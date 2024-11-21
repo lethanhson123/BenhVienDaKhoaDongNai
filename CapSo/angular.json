@@ -25,6 +25,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/app-assets",
               "src/js",
               "src/image",
               "src/cordova.js",

@@ -578,8 +578,7 @@ export class BaseService {
         this.GetByActiveToListAsync().subscribe(
             res => {
                 this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-                this.ListFilter = this.List;
-                console.log(this.List);
+                this.ListFilter = this.List;                
             },
             err => {
             },
