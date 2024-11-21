@@ -21,8 +21,8 @@ export class GoiSoService extends BaseService{
             SoHienTai: environment.InitializationNumber,           
         };
     }
-    UpdateByDanhMucDichVuID_SoHienTaiAsync() {
-        let url = this.APIURL + this.Controller + '/UpdateByDanhMucDichVuID_SoHienTaiAsync';
+    GoiSoTiepTheoAsync() {
+        let url = this.APIURL + this.Controller + '/GoiSoTiepTheoAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

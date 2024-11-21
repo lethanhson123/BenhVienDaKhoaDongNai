@@ -40,7 +40,8 @@ export class BaseService {
             KetThuc: new Date(),
             Nam: new Date().getFullYear(),
             Thang: new Date().getMonth() + 1,
-        };
+            ListID:[],
+        };        
         this.List = [];
         this.ListFilter = [];
 

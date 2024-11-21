@@ -86,11 +86,12 @@ export class GoiSo002Component implements OnInit {
       }
     );    
   }
-  UpdateByDanhMucDichVuIDAsync() {
+  GoiSoTiepTheo() {
     this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.BaseParameter.DanhMucDichVuID = this.ThanhVienDichVuService.FormData.ID;
     this.GoiSoService.BaseParameter.SoHienTai = this.GoiSoService.FormData.SoHienTai;    
-    this.GoiSoService.UpdateByDanhMucDichVuID_SoHienTaiAsync().subscribe(
+    this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = this.ThanhVienQuayDichVuService.FormData.ID;    
+    this.GoiSoService.GoiSoTiepTheoAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;
         this.GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync();

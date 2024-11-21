@@ -41,6 +41,7 @@ import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.compone
 import { GoiSoComponent } from './goi-so/goi-so.component';
 import { GoiSo001Component } from './goi-so001/goi-so001.component';
 import { GoiSo002Component } from './goi-so002/goi-so002.component';
+import { GoiSo003Component } from './goi-so003/goi-so003.component';
 
 
 
@@ -152,6 +153,9 @@ const routes: Routes = [
   }, 
   {
     path: 'GoiSo002', component: GoiSo002Component,
+  }, 
+  {
+    path: 'GoiSo003', component: GoiSo003Component,
   }, 
 
 

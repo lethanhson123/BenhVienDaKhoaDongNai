@@ -1,0 +1,68 @@
+<div class="app-body">
+    <div class="row">
+        <div class="col-xxl-12">
+            <div class="card" style="margin-left: 1px;">
+                <div class="card-body">
+                    <div class="custom-tabs-container">
+                        <ul class="nav nav-tabs justify-content-end" id="customTab5" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="tab-GoiSoChiTiet" data-bs-toggle="tab"
+                                    href="#GoiSoChiTiet" role="tab" aria-controls="GoiSoChiTiet" aria-selected="true">
+                                    <span class="badge bg-info" style="font-size: 12px;">Hiển thị (Thử nghiệm)</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="customTabContent">
+                            <div class="tab-pane fade show active" id="GoiSoChiTiet" role="tabpanel">
+                                <div class="row gx-4">
+                                    <div class="col-lg-6 col-sm-12 col-12">
+                                        <div class="row gx-4" *ngFor="let item of DanhMucQuayDichVuService.List01;">
+                                            <div class="col-lg-6 col-sm-12 col-12">
+                                                {{item.Name}}
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12 col-12">
+                                                {{item.Display}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 col-12">
+                                        <div class="row gx-4" *ngFor="let item of DanhMucQuayDichVuService.List02;">
+                                            <div class="col-lg-6 col-sm-12 col-12">
+                                                {{item.Name}}
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12 col-12">
+                                                {{item.Display}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row gx-4" *ngFor="let item of DanhMucQuayDichVuService.List03;">
+                                    <div class="col-lg-6 col-sm-12 col-12">
+                                        {{item.Name}}
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 col-12">
+                                        {{item.Display}}
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row gx-4" *ngFor="let item of GoiSoChiTietService.ListFull;">
+                                    <div class="col-lg-4 col-sm-12 col-12">
+                                        {{item.DanhMucDichVuName}}
+                                    </div>    
+                                    <div class="col-lg-4 col-sm-12 col-12">
+                                        {{item.DanhMucQuayDichVuName}}
+                                    </div> 
+                                    <div class="col-lg-4 col-sm-12 col-12">
+                                        {{item.NgayCapSoSoThuTuString}}
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>

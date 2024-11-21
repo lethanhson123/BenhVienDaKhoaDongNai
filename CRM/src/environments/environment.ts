@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   DomainURL: "",
-  DomainDestination: "",  
+  DomainDestination: "",
   APIURL: "http://localhost:5004/api/v1/",
   APIRootURL: "http://localhost:5004/",
   IPRegistry: "https://ipv4.myexternalip.com/json",
@@ -10,9 +10,10 @@ export const environment = {
   DialogConfigWidth: "80%",
   DialogConfigWidth60: "60%",
   InitializationString: "",
-  InitializationNumber: 0,  
-  DanhMucUngDungID: 1,  
-  PageSize: 10,  
+  InitializationNumber: 0,
+  DanhMucUngDungID: 1,
+  PageSize: 10,
+  Interval: 5000,
   Token: "Token",
   Homepage: "Homepage",
   Login: "Login",
@@ -38,14 +39,14 @@ export const environment = {
   PageTitle: "Bệnh viện đa khoa Đồng Nai",
   PageTitleShort: "Đa khoa Đồng Nai",
   PageDescription: "Hệ sinh thái số bệnh viện đa khoa Đồng Nai | Chương trình chuyển đổi số quốc gia",
-  
+
   IPRegistryIP: "IPRegistryIP",
   IPRegistryDevice: "IPRegistryDevice",
   IPRegistryLongitude: "IPRegistryLongitude",
   IPRegistryLatitude: "IPRegistryIPLatitude",
   IPRegistryCountryName: "IPRegistryCountryName",
-  IPRegistryRegionName: "IPRegistryRegionName",  
-  IPRegistryCityName: "IPRegistryCityName",  
+  IPRegistryRegionName: "IPRegistryRegionName",
+  IPRegistryCityName: "IPRegistryCityName",
 
-  
+
 };

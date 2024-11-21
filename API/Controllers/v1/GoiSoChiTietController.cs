@@ -25,7 +25,54 @@
             catch (Exception ex)
             {
                 string message = ex.Message;
-                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetGoiSoChiTietDangKy01ToListAsync")]
+        public virtual async Task<List<DanhMucQuayDichVu>> GetGoiSoChiTietDangKy01ToListAsync()
+        {
+            List<DanhMucQuayDichVu> result = new List<DanhMucQuayDichVu>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietDangKy01ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetGoiSoChiTietDangKy02ToListAsync")]
+        public virtual async Task<List<DanhMucQuayDichVu>> GetGoiSoChiTietDangKy02ToListAsync()
+        {
+            List<DanhMucQuayDichVu> result = new List<DanhMucQuayDichVu>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietDangKy02ToListAsync(baseParameter.ListID);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetGoiSoChiTietDangKy03ToListAsync")]
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy03ToListAsync()
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietDangKy03ToListAsync(baseParameter.DanhMucQuayDichVuID.Value, baseParameter.DanhMucDichVuID.Value, baseParameter.Number.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
             }
             return result;
         }

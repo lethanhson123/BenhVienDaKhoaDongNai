@@ -13,14 +13,14 @@
             _WebHostEnvironment = WebHostEnvironment;
         }
         [HttpPost]
-        [Route("UpdateByDanhMucDichVuID_SoHienTaiAsync")]
-        public virtual async Task<GoiSo> UpdateByDanhMucDichVuID_SoHienTaiAsync()
+        [Route("GoiSoTiepTheoAsync")]
+        public virtual async Task<GoiSo> UpdateByDanhMucGoiSoTiepTheoAsyncDichVuID_SoHienTaiAsync()
         {
             GoiSo result = new GoiSo();
             try
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
-                result = await _GoiSoService.UpdateByDanhMucDichVuID_SoHienTaiAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.SoHienTai.Value);
+                result = await _GoiSoService.GoiSoTiepTheoAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.SoHienTai.Value, baseParameter.DanhMucQuayDichVuID.Value);
             }
             catch (Exception ex)
             {

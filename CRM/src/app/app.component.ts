@@ -305,7 +305,7 @@ export class AppComponent {
   StartTimer() {
     this.interval = setInterval(() => {
       this.GetByParentID_ReadJSONFileToListAsync();
-    }, 10000)
+    }, environment.Interval)
   }
   GetByParentID_ReadJSONFileToListAsync() {    
   }

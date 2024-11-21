@@ -64,6 +64,7 @@ import { DanhMucTinhThanhToaDoComponent } from './danh-muc-tinh-thanh-toa-do/dan
 import { DanhMucKhoaChuyenMonComponent } from './danh-muc-khoa-chuyen-mon/danh-muc-khoa-chuyen-mon.component';
 import { GoiSo001Component } from './goi-so001/goi-so001.component';
 import { GoiSo002Component } from './goi-so002/goi-so002.component';
+import { GoiSo003Component } from './goi-so003/goi-so003.component';
 
 
 
@@ -122,7 +123,8 @@ import { GoiSo002Component } from './goi-so002/goi-so002.component';
     DanhMucTinhThanhToaDoComponent,
     DanhMucKhoaChuyenMonComponent,
     GoiSo001Component,
-    GoiSo002Component,    
+    GoiSo002Component,
+    GoiSo003Component,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

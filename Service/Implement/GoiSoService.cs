@@ -113,14 +113,12 @@ namespace Service.Implement
                 GoiSoChiTiet.ParentID = model.ParentID;
                 GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
                 GoiSoChiTiet.DanhMucDichVuName = model.DanhMucDichVuName;
-                GoiSoChiTiet.NgayCapSo = GlobalHelper.InitializationDateTime;
                 GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
-                GoiSoChiTiet.NgayCapSoSoThuTuString = model.TongCongString;
                 await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
             }
             return model;
         }
-        public virtual async Task<GoiSo> UpdateByDanhMucDichVuID_SoHienTaiAsync(long DanhMucDichVuID, int SoHienTai)
+        public virtual async Task<GoiSo> GoiSoTiepTheoAsync(long DanhMucDichVuID, int SoHienTai, long DanhMucQuayDichVuID)
         {
             GoiSo result = new GoiSo();
             try
@@ -129,9 +127,12 @@ namespace Service.Implement
                 result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
                 if (result != null)
                 {
-                    if (result.SoHienTai != SoHienTai)
+                    if (SoHienTai > 0)
                     {
-                        result.SoHienTai = SoHienTai;
+                        if (result.SoHienTai != SoHienTai)
+                        {
+                            result.SoHienTai = SoHienTai;
+                        }
                     }
                     if (result.SoHienTai < result.TongCong)
                     {
@@ -147,6 +148,24 @@ namespace Service.Implement
             if (result == null)
             {
                 result = new GoiSo();
+            }
+
+            GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                GoiSoChiTiet = await _GoiSoChiTietService.GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(DanhMucDichVuID, result.SoHienTai.Value);
+                if (GoiSoChiTiet != null)
+                {
+                    GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
+                    GoiSoChiTiet.NgayDangKySoThuTu = result.SoHienTai;
+                    GoiSoChiTiet.Active = true;
+                    await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
             }
             return result;
         }

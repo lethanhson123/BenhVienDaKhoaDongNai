@@ -139,6 +139,6 @@
             services.AddTransient<IReportRepository, ReportRepository>();
 
             return services;
-        }
+        }      
     }
 }

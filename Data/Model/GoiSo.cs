@@ -16,6 +16,7 @@
 
         public GoiSo()
         {
+            SoHienTai = GlobalHelper.InitializationNumber;
         }
     }
 }
