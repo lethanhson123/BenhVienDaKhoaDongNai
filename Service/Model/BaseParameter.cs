@@ -22,6 +22,8 @@
         public string? URL { get; set; }
         public string? SoQuyetDinh { get; set; }
         public long? DanhMucDichVuID { get; set; }
+        public int? SoHienTai { get; set; }
+        public int? NgayCapSoSoThuTu { get; set; }
         public BaseParameter()
 		{
 		}

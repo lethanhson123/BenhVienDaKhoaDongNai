@@ -63,6 +63,7 @@ import { KhachHangInfoComponent } from './khach-hang-info/khach-hang-info.compon
 import { DanhMucTinhThanhToaDoComponent } from './danh-muc-tinh-thanh-toa-do/danh-muc-tinh-thanh-toa-do.component';
 import { DanhMucKhoaChuyenMonComponent } from './danh-muc-khoa-chuyen-mon/danh-muc-khoa-chuyen-mon.component';
 import { GoiSo001Component } from './goi-so001/goi-so001.component';
+import { GoiSo002Component } from './goi-so002/goi-so002.component';
 
 
 
@@ -120,7 +121,8 @@ import { GoiSo001Component } from './goi-so001/goi-so001.component';
     KhachHangInfoComponent,
     DanhMucTinhThanhToaDoComponent,
     DanhMucKhoaChuyenMonComponent,
-    GoiSo001Component,    
+    GoiSo001Component,
+    GoiSo002Component,    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -8,12 +8,17 @@ namespace Service.Implement
     , IGoiSoService
     {
         private readonly IGoiSoRepository _GoiSoRepository;
+
         private readonly IDanhMucDichVuRepository _DanhMucDichVuRepository;
+
+        private readonly IGoiSoChiTietService _GoiSoChiTietService;
 
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public GoiSoService(IGoiSoRepository GoiSoRepository
 
             , IDanhMucDichVuRepository danhMucDichVuRepository
+
+            , IGoiSoChiTietService GoiSoChiTietService
 
             , IWebHostEnvironment WebHostEnvironment
             ) : base(GoiSoRepository)
@@ -22,6 +27,8 @@ namespace Service.Implement
 
             _DanhMucDichVuRepository = danhMucDichVuRepository;
 
+            _GoiSoChiTietService = GoiSoChiTietService;
+
             _WebHostEnvironment = WebHostEnvironment;
         }
         public override void Initialization(GoiSo model)
@@ -29,9 +36,12 @@ namespace Service.Implement
             BaseInitialization(model);
             if (model.DanhMucDichVuID > 0)
             {
-                DanhMucDichVu DanhMucDichVu = _DanhMucDichVuRepository.GetByID(model.DanhMucDichVuID.Value);
-                model.DanhMucDichVuName = DanhMucDichVu.Name;
-                model.Note = DanhMucDichVu.Note;
+                if (string.IsNullOrEmpty(model.DanhMucDichVuName))
+                {
+                    DanhMucDichVu DanhMucDichVu = _DanhMucDichVuRepository.GetByID(model.DanhMucDichVuID.Value);
+                    model.DanhMucDichVuName = DanhMucDichVu.Name;
+                    model.Note = DanhMucDichVu.Note;
+                }
             }
             if (model.TongCong > 0)
             {
@@ -77,6 +87,68 @@ namespace Service.Implement
                     }
                 }
             }
+        }
+        public override async Task<GoiSo> SaveAsync(GoiSo model)
+        {
+            int result = GlobalHelper.InitializationNumber;
+            if (model.ID > 0)
+            {
+                result = await UpdateAsync(model);
+            }
+            else
+            {
+                result = await AddAsync(model);
+            }
+            if (result > 0)
+            {
+                await Sync(model);
+            }
+            return model;
+        }
+        public virtual async Task<GoiSo> Sync(GoiSo model)
+        {
+            if (model.ID > 0)
+            {
+                GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                GoiSoChiTiet.ParentID = model.ParentID;
+                GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
+                GoiSoChiTiet.DanhMucDichVuName = model.DanhMucDichVuName;
+                GoiSoChiTiet.NgayCapSo = GlobalHelper.InitializationDateTime;
+                GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
+                GoiSoChiTiet.NgayCapSoSoThuTuString = model.TongCongString;
+                await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+            }
+            return model;
+        }
+        public virtual async Task<GoiSo> UpdateByDanhMucDichVuID_SoHienTaiAsync(long DanhMucDichVuID, int SoHienTai)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    if (result.SoHienTai != SoHienTai)
+                    {
+                        result.SoHienTai = SoHienTai;
+                    }
+                    if (result.SoHienTai < result.TongCong)
+                    {
+                        result.SoHienTai = result.SoHienTai + 1;
+                        await SaveAsync(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+            return result;
         }
         public virtual async Task<GoiSo> SaveByDanhMucDichVuIDAsync(long DanhMucDichVuID)
         {

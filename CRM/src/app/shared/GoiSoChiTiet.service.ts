@@ -18,5 +18,12 @@ export class GoiSoChiTietService extends BaseService{
         super(httpClient);
         this.Controller = "GoiSoChiTiet";
     }
+
+    GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync() {
+        let url = this.APIURL + this.Controller + '/GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

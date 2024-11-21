@@ -17,17 +17,26 @@ export class GoiSoService extends BaseService{
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "GoiSo";
+        this.FormData = {
+            SoHienTai: environment.InitializationNumber,           
+        };
     }
-    CreateHTMLByModelAsync() {
-        let url = this.APIURL + this.Controller + '/CreateHTMLByModelAsync';
+    UpdateByDanhMucDichVuID_SoHienTaiAsync() {
+        let url = this.APIURL + this.Controller + '/UpdateByDanhMucDichVuID_SoHienTaiAsync';
         const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.FormData));
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
     SaveByDanhMucDichVuIDAsync() {
         let url = this.APIURL + this.Controller + '/SaveByDanhMucDichVuIDAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    CreateHTMLByModelAsync() {
+        let url = this.APIURL + this.Controller + '/CreateHTMLByModelAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.FormData));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 }

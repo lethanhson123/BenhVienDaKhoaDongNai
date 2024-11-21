@@ -20,8 +20,7 @@ import { GoiSoService } from 'src/app/shared/GoiSo.service';
 })
 export class GoiSo001Component implements OnInit {
 
-  constructor(
-    private dialog: MatDialog,
+  constructor(    
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -44,7 +43,7 @@ export class GoiSo001Component implements OnInit {
     this.GoiSoService.SaveByDanhMucDichVuIDAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;   
-        this.NotificationService.OpenWindowByURL(this.GoiSoService.FormData.FileName);    
+        this.NotificationService.OpenWindowByURLMin(this.GoiSoService.FormData.FileName);    
       },
       err => {        
       },

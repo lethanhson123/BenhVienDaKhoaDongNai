@@ -11,6 +11,7 @@
 	<meta name="robots" content="index,follow">
 	<meta name="Googlebot" content="index,follow">
 	<meta name="revisit-after" content="1 days">
+	<link rel="manifest" href="manifest.json">
 	<title>Bệnh viện đa khoa Đồng Nai</title>
 	<meta name="description"
 		content="Hệ sinh thái số bệnh viện đa khoa Đồng Nai | Chương trình chuyển đổi số quốc gia" />
@@ -20,7 +21,7 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-title" content="benhvien.sohu.vn" />
-	<link rel="icon" type="image/x-icon" href="https://benhvien.sohu.vn/assets/image/logo.png">
+	<link rel="icon" type="image/x-icon" href="assets/image/logo.png">
 
 	<link rel="canonical" href="https://benhvien.sohu.vn/" />
 	<meta property="og:site_name" content="benhvien.sohu.vn" />
@@ -28,7 +29,7 @@
 	<meta property="og:type" content="article" />
 	<meta property="article:publisher" content="https://www.facebook.com/LeThanhSon0937843970" />
 	<meta property="og:url" itemprop="url" content="https://benhvien.sohu.vn/" />
-	<meta property="og:image" itemprop="thumbnailUrl" content="https://benhvien.sohu.vn/assets/image/logo.png" />
+	<meta property="og:image" itemprop="thumbnailUrl" content="assets/image/logo.png" />
 	<meta content="Bệnh viện đa khoa Đồng Nai" property="og:title" itemprop="headline" />
 	<meta content="Hệ sinh thái số bệnh viện đa khoa Đồng Nai | Chương trình chuyển đổi số quốc gia"
 		property="og:description" itemprop="description" />
@@ -55,15 +56,15 @@
 	<meta name="twitter:site" content="benhvien.sohu.vn" />
 	<meta name="twitter:creator" content="benhvien.sohu.vn" />
 
-	<link rel="apple-touch-icon-precomposed" href="https://benhvien.sohu.vn/assets/image/logo.png" sizes="72x72">
-	<link rel="apple-touch-icon-precomposed" href="https://benhvien.sohu.vn/assets/image/logo.png" sizes="144x144">
+	<link rel="apple-touch-icon-precomposed" href="assets/image/logo.png" sizes="72x72">
+	<link rel="apple-touch-icon-precomposed" href="assets/image/logo.png" sizes="144x144">
 
-	<link rel="apple-touch-icon-precomposed" href="https://benhvien.sohu.vn/assets/image/logo.png" sizes="57x57">
-	<link rel="apple-touch-icon-precomposed" href="https://benhvien.sohu.vn/assets/image/logo.png" sizes="114x114">
+	<link rel="apple-touch-icon-precomposed" href="assets/image/logo.png" sizes="57x57">
+	<link rel="apple-touch-icon-precomposed" href="assets/image/logo.png" sizes="114x114">
 
-	<link rel="nokia-touch-icon" href="https://benhvien.sohu.vn/assets/image/logo.png">
+	<link rel="nokia-touch-icon" href="assets/image/logo.png">
 
-	<link rel="apple-touch-icon-precomposed" href="https://benhvien.sohu.vn/assets/image/logo.png" sizes="1x1">
+	<link rel="apple-touch-icon-precomposed" href="assets/image/logo.png" sizes="1x1">
 
 
 	<meta name="its_url" content="https://benhvien.sohu.vn/" />
@@ -82,24 +83,11 @@
 	<link rel="stylesheet" href="assets/vendor/datatables/dataTables.bs5.css" />
 	<link rel="stylesheet" href="assets/vendor/datatables/dataTables.bs5-custom.css" />
 	<link rel="stylesheet" href="assets/vendor/datatables/buttons/dataTables.bs5-custom.css" />
-	<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-	<script>
-		function OpenWindowByToChuc(URLParamater, w = 100, h = 200) {
-			var width = screen.width;
-			var height = screen.height;
-			var width01 = width - w;
-			var height01 = height - h;
-			var left = (width - width01) / 2;
-			var top = (height - height01) / 3;
-			var url = "/#/ToChucInfo/" + URLParamater;
-			window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
-		}
-	</script>
+	<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>	
 </head>
 
 <body>
-	<style>		
-		
+	<style>
 		.btn,
 		.card-title {
 			font-size: 12px;
@@ -115,7 +103,7 @@
 			border-color: #000000;
 			border-style: solid;
 			border-width: 1px;
-			padding: 0px;						
+			padding: 0px;
 		}
 
 		.table-striped {
@@ -164,7 +152,7 @@
 			font-size: 12px;
 			white-space: nowrap;
 			padding: 2px;
-			padding-bottom: 0px;						
+			padding-bottom: 0px;
 		}
 
 		.mat-row .mat-cell a {
@@ -186,7 +174,7 @@
 		label,
 		select,
 		option {
-			font-size: 12px;			
+			font-size: 12px;
 		}
 
 		input[type="password"],
@@ -195,7 +183,7 @@
 			height: 32px;
 		}
 
-		input[type="checkbox"]{
+		input[type="checkbox"] {
 			width: 10px !important;
 			height: 10px !important;
 		}
@@ -216,7 +204,7 @@
 		.col-12 {
 			margin-top: 3px;
 			margin-bottom: 3px;
-			
+
 		}
 
 		#map {
@@ -312,7 +300,7 @@
 	</style>
 	<div class="page-wrapper">
 		<div class="main-container">
-			<app-root></app-root>
+			<app-root></app-root>			
 		</div>
 	</div>
 	<script src="assets/js/jquery.min.js"></script>
@@ -326,7 +314,7 @@
 	<script src="assets/js/custom.js"></script>
 
 	<script src="cordova.js"></script>
-	<script src="js/index.js"></script>
+	<script src="js/index.js"></script>	
 </body>
 
 </html>

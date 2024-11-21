@@ -13,18 +13,19 @@
             _WebHostEnvironment = WebHostEnvironment;
         }
         [HttpPost]
-        [Route("CreateHTMLByModelAsync")]
-        public async Task<GoiSo> CreateHTMLByModelAsync()
+        [Route("UpdateByDanhMucDichVuID_SoHienTaiAsync")]
+        public virtual async Task<GoiSo> UpdateByDanhMucDichVuID_SoHienTaiAsync()
         {
             GoiSo result = new GoiSo();
             try
             {
-                result = JsonConvert.DeserializeObject<GoiSo>(Request.Form["data"]);
-                result = await _GoiSoService.CreateHTMLByModelAsync(result);
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.UpdateByDanhMucDichVuID_SoHienTaiAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.SoHienTai.Value);
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                string message = ex.Message;
+                result.Note = message;
             }
             return result;
         }
@@ -45,7 +46,22 @@
             }
             return result;
         }
-
+        [HttpPost]
+        [Route("CreateHTMLByModelAsync")]
+        public async Task<GoiSo> CreateHTMLByModelAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                result = JsonConvert.DeserializeObject<GoiSo>(Request.Form["data"]);
+                result = await _GoiSoService.CreateHTMLByModelAsync(result);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

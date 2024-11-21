@@ -40,6 +40,7 @@ import { DanhMucKhoaChuyenMonComponent } from './danh-muc-khoa-chuyen-mon/danh-m
 import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.component';
 import { GoiSoComponent } from './goi-so/goi-so.component';
 import { GoiSo001Component } from './goi-so001/goi-so001.component';
+import { GoiSo002Component } from './goi-so002/goi-so002.component';
 
 
 
@@ -148,6 +149,9 @@ const routes: Routes = [
   }, 
   {
     path: 'GoiSo001', component: GoiSo001Component,
+  }, 
+  {
+    path: 'GoiSo002', component: GoiSo002Component,
   }, 
 
 
