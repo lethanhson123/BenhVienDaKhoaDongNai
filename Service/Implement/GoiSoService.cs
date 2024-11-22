@@ -188,7 +188,7 @@ namespace Service.Implement
                 await SaveAsync(result);
                 if (result.ID > 0)
                 {
-                    result = await CreateHTMLByModelAsync(result);
+                    result = await CreateHTML001ByModelAsync(result);
                 }
             }
             catch (Exception ex)
@@ -242,6 +242,71 @@ namespace Service.Implement
 
 
                 string physicalPathCreate = Path.Combine(_WebHostEnvironment.WebRootPath, result.GetType().Name);
+                isFolderExists = System.IO.Directory.Exists(physicalPathCreate);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(physicalPathCreate);
+                }
+
+                string fileName = Code + ".html";
+                physicalPathCreate = Path.Combine(physicalPathCreate, fileName);
+                using (FileStream fs = new FileStream(physicalPathCreate, FileMode.Create))
+                {
+                    using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                    {
+                        w.WriteLine(contentHTML);
+                    }
+                }
+
+                await UpdateAsync(result);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<GoiSo> CreateHTML001ByModelAsync(GoiSo result)
+        {
+            try
+            {
+                string Code = GlobalHelper.InitializationDateTimeCode;
+
+                string folderPath = Path.Combine(GlobalHelper.CapSoFTP, result.GetType().Name);
+                bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(folderPath);
+                }
+
+                result.FileName = GlobalHelper.CapSoSite + "/" + GlobalHelper.Download + "/" + result.GetType().Name + "/" + Code + ".html";
+
+                string contentHTML = GlobalHelper.InitializationString;
+                string physicalPathOpen = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Download, result.GetType().Name + ".html");
+                using (FileStream fs = new FileStream(physicalPathOpen, FileMode.Open))
+                {
+                    using (StreamReader r = new StreamReader(fs, Encoding.UTF8))
+                    {
+                        contentHTML = r.ReadToEnd();
+                    }
+                }
+                DateTime NgayIn = GlobalHelper.InitializationDateTime;
+                DateTime BatDau = NgayIn.AddHours(2);
+                DateTime KetThuc = BatDau.AddMinutes(30);
+
+                contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));
+                contentHTML = contentHTML.Replace("[BatDau]", BatDau.ToString("HH:mm"));
+                contentHTML = contentHTML.Replace("[KetThuc]", KetThuc.ToString("HH:mm"));
+
+                contentHTML = contentHTML.Replace("[APISite]", GlobalHelper.APISite);
+
+                contentHTML = contentHTML.Replace("[DanhMucDichVuName]", result.DanhMucDichVuName);
+                contentHTML = contentHTML.Replace("[Note]", result.Note);
+                contentHTML = contentHTML.Replace("[TongCongString]", result.TongCongString);
+                contentHTML = contentHTML.Replace("[SoHienTaiString]", result.SoHienTaiString);
+
+
+                string physicalPathCreate = Path.Combine(GlobalHelper.CapSoFTP, result.GetType().Name);
                 isFolderExists = System.IO.Directory.Exists(physicalPathCreate);
                 if (!isFolderExists)
                 {

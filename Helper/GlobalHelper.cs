@@ -199,6 +199,22 @@ namespace Helper
                 return int.Parse(builder.Build().GetSection("AppSettings").GetSection("NotificationCount").Value);
             }
         }
+        public static string CapSoFTP
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("CapSoFTP").Value;
+            }
+        }
+        public static string CapSoSite
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("CapSoSite").Value;
+            }
+        }
         public static string APISite
         {
             get

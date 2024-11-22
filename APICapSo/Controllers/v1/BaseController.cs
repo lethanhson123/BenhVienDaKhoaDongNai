@@ -11,6 +11,23 @@
         {
             _BaseService = baseService;
             _WebHostEnvironment = WebHostEnvironment;
-        }       
+        }
+        [HttpPost]
+        [Route("GetByIDAsync")]
+        public virtual async Task<T> GetByIDAsync()
+        {
+            T result = (T)Activator.CreateInstance(typeof(T));
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByIDAsync(baseParameter.ID);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
     }
 }
