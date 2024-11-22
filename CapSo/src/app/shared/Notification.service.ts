@@ -59,4 +59,24 @@ export class NotificationService {
     var url = URLParamater;
     window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
   }
+  OpenWindowByURLTopRight(URLParamater, w = 300, h = 150) {
+    var width = screen.width;
+    var height = screen.height;
+    var width01 = w;
+    var height01 = h;
+    var left = width - width01;
+    var top = 0;
+    var url = URLParamater;
+    window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
+  }
+  OpenWindowByURLBottomRight(URLParamater, w = 300, h = 150) {
+    var width = screen.width;
+    var height = screen.height;
+    var width01 = w;
+    var height01 = h;
+    var left = width - width01;
+    var top = (height - height01);
+    var url = URLParamater;
+    window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
+  }
 }

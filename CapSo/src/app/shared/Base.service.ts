@@ -41,6 +41,8 @@ export class BaseService {
             Nam: new Date().getFullYear(),
             Thang: new Date().getMonth() + 1,
             ListID:[],
+            DanhMucQuayDichVuID: environment.InitializationNumber,
+            DanhMucDichVuID: environment.InitializationNumber,
         };        
         this.List = [];
         this.ListFilter = [];
@@ -48,6 +50,11 @@ export class BaseService {
         let token = localStorage.getItem(environment.Token);
         this.Headers = this.Headers.append('Authorization', 'Bearer ' + token);
     }    
-
+    GetByIDAsync() {
+        let url = this.APIURL + this.Controller + '/GetByIDAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

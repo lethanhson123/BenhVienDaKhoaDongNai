@@ -24,5 +24,18 @@ export class DanhMucQuayDichVuService extends BaseService {
         this.List02 = [];        
         this.List03 = [];  
     }
+
+    GetAllToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetAllToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByActiveToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByActiveToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

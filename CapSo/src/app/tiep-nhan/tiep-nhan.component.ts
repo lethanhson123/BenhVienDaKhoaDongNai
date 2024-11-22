@@ -14,12 +14,11 @@ import { DanhMucQuayDichVu } from 'src/app/shared/DanhMucQuayDichVu.model';
 import { DanhMucQuayDichVuService } from 'src/app/shared/DanhMucQuayDichVu.service';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  selector: 'app-tiep-nhan',
+  templateUrl: './tiep-nhan.component.html',
+  styleUrls: ['./tiep-nhan.component.css']
 })
-export class HomepageComponent implements OnInit {
-
+export class TiepNhanComponent implements OnInit {
 
   constructor(
     public ActiveRouter: ActivatedRoute,
@@ -34,7 +33,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let URL = environment.TiepNhanURL + "Homepage/" + this.ActiveRouter.snapshot.params.DanhMucDichVuID + "/" + this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID;
+    let URL = environment.TiepNhanURL + "TiepNhan/" + this.ActiveRouter.snapshot.params.DanhMucDichVuID + "/" + this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID;
     var Width = window.innerWidth;
     if (Width > 300) {
       this.NotificationService.OpenWindowByURLBottomRight(URL);

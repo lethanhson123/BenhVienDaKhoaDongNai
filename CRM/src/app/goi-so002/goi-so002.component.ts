@@ -55,7 +55,7 @@ export class GoiSo002Component implements OnInit {
         this.ThanhVienQuayDichVuService.ListFilter = this.ThanhVienQuayDichVuService.List;
         if (this.ThanhVienQuayDichVuService.List) {
           if (this.ThanhVienQuayDichVuService.List.length > 0) {
-            this.ThanhVienQuayDichVuService.FormData.ID = this.ThanhVienQuayDichVuService.List[0].ID;
+            this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = this.ThanhVienQuayDichVuService.List[0].DanhMucQuayDichVuID;
           }
         }
       },
@@ -75,7 +75,7 @@ export class GoiSo002Component implements OnInit {
         this.ThanhVienDichVuService.ListFilter = this.ThanhVienDichVuService.List;
         if (this.ThanhVienDichVuService.List) {
           if (this.ThanhVienDichVuService.List.length > 0) {
-            this.ThanhVienDichVuService.FormData.ID = this.ThanhVienDichVuService.List[0].ID;
+            this.GoiSoService.BaseParameter.DanhMucDichVuID = this.ThanhVienDichVuService.List[0].DanhMucDichVuID;
           }
         }
       },
@@ -87,10 +87,8 @@ export class GoiSo002Component implements OnInit {
     );    
   }
   GoiSoTiepTheo() {
-    this.GoiSoService.IsShowLoading = true;
-    this.GoiSoService.BaseParameter.DanhMucDichVuID = this.ThanhVienDichVuService.FormData.ID;
-    this.GoiSoService.BaseParameter.SoHienTai = this.GoiSoService.FormData.SoHienTai;    
-    this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = this.ThanhVienQuayDichVuService.FormData.ID;    
+    this.GoiSoService.IsShowLoading = true;    
+    this.GoiSoService.BaseParameter.SoHienTai = this.GoiSoService.FormData.SoHienTai;        
     this.GoiSoService.GoiSoTiepTheoAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;

@@ -16,6 +16,9 @@ import { LoadingComponent } from './loading/loading.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { GComponent } from './g/g.component';
 import { CComponent } from './c/c.component';
+import { TiepNhanComponent } from './tiep-nhan/tiep-nhan.component';
+import { TiepNhanFullComponent } from './tiep-nhan-full/tiep-nhan-full.component';
+import { TiepNhanSComponent } from './tiep-nhan-s/tiep-nhan-s.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { CComponent } from './c/c.component';
     HomepageComponent,
     GComponent,
     CComponent,
+    TiepNhanComponent,
+    TiepNhanFullComponent,
+    TiepNhanSComponent,
 
   ],
   imports: [

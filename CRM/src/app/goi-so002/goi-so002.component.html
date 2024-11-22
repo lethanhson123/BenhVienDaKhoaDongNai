@@ -17,18 +17,18 @@
                                 <div class="row gx-4">
                                     <div class="col-lg-6 col-sm-12 col-12">
                                         <label class="form-label">Quầy phục vụ</label>
-                                        <select class="form-select" name="ThanhVienQuayDichVuService.FormData.ID"
-                                            [(ngModel)]="ThanhVienQuayDichVuService.FormData.ID">
+                                        <select class="form-select" name="GoiSoService.BaseParameter.DanhMucQuayDichVuID"
+                                            [(ngModel)]="GoiSoService.BaseParameter.DanhMucQuayDichVuID">
                                             <option *ngFor="let item of ThanhVienQuayDichVuService.List;"
-                                                [value]="item.ID">
+                                                [value]="item.DanhMucQuayDichVuID">
                                                 {{item.ParentName}} - {{item.Name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6 col-sm-12 col-12">
                                         <label class="form-label">Khám bệnh ({{GoiSoService.FormData.TongCong}})</label>
-                                        <select class="form-select" name="ThanhVienDichVuService.FormData.ID"
-                                            [(ngModel)]="ThanhVienDichVuService.FormData.ID">
-                                            <option *ngFor="let item of ThanhVienDichVuService.List;" [value]="item.ID">
+                                        <select class="form-select" name="GoiSoService.BaseParameter.DanhMucDichVuID"
+                                            [(ngModel)]="GoiSoService.BaseParameter.DanhMucDichVuID">
+                                            <option *ngFor="let item of ThanhVienDichVuService.List;" [value]="item.DanhMucDichVuID">
                                                 {{item.Name}}</option>
                                         </select>
                                     </div>
