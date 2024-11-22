@@ -19,6 +19,11 @@ import { CComponent } from './c/c.component';
 import { TiepNhanComponent } from './tiep-nhan/tiep-nhan.component';
 import { TiepNhanFullComponent } from './tiep-nhan-full/tiep-nhan-full.component';
 import { TiepNhanSComponent } from './tiep-nhan-s/tiep-nhan-s.component';
+import { HienThiComponent } from './hien-thi/hien-thi.component';
+import { HienThi01Component } from './hien-thi01/hien-thi01.component';
+import { HienThi02Component } from './hien-thi02/hien-thi02.component';
+import { HienThi04Component } from './hien-thi04/hien-thi04.component';
+import { HienThi03Component } from './hien-thi03/hien-thi03.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +35,11 @@ import { TiepNhanSComponent } from './tiep-nhan-s/tiep-nhan-s.component';
     TiepNhanComponent,
     TiepNhanFullComponent,
     TiepNhanSComponent,
+    HienThiComponent,
+    HienThi01Component,
+    HienThi02Component,
+    HienThi04Component,
+    HienThi03Component,
 
   ],
   imports: [

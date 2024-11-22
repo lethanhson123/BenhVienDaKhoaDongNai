@@ -30,9 +30,8 @@ export class HomepageComponent implements OnInit {
   }
 
   DanhMucDichVuSearch() {
-    this.GoiSoService.IsShowLoading = true;
-    this.DanhMucDichVuService.BaseParameter.Active = true;
-    this.DanhMucDichVuService.GetByActiveToListAsync().subscribe(
+    this.GoiSoService.IsShowLoading = true;    
+    this.DanhMucDichVuService.GetAllToListAsync().subscribe(
       res => {
         this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
         this.DanhMucDichVuService.ListFilter = this.DanhMucDichVuService.List;

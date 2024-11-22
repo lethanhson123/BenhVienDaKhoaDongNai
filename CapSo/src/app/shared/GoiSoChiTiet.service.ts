@@ -18,6 +18,8 @@ export class GoiSoChiTietService extends BaseService{
     ListFull: GoiSoChiTiet[] | undefined;
     List01: GoiSoChiTiet[] | undefined;
     List02: GoiSoChiTiet[] | undefined;    
+    List03: GoiSoChiTiet[] | undefined;    
+    List04: GoiSoChiTiet[] | undefined;    
 
     constructor(public httpClient: HttpClient) {
         super(httpClient);
@@ -42,8 +44,20 @@ export class GoiSoChiTietService extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GetGoiSoChiTietDangKy02_001ToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetGoiSoChiTietDangKy02_001ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     GetGoiSoChiTietDangKy03ToListAsync() {
         let url = this.APIURL + this.Controller + '/GetGoiSoChiTietDangKy03ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }  
+    GetGoiSoChiTietDangKy04ToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetGoiSoChiTietDangKy04ToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

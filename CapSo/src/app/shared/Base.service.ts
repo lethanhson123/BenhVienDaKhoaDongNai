@@ -40,16 +40,17 @@ export class BaseService {
             KetThuc: new Date(),
             Nam: new Date().getFullYear(),
             Thang: new Date().getMonth() + 1,
-            ListID:[],
+            ListID: [],
             DanhMucQuayDichVuID: environment.InitializationNumber,
             DanhMucDichVuID: environment.InitializationNumber,
-        };        
+            Number: environment.Number,
+        };
         this.List = [];
         this.ListFilter = [];
 
         let token = localStorage.getItem(environment.Token);
         this.Headers = this.Headers.append('Authorization', 'Bearer ' + token);
-    }    
+    }
     GetByIDAsync() {
         let url = this.APIURL + this.Controller + '/GetByIDAsync';
         const formUpload: FormData = new FormData();

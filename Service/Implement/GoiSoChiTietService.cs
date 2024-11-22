@@ -1,5 +1,7 @@
 ﻿using Data.Model;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.SqlServer.Server;
+using Microsoft.VisualBasic;
 using Service.Interface;
 
 namespace Service.Implement
@@ -199,17 +201,17 @@ namespace Service.Implement
             }
             return result;
         }
-      
+
         public virtual async Task<List<DanhMucQuayDichVu>> GetGoiSoChiTietDangKy01ToListAsync()
         {
             List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
             List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByActiveToListAsync(true);
+            DateTime Now = GlobalHelper.InitializationDateTime;
             for (int i = 0; i < ListDanhMucQuayDichVu.Count; i++)
             {
                 ListDanhMucQuayDichVu[i].SortOrder = GlobalHelper.InitializationNumber;
                 ListDanhMucQuayDichVu[i].Display = GlobalHelper.InitializationString;
-
-                result = await GetByCondition(item => item.DanhMucQuayDichVuID == ListDanhMucQuayDichVu[i].ID && item.Active == true).OrderByDescending(item => item.NgayDangKySoThuTu).Take(1).ToListAsync();
+                result = await GetByCondition(item => item.DanhMucQuayDichVuID == ListDanhMucQuayDichVu[i].ID && item.Active == true && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).OrderByDescending(item => item.NgayDangKySoThuTu).Take(1).ToListAsync();
                 if (result != null)
                 {
                     if (result.Count > 0)
@@ -221,16 +223,17 @@ namespace Service.Implement
             }
             return ListDanhMucQuayDichVu;
         }
+
         public virtual async Task<List<DanhMucQuayDichVu>> GetGoiSoChiTietDangKy02ToListAsync(List<long> ListDanhMucQuayDichVuID)
         {
             List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
-            List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item=> ListDanhMucQuayDichVuID.Contains(item.ID)).ToListAsync();
+            List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item => ListDanhMucQuayDichVuID.Contains(item.ID)).ToListAsync();
+            DateTime Now = GlobalHelper.InitializationDateTime;
             for (int i = 0; i < ListDanhMucQuayDichVu.Count; i++)
             {
                 ListDanhMucQuayDichVu[i].SortOrder = GlobalHelper.InitializationNumber;
                 ListDanhMucQuayDichVu[i].Display = GlobalHelper.InitializationString;
-
-                result = await GetByCondition(item => item.DanhMucQuayDichVuID == ListDanhMucQuayDichVu[i].ID && item.Active == true).OrderByDescending(item => item.NgayDangKySoThuTu).Take(1).ToListAsync();
+                result = await GetByCondition(item => item.DanhMucQuayDichVuID == ListDanhMucQuayDichVu[i].ID && item.Active == true && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).OrderByDescending(item => item.NgayDangKySoThuTu).Take(1).ToListAsync();
                 if (result != null)
                 {
                     if (result.Count > 0)
@@ -239,14 +242,52 @@ namespace Service.Implement
                         ListDanhMucQuayDichVu[i].Display = result[0].NgayDangKySoThuTuString;
                     }
                 }
+            }
+            return ListDanhMucQuayDichVu;
+        }
+        public virtual async Task<List<DanhMucQuayDichVu>> GetGoiSoChiTietDangKy02_001ToListAsync(string SearchString)
+        {
+            List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = new List<DanhMucQuayDichVu>();
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+
+                List<long> ListDanhMucQuayDichVuID = new List<long>();
+                foreach (string DanhMucQuayDichVuIDString in SearchString.Split('-'))
+                {
+                    if (!string.IsNullOrEmpty(DanhMucQuayDichVuIDString))
+                    {
+                        try
+                        {
+                            ListDanhMucQuayDichVuID.Add(long.Parse(DanhMucQuayDichVuIDString));
+                        }
+                        catch (Exception ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+                ListDanhMucQuayDichVu = await GetGoiSoChiTietDangKy02ToListAsync(ListDanhMucQuayDichVuID);
             }
             return ListDanhMucQuayDichVu;
         }
         public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy03ToListAsync(long DanhMucQuayDichVuID, long DanhMucDichVuID, int Number)
         {
             List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
-            result.AddRange(await GetByCondition(item => item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.Active == true).OrderByDescending(item => item.NgayDangKySoThuTu).Take(1).ToListAsync());            
-            result.AddRange(await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.Active == false).OrderBy(item => item.NgayDangKySoThuTu).Take(Number).ToListAsync());
+            DateTime Now = GlobalHelper.InitializationDateTime;
+            result.AddRange(await GetByCondition(item => item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.Active == true && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).OrderByDescending(item => item.NgayDangKySoThuTu).Take(1).ToListAsync());
+            result.AddRange(await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.Active == false && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).OrderBy(item => item.NgayDangKySoThuTu).Take(Number).ToListAsync());
+
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy04ToListAsync(long DanhMucQuayDichVuID, int Number)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            DateTime Now = GlobalHelper.InitializationDateTime;
+            result.AddRange(await GetByCondition(item => item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.Active == true && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).OrderBy(item => item.NgayDangKySoThuTu).Take(Number).ToListAsync());
 
             if (result == null)
             {

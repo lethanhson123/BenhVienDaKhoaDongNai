@@ -3,7 +3,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 export class BaseParameter extends Base{   
-    ListID?: number[];
+    ListID?: number[];    
     SearchString?: string;
     Token?: string;
     IDString?: string;

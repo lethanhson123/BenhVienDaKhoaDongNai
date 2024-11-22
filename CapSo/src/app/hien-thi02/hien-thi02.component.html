@@ -1,0 +1,65 @@
+<div class="section" id="user-profile">
+    <div class="row">
+        <div class="col s12 m12 l4" style="text-align: center; font-size: 24px;">
+            <div class="card-alert card green darken-3">
+                <div class="card-content white-text">
+                    <p>
+                        Tiếp xúc vui vẻ, mạnh khoẻ mỗi ngày</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m12 l4" style="text-align: center;">
+            <img src="image/logo001.png" class="responsive-img">
+        </div>
+        <div class="col s12 m12 l4" style="text-align: center; font-size: 24px;">
+            <div class="card-alert card grey darken-4">
+                <div class="card-content white-text">
+                    <p>
+                        {{GoiSoChiTietService.BaseParameter.KetThuc
+                        |
+                        date:'dd/MM/yyyy HH:mm:ss'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l6">
+            <table class="striped">
+                <thead class="yellow darken-4 padding-5 white-text">
+                    <tr>
+                        <th style="width: 50%; text-align: center; font-size: 24px;">Quầy</th>
+                        <th style="width: 50%; text-align: center; font-size: 24px;">Số thứ tự</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of DanhMucQuayDichVuService.List02; index as i">
+                    <tr *ngIf="i % 2 == 0" class="light-blue lighten-1 white-text">
+                        <td style="text-align: center; font-size: 60px; font-weight: bolder;">{{item.Name}}</td>
+                        <td style="text-align: center; font-size: 60px; font-weight: bolder;">{{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 padding-5 white-text">
+                        <td style="text-align: center; font-size: 60px; font-weight: bolder;">{{item.Name}}</td>
+                        <td style="text-align: center; font-size: 60px; font-weight: bolder;">{{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col s12 m12 l6">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/8ICjPG93c4Y?si=z7GzqhiIRO_m73fM"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card-alert card red">
+                <div class="card-content white-text">
+                    <p style="font-size: 30px; text-align: center;">Vui lòng vào đúng Quầy hoặc Phòng khám theo số thứ
+                        tự</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>
