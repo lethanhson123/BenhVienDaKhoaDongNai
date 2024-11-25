@@ -12,6 +12,7 @@ import { HienThi02Component } from './hien-thi02/hien-thi02.component';
 import { HienThi01Component } from './hien-thi01/hien-thi01.component';
 import { HienThiComponent } from './hien-thi/hien-thi.component';
 import { HienThi03Component } from './hien-thi03/hien-thi03.component';
+import { HienThi0201Component } from './hien-thi0201/hien-thi0201.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,9 @@ const routes: Routes = [
   },
   {
     path: 'HienThi02/:SearchString', component: HienThi02Component,
+  },
+  {
+    path: 'HienThi0201/:SearchString', component: HienThi0201Component,
   },
   {
     path: 'HienThi03', component: HienThi03Component,

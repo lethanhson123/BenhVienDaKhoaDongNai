@@ -16,6 +16,8 @@ export const environment = {
   PageSize: 10,
   Interval: 10000,
   Number: 4,
+  G: 1,
+  C: 3,
   Token: "Token",
   Homepage: "Homepage",
   Login: "Login",

@@ -24,6 +24,7 @@ import { HienThi01Component } from './hien-thi01/hien-thi01.component';
 import { HienThi02Component } from './hien-thi02/hien-thi02.component';
 import { HienThi04Component } from './hien-thi04/hien-thi04.component';
 import { HienThi03Component } from './hien-thi03/hien-thi03.component';
+import { HienThi0201Component } from './hien-thi0201/hien-thi0201.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HienThi03Component } from './hien-thi03/hien-thi03.component';
     HienThi02Component,
     HienThi04Component,
     HienThi03Component,
+    HienThi0201Component,
 
   ],
   imports: [

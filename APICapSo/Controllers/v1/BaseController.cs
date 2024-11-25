@@ -29,5 +29,21 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByParentIDToListAsync")]
+        public virtual async Task<List<T>> GetByParentIDToListAsync()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByParentIDToListAsync(baseParameter.ParentID.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }

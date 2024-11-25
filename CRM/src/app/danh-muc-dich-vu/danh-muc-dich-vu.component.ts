@@ -11,6 +11,9 @@ import { DownloadService } from 'src/app/shared/Download.service';
 import { DanhMucDichVu } from 'src/app/shared/DanhMucDichVu.model';
 import { DanhMucDichVuService } from 'src/app/shared/DanhMucDichVu.service';
 
+import { DanhMucKhuVuc } from 'src/app/shared/DanhMucKhuVuc.model';
+import { DanhMucKhuVucService } from 'src/app/shared/DanhMucKhuVuc.service';
+
 @Component({
   selector: 'app-danh-muc-dich-vu',
   templateUrl: './danh-muc-dich-vu.component.html',
@@ -27,12 +30,16 @@ export class DanhMucDichVuComponent implements OnInit {
     public DownloadService: DownloadService,
 
     public DanhMucDichVuService: DanhMucDichVuService,
+    public DanhMucKhuVucService: DanhMucKhuVucService,
   ) { }
 
   ngOnInit(): void { 
+    this.DanhMucKhuVucSearch();
     this.DanhMucDichVuSearch();
   }
-
+  DanhMucKhuVucSearch() {
+    this.DanhMucKhuVucService.ComponentGetAllToListAsync(this.DanhMucDichVuService);
+  }
   DanhMucDichVuSearch() {
     this.DanhMucDichVuService.SearchAll(this.DanhMucDichVuSort, this.DanhMucDichVuPaginator);
   }

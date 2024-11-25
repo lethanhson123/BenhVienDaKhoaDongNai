@@ -33,9 +33,7 @@ export class TiepNhanSComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    // this.DanhMucDichVuSearch();
-    // this.DanhMucQuayDichVuSearch();
+  ngOnInit(): void {    
     let URL = environment.TiepNhanURL + "TiepNhanS";
     var Width = window.innerWidth;
     if (Width > 300) {

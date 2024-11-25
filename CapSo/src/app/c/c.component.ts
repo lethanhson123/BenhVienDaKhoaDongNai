@@ -30,8 +30,8 @@ export class CComponent implements OnInit {
 
   DanhMucDichVuSearch() {
     this.GoiSoService.IsShowLoading = true;
-    this.DanhMucDichVuService.BaseParameter.Active = false;
-    this.DanhMucDichVuService.GetByActiveToListAsync().subscribe(
+    this.DanhMucDichVuService.BaseParameter.ParentID = environment.C;
+    this.DanhMucDichVuService.GetByParentIDToListAsync().subscribe(
       res => {
         this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
         this.DanhMucDichVuService.ListFilter = this.DanhMucDichVuService.List;
