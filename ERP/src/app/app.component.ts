@@ -302,11 +302,14 @@ export class AppComponent {
       let left = 130 * i;
       let height = itemParent.ListChild.length * 44;
       if (itemParent.ID == this.DanhMucChucNangService.ListParent[i].ID) {
-        itemParent.CSS = "transform-origin: 100% 0px; opacity: 1; transform: scaleX(1) scaleY(1); display: block; width: 300px; height: " + height + "px; top: 64px; left: " + left + "px;";
-        itemParent.CSS = this.Sanitizer.bypassSecurityTrustStyle(itemParent.CSS);
+        itemParent.Active = !itemParent.Active;
+        if (itemParent.Active == true) {
+          itemParent.CSS = "transform-origin: 100% 0px; opacity: 1; transform: scaleX(1) scaleY(1); display: block; width: 300px; height: " + height + "px; top: 64px; left: " + left + "px;";
+          itemParent.CSS = this.Sanitizer.bypassSecurityTrustStyle(itemParent.CSS);
 
-        itemParent.CSSMobile = "display: block;";
-        itemParent.CSSMobile = this.Sanitizer.bypassSecurityTrustStyle(itemParent.CSSMobile);
+          itemParent.CSSMobile = "display: block;";
+          itemParent.CSSMobile = this.Sanitizer.bypassSecurityTrustStyle(itemParent.CSSMobile);
+        }
       }
     }
   }

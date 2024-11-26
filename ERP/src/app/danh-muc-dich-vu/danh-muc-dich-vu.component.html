@@ -3,8 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m6 l6">
-                    <h6 class="breadcrumbs-title">Danh mục Thành viên
-                        <span *ngIf="DanhMucThanhVienService.List">({{DanhMucThanhVienService.List.length-1}}
+                    <h6 class="breadcrumbs-title">Danh mục Khám bệnh
+                        <span *ngIf="DanhMucDichVuService.List">({{DanhMucDichVuService.List.length-1}}
                             items)</span>
                     </h6>
                 </div>
@@ -15,10 +15,10 @@
                         </li>
                         <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
                         </li>
-                        <li class="breadcrumb-item active">Quản trị
+                        <li class="breadcrumb-item active">Cấp số
                         </li>
-                        <li class="breadcrumb-item"><a routerLink="/DanhMucThanhVien" title="Danh mục Thành viên">Danh
-                                mục Thành viên</a>
+                        <li class="breadcrumb-item"><a routerLink="/DanhMucDichVu" title="Danh mục Khám bệnh">Danh
+                                mục Khám bệnh</a>
                         </li>
                     </ol>
                 </div>
@@ -31,24 +31,24 @@
                 <div class="card card card-default scrollspy">
                     <div class="card-content">
                         <div class="col s12 m12 l11">
-                            <input [(ngModel)]="DanhMucThanhVienService.BaseParameter.SearchString"
-                                placeholder="Tìm ..." class="form-control" (keyup.enter)="DanhMucThanhVienSearch()">
+                            <input [(ngModel)]="DanhMucDichVuService.BaseParameter.SearchString" placeholder="Tìm ..."
+                                class="form-control" (keyup.enter)="DanhMucDichVuSearch()">
                         </div>
                         <div class="col s12 m12 l1">
                             <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
-                                title="Tìm" (click)="DanhMucThanhVienSearch()"><i class="material-icons">search</i></a>
+                                title="Tìm" (click)="DanhMucDichVuSearch()"><i class="material-icons">search</i></a>
                         </div>
                         <div class="KhungOverflow">
-                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort
-                                #DanhMucThanhVienSort="matSort" [dataSource]="DanhMucThanhVienService.DataSource">
+                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DanhMucDichVuSort="matSort"
+                                [dataSource]="DanhMucDichVuService.DataSource">
                                 <ng-container matColumnDef="STT">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>
                                         STT
                                     </th>
-                                    <td mat-cell *matCellDef="let element; index as i;">
-                                        <div *ngIf="DanhMucThanhVienPaginator">
-                                            {{DanhMucThanhVienPaginator.pageSize *
-                                            DanhMucThanhVienPaginator.pageIndex + i + 1}}
+                                    <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                        <div *ngIf="DanhMucDichVuPaginator">
+                                            {{DanhMucDichVuPaginator.pageSize *
+                                            DanhMucDichVuPaginator.pageIndex + i + 1}}
                                         </div>
                                     </td>
                                 </ng-container>
@@ -59,12 +59,32 @@
                                         {{element.ID}}
                                     </td>
                                 </ng-container>
+                                <ng-container matColumnDef="ParentID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Khu vực
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <select class="form-select" name="element.ParentID"
+                                            [(ngModel)]="element.ParentID">
+                                            <option *ngFor="let item of DanhMucKhuVucService.ListFilter;"
+                                                [value]="item.ID">
+                                                {{item.Name}}</option>
+                                        </select>
+                                    </td>
+                                </ng-container>
                                 <ng-container matColumnDef="Name">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề
                                     </th>
                                     <td mat-cell *matCellDef="let element">
                                         <input class="form-control" type="text" placeholder="Tiêu đề"
                                             name="Name{{element.ID}}" [(ngModel)]="element.Name">
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Code">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã quản lý
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <input class="form-control" type="text" placeholder="Mã quản lý"
+                                            name="Code{{element.ID}}" [(ngModel)]="element.Code">
                                     </td>
                                 </ng-container>
                                 <ng-container matColumnDef="Note">
@@ -84,6 +104,16 @@
                                             style="text-align: right;">
                                     </td>
                                 </ng-container>
+                                <ng-container matColumnDef="IsBHYT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>BHYT
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="IsBHYT{{element.ID}}"
+                                                [(ngModel)]="element.IsBHYT">
+                                        </div>
+                                    </td>
+                                </ng-container>
                                 <ng-container matColumnDef="Active">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích hoạt
                                     </th>
@@ -99,27 +129,24 @@
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>
                                     </th>
                                     <td mat-cell *matCellDef="let element">
-                                        <a (click)="DanhMucThanhVienSave(element)"
+                                        <a (click)="DanhMucKhuVucSave(element)"
                                             class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
                                                 class="material-icons">save</i></a>
-                                        <a *ngIf="element.ID>0" (click)="DanhMucThanhVienDelete(element)"
+                                        <a *ngIf="element.ID>0" (click)="DanhMucKhuVucDelete(element)"
                                             class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
                                                 class="material-icons">delete_forever</i></a>
                                     </td>
                                 </ng-container>
-                                <tr mat-header-row *matHeaderRowDef="DanhMucThanhVienService.DisplayColumns">
+                                <tr mat-header-row *matHeaderRowDef="DanhMucDichVuService.DisplayColumns03">
                                 </tr>
-                                <tr mat-row *matRowDef="let row; columns: DanhMucThanhVienService.DisplayColumns;">
+                                <tr mat-row *matRowDef="let row; columns: DanhMucDichVuService.DisplayColumns03;">
                                 </tr>
                             </table>
-                            <mat-paginator *ngIf="!NotificationService.IsMobile"
-                                #DanhMucThanhVienPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
-                                [pageSize]="6" [showFirstLastButtons]></mat-paginator>
-
-
-                            <table *ngIf="NotificationService.IsMobile" mat-table matSort
-                                #DanhMucThanhVienSort="matSort" [dataSource]="DanhMucThanhVienService.DataSource"
-                                class="table table-striped m-0">
+                            <mat-paginator *ngIf="!NotificationService.IsMobile" #DanhMucDichVuPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="6"
+                                [showFirstLastButtons]></mat-paginator>
+                            <table *ngIf="NotificationService.IsMobile" mat-table matSort #DanhMucDichVuSort="matSort"
+                                [dataSource]="DanhMucDichVuService.DataSource" class="table table-striped m-0">
                                 <ng-container matColumnDef="STT">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>
                                         Danh sách
@@ -127,10 +154,26 @@
                                     <td mat-cell *matCellDef="let element; index as i;">
                                         <div class="row gx-4">
                                             <div class="col s12 m12 l12">
+                                                <label class="form-label">Khu vực</label>
+                                                <br />
+                                                <select class="form-select" name="element.ParentID"
+                                                    [(ngModel)]="element.ParentID">
+                                                    <option *ngFor="let item of DanhMucKhuVucService.ListFilter;"
+                                                        [value]="item.ID">
+                                                        {{item.Name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col s12 m12 l12">
                                                 <label class="form-label">Tiêu đề</label>
                                                 <br />
                                                 <input class="form-control" type="text" placeholder="Tiêu đề"
                                                     name="Name{{element.ID}}" [(ngModel)]="element.Name">
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label class="form-label">Mã quản lý</label>
+                                                <br />
+                                                <input class="form-control" type="text" placeholder="Mã quản lý"
+                                                    name="Code{{element.ID}}" [(ngModel)]="element.Code">
                                             </div>
                                             <div class="col s12 m12 l12">
                                                 <label class="form-label">Ghi chú</label>
@@ -147,18 +190,25 @@
                                             </div>
                                             <div class="col s12 m12 l12">
                                                 <label>
+                                                    <input type="checkbox" name="IsBHYT{{element.ID}}"
+                                                        [(ngModel)]="element.IsBHYT">
+                                                    <span>BHYT</span>
+                                                </label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>
                                                     <input type="checkbox" name="Active{{element.ID}}"
                                                         [(ngModel)]="element.Active">
                                                     <span>Kích hoạt</span>
                                                 </label>
                                             </div>
                                             <div class="col s6 m6 l6">
-                                                <a (click)="DanhMucThanhVienSave(element)" style="width: 100%;"
+                                                <a (click)="DanhMucKhuVucSave(element)" style="width: 100%;"
                                                     class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
                                                         class="material-icons">save</i></a>
                                             </div>
                                             <div class="col s6 m6 l6">
-                                                <a *ngIf="element.ID>0" (click)="DanhMucThanhVienDelete(element)"
+                                                <a *ngIf="element.ID>0" (click)="DanhMucKhuVucDelete(element)"
                                                     style="width: 100%;"
                                                     class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
                                                         class="material-icons">delete_forever</i></a>
@@ -167,15 +217,14 @@
                                         <br />
                                     </td>
                                 </ng-container>
-                                <tr mat-header-row *matHeaderRowDef="DanhMucThanhVienService.DisplayColumnsMobile">
+                                <tr mat-header-row *matHeaderRowDef="DanhMucDichVuService.DisplayColumnsMobile">
                                 </tr>
-                                <tr mat-row
-                                    *matRowDef="let row; columns: DanhMucThanhVienService.DisplayColumnsMobile;">
+                                <tr mat-row *matRowDef="let row; columns: DanhMucDichVuService.DisplayColumnsMobile;">
                                 </tr>
                             </table>
-                            <mat-paginator *ngIf="NotificationService.IsMobile"
-                                #DanhMucThanhVienPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
-                                [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
+                            <mat-paginator *ngIf="NotificationService.IsMobile" #DanhMucDichVuPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000"
+                                [showFirstLastButtons]></mat-paginator>
                         </div>
                     </div>
                 </div>
@@ -183,4 +232,4 @@
         </div>
     </div>
 </div>
-<app-loading *ngIf="DanhMucThanhVienService.IsShowLoading"></app-loading>
+<app-loading *ngIf="DanhMucDichVuService.IsShowLoading"></app-loading>

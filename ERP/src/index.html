@@ -105,28 +105,32 @@
 			overflow: auto;
 		}
 
-		.mat-header-row, 
-		.cdk-header-row{
+		.mat-header-row,
+		.cdk-header-row {
 			background-color: #e4e4e4;
 		}
-		table thead{
-			background-color: #dddddd !important;
-			border-left: #dddddd 1px solid;
-			border-right: #dddddd 1px solid;
+
+		table thead {
+			background-color: #fbc02d !important;
+			border-left: #fbc02d 1px solid;
+			border-right: #fbc02d 1px solid;
 		}
-		table tbody tr{
+
+		table tbody tr {
 			background-color: transparent;
 		}
-		table tbody tr:nth-child(even){
+
+		table tbody tr:nth-child(even) {
 			background-color: #f9f9f9;
 		}
-		.mat-sort-header-content {			
+
+		.mat-sort-header-content {
 			color: #000000;
 			font-weight: bold;
 			font-size: 12px;
 			text-transform: uppercase;
 			width: 100%;
-			padding: 2px;		
+			padding: 2px;
 			white-space: nowrap;
 			display: flex !important;
 			text-align: center !important;
@@ -139,11 +143,11 @@
 			padding: 0px;
 			padding-left: 10px;
 			padding-right: 10px;
-			padding-bottom: 0px;
-			text-align: center;
+			padding-bottom: 0px;			
 			border-left: #dddddd 1px solid;
 		}
-		.mat-row .mat-cell:last-child {			
+
+		.mat-row .mat-cell:last-child {
 			border-right: #dddddd 1px solid;
 		}
 
@@ -164,6 +168,7 @@
 		input[type="text"],
 		input[type="number"],
 		label,
+		span,
 		select,
 		option {
 			font-size: 12px;
@@ -172,7 +177,7 @@
 		input[type="password"],
 		input[type="date"],
 		select {
-			height: 32px;
+			color: green;
 		}
 
 		input[type="checkbox"] {
@@ -186,6 +191,18 @@
 			color: green;
 			font-weight: bold;
 			font-size: 12px;
+		}		
+		.form-label{
+			font-weight: bolder;
+		}
+		.breadcrumbs-title,
+		.card-title{
+			font-size: 16px !important;
+		}
+		.btn{
+			padding-left: 10px; 
+			padding-right: 10px;
+			margin-left: 5px;
 		}
 
 		mat-select div,
@@ -199,6 +216,7 @@
 	data-menu="horizontal-menu" data-col="2-columns">
 
 	<app-root></app-root>
+	
 	<footer style="width: 100%; position: fixed; left: 0px; bottom: 0px; z-index: 2000;"
 		class="page-footer footer footer-static footer-dark gradient-45deg-light-blue-cyan gradient-shadow navbar-border navbar-shadow">
 		<div class="footer-copyright">
