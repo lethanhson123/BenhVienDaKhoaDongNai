@@ -88,6 +88,7 @@
 	<link rel="stylesheet" type="text/css" href="app-assets/css/layouts/style-horizontal.css">
 	<link rel="stylesheet" type="text/css" href="app-assets/css/pages/data-tables.css">
 	<link rel="stylesheet" type="text/css" href="app-assets/css/pages/login.css">
+	<link rel="stylesheet" type="text/css" href="app-assets/css/pages/dashboard.css">
 	<link rel="stylesheet" type="text/css" href="app-assets/css/custom/custom.css">
 
 	<script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
@@ -111,40 +112,51 @@
 			background-color: #e4e4e4;
 		}
 
+		table{
+			padding: 0px !important;
+		}
 		table thead {
 			background-color: #fbc02d !important;
 			border-left: #fbc02d 1px solid;
-			border-right: #fbc02d 1px solid;
+			border-right: #fbc02d 1px solid;			
 		}
-
+		table thead th {		
+			padding: 0px !important;
+		}
+		
 		table tbody tr {
 			background-color: transparent;
+			padding: 0px !important;			
 		}
 
 		table tbody tr:nth-child(even) {
 			background-color: #f9f9f9;
+			padding: 0px !important;
 		}
 
-		.mat-sort-header-content {
+		.mat-header-row{
+			height: 30px !important;		
+		}
+		.mat-sort-header-content {			
 			color: #000000;
 			font-weight: bold;
 			font-size: 12px;
 			text-transform: uppercase;
 			width: 100%;
-			padding: 2px;
-			white-space: nowrap;
-			display: flex !important;
+			padding: 0px !important;			
 			text-align: center !important;
 			justify-content: center !important;
 		}
-
-		.mat-row .mat-cell {
+		.mat-row {
+			height: 30px !important;		
+		}
+		.mat-row .mat-cell {			
 			font-size: 12px;
 			white-space: nowrap;
 			padding: 0px;
 			padding-left: 10px;
 			padding-right: 10px;
-			padding-bottom: 0px;			
+			padding-bottom: 0px;				
 			border-left: #dddddd 1px solid;
 		}
 
@@ -172,7 +184,7 @@
 		span,
 		select,
 		option {
-			font-size: 12px;
+			font-size: 12px;			
 		}
 
 		input[type="password"],
@@ -191,18 +203,21 @@
 		.form-select,
 		.form-control {
 			color: green;			
-			font-size: 12px;
+			font-size: 12px;			
 		}		
+
 		.form-label{
 			font-weight: bolder;
 		}
+
 		.breadcrumbs-title,
 		.card-title{
 			font-size: 16px !important;
 		}
+
 		.btn{
 			padding-left: 10px; 
-			padding-right: 10px;
+			padding-right: 10px;			
 			margin-left: 5px;
 		}
 

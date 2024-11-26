@@ -113,10 +113,7 @@ const routes: Routes = [
 
   {
     path: 'DuAn', component: DuAnComponent,
-  },  
-  {
-    path: 'DuAn001', component: DuAnComponent,
-  },  
+  },   
   {
     path: 'DuAnInfo/:ID', component: DuAnInfoComponent,
   }, 

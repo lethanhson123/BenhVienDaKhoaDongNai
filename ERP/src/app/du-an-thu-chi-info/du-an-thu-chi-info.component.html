@@ -2,12 +2,10 @@
     <div class="pt-1 pb-0" id="breadcrumbs-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col s12 m6 l6">
-                    <h6 class="breadcrumbs-title">Thu chi:
-                        <b>{{DuAnThuChiService.FormData.Name}} [{{DuAnThuChiService.FormData.ID}}]</b>
-                    </h6>
+                <div class="col s1 m1 l1">
+                    <h6 class="breadcrumbs-title">Thu chi</h6>
                 </div>
-                <div class="col s12 m6 l6 right-align-md">
+                <div class="col s11 m11 l11 right-align-md">
                     <ol class="breadcrumbs mb-0">
                         <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
                                 <<< Quay lại</a>
@@ -21,11 +19,11 @@
                         </li>
                         <li class="breadcrumb-item"><a
                                 routerLink="/DuAnQuyetDinhInfo/{{DuAnService.FormData.ID}}/{{DuAnQuyetDinhService.FormData.ID}}"
-                                title="{{DuAnQuyetDinhService.FormData.Name}}">{{DuAnQuyetDinhService.FormData.Name}}</a>
+                                title="{{DuAnQuyetDinhService.FormData.Name}}">{{DuAnQuyetDinhService.FormData.Name}} ({{DuAnQuyetDinhService.FormData.SoQuyetDinh}})</a>
                         </li>
                         <li class="breadcrumb-item"><a
                                 routerLink="/DuAnThuChiInfo/{{DuAnService.FormData.ID}}/{{DuAnQuyetDinhService.FormData.ID}}/{{DuAnThuChiService.FormData.ID}}"
-                                title="{{DuAnThuChiService.FormData.Name}}">{{DuAnThuChiService.FormData.Name}}</a>
+                                title="{{DuAnThuChiService.FormData.Name}}">{{DuAnThuChiService.FormData.Name}} ({{DuAnThuChiService.FormData.SoButToan}})</a>
                         </li>
                     </ol>
                 </div>
