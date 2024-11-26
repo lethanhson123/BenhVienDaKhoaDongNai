@@ -42,6 +42,7 @@ import { Dashboard001Component } from './dashboard001/dashboard001.component';
 import { DanhMucBieuMauComponent } from './danh-muc-bieu-mau/danh-muc-bieu-mau.component';
 import { DanhMucHinhThucThanhToanComponent } from './danh-muc-hinh-thuc-thanh-toan/danh-muc-hinh-thuc-thanh-toan.component';
 import { DanhMucBieuMauInfoComponent } from './danh-muc-bieu-mau-info/danh-muc-bieu-mau-info.component';
+import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { DanhMucBieuMauInfoComponent } from './danh-muc-bieu-mau-info/danh-muc-b
     DanhMucBieuMauComponent,
     DanhMucHinhThucThanhToanComponent,
     DanhMucBieuMauInfoComponent,
+    GioiThieuComponent,
 
   ],
   imports: [
