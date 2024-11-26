@@ -22,6 +22,14 @@ import { DanhMucDichVuComponent } from './danh-muc-dich-vu/danh-muc-dich-vu.comp
 import { DanhMucKhuVucComponent } from './danh-muc-khu-vuc/danh-muc-khu-vuc.component';
 import { DanhMucPhongKhamComponent } from './danh-muc-phong-kham/danh-muc-phong-kham.component';
 import { DanhMucQuayDichVuComponent } from './danh-muc-quay-dich-vu/danh-muc-quay-dich-vu.component';
+import { DanhMucBieuMauComponent } from './danh-muc-bieu-mau/danh-muc-bieu-mau.component';
+import { DanhMucHinhThucThanhToanComponent } from './danh-muc-hinh-thuc-thanh-toan/danh-muc-hinh-thuc-thanh-toan.component';
+import { Dashboard001Component } from './dashboard001/dashboard001.component';
+import { DuAnThuChiInfoComponent } from './du-an-thu-chi-info/du-an-thu-chi-info.component';
+import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-dinh-info.component';
+import { DuAnInfoComponent } from './du-an-info/du-an-info.component';
+import { DuAnComponent } from './du-an/du-an.component';
+import { DanhMucBieuMauInfoComponent } from './danh-muc-bieu-mau-info/danh-muc-bieu-mau-info.component';
 
 
 const routes: Routes = [
@@ -66,6 +74,15 @@ const routes: Routes = [
   {
     path: 'DanhMucTinhThanhToaDo', component: DanhMucTinhThanhToaDoComponent,
   }, 
+  {
+    path: 'DanhMucBieuMau', component: DanhMucBieuMauComponent,
+  }, 
+  {
+    path: 'DanhMucBieuMauInfo/:ID', component: DanhMucBieuMauInfoComponent,
+  }, 
+  {
+    path: 'DanhMucHinhThucThanhToan', component: DanhMucHinhThucThanhToanComponent,
+  }, 
 
   {
     path: 'DanhMucKhoaChuyenMon', component: DanhMucKhoaChuyenMonComponent,
@@ -92,6 +109,29 @@ const routes: Routes = [
   {
     path: 'ThanhVienThongTin', component: ThanhVienThongTinComponent,
   },
+
+
+  {
+    path: 'DuAn', component: DuAnComponent,
+  },  
+  {
+    path: 'DuAn001', component: DuAnComponent,
+  },  
+  {
+    path: 'DuAnInfo/:ID', component: DuAnInfoComponent,
+  }, 
+  {
+    path: 'DuAnQuyetDinhInfo/:DuAnID/:ID', component: DuAnQuyetDinhInfoComponent,
+  }, 
+  {
+    path: 'DuAnThuChiInfo/:DuAnID/:DuAnQuyetDinhID/:ID', component: DuAnThuChiInfoComponent,
+  }, 
+
+  {
+    path: 'Dashboard001', component: Dashboard001Component,
+  },  
+
+  
 ];
 
 @NgModule({
