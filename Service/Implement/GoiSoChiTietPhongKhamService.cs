@@ -1,5 +1,4 @@
-﻿using Service.Interface;
-
+﻿
 namespace Service.Implement
 {
     public class GoiSoChiTietPhongKhamService : BaseService<GoiSoChiTietPhongKham, IGoiSoChiTietPhongKhamRepository>
@@ -11,11 +10,15 @@ namespace Service.Implement
 
         private readonly IGoiSoRepository _GoiSoRepository;
 
+        private readonly IWebHostEnvironment _WebHostEnvironment;
+
         public GoiSoChiTietPhongKhamService(IGoiSoChiTietPhongKhamRepository GoiSoChiTietPhongKhamRepository
 
             , IGoiSoRepository GoiSoRepository
 
             , IDanhMucPhongKhamRepository danhMucPhongKhamRepository
+
+            , IWebHostEnvironment WebHostEnvironment
 
             ) : base(GoiSoChiTietPhongKhamRepository)
         {
@@ -24,6 +27,8 @@ namespace Service.Implement
             _GoiSoRepository = GoiSoRepository;
 
             _DanhMucPhongKhamRepository = danhMucPhongKhamRepository;
+
+            _WebHostEnvironment = WebHostEnvironment;
         }
         public override void Initialization(GoiSoChiTietPhongKham model)
         {
@@ -34,6 +39,19 @@ namespace Service.Implement
                 {
                     model.DanhMucPhongKhamName = _DanhMucPhongKhamRepository.GetByID(model.DanhMucPhongKhamID.Value).Name;
                 }
+            }
+            if (string.IsNullOrEmpty(model.Barcode))
+            {
+                string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+                bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(folderPath);
+                }
+                Barcode Barcode = new Barcode();
+                Barcode = Ean13.CreateEAN13(folderPath);
+                model.Barcode = Barcode.Code;
+                model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
             }
             if (string.IsNullOrEmpty(model.NgayCapSoSoThuTuString))
             {

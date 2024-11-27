@@ -14,6 +14,7 @@ global using Service.Interface;
 global using Service.Model;
 
 global using Helper;
+global using Helper.Model;
 
 global using System.Text;
 global using System.Text.Encodings.Web;

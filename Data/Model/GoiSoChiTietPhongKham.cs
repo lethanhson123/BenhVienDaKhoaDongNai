@@ -11,6 +11,8 @@
         public DateTime? NgayDangKy { get; set; }
         public int? NgayDangKySoThuTu { get; set; }
         public string? NgayDangKySoThuTuString { get; set; }
+        public string? Barcode { get; set; }
+        public string? BarcodeFileName { get; set; }
 
         public GoiSoChiTietPhongKham()
         {

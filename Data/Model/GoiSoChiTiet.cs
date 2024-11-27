@@ -42,6 +42,8 @@
         public DateTime? NgayLinhThuoc { get; set; }
         public int? NgayLinhThuocSoThuTu { get; set; }
         public string? NgayLinhThuocSoThuTuString { get; set; }
+        public string? Barcode { get; set; }
+        public string? BarcodeFileName { get; set; }
 
         public GoiSoChiTiet()
         {

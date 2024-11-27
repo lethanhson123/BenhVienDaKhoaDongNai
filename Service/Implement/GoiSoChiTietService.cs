@@ -1,8 +1,6 @@
-﻿using Data.Model;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.SqlServer.Server;
-using Microsoft.VisualBasic;
-using Service.Interface;
+﻿
+
+
 
 namespace Service.Implement
 {
@@ -22,6 +20,8 @@ namespace Service.Implement
         private readonly IDanhMucTinhThanhRepository _DanhMucTinhThanhRepository;
         private readonly IDanhMucQuanHuyenRepository _DanhMucQuanHuyenRepository;
         private readonly IDanhMucXaPhuongRepository _DanhMucXaPhuongRepository;
+
+        private readonly IWebHostEnvironment _WebHostEnvironment;
         public GoiSoChiTietService(IGoiSoChiTietRepository GoiSoChiTietRepository
 
             , IGoiSoChiTietPhongKhamService GoiSoChiTietPhongKhamService
@@ -36,6 +36,8 @@ namespace Service.Implement
             , IDanhMucQuanHuyenRepository DanhMucQuanHuyenRepository
             , IDanhMucXaPhuongRepository DanhMucXaPhuongRepository
 
+            , IWebHostEnvironment WebHostEnvironment
+
             ) : base(GoiSoChiTietRepository)
         {
             _GoiSoChiTietRepository = GoiSoChiTietRepository;
@@ -48,6 +50,8 @@ namespace Service.Implement
             _DanhMucTinhThanhRepository = DanhMucTinhThanhRepository;
             _DanhMucQuanHuyenRepository = DanhMucQuanHuyenRepository;
             _DanhMucXaPhuongRepository = DanhMucXaPhuongRepository;
+
+            _WebHostEnvironment = WebHostEnvironment;
         }
         public override void Initialization(GoiSoChiTiet model)
         {
@@ -68,6 +72,20 @@ namespace Service.Implement
             if (model.DanhMucXaPhuongID > 0)
             {
                 model.DanhMucXaPhuongName = _DanhMucTinhThanhRepository.GetByID(model.DanhMucXaPhuongID.Value).Name;
+            }
+
+            if (string.IsNullOrEmpty(model.Barcode))
+            {
+                string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+                bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(folderPath);
+                }
+                Barcode Barcode = new Barcode();
+                Barcode = Ean13.CreateEAN13(folderPath);
+                model.Barcode = Barcode.Code;
+                model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
             }
 
             if (model.DanhMucDichVuID > 0)
