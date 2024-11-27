@@ -11,6 +11,9 @@ import { DownloadService } from 'src/app/shared/Download.service';
 import { DanhMucPhongKham } from 'src/app/shared/DanhMucPhongKham.model';
 import { DanhMucPhongKhamService } from 'src/app/shared/DanhMucPhongKham.service';
 
+import { DanhMucKhuVuc } from 'src/app/shared/DanhMucKhuVuc.model';
+import { DanhMucKhuVucService } from 'src/app/shared/DanhMucKhuVuc.service';
+
 import { DanhMucKhoaChuyenMon } from 'src/app/shared/DanhMucKhoaChuyenMon.model';
 import { DanhMucKhoaChuyenMonService } from 'src/app/shared/DanhMucKhoaChuyenMon.service';
 
@@ -30,14 +33,18 @@ export class DanhMucPhongKhamComponent implements OnInit {
     public DownloadService: DownloadService,
 
     public DanhMucPhongKhamService: DanhMucPhongKhamService,
+    public DanhMucKhuVucService: DanhMucKhuVucService,
     public DanhMucKhoaChuyenMonService: DanhMucKhoaChuyenMonService,
   ) { }
 
   ngOnInit(): void { 
+    this.DanhMucKhuVucSearch();
     this.DanhMucKhoaChuyenMonSearch();
     this.DanhMucPhongKhamSearch();
   }
-
+  DanhMucKhuVucSearch() {
+    this.DanhMucKhuVucService.ComponentGetAllToListAsync(this.DanhMucPhongKhamService);
+  }
   DanhMucKhoaChuyenMonSearch() {
     this.DanhMucKhoaChuyenMonService.ComponentGetAllToListAsync(this.DanhMucPhongKhamService);
   }

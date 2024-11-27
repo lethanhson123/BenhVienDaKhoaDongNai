@@ -77,6 +77,8 @@
 
             services.AddTransient<IGoiSoService, GoiSoService>();
             services.AddTransient<IGoiSoChiTietService, GoiSoChiTietService>();
+            services.AddTransient<IGoiSoChiTietICDService, GoiSoChiTietICDService>();
+            services.AddTransient<IGoiSoChiTietPhongKhamService, GoiSoChiTietPhongKhamService>();
 
             services.AddTransient<IReportService, ReportService>();
 
@@ -135,6 +137,8 @@
 
             services.AddTransient<IGoiSoRepository, GoiSoRepository>();
             services.AddTransient<IGoiSoChiTietRepository, GoiSoChiTietRepository>();
+            services.AddTransient<IGoiSoChiTietICDRepository, GoiSoChiTietICDRepository>();
+            services.AddTransient<IGoiSoChiTietPhongKhamRepository, GoiSoChiTietPhongKhamRepository>();
 
             services.AddTransient<IReportRepository, ReportRepository>();
 

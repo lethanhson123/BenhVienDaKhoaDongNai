@@ -16,7 +16,7 @@ export class GoiSoChiTiet extends Base {
     DanhMucPhongKhamCode?: string;
     KhachHangID?: number;
     HoTen?: string;
-    NamSinh?: string;
+    NamSinh?: number;
     NgaySinh?: Date;
     DienThoai?: string;
     CCCD?: string;

@@ -58,6 +58,8 @@ namespace Data.Context
 
         public virtual DbSet<Data.Model.GoiSo> GoiSo { get; set; }
         public virtual DbSet<Data.Model.GoiSoChiTiet> GoiSoChiTiet { get; set; }
+        public virtual DbSet<Data.Model.GoiSoChiTietICD> GoiSoChiTietICD { get; set; }
+        public virtual DbSet<Data.Model.GoiSoChiTietPhongKham> GoiSoChiTietPhongKham { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

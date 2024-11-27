@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Data.Model;
+using Microsoft.AspNetCore.Hosting;
 using Service.Interface;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -13,6 +14,8 @@ namespace Service.Implement
 
         private readonly IGoiSoChiTietService _GoiSoChiTietService;
 
+        private readonly IGoiSoChiTietPhongKhamService _GoiSoChiTietPhongKhamService;
+
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public GoiSoService(IGoiSoRepository GoiSoRepository
 
@@ -20,7 +23,10 @@ namespace Service.Implement
 
             , IGoiSoChiTietService GoiSoChiTietService
 
+            , IGoiSoChiTietPhongKhamService GoiSoChiTietPhongKhamService
+
             , IWebHostEnvironment WebHostEnvironment
+
             ) : base(GoiSoRepository)
         {
             _GoiSoRepository = GoiSoRepository;
@@ -28,6 +34,8 @@ namespace Service.Implement
             _DanhMucDichVuRepository = danhMucDichVuRepository;
 
             _GoiSoChiTietService = GoiSoChiTietService;
+
+            _GoiSoChiTietPhongKhamService = GoiSoChiTietPhongKhamService;
 
             _WebHostEnvironment = WebHostEnvironment;
         }
@@ -109,12 +117,15 @@ namespace Service.Implement
         {
             if (model.ID > 0)
             {
-                GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
-                GoiSoChiTiet.ParentID = model.ParentID;
-                GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
-                GoiSoChiTiet.DanhMucDichVuName = model.DanhMucDichVuName;
-                GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
-                await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                if (model.DanhMucDichVuID > 0)
+                {
+                    GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                    GoiSoChiTiet.ParentID = model.ParentID;
+                    GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
+                    GoiSoChiTiet.DanhMucDichVuName = model.DanhMucDichVuName;
+                    GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
+                    await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                }
             }
             return model;
         }
@@ -324,6 +335,125 @@ namespace Service.Implement
                 }
 
                 await UpdateAsync(result);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+
+
+        public virtual async Task<GoiSo> SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync(long DanhMucPhongKhamID, long GoiSoChiTietID)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                result = await GetByCondition(item => item.DanhMucPhongKhamID == DanhMucPhongKhamID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                if (result == null)
+                {
+                    result = new GoiSo();
+                    result.DanhMucPhongKhamID = DanhMucPhongKhamID;
+                    result.NgayGhiNhan = Now;
+                    result.TongCong = 0;
+                    result.SoHienTai = 0;
+                }
+                result.TongCong = result.TongCong + 1;
+                await SaveAsync(result);
+                if (result.ID > 0)
+                {
+                    await SyncByDanhMucPhongKhamID_GoiSoChiTietIDAsync(result, GoiSoChiTietID);
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+            return result;
+        }
+        public virtual async Task<GoiSo> SyncByDanhMucPhongKhamID_GoiSoChiTietIDAsync(GoiSo model, long GoiSoChiTietID)
+        {
+            if (model.ID > 0)
+            {
+                if (model.DanhMucPhongKhamID > 0)
+                {
+                    if (GoiSoChiTietID > 0)
+                    {
+                        GoiSoChiTietPhongKham GoiSoChiTietPhongKham = new GoiSoChiTietPhongKham();
+                        GoiSoChiTietPhongKham.ParentID = GoiSoChiTietID;
+                        GoiSoChiTietPhongKham.DanhMucPhongKhamID = model.DanhMucPhongKhamID;
+                        GoiSoChiTietPhongKham.NgayCapSoSoThuTu = model.TongCong;
+                        await _GoiSoChiTietPhongKhamService.SaveAsync(GoiSoChiTietPhongKham);
+                    }
+                }
+            }
+            return model;
+        }
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucPhongKhamIDAsync(long DanhMucPhongKhamID, int SoHienTai)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                result = await GetByCondition(item => item.DanhMucPhongKhamID == DanhMucPhongKhamID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    if (SoHienTai > 0)
+                    {
+                        if (result.SoHienTai != SoHienTai)
+                        {
+                            result.SoHienTai = SoHienTai;
+                        }
+                    }
+                    if (result.SoHienTai < result.TongCong)
+                    {
+                        result.SoHienTai = result.SoHienTai + 1;
+                        await SaveAsync(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+
+            GoiSoChiTietPhongKham GoiSoChiTietPhongKham = new GoiSoChiTietPhongKham();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                GoiSoChiTietPhongKham = await _GoiSoChiTietPhongKhamService.GetByDanhMucPhongKhamID_NgayCapSoSoThuTuAsync(DanhMucPhongKhamID, result.SoHienTai.Value);
+                if (GoiSoChiTietPhongKham != null)
+                {
+                    GoiSoChiTietPhongKham.DanhMucPhongKhamID = DanhMucPhongKhamID;
+                    GoiSoChiTietPhongKham.NgayDangKySoThuTu = result.SoHienTai;
+                    GoiSoChiTietPhongKham.Active = true;
+                    await _GoiSoChiTietPhongKhamService.SaveAsync(GoiSoChiTietPhongKham);
+
+                    GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                    try
+                    {
+                        GoiSoChiTiet = await _GoiSoChiTietService.GetByIDAsync(GoiSoChiTietPhongKham.ParentID.Value);
+                        if (GoiSoChiTiet != null)
+                        {
+                            GoiSoChiTiet.DanhMucPhongKhamID = DanhMucPhongKhamID;
+                            GoiSoChiTiet.Active = true;
+                            await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string mes = ex.Message;
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -17,7 +17,7 @@
         public string? DanhMucPhongKhamCode { get; set; }
         public long? KhachHangID { get; set; }
         public string? HoTen { get; set; }
-        public string? NamSinh { get; set; }
+        public int? NamSinh { get; set; }
         public DateTime? NgaySinh { get; set; }
         public string? DienThoai { get; set; }
         public string? CCCD { get; set; }

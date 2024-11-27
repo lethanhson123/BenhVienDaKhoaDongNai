@@ -14,7 +14,7 @@ export const environment = {
   InitializationNumber: 0,
   DanhMucUngDungID: 1,
   PageSize: 10,
-  Interval: 10000,
+  Interval: 5000,
   Number: 4,
   G: 1,
   C: 3,

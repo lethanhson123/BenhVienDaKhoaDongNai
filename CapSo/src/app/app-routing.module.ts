@@ -13,6 +13,13 @@ import { HienThi01Component } from './hien-thi01/hien-thi01.component';
 import { HienThiComponent } from './hien-thi/hien-thi.component';
 import { HienThi03Component } from './hien-thi03/hien-thi03.component';
 import { HienThi0201Component } from './hien-thi0201/hien-thi0201.component';
+import { PhongKhamComponent } from './phong-kham/phong-kham.component';
+import { PhongKhamIDComponent } from './phong-kham-id/phong-kham-id.component';
+import { PhongKhamNameComponent } from './phong-kham-name/phong-kham-name.component';
+import { PhongKhamHienThiComponent } from './phong-kham-hien-thi/phong-kham-hien-thi.component';
+import { PhongKhamHienThi01Component } from './phong-kham-hien-thi01/phong-kham-hien-thi01.component';
+import { PhongKhamGoiSo01Component } from './phong-kham-goi-so01/phong-kham-goi-so01.component';
+import { PhongKhamGoiSoComponent } from './phong-kham-goi-so/phong-kham-goi-so.component';
 
 
 const routes: Routes = [
@@ -54,6 +61,28 @@ const routes: Routes = [
   },
   {
     path: 'HienThi04/:DanhMucQuayDichVuID', component: HienThi04Component,
+  },
+
+  {
+    path: 'PhongKham/:DanhMucKhuVucID', component: PhongKhamComponent,
+  },
+  {
+    path: 'PhongKhamID/:SearchString', component: PhongKhamIDComponent,
+  },
+  {
+    path: 'PhongKhamName/:SearchString', component: PhongKhamNameComponent,
+  },
+  {
+    path: 'PhongKhamHienThi/:DanhMucPhongKhamID', component: PhongKhamHienThiComponent,
+  },
+  {
+    path: 'PhongKhamHienThi01/:Name', component: PhongKhamHienThi01Component,
+  },
+  {
+    path: 'PhongKhamGoiSo/:DanhMucPhongKhamID', component: PhongKhamGoiSoComponent,
+  },
+  {
+    path: 'PhongKhamGoiSo01/:Name', component: PhongKhamGoiSo01Component,
   },
 ];
 

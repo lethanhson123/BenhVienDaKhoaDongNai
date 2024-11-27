@@ -8,6 +8,9 @@
         public long? DanhMucDichVuID { get; set; }
         public string? DanhMucDichVuName { get; set; }
         public string? DanhMucDichVuCode { get; set; }
+        public long? DanhMucPhongKhamID { get; set; }
+        public string? DanhMucPhongKhamName { get; set; }
+        public string? DanhMucPhongKhamCode { get; set; }
         public DateTime? NgayGhiNhan { get; set; }
         public int? TongCong { get; set; }
         public string? TongCongString { get; set; }

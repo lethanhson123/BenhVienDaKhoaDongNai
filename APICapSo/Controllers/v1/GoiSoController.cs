@@ -45,7 +45,41 @@
                 result.Note = message;
             }
             return result;
-        }        
+        }
+        [HttpPost]
+        [Route("GoiSoTiepTheoByDanhMucPhongKhamIDAsync")]
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucPhongKhamIDAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.GoiSoTiepTheoByDanhMucPhongKhamIDAsync(baseParameter.DanhMucPhongKhamID.Value, baseParameter.SoHienTai.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync")]
+        public virtual async Task<GoiSo> SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync(baseParameter.DanhMucPhongKhamID.Value, baseParameter.GoiSoChiTietID.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
     }
 }
 
