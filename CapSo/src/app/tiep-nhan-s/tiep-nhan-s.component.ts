@@ -36,14 +36,16 @@ export class TiepNhanSComponent implements OnInit {
   ngOnInit(): void {    
     let URL = environment.TiepNhanURL + "TiepNhanS";
     var Width = window.innerWidth;
-    if (Width > 300) {
-      this.NotificationService.OpenWindowByURLBottomRight(URL,300,200);
-      window.close();
-    }
-    else {      
-      this.DanhMucDichVuSearch();
+    // if (Width > 300) {
+    //   this.NotificationService.OpenWindowByURLBottomRight(URL,300,200);
+    //   window.close();
+    // }
+    // else {      
+    //   this.DanhMucDichVuSearch();
+    //   this.DanhMucQuayDichVuSearch();
+    // }
+    this.DanhMucDichVuSearch();
       this.DanhMucQuayDichVuSearch();
-    }
   }
   DanhMucDichVuSearch() {
     this.GoiSoService.IsShowLoading = true;

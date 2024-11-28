@@ -1,0 +1,1388 @@
+<div class="row">
+    <div class="pt-1 pb-0" id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Dự án:
+                        <b>{{DuAnService.FormData.Name}} [{{DuAnService.FormData.ID}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/DuAn" title="Dự án">Dự án</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/DuAnInfo/{{DuAnService.FormData.ID}}"
+                                title="{{DuAnService.FormData.Name}}">{{DuAnService.FormData.Name}}</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section-data-tables">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s6 m6 l3">
+                                <a title="Quay lại" href="javascript:history.back()"
+                                class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"><i
+                                    class="material-icons">arrow_back</i></a>
+                                <a title="Lưu thay đổi" (click)="DuAnSave()"
+                                    class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
+                                        class="material-icons">save</i></a>
+                            </div>
+                            <!-- <div class="col s6 m6 l3">
+                                <a title="In hoặc xuất PDF" (click)="DuAnPrint()" style="width: 100%;"
+                                    class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"><i
+                                        class="material-icons">print</i></a>
+                            </div> -->
+                            <div class="col s6 m6 l3">
+                                <label>
+                                    <input type="checkbox" class="form-check-input" name="Active"
+                                        [(ngModel)]="DuAnService.FormData.Active" />
+                                    <span>Kích hoạt</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l3">
+                                <div>
+                                    <label class="form-label">Ngày bắt đầu</label>
+                                    <input [ngModel]="DuAnService.FormData.NgayBatDau | date:'yyyy-MM-dd'"
+                                        style="text-align: right;" (ngModelChange)="DateNgayBatDau($event)"
+                                        [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                        autocomplete="off">
+                                </div>
+                                <div>
+                                    <label class="form-label">Ngày kết thúc</label>
+                                    <input [ngModel]="DuAnService.FormData.NgayKetThuc | date:'yyyy-MM-dd'"
+                                        style="text-align: right;" (ngModelChange)="DateNgayKetThuc($event)"
+                                        [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                        autocomplete="off">
+                                </div>
+                                <div>
+                                    <label class="form-label">Ngày ký</label>
+                                    <input [ngModel]="DuAnService.FormData.NgayKy | date:'yyyy-MM-dd'"
+                                        style="text-align: right;" (ngModelChange)="DateNgayKy($event)"
+                                        [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l3">
+                                <div>
+                                    <label class="form-label">Thời hạn (Tháng)</label>
+                                    <input name="ThoiHan" [(ngModel)]="DuAnService.FormData.ThoiHan"
+                                        placeholder="Thời hạn (Tháng)" type="number" class="form-control"
+                                        style="text-align: right;">
+                                </div>
+                                <div>
+                                    <label class="form-label">Tiêu đề</label>
+                                    <input name="Name" [(ngModel)]="DuAnService.FormData.Name" placeholder="Tiêu đề"
+                                        type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label class="form-label">Số hồ sơ</label>
+                                    <input name="SoHoSo" [(ngModel)]="DuAnService.FormData.SoHoSo"
+                                        placeholder="Số hồ sơ" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l3">
+                                <div>
+                                    <label class="form-label">Số quyết định</label>
+                                    <input name="SoQuyetDinh" [(ngModel)]="DuAnService.FormData.SoQuyetDinh"
+                                        placeholder="Số quyết định" type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label class="form-label">Số tài khoản</label>
+                                    <input name="BenThucHienSoTaiKhoan"
+                                        [(ngModel)]="DuAnService.FormData.BenThucHienSoTaiKhoan"
+                                        placeholder="Số tài khoản" type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label class="form-label">Mức đầu tư ({{DuAnService.FormData.MucDauTu |
+                                        number:
+                                        '1.0-0'}})</label>
+                                    <input name="MucDauTu" [(ngModel)]="DuAnService.FormData.MucDauTu"
+                                        placeholder="Mức đầu tư (Kế hoạch)" type="number" class="form-control"
+                                        style="text-align: right;">
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l3">
+                                <div>
+                                    <label class="form-label" style="color: green;">Ghi có ({{DuAnService.FormData.GhiCo
+                                        |
+                                        number:
+                                        '1.0-0'}})</label>
+                                    <input disabled name="GhiCo" [(ngModel)]="DuAnService.FormData.GhiCo"
+                                        placeholder="Ghi có" type="number" class="form-control"
+                                        style="text-align: right; color: green;">
+                                </div>
+                                <div>
+                                    <label class="form-label" style="color: red;">Ghi nợ ({{DuAnService.FormData.GhiNo
+                                        |
+                                        number:
+                                        '1.0-0'}})</label>
+                                    <input disabled name="GhiNo" [(ngModel)]="DuAnService.FormData.GhiNo"
+                                        placeholder="Ghi nợ" type="number" class="form-control"
+                                        style="text-align: right; color: red;">
+                                </div>
+                                <div>
+                                    <label class="form-label" style="color: green;">Còn lại
+                                        {{DuAnService.FormData.ConLai
+                                        |
+                                        number:
+                                        '1.0-0'}}</label>
+                                    <input disabled name="ConLai" [(ngModel)]="DuAnService.FormData.ConLai"
+                                        placeholder="Còn lại" type="number" class="form-control"
+                                        style="text-align: right; color: green;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="col s12 m12 l6">
+                            <h6 class="card-title">Quyết định
+                                <span *ngIf="DuAnQuyetDinhService.List">({{DuAnQuyetDinhService.List.length}}
+                                    items)</span>
+                            </h6>
+                        </div>
+                        <div class="col s12 m12 l4">
+                            <input [(ngModel)]="DuAnQuyetDinhService.BaseParameter.SearchString" placeholder="Tìm ..."
+                                class="form-control" (keyup.enter)="DuAnQuyetDinhSearch()">
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <label>
+                                <input type="checkbox" name="IsDuAnQuyetDinh" [(ngModel)]="IsDuAnQuyetDinh">
+                                <span>Tất cả</span>
+                            </label>
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Tìm" (click)="DuAnQuyetDinhSearch()"><i class="material-icons">search</i></a>
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Thêm mới" routerLink="/DuAnQuyetDinhInfo/{{DuAnService.FormData.ID}}/0"><i
+                                    class="material-icons">add</i></a>
+                        </div>
+                        <div class="KhungOverflow">
+                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DuAnQuyetDinhSort="matSort"
+                                [dataSource]="DuAnQuyetDinhService.DataSource">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        STT
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                        <div *ngIf="DuAnQuyetDinhPaginator">
+                                            {{DuAnQuyetDinhPaginator.pageSize *
+                                            DuAnQuyetDinhPaginator.pageIndex + i + 1}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.ID}}" class="link-primary"
+                                            routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.ID}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="NgayKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày
+                                        ký</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.NgayKy" style="text-align: right;">
+                                            <a style="cursor: pointer;" title="{{element.NgayKy}}" class="link-primary"
+                                                routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.NgayKy
+                                                    |
+                                                    date:'dd/MM/yyyy'}}</b></a>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="NgayHieuLuc">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày
+                                        hiệu lực</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.NgayHieuLuc" style="text-align: right;">
+                                            <a style="cursor: pointer;" title="{{element.NgayHieuLuc}}"
+                                                class="link-primary"
+                                                routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.NgayHieuLuc
+                                                    |
+                                                    date:'dd/MM/yyyy'}}</b></a>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="SoHoSo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số hồ
+                                        sơ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.SoHoSo}}" class="link-primary"
+                                            routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.SoHoSo}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="SoQuyetDinh">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số
+                                        quyết định
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.SoQuyetDinh}}" class="link-primary"
+                                            routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.SoQuyetDinh}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu
+                                        đề
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                            routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.Name}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="MucDauTu">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Mức
+                                        đầu tư
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold;">
+                                            {{element.MucDauTu |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiCo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.GhiCo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiNo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi nợ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.GhiNo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ConLai">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn
+                                        lại
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.ConLai>=0"
+                                            style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.ConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                        <div *ngIf="element.ConLai<0"
+                                            style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.ConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Active">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Chọn
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <label *ngIf="element.ID>0">
+                                            <input class="form-check-input" type="checkbox" name="Active{{element.ID}}"
+                                                [(ngModel)]="element.Active" (change)="DuAnQuyetDinhActiveChange(element)">
+                                            <span></span>
+                                        </label>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Save">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a *ngIf="element.ID>0" (click)="DuAnQuyetDinhDelete(element)"
+                                            class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
+                                                class="material-icons">delete_forever</i></a>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnQuyetDinhService.DisplayColumns004">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnQuyetDinhService.DisplayColumns004;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="!NotificationService.IsMobile" #DuAnQuyetDinhPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="6"
+                                [showFirstLastButtons]></mat-paginator>
+
+                            <table *ngIf="NotificationService.IsMobile" mat-table matSort #DuAnQuyetDinhSort="matSort"
+                                [dataSource]="DuAnQuyetDinhService.DataSource" class="table table-striped m-0">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        Danh sách
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;">
+                                        <div class="row gx-4">
+                                            <div class="col s12 m12 l12">
+                                                <label>Ngày ký</label>
+                                                <br />
+                                                <a style="cursor: pointer;" title="{{element.Name}}"
+                                                    class="link-primary"
+                                                    routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.NgayKy
+                                                        |
+                                                        date:'dd/MM/yyyy HH:mm:ss'}}</b></a>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ngày hiệu lực</label>
+                                                <br />
+                                                <a style="cursor: pointer;" title="{{element.Name}}"
+                                                    class="link-primary"
+                                                    routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.NgayHieuLuc
+                                                        |
+                                                        date:'dd/MM/yyyy HH:mm:ss'}}</b></a>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số chứng từ</label>
+                                                <br />
+                                                <label class="form-label">{{element.SoChungTu}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số quyết định</label>
+                                                <br />
+                                                <label class="form-label">{{element.SoQuyetDinh}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Tiêu đề</label>
+                                                <br />
+                                                <label class="form-label">{{element.Name}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Mức đầu tư</label>
+                                                <br />
+                                                <label class="form-label">{{element.MucDauTu |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi có</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.GhiCo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi nợ</label>
+                                                <br />
+                                                <label class="form-label" style="color: red;">{{element.GhiNo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Còn lại</label>
+                                                <br />
+                                                <label *ngIf="element.ConLai>=0" class="form-label"
+                                                    style="color: green;">{{element.ConLai |
+                                                    number:'1.0-0'}}</label>
+                                                <label *ngIf="element.ConLai<0" class="form-label"
+                                                    style="color: red;">{{element.ConLai |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <a class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"
+                                                    style="width: 100%;" (click)="DuAnQuyetDinhDelete(element)"
+                                                    *ngIf="element.ID>0"><i class="material-icons">delete_forever</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnQuyetDinhService.DisplayColumnsMobile">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnQuyetDinhService.DisplayColumnsMobile;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="NotificationService.IsMobile" #DuAnQuyetDinhPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000"
+                                [showFirstLastButtons]></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="col s12 m12 l6">
+                            <div class="card-title">
+                                <h6 class="card-title">Thu chi
+                                    <span *ngIf="DuAnThuChiService.List">({{DuAnThuChiService.List.length}}
+                                        items)</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m12 l5">
+                            <input [(ngModel)]="DuAnThuChiService.BaseParameter.SearchString" placeholder="Tìm ..."
+                                class="form-control" (keyup.enter)="DuAnThuChiSearch()">
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Tìm" (click)="DuAnThuChiSearch()"><i class="material-icons">search</i></a>
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Thêm mới"
+                                routerLink="/DuAnThuChiInfo/{{DuAnService.FormData.ID}}/{{DuAnQuyetDinhService.FormData.ID}}/0"><i
+                                    class="material-icons">add</i></a>
+                        </div>
+                        <div class="KhungOverflow">
+                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DuAnThuChiSort="matSort"
+                                [dataSource]="DuAnThuChiService.DataSource">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        STT
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                        <div *ngIf="DuAnThuChiPaginator">
+                                            {{DuAnThuChiPaginator.pageSize *
+                                            DuAnThuChiPaginator.pageIndex + i + 1}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.ID}}" class="link-primary"
+                                            routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.ID}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="NgayGhiNhan">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày
+                                        ghi nhận</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.NgayGhiNhan" style="text-align: right;">
+                                            <a style="cursor: pointer;" title="{{element.NgayGhiNhan}}"
+                                                class="link-primary"
+                                                routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.NgayGhiNhan
+                                                    |
+                                                    date:'dd/MM/yyyy'}}</b></a>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="SoChungTu">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số
+                                        chứng từ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.SoChungTu}}" class="link-primary"
+                                            routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.SoChungTu}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="SoButToan">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số bút
+                                        toán
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.SoButToan}}" class="link-primary"
+                                            routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.SoButToan}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DuAnThuChiID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Thu chi gốc (nếu có)
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.DuAnThuChiSoButToan}}"
+                                            class="link-primary"
+                                            routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.DuAnThuChiID}}"><b>{{element.DuAnThuChiSoButToan}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu
+                                        đề
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                            routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.Name}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DuAnQuyetDinhSoQuyetDinh">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số
+                                        quyết định
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.DuAnQuyetDinhSoQuyetDinh}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DonGia">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số tiền
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: black;">
+                                            {{element.DonGia |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiCo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.GhiCo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiNo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi nợ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.GhiNo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ConLai">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn
+                                        lại
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.ConLai>=0"
+                                            style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.ConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                        <div *ngIf="element.ConLai<0"
+                                            style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.ConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DanhMucBieuMauName">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Biểu
+                                        mẫu
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.DanhMucBieuMauName}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DanhMucHinhThucThanhToanName">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Hình
+                                        thức
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.DanhMucHinhThucThanhToanName}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Active">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Đã
+                                        quyết toán (Khoá)
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" name="Active{{element.ID}}"
+                                                [(ngModel)]="element.Active" disabled>
+                                            <span></span>
+                                        </label>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Save">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a *ngIf="element.ID>0" (click)="DuAnThuChiDelete(element)"
+                                            class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
+                                                class="material-icons">delete_forever</i></a>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnThuChiService.DisplayColumns003">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnThuChiService.DisplayColumns003;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="!NotificationService.IsMobile" #DuAnThuChiPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="1000"
+                                [showFirstLastButtons]></mat-paginator>
+
+                            <table *ngIf="NotificationService.IsMobile" mat-table matSort #DuAnThuChiSort="matSort"
+                                [dataSource]="DuAnThuChiService.DataSource" class="table table-striped m-0">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        Danh sách
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;">
+                                        <div class="row gx-4">
+                                            <div class="col s12 m12 l12">
+                                                <label>Ngày bắt đầu</label>
+                                                <br />
+                                                <a style="cursor: pointer;" title="{{element.Name}}"
+                                                    class="link-primary"
+                                                    routerLink="/DuAnThuChiInfo/{{element.ParentID}}/{{element.DuAnQuyetDinhID}}/{{element.ID}}"><b>{{element.NgayBatDau
+                                                        |
+                                                        date:'dd/MM/yyyy HH:mm:ss'}}</b></a>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số quyết định</label>
+                                                <br />
+                                                <label class="form-label">{{element.DuAnQuyetDinhSoQuyetDinh}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số chứng từ</label>
+                                                <br />
+                                                <label class="form-label">{{element.SoChungTu}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số bút toán</label>
+                                                <br />
+                                                <label class="form-label">{{element.SoButToan}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Tiêu đề</label>
+                                                <br />
+                                                <label class="form-label">{{element.Name}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số tiền</label>
+                                                <br />
+                                                <label class="form-label">{{element.DonGia |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi có</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.GhiCo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi nợ</label>
+                                                <br />
+                                                <label class="form-label" style="color: red;">{{element.GhiNo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Còn lại</label>
+                                                <br />
+                                                <label *ngIf="element.ConLai>=0" class="form-label"
+                                                    style="color: green;">{{element.ConLai |
+                                                    number:'1.0-0'}}</label>
+                                                <label *ngIf="element.ConLai<0" class="form-label"
+                                                    style="color: red;">{{element.ConLai |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Hình thức</label>
+                                                <br />
+                                                <label
+                                                    class="form-label">{{element.DanhMucHinhThucThanhToanName}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>
+                                                    <input type="checkbox" name="Active{{element.ID}}"
+                                                        [(ngModel)]="element.Active" disabled>
+                                                    <span>Đã quyết toán (Khoá)</span>
+                                                </label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <a *ngIf="element.ID>0" (click)="DuAnThuChiDelete(element)"
+                                                    style="width: 100%;"
+                                                    class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
+                                                        class="material-icons">delete_forever</i></a>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnThuChiService.DisplayColumnsMobile">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnThuChiService.DisplayColumnsMobile;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="NotificationService.IsMobile" #DuAnThuChiPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000"
+                                [showFirstLastButtons]></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="col s12 m12 l6">
+                            <div class="card-title">
+                                <h6 class="card-title">Phân kỳ
+                                    <span
+                                        *ngIf="DuAnQuyetToanPhanKyService.List">({{DuAnQuyetToanPhanKyService.List.length}}
+                                        items)</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m12 l4">
+                            <input [(ngModel)]="DuAnQuyetToanPhanKyService.BaseParameter.SearchString"
+                                placeholder="Tìm ..." class="form-control" (keyup.enter)="DuAnQuyetToanPhanKySearch()">
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <label>
+                                <input type="checkbox" name="IsDuAnQuyetToanPhanKy" [(ngModel)]="IsDuAnQuyetToanPhanKy">
+                                <span>Lớn hơn 0</span>
+                            </label>
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Tìm" (click)="DuAnQuyetToanPhanKySearch()"><i
+                                    class="material-icons">search</i></a>
+                        </div>
+                        <div class="KhungOverflow">
+                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                                #DuAnQuyetToanPhanKySort="matSort" [dataSource]="DuAnQuyetToanPhanKyService.DataSource"
+                                class="table table-striped m-0">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        STT
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                        <div *ngIf="DuAnQuyetToanPhanKyPaginator">
+                                            {{DuAnQuyetToanPhanKyPaginator.pageSize *
+                                            DuAnQuyetToanPhanKyPaginator.pageIndex + i + 1}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.ID}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DuAnQuyetDinhSoQuyetDinh">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số
+                                        quyết định
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.DuAnQuyetDinhSoQuyetDinh}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Nam">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Năm
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.Nam}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Thang">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tháng
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.Thang}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DauKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Đầu kỳ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.DauKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiCo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.GhiCo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiNo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi nợ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.GhiNo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="CuoiKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cuối
+                                        kỳ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.CuoiKy>=0"
+                                            style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.CuoiKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                        <div *ngIf="element.CuoiKy<0"
+                                            style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.CuoiKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Active">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Quyết
+                                        toán (Khoá)
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" name="Active{{element.ID}}"
+                                                [(ngModel)]="element.Active"
+                                                (change)="DuAnQuyetToanPhanKyActiveChange(element)">
+                                            <span></span>
+                                        </label>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnQuyetToanPhanKyService.DisplayColumns001">
+                                </tr>
+                                <tr mat-row
+                                    *matRowDef="let row; columns: DuAnQuyetToanPhanKyService.DisplayColumns001;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="!NotificationService.IsMobile"
+                                #DuAnQuyetToanPhanKyPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                                [pageSize]="100000" [showFirstLastButtons]></mat-paginator>
+
+                            <table *ngIf="NotificationService.IsMobile" mat-table matSort
+                                #DuAnQuyetToanPhanKySort="matSort" [dataSource]="DuAnQuyetToanPhanKyService.DataSource"
+                                class="table table-striped m-0">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        Danh sách
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;">
+                                        <div class="row gx-4">
+                                            <div class="col s12 m12 l12">
+                                                <label>Số quyết định</label>
+                                                <br />
+                                                <label class="form-label">{{element.DuAnQuyetDinhSoQuyetDinh}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Năm</label>
+                                                <br />
+                                                <label class="form-label">{{element.Nam |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Tháng</label>
+                                                <br />
+                                                <label class="form-label">{{element.Thang |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Đầu kỳ</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.DauKy |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi có</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.GhiCo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi nợ</label>
+                                                <br />
+                                                <label class="form-label" style="color: red;">{{element.GhiNo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Cuối kỳ</label>
+                                                <br />
+                                                <label *ngIf="element.CuoiKy>=0" class="form-label"
+                                                    style="color: green;">{{element.CuoiKy |
+                                                    number:'1.0-0'}}</label>
+                                                <label *ngIf="element.CuoiKy<0" class="form-label"
+                                                    style="color: red;">{{element.CuoiKy |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>
+                                                    <input type="checkbox" name="Active{{element.ID}}"
+                                                        [(ngModel)]="element.Active"
+                                                        (change)="DuAnQuyetToanPhanKyActiveChange(element)">
+                                                    <span>Đã quyết toán (Khoá)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnQuyetToanPhanKyService.DisplayColumnsMobile">
+                                </tr>
+                                <tr mat-row
+                                    *matRowDef="let row; columns: DuAnQuyetToanPhanKyService.DisplayColumnsMobile;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="NotificationService.IsMobile"
+                                #DuAnQuyetToanPhanKyPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                                [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="col s12 m12 l6">
+                            <div class="card-title">
+                                <h6 class="card-title">Luỹ kế
+                                    <span
+                                        *ngIf="DuAnQuyetToanLuyKeService.List">({{DuAnQuyetToanLuyKeService.List.length}}
+                                        items)</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m12 l4">
+                            <input [(ngModel)]="DuAnQuyetToanLuyKeService.BaseParameter.SearchString"
+                                placeholder="Tìm ..." class="form-control" (keyup.enter)="DuAnQuyetToanLuyKeSearch()">
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <label>
+                                <input type="checkbox" name="IsDuAnQuyetToanLuyKe" [(ngModel)]="IsDuAnQuyetToanLuyKe">
+                                <span>Lớn hơn 0</span>
+                            </label>
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Tìm" (click)="DuAnQuyetToanLuyKeSearch()"><i
+                                    class="material-icons">search</i></a>
+                        </div>
+                        <div class="KhungOverflow">
+                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                                #DuAnQuyetToanLuyKeSort="matSort" [dataSource]="DuAnQuyetToanLuyKeService.DataSource">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        STT
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                        <div *ngIf="DuAnQuyetToanLuyKePaginator">
+                                            {{DuAnQuyetToanLuyKePaginator.pageSize *
+                                            DuAnQuyetToanLuyKePaginator.pageIndex + i + 1}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.ID}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DuAnQuyetDinhSoQuyetDinh">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số
+                                        quyết định
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.DuAnQuyetDinhSoQuyetDinh}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Nam">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Năm
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.Nam}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Thang">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tháng
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.Thang}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="DauKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Đầu kỳ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.DauKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiCo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.GhiCo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiNo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi nợ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.GhiNo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="CuoiKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cuối
+                                        kỳ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.CuoiKy>=0"
+                                            style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.CuoiKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                        <div *ngIf="element.CuoiKy<0"
+                                            style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.CuoiKy |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Active">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Quyết
+                                        toán (Khoá)
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" name="Active{{element.ID}}"
+                                                [(ngModel)]="element.Active"
+                                                (change)="DuAnQuyetToanLuyKeActiveChange(element)">
+                                            <span></span>
+                                        </label>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnQuyetToanLuyKeService.DisplayColumns001">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnQuyetToanLuyKeService.DisplayColumns001;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="!NotificationService.IsMobile"
+                                #DuAnQuyetToanLuyKePaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                                [pageSize]="100000" [showFirstLastButtons]></mat-paginator>
+
+                            <table *ngIf="NotificationService.IsMobile" mat-table matSort
+                                #DuAnQuyetToanLuyKeSort="matSort" [dataSource]="DuAnQuyetToanLuyKeService.DataSource"
+                                class="table table-striped m-0">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        Danh sách
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;">
+                                        <div class="row gx-4">
+                                            <div class="col s12 m12 l12">
+                                                <label>Số quyết định</label>
+                                                <br />
+                                                <label class="form-label">{{element.DuAnQuyetDinhSoQuyetDinh}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Năm</label>
+                                                <br />
+                                                <label class="form-label">{{element.Nam |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Tháng</label>
+                                                <br />
+                                                <label class="form-label">{{element.Thang |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Đầu kỳ</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.DauKy |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi có</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.GhiCo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi nợ</label>
+                                                <br />
+                                                <label class="form-label" style="color: red;">{{element.GhiNo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Cuối kỳ</label>
+                                                <br />
+                                                <label *ngIf="element.CuoiKy>=0" class="form-label"
+                                                    style="color: green;">{{element.CuoiKy |
+                                                    number:'1.0-0'}}</label>
+                                                <label *ngIf="element.CuoiKy<0" class="form-label"
+                                                    style="color: red;">{{element.CuoiKy |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>
+                                                    <input type="checkbox" name="Active{{element.ID}}"
+                                                        [(ngModel)]="element.Active"
+                                                        (change)="DuAnQuyetToanLuyKeActiveChange(element)">
+                                                    <span>Đã quyết toán (Khoá)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnQuyetToanLuyKeService.DisplayColumnsMobile">
+                                </tr>
+                                <tr mat-row
+                                    *matRowDef="let row; columns: DuAnQuyetToanLuyKeService.DisplayColumnsMobile;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="NotificationService.IsMobile"
+                                #DuAnQuyetToanLuyKePaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                                [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="col s12 m12 l6">
+                            <div class="card-title">
+                                <h6 class="card-title">Tập tin đính kèm
+                                    <span
+                                        *ngIf="DuAnTapTinDinhKemService.List">({{DuAnTapTinDinhKemService.List.length-1}}
+                                        items)</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m12 l5">
+                            <input [(ngModel)]="DuAnTapTinDinhKemService.BaseParameter.SearchString"
+                                placeholder="Tìm ..." class="form-control" (keyup.enter)="DuAnTapTinDinhKemSearch()">
+                        </div>
+                        <div class="col s12 m12 l1">
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Tìm" (click)="DuAnTapTinDinhKemSearch()"><i class="material-icons">search</i></a>
+                        </div>
+                        <div class="KhungOverflow">
+                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                                #DuAnTapTinDinhKemSort="matSort" [dataSource]="DuAnTapTinDinhKemService.DataSource">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        STT
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                        <div *ngIf="DuAnTapTinDinhKemPaginator">
+                                            {{DuAnTapTinDinhKemPaginator.pageSize *
+                                            DuAnTapTinDinhKemPaginator.pageIndex + i + 1}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu
+                                        đề
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <input class="form-control" type="text" placeholder="Tiêu đề"
+                                            name="Name{{element.ID}}" [(ngModel)]="element.Name">
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Display">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>URL
+                                        (nếu có)
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <input class="form-control" type="text" placeholder="URL (nếu có)"
+                                            name="Display{{element.ID}}" [(ngModel)]="element.Display">
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Note">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi
+                                        chú
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <input class="form-control" type="text" placeholder="Ghi chú"
+                                            name="Note{{element.ID}}" [(ngModel)]="element.Note">
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="FileName">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Chọn
+                                        tập tin
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <input class="form-control" type="file" multiple
+                                            (change)="DuAnTapTinDinhKemChangeFile($event.target.files)">
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Save">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a (click)="DanhMucThanhVienSave(element)"
+                                            class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
+                                                class="material-icons">save</i></a>
+                                        <a *ngIf="element.ID>0" (click)="DanhMucThanhVienDelete(element)"
+                                            class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
+                                                class="material-icons">delete_forever</i></a>
+                                        <a *ngIf="element.ID > 0 && element.FileName"
+                                            class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                            title="Tải về" href="{{element.FileName}}" target="_blank"><i
+                                                class="material-icons">cloud_download</i>
+                                        </a>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnTapTinDinhKemService.DisplayColumns001">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnTapTinDinhKemService.DisplayColumns001;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="!NotificationService.IsMobile"
+                                #DuAnTapTinDinhKemPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                                [pageSize]="6" [showFirstLastButtons]></mat-paginator>
+                            <table *ngIf="NotificationService.IsMobile" mat-table matSort
+                                #DuAnTapTinDinhKemSort="matSort" [dataSource]="DuAnTapTinDinhKemService.DataSource"
+                                class="table table-striped m-0">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        Danh sách
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;">
+                                        <div class="row gx-4">
+                                            <div class="col s12 m12 l12">
+                                                <label class="form-label">Tiêu đề</label>
+                                                <input class="form-control" type="text" placeholder="Tiêu đề"
+                                                    name="Name{{element.ID}}" [(ngModel)]="element.Name">
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label class="form-label">URL (nếu có)</label>
+                                                <input class="form-control" type="text" placeholder="URL (nếu có)"
+                                                    name="Display{{element.ID}}" [(ngModel)]="element.Display">
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label class="form-label">Ghi chú</label>
+                                                <input class="form-control" type="text" placeholder="Ghi chú"
+                                                    name="Note{{element.ID}}" [(ngModel)]="element.Note">
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label class="form-label">Chọn tập tin</label>
+                                                <br />
+                                                <input class="form-control" type="file" multiple
+                                                    (change)="DuAnTapTinDinhKemChangeFile($event.target.files)">
+                                            </div>
+                                            <div class="col s4 m4 l4">
+                                                <a (click)="DanhMucThanhVienSave(element)" style="width: 100%;"
+                                                    class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
+                                                        class="material-icons">save</i></a>
+                                            </div>
+                                            <div class="col s4 m4 l4">
+                                                <a *ngIf="element.ID>0" (click)="DanhMucThanhVienDelete(element)"
+                                                    style="width: 100%;"
+                                                    class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
+                                                        class="material-icons">delete_forever</i></a>
+                                            </div>
+                                            <div class="col s4 m4 l4">
+                                                <a *ngIf="element.ID > 0 && element.FileName"
+                                                    class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                                    title="Tải về" href="{{element.FileName}}" target="_blank"><i
+                                                        class="material-icons">cloud_download</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnTapTinDinhKemService.DisplayColumnsMobile">
+                                </tr>
+                                <tr mat-row
+                                    *matRowDef="let row; columns: DuAnTapTinDinhKemService.DisplayColumnsMobile;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="NotificationService.IsMobile"
+                                #DuAnTapTinDinhKemPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                                [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Ghi nợ
+                                (tháng) theo quyết định</h6>
+                            <canvas style="font-size: 30px;" baseChart [datasets]="Report0003_0001_Data"
+                                [labels]="Report0003_0001_Label" [chartType]="Report0003_0001_Type"
+                                [colors]="Report0003_0001_Color" [options]="Report0003_0001_Option">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l6">
+                    <div class="card card card-default scrollspy">
+                        <div class="card-content">
+                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Mức đầu tư
+                                    theo quyết định</h6>
+                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
+                                    [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type"
+                                    [colors]="Report0001_0001_Color" [options]="Report0001_0001_Option">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card card-default scrollspy">
+                        <div class="card-content">
+                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Còn lại theo
+                                    quyết định</h6>
+                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
+                                    [labels]="Report0001_0002_Label" [chartType]="Report0001_0002_Type"
+                                    [colors]="Report0001_0002_Color" [options]="Report0001_0002_Option">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l6">
+                    <div class="card card card-default scrollspy">
+                        <div class="card-content">
+                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Ghi có theo
+                                    quyết định</h6>
+                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0003_Data"
+                                    [labels]="Report0001_0003_Label" [chartType]="Report0001_0003_Type"
+                                    [colors]="Report0001_0003_Color" [options]="Report0001_0003_Option">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card card-default scrollspy">
+                        <div class="card-content">
+                            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Biểu mẫu theo
+                                    quyết định</h6>
+                                <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0001_Data"
+                                    [labels]="Report0002_0001_Label" [chartType]="Report0002_0001_Type"
+                                    [colors]="Report0002_0001_Color" [options]="Report0002_0001_Option">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="DuAnService.IsShowLoading"></app-loading>

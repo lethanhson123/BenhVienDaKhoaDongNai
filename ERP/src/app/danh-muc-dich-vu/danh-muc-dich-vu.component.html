@@ -63,7 +63,7 @@
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Khu vực
                                     </th>
                                     <td mat-cell *matCellDef="let element">
-                                        <select class="form-select" name="element.ParentID"
+                                        <select class="browser-default form-select" name="element.ParentID"
                                             [(ngModel)]="element.ParentID">
                                             <option *ngFor="let item of DanhMucKhuVucService.ListFilter;"
                                                 [value]="item.ID">
@@ -129,10 +129,10 @@
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>
                                     </th>
                                     <td mat-cell *matCellDef="let element">
-                                        <a (click)="DanhMucKhuVucSave(element)"
+                                        <a (click)="DanhMucDichVuSave(element)"
                                             class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
                                                 class="material-icons">save</i></a>
-                                        <a *ngIf="element.ID>0" (click)="DanhMucKhuVucDelete(element)"
+                                        <a *ngIf="element.ID>0" (click)="DanhMucDichVuDelete(element)"
                                             class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
                                                 class="material-icons">delete_forever</i></a>
                                     </td>
@@ -156,7 +156,7 @@
                                             <div class="col s12 m12 l12">
                                                 <label class="form-label">Khu vực</label>
                                                 <br />
-                                                <select class="form-select" name="element.ParentID"
+                                                <select class="browser-default form-select" name="element.ParentID"
                                                     [(ngModel)]="element.ParentID">
                                                     <option *ngFor="let item of DanhMucKhuVucService.ListFilter;"
                                                         [value]="item.ID">
@@ -203,12 +203,12 @@
                                                 </label>
                                             </div>
                                             <div class="col s6 m6 l6">
-                                                <a (click)="DanhMucKhuVucSave(element)" style="width: 100%;"
+                                                <a (click)="DanhMucDichVuSave(element)" style="width: 100%;"
                                                     class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
                                                         class="material-icons">save</i></a>
                                             </div>
                                             <div class="col s6 m6 l6">
-                                                <a *ngIf="element.ID>0" (click)="DanhMucKhuVucDelete(element)"
+                                                <a *ngIf="element.ID>0" (click)="DanhMucDichVuDelete(element)"
                                                     style="width: 100%;"
                                                     class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
                                                         class="material-icons">delete_forever</i></a>

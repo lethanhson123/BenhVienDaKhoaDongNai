@@ -35,16 +35,20 @@ export class TiepNhanComponent implements OnInit {
   ngOnInit(): void {
     let URL = environment.TiepNhanURL + "TiepNhan/" + this.ActiveRouter.snapshot.params.DanhMucDichVuID + "/" + this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID;
     var Width = window.innerWidth;
-    if (Width > 300) {
-      this.NotificationService.OpenWindowByURLBottomRight(URL);
-      window.close();
-    }
-    else {
-      this.GoiSoService.BaseParameter.DanhMucDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucDichVuID);
-      this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID);
-      this.DanhMucDichVuSearch();
-      this.DanhMucQuayDichVuSearch();
-    }
+    // if (Width > 300) {
+    //   this.NotificationService.OpenWindowByURLBottomRight(URL);
+    //   window.close();
+    // }
+    // else {
+    //   this.GoiSoService.BaseParameter.DanhMucDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucDichVuID);
+    //   this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID);
+    //   this.DanhMucDichVuSearch();
+    //   this.DanhMucQuayDichVuSearch();
+    // }
+    this.GoiSoService.BaseParameter.DanhMucDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucDichVuID);
+    this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID);
+    this.DanhMucDichVuSearch();
+    this.DanhMucQuayDichVuSearch();
   }
   DanhMucDichVuSearch() {
     this.GoiSoService.IsShowLoading = true;

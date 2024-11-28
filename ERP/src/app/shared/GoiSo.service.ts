@@ -10,6 +10,8 @@ export class GoiSoService extends BaseService{
   
     DisplayColumns001: string[] = ['STT', 'ID', 'Name', 'Active'];   
     DisplayColumns002: string[] = ['DanhMucThanhVienID', 'Save'];   
+
+    DisplayColumns03: string[] = ['STT', 'ID', 'NgayGhiNhan', 'DanhMucDichVuName', 'DanhMucPhongKhamName', 'TongCong', 'SoHienTai', 'Save'];   
         
     List: GoiSo[] | undefined;
     ListFilter: GoiSo[] | undefined;
@@ -37,6 +39,12 @@ export class GoiSoService extends BaseService{
         let url = this.APIURL + this.Controller + '/CreateHTMLByModelAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.FormData));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByNgayGhiNhanToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByNgayGhiNhanToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 }

@@ -43,6 +43,10 @@ import { DanhMucBieuMauComponent } from './danh-muc-bieu-mau/danh-muc-bieu-mau.c
 import { DanhMucHinhThucThanhToanComponent } from './danh-muc-hinh-thuc-thanh-toan/danh-muc-hinh-thuc-thanh-toan.component';
 import { DanhMucBieuMauInfoComponent } from './danh-muc-bieu-mau-info/danh-muc-bieu-mau-info.component';
 import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
+import { GoiSoComponent } from './goi-so/goi-so.component';
+import { GoiSoInfoComponent } from './goi-so-info/goi-so-info.component';
+import { GoiSoChiTietInfoComponent } from './goi-so-chi-tiet-info/goi-so-chi-tiet-info.component';
+import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +82,10 @@ import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
     DanhMucHinhThucThanhToanComponent,
     DanhMucBieuMauInfoComponent,
     GioiThieuComponent,
+    GoiSoComponent,
+    GoiSoInfoComponent,
+    GoiSoChiTietInfoComponent,
+    GoiSoChiTietComponent,
 
   ],
   imports: [

@@ -62,6 +62,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByNgayGhiNhanToListAsync")]
+        public async Task<List<GoiSo>> GetByNgayGhiNhanToListAsync()
+        {
+            List<GoiSo> result = new List<GoiSo>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.GetByNgayGhiNhanToListAsync(baseParameter.KetThuc.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

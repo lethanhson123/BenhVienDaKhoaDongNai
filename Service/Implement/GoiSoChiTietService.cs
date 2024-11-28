@@ -87,6 +87,10 @@ namespace Service.Implement
                 model.Barcode = Barcode.Code;
                 model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
             }
+            if (model.DanhMucDichVuID == null)
+            {
+                model.DanhMucDichVuID = GlobalHelper.DanhMucDichVuID;
+            }
 
             if (model.DanhMucDichVuID > 0)
             {

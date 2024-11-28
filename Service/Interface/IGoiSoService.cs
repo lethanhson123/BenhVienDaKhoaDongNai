@@ -8,6 +8,7 @@ namespace Service.Interface
         Task<GoiSo> SaveByDanhMucDichVuIDAsync(long DanhMucDichVuID);
         Task<GoiSo> SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync(long DanhMucPhongKhamID, long GoiSoChiTietID);
         Task<GoiSo> CreateHTMLByModelAsync(GoiSo result);
+        Task<List<GoiSo>> GetByNgayGhiNhanToListAsync(DateTime NgayGhiNhan);
     }
 }
 

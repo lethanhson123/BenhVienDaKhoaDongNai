@@ -42,6 +42,10 @@ namespace Service.Implement
         public override void Initialization(GoiSo model)
         {
             BaseInitialization(model);
+            if (model.DanhMucDichVuID == null)
+            {
+                model.DanhMucDichVuID = GlobalHelper.DanhMucDichVuID;
+            }
             if (model.DanhMucDichVuID > 0)
             {
                 if (string.IsNullOrEmpty(model.DanhMucDichVuName))
@@ -458,6 +462,25 @@ namespace Service.Implement
             catch (Exception ex)
             {
                 string mes = ex.Message;
+            }
+            return result;
+        }
+
+        public virtual async Task<List<GoiSo>> GetByNgayGhiNhanToListAsync(DateTime NgayGhiNhan)
+        {
+            List<GoiSo> result = new List<GoiSo>();
+            try
+            {
+                result = await GetByCondition(item => item.NgayGhiNhan.Value.Year == NgayGhiNhan.Year && item.NgayGhiNhan.Value.Month == NgayGhiNhan.Month && item.NgayGhiNhan.Value.Day == NgayGhiNhan.Day).ToListAsync();
+
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<GoiSo>();
             }
             return result;
         }

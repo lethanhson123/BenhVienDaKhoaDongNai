@@ -1,0 +1,310 @@
+<div class="row">
+    <div class="pt-1 pb-0" id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Dự án
+                        <span *ngIf="DuAnService.List">({{DuAnService.List.length-1}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/DuAn" title="Dự án">Dự án</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/DuAn" title="Dự án">Dự án</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section-data-tables">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="col s12 m12 l3">
+                            <label *ngIf="!NotificationService.IsMobile" class="form-label">Bắt đầu</label>
+                            <input [ngModel]="DuAnService.BaseParameter.BatDau | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateBatDau($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div class="col s12 m12 l3">
+                            <label *ngIf="!NotificationService.IsMobile" class="form-label">Kết thúc</label>
+                            <input [ngModel]="DuAnService.BaseParameter.KetThuc | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateKetThuc($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div class="col s12 m12 l5">
+                            <label *ngIf="!NotificationService.IsMobile" class="form-label">.</label>
+                            <input [(ngModel)]="DuAnService.BaseParameter.SearchString" placeholder="Tìm ..."
+                                class="form-control" (keyup.enter)="DuAnSearch()">
+                        </div>
+                        <div class="col s12 m12 l1">                            
+                            <br/>
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Tìm" (click)="DuAnSearch()"><i class="material-icons">search</i></a>
+                            <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
+                                title="Thêm mới" routerLink="/DuAnInfo/0"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="KhungOverflow">
+                            <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DuAnSort="matSort"
+                                [dataSource]="DuAnService.DataSource">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        STT
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                        <div *ngIf="DuAnPaginator">
+                                            {{DuAnPaginator.pageSize *
+                                            DuAnPaginator.pageIndex + i + 1}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ID">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                            routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.ID}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="NgayBatDau">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Bắt
+                                        đầu</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.NgayBatDau" style="text-align: right;">
+                                            <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                                routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.NgayBatDau
+                                                    |
+                                                    date:'dd/MM/yyyy'}}</b></a>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="NgayKetThuc">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Kết
+                                        thúc</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.NgayKetThuc" style="text-align: right;">
+                                            <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                                routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.NgayKetThuc
+                                                    |
+                                                    date:'dd/MM/yyyy'}}</b></a>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="NgayKy">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày ký
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.NgayKy" style="text-align: right;">
+                                            <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                                routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.NgayKy
+                                                    |
+                                                    date:'dd/MM/yyyy'}}</b></a>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                            routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.Name}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="SoHoSo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số hồ sơ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                            routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.SoHoSo}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="SoQuyetDinh">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Số quyết
+                                        định</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
+                                            routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.SoQuyetDinh}}</b></a>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ThoiHan">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Thời hạn
+                                        (tháng)
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold;">
+                                            {{element.ThoiHan |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="MucDauTu">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Mức đầu tư
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold;">
+                                            {{element.MucDauTu |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiCo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.GhiCo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="GhiNo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi nợ
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.GhiNo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="ConLai">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn lại
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.ConLai>=0"
+                                            style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.ConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                        <div *ngIf="element.ConLai<0"
+                                            style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.ConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Save">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a *ngIf="element.ID>0" (click)="DuAnDelete(element)"
+                                            class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
+                                                class="material-icons">delete_forever</i></a>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnService.DisplayColumns003">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnService.DisplayColumns003;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="!NotificationService.IsMobile" #DuAnPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="6"
+                                [showFirstLastButtons]></mat-paginator>
+                            <table *ngIf="NotificationService.IsMobile" mat-table matSort #DuAnSort="matSort"
+                                [dataSource]="DuAnService.DataSource" class="table table-striped m-0">
+                                <ng-container matColumnDef="STT">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                        Danh sách
+                                    </th>
+                                    <td mat-cell *matCellDef="let element; index as i;">
+                                        <div class="row gx-4">
+                                            <div class="col s12 m12 l12">
+                                                <label>Bắt đầu</label>
+                                                <br />
+                                                <a style="cursor: pointer;" title="{{element.Name}}"
+                                                    class="link-primary"
+                                                    routerLink="/DuAnInfo/{{element.ID}}"><b>{{element.NgayBatDau
+                                                        |
+                                                        date:'dd/MM/yyyy HH:mm:ss'}}</b></a>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>ID</label>
+                                                <br />
+                                                <label class="form-label">{{element.ID}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Tiêu đề</label>
+                                                <br />
+                                                <label class="form-label">{{element.Name}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số hồ sơ</label>
+                                                <br />
+                                                <label class="form-label">{{element.SoHoSo}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Số quyết định</label>
+                                                <br />
+                                                <label class="form-label">{{element.SoQuyetDinh}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Mức đầu tư</label>
+                                                <br />
+                                                <label class="form-label">{{element.MucDauTu |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi có</label>
+                                                <br />
+                                                <label class="form-label" style="color: green;">{{element.GhiCo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Ghi nợ</label>
+                                                <br />
+                                                <label class="form-label" style="color: red;">{{element.GhiNo |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <label>Còn lại</label>
+                                                <br />
+                                                <label *ngIf="element.ConLai>=0" class="form-label"
+                                                    style="color: green;">{{element.ConLai |
+                                                    number:'1.0-0'}}</label>
+                                                <label *ngIf="element.ConLai<0" class="form-label"
+                                                    style="color: red;">{{element.ConLai |
+                                                    number:'1.0-0'}}</label>
+                                            </div>
+                                            <div class="col s12 m12 l12">
+                                                <a *ngIf="element.ID>0" (click)="DuAnDelete(element)"
+                                                    style="width: 100%;"
+                                                    class="waves-effect waves-light btn gradient-45deg-red-pink z-depth-4 mr-1 mb-2"><i
+                                                        class="material-icons">delete_forever</i></a>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DuAnService.DisplayColumnsMobile">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: DuAnService.DisplayColumnsMobile;">
+                                </tr>
+                            </table>
+                            <mat-paginator *ngIf="NotificationService.IsMobile" #DuAnPaginator="matPaginator"
+                                [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000"
+                                [showFirstLastButtons]></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="DuAnService.IsShowLoading"></app-loading>
