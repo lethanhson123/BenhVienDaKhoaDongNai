@@ -47,6 +47,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
 
   constructor(
     private ActiveRouter: ActivatedRoute,
+    public Router: Router,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -59,12 +60,22 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     public DuAnQuyetToanPhanKyService: DuAnQuyetToanPhanKyService,
     public DuAnQuyetToanLuyKeService: DuAnQuyetToanLuyKeService,
 
-  ) { }
+  ) {
+    this.Router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        let IDString = event.url;
+        let ID001 = IDString.split('/')[IDString.split('/').length - 2];
+        let ID002 = IDString.split('/')[IDString.split('/').length - 1];
+        this.DuAnService.BaseParameter.ID = parseInt(ID001);
+        this.DuAnQuyetDinhService.BaseParameter.ID = parseInt(ID002);
+        this.DuAnQuyetDinhSearch();
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
-    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);
-    this.DuAnQuyetDinhSearch();
+
+
   }
   DateNgayHieuLuc(value) {
     this.DuAnQuyetDinhService.FormData.NgayHieuLuc = new Date(value);
@@ -106,15 +117,16 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     this.DuAnQuyetDinhService.IsShowLoading = true;
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
-        this.DuAnService.FormData = res as DuAnQuyetDinh;
+        this.DuAnService.FormData = res as DuAn;
         this.DuAnQuyetDinhService.IsShowLoading = true;
         this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
           res => {
+
             this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
             this.DuAnQuyetDinhService.FormData.ParentID = this.DuAnService.FormData.ID;
             this.DuAnQuyetDinhService.FormData.ParentName = this.DuAnService.FormData.Name;
-            this.ToChucSearch();
-            this.ThanhVienSearch();
+            //this.ToChucSearch();
+            //this.ThanhVienSearch();
             this.DuAnThuChiSearch();
             //this.DuAnQuyetToanLuyKeSearch();
             //this.DuAnQuyetToanPhanKySearch();
@@ -142,7 +154,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     this.DuAnQuyetDinhService.SaveAsync().subscribe(
       res => {
         this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
-
+        window.location.href = environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID;
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
@@ -152,6 +164,9 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         this.DuAnQuyetDinhService.IsShowLoading = false;
       }
     );
+  }
+  DuAnQuyetDinhAdd() {
+    window.location.href = environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + environment.InitializationNumber;
   }
 
   DuAnThuChiSearch() {

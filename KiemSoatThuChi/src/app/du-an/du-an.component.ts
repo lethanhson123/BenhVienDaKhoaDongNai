@@ -38,7 +38,7 @@ export class DuAnComponent implements OnInit {
   }
   DuAnSearch() {    
     this.DuAnService.IsShowLoading = true;
-    this.DuAnService.GetSQLByThanhVienIDAndBatDau_KetThuc_SearchStringToListAsync().subscribe(
+    this.DuAnService.GetBySearchString_BatDau_KetThucToListAsync().subscribe(
       res => {
         this.DuAnService.List = (res as DuAn[]).sort((a, b) => (a.NgayBatDau < b.NgayBatDau ? 1 : -1));
         this.DuAnService.DataSource = new MatTableDataSource(this.DuAnService.List);

@@ -32,8 +32,11 @@
                         <div class="row">
                             <div class="col s6 m6 l3">
                                 <a title="Quay lại" href="javascript:history.back()"
-                                class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"><i
-                                    class="material-icons">arrow_back</i></a>
+                                    class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"><i
+                                        class="material-icons">arrow_back</i></a>
+                                <a title="Thêm mới" (click)="DuAnAdd()"
+                                    class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"><i
+                                        class="material-icons">add</i></a>
                                 <a title="Lưu thay đổi" (click)="DuAnSave()"
                                     class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
                                         class="material-icons">save</i></a>
@@ -151,7 +154,7 @@
                     <div class="card-content">
                         <div class="col s12 m12 l6">
                             <h6 class="card-title">Quyết định
-                                <span *ngIf="DuAnQuyetDinhService.List">({{DuAnQuyetDinhService.List.length}}
+                                <span *ngIf="DuAnQuyetDinhService.List">({{DuAnQuyetDinhService.List.length-1}}
                                     items)</span>
                             </h6>
                         </div>
@@ -305,7 +308,8 @@
                                     <td mat-cell *matCellDef="let element">
                                         <label *ngIf="element.ID>0">
                                             <input class="form-check-input" type="checkbox" name="Active{{element.ID}}"
-                                                [(ngModel)]="element.Active" (change)="DuAnQuyetDinhActiveChange(element)">
+                                                [(ngModel)]="element.Active"
+                                                (change)="DuAnQuyetDinhActiveChange(element)">
                                             <span></span>
                                         </label>
                                     </td>
@@ -1332,7 +1336,8 @@
                     <div class="card card card-default scrollspy">
                         <div class="card-content">
                             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Mức đầu tư
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Mức đầu
+                                    tư
                                     theo quyết định</h6>
                                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
                                     [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type"
@@ -1344,7 +1349,8 @@
                     <div class="card card card-default scrollspy">
                         <div class="card-content">
                             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Còn lại theo
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Còn lại
+                                    theo
                                     quyết định</h6>
                                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
                                     [labels]="Report0001_0002_Label" [chartType]="Report0001_0002_Type"
@@ -1358,7 +1364,8 @@
                     <div class="card card card-default scrollspy">
                         <div class="card-content">
                             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Ghi có theo
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Ghi có
+                                    theo
                                     quyết định</h6>
                                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0003_Data"
                                     [labels]="Report0001_0003_Label" [chartType]="Report0001_0003_Type"
@@ -1370,7 +1377,8 @@
                     <div class="card card card-default scrollspy">
                         <div class="card-content">
                             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Biểu mẫu theo
+                                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Biểu mẫu
+                                    theo
                                     quyết định</h6>
                                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0001_Data"
                                     [labels]="Report0002_0001_Label" [chartType]="Report0002_0001_Type"
@@ -1379,7 +1387,7 @@
                             </div>
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
     </div>

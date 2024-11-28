@@ -61,7 +61,8 @@ export class DuAnInfoComponent implements OnInit {
   IsDuAnQuyetDinh: boolean = true;
 
   constructor(
-    private ActiveRouter: ActivatedRoute,
+    public ActiveRouter: ActivatedRoute,
+    public Router: Router,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -78,11 +79,19 @@ export class DuAnInfoComponent implements OnInit {
 
     public ReportService: ReportService,
 
-  ) { }
+  ) {
+    this.Router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        let IDString = event.url;
+        let ID001 = IDString.split('/')[IDString.split('/').length - 1];
+        this.DuAnService.BaseParameter.ID = parseInt(ID001);
+        this.DuAnSearch();
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
-    this.DuAnSearch();
+
   }
   DateNgayBatDau(value) {
     this.DuAnService.FormData.NgayBatDau = new Date(value);
@@ -140,6 +149,7 @@ export class DuAnInfoComponent implements OnInit {
     }
   }
   DuAnSearch() {
+
     this.DuAnService.IsShowLoading = true;
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
@@ -170,8 +180,8 @@ export class DuAnInfoComponent implements OnInit {
     this.DuAnService.IsShowLoading = true;
     this.DuAnService.SaveAsync().subscribe(
       res => {
-        this.DuAnService.FormData = res as DuAn;
-
+        this.DuAnService.FormData = res as DuAn;        
+        this.Router.navigateByUrl(environment.DuAnInfo + this.DuAnService.FormData.ID);
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
@@ -196,6 +206,9 @@ export class DuAnInfoComponent implements OnInit {
         this.DuAnService.IsShowLoading = false;
       }
     );
+  }
+  DuAnAdd() {
+    this.Router.navigateByUrl(environment.DuAnInfo + environment.InitializationNumber);
   }
 
   DuAnTapTinDinhKemSearch() {
