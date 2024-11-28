@@ -24,6 +24,7 @@
         public long? DanhMucDichVuID { get; set; }
         public long? DanhMucQuayDichVuID { get; set; }
         public long? DanhMucPhongKhamID { get; set; }
+        public long? DuAnQuyetDinhID { get; set; }
         public long? GoiSoChiTietID { get; set; }
         public int? SoHienTai { get; set; }
         public int? NgayCapSoSoThuTu { get; set; }

@@ -62,9 +62,9 @@ export class DuAnThuChiInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DuAnThuChiService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
-    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnQuyetDinhID);
     this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);
+    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnQuyetDinhID);    
+    this.DuAnThuChiService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.DuAnThuChiSearch();
   }
 
@@ -222,7 +222,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
         this.DuAnThuChiService.IsShowLoading = true;
         this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
           res => {
-            this.DuAnQuyetDinhService.FormData = res as DuAn;
+            this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
             this.DuAnThuChiService.IsShowLoading = true;
             this.DuAnThuChiService.GetByIDAsync().subscribe(
               res => {
@@ -274,6 +274,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
         if (this.DuAnThuChiService.FormData.Active == true) {
           this.IsDuAnThuChiSave = false;
         }
+        this.Router.navigateByUrl(environment.DuAnThuChiInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID + "/"+ this.DuAnThuChiService.FormData.ID);
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
@@ -284,9 +285,10 @@ export class DuAnThuChiInfoComponent implements OnInit {
       }
     );
   }
-  DuAnThuChiIsBack() {
-    this.DuAnThuChiService.IsBack = true;
-    this.Router.navigate(['/DuAnQuyetDinhInfo/' + this.DuAnService.FormData.ID + '/' + this.DuAnQuyetDinhService.FormData.ID]);
+  DuAnThuChiAdd() {
+    this.Router.navigateByUrl(environment.DuAnThuChiInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID + "/"+ environment.InitializationNumber);
+    this.DuAnThuChiService.BaseParameter.ID = environment.InitializationNumber;
+    this.DuAnThuChiSearch();
   }
 
   DuAnTapTinDinhKemSearch() {

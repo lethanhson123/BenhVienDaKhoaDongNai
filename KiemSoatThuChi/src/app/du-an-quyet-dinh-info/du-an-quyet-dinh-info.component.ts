@@ -61,21 +61,12 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     public DuAnQuyetToanLuyKeService: DuAnQuyetToanLuyKeService,
 
   ) {
-    this.Router.events.forEach((event) => {
-      if (event instanceof NavigationEnd) {
-        let IDString = event.url;
-        let ID001 = IDString.split('/')[IDString.split('/').length - 2];
-        let ID002 = IDString.split('/')[IDString.split('/').length - 1];
-        this.DuAnService.BaseParameter.ID = parseInt(ID001);
-        this.DuAnQuyetDinhService.BaseParameter.ID = parseInt(ID002);
-        this.DuAnQuyetDinhSearch();
-      }
-    });
   }
 
   ngOnInit(): void {
-
-
+    this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);
+    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
+    this.DuAnQuyetDinhSearch();
   }
   DateNgayHieuLuc(value) {
     this.DuAnQuyetDinhService.FormData.NgayHieuLuc = new Date(value);
@@ -154,7 +145,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     this.DuAnQuyetDinhService.SaveAsync().subscribe(
       res => {
         this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
-        window.location.href = environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID;
+        this.Router.navigateByUrl(environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID);
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
@@ -166,7 +157,9 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     );
   }
   DuAnQuyetDinhAdd() {
-    window.location.href = environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + environment.InitializationNumber;
+    this.Router.navigateByUrl(environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + environment.InitializationNumber);
+    this.DuAnQuyetDinhService.BaseParameter.ID = environment.InitializationNumber;
+    this.DuAnQuyetDinhSearch();
   }
 
   DuAnThuChiSearch() {
@@ -178,8 +171,8 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     }
     else {
       this.DuAnQuyetDinhService.IsShowLoading = true;
-      this.DuAnThuChiService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnThuChiService.GetBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnThuChiService.BaseParameter.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+      this.DuAnThuChiService.GetByDuAnQuyetDinhIDToListAsync().subscribe(
         res => {
           this.DuAnThuChiService.List = (res as DuAnThuChi[]).sort((a, b) => (a.NgayGhiNhan > b.NgayGhiNhan ? 1 : -1));;
           this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
@@ -241,8 +234,8 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     }
     else {
       this.DuAnQuyetDinhService.IsShowLoading = true;
-      this.DuAnQuyetToanPhanKyService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnQuyetToanPhanKyService.GetSQLBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnQuyetToanPhanKyService.BaseParameter.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+      this.DuAnQuyetToanPhanKyService.GetSQLByDuAnQuyetDinhIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanPhanKyService.List = (res as DuAnQuyetToanPhanKy[]);
           if (this.IsDuAnQuyetToanPhanKy == true) {
@@ -270,8 +263,8 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     }
     else {
       this.DuAnQuyetDinhService.IsShowLoading = true;
-      this.DuAnQuyetToanLuyKeService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnQuyetToanLuyKeService.GetSQLBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnQuyetToanLuyKeService.BaseParameter.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+      this.DuAnQuyetToanLuyKeService.GetSQLByDuAnQuyetDinhIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanLuyKeService.List = (res as DuAnQuyetToanLuyKe[]);
           if (this.IsDuAnQuyetToanLuyKe == true) {

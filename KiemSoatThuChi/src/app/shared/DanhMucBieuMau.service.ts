@@ -9,6 +9,7 @@ import { BaseService } from './Base.service';
 export class DanhMucBieuMauService extends BaseService{
 
     DisplayColumns001: string[] = ['STT', 'Name', 'HeSo', 'SortOrder', 'Active', 'Save'];
+    DisplayColumns002: string[] = ['STT', 'Name', 'HeSo', 'SortOrder', 'IsTamUng', 'Active', 'Save'];
     List: DanhMucBieuMau[] | undefined;
     ListFilter: DanhMucBieuMau[] | undefined;    
     FormData!: DanhMucBieuMau;

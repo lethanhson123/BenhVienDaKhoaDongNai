@@ -45,6 +45,22 @@
             return result;
         }
         [HttpPost]
+        [Route("GetSQLByDuAnQuyetDinhIDToListAsync")]
+        public async Task<List<DuAnQuyetToanLuyKe>> GetSQLByDuAnQuyetDinhIDToListAsync()
+        {
+            List<DuAnQuyetToanLuyKe> result = new List<DuAnQuyetToanLuyKe>();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DuAnQuyetToanLuyKeService.GetSQLByDuAnQuyetDinhIDToListAsync(model.DuAnQuyetDinhID.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetSQLByParentIDToListAsync")]
         public async Task<List<DuAnQuyetToanLuyKe>> GetSQLByParentIDToListAsync()
         {

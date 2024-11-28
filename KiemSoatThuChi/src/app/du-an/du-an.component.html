@@ -43,12 +43,12 @@
                                 [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
                                 autocomplete="off">
                         </div>
-                        <div class="col s12 m12 l5">
+                        <div class="col s12 m12 l4">
                             <label *ngIf="!NotificationService.IsMobile" class="form-label">.</label>
                             <input [(ngModel)]="DuAnService.BaseParameter.SearchString" placeholder="Tìm ..."
                                 class="form-control" (keyup.enter)="DuAnSearch()">
                         </div>
-                        <div class="col s12 m12 l1">                            
+                        <div class="col s12 m12 l2">                            
                             <br/>
                             <a class="waves-effect waves-light btn gradient-45deg-green-teal z-depth-4 mr-1 mb-2"
                                 title="Tìm" (click)="DuAnSearch()"><i class="material-icons">search</i></a>

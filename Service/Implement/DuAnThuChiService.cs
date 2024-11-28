@@ -389,6 +389,22 @@
             }
             return result;
         }
+        public virtual async Task<List<DuAnThuChi>> GetByDuAnQuyetDinhIDToListAsync(long DuAnQuyetDinhID)
+        {
+            List<DuAnThuChi> result = new List<DuAnThuChi>();
+            try
+            {
+                if (DuAnQuyetDinhID > 0)
+                {
+                    result = await GetByCondition(item => item.DuAnQuyetDinhID == DuAnQuyetDinhID).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
         public virtual async Task<List<DuAnThuChi>> GetSQLByThanhVienIDToListAsync(long ThanhVienID)
         {
             List<DuAnThuChi> result = new List<DuAnThuChi>();

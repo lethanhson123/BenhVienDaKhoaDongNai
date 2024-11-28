@@ -49,6 +49,18 @@ export class DuAnThuChiService extends BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GetByDuAnQuyetDinhIDToListAsync() {
+        if (this.BaseParameter.ThanhVienID == null) {
+            var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+            if (ThanhVienID) {
+                this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+            }
+        }
+        let url = this.APIURL + this.Controller + '/GetByDuAnQuyetDinhIDToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     GetSQLByThanhVienIDToListAsync() {
         if (this.BaseParameter.ThanhVienID == null) {
             var ThanhVienID = localStorage.getItem(environment.ThanhVienID);

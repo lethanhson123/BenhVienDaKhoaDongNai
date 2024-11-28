@@ -22,6 +22,8 @@
         public decimal? GhiNo { get; set; }
         public decimal? ConLai { get; set; }
         public decimal? MucDauTu { get; set; }
+        public decimal? TamUngSoDu { get; set; }
+        public decimal? TamUngTongCong { get; set; }
 
         public DuAnQuyetDinh()
         {

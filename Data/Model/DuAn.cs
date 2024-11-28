@@ -40,6 +40,8 @@
         public decimal? MucDauTu { get; set; }
         public string? FileNameQRCode { get; set; }
         public decimal? ThoiHan { get; set; }
+        public decimal? TamUngSoDu { get; set; }
+        public decimal? TamUngTongCong { get; set; }
 
         public DuAn()
         {

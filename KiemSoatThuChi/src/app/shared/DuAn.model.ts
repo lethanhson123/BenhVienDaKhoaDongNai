@@ -39,6 +39,9 @@ ConLai?: number;
 MucDauTu?: number;
 FileNameQRCode?: string;
 ThoiHan?: number;
+TamUngSoDu?: number;
+TamUngTongCong?: number;
+
 }
 
 
