@@ -490,7 +490,7 @@
   }
   .user-profile .hovercard .user-image .share-icons li .social-icon {
     width: 40px;
-    height: 40px;
+    height: 64px;
   }
   .user-profile .hovercard .user-image .share-icons li .social-icon i {
     font-size: 18px;
@@ -1968,7 +1968,7 @@
   }
   .page-wrapper .page-header .header-wrapper .search-full input {
     padding-left: 30px;
-    line-height: 40px;
+    line-height: 64px;
   }
   .page-wrapper .page-header .header-wrapper .search-full .form-group::before {
     top: 14px;
@@ -3290,7 +3290,7 @@
   }
   .timeline-small .media .timeline-round.medium-line:after {
     bottom: -59px;
-    height: 40px;
+    height: 64px;
   }
   .timeline-small .media .media-body p {
     display: -webkit-box;

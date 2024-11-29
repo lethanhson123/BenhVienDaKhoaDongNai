@@ -1243,7 +1243,7 @@ a.uk-link-reset {
 
 .uk-input,
 .uk-select:not([multiple]):not([size]) {
-    height: 40px;
+    height: 64px;
     vertical-align: middle;
     display: inline-block
 }
@@ -2677,7 +2677,7 @@ select.uk-form-width-xsmall {
 }
 
 .uk-search-default .uk-search-input {
-    height: 40px;
+    height: 64px;
     padding-left: 10px;
     padding-right: 10px;
     background: 0 0;
@@ -2712,7 +2712,7 @@ select.uk-form-width-xsmall {
 }
 
 .uk-search-navbar .uk-search-input {
-    height: 40px;
+    height: 64px;
     background: 0 0;
     font-size: 1.5rem
 }

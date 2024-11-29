@@ -580,7 +580,7 @@ select {
                     content: '';
                     left: -25px;
                     top: 50%;
-                    height: 40px;
+                    height: 64px;
                     transform: translateY(-50%);
                     border: 1px dashed var(--recent-dashed-border);
 
@@ -629,7 +629,7 @@ select {
     .balance-icon-wrap {
         width: 40px;
         min-width: 40px;
-        height: 40px;
+        height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;

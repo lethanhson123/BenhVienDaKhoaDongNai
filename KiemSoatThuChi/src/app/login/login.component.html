@@ -13,15 +13,17 @@
             </div>
         </div>
         <div class="row margin">
-            <div class="input-field col s12">
+            <div class="input-field col s10">
                 <input name="MatKhau" [(ngModel)]="ThanhVienService.FormData.MatKhau" placeholder="Mật khẩu"
-                    [type]="MatKhauIsActive ? 'password' : 'text'" class="form-control" (keyup.enter)="Login()">
-                <i class="material-icons prefix pt-2" (click)="MatKhauChangeType()" style="cursor: pointer;">remove_red_eye</i>
+                    [type]="MatKhauIsActive ? 'password' : 'text'" class="form-control" (keyup.enter)="Login()">                
+            </div>
+            <div class="input-field col s2">                
+                <i class="material-icons" (click)="MatKhauChangeType()" style="cursor: pointer;">remove_red_eye</i>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light border-round yellow darken-3 col s12" style="width: 100%;"
+                <button class="btn waves-effect waves-light border-round yellow darken-3 col s12" 
                     (click)="Login()"
                     [disabled]="!ThanhVienService.FormData.TaiKhoan || !ThanhVienService.FormData.MatKhau">Đăng
                     nhập</button>

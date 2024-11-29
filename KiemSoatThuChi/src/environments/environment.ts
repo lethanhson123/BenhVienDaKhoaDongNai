@@ -21,6 +21,7 @@ export const environment = {
   DuAnQuyetDinhInfo: "DuAnQuyetDinhInfo/",
   DuAnThuChiInfo: "DuAnThuChiInfo/",
   DanhMucBieuMauInfo: "DanhMucBieuMauInfo/",
+  ThanhVienInfo: "ThanhVienInfo/",
   Token: "Token",
   Homepage: "Homepage",
   Login: "Login",
@@ -43,7 +44,7 @@ export const environment = {
   UserNameExists: "Tài khoản đã tồn tại.",
   UserNameRequired: "UserName là bắt buộc.",
   ToChucExists: "Tổ chức đã tồn tại.",
-  PageTitle: "Kiếm soát thu chi",
+  PageTitle: "Kiểm soát thu chi",
   PageTitleShort: "Đa khoa Đồng Nai",
   PageDescription: "Hệ sinh thái số KHO BẠC ĐỒNG NAI",
 
