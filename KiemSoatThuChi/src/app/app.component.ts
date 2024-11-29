@@ -94,7 +94,7 @@ export class AppComponent {
                     localStorage.setItem(environment.ThanhVienHoTen, this.ThanhVienService.FormDataLogin.Name);
                     localStorage.setItem(environment.ThanhVienFileName, this.ThanhVienService.FormDataLogin.FileName);
                     this.DanhMucChucNangGetByThanhVienIDToListAsync();
-                    this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
+                    //this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
                     this.GetByParentID_ReadJSONFileToListAsync();
                     this.StartTimer();
                   }

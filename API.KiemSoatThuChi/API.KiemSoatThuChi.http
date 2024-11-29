@@ -1,6 +1,0 @@
-@API.KiemSoatThuChi_HostAddress = http://localhost:5252
-
-GET {{API.KiemSoatThuChi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

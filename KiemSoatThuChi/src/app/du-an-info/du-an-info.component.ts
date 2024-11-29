@@ -62,6 +62,7 @@ export class DuAnInfoComponent implements OnInit {
 
   constructor(
     private ActiveRouter: ActivatedRoute,
+    public Router: Router,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -170,8 +171,7 @@ export class DuAnInfoComponent implements OnInit {
     this.DuAnService.IsShowLoading = true;
     this.DuAnService.SaveAsync().subscribe(
       res => {
-        this.DuAnService.FormData = res as DuAn;
-
+        this.DuAnService.FormData = res as DuAn;        
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
