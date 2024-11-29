@@ -15,6 +15,10 @@ export class DuAnThuChiService extends BaseService {
     ListFilter: DuAnThuChi[] | undefined;
     FormData!: DuAnThuChi;
 
+    FormDataActive!: DuAnThuChi;
+    ListActive: DuAnThuChi[] | undefined;
+    ListActive001: DuAnThuChi[] | undefined;
+
     IsBack: boolean = false;
     List001: DuAnThuChi[] | undefined;
 
@@ -23,6 +27,10 @@ export class DuAnThuChiService extends BaseService {
         this.Controller = "DuAnThuChi";
         this.IsBack = false;
         this.List001=[];
+        this.FormDataActive = {
+        };
+        this.ListActive = [];
+        this.ListActive001 = [];
     }
 
     GetSQLByCodeToListAsync() {

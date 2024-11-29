@@ -34,14 +34,16 @@
         public string? NguoiThucHienChucDanh { get; set; }       
         public long? DanhMucTinhTrangID { get; set; }
         public string? DanhMucTinhTrangName { get; set; }
+        public string? FileNameQRCode { get; set; }
+        public decimal? ThoiHan { get; set; }
         public decimal? GhiCo { get; set; }
         public decimal? GhiNo { get; set; }
         public decimal? ConLai { get; set; }
         public decimal? MucDauTu { get; set; }
-        public string? FileNameQRCode { get; set; }
-        public decimal? ThoiHan { get; set; }
-        public decimal? TamUngSoDu { get; set; }
-        public decimal? TamUngTongCong { get; set; }
+        public decimal? MucDauTuConLai { get; set; }      
+        public decimal? TamUngGhiCo { get; set; }
+        public decimal? TamUngGhiNo { get; set; }
+        public decimal? TamUngConLai { get; set; }
 
         public DuAn()
         {

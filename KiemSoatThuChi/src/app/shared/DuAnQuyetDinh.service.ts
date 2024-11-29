@@ -11,6 +11,7 @@ export class DuAnQuyetDinhService extends BaseService{
     DisplayColumns002: string[] = ['STT', 'NgayKy', 'SoQuyetDinh', 'Name', 'GhiCo', 'GhiNo', 'ConLai'];
     DisplayColumns003: string[] = ['STT', 'ID', 'NgayKy', 'NgayHieuLuc', 'SoHoSo', 'SoQuyetDinh', 'Name', 'MucDauTu', 'GhiCo', 'GhiNo', 'ConLai', 'Save'];
     DisplayColumns004: string[] = ['STT', 'ID', 'NgayKy', 'NgayHieuLuc', 'SoHoSo', 'SoQuyetDinh', 'Name', 'MucDauTu', 'GhiCo', 'GhiNo', 'ConLai', 'Active', 'Save'];
+    DisplayColumns005: string[] = ['STT', 'ID', 'NgayKy', 'NgayHieuLuc', 'SoHoSo', 'SoQuyetDinh', 'Name', 'MucDauTu', 'MucDauTuConLai', 'TamUngGhiCo', 'TamUngConLai', 'GhiCo', 'GhiNo', 'ConLai', 'Active', 'Save'];
 
     List: DuAnQuyetDinh[] | undefined;
     ListFilter: DuAnQuyetDinh[] | undefined;

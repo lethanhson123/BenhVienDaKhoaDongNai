@@ -20,6 +20,7 @@ export const environment = {
   DuAnInfo: "DuAnInfo/",
   DuAnQuyetDinhInfo: "DuAnQuyetDinhInfo/",
   DuAnThuChiInfo: "DuAnThuChiInfo/",
+  DanhMucBieuMauInfo: "DanhMucBieuMauInfo/",
   Token: "Token",
   Homepage: "Homepage",
   Login: "Login",

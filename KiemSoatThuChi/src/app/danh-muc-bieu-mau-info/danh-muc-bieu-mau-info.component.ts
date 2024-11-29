@@ -21,6 +21,7 @@ export class DanhMucBieuMauInfoComponent implements OnInit {
 
   constructor( 
     public ActiveRouter: ActivatedRoute,
+    public Router: Router,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,    
 
@@ -53,7 +54,7 @@ export class DanhMucBieuMauInfoComponent implements OnInit {
     this.DanhMucBieuMauService.SaveAndUploadFileAsync().subscribe(
       res => {
         this.DanhMucBieuMauService.FormData = res as DanhMucBieuMau;      
-
+        this.Router.navigateByUrl(environment.DanhMucBieuMauInfo + this.DanhMucBieuMauService.FormData.ID);
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
@@ -64,6 +65,10 @@ export class DanhMucBieuMauInfoComponent implements OnInit {
       }
     );
   }
-
+  DanhMucBieuMauAdd() {
+    this.Router.navigateByUrl(environment.DanhMucBieuMauInfo + environment.InitializationNumber);
+    this.DanhMucBieuMauService.BaseParameter.ID = environment.InitializationNumber;
+    this.DanhMucBieuMauSearch();
+  }
   
 }

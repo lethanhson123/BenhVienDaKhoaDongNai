@@ -20,7 +20,7 @@ export class DuAnComponent implements OnInit {
   @ViewChild('DuAnSort') DuAnSort: MatSort;
   @ViewChild('DuAnPaginator') DuAnPaginator: MatPaginator;
 
-  constructor(    
+  constructor(
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -28,7 +28,7 @@ export class DuAnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.DuAnSearch();
+    this.DuAnSearch();
   }
   DateBatDau(value) {
     this.DuAnService.BaseParameter.BatDau = new Date(value);
@@ -36,7 +36,7 @@ export class DuAnComponent implements OnInit {
   DateKetThuc(value) {
     this.DuAnService.BaseParameter.KetThuc = new Date(value);
   }
-  DuAnSearch() {    
+  DuAnSearch() {
     this.DuAnService.IsShowLoading = true;
     this.DuAnService.GetBySearchString_BatDau_KetThucToListAsync().subscribe(
       res => {
@@ -51,21 +51,23 @@ export class DuAnComponent implements OnInit {
         this.DuAnService.IsShowLoading = false;
       }
     );
-  } 
+  }
   DuAnDelete(element: DuAn) {
-    this.DuAnService.BaseParameter.ID = element.ID;
-    this.DuAnService.IsShowLoading = true;
-    this.DuAnService.RemoveAsync().subscribe(
-      res => {
-        this.DuAnSearch();
-        this.NotificationService.warn(environment.DeleteSuccess);
-      },
-      err => {
-        this.NotificationService.warn(environment.DeleteNotSuccess);
-      },
-      () => {
-        this.DuAnService.IsShowLoading = false;
-      }
-    );
+    if (confirm(environment.DeleteConfirm)) {
+      this.DuAnService.BaseParameter.ID = element.ID;
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnService.RemoveAsync().subscribe(
+        res => {
+          this.DuAnSearch();
+          this.NotificationService.warn(environment.DeleteSuccess);
+        },
+        err => {
+          this.NotificationService.warn(environment.DeleteNotSuccess);
+        },
+        () => {
+          this.DuAnService.IsShowLoading = false;
+        }
+      );
+    }
   }
 }

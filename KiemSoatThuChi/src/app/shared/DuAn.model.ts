@@ -33,14 +33,16 @@ NguoiThucHienName?: string;
 NguoiThucHienChucDanh?: string;
 DanhMucTinhTrangID?: number;
 DanhMucTinhTrangName?: string;
+FileNameQRCode?: string;
+ThoiHan?: number;
 GhiCo?: number;
 GhiNo?: number;
 ConLai?: number;
 MucDauTu?: number;
-FileNameQRCode?: string;
-ThoiHan?: number;
-TamUngSoDu?: number;
-TamUngTongCong?: number;
+MucDauTuConLai?: number;
+TamUngGhiCo?: number;
+TamUngGhiNo?: number;
+TamUngConLai?: number;
 
 }
 

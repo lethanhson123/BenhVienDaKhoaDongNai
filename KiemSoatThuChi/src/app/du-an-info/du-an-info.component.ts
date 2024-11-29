@@ -253,7 +253,24 @@ export class DuAnInfoComponent implements OnInit {
         res => {
           this.DuAnThuChiService.List = (res as DuAnThuChi[]);
           this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
-          this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.List);
+
+          this.DuAnThuChiService.ListActive = this.DuAnThuChiService.List;
+          this.DuAnThuChiService.FormDataActive.ID = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.DonGia = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.GhiCo = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.GhiNo = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.ConLai = environment.InitializationNumber;
+
+          for (let i = 0; i < this.DuAnThuChiService.ListActive.length; i++) {
+            this.DuAnThuChiService.ListActive[i].Active = false;
+            this.DuAnThuChiService.FormDataActive.DonGia = this.DuAnThuChiService.FormDataActive.DonGia + this.DuAnThuChiService.ListActive[i].DonGia;
+            this.DuAnThuChiService.FormDataActive.GhiCo = this.DuAnThuChiService.FormDataActive.GhiCo + this.DuAnThuChiService.ListActive[i].GhiCo;
+            this.DuAnThuChiService.FormDataActive.GhiNo = this.DuAnThuChiService.FormDataActive.GhiNo + this.DuAnThuChiService.ListActive[i].GhiNo;
+            this.DuAnThuChiService.FormDataActive.ConLai = this.DuAnThuChiService.FormDataActive.ConLai + this.DuAnThuChiService.ListActive[i].ConLai;
+          }
+          this.DuAnThuChiService.ListActive.push(this.DuAnThuChiService.FormDataActive);
+
+          this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.ListActive);
           this.DuAnThuChiService.DataSource.sort = this.DuAnThuChiSort;
           this.DuAnThuChiService.DataSource.paginator = this.DuAnThuChiPaginator;
         },
@@ -321,6 +338,9 @@ export class DuAnInfoComponent implements OnInit {
           this.DuAnQuyetDinhService.ListActive = this.DuAnQuyetDinhService.List;
           this.DuAnQuyetDinhService.FormDataActive.ID = environment.InitializationNumber;
           this.DuAnQuyetDinhService.FormDataActive.MucDauTu = environment.InitializationNumber;
+          this.DuAnQuyetDinhService.FormDataActive.MucDauTuConLai = environment.InitializationNumber;
+          this.DuAnQuyetDinhService.FormDataActive.TamUngGhiCo = environment.InitializationNumber;
+          this.DuAnQuyetDinhService.FormDataActive.TamUngConLai = environment.InitializationNumber;
           this.DuAnQuyetDinhService.FormDataActive.GhiCo = environment.InitializationNumber;
           this.DuAnQuyetDinhService.FormDataActive.GhiNo = environment.InitializationNumber;
           this.DuAnQuyetDinhService.FormDataActive.ConLai = environment.InitializationNumber;
@@ -328,6 +348,9 @@ export class DuAnInfoComponent implements OnInit {
           for (let i = 0; i < this.DuAnQuyetDinhService.ListActive.length; i++) {
             this.DuAnQuyetDinhService.ListActive[i].Active = false;
             this.DuAnQuyetDinhService.FormDataActive.MucDauTu = this.DuAnQuyetDinhService.FormDataActive.MucDauTu + this.DuAnQuyetDinhService.ListActive[i].MucDauTu;
+            this.DuAnQuyetDinhService.FormDataActive.MucDauTuConLai = this.DuAnQuyetDinhService.FormDataActive.MucDauTuConLai + this.DuAnQuyetDinhService.ListActive[i].MucDauTuConLai;
+            this.DuAnQuyetDinhService.FormDataActive.TamUngGhiCo = this.DuAnQuyetDinhService.FormDataActive.TamUngGhiCo + this.DuAnQuyetDinhService.ListActive[i].TamUngGhiCo;
+            this.DuAnQuyetDinhService.FormDataActive.TamUngConLai = this.DuAnQuyetDinhService.FormDataActive.TamUngConLai + this.DuAnQuyetDinhService.ListActive[i].TamUngConLai;
             this.DuAnQuyetDinhService.FormDataActive.GhiCo = this.DuAnQuyetDinhService.FormDataActive.GhiCo + this.DuAnQuyetDinhService.ListActive[i].GhiCo;
             this.DuAnQuyetDinhService.FormDataActive.GhiNo = this.DuAnQuyetDinhService.FormDataActive.GhiNo + this.DuAnQuyetDinhService.ListActive[i].GhiNo;
             this.DuAnQuyetDinhService.FormDataActive.ConLai = this.DuAnQuyetDinhService.FormDataActive.ConLai + this.DuAnQuyetDinhService.ListActive[i].ConLai;

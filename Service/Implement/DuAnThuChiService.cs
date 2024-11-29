@@ -1,4 +1,6 @@
-﻿namespace Service.Implement
+﻿using Data.Model;
+
+namespace Service.Implement
 {
     public class DuAnThuChiService : BaseService<DuAnThuChi, IDuAnThuChiRepository>
     , IDuAnThuChiService
@@ -355,11 +357,128 @@
                     }
 
                     string ResultSync = await _DuAnRepository.SyncSQLByIDAsync(model.ParentID.Value);
+
+                    if (model.DanhMucBieuMauID > 0)
+                    {
+                        DanhMucBieuMau DanhMucBieuMau = await _DanhMucBieuMauRepository.GetByIDAsync(model.DanhMucBieuMauID.Value);
+                        if (DanhMucBieuMau.IsTamUng == true)
+                        {
+                            await Sync001(model);
+                        }
+                    }
+
+                    if (model.DuAnThuChiID > 0)
+                    {
+                        await Sync001(model);
+                    }
                 }
             }
             return result;
         }
+        private async Task<int> Sync001(DuAnThuChi model)
+        {
+            int result = GlobalHelper.InitializationNumber;
+            List<DanhMucBieuMau> ListDanhMucBieuMau = await _DanhMucBieuMauRepository.GetByCondition(item => item.IsTamUng == true).ToListAsync();
+            if (ListDanhMucBieuMau == null)
+            {
+                ListDanhMucBieuMau = new List<DanhMucBieuMau>();
+            }
+            if (ListDanhMucBieuMau.Count > 0)
+            {
+                List<long> ListDanhMucBieuMauID = ListDanhMucBieuMau.Select(item => item.ID).ToList();
 
+                if (model.DuAnQuyetDinhID > 0)
+                {
+                    DuAnQuyetDinh DuAnQuyetDinh = await _DuAnQuyetDinhRepository.GetByIDAsync(model.DuAnQuyetDinhID.Value);
+                    if (DuAnQuyetDinh.ID > 0)
+                    {
+                        List<DuAnThuChi> ListDuAnThuChiDuAnQuyetDinh = await GetByCondition(item => item.DuAnQuyetDinhID == model.DuAnQuyetDinhID && ListDanhMucBieuMauID.Contains(item.DanhMucBieuMauID.Value)).ToListAsync();
+                        if (ListDuAnThuChiDuAnQuyetDinh == null)
+                        {
+                            ListDuAnThuChiDuAnQuyetDinh = new List<DuAnThuChi>();
+                        }
+                        if (ListDuAnThuChiDuAnQuyetDinh.Count > 0)
+                        {
+                            DuAnQuyetDinh.TamUngGhiCo = GlobalHelper.InitializationNumber;
+                            DuAnQuyetDinh.TamUngGhiNo = GlobalHelper.InitializationNumber;
+                            DuAnQuyetDinh.TamUngConLai = GlobalHelper.InitializationNumber;
+                            foreach (DuAnThuChi DuAnThuChi in ListDuAnThuChiDuAnQuyetDinh)
+                            {
+                                try
+                                {
+                                    DuAnQuyetDinh.TamUngGhiCo = DuAnQuyetDinh.TamUngGhiCo + DuAnThuChi.GhiNo.Value;
+                                }
+                                catch (Exception ex)
+                                {
+                                    string mes = ex.Message;
+                                }
+                            }
+                            List<long> ListDuAnThuChiDuAnQuyetDinhID = ListDuAnThuChiDuAnQuyetDinh.Select(item => item.ID).ToList();
+                            List<DuAnThuChi> ListDuAnThuChiDuAnQuyetDinhSub = await GetByCondition(item => ListDuAnThuChiDuAnQuyetDinhID.Contains(item.DuAnThuChiID.Value)).ToListAsync();
+                            foreach (DuAnThuChi DuAnThuChi in ListDuAnThuChiDuAnQuyetDinhSub)
+                            {
+                                try
+                                {
+                                    DuAnQuyetDinh.TamUngGhiNo = DuAnQuyetDinh.TamUngGhiNo + DuAnThuChi.DonGia.Value;
+                                }
+                                catch (Exception ex)
+                                {
+                                    string mes = ex.Message;
+                                }
+                            }
+                            DuAnQuyetDinh.TamUngConLai = DuAnQuyetDinh.TamUngGhiCo - DuAnQuyetDinh.TamUngGhiNo;
+                            await _DuAnQuyetDinhRepository.UpdateAsync(DuAnQuyetDinh);
+                        }
+                    }
+                }
+
+                if (model.ParentID > 0)
+                {
+                    DuAn DuAn = await _DuAnRepository.GetByIDAsync(model.ParentID.Value);
+                    if (DuAn.ID > 0)
+                    {
+                        List<DuAnThuChi> ListDuAnThuChiDuAn = await GetByCondition(item => item.ParentID == model.ParentID && ListDanhMucBieuMauID.Contains(item.DanhMucBieuMauID.Value)).ToListAsync();
+                        if (ListDuAnThuChiDuAn == null)
+                        {
+                            ListDuAnThuChiDuAn = new List<DuAnThuChi>();
+                        }
+                        if (ListDuAnThuChiDuAn.Count > 0)
+                        {
+                            DuAn.TamUngGhiCo = GlobalHelper.InitializationNumber;
+                            DuAn.TamUngGhiNo = GlobalHelper.InitializationNumber;
+                            DuAn.TamUngConLai = GlobalHelper.InitializationNumber;
+                            foreach (DuAnThuChi DuAnThuChi in ListDuAnThuChiDuAn)
+                            {
+                                try
+                                {
+                                    DuAn.TamUngGhiCo = DuAn.TamUngGhiCo + DuAnThuChi.GhiNo.Value;
+                                }
+                                catch (Exception ex)
+                                {
+                                    string mes = ex.Message;
+                                }
+                            }
+                            List<long> ListDuAnThuChiDuAnID = ListDuAnThuChiDuAn.Select(item => item.ID).ToList();
+                            List<DuAnThuChi> ListDuAnThuChiDuAnSub = await GetByCondition(item => ListDuAnThuChiDuAnID.Contains(item.DuAnThuChiID.Value)).ToListAsync();
+                            foreach (DuAnThuChi DuAnThuChi in ListDuAnThuChiDuAnSub)
+                            {
+                                try
+                                {
+                                    DuAn.TamUngGhiNo = DuAn.TamUngGhiNo + DuAnThuChi.DonGia.Value;
+                                }
+                                catch (Exception ex)
+                                {
+                                    string mes = ex.Message;
+                                }
+                            }
+                            DuAn.TamUngConLai = DuAn.TamUngGhiCo - DuAn.TamUngGhiNo;
+                            await _DuAnRepository.UpdateAsync(DuAn);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
         public virtual async Task<List<DuAnThuChi>> GetSQLByCodeToListAsync(string Code)
         {
             List<DuAnThuChi> result = new List<DuAnThuChi>();

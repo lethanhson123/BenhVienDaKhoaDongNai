@@ -190,7 +190,7 @@
                                     </th>
                                     <td mat-cell *matCellDef="let element">
                                         <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
-                                            routerLink="/DuAnQuyetDinhInfo/{{element.ID}}"><b>{{element.SoQuyetDinh}}</b></a>
+                                            routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.SoQuyetDinh}}</b></a>
                                     </td>
                                 </ng-container>
                                 <ng-container matColumnDef="Name">
@@ -199,7 +199,7 @@
                                     </th>
                                     <td mat-cell *matCellDef="let element">
                                         <a style="cursor: pointer;" title="{{element.Name}}" class="link-primary"
-                                            routerLink="/DuAnQuyetDinhInfo/{{element.ID}}"><b>{{element.Name}}</b></a>
+                                            routerLink="/DuAnQuyetDinhInfo/{{element.ParentID}}/{{element.ID}}"><b>{{element.Name}}</b></a>
                                     </td>
                                 </ng-container>
                                 <ng-container matColumnDef="GhiCo">

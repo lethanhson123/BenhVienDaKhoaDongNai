@@ -63,18 +63,6 @@
                                         [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
                                         autocomplete="off">
                                 </div>
-                            </div>
-                            <div class="col s12 m12 l3">
-                                <div>
-                                    <label class="form-label">Số hồ sơ</label>
-                                    <input name="SoHoSo" [(ngModel)]="DuAnQuyetDinhService.FormData.SoHoSo"
-                                        placeholder="Số hồ sơ" type="text" class="form-control">
-                                </div>
-                                <div>
-                                    <label class="form-label">Số quyết định</label>
-                                    <input name="SoQuyetDinh" [(ngModel)]="DuAnQuyetDinhService.FormData.SoQuyetDinh"
-                                        placeholder="Số quyết định" type="text" class="form-control">
-                                </div>
                                 <div>
                                     <label class="form-label">Ghi chú</label>
                                     <input name="Note" [(ngModel)]="DuAnQuyetDinhService.FormData.Note"
@@ -88,6 +76,19 @@
                                         placeholder="Tiêu đề" type="text" class="form-control">
                                 </div>
                                 <div>
+                                    <label class="form-label">Số hồ sơ</label>
+                                    <input name="SoHoSo" [(ngModel)]="DuAnQuyetDinhService.FormData.SoHoSo"
+                                        placeholder="Số hồ sơ" type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label class="form-label">Số quyết định</label>
+                                    <input name="SoQuyetDinh" [(ngModel)]="DuAnQuyetDinhService.FormData.SoQuyetDinh"
+                                        placeholder="Số quyết định" type="text" class="form-control">
+                                </div>
+                               
+                            </div>
+                            <div class="col s12 m12 l3">                               
+                                <div>
                                     <label class="form-label">Mức đầu tư
                                         ({{DuAnQuyetDinhService.FormData.MucDauTu
                                         |
@@ -96,6 +97,35 @@
                                     <input name="MucDauTu" [(ngModel)]="DuAnQuyetDinhService.FormData.MucDauTu"
                                         placeholder="Mức đầu tư" type="number" class="form-control"
                                         style="text-align: right;">
+                                </div>
+                                <div>
+                                    <label class="form-label" style="color: green;">Mức đầu tư - Còn lại
+                                        ({{DuAnQuyetDinhService.FormData.MucDauTuConLai
+                                        |
+                                        number:
+                                        '1.0-0'}})</label>
+                                    <input disabled name="MucDauTuConLai" [(ngModel)]="DuAnQuyetDinhService.FormData.MucDauTuConLai"
+                                        placeholder="Còn lại" type="number" class="form-control"
+                                        style="text-align: right; color: green;">
+                                </div>
+                                <div>
+                                    <label class="form-label" style="color: red;">Tạm ứng ({{DuAnQuyetDinhService.FormData.TamUngGhiCo
+                                        |
+                                        number:
+                                        '1.0-0'}})</label>
+                                    <input disabled name="TamUngGhiCo" [(ngModel)]="DuAnQuyetDinhService.FormData.TamUngGhiCo"
+                                        placeholder="Tạm ứng" type="number" class="form-control"
+                                        style="text-align: right; color: red;">
+                                </div>
+                                <div>
+                                    <label class="form-label" style="color: green;">Tạm ứng - Còn lại
+                                        ({{DuAnQuyetDinhService.FormData.TamUngConLai
+                                        |
+                                        number:
+                                        '1.0-0'}})</label>
+                                    <input disabled name="TamUngConLai" [(ngModel)]="DuAnQuyetDinhService.FormData.TamUngConLai"
+                                        placeholder="Còn lại" type="number" class="form-control"
+                                        style="text-align: right; color: green;">
                                 </div>
                             </div>
                             <div class="col s12 m12 l3">
@@ -121,10 +151,10 @@
                                 </div>
                                 <div>
                                     <label class="form-label" style="color: green;">Còn lại
-                                        {{DuAnQuyetDinhService.FormData.ConLai
+                                        ({{DuAnQuyetDinhService.FormData.ConLai
                                         |
                                         number:
-                                        '1.0-0'}}</label>
+                                        '1.0-0'}})</label>
                                     <input disabled name="ConLai" [(ngModel)]="DuAnQuyetDinhService.FormData.ConLai"
                                         placeholder="Còn lại" type="number" class="form-control"
                                         style="text-align: right; color: green;">

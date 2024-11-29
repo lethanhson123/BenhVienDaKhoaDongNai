@@ -16,9 +16,7 @@
                         <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
                         </li>
                         <li class="breadcrumb-item"><a routerLink="/DuAn" title="Dự án">Dự án</a>
-                        </li>
-                        <li class="breadcrumb-item"><a routerLink="/DuAn" title="Dự án">Dự án</a>
-                        </li>
+                        </li>                      
                     </ol>
                 </div>
             </div>
@@ -160,6 +158,55 @@
                                         </div>
                                     </td>
                                 </ng-container>
+                                <ng-container matColumnDef="MucDauTuConLai">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn
+                                        lại
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.MucDauTuConLai>=0"
+                                            style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.MucDauTuConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                        <div *ngIf="element.MucDauTuConLai<0"
+                                            style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.MucDauTuConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="TamUngGhiCo">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tạm ứng
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.TamUngGhiCo |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="TamUngConLai">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Còn
+                                        lại
+                                    </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngIf="element.TamUngConLai>=0"
+                                            style="text-align: right; font-weight: bold; color: green;">
+                                            {{element.TamUngConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                        <div *ngIf="element.ConLai<0"
+                                            style="text-align: right; font-weight: bold; color: red;">
+                                            {{element.TamUngConLai |
+                                            number:
+                                            '1.0-0'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
                                 <ng-container matColumnDef="GhiCo">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi có
                                     </th>
@@ -209,9 +256,9 @@
                                                 class="material-icons">delete_forever</i></a>
                                     </td>
                                 </ng-container>
-                                <tr mat-header-row *matHeaderRowDef="DuAnService.DisplayColumns003">
+                                <tr mat-header-row *matHeaderRowDef="DuAnService.DisplayColumns004">
                                 </tr>
-                                <tr mat-row *matRowDef="let row; columns: DuAnService.DisplayColumns003;">
+                                <tr mat-row *matRowDef="let row; columns: DuAnService.DisplayColumns004;">
                                 </tr>
                             </table>
                             <mat-paginator *ngIf="!NotificationService.IsMobile" #DuAnPaginator="matPaginator"
