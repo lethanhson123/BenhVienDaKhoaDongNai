@@ -139,7 +139,7 @@
   &:before {
     content: "";  
     position: absolute;
-    height: 40px;
+    height: 64px;
     width: 40px;
     background-color: rgba($white, 0.1); 
     border-radius: 100%;
@@ -152,7 +152,7 @@
 
   &:hover {
     &:before {
-      height: 40px;
+      height: 64px;
       width: 40px;
       transform: scale(1); 
       transition: all 0.3s ease;
@@ -246,7 +246,7 @@
                   padding-top: 15px ; 
                   .notification-data{ 
                     .product-icon{
-                      height: 40px; 
+                      height: 64px; 
                       width: 40px;
                       border-radius: 6px;
                       display: flex;

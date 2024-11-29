@@ -26,7 +26,9 @@
         public override void Initialization(DuAnQuyetDinh model)
         {
             BaseInitialization(model);
-            
+
+            model.MucDauTuConLai = model.MucDauTu - model.GhiNo;
+
             if (model.NgayKy == null)
             {
                 model.NgayKy = GlobalHelper.InitializationDateTime;

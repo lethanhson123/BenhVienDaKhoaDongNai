@@ -21,6 +21,10 @@ export class DuAnQuyetDinh extends Base {
     GhiNo?: number;
     ConLai?: number;
     MucDauTu?: number;
+    MucDauTuConLai?: number;
+    TamUngGhiCo?: number;
+    TamUngGhiNo?: number;
+    TamUngConLai?: number;
 
 }
 

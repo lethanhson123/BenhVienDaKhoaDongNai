@@ -4,6 +4,7 @@
     {
 
         public int? HeSo { get; set; }
+        public bool? IsTamUng { get; set; }
 
         public DanhMucBieuMau()
         {

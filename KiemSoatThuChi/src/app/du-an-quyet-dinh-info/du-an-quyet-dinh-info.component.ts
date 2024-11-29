@@ -47,6 +47,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
 
   constructor(
     private ActiveRouter: ActivatedRoute,
+    public Router: Router,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -59,11 +60,12 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
     public DuAnQuyetToanPhanKyService: DuAnQuyetToanPhanKyService,
     public DuAnQuyetToanLuyKeService: DuAnQuyetToanLuyKeService,
 
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);
+    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.DuAnQuyetDinhSearch();
   }
   DateNgayHieuLuc(value) {
@@ -103,18 +105,19 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
   }
 
   DuAnQuyetDinhSearch() {
-    this.DuAnQuyetDinhService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnService.GetByIDAsync().subscribe(
       res => {
-        this.DuAnService.FormData = res as DuAnQuyetDinh;
-        this.DuAnQuyetDinhService.IsShowLoading = true;
+        this.DuAnService.FormData = res as DuAn;
+        this.DuAnService.IsShowLoading = true;
         this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
           res => {
+
             this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
             this.DuAnQuyetDinhService.FormData.ParentID = this.DuAnService.FormData.ID;
             this.DuAnQuyetDinhService.FormData.ParentName = this.DuAnService.FormData.Name;
-            this.ToChucSearch();
-            this.ThanhVienSearch();
+            //this.ToChucSearch();
+            //this.ThanhVienSearch();
             this.DuAnThuChiSearch();
             //this.DuAnQuyetToanLuyKeSearch();
             //this.DuAnQuyetToanPhanKySearch();
@@ -124,34 +127,39 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
           err => {
           },
           () => {
-            this.DuAnQuyetDinhService.IsShowLoading = false;
+            this.DuAnService.IsShowLoading = false;
           }
         );
       },
       err => {
       },
       () => {
-        this.DuAnQuyetDinhService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
   DuAnQuyetDinhSave() {
-    this.DuAnQuyetDinhService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnQuyetDinhService.FormData.ParentID = this.DuAnService.FormData.ID;
     this.DuAnQuyetDinhService.FormData.Code = this.DuAnService.FormData.Code;
     this.DuAnQuyetDinhService.SaveAsync().subscribe(
       res => {
         this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
-
+        this.Router.navigateByUrl(environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID);
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
         this.NotificationService.warn(environment.SaveNotSuccess);
       },
       () => {
-        this.DuAnQuyetDinhService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
+  }
+  DuAnQuyetDinhAdd() {
+    this.Router.navigateByUrl(environment.DuAnQuyetDinhInfo + this.DuAnService.FormData.ID + "/" + environment.InitializationNumber);
+    this.DuAnQuyetDinhService.BaseParameter.ID = environment.InitializationNumber;
+    this.DuAnQuyetDinhSearch();
   }
 
   DuAnThuChiSearch() {
@@ -162,27 +170,46 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       }
     }
     else {
-      this.DuAnQuyetDinhService.IsShowLoading = true;
-      this.DuAnThuChiService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnThuChiService.GetBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnThuChiService.BaseParameter.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+      this.DuAnThuChiService.GetByDuAnQuyetDinhIDToListAsync().subscribe(
         res => {
           this.DuAnThuChiService.List = (res as DuAnThuChi[]).sort((a, b) => (a.NgayGhiNhan > b.NgayGhiNhan ? 1 : -1));;
           this.DuAnThuChiService.ListFilter = this.DuAnThuChiService.List.filter(item => item.ID > 0);
-          this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.List);
+         
+          
+          this.DuAnThuChiService.ListActive = this.DuAnThuChiService.List;
+          this.DuAnThuChiService.FormDataActive.ID = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.DonGia = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.GhiCo = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.GhiNo = environment.InitializationNumber;
+          this.DuAnThuChiService.FormDataActive.ConLai = environment.InitializationNumber;
+
+          for (let i = 0; i < this.DuAnThuChiService.ListActive.length; i++) {
+            this.DuAnThuChiService.ListActive[i].Active = false;
+            this.DuAnThuChiService.FormDataActive.DonGia = this.DuAnThuChiService.FormDataActive.DonGia + this.DuAnThuChiService.ListActive[i].DonGia;
+            this.DuAnThuChiService.FormDataActive.GhiCo = this.DuAnThuChiService.FormDataActive.GhiCo + this.DuAnThuChiService.ListActive[i].GhiCo;
+            this.DuAnThuChiService.FormDataActive.GhiNo = this.DuAnThuChiService.FormDataActive.GhiNo + this.DuAnThuChiService.ListActive[i].GhiNo;
+            this.DuAnThuChiService.FormDataActive.ConLai = this.DuAnThuChiService.FormDataActive.ConLai + this.DuAnThuChiService.ListActive[i].ConLai;
+          }
+          this.DuAnThuChiService.ListActive.push(this.DuAnThuChiService.FormDataActive);
+
+          this.DuAnThuChiService.DataSource = new MatTableDataSource(this.DuAnThuChiService.ListActive);
           this.DuAnThuChiService.DataSource.sort = this.DuAnThuChiSort;
           this.DuAnThuChiService.DataSource.paginator = this.DuAnThuChiPaginator;
+          
         },
         err => {
         },
         () => {
-          this.DuAnQuyetDinhService.IsShowLoading = false;
+          this.DuAnService.IsShowLoading = false;
         }
       );
     }
   }
   DuAnThuChiDelete(element: DuAnThuChi) {
     if (confirm(environment.DeleteConfirm)) {
-      this.DuAnQuyetDinhService.IsShowLoading = true;
+      this.DuAnService.IsShowLoading = true;
       this.DuAnThuChiService.BaseParameter.ID = element.ID;
       this.DuAnThuChiService.RemoveAsync().subscribe(
         res => {
@@ -193,13 +220,13 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
           this.NotificationService.warn(environment.DeleteNotSuccess);
         },
         () => {
-          this.DuAnQuyetDinhService.IsShowLoading = false;
+          this.DuAnService.IsShowLoading = false;
         }
       );
     }
   }
   DuAnThuChiAdd(ID: number) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnThuChiService.BaseParameter.ID = ID;
     this.DuAnThuChiService.GetByIDAsync().subscribe(
       res => {
@@ -212,7 +239,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       err => {
       },
       () => {
-        this.DuAnQuyetDinhService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
@@ -225,9 +252,9 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       }
     }
     else {
-      this.DuAnQuyetDinhService.IsShowLoading = true;
-      this.DuAnQuyetToanPhanKyService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnQuyetToanPhanKyService.GetSQLBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetToanPhanKyService.BaseParameter.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+      this.DuAnQuyetToanPhanKyService.GetSQLByDuAnQuyetDinhIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanPhanKyService.List = (res as DuAnQuyetToanPhanKy[]);
           if (this.IsDuAnQuyetToanPhanKy == true) {
@@ -241,7 +268,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         err => {
         },
         () => {
-          this.DuAnQuyetDinhService.IsShowLoading = false;
+          this.DuAnService.IsShowLoading = false;
         }
       );
     }
@@ -254,9 +281,9 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
       }
     }
     else {
-      this.DuAnQuyetDinhService.IsShowLoading = true;
-      this.DuAnQuyetToanLuyKeService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-      this.DuAnQuyetToanLuyKeService.GetSQLBySoQuyetDinhToListAsync().subscribe(
+      this.DuAnService.IsShowLoading = true;
+      this.DuAnQuyetToanLuyKeService.BaseParameter.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+      this.DuAnQuyetToanLuyKeService.GetSQLByDuAnQuyetDinhIDToListAsync().subscribe(
         res => {
           this.DuAnQuyetToanLuyKeService.List = (res as DuAnQuyetToanLuyKe[]);
           if (this.IsDuAnQuyetToanLuyKe == true) {
@@ -270,14 +297,14 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         err => {
         },
         () => {
-          this.DuAnQuyetDinhService.IsShowLoading = false;
+          this.DuAnService.IsShowLoading = false;
         }
       );
     }
   }
 
   DuAnQuyetToanLuyKeActiveChange(element: DuAnQuyetToanLuyKe) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnQuyetToanLuyKeService.FormData = element;
     this.DuAnQuyetToanLuyKeService.SaveAsync().subscribe(
       res => {
@@ -289,13 +316,13 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         this.NotificationService.warn(environment.SaveNotSuccess);
       },
       () => {
-        this.DuAnQuyetDinhService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
 
   DuAnQuyetToanPhanKyActiveChange(element: DuAnQuyetToanPhanKy) {
-    this.DuAnQuyetDinhService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnQuyetToanPhanKyService.FormData = element;
     this.DuAnQuyetToanPhanKyService.SaveAsync().subscribe(
       res => {
@@ -307,7 +334,7 @@ export class DuAnQuyetDinhInfoComponent implements OnInit {
         this.NotificationService.warn(environment.SaveNotSuccess);
       },
       () => {
-        this.DuAnQuyetDinhService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }

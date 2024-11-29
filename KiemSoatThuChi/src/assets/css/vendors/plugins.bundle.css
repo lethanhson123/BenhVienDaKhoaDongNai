@@ -765,7 +765,7 @@
 }
 
 .flatpickr-calendar.hasTime .flatpickr-time {
-  height: 40px;
+  height: 64px;
   border-top: 1px solid #e6e6e6;
 }
 
@@ -1453,8 +1453,8 @@ span.flatpickr-weekday {
   outline: 0;
   display: block;
   height: 0;
-  line-height: 40px;
-  max-height: 40px;
+  line-height: 64px;
+  max-height: 64px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   overflow: hidden;
@@ -1476,7 +1476,7 @@ span.flatpickr-weekday {
   -ms-flex: 1;
   flex: 1;
   width: 40%;
-  height: 40px;
+  height: 64px;
   float: left;
 }
 
@@ -2224,9 +2224,9 @@ span.flatpickr-weekday {
 }
 
 .fv-plugins-turret .fv-plugins-icon {
-  height: 40px;
+  height: 64px;
   /* Same as height of input */
-  line-height: 40px;
+  line-height: 64px;
   width: 40px;
 }
 
@@ -2256,9 +2256,9 @@ span.flatpickr-weekday {
 }
 
 .fv-plugins-uikit .fv-plugins-icon {
-  height: 40px;
+  height: 64px;
   /* Height of UIKit input */
-  line-height: 40px;
+  line-height: 64px;
   top: 25px;
   /* Height of UIKit label */
   width: 40px;

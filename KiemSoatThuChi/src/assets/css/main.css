@@ -13429,7 +13429,7 @@ a:hover {
   right: -50px;
   bottom: 0;
   width: 50px;
-  height: 40px;
+  height: 64px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -13760,12 +13760,12 @@ a:hover {
 }
 .app-brand .logo {
   max-width: 200px;
-  max-height: 40px;
+  max-height: 64px;
 }
 
 .app-brand-sm .logo {
   max-width: 190px;
-  max-height: 40px;
+  max-height: 64px;
 }
 
 .toggle-sidebar {
@@ -14355,7 +14355,7 @@ ul.user-messages li .delivery-details p {
 }
 .auth-logo img {
   max-width: 180px;
-  max-height: 40px;
+  max-height: 64px;
 }
 
 .error-bg {

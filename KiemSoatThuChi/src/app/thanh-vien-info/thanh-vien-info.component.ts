@@ -49,6 +49,7 @@ export class ThanhVienInfoComponent implements OnInit {
 
   constructor(
     public ActiveRouter: ActivatedRoute,
+    public Router: Router,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -103,6 +104,7 @@ export class ThanhVienInfoComponent implements OnInit {
     this.ThanhVienService.SaveAsync().subscribe(
       res => {
         this.ThanhVienService.FormData = res as ThanhVien;
+        this.Router.navigateByUrl(environment.ThanhVienInfo + this.ThanhVienService.FormData.ID);
         this.ThanhVienSearch();
         this.NotificationService.warn(environment.SaveSuccess);
       },
@@ -114,7 +116,11 @@ export class ThanhVienInfoComponent implements OnInit {
       }
     );
   }
-
+  ThanhVienAdd() {
+    this.Router.navigateByUrl(environment.ThanhVienInfo + environment.InitializationNumber);
+    this.ThanhVienService.BaseParameter.ID = environment.InitializationNumber;
+    this.ThanhVienSearch();
+  }
   ThanhVienChucNangSearch() {
     if (this.ThanhVienChucNangService.BaseParameter.SearchString.length > 0) {
       this.ThanhVienChucNangService.DataSource.filter = this.ThanhVienChucNangService.BaseParameter.SearchString.toLowerCase();

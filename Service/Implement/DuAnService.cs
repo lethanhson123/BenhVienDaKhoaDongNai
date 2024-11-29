@@ -98,6 +98,7 @@
 
             //QRCodeHelper.CreateQRCodeURL(model.Code, model.FileName, folderPath);
 
+            model.MucDauTuConLai = model.MucDauTu - model.GhiNo;
 
             if (model.NgayBatDau == null)
             {

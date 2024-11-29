@@ -3,6 +3,7 @@
 export class DanhMucBieuMau extends Base{
 
 HeSo?: number;
+IsTamUng?: boolean;
 
 }
 

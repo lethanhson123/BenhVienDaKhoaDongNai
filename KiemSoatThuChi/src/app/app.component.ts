@@ -95,8 +95,8 @@ export class AppComponent {
                     localStorage.setItem(environment.ThanhVienFileName, this.ThanhVienService.FormDataLogin.FileName);
                     this.DanhMucChucNangGetByThanhVienIDToListAsync();
                     //this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
-                    this.GetByParentID_ReadJSONFileToListAsync();
-                    this.StartTimer();
+                    //this.GetByParentID_ReadJSONFileToListAsync();
+                    //this.StartTimer();
                   }
                   else {
                     isLogin = false;

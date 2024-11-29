@@ -7582,7 +7582,7 @@ const EmojiPicker = function (options) {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        height: 40px;
+                        height: 64px;
                         transition: all .2s ease;
                     }
 

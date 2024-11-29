@@ -62,9 +62,9 @@ export class DuAnThuChiInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DuAnThuChiService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
-    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnQuyetDinhID);
     this.DuAnService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnID);
+    this.DuAnQuyetDinhService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.DuAnQuyetDinhID);    
+    this.DuAnThuChiService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.DuAnThuChiSearch();
   }
 
@@ -78,7 +78,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
     this.DanhMucHinhThucThanhToanService.ComponentGetAllToListAsync(this.DuAnThuChiService);
   }
   DuAnQuyetDinhSearch() {
-    this.DuAnThuChiService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnQuyetDinhService.BaseParameter.ParentID = this.DuAnService.FormData.ID;
     this.DuAnQuyetDinhService.GetByParentIDToListAsync().subscribe(
       res => {
@@ -95,7 +95,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
       err => {
       },
       () => {
-        this.DuAnThuChiService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
@@ -114,7 +114,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
     this.ToChucService.ComponentGetAllToListAsync(this.DuAnThuChiService);
   }
   ToChucTaiKhoanSearch() {
-    this.DuAnThuChiService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.ToChucTaiKhoanService.GetAllToListAsync().subscribe(
       res => {
         this.ToChucTaiKhoanService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
@@ -125,7 +125,7 @@ export class DuAnThuChiInfoComponent implements OnInit {
       err => {
       },
       () => {
-        this.DuAnThuChiService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
@@ -197,11 +197,13 @@ export class DuAnThuChiInfoComponent implements OnInit {
     }
   }
   DuAnThuChiSearchList() {
+    console.log(this.DuAnThuChiService.List001);
     this.DuAnService.IsShowLoading = true;
-    this.DuAnThuChiService.BaseParameter.SoQuyetDinh = this.DuAnQuyetDinhService.FormData.SoQuyetDinh;
-    this.DuAnThuChiService.GetBySoQuyetDinhToListAsync().subscribe(
+    this.DuAnThuChiService.BaseParameter.DuAnQuyetDinhID = this.DuAnQuyetDinhService.FormData.ID;
+    this.DuAnThuChiService.GetByDuAnQuyetDinhIDToListAsync().subscribe(
       res => {
         let ListDuAnThuChi = (res as DuAnThuChi[]).sort((a, b) => (a.NgayGhiNhan > b.NgayGhiNhan ? 1 : -1));
+        console.log(ListDuAnThuChi);
         if (this.DuAnThuChiService.List001.length != ListDuAnThuChi.length) {
           this.DuAnThuChiService.List001 = ListDuAnThuChi;
         }
@@ -214,18 +216,18 @@ export class DuAnThuChiInfoComponent implements OnInit {
     );
 
   }
-  DuAnThuChiSearch() {
-    this.DuAnThuChiService.IsShowLoading = true;
+  DuAnThuChiSearch() {    
+    this.DuAnService.IsShowLoading = true;
     this.DuAnService.GetByIDAsync().subscribe(
-      res => {
+      res => {        
         this.DuAnService.FormData = res as DuAn;
-        this.DuAnThuChiService.IsShowLoading = true;
+        this.DuAnService.IsShowLoading = true;
         this.DuAnQuyetDinhService.GetByIDAsync().subscribe(
-          res => {
-            this.DuAnQuyetDinhService.FormData = res as DuAn;
-            this.DuAnThuChiService.IsShowLoading = true;
+          res => {            
+            this.DuAnQuyetDinhService.FormData = res as DuAnQuyetDinh;
+            this.DuAnService.IsShowLoading = true;
             this.DuAnThuChiService.GetByIDAsync().subscribe(
-              res => {
+              res => {                
                 this.DuAnThuChiService.FormData = res as DuAnThuChi;
                 this.DuAnThuChiService.FormData.ParentID = this.DuAnService.FormData.ID;
                 this.DuAnThuChiService.FormData.ParentName = this.DuAnService.FormData.Name;
@@ -246,26 +248,26 @@ export class DuAnThuChiInfoComponent implements OnInit {
               err => {
               },
               () => {
-                this.DuAnThuChiService.IsShowLoading = false;
+                this.DuAnService.IsShowLoading = false;
               }
             );
           },
           err => {
           },
           () => {
-            this.DuAnThuChiService.IsShowLoading = false;
+            this.DuAnService.IsShowLoading = false;
           }
         );
       },
       err => {
       },
       () => {
-        this.DuAnThuChiService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
   DuAnThuChiSave() {
-    this.DuAnThuChiService.IsShowLoading = true;
+    this.DuAnService.IsShowLoading = true;
     this.DuAnThuChiService.FormData.ParentID = this.DuAnService.FormData.ID;
     this.DuAnThuChiService.FormData.Code = this.DuAnService.FormData.Code;
     this.DuAnThuChiService.SaveAsync().subscribe(
@@ -274,19 +276,21 @@ export class DuAnThuChiInfoComponent implements OnInit {
         if (this.DuAnThuChiService.FormData.Active == true) {
           this.IsDuAnThuChiSave = false;
         }
+        this.Router.navigateByUrl(environment.DuAnThuChiInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID + "/"+ this.DuAnThuChiService.FormData.ID);
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
         this.NotificationService.warn(environment.SaveNotSuccess);
       },
       () => {
-        this.DuAnThuChiService.IsShowLoading = false;
+        this.DuAnService.IsShowLoading = false;
       }
     );
   }
-  DuAnThuChiIsBack() {
-    this.DuAnThuChiService.IsBack = true;
-    this.Router.navigate(['/DuAnQuyetDinhInfo/' + this.DuAnService.FormData.ID + '/' + this.DuAnQuyetDinhService.FormData.ID]);
+  DuAnThuChiAdd() {
+    this.Router.navigateByUrl(environment.DuAnThuChiInfo + this.DuAnService.FormData.ID + "/" + this.DuAnQuyetDinhService.FormData.ID + "/"+ environment.InitializationNumber);
+    this.DuAnThuChiService.BaseParameter.ID = environment.InitializationNumber;
+    this.DuAnThuChiSearch();
   }
 
   DuAnTapTinDinhKemSearch() {

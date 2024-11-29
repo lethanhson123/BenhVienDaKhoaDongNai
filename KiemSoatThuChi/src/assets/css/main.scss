@@ -544,7 +544,7 @@ a {
 		right: -50px;
 		bottom: 0;
 		width: 50px;
-		height: 40px;
+		height: 64px;
 		@include roundedCorners(10);
 	}
 	&:before {
@@ -911,14 +911,14 @@ a {
 	overflow: hidden;
 	.logo {
 		max-width: 200px;
-		max-height: 40px;
+		max-height: 64px;
 	}
 }
 // App brand
 .app-brand-sm {
 	.logo {
 		max-width: 190px;
-		max-height: 40px;
+		max-height: 64px;
 	}
 }
 
@@ -1521,7 +1521,7 @@ ul.user-messages {
 	display: inline-flex;
 	img {
 		max-width: 180px;
-		max-height: 40px;
+		max-height: 64px;
 	}
 }
 

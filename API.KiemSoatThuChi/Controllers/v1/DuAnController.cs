@@ -33,15 +33,23 @@
         public async Task<List<DuAn>> GetBySearchString_BatDau_KetThucToListAsync()
         {
             List<DuAn> result = new List<DuAn>();
+            string SearchString = GlobalHelper.InitializationString;
+            DateTime BatDau = new DateTime();
+            DateTime KetThuc = new DateTime();
             try
             {
                 BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
-                result = await _DuAnService.GetBySearchString_BatDau_KetThucToListAsync(model.SearchString, model.BatDau.Value, model.KetThuc.Value);
+                SearchString = model.SearchString;
+                BatDau = model.BatDau.Value;
+                KetThuc = model.KetThuc.Value;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
+                KetThuc = GlobalHelper.InitializationDateTime;
+                BatDau = new DateTime(KetThuc.Year, KetThuc.Month, 1, 0, 0, 0);
             }
+            result = await _DuAnService.GetBySearchString_BatDau_KetThucToListAsync(SearchString, BatDau, KetThuc);
             return result;
         }
         [HttpPost]

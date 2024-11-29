@@ -80,6 +80,19 @@
             }
             return result;
         }
+        public virtual async Task<List<DuAnQuyetToanLuyKe>> GetSQLByDuAnQuyetDinhIDToListAsync(long DuAnQuyetDinhID)
+        {
+            List<DuAnQuyetToanLuyKe> result = new List<DuAnQuyetToanLuyKe>();
+            if (DuAnQuyetDinhID>0)
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@DuAnQuyetDinhID",DuAnQuyetDinhID),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanLuyKeSelectItemsByDuAnQuyetDinhID", parameters);
+            }
+            return result;
+        }
     }
 }
 

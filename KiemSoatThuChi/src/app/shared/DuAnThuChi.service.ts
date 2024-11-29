@@ -15,6 +15,10 @@ export class DuAnThuChiService extends BaseService {
     ListFilter: DuAnThuChi[] | undefined;
     FormData!: DuAnThuChi;
 
+    FormDataActive!: DuAnThuChi;
+    ListActive: DuAnThuChi[] | undefined;
+    ListActive001: DuAnThuChi[] | undefined;
+
     IsBack: boolean = false;
     List001: DuAnThuChi[] | undefined;
 
@@ -23,6 +27,10 @@ export class DuAnThuChiService extends BaseService {
         this.Controller = "DuAnThuChi";
         this.IsBack = false;
         this.List001=[];
+        this.FormDataActive = {
+        };
+        this.ListActive = [];
+        this.ListActive001 = [];
     }
 
     GetSQLByCodeToListAsync() {
@@ -45,6 +53,18 @@ export class DuAnThuChiService extends BaseService {
             }
         }
         let url = this.APIURL + this.Controller + '/GetBySoQuyetDinhToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByDuAnQuyetDinhIDToListAsync() {
+        if (this.BaseParameter.ThanhVienID == null) {
+            var ThanhVienID = localStorage.getItem(environment.ThanhVienID);
+            if (ThanhVienID) {
+                this.BaseParameter.ThanhVienID = Number(ThanhVienID);
+            }
+        }
+        let url = this.APIURL + this.Controller + '/GetByDuAnQuyetDinhIDToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

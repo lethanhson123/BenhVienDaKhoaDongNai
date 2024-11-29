@@ -3587,7 +3587,7 @@ table tbody .border-bottom-warning td {
 .balance-item .balance-icon-wrap {
   width: 40px;
   min-width: 40px;
-  height: 40px;
+  height: 64px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9191,7 +9191,7 @@ textarea {
   font-size: 18px;
   color: var(--white);
   width: 40px;
-  height: 40px;
+  height: 64px;
   background-color: var(--theme-deafult);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10416,7 +10416,7 @@ textarea {
   margin-right: 10px;
 }
 .list-group img {
-  height: 40px;
+  height: 64px;
   width: 40px;
   margin-right: 10px;
 }
@@ -12384,7 +12384,7 @@ textarea {
 
 .switch-lg .switch {
   width: 75px;
-  height: 40px;
+  height: 64px;
   padding: 0;
   margin: 0;
 }
@@ -15948,7 +15948,7 @@ p.data-attributes svg {
 }
 .contact-edit.chat-alert {
   width: 40px;
-  height: 40px;
+  height: 64px;
   background: var(--light-slate);
   display: fke;
   display: -webkit-box;
@@ -17313,7 +17313,7 @@ p.data-attributes svg {
 }
 .categories-list li .bg-light {
   min-width: 40px;
-  height: 40px;
+  height: 64px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17580,7 +17580,7 @@ p.data-attributes svg {
 .recent-table .product-content .order-image {
   background: var(--light2);
   width: 40px;
-  height: 40px;
+  height: 64px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17657,7 +17657,7 @@ p.data-attributes svg {
 }
 .recent-images li .recent-img-wrap {
   width: 40px;
-  height: 40px;
+  height: 64px;
   background: var(--light2);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20651,7 +20651,7 @@ p.data-attributes svg {
             justify-content: center;
   }
   .top-product-card ul li .top-product img {
-    height: 40px;
+    height: 64px;
     width: 60px;
   }
   .top-product-card ul li .product-details a {
@@ -21677,14 +21677,14 @@ p.data-attributes svg {
 @media (max-width: 1600px) {
   .widget-1 .widget-round .bg-round {
     width: 40px;
-    height: 40px;
+    height: 64px;
   }
   .widget-1 .widget-round .bg-round svg {
     width: 22px;
     height: 22px;
   }
   .widget-1 .widget-round .bg-round .half-circle {
-    height: 40px;
+    height: 64px;
     left: -10px;
     width: 30px;
     bottom: -8px;
@@ -21961,7 +21961,7 @@ p.data-attributes svg {
 }
 .papernote-wrap .light-card {
   width: 40px;
-  height: 40px;
+  height: 64px;
   border-radius: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -23496,7 +23496,7 @@ footer.blockquote-footer {
     font-weight: 400;
   }
   .card .card-body .product-costing .product-icon {
-    height: 40px;
+    height: 64px;
     width: 40px;
   }
   .card .card-body .product-costing .product-icon svg {
@@ -24887,7 +24887,7 @@ footer.blockquote-footer {
 }
 .email-body .mail-body-wrapper ul li .inbox-user .rounded-border > div {
   width: 40px;
-  height: 40px;
+  height: 64px;
   background-color: rgba(0, 102, 102, 0.2);
   border-radius: 100%;
 }
@@ -25856,7 +25856,7 @@ footer.blockquote-footer {
 
 .updates-faq {
   width: 40px;
-  height: 40px;
+  height: 64px;
   border: 2px solid var(--theme-deafult);
   border-radius: 100%;
   display: -webkit-box;
@@ -26821,7 +26821,7 @@ footer.blockquote-footer {
 
 .helper-box {
   width: 40px;
-  height: 40px;
+  height: 64px;
   border-radius: 25%;
 }
 .helper-box.helper-text {
@@ -29114,7 +29114,7 @@ html:hover .cursor {
 .landing-home .content h1 .sub-content button::before {
   content: "";
   background-color: #051A1A;
-  height: 40px;
+  height: 64px;
   width: 40px;
   position: absolute;
   right: -22px;
@@ -29611,11 +29611,11 @@ html:hover .cursor {
 @media (max-width: 575px) {
   .pricing-section .loader-gif .loader-1 {
     width: 40px;
-    height: 40px;
+    height: 64px;
   }
   .pricing-section .loader-gif .loader-1::after, .pricing-section .loader-gif .loader-1::before {
     width: 40px;
-    height: 40px;
+    height: 64px;
   }
 }
 .pricing-section .loader-line-gif {
@@ -29764,7 +29764,7 @@ html:hover .cursor {
 }
 .benefit-box svg {
   width: 40px;
-  height: 40px;
+  height: 64px;
 }
 @media (max-width: 991px) {
   .benefit-box svg {
@@ -30010,7 +30010,7 @@ footer .license-list h6 {
   cursor: pointer;
   display: none;
   width: 40px;
-  height: 40px;
+  height: 64px;
   border-radius: 100%;
   position: fixed;
   bottom: 30px;
@@ -30432,11 +30432,11 @@ footer .license-list h6 {
 @media (max-width: 575px) {
   .pricing-section .loader-gif .loader-1 {
     width: 40px;
-    height: 40px;
+    height: 64px;
   }
   .pricing-section .loader-gif .loader-1::after, .pricing-section .loader-gif .loader-1::before {
     width: 40px;
-    height: 40px;
+    height: 64px;
   }
 }
 .pricing-section .loader-line-gif {
@@ -31280,7 +31280,7 @@ footer .license-list h6 {
     height: 145px;
   }
   .framework ul.framworks-list li img {
-    height: 40px;
+    height: 64px;
   }
 }
 @media (max-width: 767px) and (max-width: 480px) {
@@ -31343,7 +31343,7 @@ footer .license-list h6 {
     height: 93px;
   }
   .framework ul.framworks-list li img {
-    height: 40px;
+    height: 64px;
   }
 }
 /**=====================
@@ -32942,7 +32942,7 @@ footer .license-list h6 {
 }
 .feedback li div {
   width: 40px;
-  height: 40px;
+  height: 64px;
   position: relative;
   -webkit-transform: perspective(240px) translateZ(4px);
           transform: perspective(240px) translateZ(4px);
@@ -34245,7 +34245,7 @@ html {
 
 .cd-timeline-img {
   width: 40px;
-  height: 40px;
+  height: 64px;
   left: 51%;
   margin-left: -30px;
   -webkit-transform: translateZ(0);
@@ -34676,7 +34676,7 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 40px;
+  height: 64px;
   width: 40px;
   border-radius: 50%;
   background-color: #fff;
@@ -40877,7 +40877,7 @@ body[class*=dark-] .for-light {
   content: "";
   left: -25px;
   top: 50%;
-  height: 40px;
+  height: 64px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   border: 1px dashed var(--recent-dashed-border);
@@ -41086,7 +41086,7 @@ table.table-bordered thead tr th p {
 .toggle-sidebar:before {
   content: "";
   position: absolute;
-  height: 40px;
+  height: 64px;
   width: 40px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 100%;
@@ -41099,7 +41099,7 @@ table.table-bordered thead tr th p {
   transition: all 0.3s ease;
 }
 .toggle-sidebar:hover:before {
-  height: 40px;
+  height: 64px;
   width: 40px;
   -webkit-transform: scale(1);
           transform: scale(1);
@@ -41167,7 +41167,7 @@ table.table-bordered thead tr th p {
   padding-top: 15px;
 }
 .page-wrapper .page-header .header-wrapper .nav-right .onhover-show-div .notitications-bar ul li.notification .notification-data .product-icon {
-  height: 40px;
+  height: 64px;
   width: 40px;
   border-radius: 6px;
   display: -webkit-box;
@@ -48472,7 +48472,7 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
     bottom: -43px;
   }
   .box-layout .page-wrapper .page-body-wrapper .activity .d-flex .gradient-round.medium-line:after, .box-layout.page-wrapper .page-body-wrapper .activity .d-flex .gradient-round.medium-line:after {
-    height: 40px;
+    height: 64px;
     bottom: -48px;
   }
   .box-layout .page-wrapper .page-body-wrapper footer, .box-layout.page-wrapper .page-body-wrapper footer {

@@ -1468,7 +1468,7 @@ html:hover {
           &::before{
             content: "";
             background-color: $theme-body-font-color;
-            height: 40px;
+            height: 64px;
             width: 40px;
             position: absolute;
             right: -22px;
@@ -1953,12 +1953,12 @@ $landing-color : var(--theme-deafult);
 
       @media (max-width:575px) {
         width: 40px;
-        height: 40px;
+        height: 64px;
 
         &::after,
         &::before {
           width: 40px;
-          height: 40px;
+          height: 64px;
         }
       }
     }
@@ -2101,7 +2101,7 @@ $landing-color : var(--theme-deafult);
 
   svg {
     width: 40px;
-    height: 40px;
+    height: 64px;
 
     @media (max-width: 991px) {
       width: 30px;
@@ -2318,7 +2318,7 @@ footer {
   cursor: pointer;
   display: none;
   width: 40px;
-  height: 40px;
+  height: 64px;
   border-radius: 100%;
   position: fixed;
   bottom: 30px;
@@ -2722,12 +2722,12 @@ footer {
 
       @media (max-width:575px) {
         width: 40px;
-        height: 40px;
+        height: 64px;
 
         &::after,
         &::before {
           width: 40px;
-          height: 40px;
+          height: 64px;
         }
       }
     }
@@ -3993,7 +3993,7 @@ footer {
         width: 145px; 
         height: 145px;
         img {
-          height: 40px;
+          height: 64px;
         }
       }
     }
@@ -4075,7 +4075,7 @@ footer {
           width: 93px;
           height: 93px;
           img { 
-            height: 40px;
+            height: 64px;
           }
         }
       }

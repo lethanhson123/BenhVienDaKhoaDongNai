@@ -1,4 +1,6 @@
-﻿namespace Service.Implement
+﻿using Data.Model;
+
+namespace Service.Implement
 {
     public class DuAnQuyetToanPhanKyService : BaseService<DuAnQuyetToanPhanKy, IDuAnQuyetToanPhanKyRepository>
     , IDuAnQuyetToanPhanKyService
@@ -77,6 +79,19 @@
                         new SqlParameter("@SoQuyetDinh",SoQuyetDinh),
                 };
                 result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanPhanKySelectItemsBySoQuyetDinh", parameters);
+            }
+            return result;
+        }
+        public virtual async Task<List<DuAnQuyetToanPhanKy>> GetSQLByDuAnQuyetDinhIDToListAsync(long DuAnQuyetDinhID)
+        {
+            List<DuAnQuyetToanPhanKy> result = new List<DuAnQuyetToanPhanKy>();
+            if (DuAnQuyetDinhID>0)
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@DuAnQuyetDinhID",DuAnQuyetDinhID),
+                };
+                result = await GetByStoredProcedureToListAsync("sp_DuAnQuyetToanPhanKySelectItemsByDuAnQuyetDinhID", parameters);
             }
             return result;
         }
