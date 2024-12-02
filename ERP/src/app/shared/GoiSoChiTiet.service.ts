@@ -11,6 +11,7 @@ export class GoiSoChiTietService extends BaseService{
     DisplayColumns001: string[] = ['STT', 'ID', 'Name', 'Active'];   
     DisplayColumns002: string[] = ['DanhMucThanhVienID', 'Save'];   
     DisplayColumns003: string[] = ['STT', 'NgayCapSo', 'NgayCapSoSoThuTu', 'NgayDangKy', 'NgayDangKySoThuTu', 'NgayThanhToan', 'NgayThanhToanSoThuTu', 'NgayLinhThuoc', 'NgayLinhThuocSoThuTu', 'KhachHangID', 'Code', 'BHYT', 'CCCD', 'DienThoai', 'HoTen', 'NamSinh', 'GioiTinh'];   
+    DisplayColumns004: string[] = ['STT', 'NgayCapSo', 'NgayCapSoSoThuTu', 'NgayDangKy', 'NgayDangKySoThuTu', 'NgayThanhToan', 'NgayThanhToanSoThuTu', 'NgayLinhThuoc', 'NgayLinhThuocSoThuTu', 'KhachHangID', 'Code', 'DienThoai', 'HoTen', 'NamSinh', 'GioiTinh', 'DanhMucTinhThanhName', 'DanhMucQuanHuyenName', 'DanhMucXaPhuongName'];   
         
     List: GoiSoChiTiet[] | undefined;
     ListFilter: GoiSoChiTiet[] | undefined;

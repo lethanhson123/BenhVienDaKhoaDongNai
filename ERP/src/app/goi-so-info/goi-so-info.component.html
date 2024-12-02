@@ -198,21 +198,7 @@
                             <td mat-cell *matCellDef="let element">
                                 {{element.Code}}
                             </td>
-                        </ng-container>
-                        <ng-container matColumnDef="BHYT">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>BHYT
-                            </th>
-                            <td mat-cell *matCellDef="let element">
-                                {{element.BHYT}}
-                            </td>
-                        </ng-container>
-                        <ng-container matColumnDef="CCCD">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CCCD
-                            </th>
-                            <td mat-cell *matCellDef="let element">
-                                {{element.CCCD}}
-                            </td>
-                        </ng-container>
+                        </ng-container>                        
                         <ng-container matColumnDef="DienThoai">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Điện thoại
                             </th>
@@ -241,9 +227,44 @@
                                 {{element.GioiTinh}}
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="GoiSoChiTietService.DisplayColumns003">
+                        <ng-container matColumnDef="BHYT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>BHYT
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.BHYT}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CCCD">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CCCD
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CCCD}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucTinhThanhName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tỉnh thành
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DanhMucTinhThanhName}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucQuanHuyenName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Quận huyện
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DanhMucQuanHuyenName}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucXaPhuongName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Xã phường
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DanhMucXaPhuongName}}
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="GoiSoChiTietService.DisplayColumns004">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: GoiSoChiTietService.DisplayColumns003;">
+                        <tr mat-row *matRowDef="let row; columns: GoiSoChiTietService.DisplayColumns004;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #GoiSoChiTietPaginator="matPaginator"

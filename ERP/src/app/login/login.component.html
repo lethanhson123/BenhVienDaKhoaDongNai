@@ -13,9 +13,11 @@
             </div>
         </div>
         <div class="row margin">
-            <div class="input-field col s12">
+            <div class="input-field col s10">
                 <input name="MatKhau" [(ngModel)]="ThanhVienService.FormData.MatKhau" placeholder="Mật khẩu"
-                    [type]="MatKhauIsActive ? 'password' : 'text'" class="form-control" (keyup.enter)="Login()">
+                    [type]="MatKhauIsActive ? 'password' : 'text'" class="form-control" (keyup.enter)="Login()">                
+            </div>
+            <div class="input-field col s2">
                 <i class="material-icons prefix pt-2" (click)="MatKhauChangeType()" style="cursor: pointer;">remove_red_eye</i>
             </div>
         </div>

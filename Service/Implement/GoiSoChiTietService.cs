@@ -120,7 +120,7 @@ namespace Service.Implement
                 if (string.IsNullOrEmpty(model.DanhMucPhongKhamName))
                 {
                     DanhMucPhongKham DanhMucPhongKham = _DanhMucPhongKhamRepository.GetByID(model.DanhMucPhongKhamID.Value);
-                    model.DanhMucPhongKhamName = DanhMucPhongKham.Name;                    
+                    model.DanhMucPhongKhamName = DanhMucPhongKham.Name;
                 }
             }
             if (string.IsNullOrEmpty(model.NgayCapSoSoThuTuString))
@@ -149,7 +149,7 @@ namespace Service.Implement
                     }
                 }
             }
-            
+
             if (string.IsNullOrEmpty(model.Code))
             {
                 model.Code = model.NgayCapSoSoThuTuString;
@@ -272,6 +272,11 @@ namespace Service.Implement
                     KhachHang.DanhMucQuanHuyenID = model.DanhMucQuanHuyenID;
                     KhachHang.DanhMucXaPhuongID = model.DanhMucXaPhuongID;
                     await _KhachHangService.SaveAsync(KhachHang);
+                    if (KhachHang.ID > 0)
+                    {
+                        model.KhachHangID = KhachHang.ID;
+                        await _GoiSoChiTietRepository.UpdateAsync(model);
+                    }
                 }
             }
             return model;
