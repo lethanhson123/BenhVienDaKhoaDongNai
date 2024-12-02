@@ -14,6 +14,7 @@ import { NotificationService } from './shared/Notification.service';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './loading/loading.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { TiepNhanComponent } from './tiep-nhan/tiep-nhan.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     AppComponent,
     LoadingComponent,
     HomepageComponent,
+    TiepNhanComponent,
 
   ],
   imports: [

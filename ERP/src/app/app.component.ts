@@ -94,7 +94,7 @@ export class AppComponent {
                     localStorage.setItem(environment.ThanhVienHoTen, this.ThanhVienService.FormDataLogin.Name);
                     localStorage.setItem(environment.ThanhVienFileName, this.ThanhVienService.FormDataLogin.FileName);
                     this.DanhMucChucNangGetByThanhVienIDToListAsync();
-                    this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
+                    //this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
                     this.GetByParentID_ReadJSONFileToListAsync();
                     this.StartTimer();
                   }
@@ -150,9 +150,10 @@ export class AppComponent {
       this.DanhMucChucNangService.Headers = new HttpHeaders();
       this.DanhMucChucNangService.Headers = this.DanhMucChucNangService.Headers.append('Authorization', 'Bearer ' + this.Token);
     }
-    this.DanhMucChucNangService.GetSQLByThanhVienID_ActiveToListAsync().subscribe(
+    this.DanhMucChucNangService.GetByThanhVienID_ActiveToListAsync().subscribe(
       res => {
         this.DanhMucChucNangService.ListChild = (res as DanhMucChucNang[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        console.log(this.DanhMucChucNangService.ListChild);
         this.DanhMucChucNangService.ListParent = [];
         let isLogin = false;
         for (var i = 0; i < this.DanhMucChucNangService.ListChild.length; i++) {

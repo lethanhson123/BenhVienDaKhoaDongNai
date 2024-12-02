@@ -184,6 +184,58 @@ namespace Service.Implement
             }
             return result;
         }
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuIDAsync(long DanhMucDichVuID, int SoHienTai, long DanhMucQuayDichVuID, string Code)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    if (SoHienTai > 0)
+                    {
+                        if (result.SoHienTai != SoHienTai)
+                        {
+                            result.SoHienTai = SoHienTai;
+                        }
+                    }
+                    if (result.SoHienTai < result.TongCong)
+                    {
+                        result.SoHienTai = result.SoHienTai + 1;
+                        await SaveAsync(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+
+            GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                GoiSoChiTiet = await _GoiSoChiTietService.GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(DanhMucDichVuID, result.SoHienTai.Value);
+                if (GoiSoChiTiet != null)
+                {
+                    GoiSoChiTiet.Code = Code;
+                    GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
+                    GoiSoChiTiet.NgayDangKySoThuTu = result.SoHienTai;                    
+                    GoiSoChiTiet.Active = true;
+                    await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
         public virtual async Task<GoiSo> SaveByDanhMucDichVuIDAsync(long DanhMucDichVuID)
         {
             GoiSo result = new GoiSo();

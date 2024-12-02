@@ -14,13 +14,30 @@
         }
         [HttpPost]
         [Route("GoiSoTiepTheoAsync")]
-        public virtual async Task<GoiSo> UpdateByDanhMucGoiSoTiepTheoAsyncDichVuID_SoHienTaiAsync()
+        public virtual async Task<GoiSo> GoiSoTiepTheoAsync()
         {
             GoiSo result = new GoiSo();
             try
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
                 result = await _GoiSoService.GoiSoTiepTheoAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.SoHienTai.Value, baseParameter.DanhMucQuayDichVuID.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GoiSoTiepTheoByDanhMucDichVuIDAsync")]
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuIDAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.GoiSoTiepTheoByDanhMucDichVuIDAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.SoHienTai.Value, baseParameter.DanhMucQuayDichVuID.Value, baseParameter.Code);
             }
             catch (Exception ex)
             {

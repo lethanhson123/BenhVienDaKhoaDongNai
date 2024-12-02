@@ -14,12 +14,11 @@ import { DanhMucQuayDichVu } from 'src/app/shared/DanhMucQuayDichVu.model';
 import { DanhMucQuayDichVuService } from 'src/app/shared/DanhMucQuayDichVu.service';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  selector: 'app-tiep-nhan',
+  templateUrl: './tiep-nhan.component.html',
+  styleUrls: ['./tiep-nhan.component.css']
 })
-export class HomepageComponent implements OnInit {
-
+export class TiepNhanComponent implements OnInit {
 
   constructor(
     public ActiveRouter: ActivatedRoute,

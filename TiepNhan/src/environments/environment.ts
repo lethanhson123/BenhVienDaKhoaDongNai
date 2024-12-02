@@ -4,7 +4,7 @@ export const environment = {
   DomainDestination: "",
   APIURL: "https://capso.api.benhvien.sohu.vn/api/v1/",
   APIRootURL: "https://capso.api.benhvien.sohu.vn/",
-  TiepNhanURL: "https://tiepnhan.benhvien.sohu.vn/#/",
+  TiepNhanURL: "http://localhost:4200/#/",
   IPRegistry: "https://ipv4.myexternalip.com/json",
   IPRegistryURL: "https://api.ipregistry.co/?key=tryout",
   LoadingFile: "loading.gif",

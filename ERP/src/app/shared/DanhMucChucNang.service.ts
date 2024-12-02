@@ -34,5 +34,16 @@ export class DanhMucChucNangService extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GetByThanhVienID_ActiveToListAsync() {
+        var lastUpdatedMembershipID = localStorage.getItem(environment.ThanhVienID);
+        if (lastUpdatedMembershipID) {
+            this.BaseParameter.ThanhVienID = Number(lastUpdatedMembershipID);
+        }
+        this.BaseParameter.Active = true;
+        let url = this.APIURL + this.Controller + '/GetByThanhVienID_ActiveToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

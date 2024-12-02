@@ -27,6 +27,12 @@ export class GoiSoService extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GoiSoTiepTheoByDanhMucDichVuIDAsync() {
+        let url = this.APIURL + this.Controller + '/GoiSoTiepTheoByDanhMucDichVuIDAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     SaveByDanhMucDichVuIDAsync() {
         let url = this.APIURL + this.Controller + '/SaveByDanhMucDichVuIDAsync';
         const formUpload: FormData = new FormData();

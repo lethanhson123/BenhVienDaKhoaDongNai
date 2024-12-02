@@ -135,11 +135,16 @@ namespace Service.Implement
                     }
                 }
             }
-            else
+            
+            if (string.IsNullOrEmpty(model.Code))
             {
                 model.Code = model.NgayCapSoSoThuTuString;
-                model.DienThoai = model.NgayCapSoSoThuTuString;
             }
+            if (string.IsNullOrEmpty(model.DienThoai))
+            {
+                model.DienThoai = model.Code;
+            }
+
             if (string.IsNullOrEmpty(model.NgayDangKySoThuTuString))
             {
                 if (model.NgayDangKySoThuTu > 0)
