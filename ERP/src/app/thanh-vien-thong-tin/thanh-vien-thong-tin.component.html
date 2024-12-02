@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="pt-1 pb-0" id="breadcrumbs-wrapper">
+    <div id="breadcrumbs-wrapper">
         <div class="container">
             <div class="row">
                 <div class="col s12 m6 l6">
@@ -13,7 +13,7 @@
                                 <<< Quay lại</a>
                         </li>
                         <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
-                        </li>                       
+                        </li>
                     </ol>
                 </div>
             </div>
@@ -26,9 +26,7 @@
                     <div class="card-content">
                         <div class="row">
                             <div class="col s6 m6 l4">
-                                <a title="Lưu thay đổi" (click)="ThanhVienSave()" style="width: 100%;"
-                                    class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"><i
-                                        class="material-icons">save</i> Lưu thay đổi</a>
+                                <a title="Lưu thay đổi" (click)="ThanhVienSave()"><i class="material-icons">save</i></a>
                             </div>
                             <div class="col s6 m6 l4">
                                 <label>
@@ -55,39 +53,17 @@
                                     <input placeholder="CCCD" [(ngModel)]="ThanhVienService.FormDataLogin.CCCD"
                                         name="ThanhVienService.FormDataLogin.CCCD" type="text" class="form-control">
                                 </div>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <div>
+                                    <label>Email</label>
+                                    <input placeholder="Email" [(ngModel)]="ThanhVienService.FormDataLogin.Email"
+                                        name="ThanhVienService.FormDataLogin.Email" type="text" class="form-control">
+                                </div>
                                 <div>
                                     <label>Ghi chú</label>
                                     <input placeholder="Ghi chú" [(ngModel)]="ThanhVienService.FormDataLogin.Note"
                                         name="ThanhVienService.FormDataLogin.Note" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col s12 m12 l4">
-                                <div>
-                                    <label>Bệnh viện
-                                        [{{ThanhVienService.FormDataLogin.DanhMucBenhVienID}}]</label>
-                                    <select class="browser-default form-select" name="DanhMucBenhVienID"
-                                        [(ngModel)]="ThanhVienService.FormDataLogin.DanhMucBenhVienID">
-                                        <option *ngFor="let item of DanhMucBenhVienService.List;" [value]="item.ID">
-                                            {{item.Name}} [{{item.ID}}]</option>
-                                    </select>
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <label>Phòng ban
-                                        [{{ThanhVienService.FormDataLogin.DanhMucPhongBanID}}]</label>
-                                    <select class="browser-default form-select" name="DanhMucPhongBanID"
-                                        [(ngModel)]="ThanhVienService.FormDataLogin.DanhMucPhongBanID">
-                                        <option *ngFor="let item of DanhMucPhongBanService.List;" [value]="item.ID">
-                                            {{item.Name}} [{{item.ID}}]</option>
-                                    </select>
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <label>Chức danh
-                                        [{{ThanhVienService.FormDataLogin.DanhMucChucDanhID}}]</label>
-                                    <select class="browser-default form-select" name="DanhMucChucDanhID"
-                                        [(ngModel)]="ThanhVienService.FormDataLogin.DanhMucChucDanhID">
-                                        <option *ngFor="let item of DanhMucChucDanhService.List;" [value]="item.ID">
-                                            {{item.Name}} [{{item.ID}}]</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="col s12 m12 l4">
@@ -99,11 +75,6 @@
                                         <option *ngFor="let item of DanhMucThanhVienService.List;" [value]="item.ID">
                                             {{item.Name}} [{{item.ID}}]</option>
                                     </select>
-                                </div>
-                                <div>
-                                    <label>Email</label>
-                                    <input placeholder="Email" [(ngModel)]="ThanhVienService.FormDataLogin.Email"
-                                        name="ThanhVienService.FormDataLogin.Email" type="text" class="form-control">
                                 </div>
                                 <div>
                                     <label>Tài khoản (Điện thoại)</label>
@@ -125,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-            </div>          
+            </div>
         </div>
     </div>
 </div>

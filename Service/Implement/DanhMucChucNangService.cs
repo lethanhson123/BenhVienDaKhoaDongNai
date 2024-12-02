@@ -37,7 +37,7 @@
         public virtual async Task<List<DanhMucChucNang>> GetByThanhVienID_ActiveToListAsync(long ThanhVienID, bool Active)
         {
             List<DanhMucChucNang> result = new List<DanhMucChucNang>();
-            List<long> ListThanhVienChucNangID = await _ThanhVienChucNangRepository.GetByCondition(item => item.ParentID == ThanhVienID && item.Active == Active).Select(item => item.ID).ToListAsync();
+            List<long> ListThanhVienChucNangID = await _ThanhVienChucNangRepository.GetByCondition(item => item.ParentID == ThanhVienID && item.Active == Active).Select(item => item.DanhMucChucNangID.Value).ToListAsync();
             result = await GetByCondition(item => item.Active == Active && ListThanhVienChucNangID.Contains(item.ID)).ToListAsync();
             if (result == null)
             {

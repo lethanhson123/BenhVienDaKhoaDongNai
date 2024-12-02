@@ -95,8 +95,8 @@ export class AppComponent {
                     localStorage.setItem(environment.ThanhVienFileName, this.ThanhVienService.FormDataLogin.FileName);
                     this.DanhMucChucNangGetByThanhVienIDToListAsync();
                     //this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
-                    this.GetByParentID_ReadJSONFileToListAsync();
-                    this.StartTimer();
+                    //this.GetByParentID_ReadJSONFileToListAsync();
+                    //this.StartTimer();
                   }
                   else {
                     isLogin = false;
@@ -152,8 +152,7 @@ export class AppComponent {
     }
     this.DanhMucChucNangService.GetByThanhVienID_ActiveToListAsync().subscribe(
       res => {
-        this.DanhMucChucNangService.ListChild = (res as DanhMucChucNang[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-        console.log(this.DanhMucChucNangService.ListChild);
+        this.DanhMucChucNangService.ListChild = (res as DanhMucChucNang[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));        
         this.DanhMucChucNangService.ListParent = [];
         let isLogin = false;
         for (var i = 0; i < this.DanhMucChucNangService.ListChild.length; i++) {

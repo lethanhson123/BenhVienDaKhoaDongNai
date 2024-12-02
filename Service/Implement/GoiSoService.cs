@@ -125,8 +125,7 @@ namespace Service.Implement
                 {
                     GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
                     GoiSoChiTiet.ParentID = model.ParentID;
-                    GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
-                    GoiSoChiTiet.DanhMucDichVuName = model.DanhMucDichVuName;
+                    GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;                   
                     GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
                     await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
                 }
@@ -398,8 +397,6 @@ namespace Service.Implement
             }
             return result;
         }
-
-
         public virtual async Task<GoiSo> SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync(long DanhMucPhongKhamID, long GoiSoChiTietID)
         {
             GoiSo result = new GoiSo();
@@ -517,7 +514,6 @@ namespace Service.Implement
             }
             return result;
         }
-
         public virtual async Task<List<GoiSo>> GetByNgayGhiNhanToListAsync(DateTime NgayGhiNhan)
         {
             List<GoiSo> result = new List<GoiSo>();

@@ -15,6 +15,8 @@ namespace Service.Implement
 
         private readonly IDanhMucQuayDichVuRepository _DanhMucQuayDichVuRepository;
 
+        private readonly IDanhMucPhongKhamRepository _DanhMucPhongKhamRepository;
+
         private readonly IKhachHangService _KhachHangService;
 
         private readonly IDanhMucTinhThanhRepository _DanhMucTinhThanhRepository;
@@ -29,6 +31,8 @@ namespace Service.Implement
             , IDanhMucDichVuRepository danhMucDichVuRepository
 
             , IDanhMucQuayDichVuRepository DanhMucQuayDichVuRepository
+
+            , IDanhMucPhongKhamRepository DanhMucPhongKhamRepository
 
             , IKhachHangService KhachHangService
 
@@ -45,6 +49,8 @@ namespace Service.Implement
 
             _DanhMucDichVuRepository = danhMucDichVuRepository;
             _DanhMucQuayDichVuRepository = DanhMucQuayDichVuRepository;
+            _DanhMucPhongKhamRepository = DanhMucPhongKhamRepository;
+
             _KhachHangService = KhachHangService;
 
             _DanhMucTinhThanhRepository = DanhMucTinhThanhRepository;
@@ -107,6 +113,14 @@ namespace Service.Implement
                 {
                     DanhMucQuayDichVu DanhMucQuayDichVu = _DanhMucQuayDichVuRepository.GetByID(model.DanhMucQuayDichVuID.Value);
                     model.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                }
+            }
+            if (model.DanhMucPhongKhamID > 0)
+            {
+                if (string.IsNullOrEmpty(model.DanhMucPhongKhamName))
+                {
+                    DanhMucPhongKham DanhMucPhongKham = _DanhMucPhongKhamRepository.GetByID(model.DanhMucPhongKhamID.Value);
+                    model.DanhMucPhongKhamName = DanhMucPhongKham.Name;                    
                 }
             }
             if (string.IsNullOrEmpty(model.NgayCapSoSoThuTuString))

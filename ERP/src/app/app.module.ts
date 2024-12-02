@@ -21,10 +21,7 @@ import { DanhMucChucNangComponent } from './danh-muc-chuc-nang/danh-muc-chuc-nan
 import { ThanhVienComponent } from './thanh-vien/thanh-vien.component';
 import { ThanhVienThongTinComponent } from './thanh-vien-thong-tin/thanh-vien-thong-tin.component';
 import { ThanhVienInfoComponent } from './thanh-vien-info/thanh-vien-info.component';
-import { DanhMucBenhVienComponent } from './danh-muc-benh-vien/danh-muc-benh-vien.component';
-import { DanhMucPhongBanComponent } from './danh-muc-phong-ban/danh-muc-phong-ban.component';
-import { DanhMucChucDanhComponent } from './danh-muc-chuc-danh/danh-muc-chuc-danh.component';
-import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-trang.component';
+
 import { DanhMucTinhThanhComponent } from './danh-muc-tinh-thanh/danh-muc-tinh-thanh.component';
 import { DanhMucQuanHuyenComponent } from './danh-muc-quan-huyen/danh-muc-quan-huyen.component';
 import { DanhMucXaPhuongComponent } from './danh-muc-xa-phuong/danh-muc-xa-phuong.component';
@@ -34,14 +31,7 @@ import { DanhMucDichVuComponent } from './danh-muc-dich-vu/danh-muc-dich-vu.comp
 import { DanhMucKhuVucComponent } from './danh-muc-khu-vuc/danh-muc-khu-vuc.component';
 import { DanhMucPhongKhamComponent } from './danh-muc-phong-kham/danh-muc-phong-kham.component';
 import { DanhMucQuayDichVuComponent } from './danh-muc-quay-dich-vu/danh-muc-quay-dich-vu.component';
-import { DuAnComponent } from './du-an/du-an.component';
-import { DuAnInfoComponent } from './du-an-info/du-an-info.component';
-import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-dinh-info.component';
-import { DuAnThuChiInfoComponent } from './du-an-thu-chi-info/du-an-thu-chi-info.component';
-import { Dashboard001Component } from './dashboard001/dashboard001.component';
-import { DanhMucBieuMauComponent } from './danh-muc-bieu-mau/danh-muc-bieu-mau.component';
-import { DanhMucHinhThucThanhToanComponent } from './danh-muc-hinh-thuc-thanh-toan/danh-muc-hinh-thuc-thanh-toan.component';
-import { DanhMucBieuMauInfoComponent } from './danh-muc-bieu-mau-info/danh-muc-bieu-mau-info.component';
+
 import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
 import { GoiSoComponent } from './goi-so/goi-so.component';
 import { GoiSoInfoComponent } from './goi-so-info/goi-so-info.component';
@@ -59,11 +49,8 @@ import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.compone
     DanhMucChucNangComponent,
     ThanhVienComponent,
     ThanhVienThongTinComponent,    
-    ThanhVienInfoComponent,
-    DanhMucBenhVienComponent,
-    DanhMucPhongBanComponent,
-    DanhMucChucDanhComponent,
-    DanhMucTinhTrangComponent,
+    ThanhVienInfoComponent,   
+   
     DanhMucTinhThanhComponent,
     DanhMucQuanHuyenComponent,
     DanhMucXaPhuongComponent,
@@ -73,14 +60,7 @@ import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.compone
     DanhMucKhuVucComponent,
     DanhMucPhongKhamComponent,
     DanhMucQuayDichVuComponent,
-    DuAnComponent,
-    DuAnInfoComponent,
-    DuAnQuyetDinhInfoComponent,
-    DuAnThuChiInfoComponent,
-    Dashboard001Component,
-    DanhMucBieuMauComponent,
-    DanhMucHinhThucThanhToanComponent,
-    DanhMucBieuMauInfoComponent,
+    
     GioiThieuComponent,
     GoiSoComponent,
     GoiSoInfoComponent,

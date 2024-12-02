@@ -16,6 +16,7 @@ export class GoiSoService extends BaseService{
     List: GoiSo[] | undefined;
     ListFilter: GoiSo[] | undefined;
     FormData!: GoiSo;
+    
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "GoiSo";

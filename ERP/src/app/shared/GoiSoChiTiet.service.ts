@@ -10,6 +10,7 @@ export class GoiSoChiTietService extends BaseService{
 
     DisplayColumns001: string[] = ['STT', 'ID', 'Name', 'Active'];   
     DisplayColumns002: string[] = ['DanhMucThanhVienID', 'Save'];   
+    DisplayColumns003: string[] = ['STT', 'NgayCapSo', 'NgayCapSoSoThuTu', 'NgayDangKy', 'NgayDangKySoThuTu', 'NgayThanhToan', 'NgayThanhToanSoThuTu', 'NgayLinhThuoc', 'NgayLinhThuocSoThuTu', 'KhachHangID', 'Code', 'BHYT', 'CCCD', 'DienThoai', 'HoTen', 'NamSinh', 'GioiTinh'];   
         
     List: GoiSoChiTiet[] | undefined;
     ListFilter: GoiSoChiTiet[] | undefined;

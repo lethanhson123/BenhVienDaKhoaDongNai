@@ -10,12 +10,7 @@ import { DownloadService } from 'src/app/shared/Download.service';
 
 import { DanhMucThanhVien } from 'src/app/shared/DanhMucThanhVien.model';
 import { DanhMucThanhVienService } from 'src/app/shared/DanhMucThanhVien.service';
-import { DanhMucBenhVien } from 'src/app/shared/DanhMucBenhVien.model';
-import { DanhMucBenhVienService } from 'src/app/shared/DanhMucBenhVien.service';
-import { DanhMucPhongBan } from 'src/app/shared/DanhMucPhongBan.model';
-import { DanhMucPhongBanService } from 'src/app/shared/DanhMucPhongBan.service';
-import { DanhMucChucDanh } from 'src/app/shared/DanhMucChucDanh.model';
-import { DanhMucChucDanhService } from 'src/app/shared/DanhMucChucDanh.service';
+
 
 import { ThanhVien } from 'src/app/shared/ThanhVien.model';
 import { ThanhVienService } from 'src/app/shared/ThanhVien.service';
@@ -56,13 +51,12 @@ export class ThanhVienInfoComponent implements OnInit {
 
   constructor(
     public ActiveRouter: ActivatedRoute,
+    public Router: Router,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
     public DanhMucThanhVienService: DanhMucThanhVienService,
-    public DanhMucBenhVienService: DanhMucBenhVienService,
-    public DanhMucPhongBanService: DanhMucPhongBanService,
-    public DanhMucChucDanhService: DanhMucChucDanhService,
+  
 
     public ThanhVienService: ThanhVienService,
     public ThanhVienChucNangService: ThanhVienChucNangService,
@@ -81,25 +75,14 @@ export class ThanhVienInfoComponent implements OnInit {
   DanhMucThanhVienSearch() {
     this.DanhMucThanhVienService.ComponentGetAllToListAsync(this.ThanhVienService);
   }
-  DanhMucBenhVienSearch() {
-    this.DanhMucBenhVienService.ComponentGetAllToListAsync(this.ThanhVienService);
-  }
-  DanhMucPhongBanSearch() {
-    this.DanhMucPhongBanService.ComponentGetAllToListAsync(this.ThanhVienService);
-  }
-  DanhMucChucDanhSearch() {
-    this.DanhMucChucDanhService.ComponentGetAllToListAsync(this.ThanhVienService);
-  }
+ 
   ThanhVienSearch() {
     this.ThanhVienService.GetByIDAsync().subscribe(
       res => {
         this.ThanhVienService.FormData = res as ThanhVien;
         if (this.ThanhVienService.FormData.ID == environment.InitializationNumber) {
         }
-        this.DanhMucThanhVienSearch();
-        this.DanhMucBenhVienSearch();
-        this.DanhMucPhongBanSearch();
-        this.DanhMucChucDanhSearch();
+        this.DanhMucThanhVienSearch();      
         this.ThanhVienChucNangSearch();  
         this.ThanhVienUngDungSearch();        
       },
@@ -112,6 +95,7 @@ export class ThanhVienInfoComponent implements OnInit {
     this.ThanhVienService.SaveAsync().subscribe(
       res => {
         this.ThanhVienService.FormData = res as ThanhVien;
+        this.Router.navigateByUrl(environment.ThanhVienInfo + this.ThanhVienService.FormData.ID);
         this.ThanhVienSearch();
         this.NotificationService.warn(environment.SaveSuccess);
       },
@@ -123,7 +107,11 @@ export class ThanhVienInfoComponent implements OnInit {
       }
     );
   }
-
+  ThanhVienAdd() {
+    this.Router.navigateByUrl(environment.ThanhVienInfo + environment.InitializationNumber);
+    this.ThanhVienService.BaseParameter.ID = environment.InitializationNumber;
+    this.ThanhVienSearch();
+  }
   ThanhVienChucNangSearch() {
     if (this.ThanhVienChucNangService.BaseParameter.SearchString.length > 0) {
       this.ThanhVienChucNangService.DataSource.filter = this.ThanhVienChucNangService.BaseParameter.SearchString.toLowerCase();

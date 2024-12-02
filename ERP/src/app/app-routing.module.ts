@@ -13,23 +13,15 @@ import { DanhMucTinhThanhToaDoComponent } from './danh-muc-tinh-thanh-toa-do/dan
 import { DanhMucXaPhuongComponent } from './danh-muc-xa-phuong/danh-muc-xa-phuong.component';
 import { DanhMucQuanHuyenComponent } from './danh-muc-quan-huyen/danh-muc-quan-huyen.component';
 import { DanhMucTinhThanhComponent } from './danh-muc-tinh-thanh/danh-muc-tinh-thanh.component';
-import { DanhMucBenhVienComponent } from './danh-muc-benh-vien/danh-muc-benh-vien.component';
-import { DanhMucPhongBanComponent } from './danh-muc-phong-ban/danh-muc-phong-ban.component';
-import { DanhMucChucDanhComponent } from './danh-muc-chuc-danh/danh-muc-chuc-danh.component';
-import { DanhMucTinhTrangComponent } from './danh-muc-tinh-trang/danh-muc-tinh-trang.component';
+
 import { DanhMucKhoaChuyenMonComponent } from './danh-muc-khoa-chuyen-mon/danh-muc-khoa-chuyen-mon.component';
 import { DanhMucDichVuComponent } from './danh-muc-dich-vu/danh-muc-dich-vu.component';
 import { DanhMucKhuVucComponent } from './danh-muc-khu-vuc/danh-muc-khu-vuc.component';
 import { DanhMucPhongKhamComponent } from './danh-muc-phong-kham/danh-muc-phong-kham.component';
 import { DanhMucQuayDichVuComponent } from './danh-muc-quay-dich-vu/danh-muc-quay-dich-vu.component';
-import { DanhMucBieuMauComponent } from './danh-muc-bieu-mau/danh-muc-bieu-mau.component';
-import { DanhMucHinhThucThanhToanComponent } from './danh-muc-hinh-thuc-thanh-toan/danh-muc-hinh-thuc-thanh-toan.component';
-import { Dashboard001Component } from './dashboard001/dashboard001.component';
-import { DuAnThuChiInfoComponent } from './du-an-thu-chi-info/du-an-thu-chi-info.component';
-import { DuAnQuyetDinhInfoComponent } from './du-an-quyet-dinh-info/du-an-quyet-dinh-info.component';
-import { DuAnInfoComponent } from './du-an-info/du-an-info.component';
-import { DuAnComponent } from './du-an/du-an.component';
-import { DanhMucBieuMauInfoComponent } from './danh-muc-bieu-mau-info/danh-muc-bieu-mau-info.component';
+import { GoiSoComponent } from './goi-so/goi-so.component';
+import { GoiSoInfoComponent } from './goi-so-info/goi-so-info.component';
+
 
 
 const routes: Routes = [
@@ -50,18 +42,8 @@ const routes: Routes = [
   {
     path: 'DanhMucUngDung', component: DanhMucUngDungComponent,
   }, 
-  {
-    path: 'DanhMucBenhVien', component: DanhMucBenhVienComponent,
-  }, 
-  {
-    path: 'DanhMucPhongBan', component: DanhMucPhongBanComponent,
-  },  
-  {
-    path: 'DanhMucChucDanh', component: DanhMucChucDanhComponent,
-  }, 
-  {
-    path: 'DanhMucTinhTrang', component: DanhMucTinhTrangComponent,
-  }, 
+
+  
   {
     path: 'DanhMucTinhThanh', component: DanhMucTinhThanhComponent,
   }, 
@@ -74,15 +56,7 @@ const routes: Routes = [
   {
     path: 'DanhMucTinhThanhToaDo', component: DanhMucTinhThanhToaDoComponent,
   }, 
-  {
-    path: 'DanhMucBieuMau', component: DanhMucBieuMauComponent,
-  }, 
-  {
-    path: 'DanhMucBieuMauInfo/:ID', component: DanhMucBieuMauInfoComponent,
-  }, 
-  {
-    path: 'DanhMucHinhThucThanhToan', component: DanhMucHinhThucThanhToanComponent,
-  }, 
+  
 
   {
     path: 'DanhMucKhoaChuyenMon', component: DanhMucKhoaChuyenMonComponent,
@@ -110,24 +84,12 @@ const routes: Routes = [
     path: 'ThanhVienThongTin', component: ThanhVienThongTinComponent,
   },
 
-
   {
-    path: 'DuAn', component: DuAnComponent,
-  },   
+    path: 'GoiSo', component: GoiSoComponent,
+  },
   {
-    path: 'DuAnInfo/:ID', component: DuAnInfoComponent,
+    path: 'GoiSoInfo/:ID', component: GoiSoInfoComponent,
   }, 
-  {
-    path: 'DuAnQuyetDinhInfo/:DuAnID/:ID', component: DuAnQuyetDinhInfoComponent,
-  }, 
-  {
-    path: 'DuAnThuChiInfo/:DuAnID/:DuAnQuyetDinhID/:ID', component: DuAnThuChiInfoComponent,
-  }, 
-
-  {
-    path: 'Dashboard001', component: Dashboard001Component,
-  },  
-
   
 ];
 
