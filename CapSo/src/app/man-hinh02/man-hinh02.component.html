@@ -1,0 +1,61 @@
+<div class="section" id="user-profile">
+    <div class="row">
+        <div class="col s12 m12 l4" style="text-align: center; font-size: 30px; color: #000;">
+            <p>
+                Tiếp xúc vui vẻ, bệnh khoẻ mỗi ngày</p>
+        </div>
+        <div class="col s12 m12 l4" style="text-align: center;">
+            <img src="image/logo001.png" class="responsive-img">
+        </div>
+        <div class="col s12 m12 l4" style="text-align: center; font-size: 30px; color: #000;">
+            <p>
+                {{GoiSoChiTietService.BaseParameter.KetThuc
+                |
+                date:'dd/MM/yyyy HH:mm:ss'}}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <table>
+            <tr style="border: 0px;">
+                <td style="width: calc(100% - 889px); vertical-align: top;">
+                    <table class="striped">
+                        <thead class="yellow darken-4 white-text">
+                            <tr>
+                                <th style="width: 50%; text-align: center; font-size: 40px;">Quầy</th>
+                                <th style="width: 50%; text-align: center; font-size: 40px;">Số thứ tự</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of DanhMucQuayDichVuService.List01; index as i">
+                            <tr *ngIf="i % 2 == 0" class="blue accent-1 white-text">
+                                <td style="text-align: center; font-size: 50px; font-weight: bolder; padding: 0px;">
+                                    {{item.Code}}</td>
+                                <td style="text-align: center; font-size: 50px; font-weight: bolder; padding: 0px;">
+                                    {{item.Display}}</td>
+                            </tr>
+                            <tr *ngIf="i % 2 == 1" class="light-blue lighten-4 white-text">
+                                <td style="text-align: center; font-size: 50px; font-weight: bolder; padding: 0px;">
+                                    {{item.Code}}</td>
+                                <td style="text-align: center; font-size: 50px; font-weight: bolder; padding: 0px;">
+                                    {{item.Display}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width: 889px; vertical-align: top;">
+                    <video width="889" height="500" controls loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true">
+                        <source
+                            src="{{ManHinhTapTinDinhKemService.FormData.FileName}}"
+                            type="video/mp4">                      
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+            </tr>
+        </table>
+        <marquee width="100%" direction="left" height="100px" style="font-size: 40px; font-weight: bolder; color: #000;"
+            (finish)="MarqueeFinish()">
+            {{ManHinhThongBaoService.FormData.Description}}
+        </marquee>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>

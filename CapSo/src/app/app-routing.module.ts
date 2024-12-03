@@ -20,10 +20,22 @@ import { PhongKhamHienThiComponent } from './phong-kham-hien-thi/phong-kham-hien
 import { PhongKhamHienThi01Component } from './phong-kham-hien-thi01/phong-kham-hien-thi01.component';
 import { PhongKhamGoiSo01Component } from './phong-kham-goi-so01/phong-kham-goi-so01.component';
 import { PhongKhamGoiSoComponent } from './phong-kham-goi-so/phong-kham-goi-so.component';
+import { CapSoComponent } from './cap-so/cap-so.component';
+import { ManHinh01Component } from './man-hinh01/man-hinh01.component';
+import { ManHinh04Component } from './man-hinh04/man-hinh04.component';
+import { ManHinh03Component } from './man-hinh03/man-hinh03.component';
+import { ManHinh02Component } from './man-hinh02/man-hinh02.component';
+import { ManHinh05Component } from './man-hinh05/man-hinh05.component';
+import { ManHinh0201Component } from './man-hinh0201/man-hinh0201.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/Homepage', pathMatch: 'full' },
+  { path: '', redirectTo: '/CapSo', pathMatch: 'full' },
+  {
+    path: 'CapSo', component: CapSoComponent,
+  },
+
+
   {
     path: 'Homepage', component: HomepageComponent,
   },
@@ -61,6 +73,25 @@ const routes: Routes = [
   },
   {
     path: 'HienThi04/:DanhMucQuayDichVuID', component: HienThi04Component,
+  },
+
+  {
+    path: 'ManHinh01', component: ManHinh01Component,
+  },
+  {
+    path: 'ManHinh02/:SearchString', component: ManHinh02Component,
+  },
+  {
+    path: 'ManHinh0201', component: ManHinh0201Component,
+  },
+  {
+    path: 'ManHinh03', component: ManHinh03Component,
+  },
+  {
+    path: 'ManHinh04/:Code/:Number', component: ManHinh04Component,
+  },
+  {
+    path: 'ManHinh05', component: ManHinh05Component,
   },
 
   {

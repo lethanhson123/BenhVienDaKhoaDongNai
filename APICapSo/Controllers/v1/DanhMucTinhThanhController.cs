@@ -26,23 +26,7 @@
                 string message = ex.Message;
             }
             return result;
-        }
-        [HttpPost]
-        [Route("GetByActiveToListAsync")]
-        public virtual async Task<List<DanhMucTinhThanh>> GetByActiveToListAsync()
-        {
-            List<DanhMucTinhThanh> result = new List<DanhMucTinhThanh>();
-            try
-            {
-                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
-                result = await _DanhMucTinhThanhService.GetByActiveToListAsync(baseParameter.Active.Value);
-            }
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-            }
-            return result;
-        }
+        }     
     }
 }
 

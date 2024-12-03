@@ -37,6 +37,8 @@ import { GoiSoComponent } from './goi-so/goi-so.component';
 import { GoiSoInfoComponent } from './goi-so-info/goi-so-info.component';
 import { GoiSoChiTietInfoComponent } from './goi-so-chi-tiet-info/goi-so-chi-tiet-info.component';
 import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.component';
+import { ManHinhThongBaoComponent } from './man-hinh-thong-bao/man-hinh-thong-bao.component';
+import { ManHinhTapTinDinhKemComponent } from './man-hinh-tap-tin-dinh-kem/man-hinh-tap-tin-dinh-kem.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.compone
     GoiSoInfoComponent,
     GoiSoChiTietInfoComponent,
     GoiSoChiTietComponent,
+    ManHinhThongBaoComponent,
+    ManHinhTapTinDinhKemComponent,
 
   ],
   imports: [

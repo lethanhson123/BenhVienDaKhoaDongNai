@@ -110,6 +110,22 @@
             return result;
         }
         [HttpPost]
+        [Route("GetGoiSoChiTietDangKy02_002ToListAsync")]
+        public virtual async Task<List<DanhMucQuayDichVu>> GetGoiSoChiTietDangKy02_002ToListAsync()
+        {
+            List<DanhMucQuayDichVu> result = new List<DanhMucQuayDichVu>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietDangKy02_002ToListAsync(baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }        
+        [HttpPost]
         [Route("GetGoiSoChiTietDangKy03ToListAsync")]
         public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy03ToListAsync()
         {
@@ -134,6 +150,22 @@
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
                 result = await _GoiSoChiTietService.GetGoiSoChiTietDangKy04ToListAsync(baseParameter.DanhMucQuayDichVuID.Value, baseParameter.Number.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetGoiSoChiTietDangKy04_001ToListAsync")]
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy04_001ToListAsync()
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietDangKy04_001ToListAsync(baseParameter.Code, baseParameter.Number.Value);
             }
             catch (Exception ex)
             {

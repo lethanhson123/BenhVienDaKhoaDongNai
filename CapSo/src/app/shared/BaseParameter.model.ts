@@ -30,4 +30,5 @@ export class BaseParameter extends Base{
     NgayCapSoSoThuTu?: number;    
     NgayCapSoSoThuTuString?: string;    
     Number?: number;    
+    IsBHYT?: boolean;    
 }

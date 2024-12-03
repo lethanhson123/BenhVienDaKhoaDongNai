@@ -1864,6 +1864,7 @@
             return model;
         }
         [HttpPost]
+        [RequestSizeLimit(512 * 1024 * 1024)]
         [Route("SaveAndUploadFilesAsync")]
         public virtual async Task<T> SaveAndUploadFilesAsync()
         {

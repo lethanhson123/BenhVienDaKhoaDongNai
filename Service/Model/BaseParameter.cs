@@ -30,6 +30,7 @@
         public int? NgayCapSoSoThuTu { get; set; }
         public string? NgayCapSoSoThuTuString { get; set; }        
         public int? Number { get; set; }
+        public bool? IsBHYT { get; set; }
         public BaseParameter()
 		{
 		}

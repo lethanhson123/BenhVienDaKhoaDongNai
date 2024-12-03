@@ -32,6 +32,13 @@ import { PhongKhamHienThiComponent } from './phong-kham-hien-thi/phong-kham-hien
 import { PhongKhamHienThi01Component } from './phong-kham-hien-thi01/phong-kham-hien-thi01.component';
 import { PhongKhamGoiSoComponent } from './phong-kham-goi-so/phong-kham-goi-so.component';
 import { PhongKhamGoiSo01Component } from './phong-kham-goi-so01/phong-kham-goi-so01.component';
+import { CapSoComponent } from './cap-so/cap-so.component';
+import { ManHinh01Component } from './man-hinh01/man-hinh01.component';
+import { ManHinh02Component } from './man-hinh02/man-hinh02.component';
+import { ManHinh03Component } from './man-hinh03/man-hinh03.component';
+import { ManHinh04Component } from './man-hinh04/man-hinh04.component';
+import { ManHinh05Component } from './man-hinh05/man-hinh05.component';
+import { ManHinh0201Component } from './man-hinh0201/man-hinh0201.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +63,13 @@ import { PhongKhamGoiSo01Component } from './phong-kham-goi-so01/phong-kham-goi-
     PhongKhamHienThi01Component,
     PhongKhamGoiSoComponent,
     PhongKhamGoiSo01Component,
+    CapSoComponent,
+    ManHinh01Component,
+    ManHinh02Component,
+    ManHinh03Component,
+    ManHinh04Component,
+    ManHinh05Component,
+    ManHinh0201Component,
 
   ],
   imports: [
