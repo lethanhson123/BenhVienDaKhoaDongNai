@@ -5,13 +5,14 @@
     [ApiVersion("1.0")]
     public class ManHinhTapTinDinhKemController : BaseController<ManHinhTapTinDinhKem, IManHinhTapTinDinhKemService>
     {
-    private readonly IManHinhTapTinDinhKemService _ManHinhTapTinDinhKemService;
-    private readonly IWebHostEnvironment _WebHostEnvironment;
-    public ManHinhTapTinDinhKemController(IManHinhTapTinDinhKemService ManHinhTapTinDinhKemService, IWebHostEnvironment WebHostEnvironment) : base(ManHinhTapTinDinhKemService, WebHostEnvironment)
-    {
-    _ManHinhTapTinDinhKemService = ManHinhTapTinDinhKemService;
-    _WebHostEnvironment = WebHostEnvironment;
+        private readonly IManHinhTapTinDinhKemService _ManHinhTapTinDinhKemService;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
+        public ManHinhTapTinDinhKemController(IManHinhTapTinDinhKemService ManHinhTapTinDinhKemService, IWebHostEnvironment WebHostEnvironment) : base(ManHinhTapTinDinhKemService, WebHostEnvironment)
+        {
+            _ManHinhTapTinDinhKemService = ManHinhTapTinDinhKemService;
+            _WebHostEnvironment = WebHostEnvironment;
+        }
     }
-    }
-    }
+}
+
 

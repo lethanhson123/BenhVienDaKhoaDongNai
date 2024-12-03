@@ -16,6 +16,10 @@ export class ManHinhTapTinDinhKemService extends BaseService{
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "ManHinhTapTinDinhKem";
+        this.FormData = {
+            SortOrder: environment.InitializationNumber,
+            FileName: "https://api.benhvien.sohu.vn/ManHinhTapTinDinhKem/ManHinhTapTinDinhKem_1__20241203165557.mp4",
+        };
     }
 }
 

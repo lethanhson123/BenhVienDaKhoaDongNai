@@ -47,12 +47,13 @@ export class ManHinh02Component implements OnInit {
     this.ManHinhTapTinDinhKemService.GetByActiveToListAsync().subscribe(
       res => {
         this.ManHinhTapTinDinhKemService.List = (res as ManHinhTapTinDinhKem[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        
         for (let i = 0; i < this.ManHinhTapTinDinhKemService.List.length; i++) {
-          if (this.ManHinhTapTinDinhKemService.List[i].SortOrder > this.ManHinhTapTinDinhKemService.FormData.SortOrder) {
+          if (this.ManHinhTapTinDinhKemService.List[i].SortOrder > this.ManHinhTapTinDinhKemService.FormData.SortOrder) {            
             this.ManHinhTapTinDinhKemService.FormData = this.ManHinhTapTinDinhKemService.List[i];
             i = this.ManHinhTapTinDinhKemService.List.length;
           }
-        }
+        }        
       },
       err => {
       },
