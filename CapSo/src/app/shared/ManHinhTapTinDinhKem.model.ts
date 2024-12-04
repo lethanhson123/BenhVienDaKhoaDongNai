@@ -3,6 +3,7 @@
 export class ManHinhTapTinDinhKem extends Base{
 
 TongSoGiay?: number;
+IsChanged?: boolean;
 
 }
 

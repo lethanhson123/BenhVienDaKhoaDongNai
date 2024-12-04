@@ -15,6 +15,8 @@ import { ManHinhThongBaoService } from 'src/app/shared/ManHinhThongBao.service';
 import { ManHinhTapTinDinhKem } from 'src/app/shared/ManHinhTapTinDinhKem.model';
 import { ManHinhTapTinDinhKemService } from 'src/app/shared/ManHinhTapTinDinhKem.service';
 
+import { interval } from 'rxjs';
+
 @Component({
   selector: 'app-man-hinh02',
   templateUrl: './man-hinh02.component.html',
@@ -22,8 +24,12 @@ import { ManHinhTapTinDinhKemService } from 'src/app/shared/ManHinhTapTinDinhKem
 })
 export class ManHinh02Component implements OnInit {
 
+  videoSrc: string = environment.InitializationString;
+  ManHinhTapTinDinhKemIndex: number = environment.InitializationNumber;
+
   constructor(
     public ActiveRouter: ActivatedRoute,
+    public DownloadService: DownloadService,
     public DanhMucQuayDichVuService: DanhMucQuayDichVuService,
     public GoiSoChiTietService: GoiSoChiTietService,
 
@@ -31,29 +37,61 @@ export class ManHinh02Component implements OnInit {
     public ManHinhThongBaoService: ManHinhThongBaoService,
   ) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.GoiSoChiTietService.BaseParameter.SearchString = this.ActiveRouter.snapshot.params.SearchString;
     this.GetGoiSoChiTietDangKy02();
     this.ManHinhThongBaoSearch();
     this.ManHinhTapTinDinhKemSearch();
-    this.StartTimer();
+    
     this.StartTimerInterval();
     this.StartTimer1000();
     this.StartTimer10000();
+    this.StartTimer60000();
+
+    interval(this.ManHinhTapTinDinhKemService.FormData.TongSoGiay * 1000).subscribe((x) => {      
+      this.ManHinhTapTinDinhKemService.FormData = this.ManHinhTapTinDinhKemService.List[this.ManHinhTapTinDinhKemIndex];
+      this.videoSrc = this.ManHinhTapTinDinhKemService.FormData.FileName;
+      if (this.ManHinhTapTinDinhKemIndex == this.ManHinhTapTinDinhKemService.List.length) {
+        this.ManHinhTapTinDinhKemIndex = environment.InitializationNumber;
+      }
+      else {
+        this.ManHinhTapTinDinhKemIndex = this.ManHinhTapTinDinhKemIndex + 1;
+      }
+    });
   }
+
+  // ManHinhTapTinDinhKemSearch() {
+  //   this.ManHinhTapTinDinhKemService.GetSyncToTranferListAsync().subscribe(
+  //     res => {
+  //       this.ManHinhTapTinDinhKemService.List = (res as ManHinhTapTinDinhKem[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+  //       for (let i = 0; i < this.ManHinhTapTinDinhKemService.List.length; i++) {
+  //         if (this.ManHinhTapTinDinhKemService.List[i].IsChanged == true) {
+  //           this.DownloadService.DownloadByURL(this.ManHinhTapTinDinhKemService.List[i].FileName).subscribe(response => {
+  //             let FileName = this.ManHinhTapTinDinhKemService.List[i].Note;
+  //             let Blob: Blob = response.body as Blob;
+  //             let a = document.createElement('a');
+  //             a.download = FileName;
+  //             a.href = window.URL.createObjectURL(Blob);
+  //             a.click();
+  //           });
+  //         }
+  //         if (this.ManHinhTapTinDinhKemService.List[i].SortOrder > this.ManHinhTapTinDinhKemService.FormData.SortOrder) {
+  //           this.ManHinhTapTinDinhKemService.FormData = this.ManHinhTapTinDinhKemService.List[i];
+  //         }
+  //       }
+  //     },
+  //     err => {
+  //     },
+  //     () => {
+  //     }
+  //   );
+  // }
 
   ManHinhTapTinDinhKemSearch() {
     this.ManHinhTapTinDinhKemService.BaseParameter.Active = true;
     this.ManHinhTapTinDinhKemService.GetByActiveToListAsync().subscribe(
       res => {
-        this.ManHinhTapTinDinhKemService.List = (res as ManHinhTapTinDinhKem[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-        
-        for (let i = 0; i < this.ManHinhTapTinDinhKemService.List.length; i++) {
-          if (this.ManHinhTapTinDinhKemService.List[i].SortOrder > this.ManHinhTapTinDinhKemService.FormData.SortOrder) {            
-            this.ManHinhTapTinDinhKemService.FormData = this.ManHinhTapTinDinhKemService.List[i];
-            i = this.ManHinhTapTinDinhKemService.List.length;
-          }
-        }        
+        this.ManHinhTapTinDinhKemService.List = (res as ManHinhTapTinDinhKem[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));        
       },
       err => {
       },
@@ -61,6 +99,8 @@ export class ManHinh02Component implements OnInit {
       }
     );
   }
+
+
   ManHinhThongBaoSearch() {
     this.ManHinhThongBaoService.BaseParameter.Active = true;
     this.ManHinhThongBaoService.GetByActiveToListAsync().subscribe(
@@ -90,11 +130,7 @@ export class ManHinh02Component implements OnInit {
     );
   }
 
-  StartTimer() {
-    setInterval(() => {
-      this.ManHinhTapTinDinhKemSearch();
-    }, this.ManHinhTapTinDinhKemService.FormData.TongSoGiay * 1000)
-  }
+  
   StartTimerInterval() {
     setInterval(() => {
       this.GetGoiSoChiTietDangKy02();
@@ -109,5 +145,10 @@ export class ManHinh02Component implements OnInit {
     setInterval(() => {
       this.ManHinhThongBaoSearch();
     }, 10000)
+  }
+  StartTimer60000() {
+    setInterval(() => {
+      this.ManHinhTapTinDinhKemSearch();
+    }, 60000)
   }
 }

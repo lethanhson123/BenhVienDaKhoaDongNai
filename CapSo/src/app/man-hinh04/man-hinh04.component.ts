@@ -15,12 +15,17 @@ import { ManHinhThongBaoService } from 'src/app/shared/ManHinhThongBao.service';
 import { ManHinhTapTinDinhKem } from 'src/app/shared/ManHinhTapTinDinhKem.model';
 import { ManHinhTapTinDinhKemService } from 'src/app/shared/ManHinhTapTinDinhKem.service';
 
+import { interval } from 'rxjs';
+
 @Component({
   selector: 'app-man-hinh04',
   templateUrl: './man-hinh04.component.html',
   styleUrls: ['./man-hinh04.component.css']
 })
 export class ManHinh04Component implements OnInit {
+
+  videoSrc: string = environment.InitializationString;
+  ManHinhTapTinDinhKemIndex: number = environment.InitializationNumber;
 
   constructor(
     public ActiveRouter: ActivatedRoute,
@@ -37,10 +42,23 @@ export class ManHinh04Component implements OnInit {
     this.GetGoiSoChiTietDangKy04();
     this.ManHinhThongBaoSearch();
     this.ManHinhTapTinDinhKemSearch();
-    this.StartTimer();
+
+
     this.StartTimerInterval();
     this.StartTimer1000();
     this.StartTimer10000();
+    this.StartTimer60000();
+
+    interval(this.ManHinhTapTinDinhKemService.FormData.TongSoGiay * 1000).subscribe((x) => {
+      this.ManHinhTapTinDinhKemService.FormData = this.ManHinhTapTinDinhKemService.List[this.ManHinhTapTinDinhKemIndex];
+      this.videoSrc = this.ManHinhTapTinDinhKemService.FormData.FileName;
+      if (this.ManHinhTapTinDinhKemIndex == this.ManHinhTapTinDinhKemService.List.length) {
+        this.ManHinhTapTinDinhKemIndex = environment.InitializationNumber;
+      }
+      else {
+        this.ManHinhTapTinDinhKemIndex = this.ManHinhTapTinDinhKemIndex + 1;
+      }
+    });
   }
 
   ManHinhTapTinDinhKemSearch() {
@@ -48,12 +66,6 @@ export class ManHinh04Component implements OnInit {
     this.ManHinhTapTinDinhKemService.GetByActiveToListAsync().subscribe(
       res => {
         this.ManHinhTapTinDinhKemService.List = (res as ManHinhTapTinDinhKem[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-        for (let i = 0; i < this.ManHinhTapTinDinhKemService.List.length; i++) {
-          if (this.ManHinhTapTinDinhKemService.List[i].SortOrder > this.ManHinhTapTinDinhKemService.FormData.SortOrder) {
-            this.ManHinhTapTinDinhKemService.FormData = this.ManHinhTapTinDinhKemService.List[i];
-            i = this.ManHinhTapTinDinhKemService.List.length;
-          }
-        }
       },
       err => {
       },
@@ -95,19 +107,13 @@ export class ManHinh04Component implements OnInit {
               }
             }
           }
-        }       
-        console.log(this.GoiSoChiTietService.List02);
+        }
       },
       err => {
       },
       () => {
       }
     );
-  }
-  StartTimer() {
-    setInterval(() => {
-      this.ManHinhTapTinDinhKemSearch();
-    }, this.ManHinhTapTinDinhKemService.FormData.TongSoGiay * 1000)
   }
   StartTimerInterval() {
     setInterval(() => {
@@ -123,5 +129,10 @@ export class ManHinh04Component implements OnInit {
     setInterval(() => {
       this.ManHinhThongBaoSearch();
     }, 10000)
+  }
+  StartTimer60000() {
+    setInterval(() => {
+      this.ManHinhTapTinDinhKemSearch();
+    }, 60000)
   }
 }

@@ -40,7 +40,7 @@
         </table>
         <table>
             <tr style="border: 0px;">
-                <td style="width: calc(100% - 889px); vertical-align: top;">
+                <td style="width: calc(100% - 773px); vertical-align: top;">
                     <table class="striped">
                         <thead class="yellow darken-4 white-text">
                             <tr>
@@ -64,11 +64,9 @@
                         </tbody>
                     </table>
                 </td>
-                <td style="width: 889px; vertical-align: top;">
-                    <video width="889" height="500" controls loop muted autoplay oncanplay="this.play()"
-                        onloadedmetadata="this.muted = true">
-                        <source src="{{ManHinhTapTinDinhKemService.FormData.FileName}}" type="video/mp4">
-                        Your browser does not support the video tag.
+                <td style="width: 773px; vertical-align: top;">
+                    <video type="video/mp4" width="773" height="435" [src]="videoSrc" controls loop muted autoplay
+                        oncanplay="this.play()" onloadedmetadata="this.muted = true">
                     </video>
                 </td>
             </tr>

@@ -17,9 +17,18 @@ export class ManHinhTapTinDinhKemService extends BaseService{
         super(httpClient);
         this.Controller = "ManHinhTapTinDinhKem";
         this.FormData = {
+            TongSoGiay: 3,
             SortOrder: environment.InitializationNumber,
-            FileName: "https://api.benhvien.sohu.vn/ManHinhTapTinDinhKem/ManHinhTapTinDinhKem_1__20241203165557.mp4",
+            FileName: "https://api.benhvien.sohu.vn/ManHinhTapTinDinhKem/ManHinhTapTinDinhKem_0__20241204075148.mp4",
+            //FileName: "",            
         };
     }
+
+    GetSyncToTranferListAsync() {
+        let url = this.APIURL + this.Controller + '/GetSyncToTranferListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }   
 }
 

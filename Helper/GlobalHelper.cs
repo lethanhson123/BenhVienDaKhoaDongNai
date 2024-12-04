@@ -221,6 +221,14 @@
                 return int.Parse(builder.Build().GetSection("AppSettings").GetSection("NotificationCount").Value);
             }
         }
+        public static string APIFTP
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("APIFTP").Value;
+            }
+        }
         public static string CapSoFTP
         {
             get

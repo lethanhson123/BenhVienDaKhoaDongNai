@@ -38,7 +38,7 @@ export class ManHinhTapTinDinhKemComponent implements OnInit {
   ManHinhTapTinDinhKemSave(element: ManHinhTapTinDinhKem) {
     this.ManHinhTapTinDinhKemService.IsShowLoading = true;
     this.ManHinhTapTinDinhKemService.FormData = element;
-    this.ManHinhTapTinDinhKemService.SaveAndUploadFilesAsync().subscribe(
+    this.ManHinhTapTinDinhKemService.SaveAndUploadFileAsync().subscribe(
       res => {
         this.ManHinhTapTinDinhKemSearch();
         this.NotificationService.warn(environment.SaveSuccess);

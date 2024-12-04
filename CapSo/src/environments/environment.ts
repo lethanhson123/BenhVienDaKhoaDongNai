@@ -28,6 +28,7 @@ export const environment = {
   ThanhVienHoTen: "ThanhVienHoTen",
   ThanhVienTaiKhoan: "ThanhVienTaiKhoan",
   ThanhVienFileName: "ThanhVienFileName",
+  ListManHinhTapTinDinhKem: "ListManHinhTapTinDinhKem",
   UploadSuccess: "Upload thành công.",
   UploadNotSuccess: "Upload không thành công.",
   SaveSuccess: "Lưu thành công.",
