@@ -67,8 +67,7 @@ export class ManHinh0201Component implements OnInit {
       }
     });
 
-    interval(10000).subscribe((x) => {
-
+    interval(10000).subscribe((x) => {     
       if (this.ManHinhThongBaoIndex >= this.ManHinhThongBaoService.List.length) {
         this.ManHinhThongBaoIndex = environment.InitializationNumber;
       }

@@ -128,12 +128,7 @@ export class ManHinh02Component implements OnInit {
     this.GoiSoChiTietService.GetGoiSoChiTietDangKy02_002ToListAsync().subscribe(
       res => {
         this.DanhMucQuayDichVuService.List01 = (res as DanhMucQuayDichVu[]);
-        for (let i = 0; i < this.DanhMucQuayDichVuService.List01.length;i++) {
-          if(this.DanhMucQuayDichVuService.List01[i].Display){
-          }
-          else{
-            this.DanhMucQuayDichVuService.List01[i].Display="0987";
-          }
+        for (let i = 0; i < this.DanhMucQuayDichVuService.List01.length;i++) {          
         }
       },
       err => {

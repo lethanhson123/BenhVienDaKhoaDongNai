@@ -3,9 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m6 l6">
-                    <h6 class="breadcrumbs-title">Gọi số:
-                        <b>[{{GoiSoService.FormData.ID}}]</b>
-                    </h6>
+                    <h6 class="breadcrumbs-title">Gọi số</h6>
                 </div>
                 <div class="col s12 m6 l6 right-align-md">
                     <ol class="breadcrumbs mb-0">
@@ -47,7 +45,7 @@
                     <div class="col s12 m12 l4">
                         <div>
                             <label class="form-label">Ngày ghi nhận</label>
-                            <input [ngModel]="GoiSoService.FormData.NgayGhiNhan | date:'yyyy-MM-dd'"
+                            <input disabled [ngModel]="GoiSoService.FormData.NgayGhiNhan | date:'yyyy-MM-dd'"
                                 style="text-align: right;" (ngModelChange)="DateNgayGhiNhan($event)"
                                 [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
                                 autocomplete="off">
@@ -84,7 +82,7 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l6">
-                    <h6 class="card-title">Chi tiết
+                    <h6 class="card-title">Danh sách
                         <span *ngIf="GoiSoChiTietService.List">({{GoiSoChiTietService.List.length}}
                             items)</span>
                     </h6>

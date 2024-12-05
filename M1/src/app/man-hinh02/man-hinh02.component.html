@@ -13,9 +13,7 @@
                 |
                 date:'dd/MM/yyyy HH:mm:ss'}}
             </p>
-        </div>
-    </div>
-    <div class="row">
+        </div>       
         <table>
             <tr style="border: 0px;">
                 <td style="width: calc(100% - 1038px); vertical-align: top;">
@@ -27,16 +25,20 @@
                             </tr>
                         </thead>
                         <tbody *ngFor="let item of DanhMucQuayDichVuService.List01; index as i">
-                            <tr *ngIf="i % 2 == 0" class="blue accent-1 white-text">
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                            <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                                <td
+                                    style="text-align: center; font-size: 120px; font-weight: bolder; padding: 0px; line-height: 110px;">
                                     {{item.Code}}</td>
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                                <td
+                                    style="text-align: center; font-size: 120px; font-weight: bolder; padding: 0px; line-height: 110px;">
                                     {{item.Display}}</td>
                             </tr>
-                            <tr *ngIf="i % 2 == 1" class="light-blue lighten-4 white-text">
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                            <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                                <td
+                                    style="text-align: center; font-size: 120px; font-weight: bolder; padding: 0px; line-height: 110px;">
                                     {{item.Code}}</td>
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                                <td
+                                    style="text-align: center; font-size: 120px; font-weight: bolder; padding: 0px; line-height: 110px;">
                                     {{item.Display}}</td>
                             </tr>
                         </tbody>

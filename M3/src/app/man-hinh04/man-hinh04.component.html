@@ -24,16 +24,12 @@
                 </tr>
             </thead>
             <tbody *ngFor="let item of GoiSoChiTietService.List01; index as i">
-                <tr *ngIf="i % 2 == 0" class="blue accent-1 white-text">
-                    <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px; color: #eeff41;">
+                <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                    <td
+                        style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 130px; color: #eeff41;">
                         {{item.DanhMucQuayDichVuCode}}</td>
-                    <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px; color: #eeff41;">
-                        {{item.NgayDangKySoThuTuString}}</td>
-                </tr>
-                <tr *ngIf="i % 2 == 1" class="light-blue lighten-4 white-text">
-                    <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px; color: #eeff41;">
-                        {{item.DanhMucQuayDichVuCode}}</td>
-                    <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px; color: #eeff41;">
+                    <td
+                        style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 130px; color: #eeff41;">
                         {{item.NgayDangKySoThuTuString}}</td>
                 </tr>
             </tbody>
@@ -49,16 +45,20 @@
                             </tr>
                         </thead>
                         <tbody *ngFor="let item of GoiSoChiTietService.List02; index as i">
-                            <tr *ngIf="i % 2 == 0" class="blue accent-1 white-text">
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                            <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                                <td
+                                    style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 130px;">
                                     {{item.DanhMucQuayDichVuCode}}</td>
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                                <td
+                                    style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 130px;">
                                     {{item.NgayDangKySoThuTuString}}</td>
                             </tr>
-                            <tr *ngIf="i % 2 == 1" class="light-blue lighten-4 white-text">
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                            <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                                <td
+                                    style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 130px;">
                                     {{item.DanhMucQuayDichVuCode}}</td>
-                                <td style="text-align: center; font-size: 70px; font-weight: bolder; padding: 0px;">
+                                <td
+                                    style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 130px;">
                                     {{item.NgayDangKySoThuTuString}}</td>
                             </tr>
                         </tbody>
@@ -71,13 +71,13 @@
                         height="584" [src]="videoSrc" controls loop muted autoplay oncanplay="this.play()"
                         onloadedmetadata="this.muted = true">
                     </video>
+                    <marquee width="100%" direction="left" height="100px"
+                        style="font-size: 40px; font-weight: bolder; color: #000;">
+                        {{ManHinhThongBaoService.FormData.Description}}
+                    </marquee>
                 </td>
             </tr>
         </table>
-        <marquee width="100%" direction="left" height="100px"
-            style="font-size: 40px; font-weight: bolder; color: #000;">
-            {{ManHinhThongBaoService.FormData.Description}}
-        </marquee>
     </div>
 </div>
 <app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>
