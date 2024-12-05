@@ -1,0 +1,96 @@
+<div class="section" id="user-profile">
+    <div class="row">
+        <div class="col s12 m12 l4">
+            <div class="card-alert card green darken-3">
+                <div class="card-content white-text">
+                    <p style="text-align: center; font-size: 24px;">
+                        Tiếp xúc vui vẻ, bệnh khoẻ mỗi ngày</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m12 l4" style="text-align: center;">
+            <img src="image/logo001.png" class="responsive-img">
+        </div>
+        <div class="col s12 m12 l4">
+            <div class="card-alert card grey darken-4">
+                <div class="card-content white-text">
+                    <p style="text-align: center; font-size: 24px;">
+                        {{GoiSoChiTietService.BaseParameter.KetThuc
+                        |
+                        date:'dd/MM/yyyy HH:mm:ss'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <table class="striped">
+                <thead class="green darken-4 padding-5 white-text">
+                    <tr>
+                        <th style="width: 100%; text-align: center; font-size: 40px;">Mời ông/bà vào {{DanhMucPhongKhamService.FormData.Name}}</th>                        
+                    </tr>                    
+                </thead>                
+            </table>
+            <table class="striped">
+                <thead class="yellow darken-4 padding-5 white-text">
+                    <tr>
+                        <th style="width: 70%; text-align: center; font-size: 24px;">Họ tên</th>
+                        <th style="width: 30%; text-align: center; font-size: 24px;">Năm sinh</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of GoiSoChiTietService.List01; index as i">
+                    <tr *ngIf="i % 2 == 0" class="light-blue lighten-1 white-text">
+                        <td style="text-align: center; font-size: 40px; font-weight: bolder; color: #eeff41;">{{item.HoTen}}</td>
+                        <td style="text-align: center; font-size: 40px; font-weight: bolder; color: #eeff41;">{{item.NamSinh}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 padding-5 white-text">
+                        <td style="text-align: center; font-size: 40px; font-weight: bolder; color: #eeff41;">{{item.HoTen}}</td>
+                        <td style="text-align: center; font-size: 40px; font-weight: bolder; color: #eeff41;">{{item.NamSinh}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col s12 m12 l6">
+            <table class="striped">
+                <thead class="green darken-4 padding-5 white-text">
+                    <tr>
+                        <th style="width: 100%; text-align: center; font-size: 24px;">Danh sách chờ</th>                        
+                    </tr>                    
+                </thead>                
+            </table>
+            <table class="striped">
+                <thead class="yellow darken-4 padding-5 white-text">                  
+                    <tr>
+                        <th style="width: 10%; text-align: center; font-size: 24px;">STT</th>
+                        <th style="width: 60%; text-align: center; font-size: 24px;">Họ tên</th>
+                        <th style="width: 30%; text-align: center; font-size: 24px;">Năm sinh</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of GoiSoChiTietService.List02; index as i">
+                    <tr *ngIf="i % 2 == 0" class="light-blue lighten-1 white-text">
+                        <td style="text-align: center; font-size: 30px; font-weight: bolder;">{{i+1}}</td>
+                        <td style="text-align: center; font-size: 30px; font-weight: bolder;">{{item.HoTen}}</td>
+                        <td style="text-align: center; font-size: 30px; font-weight: bolder;">{{item.NamSinh}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 padding-5 white-text">
+                        <td style="text-align: center; font-size: 30px; font-weight: bolder;">{{i+1}}</td>
+                        <td style="text-align: center; font-size: 30px; font-weight: bolder;">{{item.HoTen}}</td>
+                        <td style="text-align: center; font-size: 30px; font-weight: bolder;">{{item.NamSinh}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col s12 m12 l6">
+            <iframe width="100%" height="500"
+                src="https://www.youtube.com/embed/8ICjPG93c4Y?si=WKN35d__UGOny5El?&autoplay=1&mute=1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>

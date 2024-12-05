@@ -10,12 +10,28 @@ namespace Service.Implement
         public ManHinhTapTinDinhKemService(IManHinhTapTinDinhKemRepository ManHinhTapTinDinhKemRepository
 
             , IWebHostEnvironment WebHostEnvironment
-            
+
             ) : base(ManHinhTapTinDinhKemRepository)
         {
             _ManHinhTapTinDinhKemRepository = ManHinhTapTinDinhKemRepository;
 
             _WebHostEnvironment = WebHostEnvironment;
+        }
+        public override void Initialization(ManHinhTapTinDinhKem model)
+        {
+            BaseInitialization(model);
+            if (model.IsHinhAnh == null)
+            {
+                model.IsHinhAnh = false;
+            }
+            switch (model.TypeName)
+            {
+                case "png":
+                case "jpg":
+                case "jpeg":
+                    model.IsHinhAnh = true;
+                    break;
+            }
         }
         public override async Task<ManHinhTapTinDinhKem> SaveAsync(ManHinhTapTinDinhKem model)
         {

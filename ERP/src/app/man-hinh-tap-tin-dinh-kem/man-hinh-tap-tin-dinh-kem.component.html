@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m6 l6">
-                    <h6 class="breadcrumbs-title">Video tại màn hình
+                    <h6 class="breadcrumbs-title">Quảng cáo màn hình
                         <span *ngIf="ManHinhTapTinDinhKemService.List">({{ManHinhTapTinDinhKemService.List.length-1}}
                             items)</span>
                     </h6>
@@ -18,7 +18,7 @@
                         <li class="breadcrumb-item"><a routerLink="/GoiSo" title="Gọi số">Gọi số</a>
                         </li>
                         <li class="breadcrumb-item"><a routerLink="/ManHinhTapTinDinhKem"
-                                title="Thông báo tại màn hình">Video tại màn hình</a>
+                                title="Thông báo tại màn hình">Quảng cáo màn hình</a>
                         </li>
                     </ol>
                 </div>
@@ -91,6 +91,17 @@
                                     (change)="ManHinhTapTinDinhKemChangeFile($event.target.files)">
                             </td>
                         </ng-container>
+                        <ng-container matColumnDef="IsHinhAnh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Hình ảnh
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" name="IsHinhAnh{{element.ID}}"
+                                        [(ngModel)]="element.IsHinhAnh">
+                                    <span></span>
+                                </label>
+                            </td>
+                        </ng-container>
                         <ng-container matColumnDef="Active">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích hoạt
                             </th>
@@ -116,9 +127,9 @@
                                 </a>
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="ManHinhTapTinDinhKemService.DisplayColumns002">
+                        <tr mat-header-row *matHeaderRowDef="ManHinhTapTinDinhKemService.DisplayColumns003">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: ManHinhTapTinDinhKemService.DisplayColumns002;">
+                        <tr mat-row *matRowDef="let row; columns: ManHinhTapTinDinhKemService.DisplayColumns003;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #ManHinhTapTinDinhKemPaginator="matPaginator"
@@ -158,6 +169,13 @@
                                         <br />
                                         <input class="form-control" type="file" multiple
                                             (change)="ManHinhTapTinDinhKemChangeFile($event.target.files)">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>
+                                            <input type="checkbox" name="IsHinhAnh{{element.ID}}"
+                                                [(ngModel)]="element.IsHinhAnh">
+                                            <span>Hình ảnh</span>
+                                        </label>
                                     </div>
                                     <div class="col s12 m12 l12">
                                         <label>

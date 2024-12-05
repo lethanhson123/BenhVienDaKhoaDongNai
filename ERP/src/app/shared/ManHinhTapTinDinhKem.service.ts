@@ -10,6 +10,7 @@ export class ManHinhTapTinDinhKemService extends BaseService{
     DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'DanhMucUngDungID', 'DanhMucNgonNguName', 'DanhMucUngDungName', 'TongSoGiay'];
 
     DisplayColumns002: string[] = ['STT', 'ID', 'Name', 'TongSoGiay', 'SortOrder', 'FileName', 'Active', 'Save'];
+    DisplayColumns003: string[] = ['STT', 'ID', 'Name', 'TongSoGiay', 'SortOrder', 'FileName', 'IsHinhAnh', 'Active', 'Save'];
 
     List: ManHinhTapTinDinhKem[] | undefined;
     ListFilter: ManHinhTapTinDinhKem[] | undefined;    
