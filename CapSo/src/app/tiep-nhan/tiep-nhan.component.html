@@ -4,10 +4,11 @@
             <div style="text-align: center;"><b>{{DanhMucDichVuService.FormData.Name}}</b></div>
             <div style="text-align: center;"><b>{{DanhMucQuayDichVuService.FormData.Name}}
                     ({{DanhMucQuayDichVuService.FormData.ParentName}})</b></div>
+            <input id="Code" name="GoiSoService.BaseParameter.Code" [(ngModel)]="GoiSoService.BaseParameter.Code"
+                placeholder="Mã bệnh nhân" type="number" style="text-align: right; font-size: 18px;" autofocus
+                (keyup.enter)="GoiSoChiTietSave()" (change)="GoiSoChiTietSave()">
             <input name="GoiSoService.FormData.SoHienTai" [(ngModel)]="GoiSoService.FormData.SoHienTai"
                 placeholder="Số đang gọi tại quầy" type="number" style="text-align: right; font-size: 18px;">
-            <input id="Code" name="GoiSoService.BaseParameter.Code" [(ngModel)]="GoiSoService.BaseParameter.Code"
-                placeholder="Mã quản lý" type="text" style="text-align: right; font-size: 18px;" autofocus (keyup.enter)="GoiSoChiTietSave()" (change)="GoiSoChiTietSave()">
             <a (click)="GoiSoTiepTheo()"
                 class="waves-effect waves-light btn gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"
                 style="width: 100%;">Số tiếp theo >>>

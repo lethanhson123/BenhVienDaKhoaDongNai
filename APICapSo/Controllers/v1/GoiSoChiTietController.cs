@@ -30,6 +30,23 @@
             return result;
         }
         [HttpPost]
+        [Route("UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync")]
+        public virtual async Task<GoiSoChiTiet> UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync()
+        {
+            GoiSoChiTiet result = new GoiSoChiTiet();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.SoHienTai.Value, baseParameter.Code);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync")]
         public virtual async Task<GoiSoChiTiet> GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync()
         {
@@ -124,7 +141,7 @@
                 string message = ex.Message;
             }
             return result;
-        }        
+        }
         [HttpPost]
         [Route("GetGoiSoChiTietDangKy03ToListAsync")]
         public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy03ToListAsync()
@@ -189,7 +206,7 @@
             }
             return result;
         }
-        
+
     }
 }
 

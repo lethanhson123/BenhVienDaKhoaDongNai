@@ -2,6 +2,7 @@
 
 
 
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 
 namespace Service.Implement
@@ -95,7 +96,7 @@ namespace Service.Implement
                     Barcode Barcode = GlobalHelper.CreateBarcode128(folderPath, model.Code);
                     model.Barcode = Barcode.Code;
                     model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
-                } 
+                }
             }
             if (model.DanhMucDichVuID == null)
             {
@@ -157,21 +158,21 @@ namespace Service.Implement
                 }
             }
 
-            if (string.IsNullOrEmpty(model.Code))
-            {
-                model.Code = model.NgayCapSoSoThuTuString;
-            }
-            if (string.IsNullOrEmpty(model.DienThoai))
-            {
-                model.DienThoai = model.Code;
-            }
+            //if (string.IsNullOrEmpty(model.Code))
+            //{
+            //    model.Code = model.NgayCapSoSoThuTuString;
+            //}
+            //if (string.IsNullOrEmpty(model.DienThoai))
+            //{
+            //    model.DienThoai = model.Code;
+            //}
 
             if (string.IsNullOrEmpty(model.NgayDangKySoThuTuString))
             {
                 if (model.NgayDangKySoThuTu > 0)
                 {
                     model.NgayDangKy = GlobalHelper.InitializationDateTime;
-                    model.NgayDangKySoThuTuString = model.NgayCapSoSoThuTu.ToString();
+                    model.NgayDangKySoThuTuString = model.NgayDangKySoThuTu.ToString();
                     if (model.NgayDangKySoThuTu < 10)
                     {
                         model.NgayDangKySoThuTuString = "000" + model.NgayDangKySoThuTuString;
@@ -197,7 +198,7 @@ namespace Service.Implement
                 if (model.NgayThanhToanSoThuTu > 0)
                 {
                     model.NgayThanhToan = GlobalHelper.InitializationDateTime;
-                    model.NgayThanhToanSoThuTuString = model.NgayCapSoSoThuTu.ToString();
+                    model.NgayThanhToanSoThuTuString = model.NgayThanhToanSoThuTu.ToString();
                     if (model.NgayThanhToanSoThuTu < 10)
                     {
                         model.NgayThanhToanSoThuTuString = "000" + model.NgayThanhToanSoThuTuString;
@@ -223,7 +224,7 @@ namespace Service.Implement
                 if (model.NgayLinhThuocSoThuTu > 0)
                 {
                     model.NgayLinhThuoc = GlobalHelper.InitializationDateTime;
-                    model.NgayLinhThuocSoThuTuString = model.NgayCapSoSoThuTu.ToString();
+                    model.NgayLinhThuocSoThuTuString = model.NgayLinhThuocSoThuTu.ToString();
                     if (model.NgayLinhThuocSoThuTu < 10)
                     {
                         model.NgayLinhThuocSoThuTuString = "000" + model.NgayLinhThuocSoThuTuString;
@@ -287,6 +288,49 @@ namespace Service.Implement
                 }
             }
             return model;
+        }
+        public virtual async Task<GoiSoChiTiet> UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync(long DanhMucDichVuID, int NgayDangKySoThuTu, string Code)
+        {
+            GoiSoChiTiet result = new GoiSoChiTiet();
+
+            try
+            {
+                if (DanhMucDichVuID > 0)
+                {
+                    if (NgayDangKySoThuTu > 0)
+                    {
+                        if (!string.IsNullOrEmpty(Code))
+                        {
+                            DateTime Now = GlobalHelper.InitializationDateTime;
+                            for (int i = NgayDangKySoThuTu - 2; i < NgayDangKySoThuTu + 1; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayDangKySoThuTu == i && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).FirstOrDefaultAsync();
+                                    if (result != null)
+                                    {
+                                        if (string.IsNullOrEmpty(result.Code))
+                                        {
+                                            result.Code = Code;
+                                            await _GoiSoChiTietRepository.UpdateAsync(result);
+                                            i = NgayDangKySoThuTu - 4;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSoChiTiet();
+            }
+            return result;
         }
         public virtual async Task<GoiSoChiTiet> GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(long DanhMucDichVuID, int NgayCapSoSoThuTu)
         {
@@ -366,7 +410,6 @@ namespace Service.Implement
             }
             return ListDanhMucQuayDichVu;
         }
-
         public virtual async Task<List<DanhMucQuayDichVu>> GetGoiSoChiTietDangKy02ToListAsync(List<long> ListDanhMucQuayDichVuID)
         {
             List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = new List<DanhMucQuayDichVu>();

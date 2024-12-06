@@ -91,7 +91,6 @@ export class TiepNhanComponent implements OnInit {
     this.GoiSoService.GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;
-        document.getElementById("Code").focus();
       },
       err => {
       },
@@ -99,9 +98,23 @@ export class TiepNhanComponent implements OnInit {
         this.GoiSoService.IsShowLoading = false;
       }
     );
+    document.getElementById("Code").focus();
   }
   GoiSoChiTietSave() {
-    console.log(this.GoiSoService.BaseParameter.Code);
+    this.GoiSoService.IsShowLoading = true;
+    this.GoiSoChiTietService.BaseParameter.SoHienTai = this.GoiSoService.FormData.SoHienTai;
+    this.GoiSoChiTietService.BaseParameter.Code = this.GoiSoService.BaseParameter.Code;
+    this.GoiSoChiTietService.BaseParameter.DanhMucDichVuID = this.DanhMucDichVuService.FormData.ID;
+    this.GoiSoChiTietService.UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync().subscribe(
+      res => {
+        this.GoiSoChiTietService.FormData = res as GoiSoChiTiet;
+      },
+      err => {
+      },
+      () => {
+        this.GoiSoService.IsShowLoading = false;
+      }
+    );
     this.GoiSoService.BaseParameter.Code = environment.InitializationString;
     document.getElementById("Code").focus();
   }

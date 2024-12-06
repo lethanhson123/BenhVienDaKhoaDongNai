@@ -2,6 +2,7 @@
 {
     public interface IGoiSoChiTietService : IBaseService<GoiSoChiTiet>
     {
+        Task<GoiSoChiTiet> UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync(long DanhMucDichVuID, int NgayDangKySoThuTu, string Code);
         Task<GoiSoChiTiet> GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(long DanhMucDichVuID, int NgayCapSoSoThuTu);
         Task<GoiSoChiTiet> GetByDanhMucPhongKhamID_NgayCapSoSoThuTuAsync(long DanhMucPhongKhamID, int NgayCapSoSoThuTu);
         Task<GoiSoChiTiet> GetNgayCapSoSoThuTuStringToAsync(string NgayCapSoSoThuTuString);

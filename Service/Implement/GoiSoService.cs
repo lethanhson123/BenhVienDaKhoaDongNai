@@ -134,12 +134,15 @@
             {
                 if (model.DanhMucDichVuID > 0)
                 {
-                    GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
-                    GoiSoChiTiet.ParentID = model.ParentID;
-                    GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
-                    GoiSoChiTiet.Code = model.Code;
-                    GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
-                    await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                    if (model.TongCong > 0)
+                    {
+                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                        GoiSoChiTiet.ParentID = model.ParentID;
+                        GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
+                        GoiSoChiTiet.Code = model.Code;
+                        GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
+                        await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                    }
                 }
             }
             return model;
@@ -263,9 +266,17 @@
                             result.SoHienTai = SoHienTai;
                         }
                     }
+                    else
+                    {
+                        SoHienTai = result.SoHienTai.Value;
+                    }
                     if (result.SoHienTai < result.TongCong)
                     {
                         result.SoHienTai = result.SoHienTai + 3;
+                        if (result.SoHienTai > result.TongCong)
+                        {
+                            result.SoHienTai = result.TongCong;
+                        }
                         await SaveAsync(result);
                     }
                 }
@@ -280,26 +291,32 @@
             }
             for (int i = SoHienTai + 1; i < SoHienTai + 4; i++)
             {
-                GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
-                try
+                if (i > 0)
                 {
-                    DateTime Now = GlobalHelper.InitializationDateTime;
-                    GoiSoChiTiet = await _GoiSoChiTietService.GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(DanhMucDichVuID, i);
-                    if (GoiSoChiTiet != null)
+                    if (i <= result.TongCong)
                     {
-                        if (string.IsNullOrEmpty(GoiSoChiTiet.Code))
+                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                        try
                         {
-                            GoiSoChiTiet.Code = Code;
+                            DateTime Now = GlobalHelper.InitializationDateTime;
+                            GoiSoChiTiet = await _GoiSoChiTietService.GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(DanhMucDichVuID, i);
+                            if (GoiSoChiTiet != null)
+                            {
+                                if (string.IsNullOrEmpty(GoiSoChiTiet.Code))
+                                {
+                                    GoiSoChiTiet.Code = Code;
+                                }
+                                GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
+                                GoiSoChiTiet.NgayDangKySoThuTu = i;
+                                GoiSoChiTiet.Active = true;
+                                await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                            }
                         }
-                        GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
-                        GoiSoChiTiet.NgayDangKySoThuTu = i;
-                        GoiSoChiTiet.Active = true;
-                        await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                        catch (Exception ex)
+                        {
+                            string mes = ex.Message;
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    string mes = ex.Message;
                 }
             }
             return result;

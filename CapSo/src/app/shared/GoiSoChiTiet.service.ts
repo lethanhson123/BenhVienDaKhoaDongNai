@@ -32,7 +32,12 @@ export class GoiSoChiTietService extends BaseService{
         formUpload.append('data', JSON.stringify(this.FormData));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-
+    UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync() {
+        let url = this.APIURL + this.Controller + '/UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync() {
         let url = this.APIURL + this.Controller + '/GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync';
         const formUpload: FormData = new FormData();
