@@ -20,7 +20,8 @@ export class GoiSoChiTietService extends BaseService{
     List02: GoiSoChiTiet[] | undefined;    
     List03: GoiSoChiTiet[] | undefined;    
     List04: GoiSoChiTiet[] | undefined;    
-
+    FormData01!: GoiSoChiTiet;
+    FormData02!: GoiSoChiTiet;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "GoiSoChiTiet";

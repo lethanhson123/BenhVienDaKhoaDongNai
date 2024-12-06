@@ -85,7 +85,7 @@ const routes: Routes = [
     path: 'ManHinh0201/:SearchString', component: ManHinh0201Component,
   },
   {
-    path: 'ManHinh03', component: ManHinh03Component,
+    path: 'ManHinh03/:Code01/:Code02/:Number', component: ManHinh03Component,
   },
   {
     path: 'ManHinh04/:Code/:Number', component: ManHinh04Component,

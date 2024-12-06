@@ -302,7 +302,8 @@ namespace Service.Implement
                         if (!string.IsNullOrEmpty(Code))
                         {
                             DateTime Now = GlobalHelper.InitializationDateTime;
-                            for (int i = NgayDangKySoThuTu - 2; i < NgayDangKySoThuTu + 1; i++)
+                            int BatDau = NgayDangKySoThuTu - (GlobalHelper.CapSoBuocNhay - 1);
+                            for (int i = BatDau; i <= NgayDangKySoThuTu; i++)
                             {
                                 if (i > 0)
                                 {
@@ -529,7 +530,7 @@ namespace Service.Implement
                     if (Number > 0)
                     {
                         DateTime Now = GlobalHelper.InitializationDateTime;
-                        result.AddRange(await GetByCondition(item => item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.Active == true && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).OrderBy(item => item.NgayDangKySoThuTu).Take(Number).ToListAsync());
+                        result.AddRange(await GetByCondition(item => item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.Active == true && item.NgayDangKy.Value.Year == Now.Year && item.NgayDangKy.Value.Month == Now.Month && item.NgayDangKy.Value.Day == Now.Day).OrderByDescending(item => item.NgayDangKySoThuTu).Take(Number).ToListAsync());
                         if (result == null)
                         {
                             result = new List<GoiSoChiTiet>();
@@ -541,6 +542,7 @@ namespace Service.Implement
                             {
                                 GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
                                 GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
                                 GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
                                 GoiSoChiTiet.NgayDangKy = Now;
                                 result.Add(GoiSoChiTiet);

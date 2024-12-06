@@ -38,10 +38,8 @@ export class ManHinh04Component implements OnInit {
     public ManHinhThongBaoService: ManHinhThongBaoService,
   ) { }
 
-  ngOnInit(): void {
-    this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code;
-    this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-    this.GetGoiSoChiTietDangKy04();
+  ngOnInit(): void {   
+    this.GetGoiSoChiTietDangKy();
     this.ManHinhThongBaoSearch();
     this.ManHinhTapTinDinhKemSearch();
 
@@ -96,10 +94,12 @@ export class ManHinh04Component implements OnInit {
     );
   }
 
-  GetGoiSoChiTietDangKy04() {
+  GetGoiSoChiTietDangKy() {
+    this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code;
+    this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
     this.GoiSoChiTietService.GetGoiSoChiTietDangKy04_001ToListAsync().subscribe(
       res => {
-        this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
+        this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayDangKySoThuTu > b.NgayDangKySoThuTu ? 1 : -1));
         if (this.GoiSoChiTietService.List) {
           if (this.GoiSoChiTietService.List.length > 0) {
             this.GoiSoChiTietService.List01 = [];
@@ -108,7 +108,7 @@ export class ManHinh04Component implements OnInit {
               if (this.GoiSoChiTietService.List[i].NgayDangKySoThuTuString) {
               }
               else {
-                this.GoiSoChiTietService.List[i].NgayDangKySoThuTuString = "0987";
+                this.GoiSoChiTietService.List[i].NgayDangKySoThuTuString = "0000";
               }
               if (i == 0) {
                 this.GoiSoChiTietService.List01.push(this.GoiSoChiTietService.List[i]);
@@ -128,7 +128,7 @@ export class ManHinh04Component implements OnInit {
   }
   StartTimerInterval() {
     setInterval(() => {
-      this.GetGoiSoChiTietDangKy04();
+      this.GetGoiSoChiTietDangKy();
     }, environment.Interval)
   }
   StartTimer1000() {

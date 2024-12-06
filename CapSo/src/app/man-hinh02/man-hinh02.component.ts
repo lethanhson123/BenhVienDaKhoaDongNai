@@ -29,6 +29,8 @@ export class ManHinh02Component implements OnInit {
   ManHinhTapTinDinhKemInterval: number = environment.InitializationNumber;
   ManHinhTapTinDinhKemIntervalIndex: number = environment.InitializationNumber;
 
+  ManHinhThongBaoIndex: number = environment.InitializationNumber;
+
   constructor(
     public ActiveRouter: ActivatedRoute,
     public DownloadService: DownloadService,
@@ -39,9 +41,8 @@ export class ManHinh02Component implements OnInit {
     public ManHinhThongBaoService: ManHinhThongBaoService,
   ) { }
 
-  ngOnInit(): void {
-    this.GoiSoChiTietService.BaseParameter.SearchString = this.ActiveRouter.snapshot.params.SearchString;
-    this.GetGoiSoChiTietDangKy02();
+  ngOnInit(): void {    
+    this.GetGoiSoChiTietDangKy();
     this.ManHinhThongBaoSearch();
     this.ManHinhTapTinDinhKemSearch();
 
@@ -63,7 +64,7 @@ export class ManHinh02Component implements OnInit {
           this.ManHinhTapTinDinhKemIndex = this.ManHinhTapTinDinhKemIndex + 1;
         }
       }
-    });
+    });    
   }
 
   // ManHinhTapTinDinhKemSearch() {
@@ -106,16 +107,15 @@ export class ManHinh02Component implements OnInit {
     );
   }
 
-
   ManHinhThongBaoSearch() {
     this.ManHinhThongBaoService.BaseParameter.Active = true;
     this.ManHinhThongBaoService.GetByActiveToListAsync().subscribe(
       res => {
-        this.ManHinhThongBaoService.List = (res as ManHinhThongBao[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        this.ManHinhThongBaoService.List = (res as ManHinhThongBao[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));  
         this.ManHinhThongBaoService.FormData.Description = environment.InitializationString;
         for (let i = 0; i < this.ManHinhThongBaoService.List.length; i++) {
           this.ManHinhThongBaoService.FormData.Description = this.ManHinhThongBaoService.List[i].Description + ". " + this.ManHinhThongBaoService.FormData.Description;
-        }
+        }      
       },
       err => {
       },
@@ -124,7 +124,8 @@ export class ManHinh02Component implements OnInit {
     );
   }
 
-  GetGoiSoChiTietDangKy02() {
+  GetGoiSoChiTietDangKy() {
+    this.GoiSoChiTietService.BaseParameter.SearchString = this.ActiveRouter.snapshot.params.SearchString;
     this.GoiSoChiTietService.GetGoiSoChiTietDangKy02_002ToListAsync().subscribe(
       res => {
         this.DanhMucQuayDichVuService.List01 = (res as DanhMucQuayDichVu[]);
@@ -132,7 +133,7 @@ export class ManHinh02Component implements OnInit {
           if(this.DanhMucQuayDichVuService.List01[i].Display){
           }
           else{
-            this.DanhMucQuayDichVuService.List01[i].Display="0987";
+            this.DanhMucQuayDichVuService.List01[i].Display="0000";
           }
         }
       },
@@ -146,7 +147,7 @@ export class ManHinh02Component implements OnInit {
 
   StartTimerInterval() {
     setInterval(() => {
-      this.GetGoiSoChiTietDangKy02();
+      this.GetGoiSoChiTietDangKy();
     }, environment.Interval)
   }
   StartTimer1000() {

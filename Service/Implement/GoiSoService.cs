@@ -272,7 +272,7 @@
                     }
                     if (result.SoHienTai < result.TongCong)
                     {
-                        result.SoHienTai = result.SoHienTai + 3;
+                        result.SoHienTai = result.SoHienTai + GlobalHelper.CapSoBuocNhay;
                         if (result.SoHienTai > result.TongCong)
                         {
                             result.SoHienTai = result.TongCong;
@@ -289,7 +289,7 @@
             {
                 result = new GoiSo();
             }
-            for (int i = SoHienTai + 1; i < SoHienTai + 4; i++)
+            for (int i = SoHienTai + 1; i <= SoHienTai + GlobalHelper.CapSoBuocNhay; i++)
             {
                 if (i > 0)
                 {
