@@ -84,16 +84,18 @@ namespace Service.Implement
 
             if (string.IsNullOrEmpty(model.Barcode))
             {
-                string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
-                bool isFolderExists = System.IO.Directory.Exists(folderPath);
-                if (!isFolderExists)
+                if (!string.IsNullOrEmpty(model.Code))
                 {
-                    System.IO.Directory.CreateDirectory(folderPath);
-                }
-                Barcode Barcode = new Barcode();
-                Barcode = Ean13.CreateEAN13(folderPath);
-                model.Barcode = Barcode.Code;
-                model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
+                    string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+                    bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                    if (!isFolderExists)
+                    {
+                        System.IO.Directory.CreateDirectory(folderPath);
+                    }
+                    Barcode Barcode = GlobalHelper.CreateBarcode128(folderPath, model.Code);
+                    model.Barcode = Barcode.Code;
+                    model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
+                } 
             }
             if (model.DanhMucDichVuID == null)
             {

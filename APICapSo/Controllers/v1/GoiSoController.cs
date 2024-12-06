@@ -47,6 +47,23 @@
             return result;
         }
         [HttpPost]
+        [Route("GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync")]
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.DanhMucQuayDichVuID.Value, baseParameter.SoHienTai.Value, baseParameter.Code);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("SaveByDanhMucDichVuIDAsync")]
         public virtual async Task<GoiSo> SaveByDanhMucDichVuIDAsync()
         {
@@ -55,6 +72,23 @@
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
                 result = await _GoiSoService.SaveByDanhMucDichVuIDAsync(baseParameter.DanhMucDichVuID.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("SaveByDanhMucDichVuID_CodeAsync")]
+        public virtual async Task<GoiSo> SaveByDanhMucDichVuID_CodeAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.SaveByDanhMucDichVuID_CodeAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.Code);
             }
             catch (Exception ex)
             {

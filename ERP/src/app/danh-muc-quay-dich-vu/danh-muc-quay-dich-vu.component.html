@@ -63,7 +63,7 @@
                             <td mat-cell *matCellDef="let element">
                                 <select class="browser-default form-select" name="element.ParentID"
                                     [(ngModel)]="element.ParentID">
-                                    <option *ngFor="let item of DanhMucQuayDichVuService.ListFilter;" [value]="item.ID">
+                                    <option *ngFor="let item of DanhMucKhuVucService.ListFilter;" [value]="item.ID">
                                         {{item.Name}}</option>
                                 </select>
                             </td>
@@ -163,7 +163,7 @@
                                         <br />
                                         <select class="form-select" name="element.ParentID"
                                             [(ngModel)]="element.ParentID">
-                                            <option *ngFor="let item of DanhMucQuayDichVuService.ListFilter;"
+                                            <option *ngFor="let item of DanhMucKhuVucService.ListFilter;"
                                                 [value]="item.ID">
                                                 {{item.Name}}</option>
                                         </select>

@@ -193,7 +193,7 @@
             FTP = FTP + fileName;
             bmp.Save(FTP, ImageFormat.Png);
             return fileName;
-        }      
+        }
         public static string CreateEAN13Image01(Ean13 ean13, string FTP)
         {
             ean13.Scale = 8;
@@ -205,7 +205,7 @@
         }
         public static Barcode CreateEAN13(string FTP)
         {
-            Barcode result= new Barcode();
+            Barcode result = new Barcode();
             bool equals = false;
 
             if (string.IsNullOrEmpty(result.Number))
@@ -231,7 +231,7 @@
             }
             result.FileName = fileName;
             return result;
-        }
+        }        
         private string ConvertLeftPattern(string sLeft)
         {
             switch (sLeft.Substring(0, 1))

@@ -30,7 +30,7 @@ import { ManHinh0201Component } from './man-hinh0201/man-hinh0201.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/CapSo', pathMatch: 'full' },
+  { path: '', redirectTo: '/G', pathMatch: 'full' },
   {
     path: 'CapSo', component: CapSoComponent,
   },
@@ -47,7 +47,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'TiepNhan/:DanhMucDichVuID/:DanhMucQuayDichVuID', component: TiepNhanComponent,
+    path: 'TiepNhan/:DanhMucDichVuCode/:DanhMucQuayDichVuCode', component: TiepNhanComponent,
   },
   {
     path: 'TiepNhanS', component: TiepNhanSComponent,

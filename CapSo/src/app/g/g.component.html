@@ -1,15 +1,15 @@
 <div class="section" id="user-profile">
     <div class="row">
         <div class="col s12">
-            <div class="col s12 m6 l5">
+            <div class="col s12 m6 l4">
                 <div class="card card-border z-depth-2">
-                    <div class="card-image">
-                        <img src="image/BVDKDN_000.jpg" alt="">
+                    <div class="card-image" style="padding: 10px; padding-bottom: 0px;">
+                        <img src="image/logo001.png" class="responsive-img">
                     </div>
                     <div class="card-content">
                         <div class="card-alert card green">
                             <div class="card-content white-text">
-                                <p class="text-uppercase" style="font-size: 24px;">Bệnh nhân ưu tiên</p>
+                                <p class="text-uppercase" style="font-size: 18px;">Bệnh nhân ưu tiên</p>
                             </div>
                         </div>
                         <ul>
@@ -18,23 +18,41 @@
                             <li style="color: #000000; font-size: 18px;">3. Người có công với Cách mạng</li>
                             <li style="color: #000000; font-size: 18px;">4. Phụ nữ mang thai</li>
                         </ul>
+                        <div class="card-alert card red">
+                            <div class="card-content white-text">
+                                <p style="font-size: 18px;">Quý bệnh nhân vui lòng chỉ lấy 01 số thứ tự và đến chờ tại
+                                    Quầy tiếp
+                                    nhận</p>
+                                <p style="font-size: 18px;">Xin cảm ơn!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6 l7">
-                <div class="card-alert card red">
-                    <div class="card-content white-text">
-                        <p style="font-size: 30px;">Quý bệnh nhân vui lòng chỉ lấy 01 số thứ tự và đến chờ tại Quầy tiếp
-                            nhận, Cảm ơn!</p>
+            <div class="col s12 m6 l8">
+                <div class="card card-border z-depth-2">
+                    <div class="card-content">
+                        <input id="Code" name="GoiSoService.FormData.Code" [(ngModel)]="GoiSoService.FormData.Code"
+                            placeholder="Mã bệnh nhân" type="number"
+                            style="text-align: right; font-size: 70px; height: 80px;" autofocus>
                     </div>
                 </div>
                 <div class="card card-border z-depth-2">
                     <div class="card-content">
-                        <a *ngFor="let item of DanhMucDichVuService.List;" (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
-                            class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan z-depth-4 mr-1 mb-2"
-                            style="width: 100%; font-size: 30px;">{{item.Name}}</a>
+                        <a *ngFor="let item of DanhMucDichVuService.List001;"
+                            (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
+                            class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mr-1 mb-2"
+                            style="width: 100%; font-size: 40px; height: 100px; padding-top: 20px;">{{item.Name}}</a>
                     </div>
-                </div>                
+                </div>
+                <div class="card card-border z-depth-2">
+                    <div class="card-content">
+                        <a *ngFor="let item of DanhMucDichVuService.List002;"
+                            (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
+                            class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mr-1 mb-2"
+                            style="width: 100%; font-size: 40px; height: 100px; padding-top: 20px;">{{item.Name}}</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

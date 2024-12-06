@@ -47,6 +47,23 @@
             return result;
         }
         [HttpPost]
+        [Route("GetByCodeAsync")]
+        public virtual async Task<T> GetByCodeAsync()
+        {
+            T result = (T)Activator.CreateInstance(typeof(T));
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByCodeAsync(baseParameter.Code);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByParentIDToListAsync")]
         public virtual async Task<List<T>> GetByParentIDToListAsync()
         {

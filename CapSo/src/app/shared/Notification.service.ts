@@ -21,7 +21,7 @@ export class NotificationService {
       this.IsMobile = true;
     }
     this.IsMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    this.IsSave=false;
+    this.IsSave = false;
   }
 
   config: MatSnackBarConfig = {
@@ -37,7 +37,7 @@ export class NotificationService {
   warn(message: string) {
     this.config['panelClass'] = ['notification', 'warn'];
     this.snackBar.open(message, '', this.config);
-    this.IsSave=true;
+    this.IsSave = true;
   }
   OpenWindowByURL(URLParamater, w = 100, h = 200) {
     var width = screen.width;
@@ -59,21 +59,31 @@ export class NotificationService {
     var url = URLParamater;
     window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
   }
-  OpenWindowByURLTopRight(URLParamater, w = 300, h = 150) {
+  OpenWindowByURLTopRight(URLParamater, w = 100, h = 200) {
     var width = screen.width;
     var height = screen.height;
-    var width01 = w;
-    var height01 = h;
+    var width01 = 300;
+    var height01 = 150;
     var left = width - width01;
     var top = 0;
     var url = URLParamater;
     window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
   }
-  OpenWindowByURLBottomRight(URLParamater, w = 300, h = 150) {
+  OpenWindowByURLBottomRight(URLParamater, w = 100, h = 200) {
     var width = screen.width;
     var height = screen.height;
-    var width01 = w;
-    var height01 = h;
+    var width01 = 300;
+    var height01 = 150;
+    var left = width - width01;
+    var top = (height - height01);
+    var url = URLParamater;
+    window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
+  }
+  OpenWindowByURLBottomRight200(URLParamater, w = 100, h = 200) {
+    var width = screen.width;
+    var height = screen.height;
+    var width01 = 300;
+    var height01 = 200;
     var left = width - width01;
     var top = (height - height01);
     var url = URLParamater;

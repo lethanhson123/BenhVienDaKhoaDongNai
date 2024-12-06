@@ -63,6 +63,12 @@ export class BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GetByCodeAsync() {
+        let url = this.APIURL + this.Controller + '/GetByCodeAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     GetByParentIDToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByParentIDToListAsync';
         const formUpload: FormData = new FormData();

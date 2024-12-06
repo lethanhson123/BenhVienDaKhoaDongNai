@@ -1,9 +1,4 @@
-﻿using Data.Model;
-using Microsoft.AspNetCore.Hosting;
-using Service.Interface;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class GoiSoService : BaseService<GoiSo, IGoiSoRepository>
     , IGoiSoService
@@ -42,10 +37,12 @@ namespace Service.Implement
         public override void Initialization(GoiSo model)
         {
             BaseInitialization(model);
+
             if (model.DanhMucDichVuID == null)
             {
                 model.DanhMucDichVuID = GlobalHelper.DanhMucDichVuID;
             }
+
             if (model.DanhMucDichVuID > 0)
             {
                 if (string.IsNullOrEmpty(model.DanhMucDichVuName))
@@ -55,6 +52,20 @@ namespace Service.Implement
                     model.Note = DanhMucDichVu.Note;
                 }
             }
+
+            if (!string.IsNullOrEmpty(model.Code))
+            {
+                string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+                bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(folderPath);
+                }
+
+                GlobalHelper.CreateBarcode128(folderPath, model.Code);
+                model.TypeName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + model.Code + ".png";
+            }
+
             if (model.TongCong > 0)
             {
                 model.TongCongString = model.TongCong.ToString();
@@ -125,7 +136,8 @@ namespace Service.Implement
                 {
                     GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
                     GoiSoChiTiet.ParentID = model.ParentID;
-                    GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;                   
+                    GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
+                    GoiSoChiTiet.Code = model.Code;
                     GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
                     await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
                 }
@@ -224,7 +236,7 @@ namespace Service.Implement
                 {
                     GoiSoChiTiet.Code = Code;
                     GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
-                    GoiSoChiTiet.NgayDangKySoThuTu = result.SoHienTai;                    
+                    GoiSoChiTiet.NgayDangKySoThuTu = result.SoHienTai;
                     GoiSoChiTiet.Active = true;
                     await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
                 }
@@ -232,6 +244,63 @@ namespace Service.Implement
             catch (Exception ex)
             {
                 string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync(long DanhMucDichVuID, long DanhMucQuayDichVuID, int SoHienTai, string Code)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    if (SoHienTai > 0)
+                    {
+                        if (result.SoHienTai != SoHienTai)
+                        {
+                            result.SoHienTai = SoHienTai;
+                        }
+                    }
+                    if (result.SoHienTai < result.TongCong)
+                    {
+                        result.SoHienTai = result.SoHienTai + 3;
+                        await SaveAsync(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+            for (int i = SoHienTai + 1; i < SoHienTai + 4; i++)
+            {
+                GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                try
+                {
+                    DateTime Now = GlobalHelper.InitializationDateTime;
+                    GoiSoChiTiet = await _GoiSoChiTietService.GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(DanhMucDichVuID, i);
+                    if (GoiSoChiTiet != null)
+                    {
+                        if (string.IsNullOrEmpty(GoiSoChiTiet.Code))
+                        {
+                            GoiSoChiTiet.Code = Code;
+                        }
+                        GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
+                        GoiSoChiTiet.NgayDangKySoThuTu = i;
+                        GoiSoChiTiet.Active = true;
+                        await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
+                }
             }
             return result;
         }
@@ -255,6 +324,42 @@ namespace Service.Implement
                 if (result.ID > 0)
                 {
                     result = await CreateHTML001ByModelAsync(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+            return result;
+        }
+        public virtual async Task<GoiSo> SaveByDanhMucDichVuID_CodeAsync(long DanhMucDichVuID, string Code)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                if (DanhMucDichVuID > 0)
+                {
+                    DateTime Now = GlobalHelper.InitializationDateTime;
+                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                    if (result == null)
+                    {
+                        result = new GoiSo();
+                        result.DanhMucDichVuID = DanhMucDichVuID;
+                        result.NgayGhiNhan = Now;
+                        result.TongCong = 0;
+                        result.SoHienTai = 0;
+                    }
+                    result.Code = Code;
+                    result.TongCong = result.TongCong + 1;
+                    await SaveAsync(result);
+                    if (result.ID > 0)
+                    {
+                        result = await CreateHTML002ByModelAsync(result);
+                    }
                 }
             }
             catch (Exception ex)
@@ -390,6 +495,82 @@ namespace Service.Implement
                 }
 
                 await UpdateAsync(result);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<GoiSo> CreateHTML002ByModelAsync(GoiSo result)
+        {
+            try
+            {
+                string Code = GlobalHelper.InitializationDateTimeCode;
+
+                string folderPath = Path.Combine(GlobalHelper.CapSoFTP, result.GetType().Name);
+                bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(folderPath);
+                }
+
+                result.FileName = GlobalHelper.CapSoSite + "/" + GlobalHelper.Download + "/" + result.GetType().Name + "/" + Code + ".html";
+
+                string contentHTML = GlobalHelper.InitializationString;
+                string physicalPathOpen = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Download, result.GetType().Name + ".html");
+                using (FileStream fs = new FileStream(physicalPathOpen, FileMode.Open))
+                {
+                    using (StreamReader r = new StreamReader(fs, Encoding.UTF8))
+                    {
+                        contentHTML = r.ReadToEnd();
+                    }
+                }
+                DateTime NgayIn = GlobalHelper.InitializationDateTime;
+                DateTime BatDau = NgayIn.AddHours(2);
+                DateTime KetThuc = BatDau.AddMinutes(30);
+
+                contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));
+                contentHTML = contentHTML.Replace("[BatDau]", BatDau.ToString("HH:mm"));
+                contentHTML = contentHTML.Replace("[KetThuc]", KetThuc.ToString("HH:mm"));
+
+                contentHTML = contentHTML.Replace("[APISite]", GlobalHelper.APISite);
+
+                contentHTML = contentHTML.Replace("[DanhMucDichVuName]", result.DanhMucDichVuName);
+                contentHTML = contentHTML.Replace("[Note]", result.Note);
+                contentHTML = contentHTML.Replace("[TongCongString]", result.TongCongString);
+                contentHTML = contentHTML.Replace("[SoHienTaiString]", result.SoHienTaiString);
+
+                if (!string.IsNullOrEmpty(result.Code))
+                {
+                    string Barcode = @"<img src=""" + result.TypeName + @""" width=""194"" height=""50"" />";
+                    contentHTML = contentHTML.Replace("[Barcode]", Barcode);
+                    contentHTML = contentHTML.Replace("[Code]", result.Code);
+                }
+                else
+                {
+                    contentHTML = contentHTML.Replace("[Barcode]", GlobalHelper.InitializationString);
+                    contentHTML = contentHTML.Replace("[Code]", GlobalHelper.InitializationString);
+                }
+
+                string physicalPathCreate = Path.Combine(GlobalHelper.CapSoFTP, result.GetType().Name);
+                isFolderExists = System.IO.Directory.Exists(physicalPathCreate);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(physicalPathCreate);
+                }
+
+                string fileName = Code + ".html";
+                physicalPathCreate = Path.Combine(physicalPathCreate, fileName);
+                using (FileStream fs = new FileStream(physicalPathCreate, FileMode.Create))
+                {
+                    using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                    {
+                        w.WriteLine(contentHTML);
+                    }
+                }
+
+                //await UpdateAsync(result);
             }
             catch (Exception ex)
             {
