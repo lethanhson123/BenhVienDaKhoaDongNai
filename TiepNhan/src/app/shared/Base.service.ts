@@ -40,16 +40,49 @@ export class BaseService {
             KetThuc: new Date(),
             Nam: new Date().getFullYear(),
             Thang: new Date().getMonth() + 1,
-            ListID:[],
-        };        
+            ListID: [],
+            DanhMucQuayDichVuID: environment.InitializationNumber,
+            DanhMucDichVuID: environment.InitializationNumber,
+            Number: environment.Number,
+        };
         this.List = [];
         this.ListFilter = [];
 
         let token = localStorage.getItem(environment.Token);
         this.Headers = this.Headers.append('Authorization', 'Bearer ' + token);
-    }    
+    }
     GetByIDAsync() {
         let url = this.APIURL + this.Controller + '/GetByIDAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByNameAsync() {
+        let url = this.APIURL + this.Controller + '/GetByNameAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByCodeAsync() {
+        let url = this.APIURL + this.Controller + '/GetByCodeAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByParentIDToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByParentIDToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByParentIDAndActiveToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByParentIDAndActiveToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByActiveToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByActiveToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

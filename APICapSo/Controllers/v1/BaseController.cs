@@ -80,6 +80,22 @@
             return result;
         }
         [HttpPost]
+        [Route("GetByParentIDAndActiveToListAsync")]
+        public virtual async Task<List<T>> GetByParentIDAndActiveToListAsync()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByParentIDAndActiveToListAsync(baseParameter.ParentID.Value, baseParameter.Active.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByActiveToListAsync")]
         public virtual async Task<List<T>> GetByActiveToListAsync()
         {

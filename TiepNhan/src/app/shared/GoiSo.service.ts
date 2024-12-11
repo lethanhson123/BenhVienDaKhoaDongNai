@@ -33,8 +33,32 @@ export class GoiSoService extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync() {
+        let url = this.APIURL + this.Controller + '/GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     SaveByDanhMucDichVuIDAsync() {
         let url = this.APIURL + this.Controller + '/SaveByDanhMucDichVuIDAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    SaveByDanhMucDichVuID_CodeAsync() {
+        let url = this.APIURL + this.Controller + '/SaveByDanhMucDichVuID_CodeAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync() {
+        let url = this.APIURL + this.Controller + '/SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GoiSoTiepTheoByDanhMucPhongKhamIDAsync() {
+        let url = this.APIURL + this.Controller + '/GoiSoTiepTheoByDanhMucPhongKhamIDAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

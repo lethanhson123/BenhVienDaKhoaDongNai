@@ -15,8 +15,7 @@ import { GoiSoService } from 'src/app/shared/GoiSo.service';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-
-
+  
   constructor(
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
@@ -26,28 +25,19 @@ export class HomepageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    document.getElementById("Code").focus();
     this.DanhMucDichVuSearch();
   }
 
   DanhMucDichVuSearch() {
     this.GoiSoService.IsShowLoading = true;
-    this.DanhMucDichVuService.BaseParameter.IsBHYT = true;
-    this.DanhMucDichVuService.GetByIsBHYTToListAsync().subscribe(
+    this.DanhMucDichVuService.BaseParameter.ParentID = environment.AG;
+    this.DanhMucDichVuService.BaseParameter.Active = true;
+    this.DanhMucDichVuService.GetByParentIDAndActiveToListAsync().subscribe(
       res => {
-        this.DanhMucDichVuService.List001 = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-      },
-      err => {
-      },
-      () => {
-        this.GoiSoService.IsShowLoading = false;
-      }
-    );
-
-    this.GoiSoService.IsShowLoading = true;
-    this.DanhMucDichVuService.BaseParameter.IsBHYT = false;
-    this.DanhMucDichVuService.GetByIsBHYTToListAsync().subscribe(
-      res => {
-        this.DanhMucDichVuService.List002 = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        this.DanhMucDichVuService.List001 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == true);
+        this.DanhMucDichVuService.List002 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == false);
       },
       err => {
       },
@@ -59,9 +49,11 @@ export class HomepageComponent implements OnInit {
   SaveByDanhMucDichVuIDAsync(DanhMucDichVuID: number) {
     this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.BaseParameter.DanhMucDichVuID = DanhMucDichVuID;
-    this.GoiSoService.SaveByDanhMucDichVuIDAsync().subscribe(
+    this.GoiSoService.BaseParameter.Code = this.GoiSoService.FormData.Code;   
+    this.GoiSoService.SaveByDanhMucDichVuID_CodeAsync().subscribe(
       res => {
-        this.GoiSoService.FormData = res as GoiSo;
+        this.GoiSoService.FormData = res as GoiSo;      
+        this.GoiSoService.FormData.Code = environment.InitializationString;        
         this.NotificationService.OpenWindowByURLMin(this.GoiSoService.FormData.FileName);
       },
       err => {
@@ -69,6 +61,7 @@ export class HomepageComponent implements OnInit {
       () => {
         this.GoiSoService.IsShowLoading = false;
       }
-    );
+    );   
+    document.getElementById("Code").focus();
   }
 }

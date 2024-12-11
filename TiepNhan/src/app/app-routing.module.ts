@@ -2,17 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
-import { TiepNhanComponent } from './tiep-nhan/tiep-nhan.component';
+
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/Homepage/2/1', pathMatch: 'full' },  
+  { path: '', redirectTo: '/Homepage/1/1', pathMatch: 'full' },  
   {
-    path: 'Homepage/:DanhMucDichVuID/:DanhMucQuayDichVuID', component: HomepageComponent,
-  }, 
-  {
-    path: 'TiepNhan/:DanhMucDichVuID/:DanhMucQuayDichVuID', component: TiepNhanComponent,
+    path: 'Homepage/:DanhMucDichVuCode/:DanhMucQuayDichVuCode', component: HomepageComponent,
   }, 
 ];
 
