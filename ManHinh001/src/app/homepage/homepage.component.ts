@@ -10,20 +10,19 @@ import { DanhMucQuayDichVuService } from 'src/app/shared/DanhMucQuayDichVu.servi
 import { GoiSoChiTiet } from 'src/app/shared/GoiSoChiTiet.model';
 import { GoiSoChiTietService } from 'src/app/shared/GoiSoChiTiet.service';
 
-import { ManHinhThongBao } from 'src/app/shared/ManHinhThongBao.model';
-import { ManHinhThongBaoService } from 'src/app/shared/ManHinhThongBao.service';
+
 import { ManHinhTapTinDinhKem } from 'src/app/shared/ManHinhTapTinDinhKem.model';
 import { ManHinhTapTinDinhKemService } from 'src/app/shared/ManHinhTapTinDinhKem.service';
 
 import { interval } from 'rxjs';
 
 @Component({
-  selector: 'app-man-hinh03',
-  templateUrl: './man-hinh03.component.html',
-  styleUrls: ['./man-hinh03.component.css']
+  selector: 'app-homepage',
+  templateUrl: './homepage.component.html',
+  styleUrls: ['./homepage.component.css']
 })
-export class ManHinh03Component implements OnInit {
-
+export class HomepageComponent implements OnInit {
+  
   videoSrc: string = environment.InitializationString;
   ManHinhTapTinDinhKemIndex: number = environment.InitializationNumber;
   ManHinhTapTinDinhKemInterval: number = environment.InitializationNumber;
@@ -40,7 +39,7 @@ export class ManHinh03Component implements OnInit {
     public GoiSoChiTietService: GoiSoChiTietService,
 
     public ManHinhTapTinDinhKemService: ManHinhTapTinDinhKemService,
-    public ManHinhThongBaoService: ManHinhThongBaoService,
+
   ) { }
 
   ngOnInit(): void {
@@ -81,22 +80,7 @@ export class ManHinh03Component implements OnInit {
     );
   }
 
-  ManHinhThongBaoSearch() {
-    this.ManHinhThongBaoService.BaseParameter.Active = true;
-    this.ManHinhThongBaoService.GetByActiveToListAsync().subscribe(
-      res => {
-        this.ManHinhThongBaoService.List = (res as ManHinhThongBao[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-        this.ManHinhThongBaoService.FormData.Description = environment.InitializationString;
-        for (let i = 0; i < this.ManHinhThongBaoService.List.length; i++) {
-          this.ManHinhThongBaoService.FormData.Description = this.ManHinhThongBaoService.List[i].Description + ". " + this.ManHinhThongBaoService.FormData.Description;
-        }
-      },
-      err => {
-      },
-      () => {
-      }
-    );
-  }
+  
 
   GetGoiSoChiTietDangKy() {
     this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code01;
@@ -163,11 +147,6 @@ export class ManHinh03Component implements OnInit {
     setInterval(() => {
       this.GoiSoChiTietService.BaseParameter.KetThuc = new Date();
     }, 1000)
-  }
-  StartTimer10000() {
-    setInterval(() => {
-      this.ManHinhThongBaoSearch();
-    }, 10000)
   }
   StartTimer60000() {
     setInterval(() => {
