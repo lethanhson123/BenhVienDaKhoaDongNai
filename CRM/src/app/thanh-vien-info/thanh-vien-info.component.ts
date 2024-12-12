@@ -95,8 +95,7 @@ export class ThanhVienInfoComponent implements OnInit {
     this.ThanhVienService.SaveAsync().subscribe(
       res => {
         this.ThanhVienService.FormData = res as ThanhVien;
-        this.Router.navigateByUrl(environment.ThanhVienInfo + this.ThanhVienService.FormData.ID);
-        this.ThanhVienSearch();
+        this.Router.navigateByUrl(environment.ThanhVienInfo + this.ThanhVienService.FormData.ID);        
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {

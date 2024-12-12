@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
+import { GioiThieuComponent } from './gioi-thieu/gioi-thieu.component';
 import { DanhMucThanhVienComponent } from './danh-muc-thanh-vien/danh-muc-thanh-vien.component';
 import { DanhMucChucNangComponent } from './danh-muc-chuc-nang/danh-muc-chuc-nang.component';
 import { DanhMucUngDungComponent } from './danh-muc-ung-dung/danh-muc-ung-dung.component';
@@ -26,6 +27,7 @@ import { ManHinhTapTinDinhKemComponent } from './man-hinh-tap-tin-dinh-kem/man-h
 
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/Homepage', pathMatch: 'full' },
   {
@@ -33,6 +35,9 @@ const routes: Routes = [
   },
   {
     path: 'Login', component: LoginComponent,
+  },
+  {
+    path: 'GioiThieu', component: GioiThieuComponent,
   },
 
   {

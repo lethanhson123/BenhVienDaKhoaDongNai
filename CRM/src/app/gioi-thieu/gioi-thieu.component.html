@@ -1,1 +1,78 @@
-<p>gioi-thieu works!</p>
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Giới thiệu
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/GioiThieu" title="Gọi số">Giới thiệu</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <h5>A. Cấu trúc
+                </h5>
+                <div style="font-size: 14px; color: #000;">
+                    <b>1. API CRM (Xác thực bằng JWT): http://10.84.3.124:900/swagger/index.html</b>
+                    <br/>
+                    <b>2. CRM: http://10.84.3.124:950/</b>
+                    <br/>
+                    <b>3. API Cấp số (Bản rút gọn, không xác thực): http://10.84.3.124:901/swagger/index.html</b>
+                    <br/>
+                    <b>4. Đăng ký Tầng G (03 dịch vụ): http://10.84.3.124:999/</b>
+                    <br/>
+                    <b>5. Đăng ký Tầng 2 (02 dịch vụ): http://10.84.3.124:998/</b>
+                    <br/>
+                    <b>6. Tiếp nhận: http://10.84.3.124:960/#/Homepage/[Mã quản lý của dịch vụ]/[Mã quản lý của quầy]</b>
+                    <br/>
+                    Ví dụ: http://10.84.3.124:960/#/Homepage/1/2
+                    <br/>
+                    [Mã quản lý của dịch vụ]=1
+                    <br/>
+                    [Mã quản lý của quầy]=2
+                    <br/>
+                    Danh mục Dịch vụ: http://10.84.3.124:950/#/DanhMucDichVu
+                    <br/>
+                    Danh mục Quầy: http://10.84.3.124:950/#/DanhMucQuayDichVu
+                    <br/>
+                    <b>7. Màn hình: http://10.84.3.124:1000/#/Homepage/[Mã quản lý của quầy thứ nhất]/[Mã quản lý của quầy
+                    thứ hai]/[Số lượng hiển thị]</b>
+                    <br/>
+                    Ví dụ: http://10.84.3.124:1000/#/Homepage/6/7/3
+                    <br/>
+                    [Mã quản lý của quầy thứ nhất]=6
+                    <br/>
+                    [Mã quản lý của quầy thứ hai]=7
+                    <br/>
+                    [Số lượng hiển thị]=3
+                    <br/>
+                    Danh mục Quầy: http://10.84.3.124:950/#/DanhMucQuayDichVu
+                </div>
+                <h5>B. Hướng dẫn cấu hình in tự động ở [Đăng ký]
+                </h5>
+                <div style="font-size: 14px; color: #000;">                    
+                    Bước 01: Đặt đường dẫn mặc định cho trình duyệt khi khởi chạy
+                    <br/>
+                    Bước 02: Ở hộp thoại In ấn (Ctrl + P), chọn máy in nhiệt khổ 80 là máy in mặc định 
+                    <br/>
+                    Bước 03: Ở hộp thoại In ấn (Ctrl + P), phần [Chế độ cài đặt khác], bỏ chọn [In đầu và cuối trang], chọn [Lề] là Không
+                    <br/>
+                    Bước 04: Ở icon của trình duyệt ngoài desktop, chọn [Properties], tại [Target] thêm [--kiosk --kiosk-printing] vào phía sau
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
