@@ -9,21 +9,21 @@
                     <div class="card-content">
                         <div class="card-alert card green">
                             <div class="card-content white-text">
-                                <p class="text-uppercase" style="font-size: 18px;">Bệnh nhân ưu tiên</p>
+                                <p class="text-uppercase" style="font-size: 3vh;">Bệnh nhân ưu tiên</p>
                             </div>
                         </div>
                         <ul>
-                            <li style="color: #000000; font-size: 18px;">1. Người khuyết tật nặng</li>
-                            <li style="color: #000000; font-size: 18px;">2. Người từ đủ 75 tuổi trở lên</li>
-                            <li style="color: #000000; font-size: 18px;">3. Người có công với Cách mạng</li>
-                            <li style="color: #000000; font-size: 18px;">4. Phụ nữ mang thai</li>
+                            <li style="color: #000000; font-size: 2vh;">1. Người khuyết tật nặng</li>
+                            <li style="color: #000000; font-size: 2vh;">2. Người từ đủ 75 tuổi trở lên</li>
+                            <li style="color: #000000; font-size: 2vh;">3. Người có công với Cách mạng</li>
+                            <li style="color: #000000; font-size: 2vh;">4. Phụ nữ mang thai</li>
                         </ul>
                         <div class="card-alert card red">
                             <div class="card-content white-text">
-                                <p style="font-size: 18px;">Quý bệnh nhân vui lòng chỉ lấy 01 số thứ tự và đến chờ tại
+                                <p style="font-size: 2vh;">Quý bệnh nhân vui lòng chỉ lấy 01 số thứ tự và đến chờ tại
                                     Quầy tiếp
                                     nhận</p>
-                                <p style="font-size: 18px;">Xin cảm ơn!</p>
+                                <p style="font-size: 2vh;">Xin cảm ơn!</p>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="card-content">
                         <input id="Code" name="GoiSoService.FormData.Code" [(ngModel)]="GoiSoService.FormData.Code"
                             placeholder="Mã y tế" type="number"
-                            style="text-align: right; font-size: 70px; height: 80px;" autofocus>
+                            style="text-align: right; font-size: 10vh; height: 14vh;" autofocus>
                     </div>
                 </div>
                 <div class="card card-border z-depth-2">
@@ -42,7 +42,7 @@
                         <a *ngFor="let item of DanhMucDichVuService.List001;"
                             (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
                             class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mr-1 mb-2"
-                            style="width: 100%; font-size: 40px; height: 100px; padding-top: 20px;">{{item.Name}}</a>
+                            style="width: 100%; font-size: 6vh; height: 10vh; padding-top: 20px;">{{item.Name}}</a>
                     </div>
                 </div>
                 <div class="card card-border z-depth-2">
@@ -50,7 +50,7 @@
                         <a *ngFor="let item of DanhMucDichVuService.List002;"
                             (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
                             class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mr-1 mb-2"
-                            style="width: 100%; font-size: 40px; height: 100px; padding-top: 20px;">{{item.Name}}</a>
+                            style="width: 100%; font-size: 6vh; height: 10vh; padding-top: 20px;">{{item.Name}}</a>
                     </div>
                 </div>
             </div>
