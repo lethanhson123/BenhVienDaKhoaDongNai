@@ -47,9 +47,8 @@ export class ManHinh03Component implements OnInit {
     this.GetGoiSoChiTietDangKy();
     this.ManHinhTapTinDinhKemSearch();
 
-    this.StartTimerInterval();
-    this.StartTimer1000();
-    this.StartTimer60000();
+    this.StartTimerInterval();    
+    this.StartTimer600000();
 
     interval(environment.Interval).subscribe((x) => {
       this.ManHinhTapTinDinhKemIntervalIndex = this.ManHinhTapTinDinhKemIntervalIndex + 1;
@@ -158,18 +157,8 @@ export class ManHinh03Component implements OnInit {
     setInterval(() => {
       this.GetGoiSoChiTietDangKy();
     }, environment.Interval)
-  }
-  StartTimer1000() {
-    setInterval(() => {
-      this.GoiSoChiTietService.BaseParameter.KetThuc = new Date();
-    }, 1000)
-  }
-  StartTimer10000() {
-    setInterval(() => {
-      this.ManHinhThongBaoSearch();
-    }, 10000)
-  }
-  StartTimer60000() {
+  } 
+  StartTimer600000() {
     setInterval(() => {
       this.ManHinhTapTinDinhKemSearch();
     }, 600000)
