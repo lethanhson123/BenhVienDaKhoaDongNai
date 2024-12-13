@@ -12,6 +12,7 @@
         public long? DanhMucQuayDichVuID { get; set; }
         public string? DanhMucQuayDichVuName { get; set; }
         public string? DanhMucQuayDichVuCode { get; set; }
+        public string? DanhMucQuayDichVuDisplay { get; set; }
         public long? DanhMucPhongKhamID { get; set; }
         public string? DanhMucPhongKhamName { get; set; }
         public string? DanhMucPhongKhamCode { get; set; }
@@ -36,6 +37,9 @@
         public DateTime? NgayDangKy { get; set; }
         public int? NgayDangKySoThuTu { get; set; }
         public string? NgayDangKySoThuTuString { get; set; }
+        public DateTime? NgayTiepNhan { get; set; }
+        public int? NgayTiepNhanSoThuTu { get; set; }
+        public string? NgayTiepNhanSoThuTuString { get; set; }
         public DateTime? NgayThanhToan { get; set; }
         public int? NgayThanhToanSoThuTu { get; set; }
         public string? NgayThanhToanSoThuTuString { get; set; }

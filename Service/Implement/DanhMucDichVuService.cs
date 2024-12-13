@@ -8,6 +8,14 @@
         {
             _DanhMucDichVuRepository = DanhMucDichVuRepository;
         }
+        public override void Initialization(DanhMucDichVu model)
+        {
+            BaseInitialization(model);
+            if (model.IsHangDoiPhanNhanh == null)
+            {
+                model.IsHangDoiPhanNhanh = false;
+            }
+        }
         public virtual async Task<List<DanhMucDichVu>> GetByIsBHYTToListAsync(bool IsBHYT)
         {
             List<DanhMucDichVu> result = new List<DanhMucDichVu>();

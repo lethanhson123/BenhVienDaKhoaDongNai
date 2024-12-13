@@ -14,7 +14,9 @@
         Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy04ToListAsync(long DanhMucQuayDichVuID, int Number);
         Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy04_001ToListAsync(string Code, int Number);
         Task<List<GoiSoChiTiet>> GetGoiSoChiTietDangKy05ToListAsync(long DanhMucPhongKhamID, int Number);
-        
+        Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan04_001ToListAsync(string Code, int Number);
+
+
     }
 }
 

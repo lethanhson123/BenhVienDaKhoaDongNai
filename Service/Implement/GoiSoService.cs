@@ -1,4 +1,6 @@
-﻿namespace Service.Implement
+﻿using Data.Model;
+
+namespace Service.Implement
 {
     public class GoiSoService : BaseService<GoiSo, IGoiSoRepository>
     , IGoiSoService
@@ -6,6 +8,8 @@
         private readonly IGoiSoRepository _GoiSoRepository;
 
         private readonly IDanhMucDichVuRepository _DanhMucDichVuRepository;
+
+        private readonly IDanhMucQuayDichVuRepository _DanhMucQuayDichVuRepository;
 
         private readonly IGoiSoChiTietService _GoiSoChiTietService;
 
@@ -15,6 +19,8 @@
         public GoiSoService(IGoiSoRepository GoiSoRepository
 
             , IDanhMucDichVuRepository danhMucDichVuRepository
+
+            , IDanhMucQuayDichVuRepository DanhMucQuayDichVuRepository
 
             , IGoiSoChiTietService GoiSoChiTietService
 
@@ -27,6 +33,8 @@
             _GoiSoRepository = GoiSoRepository;
 
             _DanhMucDichVuRepository = danhMucDichVuRepository;
+
+            _DanhMucQuayDichVuRepository = DanhMucQuayDichVuRepository;
 
             _GoiSoChiTietService = GoiSoChiTietService;
 
@@ -53,6 +61,17 @@
                 }
             }
 
+            if (model.DanhMucQuayDichVuID > 0)
+            {
+                if (string.IsNullOrEmpty(model.DanhMucQuayDichVuName))
+                {
+                    DanhMucQuayDichVu DanhMucQuayDichVu = _DanhMucQuayDichVuRepository.GetByID(model.DanhMucQuayDichVuID.Value);
+                    model.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                    model.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                    model.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                }
+            }
+
             if (!string.IsNullOrEmpty(model.Code))
             {
                 string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
@@ -68,44 +87,94 @@
 
             if (model.TongCong > 0)
             {
-                model.TongCongString = model.TongCong.ToString();
-                if (model.TongCong < 10)
+                if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                 {
-                    model.TongCongString = "000" + model.TongCongString;
-                }
-                else
-                {
-                    if (model.TongCong < 100)
+                    model.TongCongString = model.TongCong.ToString();
+                    if (model.TongCong < 10)
                     {
-                        model.TongCongString = "00" + model.TongCongString;
+                        model.TongCongString = model.DanhMucQuayDichVuDisplay + "00" + model.TongCongString;
                     }
                     else
                     {
-                        if (model.TongCong < 1000)
+                        if (model.TongCong < 100)
                         {
-                            model.TongCongString = "0" + model.TongCongString;
+                            model.TongCongString = model.DanhMucQuayDichVuDisplay + "0" + model.TongCongString;
+                        }
+                        else
+                        {
+                            if (model.TongCong < 1000)
+                            {
+                                model.TongCongString = model.DanhMucQuayDichVuDisplay + "" + model.TongCongString;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    model.TongCongString = model.TongCong.ToString();
+                    if (model.TongCong < 10)
+                    {
+                        model.TongCongString = "000" + model.TongCongString;
+                    }
+                    else
+                    {
+                        if (model.TongCong < 100)
+                        {
+                            model.TongCongString = "00" + model.TongCongString;
+                        }
+                        else
+                        {
+                            if (model.TongCong < 1000)
+                            {
+                                model.TongCongString = "0" + model.TongCongString;
+                            }
                         }
                     }
                 }
             }
             if (model.SoHienTai > 0)
             {
-                model.SoHienTaiString = model.SoHienTai.ToString();
-                if (model.SoHienTai < 10)
+                if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                 {
-                    model.SoHienTaiString = "000" + model.SoHienTaiString;
-                }
-                else
-                {
-                    if (model.SoHienTai < 100)
+                    model.SoHienTaiString = model.SoHienTai.ToString();
+                    if (model.SoHienTai < 10)
                     {
-                        model.SoHienTaiString = "00" + model.SoHienTaiString;
+                        model.SoHienTaiString = model.DanhMucQuayDichVuDisplay + "00" + model.SoHienTaiString;
                     }
                     else
                     {
-                        if (model.SoHienTai < 1000)
+                        if (model.SoHienTai < 100)
                         {
-                            model.SoHienTaiString = "0" + model.SoHienTaiString;
+                            model.SoHienTaiString = model.DanhMucQuayDichVuDisplay + "0" + model.SoHienTaiString;
+                        }
+                        else
+                        {
+                            if (model.SoHienTai < 1000)
+                            {
+                                model.SoHienTaiString = model.DanhMucQuayDichVuDisplay + "" + model.SoHienTaiString;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    model.SoHienTaiString = model.SoHienTai.ToString();
+                    if (model.SoHienTai < 10)
+                    {
+                        model.SoHienTaiString = "000" + model.SoHienTaiString;
+                    }
+                    else
+                    {
+                        if (model.SoHienTai < 100)
+                        {
+                            model.SoHienTaiString = "00" + model.SoHienTaiString;
+                        }
+                        else
+                        {
+                            if (model.SoHienTai < 1000)
+                            {
+                                model.SoHienTaiString = "0" + model.SoHienTaiString;
+                            }
                         }
                     }
                 }
@@ -136,16 +205,73 @@
                 {
                     if (model.TongCong > 0)
                     {
-                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
-                        GoiSoChiTiet.ParentID = model.ParentID;
-                        GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
-                        GoiSoChiTiet.Code = model.Code;
-                        GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
-                        await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                        DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(model.DanhMucDichVuID.Value);
+                        if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
+                        {
+                            if (model.DanhMucQuayDichVuID > 0)
+                            {
+                                await SaveGoiSoChiTietAsync(model);
+                            }
+                            else
+                            {
+                                List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.Active == true && item.IsTiepNhan == true).OrderBy(item => item.Display).ToListAsync();
+                                if (ListDanhMucQuayDichVu == null)
+                                {
+                                    ListDanhMucQuayDichVu = new List<DanhMucQuayDichVu>();
+                                }
+                                if (ListDanhMucQuayDichVu.Count > 0)
+                                {
+                                    int SoDu = model.TongCong.Value % ListDanhMucQuayDichVu.Count;
+                                    if (SoDu == 0)
+                                    {
+                                        SoDu = ListDanhMucQuayDichVu.Count;
+                                    }
+                                    int Index = SoDu - 1;
+                                    if (Index < 0)
+                                    {
+                                        Index = 0;
+                                    }
+                                    if (Index >= ListDanhMucQuayDichVu.Count)
+                                    {
+                                        Index = ListDanhMucQuayDichVu.Count - 1;
+                                    }
+
+                                    DanhMucQuayDichVu DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                    GoiSo GoiSo = await GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVu.ID && item.NgayGhiNhan.Value.Year == model.NgayGhiNhan.Value.Year && item.NgayGhiNhan.Value.Month == model.NgayGhiNhan.Value.Month && item.NgayGhiNhan.Value.Day == model.NgayGhiNhan.Value.Day).FirstOrDefaultAsync();
+                                    if (GoiSo == null)
+                                    {
+                                        GoiSo = new GoiSo();
+                                        GoiSo.Code = model.Code;
+                                        GoiSo.NgayGhiNhan = model.NgayGhiNhan;
+                                        GoiSo.DanhMucDichVuID = model.DanhMucDichVuID;
+                                        GoiSo.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                        GoiSo.TongCong = 0;
+                                        GoiSo.SoHienTai = 0;
+                                    }
+                                    GoiSo.TongCong = GoiSo.TongCong + 1;
+                                    await SaveAsync(GoiSo);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            await SaveGoiSoChiTietAsync(model);
+                        }
                     }
                 }
             }
             return model;
+        }
+        private async Task<GoiSoChiTiet> SaveGoiSoChiTietAsync(GoiSo model)
+        {
+            GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+            GoiSoChiTiet.ParentID = model.ID;
+            GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
+            GoiSoChiTiet.DanhMucQuayDichVuID = model.DanhMucQuayDichVuID;
+            GoiSoChiTiet.Code = model.Code;
+            GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
+            await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+            return GoiSoChiTiet;
         }
         public virtual async Task<GoiSo> GoiSoTiepTheoAsync(long DanhMucDichVuID, int SoHienTai, long DanhMucQuayDichVuID)
         {
@@ -187,7 +313,7 @@
                 if (GoiSoChiTiet != null)
                 {
                     GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
-                    GoiSoChiTiet.NgayDangKySoThuTu = result.SoHienTai;
+                    GoiSoChiTiet.NgayTiepNhanSoThuTu = result.SoHienTai;
                     GoiSoChiTiet.Active = true;
                     await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
                 }
@@ -239,7 +365,7 @@
                 {
                     GoiSoChiTiet.Code = Code;
                     GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
-                    GoiSoChiTiet.NgayDangKySoThuTu = result.SoHienTai;
+                    GoiSoChiTiet.NgayTiepNhanSoThuTu = result.SoHienTai;
                     GoiSoChiTiet.Active = true;
                     await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
                 }
@@ -253,10 +379,18 @@
         public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync(long DanhMucDichVuID, long DanhMucQuayDichVuID, int SoHienTai, string Code)
         {
             GoiSo result = new GoiSo();
+            DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucDichVuID);
             try
             {
                 DateTime Now = GlobalHelper.InitializationDateTime;
-                result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
+                {
+                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                }
+                else
+                {
+                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                }
                 if (result != null)
                 {
                     if (SoHienTai > 0)
@@ -299,7 +433,14 @@
                         try
                         {
                             DateTime Now = GlobalHelper.InitializationDateTime;
-                            GoiSoChiTiet = await _GoiSoChiTietService.GetByDanhMucDichVuID_NgayCapSoSoThuTuAsync(DanhMucDichVuID, i);
+                            if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
+                            {
+                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                            }
+                            else
+                            {
+                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                            }
                             if (GoiSoChiTiet != null)
                             {
                                 if (string.IsNullOrEmpty(GoiSoChiTiet.Code))
@@ -307,7 +448,7 @@
                                     GoiSoChiTiet.Code = Code;
                                 }
                                 GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
-                                GoiSoChiTiet.NgayDangKySoThuTu = i;
+                                GoiSoChiTiet.NgayTiepNhanSoThuTu = i;
                                 GoiSoChiTiet.Active = true;
                                 await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
                             }

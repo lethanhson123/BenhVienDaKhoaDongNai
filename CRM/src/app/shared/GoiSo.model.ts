@@ -8,6 +8,9 @@ export class GoiSo extends Base {
     DanhMucDichVuID?: number;
     DanhMucDichVuName?: string;
     DanhMucDichVuCode?: string;
+    DanhMucQuayDichVuID?: number;
+    DanhMucQuayDichVuName?: string;
+    DanhMucQuayDichVuCode?: string;
     DanhMucPhongKhamID?: number;
     DanhMucPhongKhamName?: string;
     DanhMucPhongKhamCode?: string;

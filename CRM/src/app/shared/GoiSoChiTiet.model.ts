@@ -35,6 +35,9 @@ export class GoiSoChiTiet extends Base {
     NgayDangKy?: Date;
     NgayDangKySoThuTu?: number;
     NgayDangKySoThuTuString?: string;
+    NgayTiepNhan?: Date;
+    NgayTiepNhanSoThuTu?: number;
+    NgayTiepNhanSoThuTuString?: string;
     NgayThanhToan?: Date;
     NgayThanhToanSoThuTu?: number;
     NgayThanhToanSoThuTuString?: string;

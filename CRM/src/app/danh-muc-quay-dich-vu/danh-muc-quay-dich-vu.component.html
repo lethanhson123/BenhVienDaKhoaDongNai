@@ -68,6 +68,17 @@
                                 </select>
                             </td>
                         </ng-container>
+                        <ng-container matColumnDef="DanhMucDichVuID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nhóm quầy
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <select class="browser-default form-select" name="element.DanhMucDichVuID"
+                                    [(ngModel)]="element.DanhMucDichVuID">
+                                    <option *ngFor="let item of DanhMucDichVuService.ListFilter;" [value]="item.ID">
+                                        {{item.Name}}</option>
+                                </select>
+                            </td>
+                        </ng-container>
                         <ng-container matColumnDef="Name">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề
                             </th>
@@ -84,14 +95,14 @@
                                     name="Code{{element.ID}}" [(ngModel)]="element.Code">
                             </td>
                         </ng-container>
-                        <ng-container matColumnDef="Note">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi chú
+                        <ng-container matColumnDef="Display">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Đầu số
                             </th>
                             <td mat-cell *matCellDef="let element">
-                                <input class="form-control" type="text" placeholder="Ghi chú" name="Note{{element.ID}}"
-                                    [(ngModel)]="element.Note">
+                                <input class="form-control" type="text" placeholder="Đầu số"
+                                    name="Display{{element.ID}}" [(ngModel)]="element.Display">
                             </td>
-                        </ng-container>
+                        </ng-container>                        
                         <ng-container matColumnDef="SortOrder">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Sắp xếp
                             </th>
@@ -143,9 +154,9 @@
                                     class="material-icons">delete_forever</i></a>
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="DanhMucQuayDichVuService.DisplayColumns03">
+                        <tr mat-header-row *matHeaderRowDef="DanhMucQuayDichVuService.DisplayColumns05">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DanhMucQuayDichVuService.DisplayColumns03;">
+                        <tr mat-row *matRowDef="let row; columns: DanhMucQuayDichVuService.DisplayColumns05;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DanhMucQuayDichVuPaginator="matPaginator"
@@ -169,6 +180,16 @@
                                         </select>
                                     </div>
                                     <div class="col s12 m12 l12">
+                                        <label class="form-label">Nhóm quầy</label>
+                                        <br />
+                                        <select class="form-select" name="element.DanhMucDichVuID"
+                                            [(ngModel)]="element.DanhMucDichVuID">
+                                            <option *ngFor="let item of DanhMucDichVuService.ListFilter;"
+                                                [value]="item.ID">
+                                                {{item.Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col s12 m12 l12">
                                         <label class="form-label">Tiêu đề</label>
                                         <br />
                                         <input class="form-control" type="text" placeholder="Tiêu đề"
@@ -181,11 +202,11 @@
                                             name="Code{{element.ID}}" [(ngModel)]="element.Code">
                                     </div>
                                     <div class="col s12 m12 l12">
-                                        <label class="form-label">Ghi chú</label>
+                                        <label class="form-label">Đầu số</label>
                                         <br />
-                                        <input class="form-control" type="text" placeholder="Ghi chú"
-                                            name="Note{{element.ID}}" [(ngModel)]="element.Note">
-                                    </div>
+                                        <input class="form-control" type="text" placeholder="Đầu số"
+                                            name="Display{{element.ID}}" [(ngModel)]="element.Display">
+                                    </div>                                    
                                     <div class="col s12 m12 l12">
                                         <label class="form-label">Sắp xếp</label>
                                         <br />

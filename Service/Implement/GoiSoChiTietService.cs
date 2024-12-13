@@ -120,6 +120,7 @@ namespace Service.Implement
                     DanhMucQuayDichVu DanhMucQuayDichVu = _DanhMucQuayDichVuRepository.GetByID(model.DanhMucQuayDichVuID.Value);
                     model.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
                     model.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                    model.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
                 }
             }
             if (model.DanhMucPhongKhamID > 0)
@@ -137,35 +138,50 @@ namespace Service.Implement
                 {
                     model.NgayCapSo = GlobalHelper.InitializationDateTime;
                     model.NgayCapSoSoThuTuString = model.NgayCapSoSoThuTu.ToString();
-                    if (model.NgayCapSoSoThuTu < 10)
+                    if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                     {
-                        model.NgayCapSoSoThuTuString = "000" + model.NgayCapSoSoThuTuString;
-                    }
-                    else
-                    {
-                        if (model.NgayCapSoSoThuTu < 100)
+                        if (model.NgayCapSoSoThuTu < 10)
                         {
-                            model.NgayCapSoSoThuTuString = "00" + model.NgayCapSoSoThuTuString;
+                            model.NgayCapSoSoThuTuString = model.DanhMucQuayDichVuDisplay + "00" + model.NgayCapSoSoThuTuString;
                         }
                         else
                         {
-                            if (model.NgayCapSoSoThuTu < 1000)
+                            if (model.NgayCapSoSoThuTu < 100)
                             {
-                                model.NgayCapSoSoThuTuString = "0" + model.NgayCapSoSoThuTuString;
+                                model.NgayCapSoSoThuTuString = model.DanhMucQuayDichVuDisplay + "0" + model.NgayCapSoSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayCapSoSoThuTu < 1000)
+                                {
+                                    model.NgayCapSoSoThuTuString = model.DanhMucQuayDichVuDisplay + "" + model.NgayCapSoSoThuTuString;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (model.NgayCapSoSoThuTu < 10)
+                        {
+                            model.NgayCapSoSoThuTuString = "000" + model.NgayCapSoSoThuTuString;
+                        }
+                        else
+                        {
+                            if (model.NgayCapSoSoThuTu < 100)
+                            {
+                                model.NgayCapSoSoThuTuString = "00" + model.NgayCapSoSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayCapSoSoThuTu < 1000)
+                                {
+                                    model.NgayCapSoSoThuTuString = "0" + model.NgayCapSoSoThuTuString;
+                                }
                             }
                         }
                     }
                 }
             }
-
-            //if (string.IsNullOrEmpty(model.Code))
-            //{
-            //    model.Code = model.NgayCapSoSoThuTuString;
-            //}
-            //if (string.IsNullOrEmpty(model.DienThoai))
-            //{
-            //    model.DienThoai = model.Code;
-            //}
 
             if (string.IsNullOrEmpty(model.NgayDangKySoThuTuString))
             {
@@ -173,21 +189,95 @@ namespace Service.Implement
                 {
                     model.NgayDangKy = GlobalHelper.InitializationDateTime;
                     model.NgayDangKySoThuTuString = model.NgayDangKySoThuTu.ToString();
-                    if (model.NgayDangKySoThuTu < 10)
+                    if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                     {
-                        model.NgayDangKySoThuTuString = "000" + model.NgayDangKySoThuTuString;
-                    }
-                    else
-                    {
-                        if (model.NgayDangKySoThuTu < 100)
+                        if (model.NgayDangKySoThuTu < 10)
                         {
-                            model.NgayDangKySoThuTuString = "00" + model.NgayDangKySoThuTuString;
+                            model.NgayDangKySoThuTuString = model.DanhMucQuayDichVuDisplay + "00" + model.NgayDangKySoThuTuString;
                         }
                         else
                         {
-                            if (model.NgayDangKySoThuTu < 1000)
+                            if (model.NgayDangKySoThuTu < 100)
                             {
-                                model.NgayDangKySoThuTuString = "0" + model.NgayDangKySoThuTuString;
+                                model.NgayDangKySoThuTuString = model.DanhMucQuayDichVuDisplay + "0" + model.NgayDangKySoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayDangKySoThuTu < 1000)
+                                {
+                                    model.NgayDangKySoThuTuString = model.DanhMucQuayDichVuDisplay + "" + model.NgayDangKySoThuTuString;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (model.NgayDangKySoThuTu < 10)
+                        {
+                            model.NgayDangKySoThuTuString = "000" + model.NgayDangKySoThuTuString;
+                        }
+                        else
+                        {
+                            if (model.NgayDangKySoThuTu < 100)
+                            {
+                                model.NgayDangKySoThuTuString = "00" + model.NgayDangKySoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayDangKySoThuTu < 1000)
+                                {
+                                    model.NgayDangKySoThuTuString = "0" + model.NgayDangKySoThuTuString;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (string.IsNullOrEmpty(model.NgayTiepNhanSoThuTuString))
+            {
+                if (model.NgayTiepNhanSoThuTu > 0)
+                {
+                    model.NgayTiepNhan = GlobalHelper.InitializationDateTime;
+                    model.NgayTiepNhanSoThuTuString = model.NgayTiepNhanSoThuTu.ToString();
+                    if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
+                    {
+                        if (model.NgayTiepNhanSoThuTu < 10)
+                        {
+                            model.NgayTiepNhanSoThuTuString = model.DanhMucQuayDichVuDisplay + "00" + model.NgayTiepNhanSoThuTuString;
+                        }
+                        else
+                        {
+                            if (model.NgayTiepNhanSoThuTu < 100)
+                            {
+                                model.NgayTiepNhanSoThuTuString = model.DanhMucQuayDichVuDisplay + "0" + model.NgayTiepNhanSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayTiepNhanSoThuTu < 1000)
+                                {
+                                    model.NgayTiepNhanSoThuTuString = model.DanhMucQuayDichVuDisplay + "" + model.NgayTiepNhanSoThuTuString;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (model.NgayTiepNhanSoThuTu < 10)
+                        {
+                            model.NgayTiepNhanSoThuTuString = "000" + model.NgayTiepNhanSoThuTuString;
+                        }
+                        else
+                        {
+                            if (model.NgayTiepNhanSoThuTu < 100)
+                            {
+                                model.NgayTiepNhanSoThuTuString = "00" + model.NgayTiepNhanSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayTiepNhanSoThuTu < 1000)
+                                {
+                                    model.NgayTiepNhanSoThuTuString = "0" + model.NgayTiepNhanSoThuTuString;
+                                }
                             }
                         }
                     }
@@ -199,21 +289,45 @@ namespace Service.Implement
                 {
                     model.NgayThanhToan = GlobalHelper.InitializationDateTime;
                     model.NgayThanhToanSoThuTuString = model.NgayThanhToanSoThuTu.ToString();
-                    if (model.NgayThanhToanSoThuTu < 10)
+                    if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                     {
-                        model.NgayThanhToanSoThuTuString = "000" + model.NgayThanhToanSoThuTuString;
-                    }
-                    else
-                    {
-                        if (model.NgayThanhToanSoThuTu < 100)
+                        if (model.NgayThanhToanSoThuTu < 10)
                         {
-                            model.NgayThanhToanSoThuTuString = "00" + model.NgayThanhToanSoThuTuString;
+                            model.NgayThanhToanSoThuTuString = model.DanhMucQuayDichVuDisplay + "00" + model.NgayThanhToanSoThuTuString;
                         }
                         else
                         {
-                            if (model.NgayThanhToanSoThuTu < 1000)
+                            if (model.NgayThanhToanSoThuTu < 100)
                             {
-                                model.NgayThanhToanSoThuTuString = "0" + model.NgayThanhToanSoThuTuString;
+                                model.NgayThanhToanSoThuTuString = model.DanhMucQuayDichVuDisplay + "0" + model.NgayThanhToanSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayThanhToanSoThuTu < 1000)
+                                {
+                                    model.NgayThanhToanSoThuTuString = model.DanhMucQuayDichVuDisplay + "" + model.NgayThanhToanSoThuTuString;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (model.NgayThanhToanSoThuTu < 10)
+                        {
+                            model.NgayThanhToanSoThuTuString = "000" + model.NgayThanhToanSoThuTuString;
+                        }
+                        else
+                        {
+                            if (model.NgayThanhToanSoThuTu < 100)
+                            {
+                                model.NgayThanhToanSoThuTuString = "00" + model.NgayThanhToanSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayThanhToanSoThuTu < 1000)
+                                {
+                                    model.NgayThanhToanSoThuTuString = "0" + model.NgayThanhToanSoThuTuString;
+                                }
                             }
                         }
                     }
@@ -225,21 +339,45 @@ namespace Service.Implement
                 {
                     model.NgayLinhThuoc = GlobalHelper.InitializationDateTime;
                     model.NgayLinhThuocSoThuTuString = model.NgayLinhThuocSoThuTu.ToString();
-                    if (model.NgayLinhThuocSoThuTu < 10)
+                    if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                     {
-                        model.NgayLinhThuocSoThuTuString = "000" + model.NgayLinhThuocSoThuTuString;
-                    }
-                    else
-                    {
-                        if (model.NgayLinhThuocSoThuTu < 100)
+                        if (model.NgayLinhThuocSoThuTu < 10)
                         {
-                            model.NgayLinhThuocSoThuTuString = "00" + model.NgayLinhThuocSoThuTuString;
+                            model.NgayLinhThuocSoThuTuString = model.DanhMucQuayDichVuDisplay + "00" + model.NgayLinhThuocSoThuTuString;
                         }
                         else
                         {
-                            if (model.NgayLinhThuocSoThuTu < 1000)
+                            if (model.NgayLinhThuocSoThuTu < 100)
                             {
-                                model.NgayLinhThuocSoThuTuString = "0" + model.NgayLinhThuocSoThuTuString;
+                                model.NgayLinhThuocSoThuTuString = model.DanhMucQuayDichVuDisplay + "0" + model.NgayLinhThuocSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayLinhThuocSoThuTu < 1000)
+                                {
+                                    model.NgayLinhThuocSoThuTuString = model.DanhMucQuayDichVuDisplay + "" + model.NgayLinhThuocSoThuTuString;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (model.NgayLinhThuocSoThuTu < 10)
+                        {
+                            model.NgayLinhThuocSoThuTuString = "000" + model.NgayLinhThuocSoThuTuString;
+                        }
+                        else
+                        {
+                            if (model.NgayLinhThuocSoThuTu < 100)
+                            {
+                                model.NgayLinhThuocSoThuTuString = "00" + model.NgayLinhThuocSoThuTuString;
+                            }
+                            else
+                            {
+                                if (model.NgayLinhThuocSoThuTu < 1000)
+                                {
+                                    model.NgayLinhThuocSoThuTuString = "0" + model.NgayLinhThuocSoThuTuString;
+                                }
                             }
                         }
                     }
@@ -591,6 +729,64 @@ namespace Service.Implement
                 List<long> ListGoiSoChiTietID = new List<long>();
                 ListGoiSoChiTietID = ListGoiSoChiTietPhongKham.Select(item => item.ParentID.Value).ToList();
                 result = await GetByCondition(item => ListGoiSoChiTietID.Contains(item.ID)).ToListAsync();
+            }
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan04ToListAsync(long DanhMucQuayDichVuID, int Number)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                if (DanhMucQuayDichVuID > 0)
+                {
+                    if (Number > 0)
+                    {
+                        DateTime Now = GlobalHelper.InitializationDateTime;
+                        result.AddRange(await GetByCondition(item => item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.Active == true && item.NgayTiepNhan.Value.Year == Now.Year && item.NgayTiepNhan.Value.Month == Now.Month && item.NgayTiepNhan.Value.Day == Now.Day).OrderByDescending(item => item.NgayTiepNhanSoThuTu).Take(Number).ToListAsync());
+                        if (result == null)
+                        {
+                            result = new List<GoiSoChiTiet>();
+                        }
+                        if (result.Count < Number)
+                        {
+                            DanhMucQuayDichVu DanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByIDAsync(DanhMucQuayDichVuID);
+                            for (int i = result.Count; i < Number; i++)
+                            {
+                                GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                GoiSoChiTiet.NgayTiepNhan = Now;
+                                result.Add(GoiSoChiTiet);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan04_001ToListAsync(string Code, int Number)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            if (!string.IsNullOrEmpty(Code))
+            {
+                DanhMucQuayDichVu DanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCodeAsync(Code);
+                if (DanhMucQuayDichVu.ID > 0)
+                {
+                    result = await GetGoiSoChiTietTiepNhan04ToListAsync(DanhMucQuayDichVu.ID, Number);
+                }
             }
             if (result == null)
             {

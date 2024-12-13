@@ -87,19 +87,19 @@ export class HomepageComponent implements OnInit {
       this.IsBHYT = false;
     }
     this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-    this.GoiSoChiTietService.GetGoiSoChiTietDangKy04_001ToListAsync().subscribe(
+    this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
       res => {
-        this.GoiSoChiTietService.List01 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayDangKySoThuTu > b.NgayDangKySoThuTu ? 1 : -1));
+        this.GoiSoChiTietService.List01 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
         if (this.GoiSoChiTietService.List01) {
           if (this.GoiSoChiTietService.List01.length > 0) {
             this.GoiSoChiTietService.FormData01 = this.GoiSoChiTietService.List01[0];
           }
         }
         for (let i = 0; i < this.GoiSoChiTietService.List01.length; i++) {
-          if (this.GoiSoChiTietService.List01[i].NgayDangKySoThuTuString) {
+          if (this.GoiSoChiTietService.List01[i].NgayTiepNhanSoThuTuString) {
           }
           else {
-            this.GoiSoChiTietService.List01[i].NgayDangKySoThuTuString = "0000";
+            this.GoiSoChiTietService.List01[i].NgayTiepNhanSoThuTuString = "0000";
           }
         }
       },
@@ -111,19 +111,19 @@ export class HomepageComponent implements OnInit {
 
     this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code02;
     this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-    this.GoiSoChiTietService.GetGoiSoChiTietDangKy04_001ToListAsync().subscribe(
+    this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
       res => {
-        this.GoiSoChiTietService.List02 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayDangKySoThuTu > b.NgayDangKySoThuTu ? 1 : -1));
+        this.GoiSoChiTietService.List02 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
         if (this.GoiSoChiTietService.List02) {
           if (this.GoiSoChiTietService.List02.length > 0) {
             this.GoiSoChiTietService.FormData02 = this.GoiSoChiTietService.List02[0];
           }
         }
         for (let i = 0; i < this.GoiSoChiTietService.List02.length; i++) {
-          if (this.GoiSoChiTietService.List02[i].NgayDangKySoThuTuString) {
+          if (this.GoiSoChiTietService.List02[i].NgayTiepNhanSoThuTuString) {
           }
           else {
-            this.GoiSoChiTietService.List02[i].NgayDangKySoThuTuString = "0000";
+            this.GoiSoChiTietService.List02[i].NgayTiepNhanSoThuTuString = "0000";
           }
         }
       },
