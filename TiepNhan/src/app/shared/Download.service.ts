@@ -23,7 +23,7 @@ export class DownloadService {
 
     constructor(private httpClient: HttpClient) {
         this.InitializationFormData();
-        this.GetIPAddress();
+        //this.GetIPAddress();
     }
     InitializationFormData() {
         this.BaseParameter = {
@@ -61,7 +61,7 @@ export class DownloadService {
         }
         if (KinhDo < -180) {
             KinhDo = -180;
-        }      
+        }
         return KinhDo;
     }
     GetViDo(ViDo: number) {
@@ -127,41 +127,9 @@ export class DownloadService {
         const formUpload: FormData = new FormData();
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    ExportToChucHoNuoiToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucHoNuoiToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucCuaHangToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucCuaHangToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucTramQuanTracToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucTramQuanTracToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucPhuongTienKhaiThacToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucPhuongTienKhaiThacToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucGiongToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucGiongToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucDanhMucGiongToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucDanhMucGiongToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    DownloadByURL(URL: string) {
+        console.log(URL);
+        return this.httpClient.get(URL, { observe: 'response', responseType: 'blob' });
     }
 }
 

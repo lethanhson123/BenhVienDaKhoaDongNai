@@ -12,12 +12,6 @@ import { distinct } from 'rxjs/operators';
 
 import { DanhMucThanhVien } from 'src/app/shared/DanhMucThanhVien.model';
 import { DanhMucThanhVienService } from 'src/app/shared/DanhMucThanhVien.service';
-import { DanhMucBenhVien } from 'src/app/shared/DanhMucBenhVien.model';
-import { DanhMucBenhVienService } from 'src/app/shared/DanhMucBenhVien.service';
-import { DanhMucPhongBan } from 'src/app/shared/DanhMucPhongBan.model';
-import { DanhMucPhongBanService } from 'src/app/shared/DanhMucPhongBan.service';
-import { DanhMucChucDanh } from 'src/app/shared/DanhMucChucDanh.model';
-import { DanhMucChucDanhService } from 'src/app/shared/DanhMucChucDanh.service';
 
 import { ThanhVien } from 'src/app/shared/ThanhVien.model';
 import { ThanhVienService } from 'src/app/shared/ThanhVien.service';
@@ -36,10 +30,7 @@ export class ThanhVienThongTinComponent implements OnInit {
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
-    public DanhMucThanhVienService: DanhMucThanhVienService,
-    public DanhMucBenhVienService: DanhMucBenhVienService,
-    public DanhMucPhongBanService: DanhMucPhongBanService,
-    public DanhMucChucDanhService: DanhMucChucDanhService,
+    public DanhMucThanhVienService: DanhMucThanhVienService,   
 
     public ThanhVienService: ThanhVienService,
 
@@ -53,16 +44,7 @@ export class ThanhVienThongTinComponent implements OnInit {
   }
   DanhMucThanhVienSearch() {
     this.DanhMucThanhVienService.ComponentGetAllToListAsync(this.ThanhVienService);
-  }
-  DanhMucBenhVienSearch() {
-    this.DanhMucBenhVienService.ComponentGetAllToListAsync(this.ThanhVienService);
-  }
-  DanhMucPhongBanSearch() {
-    this.DanhMucPhongBanService.ComponentGetAllToListAsync(this.ThanhVienService);
-  }
-  DanhMucChucDanhSearch() {
-    this.DanhMucChucDanhService.ComponentGetAllToListAsync(this.ThanhVienService);
-  }
+  }  
   ThanhVienSearch() {
     this.ThanhVienService.GetLogin();
     if (this.ThanhVienService.FormDataLogin) {
@@ -70,13 +52,7 @@ export class ThanhVienThongTinComponent implements OnInit {
         this.ThanhVienService.BaseParameter.ID = this.ThanhVienService.FormDataLogin.ID;
         this.ThanhVienService.GetByIDAsync().subscribe(
           res => {
-            this.ThanhVienService.FormData = res as ThanhVien;
-            if (this.ThanhVienService.FormData.ID == environment.InitializationNumber) {
-            }
-            this.DanhMucThanhVienSearch();
-            this.DanhMucBenhVienSearch();
-            this.DanhMucPhongBanSearch();
-            this.DanhMucChucDanhSearch();
+            this.ThanhVienService.FormData = res as ThanhVien;             
           },
           err => {
           }

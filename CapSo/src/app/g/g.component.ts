@@ -34,7 +34,8 @@ export class GComponent implements OnInit {
     this.DanhMucDichVuService.GetByParentIDToListAsync().subscribe(
       res => {
         this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-        this.DanhMucDichVuService.ListFilter = this.DanhMucDichVuService.List;
+        this.DanhMucDichVuService.List001 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == true);
+        this.DanhMucDichVuService.List002 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == false);
       },
       err => {
       },
@@ -46,16 +47,19 @@ export class GComponent implements OnInit {
   SaveByDanhMucDichVuIDAsync(DanhMucDichVuID: number) {
     this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.BaseParameter.DanhMucDichVuID = DanhMucDichVuID;
-    this.GoiSoService.SaveByDanhMucDichVuIDAsync().subscribe(
+    this.GoiSoService.BaseParameter.Code = this.GoiSoService.FormData.Code;   
+    this.GoiSoService.SaveByDanhMucDichVuID_CodeAsync().subscribe(
       res => {
-        this.GoiSoService.FormData = res as GoiSo;   
-        this.NotificationService.OpenWindowByURLMin(this.GoiSoService.FormData.FileName);    
+        this.GoiSoService.FormData = res as GoiSo;      
+        this.GoiSoService.FormData.Code = environment.InitializationString;        
+        this.NotificationService.OpenWindowByURLMin(this.GoiSoService.FormData.FileName);
       },
-      err => {        
+      err => {
       },
       () => {
         this.GoiSoService.IsShowLoading = false;
       }
-    );
+    );   
+    document.getElementById("Code").focus();
   }
 }

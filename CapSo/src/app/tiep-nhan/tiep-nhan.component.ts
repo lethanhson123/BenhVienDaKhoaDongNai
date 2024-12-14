@@ -7,6 +7,9 @@ import { DownloadService } from 'src/app/shared/Download.service';
 import { GoiSo } from 'src/app/shared/GoiSo.model';
 import { GoiSoService } from 'src/app/shared/GoiSo.service';
 
+import { GoiSoChiTiet } from 'src/app/shared/GoiSoChiTiet.model';
+import { GoiSoChiTietService } from 'src/app/shared/GoiSoChiTiet.service';
+
 import { DanhMucDichVu } from 'src/app/shared/DanhMucDichVu.model';
 import { DanhMucDichVuService } from 'src/app/shared/DanhMucDichVu.service';
 
@@ -29,33 +32,36 @@ export class TiepNhanComponent implements OnInit {
     public DanhMucQuayDichVuService: DanhMucQuayDichVuService,
 
     public GoiSoService: GoiSoService,
+    public GoiSoChiTietService: GoiSoChiTietService,
   ) {
   }
 
   ngOnInit(): void {
-    let URL = environment.TiepNhanURL + "TiepNhan/" + this.ActiveRouter.snapshot.params.DanhMucDichVuID + "/" + this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID;
+    let URL = "Homepage";
+    if (this.ActiveRouter.snapshot.routeConfig.path) {
+      URL = this.ActiveRouter.snapshot.routeConfig.path;
+      URL = URL.split('/')[0]
+    }
+    URL = environment.TiepNhanURL + URL + "/" + this.ActiveRouter.snapshot.params.DanhMucDichVuCode + "/" + this.ActiveRouter.snapshot.params.DanhMucQuayDichVuCode;
     var Width = window.innerWidth;
     // if (Width > 300) {
-    //   this.NotificationService.OpenWindowByURLBottomRight(URL);
+    //   this.NotificationService.OpenWindowByURLBottomRight200(URL);
     //   window.close();
     // }
-    // else {
-    //   this.GoiSoService.BaseParameter.DanhMucDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucDichVuID);
-    //   this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID);
+    // else {     
     //   this.DanhMucDichVuSearch();
     //   this.DanhMucQuayDichVuSearch();
     // }
-    this.GoiSoService.BaseParameter.DanhMucDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucDichVuID);
-    this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = Number(this.ActiveRouter.snapshot.params.DanhMucQuayDichVuID);
     this.DanhMucDichVuSearch();
     this.DanhMucQuayDichVuSearch();
   }
   DanhMucDichVuSearch() {
     this.GoiSoService.IsShowLoading = true;
-    this.DanhMucDichVuService.BaseParameter.ID = this.GoiSoService.BaseParameter.DanhMucDichVuID;
-    this.DanhMucDichVuService.GetByIDAsync().subscribe(
+    this.DanhMucDichVuService.BaseParameter.Code = this.ActiveRouter.snapshot.params.DanhMucDichVuCode;
+    this.DanhMucDichVuService.GetByCodeAsync().subscribe(
       res => {
         this.DanhMucDichVuService.FormData = res as DanhMucDichVu;
+        this.GoiSoService.BaseParameter.DanhMucDichVuID = this.DanhMucDichVuService.FormData.ID;
       },
       err => {
       },
@@ -66,10 +72,11 @@ export class TiepNhanComponent implements OnInit {
   }
   DanhMucQuayDichVuSearch() {
     this.GoiSoService.IsShowLoading = true;
-    this.DanhMucQuayDichVuService.BaseParameter.ID = this.GoiSoService.BaseParameter.DanhMucQuayDichVuID;
-    this.DanhMucQuayDichVuService.GetByIDAsync().subscribe(
+    this.DanhMucQuayDichVuService.BaseParameter.Code = this.ActiveRouter.snapshot.params.DanhMucQuayDichVuCode;
+    this.DanhMucQuayDichVuService.GetByCodeAsync().subscribe(
       res => {
         this.DanhMucQuayDichVuService.FormData = res as DanhMucQuayDichVu;
+        this.GoiSoService.BaseParameter.DanhMucQuayDichVuID = this.DanhMucQuayDichVuService.FormData.ID;
       },
       err => {
       },
@@ -81,7 +88,7 @@ export class TiepNhanComponent implements OnInit {
   GoiSoTiepTheo() {
     this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.BaseParameter.SoHienTai = this.GoiSoService.FormData.SoHienTai;
-    this.GoiSoService.GoiSoTiepTheoAsync().subscribe(
+    this.GoiSoService.GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;
       },
@@ -91,6 +98,24 @@ export class TiepNhanComponent implements OnInit {
         this.GoiSoService.IsShowLoading = false;
       }
     );
+    document.getElementById("Code").focus();
   }
-
+  GoiSoChiTietSave() {
+    this.GoiSoService.IsShowLoading = true;
+    this.GoiSoChiTietService.BaseParameter.SoHienTai = this.GoiSoService.FormData.SoHienTai;
+    this.GoiSoChiTietService.BaseParameter.Code = this.GoiSoService.BaseParameter.Code;
+    this.GoiSoChiTietService.BaseParameter.DanhMucDichVuID = this.DanhMucDichVuService.FormData.ID;
+    this.GoiSoChiTietService.UpdateByDanhMucDichVuID_NgayDangKySoThuTuTu_CodeAsync().subscribe(
+      res => {
+        this.GoiSoChiTietService.FormData = res as GoiSoChiTiet;
+      },
+      err => {
+      },
+      () => {
+        this.GoiSoService.IsShowLoading = false;
+      }
+    );
+    this.GoiSoService.BaseParameter.Code = environment.InitializationString;
+    document.getElementById("Code").focus();
+  }
 }

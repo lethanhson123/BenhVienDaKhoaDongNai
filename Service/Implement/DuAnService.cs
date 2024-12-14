@@ -730,6 +730,10 @@
             {
                 string mes = ex.Message;
             }
+            if (result == null)
+            {
+                result = new List<DuAn>();
+            }
             return result;
         }
         public override async Task<List<DuAn>> GetBySearchStringToListAsync(string SearchString)
@@ -779,6 +783,10 @@
             {
                 string mes = ex.Message;
             }
+            if (result == null)
+            {
+                result = new List<DuAn>();
+            }
             return result;
         }
         public virtual async Task<List<DuAn>> GetBySearchString_BatDau_KetThucToListAsync(string SearchString, DateTime BatDau, DateTime KetThuc)
@@ -798,6 +806,10 @@
             catch (Exception ex)
             {
                 string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<DuAn>();
             }
             return result;
         }
@@ -830,6 +842,10 @@
             {
                 string mes = ex.Message;
             }
+            if (result == null)
+            {
+                result = new List<DuAn>();
+            }
             return result;
         }
         public virtual async Task<List<DuAn>> GetSQLByThanhVienIDToListAsync(long ThanhVienID)
@@ -846,6 +862,10 @@
             catch (Exception ex)
             {
                 string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<DuAn>();
             }
             return result;
         }

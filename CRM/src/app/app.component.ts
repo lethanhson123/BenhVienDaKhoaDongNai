@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
 import { DownloadService } from 'src/app/shared/Download.service';
@@ -14,6 +15,7 @@ import { ThanhVienToken } from 'src/app/shared/ThanhVienToken.model';
 import { ThanhVienTokenService } from 'src/app/shared/ThanhVienToken.service';
 import { ThanhVienLichSuTruyCap } from 'src/app/shared/ThanhVienLichSuTruyCap.model';
 import { ThanhVienLichSuTruyCapService } from 'src/app/shared/ThanhVienLichSuTruyCap.service';
+
 
 
 @Component({
@@ -32,6 +34,7 @@ export class AppComponent {
   queryStringSub: string = environment.InitializationString;
   Token: string = environment.InitializationString;
   constructor(
+    public Sanitizer: DomSanitizer,
     public Router: Router,
     public DownloadService: DownloadService,
     public NotificationService: NotificationService,
@@ -45,9 +48,6 @@ export class AppComponent {
   ) {
     this.GetByQueryString();
   }
-  ngOnInit(): void {
-
-  }
   ngAfterViewInit() {
   }
 
@@ -60,7 +60,7 @@ export class AppComponent {
         }
         this.AuthenticationToken();
       }
-    });    
+    });
   }
   AuthenticationToken() {
     this.Token = localStorage.getItem(environment.Token);
@@ -83,7 +83,7 @@ export class AppComponent {
               }
               this.ThanhVienService.GetByIDAsync().subscribe(
                 res => {
-                  this.ThanhVienService.FormDataLogin = res as ThanhVien;                  
+                  this.ThanhVienService.FormDataLogin = res as ThanhVien;
                   if (this.ThanhVienService.FormDataLogin) {
                     if (this.ThanhVienService.FormDataLogin.ParentID == null) {
                       this.ThanhVienService.FormDataLogin.ParentID = environment.InitializationNumber;
@@ -92,11 +92,11 @@ export class AppComponent {
                     localStorage.setItem(environment.ThanhVienParentID, this.ThanhVienService.FormDataLogin.ParentID.toString());
                     localStorage.setItem(environment.ThanhVienTaiKhoan, this.ThanhVienService.FormDataLogin.TaiKhoan);
                     localStorage.setItem(environment.ThanhVienHoTen, this.ThanhVienService.FormDataLogin.Name);
-                    localStorage.setItem(environment.ThanhVienFileName, this.ThanhVienService.FormDataLogin.FileName);                    
+                    localStorage.setItem(environment.ThanhVienFileName, this.ThanhVienService.FormDataLogin.FileName);
                     this.DanhMucChucNangGetByThanhVienIDToListAsync();
-                    this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
-                    this.GetByParentID_ReadJSONFileToListAsync();
-                    this.StartTimer();
+                    //this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
+                    //this.GetByParentID_ReadJSONFileToListAsync();
+                    //this.StartTimer();
                   }
                   else {
                     isLogin = false;
@@ -150,7 +150,7 @@ export class AppComponent {
       this.DanhMucChucNangService.Headers = new HttpHeaders();
       this.DanhMucChucNangService.Headers = this.DanhMucChucNangService.Headers.append('Authorization', 'Bearer ' + this.Token);
     }
-    this.DanhMucChucNangService.GetSQLByThanhVienID_ActiveToListAsync().subscribe(
+    this.DanhMucChucNangService.GetByThanhVienID_ActiveToListAsync().subscribe(
       res => {
         this.DanhMucChucNangService.ListChild = (res as DanhMucChucNang[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));        
         this.DanhMucChucNangService.ListParent = [];
@@ -184,10 +184,10 @@ export class AppComponent {
         }
         if (this.queryStringSub.indexOf("Info") > -1) {
           isLogin = true;
-        } 
+        }
         if (this.queryStringSub.indexOf("ThanhVienThongTin") > -1) {
           isLogin = true;
-        }       
+        }
         if (this.queryStringSub.indexOf("Homepage") > -1) {
           isLogin = true;
         }
@@ -247,7 +247,7 @@ export class AppComponent {
 
     if ((this.ThanhVienLichSuTruyCapService.FormData.IPAddress == null) || (this.ThanhVienLichSuTruyCapService.FormData.IPAddress.length == 0)) {
 
-      this.DownloadService.GetIPData().then(res => {        
+      this.DownloadService.GetIPData().then(res => {
         this.ThanhVienLichSuTruyCapService.FormData.IPAddress = res["ip"];
         this.ThanhVienLichSuTruyCapService.FormData.TypeName = res["user_agent"]["device"]["type"];
         this.ThanhVienLichSuTruyCapService.FormData.KinhDo = res["location"]["longitude"];
@@ -290,12 +290,30 @@ export class AppComponent {
         }
       );
     }
-    
+
   }
 
   MenuClick(itemParent: DanhMucChucNang) {
-    itemParent.Active = !itemParent.Active;
+    for (var i = 0; i < this.DanhMucChucNangService.ListParent.length; i++) {
+      this.DanhMucChucNangService.ListParent[i].CSS = 'display: none;';
+      this.DanhMucChucNangService.ListParent[i].CSS = this.Sanitizer.bypassSecurityTrustStyle(this.DanhMucChucNangService.ListParent[i].CSS);
+      this.DanhMucChucNangService.ListParent[i].CSSMobile = 'display: none;';
+      this.DanhMucChucNangService.ListParent[i].CSSMobile = this.Sanitizer.bypassSecurityTrustStyle(this.DanhMucChucNangService.ListParent[i].CSSMobile);
+      let left = 130 * i;
+      let height = itemParent.ListChild.length * 44;
+      if (itemParent.ID == this.DanhMucChucNangService.ListParent[i].ID) {
+        itemParent.Active = !itemParent.Active;
+        if (itemParent.Active == true) {
+          itemParent.CSS = "transform-origin: 100% 0px; opacity: 1; transform: scaleX(1) scaleY(1); display: block; width: 300px; height: " + height + "px; top: 64px; left: " + left + "px;";
+          itemParent.CSS = this.Sanitizer.bypassSecurityTrustStyle(itemParent.CSS);
+
+          itemParent.CSSMobile = "display: block;";
+          itemParent.CSSMobile = this.Sanitizer.bypassSecurityTrustStyle(itemParent.CSSMobile);
+        }
+      }
+    }
   }
+
   Logout() {
     localStorage.setItem(environment.Token, environment.InitializationString);
     localStorage.setItem(environment.ThanhVienID, environment.InitializationString);
@@ -307,6 +325,6 @@ export class AppComponent {
       this.GetByParentID_ReadJSONFileToListAsync();
     }, environment.Interval)
   }
-  GetByParentID_ReadJSONFileToListAsync() {    
+  GetByParentID_ReadJSONFileToListAsync() {
   }
 }

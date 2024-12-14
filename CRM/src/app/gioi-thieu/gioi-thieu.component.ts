@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-
 
 @Component({
   selector: 'app-gioi-thieu',
@@ -9,9 +7,6 @@ import { environment } from 'src/environments/environment';
 })
 export class GioiThieuComponent implements OnInit {
 
-  PageTitle = environment.PageTitle;
-  PageDescription = environment.PageDescription;
-  PageTitleShort = environment.PageTitleShort;
   constructor() { }
 
   ngOnInit(): void {

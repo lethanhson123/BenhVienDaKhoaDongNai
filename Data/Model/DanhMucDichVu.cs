@@ -3,6 +3,7 @@
     public partial class DanhMucDichVu : BaseModel
     {
         public bool? IsBHYT { get; set; }
+        public bool? IsHangDoiPhanNhanh { get; set; }
         public DanhMucDichVu()
         {
         }

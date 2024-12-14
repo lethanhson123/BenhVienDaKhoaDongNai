@@ -5,10 +5,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 
 
+
 const routes: Routes = [
-  { path: '', redirectTo: '/Homepage/2/1', pathMatch: 'full' },  
+  { path: '', redirectTo: '/Homepage/1/1', pathMatch: 'full' },  
   {
-    path: 'Homepage/:DanhMucDichVuID/:DanhMucQuayDichVuID', component: HomepageComponent,
+    path: 'Homepage/:DanhMucDichVuCode/:DanhMucQuayDichVuCode', component: HomepageComponent,
   }, 
 ];
 

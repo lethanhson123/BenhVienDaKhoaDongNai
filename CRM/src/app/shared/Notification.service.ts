@@ -27,7 +27,7 @@ export class NotificationService {
   config: MatSnackBarConfig = {
     duration: 3000,
     horizontalPosition: 'right',
-    verticalPosition: 'bottom'
+    verticalPosition: 'top'
   }
   success(message: string) {
     this.config['panelClass'] = ['notification', 'success'];

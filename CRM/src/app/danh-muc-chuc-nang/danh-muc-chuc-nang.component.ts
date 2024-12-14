@@ -11,7 +11,6 @@ import { DownloadService } from 'src/app/shared/Download.service';
 import { DanhMucChucNang } from 'src/app/shared/DanhMucChucNang.model';
 import { DanhMucChucNangService } from 'src/app/shared/DanhMucChucNang.service';
 
-
 @Component({
   selector: 'app-danh-muc-chuc-nang',
   templateUrl: './danh-muc-chuc-nang.component.html',
@@ -24,9 +23,9 @@ export class DanhMucChucNangComponent implements OnInit {
 
   DanhMucUngDungID: number = environment.InitializationNumber;
 
-  constructor(
-    private dialog: MatDialog,
+  constructor(    
     public NotificationService: NotificationService,
+    public DownloadService: DownloadService,
 
     public DanhMucChucNangService: DanhMucChucNangService,
   ) { }

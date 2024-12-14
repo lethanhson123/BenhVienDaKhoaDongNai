@@ -28,23 +28,23 @@ namespace API.Controllers.v1
                 string message = ex.Message;
             }
             return result;
-        }
+        }        
         [HttpPost]
-        [Route("GetByActiveToListAsync")]
-        public virtual async Task<List<DanhMucDichVu>> GetByActiveToListAsync()
+        [Route("GetByIsBHYTToListAsync")]
+        public virtual async Task<List<DanhMucDichVu>> GetByIsBHYTToListAsync()
         {
             List<DanhMucDichVu> result = new List<DanhMucDichVu>();
             try
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
-                result = await _DanhMucDichVuService.GetByActiveToListAsync(baseParameter.Active.Value);
+                result = await _DanhMucDichVuService.GetByIsBHYTToListAsync(baseParameter.IsBHYT.Value);
             }
             catch (Exception ex)
             {
                 string message = ex.Message;
             }
             return result;
-        }       
+        }
     }
 }
 

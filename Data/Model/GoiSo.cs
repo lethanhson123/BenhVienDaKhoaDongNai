@@ -8,6 +8,10 @@
         public long? DanhMucDichVuID { get; set; }
         public string? DanhMucDichVuName { get; set; }
         public string? DanhMucDichVuCode { get; set; }
+        public long? DanhMucQuayDichVuID { get; set; }
+        public string? DanhMucQuayDichVuName { get; set; }
+        public string? DanhMucQuayDichVuCode { get; set; }
+        public string? DanhMucQuayDichVuDisplay { get; set; }
         public long? DanhMucPhongKhamID { get; set; }
         public string? DanhMucPhongKhamName { get; set; }
         public string? DanhMucPhongKhamCode { get; set; }

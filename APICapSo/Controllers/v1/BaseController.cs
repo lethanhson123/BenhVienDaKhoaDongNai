@@ -47,6 +47,23 @@
             return result;
         }
         [HttpPost]
+        [Route("GetByCodeAsync")]
+        public virtual async Task<T> GetByCodeAsync()
+        {
+            T result = (T)Activator.CreateInstance(typeof(T));
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByCodeAsync(baseParameter.Code);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByParentIDToListAsync")]
         public virtual async Task<List<T>> GetByParentIDToListAsync()
         {
@@ -55,6 +72,38 @@
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
                 result = await _BaseService.GetByParentIDToListAsync(baseParameter.ParentID.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByParentIDAndActiveToListAsync")]
+        public virtual async Task<List<T>> GetByParentIDAndActiveToListAsync()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByParentIDAndActiveToListAsync(baseParameter.ParentID.Value, baseParameter.Active.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByActiveToListAsync")]
+        public virtual async Task<List<T>> GetByActiveToListAsync()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByActiveToListAsync(baseParameter.Active.Value);
             }
             catch (Exception ex)
             {

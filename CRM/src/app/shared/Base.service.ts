@@ -307,7 +307,7 @@ export class BaseService {
         this.IsShowLoading = true;
         this.GetAllAndEmptyToListAsync().subscribe(
             res => {
-                this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+                this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));                
                 this.ListFilter = this.List.filter(item => item.ID > 0);
                 this.DataSource = new MatTableDataSource(this.List);
                 this.DataSource.sort = sort;

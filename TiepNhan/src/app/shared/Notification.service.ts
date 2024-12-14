@@ -79,4 +79,14 @@ export class NotificationService {
     var url = URLParamater;
     window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
   }
+  OpenWindowByURLBottomRight200(URLParamater, w = 100, h = 200) {
+    var width = screen.width;
+    var height = screen.height;
+    var width01 = 300;
+    var height01 = 200;
+    var left = width - width01;
+    var top = (height - height01);
+    var url = URLParamater;
+    window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
+  }
 }

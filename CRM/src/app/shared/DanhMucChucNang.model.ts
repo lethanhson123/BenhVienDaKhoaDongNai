@@ -2,7 +2,9 @@
 
 export class DanhMucChucNang extends Base{
 
-    ListChild: DanhMucChucNang[] | undefined;    
+    ListChild: DanhMucChucNang[] | undefined; 
+    CSS: any;   
+    CSSMobile: any;   
     
 }
 

@@ -14,6 +14,9 @@ import { DanhMucQuayDichVuService } from 'src/app/shared/DanhMucQuayDichVu.servi
 import { DanhMucKhuVuc } from 'src/app/shared/DanhMucKhuVuc.model';
 import { DanhMucKhuVucService } from 'src/app/shared/DanhMucKhuVuc.service';
 
+import { DanhMucDichVu } from 'src/app/shared/DanhMucDichVu.model';
+import { DanhMucDichVuService } from 'src/app/shared/DanhMucDichVu.service';
+
 @Component({
   selector: 'app-danh-muc-quay-dich-vu',
   templateUrl: './danh-muc-quay-dich-vu.component.html',
@@ -31,15 +34,20 @@ export class DanhMucQuayDichVuComponent implements OnInit {
 
     public DanhMucQuayDichVuService: DanhMucQuayDichVuService,
     public DanhMucKhuVucService: DanhMucKhuVucService,
+    public DanhMucDichVuService: DanhMucDichVuService,
   ) { }
 
   ngOnInit(): void { 
     this.DanhMucKhuVucSearch();
-    this.DanhMucQuayDichVuSearch();
+    this.DanhMucDichVuSearch();
+    this.DanhMucQuayDichVuSearch();    
   }
 
   DanhMucKhuVucSearch() {
     this.DanhMucKhuVucService.ComponentGetAllToListAsync(this.DanhMucQuayDichVuService);
+  }
+  DanhMucDichVuSearch() {
+    this.DanhMucDichVuService.ComponentGetAllToListAsync(this.DanhMucQuayDichVuService);
   }
 
   DanhMucQuayDichVuSearch() {

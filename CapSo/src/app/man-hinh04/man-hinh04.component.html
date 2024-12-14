@@ -1,0 +1,58 @@
+<div class="section" id="user-profile">
+    <table class="striped">
+        <thead class="yellow darken-4 white-text">
+            <tr>
+                <th style="width: 50%; text-align: center; font-size: 40px;">Quầy</th>
+                <th style="width: 50%; text-align: center; font-size: 40px;">Số đang phục vụ</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of GoiSoChiTietService.List01; index as i">
+            <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                <td style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 120px; color: #eeff41;">
+                    {{item.DanhMucQuayDichVuName}}</td>
+                <td style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 120px; color: #eeff41;">
+                    {{item.NgayDangKySoThuTuString}}</td>
+            </tr>            
+        </tbody>
+    </table>
+    <table>
+        <tr style="border: 0px;">
+            <td style="width: calc(100% - 773px); vertical-align: top;">
+                <table class="striped">
+                    <thead class="yellow darken-4 white-text">
+                        <tr>
+                            <th style="width: 50%; text-align: center; font-size: 40px;">Quầy</th>
+                            <th style="width: 50%; text-align: center; font-size: 40px;">Số thứ tự</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let item of GoiSoChiTietService.List02; index as i">
+                        <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                            <td style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 120px;">
+                                {{item.DanhMucQuayDichVuName}}</td>
+                            <td style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 120px;">
+                                {{item.NgayDangKySoThuTuString}}</td>
+                        </tr>
+                        <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                            <td style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 120px;">
+                                {{item.DanhMucQuayDichVuName}}</td>
+                            <td style="text-align: center; font-size: 140px; font-weight: bolder; padding: 0px; line-height: 120px;">
+                                {{item.NgayDangKySoThuTuString}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td style="width: 1038px; vertical-align: top;">
+                <img *ngIf="ManHinhTapTinDinhKemService.FormData.IsHinhAnh==true" width="1038" height="584"
+                    [src]="videoSrc" />
+                <video *ngIf="ManHinhTapTinDinhKemService.FormData.IsHinhAnh==false" type="video/mp4" width="1038"
+                    height="584" [src]="videoSrc" controls loop muted autoplay oncanplay="this.play()"
+                    onloadedmetadata="this.muted = true">
+                </video>
+                <marquee width="100%" direction="left" height="160px" style="font-size: 100px; font-weight: bolder; color: #000;">
+                    {{ManHinhThongBaoService.FormData.Description}}
+                </marquee>
+            </td>
+        </tr>
+    </table>   
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>

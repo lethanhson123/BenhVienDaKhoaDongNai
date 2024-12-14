@@ -1735,6 +1735,7 @@
             return result;
         }
         [HttpPost]
+        [RequestSizeLimit(512 * 1024 * 1024)]
         [Route("SaveAndUploadFile")]
         public virtual T SaveAndUploadFile()
         {
@@ -1776,6 +1777,7 @@
             return model;
         }
         [HttpPost]
+        [RequestSizeLimit(512 * 1024 * 1024)]
         [Route("SaveAndUploadFileAsync")]
         public virtual async Task<T> SaveAndUploadFileAsync()
         {
@@ -1816,6 +1818,7 @@
             return model;
         }
         [HttpPost]
+        [RequestSizeLimit(512 * 1024 * 1024)]
         [Route("SaveAndUploadFiles")]
         public virtual T SaveAndUploadFiles()
         {
@@ -1864,6 +1867,7 @@
             return model;
         }
         [HttpPost]
+        [RequestSizeLimit(512 * 1024 * 1024)]
         [Route("SaveAndUploadFilesAsync")]
         public virtual async Task<T> SaveAndUploadFilesAsync()
         {

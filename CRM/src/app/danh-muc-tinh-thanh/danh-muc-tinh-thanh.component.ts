@@ -21,8 +21,7 @@ export class DanhMucTinhThanhComponent implements OnInit {
   @ViewChild('DanhMucTinhThanhSort') DanhMucTinhThanhSort: MatSort;
   @ViewChild('DanhMucTinhThanhPaginator') DanhMucTinhThanhPaginator: MatPaginator;
 
-  constructor(
-    private dialog: MatDialog,
+  constructor(    
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 

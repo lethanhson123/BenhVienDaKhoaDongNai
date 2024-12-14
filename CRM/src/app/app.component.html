@@ -1,77 +1,79 @@
-<nav id="sidebar" class="sidebar-wrapper">
-      <div class="app-brand p-3 mb-3">
-            <div class="row">
-                  <div class="col-9">
-                        <a href="#" *ngIf="ThanhVienService.FormDataLogin && ThanhVienService.FormDataLogin.Name">
-                              <img src="assets/image/logo.png" class="logo" alt="{{PageTitle}}"
-                                    title="{{PageTitle}}" /><span id="account-name"
-                                    style="font-size: 12px;">&nbsp;&nbsp;&nbsp;{{PageTitleShort}}</span></a>
-                  </div>
-                  <div class="col-3">
-                        <div class="d-flex float-end">
-                              <button class="toggle-sidebar" id="toggle-sidebar-close-mobile">
-                                    <i class="bi bi-x-square lh-1"></i>
-                              </button>
+<header class="page-topbar" id="header" style="min-height: 0px; height: 40px; line-height: 0px;">
+    <div class="navbar navbar-fixed" style="min-height: 0px; height: 40px; line-height: 0px;">
+        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan" style="min-height: 0px; height: 40px; line-height: 0px;">            
+            <div class="nav-wrapper" style="min-height: 0px; height: 40px; line-height: 0px;">               
+                <ul class="left"> 
+                    <li>
+                        <div class="logo-wrapper"><a class="brand-logo darken-1" routerLink="/Homepage" style="padding-top: 15px;"><span class="logo-text">{{PageTitle}}</span></a>
                         </div>
-                  </div>
+                    </li>
+                </ul>            
+                <ul class="navbar-list right">
+                    <li><a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
+                            data-target="profile-dropdown"><span class="avatar-status avatar-online"><img
+                                    src="/image/logo.png" alt="avatar"><i></i></span></a>
+                    </li>                    
+                </ul>
+                <ul class="dropdown-content" id="translation-dropdown">
+                </ul>
+                <ul class="dropdown-content" id="notifications-dropdown">
+                </ul>       
+                <ul class="dropdown-content" id="profile-dropdown">
+                    <li><a class="grey-text text-darken-1" routerLink="/Homepage"><i
+                                class="material-icons">person_outline</i> Trang chủ</a></li>
+                    <li class="divider"></li>
+                    <li><a class="grey-text text-darken-1" routerLink="/ThanhVienThongTin"><i
+                                class="material-icons">lock_outline</i> Đổi mật khẩu</a></li>
+                    <li><a class="grey-text text-darken-1" (click)="Logout()"><i class="material-icons">keyboard_tab</i>
+                            Thoát</a></li>
+                </ul>         
             </div>
-      </div>
-      <div class="sidebarMenuScroll">
-            <ul class="sidebar-menu">
-                  <li (click)="MenuClick(itemParent)"
-                        [ngClass]="itemParent.Active == true ? 'treeview active current-page': 'treeview'"
-                        *ngFor="let itemParent of DanhMucChucNangService.ListParent;">
-                        <a style="cursor: pointer; font-size: 12px;">
-                              <i class="{{itemParent.Display}}"></i>
-                              <span class="menu-text">{{itemParent.Name}}</span>
-                        </a>
-                        <ul [ngClass]="itemParent.Active == true ? 'treeview-menu menu-open': 'treeview-menu'">
-                              <li *ngFor="let itemChild of itemParent.ListChild;">
-                                    <a [ngStyle]="{'font-weight': itemChild.Active == true ? 'bold' : ''}"
-                                          [ngClass]="itemChild.Active == true ? 'active-sub': ''"
-                                          routerLink="{{itemChild.Code}}"
-                                          style="font-size: 12px;">{{itemChild.Name}}</a>
-                              </li>
+            <nav class="display-none search-sm">
+                <div class="nav-wrapper">
+                </div>
+            </nav>
+        </nav>
+        <nav class="white hide-on-med-and-down" id="horizontal-nav" style="margin-top: 40px; height: 30px;">
+            <div class="nav-wrapper" style="min-height: 0px; height: 30px;">
+                <ul class="left hide-on-med-and-down" id="ul-horizontal-nav" data-menu="menu-navigation" style="min-height: 0px; height: 30px;">
+                    <li *ngFor="let itemParent of DanhMucChucNangService.ListParent;" style="min-height: 0px; height: 30px;">
+                        <a style="width: 130px; font-size: 12px; color: black; padding-top: 0px; margin-top: -18px; height: 30px;" class="dropdown-menu" data-target="{{itemParent.ID}}"
+                            title="{{itemParent.Name}}" (click)="MenuClick(itemParent)">{{itemParent.Name}}</a>
+                        <ul class="dropdown-content dropdown-horizontal-list" id="{{itemParent.ID}}"
+                            [style]="itemParent.CSS" style="margin-top: -34px;">
+                            <li data-menu="" *ngFor="let itemChild of itemParent.ListChild;"><a style="font-size: 12px;" routerLink="{{itemChild.Code}}" title="{{itemChild.Name}}">{{itemChild.Name}}</a>
+                            </li>
                         </ul>
-                  </li>
-                  <li *ngIf="ThanhVienService.FormDataLogin && ThanhVienService.FormDataLogin.Name">
-                        <a routerLink="{{domainName}}ThanhVienThongTin" style="font-size: 12px;">
-                              <i class="bi bi-shield-lock"></i>
-                              <span class="menu-text">Đổi mật khẩu</span>
-                        </a>
-                  </li>
-                  <li *ngIf="ThanhVienService.FormDataLogin && ThanhVienService.FormDataLogin.Name">
-                        <a routerLink="/GioiThieu" style="font-size: 12px;">
-                              <i class="bi bi-bank2"></i>
-                              <span class="menu-text">Giới thiệu</span>
-                        </a>
-                  </li>                 
-            </ul>
-      </div>
-</nav>
-<div class="app-container">
-      <div class="app-header d-flex align-items-center">
-            <div class="d-flex">
-                  <button class="pin-sidebar">
-                        <i class="bi bi-list lh-1"></i>
-                  </button>
+                    </li>
+                </ul>
             </div>
-            <div class="app-brand-sm d-lg-none d-flex">
+        </nav>
+    </div>
+</header>
+<aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-fixed hide-on-large-only">
+    <div class="brand-sidebar sidenav-light"></div>
+    <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed hide-on-large-only menu-shadow"
+        id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion">
+        <li class="bold" *ngFor="let itemParent of DanhMucChucNangService.ListParent;"><a style="font-size: 12px;"
+                class="collapsible-header waves-effect waves-cyan " (click)="MenuClick(itemParent)"><i
+                    class="material-icons">dashboard</i><span class="menu-title"
+                    data-i18n="">{{itemParent.Name}}</span></a>
+            <div class="collapsible-body" [style]="itemParent.CSSMobile">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                    <li *ngFor="let itemChild of itemParent.ListChild;"><a style="font-size: 12px;"
+                            class="collapsible-body" routerLink="{{itemChild.Code}}" data-i18n=""><i
+                                class="material-icons">radio_button_unchecked</i><span>{{itemChild.Name}}</span></a>
+                    </li>
+                </ul>
             </div>
-            <div class="search-container d-lg-block d-none mx-3">
-                  <input type="text" class="form-control" placeholder="{{PageDescription}}" />
-            </div>
-            <div class="header-actions">
-                  <div class="d-sm-flex d-none gap-3">
-                  </div>
-                  <div class="dropdown ms-4">
-                  </div>
-                  <div class="d-flex">
-                        <button class="toggle-sidebar">
-                              <i class="bi bi-list lh-1"></i>
-                        </button>
-                  </div>
-            </div>
-      </div>
-      <router-outlet></router-outlet>
+        </li>
+    </ul>
+    <div class="navigation-background"></div><a
+        class="sidenav-trigger btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#"
+        data-target="slide-out"><i class="material-icons">menu</i></a>
+</aside>
+<div id="main">
+    <router-outlet></router-outlet>
+    <br />
+    <br />
 </div>

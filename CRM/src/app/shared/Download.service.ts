@@ -23,7 +23,7 @@ export class DownloadService {
 
     constructor(private httpClient: HttpClient) {
         this.InitializationFormData();
-        this.GetIPAddress();
+        //this.GetIPAddress();
     }
     InitializationFormData() {
         this.BaseParameter = {

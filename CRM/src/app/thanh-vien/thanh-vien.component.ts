@@ -9,7 +9,6 @@ import { DownloadService } from 'src/app/shared/Download.service';
 
 import { ThanhVien } from 'src/app/shared/ThanhVien.model';
 import { ThanhVienService } from 'src/app/shared/ThanhVien.service';
-import { ThanhVienDetailComponent } from '../thanh-vien-detail/thanh-vien-detail.component';
 
 @Component({
   selector: 'app-thanh-vien',
@@ -35,17 +34,6 @@ export class ThanhVienComponent implements OnInit {
   ThanhVienSearch() {
     this.ThanhVienService.SearchAllNotEmpty(this.ThanhVienSort, this.ThanhVienPaginator);
   }
-  ThanhVienAdd(ID: number) {
-    this.ThanhVienService.BaseParameter.ID = ID;
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = environment.DialogConfigWidth;
-    dialogConfig.data = { ID: ID };
-    const dialog = this.Dialog.open(ThanhVienDetailComponent, dialogConfig);
-    dialog.afterClosed().subscribe(() => {
-      this.ThanhVienSearch();
-    });
-  }
+  
 
 }

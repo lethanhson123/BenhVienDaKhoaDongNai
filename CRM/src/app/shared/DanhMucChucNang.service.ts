@@ -8,10 +8,15 @@ import { BaseService } from './Base.service';
 })
 export class DanhMucChucNangService extends BaseService{
     
+    DisplayColumns001: string[] = ['ID', 'ParentID', 'Name', 'Code', 'Display', 'SortOrder', 'Active', 'Save'];
+
     ListChild: DanhMucChucNang[] | undefined;
     ListParent: DanhMucChucNang[] | undefined;
+    List: DanhMucChucNang[] | undefined;
+    ListFilter: DanhMucChucNang[] | undefined;
+    FormData!: DanhMucChucNang;
 
-    DisplayColumns001: string[] = ['ID', 'ParentID', 'Name', 'Code', 'Display', 'SortOrder', 'Active', 'Save'];
+    
     
     constructor(public httpClient: HttpClient) {
         super(httpClient);
@@ -25,6 +30,17 @@ export class DanhMucChucNangService extends BaseService{
         }
         this.BaseParameter.Active = true;
         let url = this.APIURL + this.Controller + '/GetSQLByThanhVienID_ActiveToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByThanhVienID_ActiveToListAsync() {
+        var lastUpdatedMembershipID = localStorage.getItem(environment.ThanhVienID);
+        if (lastUpdatedMembershipID) {
+            this.BaseParameter.ThanhVienID = Number(lastUpdatedMembershipID);
+        }
+        this.BaseParameter.Active = true;
+        let url = this.APIURL + this.Controller + '/GetByThanhVienID_ActiveToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
