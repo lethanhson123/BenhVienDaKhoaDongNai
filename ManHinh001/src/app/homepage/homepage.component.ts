@@ -22,13 +22,16 @@ import { interval } from 'rxjs';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  
+
   videoSrc: string = environment.InitializationString;
   ManHinhTapTinDinhKemIndex: number = environment.InitializationNumber;
   ManHinhTapTinDinhKemInterval: number = environment.InitializationNumber;
   ManHinhTapTinDinhKemIntervalIndex: number = environment.InitializationNumber;
 
   ManHinhThongBaoIndex: number = environment.InitializationNumber;
+
+  FontSize: number = 13;
+
 
   IsBHYT: boolean = true;
 
@@ -46,7 +49,7 @@ export class HomepageComponent implements OnInit {
     this.GetGoiSoChiTietDangKy();
     this.ManHinhTapTinDinhKemSearch();
 
-    this.StartTimerInterval();    
+    this.StartTimerInterval();
     this.StartTimer600000();
 
     interval(environment.Interval).subscribe((x) => {
@@ -79,7 +82,7 @@ export class HomepageComponent implements OnInit {
     );
   }
 
-  
+
 
   GetGoiSoChiTietDangKy() {
     this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code01;
@@ -139,6 +142,7 @@ export class HomepageComponent implements OnInit {
 
   StartTimerInterval() {
     setInterval(() => {
+      this.FontSize = this.FontSize + 1;
       this.GetGoiSoChiTietDangKy();
     }, environment.Interval)
   }

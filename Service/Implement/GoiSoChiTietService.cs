@@ -760,6 +760,7 @@ namespace Service.Implement
                                 GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
                                 GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
                                 GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
                                 GoiSoChiTiet.NgayTiepNhan = Now;
                                 result.Add(GoiSoChiTiet);
                             }
