@@ -1,0 +1,217 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Tham số
+                        <span *ngIf="GoiSoThamSoService.List">({{GoiSoThamSoService.List.length-1}} items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/GoiSo" title="Gọi số">Gọi số</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/GoiSoThamSo" title="Tham số">Tham số</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l11">
+                    <input [(ngModel)]="GoiSoThamSoService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="GoiSoThamSoSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="GoiSoThamSoSearch()"><i
+                            class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #GoiSoThamSoSort="matSort"
+                        [dataSource]="GoiSoThamSoService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="GoiSoThamSoPaginator">
+                                    {{GoiSoThamSoPaginator.pageSize *
+                                    GoiSoThamSoPaginator.pageIndex + i + 1}}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.ID}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Tiêu đề" name="Name{{element.ID}}"
+                                    [(ngModel)]="element.Name">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="BuocNhay">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Bước nhảy
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="BuocNhay{{element.ID}}"
+                                    [(ngModel)]="element.BuocNhay" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="KichThuocChu001">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích thước Quầy (vh)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="KichThuocChu001{{element.ID}}"
+                                    [(ngModel)]="element.KichThuocChu001" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="KichThuocChu002">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích thước hiển thị (vh)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="KichThuocChu002{{element.ID}}"
+                                    [(ngModel)]="element.KichThuocChu002" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="KichThuocChu003">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề BHXH (vh)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="KichThuocChu003{{element.ID}}"
+                                    [(ngModel)]="element.KichThuocChu003" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="KichThuocChu004">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề Không BHXH (vh)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="KichThuocChu004{{element.ID}}"
+                                    [(ngModel)]="element.KichThuocChu004" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="KichThuocChu005">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TVC (vw)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="KichThuocChu005{{element.ID}}"
+                                    [(ngModel)]="element.KichThuocChu005" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="SortOrder">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Sắp xếp
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="SortOrder{{element.ID}}"
+                                    [(ngModel)]="element.SortOrder" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Active">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích hoạt
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" name="Active{{element.ID}}"
+                                        [(ngModel)]="element.Active">
+                                    <span></span>
+                                </label>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="GoiSoThamSoSave(element)" style="color:#2196f3;"><i
+                                        class="material-icons">save</i></a>
+                                <a *ngIf="element.ID>0" (click)="GoiSoThamSoDelete(element)" style="color: red;"><i
+                                        class="material-icons">delete_forever</i></a>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="GoiSoThamSoService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: GoiSoThamSoService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #GoiSoThamSoPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+
+                    <table *ngIf="NotificationService.IsMobile" mat-table matSort #GoiSoThamSoSort="matSort"
+                        [dataSource]="GoiSoThamSoService.DataSource" class="table table-striped m-0">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Danh sách
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div class="row gx-4">
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Tiêu đề</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Tiêu đề"
+                                            name="Name{{element.ID}}" [(ngModel)]="element.Name">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Mã quản lý</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Mã quản lý"
+                                            name="Code{{element.ID}}" [(ngModel)]="element.Code">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Ghi chú</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Ghi chú"
+                                            name="Note{{element.ID}}" [(ngModel)]="element.Note">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Sắp xếp</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="SortOrder{{element.ID}}" [(ngModel)]="element.SortOrder"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>
+                                            <input type="checkbox" name="Active{{element.ID}}"
+                                                [(ngModel)]="element.Active">
+                                            <span>Kích hoạt</span>
+                                        </label>
+                                    </div>
+                                    <div class="col s6 m6 l6">
+                                        <a (click)="GoiSoThamSoSave(element)" style="color:#2196f3;"><i
+                                                class="material-icons">save</i></a>
+                                    </div>
+                                    <div class="col s6 m6 l6">
+                                        <a *ngIf="element.ID>0" (click)="GoiSoThamSoDelete(element)"
+                                            style="color: red;"><i class="material-icons">delete_forever</i></a>
+                                    </div>
+
+                                </div>
+                                <br />
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="GoiSoThamSoService.DisplayColumnsMobile">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: GoiSoThamSoService.DisplayColumnsMobile;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="NotificationService.IsMobile" #GoiSoThamSoPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoThamSoService.IsShowLoading"></app-loading>

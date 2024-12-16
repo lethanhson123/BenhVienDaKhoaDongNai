@@ -10,9 +10,11 @@ import { DanhMucQuayDichVuService } from 'src/app/shared/DanhMucQuayDichVu.servi
 import { GoiSoChiTiet } from 'src/app/shared/GoiSoChiTiet.model';
 import { GoiSoChiTietService } from 'src/app/shared/GoiSoChiTiet.service';
 
-
 import { ManHinhTapTinDinhKem } from 'src/app/shared/ManHinhTapTinDinhKem.model';
 import { ManHinhTapTinDinhKemService } from 'src/app/shared/ManHinhTapTinDinhKem.service';
+
+import { GoiSoThamSo } from 'src/app/shared/GoiSoThamSo.model';
+import { GoiSoThamSoService } from 'src/app/shared/GoiSoThamSo.service';
 
 import { interval } from 'rxjs';
 
@@ -29,10 +31,6 @@ export class HomepageComponent implements OnInit {
   ManHinhTapTinDinhKemIntervalIndex: number = environment.InitializationNumber;
 
   ManHinhThongBaoIndex: number = environment.InitializationNumber;
-
-  FontSize: number = 13;
-
-
   IsBHYT: boolean = true;
 
   constructor(
@@ -42,12 +40,14 @@ export class HomepageComponent implements OnInit {
     public GoiSoChiTietService: GoiSoChiTietService,
 
     public ManHinhTapTinDinhKemService: ManHinhTapTinDinhKemService,
+    public GoiSoThamSoService: GoiSoThamSoService,
 
   ) { }
 
   ngOnInit(): void {
     this.GetGoiSoChiTietDangKy();
     this.ManHinhTapTinDinhKemSearch();
+    this.GoiSoThamSoSearch();
 
     this.StartTimerInterval();
     this.StartTimer600000();
@@ -67,6 +67,20 @@ export class HomepageComponent implements OnInit {
         }
       }
     });
+  }
+
+  GoiSoThamSoSearch() {
+    this.GoiSoThamSoService.BaseParameter.ID = environment.GoiSoThamSoID;
+    this.GoiSoThamSoService.GetByIDAsync().subscribe(
+      res => {
+        this.GoiSoThamSoService.FormData = (res as GoiSoThamSo);
+        console.log(this.GoiSoThamSoService.FormData);
+      },
+      err => {
+      },
+      () => {
+      }
+    );
   }
 
   ManHinhTapTinDinhKemSearch() {
@@ -142,8 +156,8 @@ export class HomepageComponent implements OnInit {
 
   StartTimerInterval() {
     setInterval(() => {
-      this.FontSize = this.FontSize + 1;
       this.GetGoiSoChiTietDangKy();
+      this.GoiSoThamSoSearch();
     }, environment.Interval)
   }
   StartTimer600000() {

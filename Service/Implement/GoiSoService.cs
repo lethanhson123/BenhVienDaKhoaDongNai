@@ -15,6 +15,8 @@ namespace Service.Implement
 
         private readonly IGoiSoChiTietPhongKhamService _GoiSoChiTietPhongKhamService;
 
+        private readonly IGoiSoThamSoRepository _GoiSoThamSoRepository;
+
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public GoiSoService(IGoiSoRepository GoiSoRepository
 
@@ -25,6 +27,8 @@ namespace Service.Implement
             , IGoiSoChiTietService GoiSoChiTietService
 
             , IGoiSoChiTietPhongKhamService GoiSoChiTietPhongKhamService
+
+            , IGoiSoThamSoRepository GoiSoThamSoRepository
 
             , IWebHostEnvironment WebHostEnvironment
 
@@ -39,6 +43,8 @@ namespace Service.Implement
             _GoiSoChiTietService = GoiSoChiTietService;
 
             _GoiSoChiTietPhongKhamService = GoiSoChiTietPhongKhamService;
+
+            _GoiSoThamSoRepository = GoiSoThamSoRepository;
 
             _WebHostEnvironment = WebHostEnvironment;
         }
@@ -380,6 +386,11 @@ namespace Service.Implement
         {
             GoiSo result = new GoiSo();
             DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucDichVuID);
+            GoiSoThamSo GoiSoThamSo = await _GoiSoThamSoRepository.GetByIDAsync(GlobalHelper.GoiSoThamSoID);
+            if (GoiSoThamSo.ID == GlobalHelper.InitializationNumber)
+            {
+                GoiSoThamSo.BuocNhay = GlobalHelper.CapSoBuocNhay;
+            }
             try
             {
                 DateTime Now = GlobalHelper.InitializationDateTime;
@@ -406,7 +417,7 @@ namespace Service.Implement
                     }
                     if (result.SoHienTai < result.TongCong)
                     {
-                        result.SoHienTai = result.SoHienTai + GlobalHelper.CapSoBuocNhay;
+                        result.SoHienTai = result.SoHienTai + GoiSoThamSo.BuocNhay;
                         if (result.SoHienTai > result.TongCong)
                         {
                             result.SoHienTai = result.TongCong;
@@ -423,7 +434,7 @@ namespace Service.Implement
             {
                 result = new GoiSo();
             }
-            for (int i = SoHienTai + 1; i <= SoHienTai + GlobalHelper.CapSoBuocNhay; i++)
+            for (int i = SoHienTai + 1; i <= SoHienTai + GoiSoThamSo.BuocNhay; i++)
             {
                 if (i > 0)
                 {

@@ -16,11 +16,12 @@ import { LoadingComponent } from './loading/loading.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
-    HomepageComponent,   
+    HomepageComponent,
 
   ],
   imports: [

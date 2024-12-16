@@ -149,6 +149,14 @@
                 return builder.Build().GetSection("AppSettings").GetSection("MatKhauMacDinh").Value;
             }
         }
+        public static long GoiSoThamSoID
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("GoiSoThamSoID").Value);
+            }
+        }
         public static int CapSoBuocNhay
         {
             get

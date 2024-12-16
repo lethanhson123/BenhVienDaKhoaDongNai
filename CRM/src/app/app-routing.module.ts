@@ -24,6 +24,7 @@ import { GoiSoComponent } from './goi-so/goi-so.component';
 import { GoiSoInfoComponent } from './goi-so-info/goi-so-info.component';
 import { ManHinhThongBaoComponent } from './man-hinh-thong-bao/man-hinh-thong-bao.component';
 import { ManHinhTapTinDinhKemComponent } from './man-hinh-tap-tin-dinh-kem/man-hinh-tap-tin-dinh-kem.component';
+import { GoiSoThamSoComponent } from './goi-so-tham-so/goi-so-tham-so.component';
 
 
 
@@ -97,6 +98,9 @@ const routes: Routes = [
   {
     path: 'GoiSoInfo/:ID', component: GoiSoInfoComponent,
   }, 
+  {
+    path: 'GoiSoThamSo', component: GoiSoThamSoComponent,
+  },
 
   {
     path: 'ManHinhTapTinDinhKem', component: ManHinhTapTinDinhKemComponent,

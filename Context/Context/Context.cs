@@ -60,6 +60,7 @@ namespace Data.Context
         public virtual DbSet<Data.Model.GoiSoChiTiet> GoiSoChiTiet { get; set; }
         public virtual DbSet<Data.Model.GoiSoChiTietICD> GoiSoChiTietICD { get; set; }
         public virtual DbSet<Data.Model.GoiSoChiTietPhongKham> GoiSoChiTietPhongKham { get; set; }
+        public virtual DbSet<Data.Model.GoiSoThamSo> GoiSoThamSo { get; set; }
 
         public virtual DbSet<Data.Model.ManHinhTapTinDinhKem> ManHinhTapTinDinhKem { get; set; }
         public virtual DbSet<Data.Model.ManHinhThongBao> ManHinhThongBao { get; set; }

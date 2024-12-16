@@ -79,6 +79,7 @@
             services.AddTransient<IGoiSoChiTietService, GoiSoChiTietService>();
             services.AddTransient<IGoiSoChiTietICDService, GoiSoChiTietICDService>();
             services.AddTransient<IGoiSoChiTietPhongKhamService, GoiSoChiTietPhongKhamService>();
+            services.AddTransient<IGoiSoThamSoService, GoiSoThamSoService>();
 
             services.AddTransient<IManHinhTapTinDinhKemService, ManHinhTapTinDinhKemService>();
             services.AddTransient<IManHinhThongBaoService, ManHinhThongBaoService>();
@@ -142,6 +143,7 @@
             services.AddTransient<IGoiSoChiTietRepository, GoiSoChiTietRepository>();
             services.AddTransient<IGoiSoChiTietICDRepository, GoiSoChiTietICDRepository>();
             services.AddTransient<IGoiSoChiTietPhongKhamRepository, GoiSoChiTietPhongKhamRepository>();
+            services.AddTransient<IGoiSoThamSoRepository, GoiSoThamSoRepository>();
 
             services.AddTransient<IManHinhTapTinDinhKemRepository, ManHinhTapTinDinhKemRepository>();
             services.AddTransient<IManHinhThongBaoRepository, ManHinhThongBaoRepository>();
