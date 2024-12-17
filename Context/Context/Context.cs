@@ -64,6 +64,8 @@ namespace Data.Context
 
         public virtual DbSet<Data.Model.ManHinhTapTinDinhKem> ManHinhTapTinDinhKem { get; set; }
         public virtual DbSet<Data.Model.ManHinhThongBao> ManHinhThongBao { get; set; }
+
+        public virtual DbSet<Data.Model.TaiLieu> TaiLieu { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

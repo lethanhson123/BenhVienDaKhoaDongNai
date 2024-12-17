@@ -40,6 +40,8 @@ import { GoiSoChiTietComponent } from './goi-so-chi-tiet/goi-so-chi-tiet.compone
 import { ManHinhThongBaoComponent } from './man-hinh-thong-bao/man-hinh-thong-bao.component';
 import { ManHinhTapTinDinhKemComponent } from './man-hinh-tap-tin-dinh-kem/man-hinh-tap-tin-dinh-kem.component';
 import { GoiSoThamSoComponent } from './goi-so-tham-so/goi-so-tham-so.component';
+import { TaiLieuComponent } from './tai-lieu/tai-lieu.component';
+import { Dashboard001Component } from './dashboard001/dashboard001.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { GoiSoThamSoComponent } from './goi-so-tham-so/goi-so-tham-so.component'
     ManHinhThongBaoComponent,
     ManHinhTapTinDinhKemComponent,
     GoiSoThamSoComponent,
+    TaiLieuComponent,
+    Dashboard001Component,
 
   ],
   imports: [

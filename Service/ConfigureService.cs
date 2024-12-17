@@ -84,6 +84,8 @@
             services.AddTransient<IManHinhTapTinDinhKemService, ManHinhTapTinDinhKemService>();
             services.AddTransient<IManHinhThongBaoService, ManHinhThongBaoService>();
 
+            services.AddTransient<ITaiLieuService, TaiLieuService>();
+
             services.AddTransient<IReportService, ReportService>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
@@ -147,6 +149,8 @@
 
             services.AddTransient<IManHinhTapTinDinhKemRepository, ManHinhTapTinDinhKemRepository>();
             services.AddTransient<IManHinhThongBaoRepository, ManHinhThongBaoRepository>();
+
+            services.AddTransient<ITaiLieuRepository, TaiLieuRepository>();
 
             services.AddTransient<IReportRepository, ReportRepository>();
 

@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 import { NotificationService } from 'src/app/shared/Notification.service';
 import { DownloadService } from 'src/app/shared/Download.service';
 
-
+import { DanhMucTinhThanh } from 'src/app/shared/DanhMucTinhThanh.model';
+import { DanhMucTinhThanhService } from 'src/app/shared/DanhMucTinhThanh.service';
 import { DanhMucQuanHuyen } from 'src/app/shared/DanhMucQuanHuyen.model';
 import { DanhMucQuanHuyenService } from 'src/app/shared/DanhMucQuanHuyen.service';
 
@@ -25,22 +26,25 @@ export class DanhMucQuanHuyenComponent implements OnInit {
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
+    public DanhMucTinhThanhService: DanhMucTinhThanhService,
     public DanhMucQuanHuyenService: DanhMucQuanHuyenService,
   ) { }
 
   ngOnInit(): void { 
-    //this.DanhMucQuanHuyenSearch();
+    this.DanhMucTinhThanhSearch();
   }
-
+  DanhMucTinhThanhSearch() {
+    this.DanhMucTinhThanhService.ComponentGetAllToListAsync(this.DanhMucQuanHuyenService);
+  }
   DanhMucQuanHuyenSearch() {
-    this.DanhMucQuanHuyenService.SearchAll(this.DanhMucQuanHuyenSort, this.DanhMucQuanHuyenPaginator);   
+    this.DanhMucQuanHuyenService.SearchByParentID(this.DanhMucQuanHuyenSort, this.DanhMucQuanHuyenPaginator, this.DanhMucQuanHuyenService);   
   }
   DanhMucQuanHuyenSave(element: DanhMucQuanHuyen) {
     this.DanhMucQuanHuyenService.FormData = element;
-    this.NotificationService.warn(this.DanhMucQuanHuyenService.ComponentSaveAll(this.DanhMucQuanHuyenSort, this.DanhMucQuanHuyenPaginator));
+    this.NotificationService.warn(this.DanhMucQuanHuyenService.ComponentSaveByParentID(this.DanhMucQuanHuyenSort, this.DanhMucQuanHuyenPaginator, this.DanhMucQuanHuyenService));
   }
   DanhMucQuanHuyenDelete(element: DanhMucQuanHuyen) {
     this.DanhMucQuanHuyenService.BaseParameter.ID = element.ID;
-    this.NotificationService.warn(this.DanhMucQuanHuyenService.ComponentDeleteAll(this.DanhMucQuanHuyenSort, this.DanhMucQuanHuyenPaginator));
+    this.NotificationService.warn(this.DanhMucQuanHuyenService.ComponentDeleteByParentID(this.DanhMucQuanHuyenSort, this.DanhMucQuanHuyenPaginator, this.DanhMucQuanHuyenService));
   }  
 }

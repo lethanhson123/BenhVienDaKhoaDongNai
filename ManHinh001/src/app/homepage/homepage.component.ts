@@ -10,6 +10,8 @@ import { DanhMucQuayDichVuService } from 'src/app/shared/DanhMucQuayDichVu.servi
 import { GoiSoChiTiet } from 'src/app/shared/GoiSoChiTiet.model';
 import { GoiSoChiTietService } from 'src/app/shared/GoiSoChiTiet.service';
 
+import { ManHinhThongBao } from 'src/app/shared/ManHinhThongBao.model';
+import { ManHinhThongBaoService } from 'src/app/shared/ManHinhThongBao.service';
 import { ManHinhTapTinDinhKem } from 'src/app/shared/ManHinhTapTinDinhKem.model';
 import { ManHinhTapTinDinhKemService } from 'src/app/shared/ManHinhTapTinDinhKem.service';
 
@@ -39,6 +41,7 @@ export class HomepageComponent implements OnInit {
     public DanhMucQuayDichVuService: DanhMucQuayDichVuService,
     public GoiSoChiTietService: GoiSoChiTietService,
 
+    public ManHinhThongBaoService: ManHinhThongBaoService,
     public ManHinhTapTinDinhKemService: ManHinhTapTinDinhKemService,
     public GoiSoThamSoService: GoiSoThamSoService,
 
@@ -46,6 +49,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetGoiSoChiTietDangKy();
+    this.ManHinhThongBaoSearch();
     this.ManHinhTapTinDinhKemSearch();
     this.GoiSoThamSoSearch();
 
@@ -64,7 +68,18 @@ export class HomepageComponent implements OnInit {
           this.ManHinhTapTinDinhKemService.FormData = this.ManHinhTapTinDinhKemService.List[this.ManHinhTapTinDinhKemIndex];
           this.videoSrc = this.ManHinhTapTinDinhKemService.FormData.FileName;
           this.ManHinhTapTinDinhKemIndex = this.ManHinhTapTinDinhKemIndex + 1;
+          this.ManHinhTapTinDinhKemIntervalIndex = environment.InitializationNumber;
         }
+      }
+    });
+
+    interval(60000).subscribe((x) => {
+      if (this.ManHinhThongBaoIndex >= this.ManHinhThongBaoService.List.length) {
+        this.ManHinhThongBaoIndex = environment.InitializationNumber;
+      }
+      if (this.ManHinhThongBaoIndex < this.ManHinhThongBaoService.List.length) {
+        this.ManHinhThongBaoService.FormData = this.ManHinhThongBaoService.List[this.ManHinhThongBaoIndex];
+        this.ManHinhThongBaoIndex = this.ManHinhThongBaoIndex + 1;
       }
     });
   }
@@ -74,7 +89,6 @@ export class HomepageComponent implements OnInit {
     this.GoiSoThamSoService.GetByIDAsync().subscribe(
       res => {
         this.GoiSoThamSoService.FormData = (res as GoiSoThamSo);
-        console.log(this.GoiSoThamSoService.FormData);
       },
       err => {
       },
@@ -96,7 +110,26 @@ export class HomepageComponent implements OnInit {
     );
   }
 
-
+  ManHinhThongBaoSearch() {
+    this.ManHinhThongBaoService.BaseParameter.Active = true;
+    this.ManHinhThongBaoService.GetByActiveToListAsync().subscribe(
+      res => {
+        this.ManHinhThongBaoService.List = (res as ManHinhThongBao[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        if (this.ManHinhThongBaoService.List) {
+          if (this.ManHinhThongBaoService.List.length > 0) {
+            if (this.ManHinhThongBaoService.FormData.ID == environment.InitializationNumber) {
+              this.ManHinhThongBaoService.FormData = this.ManHinhThongBaoService.List[this.ManHinhThongBaoIndex];
+              this.ManHinhThongBaoIndex = this.ManHinhThongBaoIndex + 1;
+            }
+          }
+        }
+      },
+      err => {
+      },
+      () => {
+      }
+    );
+  }
 
   GetGoiSoChiTietDangKy() {
     this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code01;
@@ -162,6 +195,7 @@ export class HomepageComponent implements OnInit {
   }
   StartTimer600000() {
     setInterval(() => {
+      this.ManHinhThongBaoSearch();
       this.ManHinhTapTinDinhKemSearch();
     }, 600000)
   }

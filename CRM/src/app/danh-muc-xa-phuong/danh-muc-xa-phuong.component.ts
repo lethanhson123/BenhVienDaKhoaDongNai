@@ -8,6 +8,10 @@ import { NotificationService } from 'src/app/shared/Notification.service';
 import { DownloadService } from 'src/app/shared/Download.service';
 
 
+import { DanhMucTinhThanh } from 'src/app/shared/DanhMucTinhThanh.model';
+import { DanhMucTinhThanhService } from 'src/app/shared/DanhMucTinhThanh.service';
+import { DanhMucQuanHuyen } from 'src/app/shared/DanhMucQuanHuyen.model';
+import { DanhMucQuanHuyenService } from 'src/app/shared/DanhMucQuanHuyen.service';
 import { DanhMucXaPhuong } from 'src/app/shared/DanhMucXaPhuong.model';
 import { DanhMucXaPhuongService } from 'src/app/shared/DanhMucXaPhuong.service';
 
@@ -25,22 +29,30 @@ export class DanhMucXaPhuongComponent implements OnInit {
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
+    public DanhMucTinhThanhService: DanhMucTinhThanhService,
+    public DanhMucQuanHuyenService: DanhMucQuanHuyenService,
     public DanhMucXaPhuongService: DanhMucXaPhuongService,
   ) { }
 
   ngOnInit(): void { 
-    //this.DanhMucXaPhuongSearch();
+    this.DanhMucTinhThanhSearch();
+    this.DanhMucQuanHuyenSearch();
   }
-
+  DanhMucTinhThanhSearch() {
+    this.DanhMucTinhThanhService.ComponentGetAllToListAsync(this.DanhMucQuanHuyenService);
+  }
+  DanhMucQuanHuyenSearch() {
+    this.DanhMucQuanHuyenService.ComponentGetByParentIDToListAsync(this.DanhMucQuanHuyenService);
+  }
   DanhMucXaPhuongSearch() {
-    this.DanhMucXaPhuongService.SearchAll(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator);   
+    this.DanhMucXaPhuongService.SearchByParentID(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator, this.DanhMucXaPhuongService);   
   }
   DanhMucXaPhuongSave(element: DanhMucXaPhuong) {
     this.DanhMucXaPhuongService.FormData = element;
-    this.NotificationService.warn(this.DanhMucXaPhuongService.ComponentSaveAll(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator));
+    this.NotificationService.warn(this.DanhMucXaPhuongService.ComponentSaveByParentID(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator, this.DanhMucXaPhuongService));
   }
   DanhMucXaPhuongDelete(element: DanhMucXaPhuong) {
     this.DanhMucXaPhuongService.BaseParameter.ID = element.ID;
-    this.NotificationService.warn(this.DanhMucXaPhuongService.ComponentDeleteAll(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator));
+    this.NotificationService.warn(this.DanhMucXaPhuongService.ComponentDeleteByParentID(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator, this.DanhMucXaPhuongService));
   }  
 }

@@ -33,6 +33,7 @@ export class BaseService {
         public httpClient: HttpClient
     ) {
         this.FormData = {
+            ID: environment.InitializationNumber,
         };
         this.BaseParameter = {
             SearchString: environment.InitializationString,
@@ -43,7 +44,7 @@ export class BaseService {
             ListID: [],
             DanhMucQuayDichVuID: environment.InitializationNumber,
             DanhMucDichVuID: environment.InitializationNumber,
-            Number: environment.Number,
+            Number: environment.Number,            
         };
         this.List = [];
         this.ListFilter = [];
