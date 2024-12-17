@@ -109,6 +109,13 @@
         }
         #endregion
         #region AppSettings 
+        public static string APICapSoSite
+        {
+            get
+            {                
+                return "http://10.84.3.124:901";
+            }
+        }
         public static string EAN13CountryCode
         {
             get

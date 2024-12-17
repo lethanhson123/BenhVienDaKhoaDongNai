@@ -64,4 +64,12 @@ export class HomepageComponent implements OnInit {
     );   
     document.getElementById("Code").focus();
   }
+  GoiSoChiTietCodeChange() {        
+    let CodeArray = this.GoiSoService.FormData.Code.split('|');            
+    if (CodeArray) {
+      if (CodeArray.length > 0) {        
+        this.GoiSoService.FormData.Code = CodeArray[0];    
+      }
+    }    
+  }
 }

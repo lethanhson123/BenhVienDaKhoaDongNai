@@ -95,6 +95,7 @@
             }
             return result;
         }
+        
         [HttpPost]
         [Route("GetByActiveToListAsync")]
         public virtual async Task<List<T>> GetByActiveToListAsync()
@@ -104,6 +105,36 @@
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
                 result = await _BaseService.GetByActiveToListAsync(baseParameter.Active.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpGet]
+        [Route("GetByActive001ToListAsync")]
+        public virtual async Task<List<T>> GetByActive001ToListAsync(bool Active)
+        {
+            List<T> result = new List<T>();
+            try
+            {                
+                result = await _BaseService.GetByActiveToListAsync(Active);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpGet]
+        [Route("GetByParentIDAndActive001ToListAsync")]
+        public virtual async Task<List<T>> GetByParentIDAndActive001ToListAsync(long ParentID, bool Active)
+        {
+            List<T> result = new List<T>();
+            try
+            {                
+                result = await _BaseService.GetByParentIDAndActiveToListAsync(ParentID, Active);
             }
             catch (Exception ex)
             {

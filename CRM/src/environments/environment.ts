@@ -45,7 +45,7 @@ export const environment = {
   UserNameExists: "Tài khoản đã tồn tại.",
   UserNameRequired: "UserName là bắt buộc.",
   ToChucExists: "Tổ chức đã tồn tại.",
-  PageTitle: "Bệnh viện đa khoa Đồng Nai",
+  PageTitle: "Bệnh viện Đa khoa Đồng Nai",
   PageTitleShort: "Đa khoa Đồng Nai",
   PageDescription: "Hệ sinh thái số BỆNH VIỆN ĐA KHOA ĐỒNG NAI | Chương trình chuyển đổi số quốc gia",
 

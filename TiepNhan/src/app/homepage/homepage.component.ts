@@ -47,7 +47,7 @@ export class HomepageComponent implements OnInit {
     URL = environment.TiepNhanURL + URL + "/" + this.ActiveRouter.snapshot.params.DanhMucDichVuCode + "/" + this.ActiveRouter.snapshot.params.DanhMucQuayDichVuCode;
     var Width = window.innerWidth;
     if (Width > 300) {
-      this.NotificationService.OpenWindowByURLBottomRight200(URL);
+      this.NotificationService.OpenWindowByURLBottomRight(URL);
       window.close();
     }
     else {     

@@ -98,6 +98,20 @@ namespace Service.Implement
                     model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
                 }
             }
+            if (string.IsNullOrEmpty(model.CCCD))
+            {
+                if (!string.IsNullOrEmpty(model.Code))
+                {
+                    model.CCCD = model.Code;
+                }
+            }
+            if (string.IsNullOrEmpty(model.DienThoai))
+            {
+                if (!string.IsNullOrEmpty(model.Code))
+                {
+                    model.DienThoai = model.Code;
+                }
+            }
             if (model.DanhMucDichVuID == null)
             {
                 model.DanhMucDichVuID = GlobalHelper.DanhMucDichVuID;

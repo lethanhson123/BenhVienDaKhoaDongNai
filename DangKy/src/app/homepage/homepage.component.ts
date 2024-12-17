@@ -15,7 +15,7 @@ import { GoiSoService } from 'src/app/shared/GoiSo.service';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  
+
   constructor(
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
@@ -49,11 +49,11 @@ export class HomepageComponent implements OnInit {
   SaveByDanhMucDichVuIDAsync(DanhMucDichVuID: number) {
     this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.BaseParameter.DanhMucDichVuID = DanhMucDichVuID;
-    this.GoiSoService.BaseParameter.Code = this.GoiSoService.FormData.Code;   
+    this.GoiSoService.BaseParameter.Code = this.GoiSoService.FormData.Code;
     this.GoiSoService.SaveByDanhMucDichVuID_CodeAsync().subscribe(
       res => {
-        this.GoiSoService.FormData = res as GoiSo;      
-        this.GoiSoService.FormData.Code = environment.InitializationString;        
+        this.GoiSoService.FormData = res as GoiSo;
+        this.GoiSoService.FormData.Code = environment.InitializationString;
         this.NotificationService.OpenWindowByURLMin(this.GoiSoService.FormData.FileName);
       },
       err => {
@@ -61,7 +61,15 @@ export class HomepageComponent implements OnInit {
       () => {
         this.GoiSoService.IsShowLoading = false;
       }
-    );   
+    );    
     document.getElementById("Code").focus();
+  }
+  GoiSoChiTietCodeChange() {        
+    let CodeArray = this.GoiSoService.FormData.Code.split('|');            
+    if (CodeArray) {
+      if (CodeArray.length > 0) {        
+        this.GoiSoService.FormData.Code = CodeArray[0];    
+      }
+    }    
   }
 }
