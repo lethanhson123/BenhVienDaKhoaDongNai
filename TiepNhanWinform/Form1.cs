@@ -63,7 +63,8 @@
                 if (GoiSo != null)
                 {
                     txtSoHienTai.Text = GoiSo.SoHienTai.ToString();
-                    btnSoTiepTheo.Text = btnSoTiepTheo.Text + " [" + GoiSo.SoHienTai + "/" + GoiSo.TongCong + "]";
+                    string TieuDe = "SỐ TIẾP THEO (F1)";
+                    btnSoTiepTheo.Text = TieuDe + " [" + GoiSo.SoHienTai + "/" + GoiSo.TongCong + "]";
                 }
             }
             catch (Exception ex)
