@@ -96,18 +96,23 @@ namespace API.Controllers.v1
                     {
                         string fileExtension = Path.GetExtension(file.FileName);
                         string fileName = "DanhMucTinhThanhToaDo3_" + GlobalHelper.InitializationDateTimeCode0001 + fileExtension;
-                        var physicalPath = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Upload, fileName);
-                        using (var stream = new FileStream(physicalPath, FileMode.Create))
+                        var folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Upload, fileName);
+                        bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                        if (!isFolderExists)
+                        {
+                            System.IO.Directory.CreateDirectory(folderPath);
+                        }
+                        using (var stream = new FileStream(folderPath, FileMode.Create))
                         {
                             file.CopyTo(stream);
                         }
                         try
                         {
-                            FileInfo fileLocation = new FileInfo(physicalPath);
+                            FileInfo fileLocation = new FileInfo(folderPath);
                             string contentHTML = GlobalHelper.InitializationString;
                             if (fileLocation.Length > 0)
                             {
-                                using (FileStream fs = new FileStream(physicalPath, FileMode.Open))
+                                using (FileStream fs = new FileStream(folderPath, FileMode.Open))
                                 {
                                     using (StreamReader r = new StreamReader(fs, Encoding.UTF8))
                                     {

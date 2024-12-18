@@ -62,12 +62,12 @@
             // btnSoTiepTheo
             // 
             btnSoTiepTheo.BackColor = Color.Cyan;
-            btnSoTiepTheo.Font = new Font("Segoe UI", 14F);
+            btnSoTiepTheo.Font = new Font("Segoe UI", 12F);
             btnSoTiepTheo.Location = new Point(12, 99);
             btnSoTiepTheo.Name = "btnSoTiepTheo";
-            btnSoTiepTheo.Size = new Size(260, 60);
+            btnSoTiepTheo.Size = new Size(260, 40);
             btnSoTiepTheo.TabIndex = 3;
-            btnSoTiepTheo.Text = "SỐ TIẾP THEO";
+            btnSoTiepTheo.Text = "SỐ TIẾP THEO (F1)";
             btnSoTiepTheo.UseVisualStyleBackColor = false;
             btnSoTiepTheo.Click += btnSoTiepTheo_Click;
             // 
@@ -75,14 +75,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(284, 161);
+            ClientSize = new Size(284, 141);
             Controls.Add(btnSoTiepTheo);
             Controls.Add(txtSoHienTai);
             Controls.Add(cbbDanhMucQuayDichVu);
             Controls.Add(cbbDanhMucDichVu);
             Name = "Form1";
             Text = "BVDKDN-Tiếp nhận";
-            Load += Form1_Load;
+            Load += Form1_Load;            
             ResumeLayout(false);
             PerformLayout();
         }

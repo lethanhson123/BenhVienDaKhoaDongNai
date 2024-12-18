@@ -1,30 +1,5 @@
 ﻿namespace TiepNhanWinform
 {
-    public class DanhMucDichVu
-    {
-        public long ID { get; set; }
-        public string? Name { get; set; }
-        public DanhMucDichVu()
-        {
-        }
-    }
-    public class DanhMucQuayDichVu
-    {
-        public long ID { get; set; }       
-        public string? Name { get; set; }       
-        public DanhMucQuayDichVu()
-        {
-        }
-    }
-    public class GoiSo
-    {
-        public int? SoHienTai { get; set; }
-        public int? TongCong { get; set; }
-        public GoiSo()
-        {
-        }
-    }
-
     public partial class Form1 : Form
     {
         public Form1()
@@ -70,6 +45,10 @@
 
         private void btnSoTiepTheo_Click(object sender, EventArgs e)
         {
+            SoTiepTheo();
+        }      
+        private void SoTiepTheo()
+        {
             try
             {
                 string APICapSoSite = "http://10.84.3.124:901";
@@ -84,12 +63,23 @@
                 if (GoiSo != null)
                 {
                     txtSoHienTai.Text = GoiSo.SoHienTai.ToString();
-                    btnSoTiepTheo.Text = "SỐ TIẾP THEO [" + GoiSo.SoHienTai + "/" + GoiSo.TongCong + "]";
+                    btnSoTiepTheo.Text = btnSoTiepTheo.Text + " [" + GoiSo.SoHienTai + "/" + GoiSo.TongCong + "]";
                 }
             }
             catch (Exception ex)
             {
                 string msg = ex.Message;
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {            
+            switch (keyData)
+            {
+                case Keys.F1:
+                    SoTiepTheo();
+                    return true;                
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
             }
         }
     }
