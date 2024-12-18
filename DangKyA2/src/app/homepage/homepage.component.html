@@ -20,12 +20,12 @@
                 style="text-align: right; font-size: 6vh; height: 10vh;" autofocus (change)="GoiSoChiTietCodeChange()">
             <div style="color: #000000; font-size: 3vh; text-transform: uppercase;">Bệnh nhân có Bảo hiểm y tế</div>
             <a *ngFor="let item of DanhMucDichVuService.List001;" (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
-                class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mr-1 mb-2"
-                style="width: 100%; font-size: 6vh; height: 10vh; padding-top: 10px;">{{item.Display}}</a>
+                class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mb-1"
+                style="width: 100%; font-size: 6vh; height: 10vh; align-content: center;">{{item.Display}}</a>
             <div style="color: #000000; font-size: 3vh; text-transform: uppercase;">Bệnh nhân không Bảo hiểm y tế</div>
             <a *ngFor="let item of DanhMucDichVuService.List002;" (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
-                class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mr-1 mb-2"
-                style="width: 100%; font-size: 6vh; height: 10vh; padding-top: 10px;">{{item.Display}}</a>
+                class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mb-1"
+                style="width: 100%; font-size: 6vh; height: 10vh; align-content: center;">{{item.Display}}</a>
         </div>
     </div>
 </div>

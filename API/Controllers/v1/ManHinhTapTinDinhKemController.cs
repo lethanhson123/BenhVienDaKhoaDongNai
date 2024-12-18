@@ -14,8 +14,7 @@ namespace API.Controllers.v1
             _ManHinhTapTinDinhKemService = ManHinhTapTinDinhKemService;
             _WebHostEnvironment = WebHostEnvironment;
         }
-        [HttpPost]
-        [RequestSizeLimit(512 * 1024 * 1024)]
+        [HttpPost]        
         [Route("SaveAndUploadFileAsync")]
         public override async Task<ManHinhTapTinDinhKem> SaveAndUploadFileAsync()
         {

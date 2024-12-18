@@ -124,6 +124,8 @@
                                         class="material-icons">save</i></a>
                                 <a *ngIf="element.ID>0" (click)="DanhMucTinhThanhDelete(element)" style="color: red;"><i
                                         class="material-icons">delete_forever</i></a>
+                                <a *ngIf="element.ID>0" (click)="DanhMucTinhThanhToaDoAdd(element)" title="Tọa độ"
+                                    style="color: green;"><i class="material-icons">cloud_download</i></a>
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="DanhMucTinhThanhService.DisplayColumns002">

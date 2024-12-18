@@ -26,6 +26,9 @@ import * as maplibregl from 'maplibre-gl';
 })
 export class Dashboard001Component {
 
+  IsPopup: boolean = false;
+  PopupContent: string = environment.InitializationString;
+
   constructor(
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
@@ -37,7 +40,20 @@ export class Dashboard001Component {
   ) { }
 
   ngOnInit(): void {
-
+    this.DanhMucTinhThanhSearch();
+    this.DanhMucQuanHuyenSearch();
+  }
+  DanhMucTinhThanhSearch() {
+    this.DanhMucTinhThanhService.ComponentGetAllToListAsync(this.DanhMucTinhThanhToaDoService);
+  }
+  DanhMucQuanHuyenSearch() {
+    this.DanhMucQuanHuyenService.ComponentGetAllToListAsync(this.DanhMucTinhThanhToaDoService);
+  }
+  PopupOpen() {
+    this.IsPopup = true;
+  }
+  PopupClose() {
+    this.IsPopup = false;
   }
 
   map: maplibregl.Map | undefined;
@@ -46,114 +62,116 @@ export class Dashboard001Component {
   private mapContainer!: ElementRef<HTMLElement>;
 
   ngAfterViewInit() {
-    this.MapLoad(1);
+    this.MapLoad(1, environment.DanhMucTinhThanhID, environment.InitializationNumber);
   }
 
   ngOnDestroy() {
     this.map?.remove();
   }
-  MapLoad(ID: number) {
+  MapLoadChange(ID: number) {
+    this.MapLoad(ID, this.DanhMucTinhThanhToaDoService.BaseParameter.ParentID, this.DanhMucTinhThanhToaDoService.BaseParameter.Number);
+  }
+  MapLoadChange01(ParentID: number, Action: number) {
+    this.MapLoad(this.DanhMucTinhThanhToaDoService.BaseParameter.ID, ParentID, Action);
+  }
+  MapLoad(ID: number, ParentID: number, Action: number) {
     this.DanhMucTinhThanhToaDoService.IsShowLoading = true;
-    this.DanhMucTinhThanhService.BaseParameter.ID = environment.DanhMucTinhThanhID;
-    this.DanhMucTinhThanhService.GetByIDAsync().subscribe(
+    this.DanhMucTinhThanhToaDoService.BaseParameter.ID = ID;
+    this.DanhMucTinhThanhToaDoService.BaseParameter.ParentID = ParentID;
+    this.DanhMucTinhThanhToaDoService.BaseParameter.Number = Action;
+    this.DanhMucTinhThanhToaDoService.BaseParameter.Active = true;
+    this.DanhMucTinhThanhToaDoService.GetByParentID_Active_NumberToListAsync().subscribe(
       res => {
-        this.DanhMucTinhThanhService.FormData = (res as DanhMucTinhThanh);
-        let longitude = environment.Longitude;
-        let latitude = environment.Latitude;
-        longitude = this.DownloadService.GetKinhDo(Number(this.DanhMucTinhThanhService.FormData.KinhDo));
-        latitude = this.DownloadService.GetViDo(Number(this.DanhMucTinhThanhService.FormData.ViDo));
+        this.DanhMucTinhThanhToaDoService.List = (res as DanhMucTinhThanhToaDo[]);
 
-        this.MapInitialization(ID, longitude, latitude);
-
-        var el = document.createElement('div');
-        el.style.backgroundImage = "url(image/logo42.png)";
-        el.style.width = '42px';
-        el.style.height = '42px';
-        let marker = new maplibregl.Marker({ element: el })
-          .setLngLat([longitude, latitude])
-          .addTo(this.map);
-
-        this.DanhMucTinhThanhToaDoService.IsShowLoading = true;
-        this.DanhMucTinhThanhToaDoService.BaseParameter.ParentID = this.DanhMucTinhThanhService.FormData.ID;
-        this.DanhMucTinhThanhToaDoService.BaseParameter.Active = true;
-        this.DanhMucTinhThanhToaDoService.GetSQLDanhMucQuanHuyenByParentID_ActiveToListAsync().subscribe(
-          res => {
-            this.DanhMucTinhThanhToaDoService.List = (res as DanhMucTinhThanhToaDo[]);
-
-
-            let ListParent = [];
-
-            ListParent = [...new Map(this.DanhMucTinhThanhToaDoService.List.map(item =>
-              [item["ParentID"], item])).values()];
-
-            for (let i = 0; i < ListParent.length; i++) {
-              let ListDanhMucTinhThanhToaDo = this.DanhMucTinhThanhToaDoService.List.filter((item: any) => item.ParentID == ListParent[i].ParentID);
-              if (ListDanhMucTinhThanhToaDo) {
-                if (ListDanhMucTinhThanhToaDo.length > 0) {
-                  let listToaDoPolygon = [];
-                  let listPolygon = [];
-                  let Name = environment.InitializationString;
-                  for (let j = 0; j < ListDanhMucTinhThanhToaDo.length; j++) {
-                    let longitudeSub1 = this.DownloadService.GetKinhDo(Number(ListDanhMucTinhThanhToaDo[j].KinhDo));
-                    let latitudeSub1 = this.DownloadService.GetViDo(Number(ListDanhMucTinhThanhToaDo[j].ViDo));
-                    listToaDoPolygon.push([longitudeSub1, latitudeSub1]);
-
-                    Name = ListDanhMucTinhThanhToaDo[j].Name;
-                  }
-                  listPolygon.push(listToaDoPolygon);
-                  let layerID = 'Layer_' + ListParent[i].ID;
-                  let sourceID = 'Source_' + ListParent[i].ID;
-                  this.map.on('load', () => {
-                    this.map.addSource(sourceID, {
-                      'type': 'geojson',
-                      'data': {
-                        'type': 'Feature',
-                        'properties': {
-                          "name": Name,
-                          "address": Name,
-                        },
-                        'geometry': {
-                          'type': 'Polygon',
-                          'coordinates': listPolygon,
-                        }
-                      }
-                    });
-
-                    let length = ListDanhMucTinhThanhToaDo.length + ListParent[i].ParentID + ListParent[i].ID;
-                    let color = this.DownloadService.GetRandomColor(length);
-
-                    this.map.addLayer({
-                      'id': layerID + 'Line',
-                      'type': 'line',
-                      'source': sourceID,
-                      'paint': {
-                        'line-dasharray': [3, 1],
-                        "line-color": color,
-                        "line-width": environment.LineWidth,
-                      }
-                    });
-
-                    this.map.addLayer({
-                      'id': layerID,
-                      'type': 'fill',
-                      'source': sourceID,
-                      'paint': {
-                        'fill-color': color,
-                        'fill-opacity': 0.2,
-                      }
-                    });
-                  });
-                }
-              }
+        let Longitude = environment.Longitude;
+        let Latitude = environment.Latitude;
+        if (Action % 2 == 0) {
+          let ListDanhMucTinhThanh = this.DanhMucTinhThanhService.List.filter(item => item.ID == ParentID);
+          if (ListDanhMucTinhThanh) {
+            if (ListDanhMucTinhThanh.length > 0) {
+              let DanhMucTinhThanh = ListDanhMucTinhThanh[0];
+              Longitude = this.DownloadService.GetKinhDo(Number(DanhMucTinhThanh.KinhDo));
+              Latitude = this.DownloadService.GetViDo(Number(DanhMucTinhThanh.ViDo));
             }
-
-          },
-          err => {
-          },
-          () => {
-            this.DanhMucTinhThanhToaDoService.IsShowLoading = false;
           }
-        );
+        }
+        else {
+          let ListDanhMucQuanHuyen = this.DanhMucQuanHuyenService.List.filter(item => item.ID == ParentID);
+          if (ListDanhMucQuanHuyen) {
+            if (ListDanhMucQuanHuyen.length > 0) {
+              let DanhMucQuanHuyen = ListDanhMucQuanHuyen[0];
+              Longitude = this.DownloadService.GetKinhDo(Number(DanhMucQuanHuyen.KinhDo));
+              Latitude = this.DownloadService.GetViDo(Number(DanhMucQuanHuyen.ViDo));
+            }
+          }
+        }
+        this.MapInitialization(ID, Longitude, Latitude, Action);
+        let ListParent = [];
+
+        ListParent = [...new Map(this.DanhMucTinhThanhToaDoService.List.map(item =>
+          [item["ParentID"], item])).values()];
+
+        for (let i = 0; i < ListParent.length; i++) {
+          let ListDanhMucTinhThanhToaDo = this.DanhMucTinhThanhToaDoService.List.filter((item: any) => item.ParentID == ListParent[i].ParentID);
+          if (ListDanhMucTinhThanhToaDo) {
+            if (ListDanhMucTinhThanhToaDo.length > 0) {
+              let listToaDoPolygon = [];
+              let listPolygon = [];
+              let Name = environment.InitializationString;
+              for (let j = 0; j < ListDanhMucTinhThanhToaDo.length; j++) {
+                let longitudeSub1 = this.DownloadService.GetKinhDo(Number(ListDanhMucTinhThanhToaDo[j].KinhDo));
+                let latitudeSub1 = this.DownloadService.GetViDo(Number(ListDanhMucTinhThanhToaDo[j].ViDo));
+                listToaDoPolygon.push([longitudeSub1, latitudeSub1]);
+
+                Name = ListDanhMucTinhThanhToaDo[j].Name;
+              }
+              listPolygon.push(listToaDoPolygon);
+              let layerID = 'Layer_' + ListParent[i].ID;
+              let sourceID = 'Source_' + ListParent[i].ID;
+              this.map.on('load', () => {
+                this.map.addSource(sourceID, {
+                  'type': 'geojson',
+                  'data': {
+                    'type': 'Feature',
+                    'properties': {
+                      "name": Name,
+                      "address": Name,
+                    },
+                    'geometry': {
+                      'type': 'Polygon',
+                      'coordinates': listPolygon,
+                    }
+                  }
+                });
+
+                let length = ListDanhMucTinhThanhToaDo.length + ListParent[i].ParentID + ListParent[i].ID;
+                let color = this.DownloadService.GetRandomColor(length);
+
+                this.map.addLayer({
+                  'id': layerID + 'Line',
+                  'type': 'line',
+                  'source': sourceID,
+                  'paint': {
+                    'line-dasharray': [3, 1],
+                    "line-color": color,
+                    "line-width": environment.LineWidth,
+                  }
+                });
+
+                this.map.addLayer({
+                  'id': layerID,
+                  'type': 'fill',
+                  'source': sourceID,
+                  'paint': {
+                    'fill-color': color,
+                    'fill-opacity': 0.2,
+                  }
+                });
+              });
+            }
+          }
+        }
 
       },
       err => {
@@ -164,14 +182,22 @@ export class Dashboard001Component {
     );
   }
 
-  MapInitialization(ID, longitude, latitude) {
+  MapInitialization(ID, longitude, latitude, Action: number) {
     let IDDate = new Date().toISOString();
+
     let zoom = environment.MapZoom;
 
+    if (Action % 2 == 0) {
+      zoom = environment.MapZoom;
+    }
+    else {
+      zoom = environment.MapZoom + 1;
+    }
     if ((latitude > 90) || (latitude == 0)) {
       latitude = environment.Latitude;
       longitude = environment.Longitude;
     }
+
 
     if (ID == 0) {
       this.map = new maplibregl.Map({
@@ -204,6 +230,15 @@ export class Dashboard001Component {
       })
     );
     this.map.on('load', () => {
+
+      var el = document.createElement('div');
+      el.style.backgroundImage = "url(image/logo42.png)";
+      el.style.width = '42px';
+      el.style.height = '42px';
+      let marker = new maplibregl.Marker({ element: el })
+        .setLngLat([environment.Longitude, environment.Latitude])
+        .addTo(this.map);
+
 
       this.map.addSource("HoangSa" + IDDate, {
         "type": "image",

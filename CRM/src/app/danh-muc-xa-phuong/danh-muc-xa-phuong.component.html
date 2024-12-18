@@ -30,7 +30,8 @@
             <div class="card-content">
                 <div class="col s12 m12 l3">
                     <select class="browser-default form-select" name="DanhMucQuanHuyenService.BaseParameter.ParentID"
-                        [(ngModel)]="DanhMucQuanHuyenService.BaseParameter.ParentID" (change)="DanhMucQuanHuyenSearch()">
+                        [(ngModel)]="DanhMucQuanHuyenService.BaseParameter.ParentID"
+                        (change)="DanhMucQuanHuyenSearch()">
                         <option *ngFor="let item of DanhMucTinhThanhService.ListFilter;" [value]="item.ID">
                             {{item.Name}}</option>
                     </select>
@@ -149,6 +150,8 @@
                                         class="material-icons">save</i></a>
                                 <a *ngIf="element.ID>0" (click)="DanhMucXaPhuongDelete(element)" style="color: red;"><i
                                         class="material-icons">delete_forever</i></a>
+                                <a *ngIf="element.ID>0" (click)="DanhMucTinhThanhToaDoAdd(element)" title="Tọa độ"
+                                    style="color: green;"><i class="material-icons">cloud_download</i></a>
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="DanhMucXaPhuongService.DisplayColumns003">

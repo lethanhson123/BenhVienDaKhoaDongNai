@@ -140,6 +140,14 @@
                 return builder.Build().GetSection("AppSettings").GetSection("Download").Value;
             }
         }
+        public static string Upload
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("Upload").Value;
+            }
+        }
         public static string Token
         {
             get
@@ -172,7 +180,15 @@
                 return int.Parse(builder.Build().GetSection("AppSettings").GetSection("CapSoBuocNhay").Value);
             }
         }
-        public static int DanhMucDichVuID
+        public static long DanhMucTinhThanhID
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucTinhThanhID").Value);
+            }
+        }
+        public static long DanhMucDichVuID
         {
             get
             {
@@ -180,44 +196,44 @@
                 return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucDichVuID").Value);
             }
         }
-        public static int DanhMucBenhVienID
+        public static long DanhMucBenhVienID
         {
             get
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucBenhVienID").Value);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucBenhVienID").Value);
             }
         }
-        public static int DanhMucHinhThucThanhToanID
+        public static long DanhMucHinhThucThanhToanID
         {
             get
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucHinhThucThanhToanID").Value);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucHinhThucThanhToanID").Value);
             }
         }
-        public static int DanhMucBieuMauID
+        public static long DanhMucBieuMauID
         {
             get
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucBieuMauID").Value);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucBieuMauID").Value);
             }
         }
-        public static int DanhMucTinhTrangID
+        public static long DanhMucTinhTrangID
         {
             get
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucTinhTrangID").Value);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucTinhTrangID").Value);
             }
         }
-        public static int DanhMucThanhVienID
+        public static long DanhMucThanhVienID
         {
             get
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucThanhVienID").Value);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("DanhMucThanhVienID").Value);
             }
         }
         public static int TokenThoiGianHieuLuc

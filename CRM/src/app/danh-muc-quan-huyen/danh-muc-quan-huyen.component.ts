@@ -11,6 +11,9 @@ import { DanhMucTinhThanh } from 'src/app/shared/DanhMucTinhThanh.model';
 import { DanhMucTinhThanhService } from 'src/app/shared/DanhMucTinhThanh.service';
 import { DanhMucQuanHuyen } from 'src/app/shared/DanhMucQuanHuyen.model';
 import { DanhMucQuanHuyenService } from 'src/app/shared/DanhMucQuanHuyen.service';
+import { DanhMucTinhThanhToaDo } from 'src/app/shared/DanhMucTinhThanhToaDo.model';
+import { DanhMucTinhThanhToaDoService } from 'src/app/shared/DanhMucTinhThanhToaDo.service';
+import { DanhMucTinhThanhToaDoDetailComponent } from '../danh-muc-tinh-thanh-toa-do-detail/danh-muc-tinh-thanh-toa-do-detail.component';
 
 @Component({
   selector: 'app-danh-muc-quan-huyen',
@@ -23,11 +26,13 @@ export class DanhMucQuanHuyenComponent implements OnInit {
   @ViewChild('DanhMucQuanHuyenPaginator') DanhMucQuanHuyenPaginator: MatPaginator;
 
   constructor(    
+    private Dialog: MatDialog,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
     public DanhMucTinhThanhService: DanhMucTinhThanhService,
     public DanhMucQuanHuyenService: DanhMucQuanHuyenService,
+    public DanhMucTinhThanhToaDoService: DanhMucTinhThanhToaDoService,
   ) { }
 
   ngOnInit(): void { 
@@ -47,4 +52,16 @@ export class DanhMucQuanHuyenComponent implements OnInit {
     this.DanhMucQuanHuyenService.BaseParameter.ID = element.ID;
     this.NotificationService.warn(this.DanhMucQuanHuyenService.ComponentDeleteByParentID(this.DanhMucQuanHuyenSort, this.DanhMucQuanHuyenPaginator, this.DanhMucQuanHuyenService));
   }  
+   DanhMucTinhThanhToaDoAdd(element: DanhMucTinhThanh) {
+      this.DanhMucTinhThanhToaDoService.BaseParameter.ParentID = element.ID;
+      this.DanhMucTinhThanhToaDoService.BaseParameter.Name = element.Name;
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = environment.DialogConfigWidth;
+      dialogConfig.data = { ID: element.ID };
+      const dialog = this.Dialog.open(DanhMucTinhThanhToaDoDetailComponent, dialogConfig);
+      dialog.afterClosed().subscribe(() => {
+      });
+    }
 }

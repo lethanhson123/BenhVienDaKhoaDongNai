@@ -31,12 +31,14 @@ builder.Services.AddRepository();
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Limits.MaxRequestBodySize = 100_000_000;
+    serverOptions.Limits.MaxRequestBodySize = long.MaxValue;
 });
 
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 512 * 1024 * 1024;
+    options.ValueLengthLimit = int.MaxValue;
+    options.MultipartBodyLengthLimit = int.MaxValue;
+    options.MemoryBufferThreshold = int.MaxValue;
 });
 
 builder.Services.AddJWT();

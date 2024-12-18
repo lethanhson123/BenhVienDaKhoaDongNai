@@ -42,6 +42,8 @@ import { ManHinhTapTinDinhKemComponent } from './man-hinh-tap-tin-dinh-kem/man-h
 import { GoiSoThamSoComponent } from './goi-so-tham-so/goi-so-tham-so.component';
 import { TaiLieuComponent } from './tai-lieu/tai-lieu.component';
 import { Dashboard001Component } from './dashboard001/dashboard001.component';
+import { UploadComponent } from './upload/upload.component';
+import { DanhMucTinhThanhToaDoDetailComponent } from './danh-muc-tinh-thanh-toa-do-detail/danh-muc-tinh-thanh-toa-do-detail.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { Dashboard001Component } from './dashboard001/dashboard001.component';
     GoiSoThamSoComponent,
     TaiLieuComponent,
     Dashboard001Component,
+    UploadComponent,
+    DanhMucTinhThanhToaDoDetailComponent,
 
   ],
   imports: [
