@@ -59,23 +59,17 @@ namespace Service.Implement
 
             if (model.DanhMucDichVuID > 0)
             {
-                if (string.IsNullOrEmpty(model.DanhMucDichVuName))
-                {
-                    DanhMucDichVu DanhMucDichVu = _DanhMucDichVuRepository.GetByID(model.DanhMucDichVuID.Value);
-                    model.DanhMucDichVuName = DanhMucDichVu.Name;
-                    model.Note = DanhMucDichVu.Note;
-                }
+                DanhMucDichVu DanhMucDichVu = _DanhMucDichVuRepository.GetByID(model.DanhMucDichVuID.Value);
+                model.DanhMucDichVuName = DanhMucDichVu.Name;
+                model.Note = DanhMucDichVu.Note;
             }
 
             if (model.DanhMucQuayDichVuID > 0)
             {
-                if (string.IsNullOrEmpty(model.DanhMucQuayDichVuName))
-                {
-                    DanhMucQuayDichVu DanhMucQuayDichVu = _DanhMucQuayDichVuRepository.GetByID(model.DanhMucQuayDichVuID.Value);
-                    model.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
-                    model.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
-                    model.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
-                }
+                DanhMucQuayDichVu DanhMucQuayDichVu = _DanhMucQuayDichVuRepository.GetByID(model.DanhMucQuayDichVuID.Value);
+                model.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                model.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                model.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
             }
 
             if (!string.IsNullOrEmpty(model.Code))
@@ -199,7 +193,7 @@ namespace Service.Implement
             }
             if (result > 0)
             {
-                await Sync(model);
+                model = await Sync(model);
             }
             return model;
         }
@@ -256,6 +250,10 @@ namespace Service.Implement
                                     }
                                     GoiSo.TongCong = GoiSo.TongCong + 1;
                                     await SaveAsync(GoiSo);
+                                    if (GoiSo.ID > 0)
+                                    {
+                                        model = GoiSo;
+                                    }
                                 }
                             }
                         }
@@ -524,7 +522,7 @@ namespace Service.Implement
                     }
                     result.Code = Code;
                     result.TongCong = result.TongCong + 1;
-                    await SaveAsync(result);
+                    result = await SaveAsync(result);
                     if (result.ID > 0)
                     {
                         result = await CreateHTML002ByModelAsync(result);
