@@ -420,7 +420,7 @@ namespace Service.Implement
                         {
                             result.SoHienTai = result.TongCong;
                         }
-                        await SaveAsync(result);
+                        await UpdateAsync(result);
                     }
                 }
             }

@@ -51,7 +51,7 @@
         {
             try
             {
-                string APICapSoSite = "http://10.84.3.124:901";
+                string APICapSoSite = "http://localhost:5097";
                 long DanhMucDichVuID = long.Parse(cbbDanhMucDichVu.SelectedValue.ToString());
                 long DanhMucQuayDichVuID = long.Parse(cbbDanhMucQuayDichVu.SelectedValue.ToString());
                 int SoHienTai = int.Parse(txtSoHienTai.Text.Trim());

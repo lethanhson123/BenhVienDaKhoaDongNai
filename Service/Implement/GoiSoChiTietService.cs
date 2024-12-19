@@ -140,7 +140,10 @@ namespace Service.Implement
 
             if (model.NgayCapSoSoThuTu > 0)
             {
-                model.NgayCapSo = GlobalHelper.InitializationDateTime;
+                if (model.NgayCapSo == null)
+                {
+                    model.NgayCapSo = GlobalHelper.InitializationDateTime;
+                }
                 model.NgayCapSoSoThuTuString = model.NgayCapSoSoThuTu.ToString();
                 if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                 {
@@ -186,8 +189,11 @@ namespace Service.Implement
                 }
             }
             if (model.NgayDangKySoThuTu > 0)
-            {
-                model.NgayDangKy = GlobalHelper.InitializationDateTime;
+            {                
+                if (model.NgayDangKy == null)
+                {
+                    model.NgayDangKy = GlobalHelper.InitializationDateTime;
+                }
                 model.NgayDangKySoThuTuString = model.NgayDangKySoThuTu.ToString();
                 if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                 {
@@ -233,8 +239,11 @@ namespace Service.Implement
                 }
             }
             if (model.NgayTiepNhanSoThuTu > 0)
-            {
-                model.NgayTiepNhan = GlobalHelper.InitializationDateTime;
+            {                
+                if (model.NgayTiepNhan == null)
+                {
+                    model.NgayTiepNhan = GlobalHelper.InitializationDateTime;
+                }
                 model.NgayTiepNhanSoThuTuString = model.NgayTiepNhanSoThuTu.ToString();
                 if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                 {
@@ -280,8 +289,11 @@ namespace Service.Implement
                 }
             }
             if (model.NgayThanhToanSoThuTu > 0)
-            {
-                model.NgayThanhToan = GlobalHelper.InitializationDateTime;
+            {                
+                if (model.NgayThanhToan == null)
+                {
+                    model.NgayThanhToan = GlobalHelper.InitializationDateTime;
+                }
                 model.NgayThanhToanSoThuTuString = model.NgayThanhToanSoThuTu.ToString();
                 if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                 {
@@ -327,8 +339,11 @@ namespace Service.Implement
                 }
             }
             if (model.NgayLinhThuocSoThuTu > 0)
-            {
-                model.NgayLinhThuoc = GlobalHelper.InitializationDateTime;
+            {                
+                if (model.NgayLinhThuoc == null)
+                {
+                    model.NgayLinhThuoc = GlobalHelper.InitializationDateTime;
+                }
                 model.NgayLinhThuocSoThuTuString = model.NgayLinhThuocSoThuTu.ToString();
                 if (!string.IsNullOrEmpty(model.DanhMucQuayDichVuDisplay))
                 {
