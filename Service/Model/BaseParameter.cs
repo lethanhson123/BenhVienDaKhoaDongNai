@@ -17,7 +17,8 @@
 		public DateTime? NgayGhiNhan { get; set; }
 		public DateTime? BatDau { get; set; }
 		public DateTime? KetThuc { get; set; }	
-		public long? ThanhVienID { get; set; }       
+		public long? ThanhVienID { get; set; }
+        public long? KhachHangID { get; set; }
         public string? QRCode { get; set; }
         public string? URL { get; set; }
         public string? SoQuyetDinh { get; set; }

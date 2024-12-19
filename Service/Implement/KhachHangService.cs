@@ -41,6 +41,13 @@ namespace Service.Implement
             {
                 model.DanhMucXaPhuongName = _DanhMucTinhThanhRepository.GetByID(model.DanhMucXaPhuongID.Value).Name;
             }
+            if (model.NamSinh == null)
+            {
+                if (model.NgaySinh != null)
+                {
+                    model.NamSinh = model.NgaySinh.Value.Year;
+                }
+            }
         }
         public override async Task<KhachHang> SaveAsync(KhachHang model)
         {

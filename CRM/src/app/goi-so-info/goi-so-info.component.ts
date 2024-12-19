@@ -57,8 +57,7 @@ export class GoiSoInfoComponent implements OnInit {
     this.GoiSoService.SaveAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;
-        this.Router.navigateByUrl(environment.GoiSoInfo + this.GoiSoService.FormData.ID);
-        this.GoiSoSearch();
+        this.Router.navigateByUrl(environment.GoiSoInfo + this.GoiSoService.FormData.ID);        
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {

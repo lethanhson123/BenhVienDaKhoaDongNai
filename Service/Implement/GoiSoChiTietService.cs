@@ -419,7 +419,7 @@ namespace Service.Implement
         {
             if (model.ID > 0)
             {
-                if (!string.IsNullOrEmpty(model.DienThoai))
+                if (!string.IsNullOrEmpty(model.Code))
                 {
                     KhachHang KhachHang = new KhachHang();
                     KhachHang.Code = model.Code;
@@ -802,6 +802,19 @@ namespace Service.Implement
                 {
                     result = await GetGoiSoChiTietTiepNhan04ToListAsync(DanhMucQuayDichVu.ID, Number);
                 }
+            }
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<List<GoiSoChiTiet>> GetByKhachHangIDToListAsync(long KhachHangID)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            if (KhachHangID > 0)
+            {
+                result = await GetByCondition(item => item.KhachHangID == KhachHangID).ToListAsync();
             }
             if (result == null)
             {

@@ -29,3 +29,6 @@ global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.IdentityModel.Tokens;
 global using Microsoft.AspNetCore.Authorization;
 
+global using ZaloDotNetSDK;
+global using Newtonsoft.Json.Linq;
+

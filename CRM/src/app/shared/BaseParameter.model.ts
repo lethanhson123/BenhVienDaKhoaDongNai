@@ -15,6 +15,7 @@ export class BaseParameter extends Base{
     Page?: number;
     PageSize?: number;    
     ThanhVienID?: number;    
+    KhachHangID?: number;    
     DanhMucUngDungID?: number;    
     DanhMucChucNangID?: number;    
     Nam?: number;

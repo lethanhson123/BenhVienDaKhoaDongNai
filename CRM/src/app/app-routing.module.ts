@@ -28,6 +28,8 @@ import { GoiSoThamSoComponent } from './goi-so-tham-so/goi-so-tham-so.component'
 import { TaiLieuComponent } from './tai-lieu/tai-lieu.component';
 import { Dashboard001Component } from './dashboard001/dashboard001.component';
 import { UploadComponent } from './upload/upload.component';
+import { KhachHangComponent } from './khach-hang/khach-hang.component';
+import { KhachHangInfoComponent } from './khach-hang-info/khach-hang-info.component';
 
 
 
@@ -118,6 +120,13 @@ const routes: Routes = [
   {
     path: 'Upload', component: UploadComponent,
   },
+
+  {
+    path: 'KhachHang', component: KhachHangComponent,
+  },   
+  {
+    path: 'KhachHangInfo/:ID', component: KhachHangInfoComponent,
+  }, 
   
   {
     path: 'Dashboard001', component: Dashboard001Component,

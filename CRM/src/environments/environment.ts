@@ -24,6 +24,7 @@ export const environment = {
   DanhMucBieuMauInfo: "DanhMucBieuMauInfo/",
   ThanhVienInfo: "ThanhVienInfo/",
   GoiSoInfo: "GoiSoInfo/",
+  KhachHangInfo: "KhachHangInfo/",
   LineWidth: 3,
   MapZoom: 10,  
   Latitude: 10.9521356, 
