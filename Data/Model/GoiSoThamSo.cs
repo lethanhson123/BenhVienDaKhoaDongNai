@@ -1,8 +1,10 @@
 ﻿namespace Data.Model
 {
     public partial class GoiSoThamSo : BaseModel
-    {      
-        public int? BuocNhay { get; set; }
+    {
+        public int? SoDauTien { get; set; }
+        public int? BuocNhayDangKy { get; set; }
+        public int? BuocNhayTiepNhan { get; set; }
         public int? KichThuocChu001 { get; set; }
         public int? KichThuocChu002 { get; set; }
         public int? KichThuocChu003 { get; set; }

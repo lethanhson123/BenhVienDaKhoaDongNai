@@ -2,7 +2,9 @@
 
 export class GoiSoThamSo extends Base{
 
-    BuocNhay?: number;
+    SoDauTien?: number;
+    BuocNhayDangKy?: number;
+    BuocNhayTiepNhan?: number;
     KichThuocChu001?: number;
     KichThuocChu002?: number;
     KichThuocChu003?: number;

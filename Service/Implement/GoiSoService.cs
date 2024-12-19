@@ -389,7 +389,7 @@ namespace Service.Implement
             GoiSoThamSo GoiSoThamSo = await _GoiSoThamSoRepository.GetByIDAsync(GlobalHelper.GoiSoThamSoID);
             if (GoiSoThamSo.ID == GlobalHelper.InitializationNumber)
             {
-                GoiSoThamSo.BuocNhay = GlobalHelper.CapSoBuocNhay;
+                GoiSoThamSo.BuocNhayTiepNhan = GlobalHelper.CapSoBuocNhay;
             }
             try
             {
@@ -417,7 +417,7 @@ namespace Service.Implement
                     }
                     if (result.SoHienTai < result.TongCong)
                     {
-                        result.SoHienTai = result.SoHienTai + GoiSoThamSo.BuocNhay;
+                        result.SoHienTai = result.SoHienTai + GoiSoThamSo.BuocNhayTiepNhan;
                         if (result.SoHienTai > result.TongCong)
                         {
                             result.SoHienTai = result.TongCong;
@@ -434,7 +434,7 @@ namespace Service.Implement
             {
                 result = new GoiSo();
             }
-            for (int i = SoHienTai + 1; i <= SoHienTai + GoiSoThamSo.BuocNhay; i++)
+            for (int i = SoHienTai + 1; i <= SoHienTai + GoiSoThamSo.BuocNhayTiepNhan; i++)
             {
                 if (i > 0)
                 {

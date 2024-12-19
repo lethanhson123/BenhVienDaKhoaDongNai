@@ -8,8 +8,9 @@ import { BaseService } from './Base.service';
 })
 export class GoiSoThamSoService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'GoiSoThamSoID', 'DanhMucNgonNguName', 'GoiSoThamSoName'];
-    DisplayColumns002: string[] = ['STT', 'ID', 'Name', 'BuocNhay', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'SortOrder', 'Active', 'Save'];
-    DisplayColumns003: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhay', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'Save'];
+    DisplayColumns002: string[] = ['STT', 'ID', 'Name', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'SortOrder', 'Active', 'Save'];
+    DisplayColumns003: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'Save'];
+    DisplayColumns004: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'Save'];
 
     List: GoiSoThamSo[] | undefined;
     ListFilter: GoiSoThamSo[] | undefined;
