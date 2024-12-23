@@ -112,6 +112,13 @@ namespace Service.Implement
                     model.DienThoai = model.Code;
                 }
             }
+            if (string.IsNullOrEmpty(model.BHYT))
+            {
+                if (!string.IsNullOrEmpty(model.Code))
+                {
+                    model.BHYT = model.Code;
+                }
+            }
             if (model.DanhMucDichVuID == null)
             {
                 model.DanhMucDichVuID = GlobalHelper.DanhMucDichVuID;

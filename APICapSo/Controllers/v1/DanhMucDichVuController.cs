@@ -15,14 +15,13 @@
         [HttpGet]
         [AllowAnonymous]
         [Route("ZaloSendMessageAsync")]
-        public virtual async Task<int> ZaloSendMessageAsync(string user_id, string Message)
+        public virtual async Task<int> ZaloSendMessageAsync()
         {
             int result = GlobalHelper.InitializationNumber;
             try
             {
-                string access_token = "VVpCP9z4xcDn_SnkaKViRdRzo6ELMver28haRBrheWypskDXqnEwCrJBv43mUi0T5vssU9b_yNWXaPD_m5Nb95cgmaZZQ9ae0wwvKQnrc2C3h_0lXNUnTH2x-WsKTuXK4PpI0gjiWMODlQ9deMUAQoUEynwzSzfB1fUu3PrwpWynWua8b4EiU027XGkqMgrA9QNJBOKQaNiGqVKzY3ASGIZbkq380laORhghU-XHZ3LKuETNiZsdBY_JnK2l4wD4BUBt4umErcC0oVPdaHc40Id-p6sIHPmKQPZqJebSe4ebiu48btYYQ2oHnm-KSRXs9eh58RXabbuyk-8okqIyCYx-d4JFEzirLO6FD-bJ-4nPjeqrwasiSWgNoH69J99NRul02D4tdrvctD4GuH-BK7Nbw2CmreWHD9zQwMK";
-                ZaloClient client = new ZaloClient(access_token);                
-                JObject jObject = client.sendTextMessageToUserIdV3(user_id, Message);
+                string access_token = "3Fu29uTy8mm0_m8jYNyX0GV_1Y2DOr5pVAil798qIan3j0m_X2jfQ77sBpUU559zQ_8h790sRNP0znTNe79eV2UmI2VDOIz6Ew5i4CzY75T6jteUidKxJ6wMSIsEHGW3GALEI9TuDZXtZtH3_6SKCoUKT4VzSL0L3FGwNlqVMW4A_dXMupO1377RHo6T6IrUOFrQ1xvuVt9BW09JXmDvVc3zEJIu6tGLO94iOhvsIIeob09ArND0FoIjVtV1L1GCIz53Hwq9CWjsWdH6_NOUEJ2qVLZ-K1SOCjPkRw0C1YreqqHsaYWQMLliEok7PcDbNkKpH9OpRYbZrKztiZKsAcF6V76b8JOQIzPJSfSrC21brd9vgW4h2bV5QNJSCHyA6kjhHEqwG3u-mseLnoKETNLBlx8I68TY90e";
+                
 
             }
             catch (Exception ex)

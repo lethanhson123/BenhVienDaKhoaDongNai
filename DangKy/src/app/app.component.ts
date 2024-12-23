@@ -28,7 +28,7 @@ export class AppComponent {
     public NotificationService: NotificationService,
 
 
-  ) {
+  ) {   
   }
   ngOnInit(): void {
 
