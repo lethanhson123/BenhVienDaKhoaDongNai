@@ -520,6 +520,10 @@ namespace Service.Implement
                         result.TongCong = 0;
                         result.SoHienTai = 0;
                     }
+                    if (!string.IsNullOrEmpty(Code))
+                    {
+                        Code = Code.Split('|')[0];
+                    }
                     result.Code = Code;
                     result.TongCong = result.TongCong + 1;
                     result = await SaveAsync(result);

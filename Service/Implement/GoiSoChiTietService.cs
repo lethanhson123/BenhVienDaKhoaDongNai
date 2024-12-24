@@ -196,7 +196,7 @@ namespace Service.Implement
                 }
             }
             if (model.NgayDangKySoThuTu > 0)
-            {                
+            {
                 if (model.NgayDangKy == null)
                 {
                     model.NgayDangKy = GlobalHelper.InitializationDateTime;
@@ -246,7 +246,7 @@ namespace Service.Implement
                 }
             }
             if (model.NgayTiepNhanSoThuTu > 0)
-            {                
+            {
                 if (model.NgayTiepNhan == null)
                 {
                     model.NgayTiepNhan = GlobalHelper.InitializationDateTime;
@@ -296,7 +296,7 @@ namespace Service.Implement
                 }
             }
             if (model.NgayThanhToanSoThuTu > 0)
-            {                
+            {
                 if (model.NgayThanhToan == null)
                 {
                     model.NgayThanhToan = GlobalHelper.InitializationDateTime;
@@ -346,7 +346,7 @@ namespace Service.Implement
                 }
             }
             if (model.NgayLinhThuocSoThuTu > 0)
-            {                
+            {
                 if (model.NgayLinhThuoc == null)
                 {
                     model.NgayLinhThuoc = GlobalHelper.InitializationDateTime;
@@ -420,6 +420,7 @@ namespace Service.Implement
                 if (!string.IsNullOrEmpty(model.Code))
                 {
                     KhachHang KhachHang = new KhachHang();
+                    KhachHang.Active = true;
                     KhachHang.Code = model.Code;
                     KhachHang.HoTen = model.HoTen;
                     KhachHang.DienThoai = model.DienThoai;

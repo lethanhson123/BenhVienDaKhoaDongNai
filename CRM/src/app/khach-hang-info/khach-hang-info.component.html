@@ -45,7 +45,7 @@
                         <label>
                             <input type="checkbox" class="form-check-input" name="GioiTinh"
                                 [(ngModel)]="KhachHangService.FormData.GioiTinh" />
-                            <span>Giới tính</span>
+                            <span>Nam/Nữ</span>
                         </label>
                     </div>
                 </div>
@@ -57,19 +57,19 @@
                                 name="KhachHangService.FormData.Code" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>Họ tên</label>
-                            <input placeholder="Họ tên" [(ngModel)]="KhachHangService.FormData.HoTen"
-                                name="KhachHangService.FormData.HoTen" type="text" class="form-control">
+                            <label>Mã bảo hiểm y tế</label>
+                            <input placeholder="Mã bảo hiểm y tế" [(ngModel)]="KhachHangService.FormData.BHYT"
+                                name="KhachHangService.FormData.BHYT" type="text" class="form-control">
                         </div>
                         <div>
                             <label>CCCD</label>
                             <input placeholder="CCCD" [(ngModel)]="KhachHangService.FormData.CCCD"
                                 name="KhachHangService.FormData.CCCD" type="text" class="form-control">
-                        </div>
+                        </div>                        
                         <div>
-                            <label>Mã bảo hiểm y tế</label>
-                            <input placeholder="Mã bảo hiểm y tế" [(ngModel)]="KhachHangService.FormData.BHYT"
-                                name="KhachHangService.FormData.BHYT" type="text" class="form-control">
+                            <label>Điện thoại</label>
+                            <input placeholder="Điện thoại" [(ngModel)]="KhachHangService.FormData.DienThoai"
+                                name="KhachHangService.FormData.CCCD" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col s12 m12 l4">
@@ -86,10 +86,10 @@
                                 name="KhachHangService.FormData.NamSinh" type="number" class="form-control" style="text-align: right;">
                         </div>
                         <div>
-                            <label>Điện thoại</label>
-                            <input placeholder="Điện thoại" [(ngModel)]="KhachHangService.FormData.DienThoai"
-                                name="KhachHangService.FormData.CCCD" type="text" class="form-control">
-                        </div>
+                            <label>Họ tên</label>
+                            <input placeholder="Họ tên" [(ngModel)]="KhachHangService.FormData.HoTen"
+                                name="KhachHangService.FormData.HoTen" type="text" class="form-control">
+                        </div>                       
                         <div>
                             <label>Email</label>
                             <input placeholder="Email" [(ngModel)]="KhachHangService.FormData.Email"

@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using ZXing.QrCode.Internal;
 
 namespace Service.Implement
 {
@@ -39,7 +40,7 @@ namespace Service.Implement
             }
             if (model.DanhMucXaPhuongID > 0)
             {
-                model.DanhMucXaPhuongName = _DanhMucTinhThanhRepository.GetByID(model.DanhMucXaPhuongID.Value).Name;
+                model.DanhMucXaPhuongName = _DanhMucXaPhuongRepository.GetByID(model.DanhMucXaPhuongID.Value).Name;
             }
             if (model.NamSinh == null)
             {
@@ -119,6 +120,11 @@ namespace Service.Implement
             KhachHang result = new KhachHang();
             if (!string.IsNullOrEmpty(SearchString))
             {
+                SearchString = SearchString.Trim();
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    SearchString = SearchString.Split('|')[0];
+                }
                 result = await GetByCondition(item => item.Code == SearchString).FirstOrDefaultAsync();
                 if (result == null)
                 {
@@ -144,6 +150,11 @@ namespace Service.Implement
             KhachHang result = new KhachHang();
             if (!string.IsNullOrEmpty(SearchString))
             {
+                SearchString = SearchString.Trim();
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    SearchString = SearchString.Split('|')[0];
+                }
                 result = await GetByCondition(item => item.Code == SearchString).FirstOrDefaultAsync();
             }
             if (result == null)
@@ -157,6 +168,11 @@ namespace Service.Implement
             KhachHang result = new KhachHang();
             if (!string.IsNullOrEmpty(SearchString))
             {
+                SearchString = SearchString.Trim();
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    SearchString = SearchString.Split('|')[0];
+                }
                 result = await GetByCondition(item => item.BHYT == SearchString).FirstOrDefaultAsync();
             }
             if (result == null)
@@ -170,6 +186,11 @@ namespace Service.Implement
             KhachHang result = new KhachHang();
             if (!string.IsNullOrEmpty(SearchString))
             {
+                SearchString = SearchString.Trim();
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    SearchString = SearchString.Split('|')[0];
+                }
                 result = await GetByCondition(item => item.CCCD == SearchString).FirstOrDefaultAsync();
             }
             if (result == null)
@@ -183,6 +204,11 @@ namespace Service.Implement
             KhachHang result = new KhachHang();
             if (!string.IsNullOrEmpty(SearchString))
             {
+                SearchString = SearchString.Trim();
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    SearchString = SearchString.Split('|')[0];
+                }
                 result = await GetByCondition(item => item.DienThoai == SearchString).FirstOrDefaultAsync();
             }
             if (result == null)
