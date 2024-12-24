@@ -419,18 +419,21 @@ namespace Service.Implement
             {
                 if (!string.IsNullOrEmpty(model.Code))
                 {
-                    KhachHang KhachHang = new KhachHang();
-                    KhachHang.Active = true;
-                    KhachHang.Code = model.Code;
-                    KhachHang.HoTen = model.HoTen;
-                    KhachHang.DienThoai = model.DienThoai;
-                    KhachHang.CCCD = model.CCCD;
-                    KhachHang.BHYT = model.BHYT;
-                    KhachHang.GioiTinh = model.GioiTinh;
-                    KhachHang.DanhMucTinhThanhID = model.DanhMucTinhThanhID;
-                    KhachHang.DanhMucQuanHuyenID = model.DanhMucQuanHuyenID;
-                    KhachHang.DanhMucXaPhuongID = model.DanhMucXaPhuongID;
-                    await _KhachHangService.SaveAsync(KhachHang);
+                    KhachHang KhachHang = await _KhachHangService.GetBySearchStringToAsync(model.Code);
+                    if (KhachHang.ID == 0)
+                    {
+                        KhachHang.Active = true;
+                        KhachHang.Code = model.Code;
+                        KhachHang.HoTen = model.HoTen;
+                        KhachHang.DienThoai = model.DienThoai;
+                        KhachHang.CCCD = model.CCCD;
+                        KhachHang.BHYT = model.BHYT;
+                        KhachHang.GioiTinh = model.GioiTinh;
+                        KhachHang.DanhMucTinhThanhID = model.DanhMucTinhThanhID;
+                        KhachHang.DanhMucQuanHuyenID = model.DanhMucQuanHuyenID;
+                        KhachHang.DanhMucXaPhuongID = model.DanhMucXaPhuongID;
+                        KhachHang = await _KhachHangService.SaveAsync(KhachHang);
+                    }
                     if (KhachHang.ID > 0)
                     {
                         model.KhachHangID = KhachHang.ID;

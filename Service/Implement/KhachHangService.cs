@@ -52,56 +52,7 @@ namespace Service.Implement
         }
         public override async Task<KhachHang> SaveAsync(KhachHang model)
         {
-            int result = GlobalHelper.InitializationNumber;
-            KhachHang KhachHang = new KhachHang();
-            if (KhachHang.ID == 0)
-            {
-                if (!string.IsNullOrEmpty(model.Code))
-                {
-                    KhachHang = await GetByCondition(item => item.Code == model.Code).FirstOrDefaultAsync();
-                    if (KhachHang == null)
-                    {
-                        KhachHang = new KhachHang();
-                    }
-                }
-            }
-            if (KhachHang.ID == 0)
-            {
-                if (!string.IsNullOrEmpty(model.BHYT))
-                {
-                    KhachHang = await GetByCondition(item => item.BHYT == model.BHYT).FirstOrDefaultAsync();
-                    if (KhachHang == null)
-                    {
-                        KhachHang = new KhachHang();
-                    }
-                }
-            }
-            if (KhachHang.ID == 0)
-            {
-                if (!string.IsNullOrEmpty(model.CCCD))
-                {
-                    KhachHang = await GetByCondition(item => item.CCCD == model.CCCD).FirstOrDefaultAsync();
-                    if (KhachHang == null)
-                    {
-                        KhachHang = new KhachHang();
-                    }
-                }
-            }
-            if (KhachHang.ID == 0)
-            {
-                if (!string.IsNullOrEmpty(model.DienThoai))
-                {
-                    KhachHang = await GetByCondition(item => item.DienThoai == model.DienThoai).FirstOrDefaultAsync();
-                    if (KhachHang == null)
-                    {
-                        KhachHang = new KhachHang();
-                    }
-                }
-            }
-            if (KhachHang.ID > 0)
-            {
-                model.ID = KhachHang.ID;
-            }
+            int result = GlobalHelper.InitializationNumber;            
             if (model.ID > 0)
             {
                 result = await UpdateAsync(model);

@@ -70,13 +70,7 @@ export class FullComponent implements OnInit {
     document.getElementById("Code").focus();
   }
   GoiSoChiTietCodeChange() {
-    this.GoiSoService.IsShowLoading = true;
-    let CodeArray = this.GoiSoService.FormData.Code.split('|');
-    if (CodeArray) {
-      if (CodeArray.length > 0) {
-        this.GoiSoService.FormData.Code = CodeArray[0];
-      }
-    }
+    this.GoiSoService.IsShowLoading = true;        
     this.GoiSoService.FormData.Display = environment.InitializationString;
     this.KhachHangService.BaseParameter.SearchString = this.GoiSoService.FormData.Code;
     this.KhachHangService.GetBySearchStringToAsync().subscribe(
