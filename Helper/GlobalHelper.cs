@@ -124,23 +124,7 @@
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                 return builder.Build().GetSection("AppSettings").GetSection("ZaloTokenNote").Value;
             }
-        }
-        public static string ZaloOAAccessToken
-        {
-            get
-            {
-                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                return builder.Build().GetSection("AppSettings").GetSection("ZaloOAAccessToken").Value;
-            }
-        }
-        public static string ZaloOARefreshToken
-        {
-            get
-            {
-                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                return builder.Build().GetSection("AppSettings").GetSection("ZaloOARefreshToken").Value;
-            }
-        }
+        }        
         public static string ZaloZNSAPIURL
         {
             get

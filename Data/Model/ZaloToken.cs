@@ -7,6 +7,7 @@
         public string? OARefreshToken { get; set; }
         public ZaloToken()
         {
+            NgayGhiNhan = GlobalHelper.InitializationDateTime;
         }
     }
 }

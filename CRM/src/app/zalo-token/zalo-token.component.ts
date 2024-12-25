@@ -21,14 +21,14 @@ export class ZaloTokenComponent implements OnInit {
   @ViewChild('ZaloTokenSort') ZaloTokenSort: MatSort;
   @ViewChild('ZaloTokenPaginator') ZaloTokenPaginator: MatPaginator;
 
-  constructor(    
+  constructor(
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
     public ZaloTokenService: ZaloTokenService,
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.ZaloTokenSearch();
   }
 
@@ -37,14 +37,53 @@ export class ZaloTokenComponent implements OnInit {
   }
 
   ZaloTokenSearch() {
-    this.ZaloTokenService.SearchAll(this.ZaloTokenSort, this.ZaloTokenPaginator);
+    this.ZaloTokenService.IsShowLoading = true;
+    this.ZaloTokenService.GetAllAndEmptyToListAsync().subscribe(
+      res => {
+        this.ZaloTokenService.List = (res as any[]).sort((a, b) => (a.NgayGhiNhan < b.NgayGhiNhan ? 1 : -1));
+        this.ZaloTokenService.ListFilter = this.ZaloTokenService.List.filter(item => item.ID > 0);
+        this.ZaloTokenService.DataSource = new MatTableDataSource(this.ZaloTokenService.List);
+        this.ZaloTokenService.DataSource.sort = this.ZaloTokenSort;
+        this.ZaloTokenService.DataSource.paginator = this.ZaloTokenPaginator;
+      },
+      err => {
+      },
+      () => {
+        this.ZaloTokenService.IsShowLoading = false;
+      }
+    );
   }
   ZaloTokenSave(element: ZaloToken) {
+    this.ZaloTokenService.IsShowLoading = true;
     this.ZaloTokenService.FormData = element;
-    this.NotificationService.warn(this.ZaloTokenService.ComponentSaveAll(this.ZaloTokenSort, this.ZaloTokenPaginator));
+    this.ZaloTokenService.SaveAsync().subscribe(
+      res => {
+        this.ZaloTokenService.FormData = (res as ZaloToken);
+        this.ZaloTokenSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.ZaloTokenService.IsShowLoading = false;
+      }
+    );
   }
   ZaloTokenDelete(element: ZaloToken) {
+    this.ZaloTokenService.IsShowLoading = true;
     this.ZaloTokenService.BaseParameter.ID = element.ID;
-    this.NotificationService.warn(this.ZaloTokenService.ComponentDeleteAll(this.ZaloTokenSort, this.ZaloTokenPaginator));
-  }  
+    this.ZaloTokenService.RemoveAsync().subscribe(
+      res => {        
+        this.ZaloTokenSearch();
+        this.NotificationService.warn(environment.DeleteSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.DeleteNotSuccess);
+      },
+      () => {
+        this.ZaloTokenService.IsShowLoading = false;
+      }
+    );
+  }
 }

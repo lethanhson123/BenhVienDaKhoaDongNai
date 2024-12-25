@@ -1,4 +1,7 @@
 ﻿
+using Microsoft.IdentityModel.Tokens;
+using Service.Interface;
+
 namespace Service.Implement
 {
     public class GoiSoService : BaseService<GoiSo, IGoiSoRepository>
@@ -16,6 +19,8 @@ namespace Service.Implement
 
         private readonly IGoiSoThamSoRepository _GoiSoThamSoRepository;
 
+        private readonly IZaloTokenService _ZaloTokenService;
+
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public GoiSoService(IGoiSoRepository GoiSoRepository
 
@@ -28,6 +33,8 @@ namespace Service.Implement
             , IGoiSoChiTietPhongKhamService GoiSoChiTietPhongKhamService
 
             , IGoiSoThamSoRepository GoiSoThamSoRepository
+
+            , IZaloTokenService ZaloTokenService
 
             , IWebHostEnvironment WebHostEnvironment
 
@@ -45,11 +52,15 @@ namespace Service.Implement
 
             _GoiSoThamSoRepository = GoiSoThamSoRepository;
 
+            _ZaloTokenService = ZaloTokenService;
+
             _WebHostEnvironment = WebHostEnvironment;
         }
         public override void Initialization(GoiSo model)
         {
             BaseInitialization(model);
+
+            model.NgayGhiNhan = GlobalHelper.InitializationDateTime;
 
             if (model.DanhMucDichVuID == null)
             {
@@ -572,7 +583,7 @@ namespace Service.Implement
                     if (result.ID > 0)
                     {
                         await ZaloZNSSendAsync(result);
-                        result = await CreateHTML002ByModelAsync(result);                                                
+                        result = await CreateHTML002ByModelAsync(result);
                     }
                 }
             }
@@ -740,20 +751,15 @@ namespace Service.Implement
                         contentHTML = r.ReadToEnd();
                     }
                 }
-                DateTime NgayIn = GlobalHelper.InitializationDateTime;
-                DateTime BatDau = NgayIn.AddHours(2);
-                DateTime KetThuc = BatDau.AddMinutes(30);
+                DateTime NgayIn = GlobalHelper.InitializationDateTime;                
 
-                contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));
-                contentHTML = contentHTML.Replace("[BatDau]", BatDau.ToString("HH:mm"));
-                contentHTML = contentHTML.Replace("[KetThuc]", KetThuc.ToString("HH:mm"));
+                contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));                
 
                 contentHTML = contentHTML.Replace("[APISite]", GlobalHelper.APISite);
 
                 contentHTML = contentHTML.Replace("[DanhMucDichVuName]", result.DanhMucDichVuName);
                 contentHTML = contentHTML.Replace("[Note]", result.Note);
-                contentHTML = contentHTML.Replace("[TongCongString]", result.TongCongString);
-                contentHTML = contentHTML.Replace("[SoHienTaiString]", result.SoHienTaiString);
+                contentHTML = contentHTML.Replace("[TongCongString]", result.TongCongString);                
 
                 if (!string.IsNullOrEmpty(result.Code))
                 {
@@ -799,22 +805,29 @@ namespace Service.Implement
             {
                 if (!string.IsNullOrEmpty(result.Display))
                 {
-
-
-                    ZaloZNSDataRequest ZaloZNSDataRequest = new ZaloZNSDataRequest();
-                    ZaloZNSDataRequest.phone = "84" + result.Display.Substring(1);
-                    ZaloZNSDataRequest.template_id = GlobalHelper.ZaloTemplateID;
-                    ZaloZNSDataRequest.tracking_id = GlobalHelper.InitializationGUICode;
-                    template_data template_data = new template_data();
-                    template_data.TongCongString = result.TongCongString;
-                    template_data.DanhMucDichVuName = result.DanhMucDichVuName;
-                    template_data.Note = result.Note;
-                    template_data.Code = result.Code;
-                    template_data.NgayGhiNhan = result.NgayGhiNhan.Value.ToString("HH:mm:ss dd/MM/yyyy");
-                    ZaloZNSDataRequest.template_data = template_data;
-                    await ZaloHelper.ZNSSendAsync(GlobalHelper.ZaloOAAccessToken, ZaloZNSDataRequest);
+                    ZaloToken ZaloToken = await _ZaloTokenService.GetLatestAsync();
+                    if (!string.IsNullOrEmpty(ZaloToken.OAAccessToken))
+                    {
+                        ZaloZNSDataRequest ZaloZNSDataRequest = new ZaloZNSDataRequest();
+                        if (result.Display.Length == 10)
+                        {
+                            ZaloZNSDataRequest.phone = "84" + result.Display.Substring(1);
+                        }
+                        if (!string.IsNullOrEmpty(ZaloZNSDataRequest.phone))
+                        {
+                            ZaloZNSDataRequest.template_id = GlobalHelper.ZaloTemplateID;
+                            ZaloZNSDataRequest.tracking_id = GlobalHelper.InitializationGUICode;
+                            template_data template_data = new template_data();
+                            template_data.TongCongString = result.TongCongString;
+                            template_data.DanhMucDichVuName = result.DanhMucDichVuName;
+                            template_data.Note = result.Note;
+                            template_data.Code = result.Code;
+                            template_data.NgayGhiNhan = result.NgayGhiNhan.Value.ToString("HH:mm:ss dd/MM/yyyy");
+                            ZaloZNSDataRequest.template_data = template_data;
+                            await ZaloHelper.ZNSSendAsync(ZaloToken.OAAccessToken, ZaloZNSDataRequest);
+                        }
+                    }
                 }
-
             }
             catch (Exception ex)
             {

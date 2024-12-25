@@ -1,4 +1,9 @@
 ﻿
+using Azure.Core;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http.Headers;
+using ZXing.QrCode.Internal;
+
 namespace Service.Implement
 {
     public class ZaloTokenService : BaseService<ZaloToken, IZaloTokenRepository>
@@ -16,11 +21,7 @@ namespace Service.Implement
             if (string.IsNullOrEmpty(model.Note))
             {
                 model.Note = GlobalHelper.ZaloTokenNote;
-            }
-            if (string.IsNullOrEmpty(model.OARefreshToken))
-            {
-                model.OARefreshToken = GlobalHelper.ZaloOARefreshToken;
-            }
+            }           
             if (string.IsNullOrEmpty(model.Display))
             {
                 model.Display = GlobalHelper.ZaloRefreshTokenAPIURL;
@@ -48,6 +49,7 @@ namespace Service.Implement
                         HttpClient.BaseAddress = new Uri(url);
 
                         HttpClient.DefaultRequestHeaders.Accept.Clear();
+                        HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                         HttpClient.DefaultRequestHeaders.Add("secret_key", secret_key);
 
                         var data = new List<KeyValuePair<string, string>>();
@@ -55,15 +57,29 @@ namespace Service.Implement
                         data.Add(new KeyValuePair<string, string>("app_id", app_id));
                         data.Add(new KeyValuePair<string, string>("grant_type", "refresh_token"));
 
-                        HttpResponseMessage httpResponseMessage = HttpClient.PostAsync(url, new FormUrlEncodedContent(data)).GetAwaiter().GetResult();
-                    }
 
+                        var task = HttpClient.PostAsync(url, new FormUrlEncodedContent(data));
+                        var ContentResult = await task.Result.Content.ReadAsStringAsync();
+                        ZaloRefreshTokenDataRespond ZaloRefreshTokenDataRespond = JsonConvert.DeserializeObject<ZaloRefreshTokenDataRespond>(ContentResult);
+                        result = new ZaloToken();
+                        result.TypeName = app_id;
+                        result.Display = url;
+                        result.Code = secret_key;
+
+                        result.Active = true;
+                        result.OAAccessToken = ZaloRefreshTokenDataRespond.access_token;
+                        result.OARefreshToken = ZaloRefreshTokenDataRespond.refresh_token;
+                        result = await SaveAsync(result);
+                    }
                 }
-                result = await GetByCondition(item => item.Active == true && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new ZaloToken();
             }
             return result;
         }
