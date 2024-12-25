@@ -1,5 +1,4 @@
-﻿using Data.Model;
-
+﻿
 namespace Service.Implement
 {
     public class GoiSoService : BaseService<GoiSo, IGoiSoRepository>
@@ -242,6 +241,7 @@ namespace Service.Implement
                                     {
                                         GoiSo = new GoiSo();
                                         GoiSo.Code = model.Code;
+                                        GoiSo.Display = model.Display;
                                         GoiSo.NgayGhiNhan = model.NgayGhiNhan;
                                         GoiSo.DanhMucDichVuID = model.DanhMucDichVuID;
                                         GoiSo.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
@@ -273,6 +273,7 @@ namespace Service.Implement
             GoiSoChiTiet.DanhMucDichVuID = model.DanhMucDichVuID;
             GoiSoChiTiet.DanhMucQuayDichVuID = model.DanhMucQuayDichVuID;
             GoiSoChiTiet.Code = model.Code;
+            GoiSoChiTiet.Display = model.Display;
             GoiSoChiTiet.NgayCapSoSoThuTu = model.TongCong;
             await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
             return GoiSoChiTiet;
@@ -543,6 +544,48 @@ namespace Service.Implement
             }
             return result;
         }
+        public virtual async Task<GoiSo> SaveByDanhMucDichVuID_Code_DisplayAsync(long DanhMucDichVuID, string Code, string Display)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                if (DanhMucDichVuID > 0)
+                {
+                    DateTime Now = GlobalHelper.InitializationDateTime;
+                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                    if (result == null)
+                    {
+                        result = new GoiSo();
+                        result.DanhMucDichVuID = DanhMucDichVuID;
+                        result.NgayGhiNhan = Now;
+                        result.TongCong = 0;
+                        result.SoHienTai = 0;
+                    }
+                    if (!string.IsNullOrEmpty(Code))
+                    {
+                        Code = Code.Split('|')[0];
+                    }
+                    result.Code = Code;
+                    result.Display = Display;
+                    result.TongCong = result.TongCong + 1;
+                    result = await SaveAsync(result);
+                    if (result.ID > 0)
+                    {
+                        await ZaloZNSSendAsync(result);
+                        result = await CreateHTML002ByModelAsync(result);                                                
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+            return result;
+        }
         public virtual async Task<GoiSo> CreateHTMLByModelAsync(GoiSo result)
         {
             try
@@ -742,6 +785,34 @@ namespace Service.Implement
                 }
 
                 //await UpdateAsync(result);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+
+        public virtual async Task<GoiSo> ZaloZNSSendAsync(GoiSo result)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(result.Display))
+                {
+                    ZaloZNSDataRequest ZaloZNSDataRequest = new ZaloZNSDataRequest();
+                    ZaloZNSDataRequest.phone = "84" + result.Display.Substring(1);
+                    ZaloZNSDataRequest.template_id = GlobalHelper.ZaloTemplateID;
+                    ZaloZNSDataRequest.tracking_id = GlobalHelper.InitializationGUICode;
+                    template_data template_data = new template_data();
+                    template_data.TongCongString = result.TongCongString;
+                    template_data.DanhMucDichVuName = result.DanhMucDichVuName;
+                    template_data.Note = result.Note;
+                    template_data.Code = result.Code;
+                    template_data.NgayGhiNhan = result.NgayGhiNhan.Value.ToString("HH:mm:ss dd/MM/yyyy");
+                    ZaloZNSDataRequest.template_data = template_data;
+                    await ZaloHelper.ZNSSendAsync(GlobalHelper.ZaloOAAccessToken, ZaloZNSDataRequest);
+                }
+
             }
             catch (Exception ex)
             {

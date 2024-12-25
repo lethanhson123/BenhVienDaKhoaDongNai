@@ -1,6 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using ZXing.QrCode.Internal;
-
+﻿
 namespace Service.Implement
 {
     public class KhachHangService : BaseService<KhachHang, IKhachHangRepository>
@@ -52,15 +50,28 @@ namespace Service.Implement
         }
         public override async Task<KhachHang> SaveAsync(KhachHang model)
         {
-            int result = GlobalHelper.InitializationNumber;            
-            if (model.ID > 0)
+            int result = GlobalHelper.InitializationNumber;
+            bool IsSave = true;
+            KhachHang KhachHangCheck = await GetBySearchStringToAsync(model.Code);
+            if (KhachHangCheck.ID > 0)
             {
-                result = await UpdateAsync(model);
+                if (KhachHangCheck.ID != model.ID)
+                {
+                    IsSave = false;
+                }
             }
-            else
+            if (IsSave == true)
             {
-                result = await AddAsync(model);
+                if (model.ID > 0)
+                {
+                    result = await UpdateAsync(model);
+                }
+                else
+                {
+                    result = await AddAsync(model);
+                }
             }
+
             if (result > 0)
             {
             }

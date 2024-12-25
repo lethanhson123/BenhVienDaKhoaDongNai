@@ -9,6 +9,7 @@ namespace Service.Interface
         Task<GoiSo> GoiSoTiepTheoByDanhMucPhongKhamIDAsync(long DanhMucDichVuID, int SoHienTai);
         Task<GoiSo> SaveByDanhMucDichVuIDAsync(long DanhMucDichVuID);
         Task<GoiSo> SaveByDanhMucDichVuID_CodeAsync(long DanhMucDichVuID, string Code);
+        Task<GoiSo> SaveByDanhMucDichVuID_Code_DisplayAsync(long DanhMucDichVuID, string Code, string Display);
         Task<GoiSo> SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync(long DanhMucPhongKhamID, long GoiSoChiTietID);
         Task<GoiSo> CreateHTMLByModelAsync(GoiSo result);
         Task<List<GoiSo>> GetByNgayGhiNhanToListAsync(DateTime NgayGhiNhan);

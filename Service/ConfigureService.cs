@@ -86,6 +86,9 @@
 
             services.AddTransient<ITaiLieuService, TaiLieuService>();
 
+            services.AddTransient<IZaloTokenService, ZaloTokenService>();
+            services.AddTransient<IZaloZNSService, ZaloZNSService>();
+
             services.AddTransient<IReportService, ReportService>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
@@ -151,6 +154,9 @@
             services.AddTransient<IManHinhThongBaoRepository, ManHinhThongBaoRepository>();
 
             services.AddTransient<ITaiLieuRepository, TaiLieuRepository>();
+
+            services.AddTransient<IZaloTokenRepository, ZaloTokenRepository>();
+            services.AddTransient<IZaloZNSRepository, ZaloZNSRepository>();
 
             services.AddTransient<IReportRepository, ReportRepository>();
 

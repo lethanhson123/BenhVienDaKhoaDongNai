@@ -46,6 +46,8 @@ import { UploadComponent } from './upload/upload.component';
 import { DanhMucTinhThanhToaDoDetailComponent } from './danh-muc-tinh-thanh-toa-do-detail/danh-muc-tinh-thanh-toa-do-detail.component';
 import { KhachHangComponent } from './khach-hang/khach-hang.component';
 import { KhachHangInfoComponent } from './khach-hang-info/khach-hang-info.component';
+import { ZaloTokenComponent } from './zalo-token/zalo-token.component';
+import { ZaloZNSComponent } from './zalo-zns/zalo-zns.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,8 @@ import { KhachHangInfoComponent } from './khach-hang-info/khach-hang-info.compon
     DanhMucTinhThanhToaDoDetailComponent,
     KhachHangComponent,
     KhachHangInfoComponent,
+    ZaloTokenComponent,
+    ZaloZNSComponent,
 
   ],
   imports: [

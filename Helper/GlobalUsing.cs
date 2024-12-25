@@ -19,3 +19,6 @@ global using QRCoder;
 
 global using ZXing;
 global using ZXing.Windows.Compatibility;
+
+global using Newtonsoft.Json;
+global using System.Net.Http.Headers;

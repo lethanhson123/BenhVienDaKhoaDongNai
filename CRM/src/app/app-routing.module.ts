@@ -30,6 +30,8 @@ import { Dashboard001Component } from './dashboard001/dashboard001.component';
 import { UploadComponent } from './upload/upload.component';
 import { KhachHangComponent } from './khach-hang/khach-hang.component';
 import { KhachHangInfoComponent } from './khach-hang-info/khach-hang-info.component';
+import { ZaloTokenComponent } from './zalo-token/zalo-token.component';
+import { ZaloZNSComponent } from './zalo-zns/zalo-zns.component';
 
 
 
@@ -115,6 +117,12 @@ const routes: Routes = [
   },
   {
     path: 'TaiLieu', component: TaiLieuComponent,
+  },
+  {
+    path: 'ZaloOA', component: ZaloTokenComponent,
+  },
+  {
+    path: 'ZaloZNS', component: ZaloZNSComponent,
   },
 
   {

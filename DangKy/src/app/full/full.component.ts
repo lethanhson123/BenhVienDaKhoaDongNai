@@ -54,7 +54,8 @@ export class FullComponent implements OnInit {
     this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.BaseParameter.DanhMucDichVuID = DanhMucDichVuID;
     this.GoiSoService.BaseParameter.Code = this.GoiSoService.FormData.Code;
-    this.GoiSoService.SaveByDanhMucDichVuID_CodeAsync().subscribe(
+    this.GoiSoService.BaseParameter.Display = this.GoiSoService.FormData.Display;
+    this.GoiSoService.SaveByDanhMucDichVuID_Code_DisplayAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;
         this.GoiSoService.FormData.Code = environment.InitializationString;
@@ -69,7 +70,7 @@ export class FullComponent implements OnInit {
     );
     document.getElementById("Code").focus();
   }
-  GoiSoChiTietCodeChange() {
+  GoiSoChiTietCodeChange() {    
     this.GoiSoService.IsShowLoading = true;        
     this.GoiSoService.FormData.Display = environment.InitializationString;
     this.KhachHangService.BaseParameter.SearchString = this.GoiSoService.FormData.Code;

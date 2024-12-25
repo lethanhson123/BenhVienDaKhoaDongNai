@@ -1,10 +1,4 @@
 ﻿
-
-
-
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
-
 namespace Service.Implement
 {
     public class GoiSoChiTietService : BaseService<GoiSoChiTiet, IGoiSoChiTietRepository>
@@ -107,9 +101,9 @@ namespace Service.Implement
             }
             if (string.IsNullOrEmpty(model.DienThoai))
             {
-                if (!string.IsNullOrEmpty(model.Code))
+                if (!string.IsNullOrEmpty(model.Display))
                 {
-                    model.DienThoai = model.Code;
+                    model.DienThoai = model.Display;
                 }
             }
             if (string.IsNullOrEmpty(model.BHYT))

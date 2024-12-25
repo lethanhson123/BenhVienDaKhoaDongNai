@@ -109,6 +109,54 @@
         }
         #endregion
         #region AppSettings 
+        public static string ZaloTemplateID
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("ZaloTemplateID").Value;
+            }
+        }
+        public static string ZaloTokenNote
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("ZaloTokenNote").Value;
+            }
+        }
+        public static string ZaloOAAccessToken
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("ZaloOAAccessToken").Value;
+            }
+        }
+        public static string ZaloOARefreshToken
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("ZaloOARefreshToken").Value;
+            }
+        }
+        public static string ZaloZNSAPIURL
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("ZaloZNSAPIURL").Value;
+            }
+        }
+        public static string ZaloRefreshTokenAPIURL
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("ZaloRefreshTokenAPIURL").Value;
+            }
+        }
         public static string APICapSoSite
         {
             get

@@ -69,7 +69,7 @@
         {
             GoiSo result = new GoiSo();
             try
-            {                
+            {
                 result = await _GoiSoService.GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync(DanhMucDichVuID, DanhMucQuayDichVuID, SoHienTai, GlobalHelper.InitializationString);
             }
             catch (Exception ex)
@@ -105,6 +105,23 @@
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
                 result = await _GoiSoService.SaveByDanhMucDichVuID_CodeAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.Code);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("SaveByDanhMucDichVuID_Code_DisplayAsync")]
+        public virtual async Task<GoiSo> SaveByDanhMucDichVuID_Code_DisplayAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.SaveByDanhMucDichVuID_Code_DisplayAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.Code, baseParameter.Display);
             }
             catch (Exception ex)
             {

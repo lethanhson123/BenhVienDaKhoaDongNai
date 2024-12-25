@@ -51,6 +51,12 @@ export class GoiSoService extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    SaveByDanhMucDichVuID_Code_DisplayAsync() {
+        let url = this.APIURL + this.Controller + '/SaveByDanhMucDichVuID_Code_DisplayAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync() {
         let url = this.APIURL + this.Controller + '/SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync';
         const formUpload: FormData = new FormData();
