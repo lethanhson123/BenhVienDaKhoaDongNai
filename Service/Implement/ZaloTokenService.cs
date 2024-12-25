@@ -1,8 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Http;
-using System.Net.Http.Headers;
-using static System.Net.WebRequestMethods;
-
+﻿
 namespace Service.Implement
 {
     public class ZaloTokenService : BaseService<ZaloToken, IZaloTokenRepository>
@@ -51,14 +47,15 @@ namespace Service.Implement
                         HttpClient HttpClient = new HttpClient();
                         HttpClient.BaseAddress = new Uri(url);
 
-                        HttpClient.DefaultRequestHeaders.Accept.Clear();                        
+                        HttpClient.DefaultRequestHeaders.Accept.Clear();
                         HttpClient.DefaultRequestHeaders.Add("secret_key", secret_key);
-                        HttpClient.DefaultRequestHeaders.Add("refresh_token", refresh_token);
-                        HttpClient.DefaultRequestHeaders.Add("app_id", app_id);
-                        HttpClient.DefaultRequestHeaders.Add("grant_type", refresh_token);
-                        var content = new StringContent(JsonConvert.SerializeObject(GlobalHelper.InitializationString), Encoding.UTF8, "application/json");
-                        var task = HttpClient.PostAsync(url, content);
-                        string AccessToken = await task.Result.Content.ReadAsStringAsync();
+
+                        var data = new List<KeyValuePair<string, string>>();
+                        data.Add(new KeyValuePair<string, string>("refresh_token", refresh_token));
+                        data.Add(new KeyValuePair<string, string>("app_id", app_id));
+                        data.Add(new KeyValuePair<string, string>("grant_type", "refresh_token"));
+
+                        HttpResponseMessage httpResponseMessage = HttpClient.PostAsync(url, new FormUrlEncodedContent(data)).GetAwaiter().GetResult();
                     }
 
                 }

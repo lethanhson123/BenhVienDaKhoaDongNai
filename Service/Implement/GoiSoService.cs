@@ -799,6 +799,8 @@ namespace Service.Implement
             {
                 if (!string.IsNullOrEmpty(result.Display))
                 {
+
+
                     ZaloZNSDataRequest ZaloZNSDataRequest = new ZaloZNSDataRequest();
                     ZaloZNSDataRequest.phone = "84" + result.Display.Substring(1);
                     ZaloZNSDataRequest.template_id = GlobalHelper.ZaloTemplateID;
