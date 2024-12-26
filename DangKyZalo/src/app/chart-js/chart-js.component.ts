@@ -37,7 +37,7 @@ export class ChartJSComponent implements OnInit {
     }
   };
   public Report0001_Color: Color[] = [];
-  public Report0001_Label: Label[] = ['Red', 'Blue', 'Yellow'];
+  public Report0001_Label: Label[] = ['1', '2', '3', '4', '5', '6', '7'];
   public Report0001_Type: ChartType = 'bar';
   public Report0001_Legend = true;
   public Report0001_Plugin = {
@@ -67,7 +67,7 @@ export class ChartJSComponent implements OnInit {
     label: 'My First Dataset',
     data: [90, 59, 80, 81, 56, 55, 40],
     backgroundColor: [
-      'rgba(255, 99, 132, 0.1)',
+      'rgba(48, 150, 229, 0.1)',
       'rgba(255, 159, 64, 0.1)',
       'rgba(255, 205, 86, 0.1)',
       'rgba(75, 192, 192, 0.1)',
