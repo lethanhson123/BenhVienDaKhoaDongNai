@@ -80,26 +80,36 @@ namespace Service.Implement
         public virtual async Task<KhachHang> GetBySearchStringToAsync(string SearchString)
         {
             KhachHang result = new KhachHang();
-            if (!string.IsNullOrEmpty(SearchString))
+            try
             {
-                SearchString = SearchString.Trim();
                 if (!string.IsNullOrEmpty(SearchString))
                 {
-                    SearchString = SearchString.Split('|')[0];
+                    SearchString = SearchString.Trim();
+                    if (!string.IsNullOrEmpty(SearchString))
+                    {
+                        SearchString = SearchString.Split('|')[0];
+                    }
+                    if (!string.IsNullOrEmpty(SearchString))
+                    {
+                        result = await GetByCondition(item => item.Code == SearchString).FirstOrDefaultAsync();
+                        if (result == null)
+                        {
+                            result = await GetByCondition(item => item.BHYT == SearchString).FirstOrDefaultAsync();
+                        }
+                        if (result == null)
+                        {
+                            result = await GetByCondition(item => item.CCCD == SearchString).FirstOrDefaultAsync();
+                        }
+                        if (result == null)
+                        {
+                            result = await GetByCondition(item => item.DienThoai == SearchString).FirstOrDefaultAsync();
+                        }
+                    }
                 }
-                result = await GetByCondition(item => item.Code == SearchString).FirstOrDefaultAsync();
-                if (result == null)
-                {
-                    result = await GetByCondition(item => item.BHYT == SearchString).FirstOrDefaultAsync();
-                }
-                if (result == null)
-                {
-                    result = await GetByCondition(item => item.CCCD == SearchString).FirstOrDefaultAsync();
-                }
-                if (result == null)
-                {
-                    result = await GetByCondition(item => item.DienThoai == SearchString).FirstOrDefaultAsync();
-                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
             }
             if (result == null)
             {
