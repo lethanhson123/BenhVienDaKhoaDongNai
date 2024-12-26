@@ -65,28 +65,28 @@
                                     autocomplete="off">
                             </td>
                         </ng-container>
-                        <ng-container matColumnDef="TypeName">
+                        <ng-container matColumnDef="AppID">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>APP ID
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="APP ID"
-                                    name="TypeName{{element.ID}}" [(ngModel)]="element.TypeName">
+                                    name="AppID{{element.ID}}" [(ngModel)]="element.AppID">
                             </td>
                         </ng-container>
-                        <ng-container matColumnDef="Code">
+                        <ng-container matColumnDef="SecretKey">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Secret key
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Secret key"
-                                    name="Code{{element.ID}}" [(ngModel)]="element.Code">
+                                    name="SecretKey{{element.ID}}" [(ngModel)]="element.SecretKey">
                             </td>
                         </ng-container>                        
-                        <ng-container matColumnDef="Display">
+                        <ng-container matColumnDef="URL">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>URL
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="URL"
-                                    name="Display{{element.ID}}" [(ngModel)]="element.Display">
+                                    name="URL{{element.ID}}" [(ngModel)]="element.URL">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="OARefreshToken">

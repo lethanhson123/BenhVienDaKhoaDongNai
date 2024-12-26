@@ -7,7 +7,7 @@ import { FullComponent } from './full/full.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/Full', pathMatch: 'full' },
+  { path: '', redirectTo: '/Homepage', pathMatch: 'full' },
   {
     path: 'Homepage', component: HomepageComponent,
   },  

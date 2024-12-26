@@ -8,7 +8,7 @@ import { BaseService } from './Base.service';
 })
 export class ZaloTokenService extends BaseService{
     DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'ZaloTokenID', 'DanhMucNgonNguName', 'ZaloTokenName'];
-    DisplayColumns002: string[] = ['STT', 'ID', 'NgayGhiNhan', 'TypeName', 'Code', 'Display', 'OARefreshToken', 'OAAccessToken', 'Note', 'Active', 'Save'];
+    DisplayColumns002: string[] = ['STT', 'ID', 'NgayGhiNhan', 'AppID', 'SecretKey', 'URL', 'OARefreshToken', 'OAAccessToken', 'Note', 'Active', 'Save'];
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "ZaloToken";

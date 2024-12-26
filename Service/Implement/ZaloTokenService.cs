@@ -21,11 +21,11 @@ namespace Service.Implement
             if (string.IsNullOrEmpty(model.Note))
             {
                 model.Note = GlobalHelper.ZaloTokenNote;
-            }           
-            if (string.IsNullOrEmpty(model.Display))
-            {
-                model.Display = GlobalHelper.ZaloRefreshTokenAPIURL;
             }
+            if (string.IsNullOrEmpty(model.URL))
+            {
+                model.URL = GlobalHelper.ZaloRefreshTokenAPIURL;
+            }           
         }
         public virtual async Task<ZaloToken> GetLatestAsync()
         {
@@ -35,15 +35,14 @@ namespace Service.Implement
                 DateTime Now = GlobalHelper.InitializationDateTime;
                 result = await GetByCondition(item => item.Active == true && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
                 if (result == null)
-                {
-                    Now = Now.AddDays(-1);
-                    result = await GetByCondition(item => item.Active == true && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                {                 
+                    result = await GetByCondition(item => item.Active == true).OrderByDescending(item => item.ID).Take(1).FirstOrDefaultAsync();
                     if (result != null)
                     {
-                        string url = result.Display;
-                        string secret_key = result.Code;
+                        string url = result.URL;
+                        string secret_key = result.SecretKey;
                         string refresh_token = result.OARefreshToken;
-                        string app_id = result.TypeName;
+                        string app_id = result.AppID;
 
                         HttpClient HttpClient = new HttpClient();
                         HttpClient.BaseAddress = new Uri(url);
@@ -62,9 +61,9 @@ namespace Service.Implement
                         var ContentResult = await task.Result.Content.ReadAsStringAsync();
                         ZaloRefreshTokenDataRespond ZaloRefreshTokenDataRespond = JsonConvert.DeserializeObject<ZaloRefreshTokenDataRespond>(ContentResult);
                         result = new ZaloToken();
-                        result.TypeName = app_id;
-                        result.Display = url;
-                        result.Code = secret_key;
+                        result.AppID = app_id;
+                        result.URL = url;
+                        result.SecretKey = secret_key;
 
                         result.Active = true;
                         result.OAAccessToken = ZaloRefreshTokenDataRespond.access_token;
