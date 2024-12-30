@@ -354,7 +354,7 @@ export class BaseService {
             }
         );
     }
-    ComponentGetByParentIDAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator, Service: BaseService) {
+    ComponentGetByParentIDAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator, Service: BaseService) {        
         Service.IsShowLoading = true;
         this.GetByParentIDAndEmptyToListAsync().subscribe(
             res => {

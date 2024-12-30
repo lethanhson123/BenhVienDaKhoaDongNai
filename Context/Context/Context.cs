@@ -70,6 +70,9 @@ namespace Data.Context
         public virtual DbSet<Data.Model.ZaloToken> ZaloToken { get; set; }
         public virtual DbSet<Data.Model.ZaloZNS> ZaloZNS { get; set; }
 
+        public virtual DbSet<Data.Model.KhamSucKhoe> KhamSucKhoe { get; set; }
+        public virtual DbSet<Data.Model.KhamSucKhoeKetQua> KhamSucKhoeKetQua { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

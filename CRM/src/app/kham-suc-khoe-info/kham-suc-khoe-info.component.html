@@ -1,0 +1,407 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Khám sức khỏe: <b>{{KhamSucKhoeService.FormData.Name}}
+                            [{{KhamSucKhoeService.FormData.ID}}]</b></h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/KhamSucKhoe" title="Khách hàng">Khách hàng</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/KhamSucKhoe" title="Khách hàng">Khách hàng</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l4">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;"><i
+                                class="material-icons">more</i></a>
+                        <a title="Thêm mới" (click)="KhamSucKhoeAdd()" style="color: green;"><i
+                                class="material-icons">add_box</i></a>
+                        <a title="Lưu thay đổi" (click)="KhamSucKhoeSave()" style="color:#2196f3;"><i
+                                class="material-icons">save</i></a>
+                    </div>
+                    <div class="col s6 m6 l4">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="Active"
+                                [(ngModel)]="KhamSucKhoeService.FormData.Active" />
+                            <span>Kích hoạt</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label>Tiêu đề</label>
+                            <input placeholder="Tiêu đề" [(ngModel)]="KhamSucKhoeService.FormData.Name"
+                                name="KhamSucKhoeService.FormData.Name" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Địa chỉ</label>
+                            <input placeholder="Địa chỉ" [(ngModel)]="KhamSucKhoeService.FormData.Description"
+                                name="KhamSucKhoeService.FormData.Description" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label class="form-label">Ngày bắt đầu</label>
+                            <input [ngModel]="KhamSucKhoeService.FormData.NgayBatDau | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateNgayBatDau($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label class="form-label">Ngày kết thúc</label>
+                            <input [ngModel]="KhamSucKhoeService.FormData.NgayKetThuc | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateNgayKetThuc($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label>Ghi chú</label>
+                            <input placeholder="Ghi chú" [(ngModel)]="KhamSucKhoeService.FormData.Note"
+                                name="KhamSucKhoeService.FormData.Note" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12 m12 l6">
+                        <h6 class="card-title">Kết quả
+                            <span *ngIf="KhamSucKhoeKetQuaService.List">({{KhamSucKhoeKetQuaService.List.length}}
+                                items)</span>
+                        </h6>
+                    </div>
+                    <div class="col s12 m12 l5">
+                        <input [(ngModel)]="KhamSucKhoeKetQuaService.BaseParameter.SearchString" placeholder="Tìm ..."
+                            class="form-control" (keyup.enter)="KhamSucKhoeKetQuaSearch()">
+                    </div>
+                    <div class="col s12 m12 l1">
+                        <a title="Tìm" (click)="KhamSucKhoeKetQuaSearch()" style="color: green;"><i
+                                class="material-icons">play_circle_filled</i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l6">
+                        Bước 01: <a class="link-primary" target="_blank" href="{{URLExcelKhamSucKhoeKetQua}}"
+                            title="Tải về">Tải
+                            về</a>excel mẫu
+                    </div>
+                    <div class="col s12 m12 l5">
+                        Bước 02: Chọn file excel chứa dữ liệu <input class="form-control" type="file"
+                            (change)="KhamSucKhoeKetQuaChangeFile($event.target.files)">
+                    </div>
+                    <div class="col s12 m12 l1">
+                        <button [disabled]="!IsKhamSucKhoeKetQua" title="Upload" (click)="KhamSucKhoeKetQuaUpload()"
+                            style="color: green;">Upload</button>
+                    </div>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #KhamSucKhoeKetQuaSort="matSort"
+                        [dataSource]="KhamSucKhoeKetQuaService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                <div *ngIf="KhamSucKhoeKetQuaPaginator">
+                                    {{KhamSucKhoeKetQuaPaginator.pageSize *
+                                    KhamSucKhoeKetQuaPaginator.pageIndex + i + 1}}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.ID}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="SoThe">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số thẻ
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Số thẻ" name="SoThe{{element.ID}}"
+                                    [(ngModel)]="element.SoThe" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="HoTen">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ tên
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Họ tên" name="HoTen{{element.ID}}"
+                                    [(ngModel)]="element.HoTen" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="GioiTinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Giới tính"
+                                    name="GioiTinh{{element.ID}}" [(ngModel)]="element.GioiTinh" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="BoPhan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Bộ phận
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Bộ phận"
+                                    name="BoPhan{{element.ID}}" [(ngModel)]="element.BoPhan" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgaySinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Ngày sinh"
+                                    name="NgaySinh{{element.ID}}" [(ngModel)]="element.NgaySinh" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="PhanLoaiSucKhoe">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phân loại sức khỏe
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Phân loại sức khỏe"
+                                    name="PhanLoaiSucKhoe{{element.ID}}" [(ngModel)]="element.PhanLoaiSucKhoe" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ChieuCao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Chiều cao
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Chiều cao"
+                                    name="ChieuCao{{element.ID}}" [(ngModel)]="element.ChieuCao" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CanNang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cân nặng
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Cân nặng"
+                                    name="CanNang{{element.ID}}" [(ngModel)]="element.CanNang" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Mach">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mạch (lần/phút)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Mạch (lần/phút)"
+                                    name="Mach{{element.ID}}" [(ngModel)]="element.Mach" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="HuyetAp">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Huyết áp (mmHg)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Huyết áp (mmHg)"
+                                    name="HuyetAp{{element.ID}}" [(ngModel)]="element.HuyetAp" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Noi">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nội
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Nội"
+                                    name="Noi{{element.ID}}" [(ngModel)]="element.Noi" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Ngoai">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngoại
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Ngoại"
+                                    name="Ngoai{{element.ID}}" [(ngModel)]="element.Ngoai" style="width: 200px;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Mat">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mắt</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Mắt" name="Mat{{element.ID}}" [(ngModel)]="element.Mat"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TaiMuiHong">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tai Mũi Họng</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Tai Mũi Họng" name="TaiMuiHong{{element.ID}}" [(ngModel)]="element.TaiMuiHong"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="RangHamMat">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Răng Hàm Mặt</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Răng Hàm Mặt" name="RangHamMat{{element.ID}}" [(ngModel)]="element.RangHamMat"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LamSang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Lâm sàng</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Lâm sàng" name="LamSang{{element.ID}}" [(ngModel)]="element.LamSang"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="PhuSanTienSu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phụ sản - Tiểu sử</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Phụ sản - Tiểu sử" name="PhuSanTienSu{{element.ID}}" [(ngModel)]="element.PhuSanTienSu"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="PhuSanKhamLamSang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phụ sản - Khám lâm sàng</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Phụ sản - Khám lâm sàng" name="PhuSanKhamLamSang{{element.ID}}" [(ngModel)]="element.PhuSanKhamLamSang"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="PhuSanPAPSMEAR">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phụ sản - PAP SMEAR</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Phụ sản - PAP SMEAR" name="PhuSanPAPSMEAR{{element.ID}}" [(ngModel)]="element.PhuSanPAPSMEAR"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SieuAmTongQuat">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Siêu âm tổng quát</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Siêu âm tổng quát" name="SieuAmTongQuat{{element.ID}}" [(ngModel)]="element.SieuAmTongQuat"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SieuAmPhuKhoa">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Siêu âm phụ khoa</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Siêu âm phụ khoa" name="SieuAmPhuKhoa{{element.ID}}" [(ngModel)]="element.SieuAmPhuKhoa"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SieuAmTuyenVu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Siêu âm tuyến vú</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Siêu âm tuyến vú" name="SieuAmTuyenVu{{element.ID}}" [(ngModel)]="element.SieuAmTuyenVu"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ViemGanSieuViA">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Viêm gan siêu vi A (HAV)</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Viêm gan siêu vi A (HAV)" name="ViemGanSieuViA{{element.ID}}" [(ngModel)]="element.ViemGanSieuViA"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ViemGanSieuViE">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Viêm gan siêu vi E (HEV)</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Viêm gan siêu vi E (HEV)" name="ViemGanSieuViE{{element.ID}}" [(ngModel)]="element.ViemGanSieuViE"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="HBsAb">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>HBsAb định lượng (10 mIU / ml)</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="HBsAb định lượng (10 mIU / ml)" name="HBsAb{{element.ID}}" [(ngModel)]="element.HBsAb"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="HbA1C">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>HbA1C</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="HbA1C" name="HbA1C{{element.ID}}" [(ngModel)]="element.HbA1C"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CystatineC">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cystatine C</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Cystatine C" name="CystatineC{{element.ID}}" [(ngModel)]="element.CystatineC"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Glucose">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Glucose</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Glucose" name="Glucose{{element.ID}}" [(ngModel)]="element.Glucose"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CHO">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CHO</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CHO" name="CHO{{element.ID}}" [(ngModel)]="element.CHO"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TRI">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TRI</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TRI" name="TRI{{element.ID}}" [(ngModel)]="element.TRI"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="HDL">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>HDL</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="HDL" name="HDL{{element.ID}}" [(ngModel)]="element.HDL"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LDL">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LDL</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="LDL" name="LDL{{element.ID}}" [(ngModel)]="element.LDL"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TPT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TPT nước tiểu</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TPT nước tiểu" name="TPT{{element.ID}}" [(ngModel)]="element.TPT"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TeBaoMauNgoaiVi">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tế bào máu ngoại vi</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Tế bào máu ngoại vi" name="TeBaoMauNgoaiVi{{element.ID}}" [(ngModel)]="element.TeBaoMauNgoaiVi"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="XQuangPhoi">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>X-Quang Phổi</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="X-Quang Phổi" name="XQuangPhoi{{element.ID}}" [(ngModel)]="element.XQuangPhoi"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CanLamSangLamThem">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cận lâm sàng làm thêm</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Cận lâm sàng làm thêm" name="CanLamSangLamThem{{element.ID}}"
+                                    [(ngModel)]="element.CanLamSangLamThem" style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Note">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi chú</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Ghi chú" name="Note{{element.ID}}" [(ngModel)]="element.Note"
+                                    style="width: 200px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="KhamSucKhoeKetQuaSave(element)" style="color:#2196f3;"><i
+                                        class="material-icons">save</i></a>
+                                <a *ngIf="element.ID>0" (click)="KhamSucKhoeKetQuaDelete(element)"
+                                    style="color: red;"><i class="material-icons">delete_forever</i></a>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="KhamSucKhoeKetQuaService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: KhamSucKhoeKetQuaService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #KhamSucKhoeKetQuaPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<app-loading *ngIf="KhamSucKhoeService.IsShowLoading"></app-loading>
