@@ -50,6 +50,7 @@ import { ZaloTokenComponent } from './zalo-token/zalo-token.component';
 import { ZaloZNSComponent } from './zalo-zns/zalo-zns.component';
 import { KhamSucKhoeComponent } from './kham-suc-khoe/kham-suc-khoe.component';
 import { KhamSucKhoeInfoComponent } from './kham-suc-khoe-info/kham-suc-khoe-info.component';
+import { TrucBanNhatKyComponent } from './truc-ban-nhat-ky/truc-ban-nhat-ky.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { KhamSucKhoeInfoComponent } from './kham-suc-khoe-info/kham-suc-khoe-inf
     ZaloZNSComponent,
     KhamSucKhoeComponent,
     KhamSucKhoeInfoComponent,
+    TrucBanNhatKyComponent,
 
   ],
   imports: [

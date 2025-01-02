@@ -1,0 +1,159 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Nhật ký trực ban
+                        <span *ngIf="TrucBanNhatKyService.List">({{TrucBanNhatKyService.List.length-1}} items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item active">Cấu hình
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/TrucBanNhatKy" title="Nhật ký trực ban">Nhật ký trực
+                                ban</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l11">
+                    <input [(ngModel)]="TrucBanNhatKyService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="TrucBanNhatKySearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="TrucBanNhatKySearch()"><i
+                            class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #TrucBanNhatKySort="matSort"
+                        [dataSource]="TrucBanNhatKyService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="TrucBanNhatKyPaginator">
+                                    {{TrucBanNhatKyPaginator.pageSize *
+                                    TrucBanNhatKyPaginator.pageIndex + i + 1}}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.ID}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayGhiNhan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày ghi nhận
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input [ngModel]="element.NgayGhiNhan | date:'yyyy-MM-dd HH:mm:ss'"
+                                    style="text-align: right;" (ngModelChange)="DateNgayGhiNhan(element, $event)"
+                                    [ngModelOptions]="{ updateOn: 'blur' }" type="datetime-local" class="form-control"
+                                    autocomplete="off">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Khu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Khu
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Khu" name="Khu{{element.ID}}"
+                                    [(ngModel)]="element.Khu">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Tang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tầng
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Tầng" name="Tang{{element.ID}}"
+                                    [(ngModel)]="element.Tang">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Khoa">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Khoa
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Khoa" name="Khoa{{element.ID}}"
+                                    [(ngModel)]="element.Khoa">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Phong">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Phòng" name="Phong{{element.ID}}"
+                                    [(ngModel)]="element.Phong">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TaiKhoan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tài khoản
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Tài khoản"
+                                    name="TaiKhoan{{element.ID}}" [(ngModel)]="element.TaiKhoan">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThucTrang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Thực trạng
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Thực trạng"
+                                    name="ThucTrang{{element.ID}}" [(ngModel)]="element.ThucTrang">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="XuLy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Xử lý
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Xử lý" name="XuLy{{element.ID}}"
+                                    [(ngModel)]="element.XuLy">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Active">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích hoạt
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" name="Active{{element.ID}}"
+                                        [(ngModel)]="element.Active">
+                                    <span></span>
+                                </label>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="TrucBanNhatKySave(element)" style="color:#2196f3;"><i
+                                        class="material-icons">save</i></a>
+                                <a *ngIf="element.ID>0" (click)="TrucBanNhatKyDelete(element)" style="color: red;"><i
+                                        class="material-icons">delete_forever</i></a>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="TrucBanNhatKyService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: TrucBanNhatKyService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #TrucBanNhatKyPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="TrucBanNhatKyService.IsShowLoading"></app-loading>

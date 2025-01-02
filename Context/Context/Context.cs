@@ -72,6 +72,7 @@ namespace Data.Context
 
         public virtual DbSet<Data.Model.KhamSucKhoe> KhamSucKhoe { get; set; }
         public virtual DbSet<Data.Model.KhamSucKhoeKetQua> KhamSucKhoeKetQua { get; set; }
+        public virtual DbSet<Data.Model.TrucBanNhatKy> TrucBanNhatKy { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

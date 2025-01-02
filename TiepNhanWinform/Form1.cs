@@ -2,6 +2,7 @@
 {
     public partial class Form1 : Form
     {
+        public DateTime? NgayHienTai { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -41,17 +42,31 @@
                     cbbDanhMucQuayDichVu.DisplayMember = "Name";
                 }
             }
+
+            NgayHienTai = DateTime.Now;
         }
 
         private void btnSoTiepTheo_Click(object sender, EventArgs e)
         {
             SoTiepTheo();
-        }      
+        }
         private void SoTiepTheo()
         {
             try
             {
-                string APICapSoSite = "http://localhost:5097";
+                if (NgayHienTai.Value.Day != DateTime.Now.Day)
+                {
+                    NgayHienTai = DateTime.Now;
+                    txtSoHienTai.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            try
+            {
+                string APICapSoSite = "http://10.84.3.124:901";
                 long DanhMucDichVuID = long.Parse(cbbDanhMucDichVu.SelectedValue.ToString());
                 long DanhMucQuayDichVuID = long.Parse(cbbDanhMucQuayDichVu.SelectedValue.ToString());
                 int SoHienTai = int.Parse(txtSoHienTai.Text.Trim());
@@ -73,12 +88,12 @@
             }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {            
+        {
             switch (keyData)
             {
                 case Keys.F1:
                     SoTiepTheo();
-                    return true;                
+                    return true;
                 default:
                     return base.ProcessCmdKey(ref msg, keyData);
             }

@@ -92,6 +92,8 @@
             services.AddTransient<IKhamSucKhoeService, KhamSucKhoeService>();
             services.AddTransient<IKhamSucKhoeKetQuaService, KhamSucKhoeKetQuaService>();
 
+            services.AddTransient<ITrucBanNhatKyService, TrucBanNhatKyService>();
+
             services.AddTransient<IReportService, ReportService>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
@@ -163,6 +165,8 @@
 
             services.AddTransient<IKhamSucKhoeRepository, KhamSucKhoeRepository>();
             services.AddTransient<IKhamSucKhoeKetQuaRepository, KhamSucKhoeKetQuaRepository>();
+
+            services.AddTransient<ITrucBanNhatKyRepository, TrucBanNhatKyRepository>();
 
             services.AddTransient<IReportRepository, ReportRepository>();
 
