@@ -28,7 +28,7 @@ export class DanhMucXaPhuongComponent implements OnInit {
   @ViewChild('DanhMucXaPhuongSort') DanhMucXaPhuongSort: MatSort;
   @ViewChild('DanhMucXaPhuongPaginator') DanhMucXaPhuongPaginator: MatPaginator;
 
-  constructor(    
+  constructor(
     private Dialog: MatDialog,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
@@ -39,18 +39,40 @@ export class DanhMucXaPhuongComponent implements OnInit {
     public DanhMucTinhThanhToaDoService: DanhMucTinhThanhToaDoService,
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.DanhMucTinhThanhSearch();
     this.DanhMucQuanHuyenSearch();
   }
   DanhMucTinhThanhSearch() {
-    this.DanhMucTinhThanhService.ComponentGetAllToListAsync(this.DanhMucQuanHuyenService);
+    this.DanhMucXaPhuongService.IsShowLoading = true;
+    this.DanhMucTinhThanhService.GetAllToListAsync().subscribe(
+      res => {
+        this.DanhMucTinhThanhService.List = (res as DanhMucTinhThanh[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        this.DanhMucQuanHuyenSearch();
+      },
+      err => {
+      },
+      () => {
+        this.DanhMucXaPhuongService.IsShowLoading = false;
+      }
+    );
   }
   DanhMucQuanHuyenSearch() {
-    this.DanhMucQuanHuyenService.ComponentGetAllToListAsync(this.DanhMucQuanHuyenService);
+    this.DanhMucXaPhuongService.IsShowLoading = true;
+    this.DanhMucQuanHuyenService.GetByParentIDToListAsync().subscribe(
+      res => {
+        this.DanhMucQuanHuyenService.List = (res as DanhMucQuanHuyen[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        this.DanhMucXaPhuongSearch();
+      },
+      err => {
+      },
+      () => {
+        this.DanhMucXaPhuongService.IsShowLoading = false;
+      }
+    );
   }
   DanhMucXaPhuongSearch() {
-    this.DanhMucXaPhuongService.SearchByParentID(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator, this.DanhMucXaPhuongService);   
+    this.DanhMucXaPhuongService.SearchByParentID(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator, this.DanhMucXaPhuongService);
   }
   DanhMucXaPhuongSave(element: DanhMucXaPhuong) {
     this.DanhMucXaPhuongService.FormData = element;
@@ -59,17 +81,17 @@ export class DanhMucXaPhuongComponent implements OnInit {
   DanhMucXaPhuongDelete(element: DanhMucXaPhuong) {
     this.DanhMucXaPhuongService.BaseParameter.ID = element.ID;
     this.NotificationService.warn(this.DanhMucXaPhuongService.ComponentDeleteByParentID(this.DanhMucXaPhuongSort, this.DanhMucXaPhuongPaginator, this.DanhMucXaPhuongService));
-  }  
-   DanhMucTinhThanhToaDoAdd(element: DanhMucTinhThanh) {
-      this.DanhMucTinhThanhToaDoService.BaseParameter.ParentID = element.ID;
-      this.DanhMucTinhThanhToaDoService.BaseParameter.Name = element.Name;
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.width = environment.DialogConfigWidth;
-      dialogConfig.data = { ID: element.ID };
-      const dialog = this.Dialog.open(DanhMucTinhThanhToaDoDetailComponent, dialogConfig);
-      dialog.afterClosed().subscribe(() => {
-      });
-    }
+  }
+  DanhMucTinhThanhToaDoAdd(element: DanhMucTinhThanh) {
+    this.DanhMucTinhThanhToaDoService.BaseParameter.ParentID = element.ID;
+    this.DanhMucTinhThanhToaDoService.BaseParameter.Name = element.Name;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = environment.DialogConfigWidth;
+    dialogConfig.data = { ID: element.ID };
+    const dialog = this.Dialog.open(DanhMucTinhThanhToaDoDetailComponent, dialogConfig);
+    dialog.afterClosed().subscribe(() => {
+    });
+  }
 }

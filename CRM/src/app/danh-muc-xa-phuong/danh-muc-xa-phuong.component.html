@@ -32,14 +32,14 @@
                     <select class="browser-default form-select" name="DanhMucQuanHuyenService.BaseParameter.ParentID"
                         [(ngModel)]="DanhMucQuanHuyenService.BaseParameter.ParentID"
                         (change)="DanhMucQuanHuyenSearch()">
-                        <option *ngFor="let item of DanhMucTinhThanhService.ListFilter;" [value]="item.ID">
+                        <option *ngFor="let item of DanhMucTinhThanhService.List;" [value]="item.ID">
                             {{item.Name}}</option>
                     </select>
                 </div>
                 <div class="col s12 m12 l3">
                     <select class="browser-default form-select" name="DanhMucXaPhuongService.BaseParameter.ParentID"
                         [(ngModel)]="DanhMucXaPhuongService.BaseParameter.ParentID">
-                        <option *ngFor="let item of DanhMucQuanHuyenService.ListFilter;" [value]="item.ID">
+                        <option *ngFor="let item of DanhMucQuanHuyenService.List;" [value]="item.ID">
                             {{item.Name}}</option>
                     </select>
                 </div>
