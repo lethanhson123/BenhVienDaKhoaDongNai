@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Service.Implement
 {
@@ -14,7 +15,20 @@ namespace Service.Implement
         {
             BaseInitialization(model);
 
-            model.NgayGhiNhan = GlobalHelper.InitializationDateTime;           
+            model.NgayGhiNhan = GlobalHelper.InitializationDateTime;
+
+            if (string.IsNullOrEmpty(model.Khu))
+            {
+                model.Khu = "A";
+            }
+            if (string.IsNullOrEmpty(model.Tang))
+            {
+                model.Tang = "G";
+            }
+            if (string.IsNullOrEmpty(model.Khoa))
+            {
+                model.Khoa = "Khám bệnh";
+            }
         }
     }
 }
