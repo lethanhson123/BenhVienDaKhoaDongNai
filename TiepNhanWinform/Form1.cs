@@ -15,7 +15,7 @@
         private void Form1_Load(object sender, EventArgs e)
         {
             string APICapSoSite = "http://10.84.3.124:901";
-            string url = APICapSoSite + "/api/v1/DanhMucDichVu/GetByActive001ToListAsync?Active=true";
+            string url = APICapSoSite + "/api/v1/DanhMucDichVu/GetByActiveToListAsync?Active=true";
             HttpClient client = new HttpClient();
             string response = client.GetStringAsync(url).Result;
             List<DanhMucDichVu> ListDanhMucDichVu = JsonConvert.DeserializeObject<List<DanhMucDichVu>>(response);
@@ -29,7 +29,7 @@
                 }
             }
 
-            url = APICapSoSite + "/api/v1/DanhMucQuayDichVu/GetByParentIDAndActive001ToListAsync?ParentID=1&Active=true";
+            url = APICapSoSite + "/api/v1/DanhMucQuayDichVu/GetByParentIDAndActiveToListAsync?ParentID=1&Active=true";
             client = new HttpClient();
             response = client.GetStringAsync(url).Result;
             List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = JsonConvert.DeserializeObject<List<DanhMucQuayDichVu>>(response);

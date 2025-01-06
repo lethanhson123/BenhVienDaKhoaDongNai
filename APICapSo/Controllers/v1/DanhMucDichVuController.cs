@@ -11,25 +11,7 @@
         {
             _DanhMucDichVuService = DanhMucDichVuService;
             _WebHostEnvironment = WebHostEnvironment;
-        }
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("ZaloSendMessageAsync")]
-        public virtual async Task<int> ZaloSendMessageAsync()
-        {
-            int result = GlobalHelper.InitializationNumber;
-            try
-            {
-                string access_token = "3Fu29uTy8mm0_m8jYNyX0GV_1Y2DOr5pVAil798qIan3j0m_X2jfQ77sBpUU559zQ_8h790sRNP0znTNe79eV2UmI2VDOIz6Ew5i4CzY75T6jteUidKxJ6wMSIsEHGW3GALEI9TuDZXtZtH3_6SKCoUKT4VzSL0L3FGwNlqVMW4A_dXMupO1377RHo6T6IrUOFrQ1xvuVt9BW09JXmDvVc3zEJIu6tGLO94iOhvsIIeob09ArND0FoIjVtV1L1GCIz53Hwq9CWjsWdH6_NOUEJ2qVLZ-K1SOCjPkRw0C1YreqqHsaYWQMLliEok7PcDbNkKpH9OpRYbZrKztiZKsAcF6V76b8JOQIzPJSfSrC21brd9vgW4h2bV5QNJSCHyA6kjhHEqwG3u-mseLnoKETNLBlx8I68TY90e";
-                
-
-            }
-            catch (Exception ex)
-            {
-                string message = ex.Message;
-            }
-            return result;
-        }
+        }       
         [HttpPost]
         [Route("GetAllToListAsync")]
         public virtual async Task<List<DanhMucDichVu>> GetAllToListAsync()
