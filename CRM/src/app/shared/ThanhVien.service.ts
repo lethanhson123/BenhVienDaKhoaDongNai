@@ -9,6 +9,7 @@ import { BaseService } from './Base.service';
 export class ThanhVienService extends BaseService{
 
     DisplayColumns001: string[] = ['STT', 'ID', 'ParentName', 'TaiKhoan', 'Name', 'Email', 'Active'];
+    DisplayColumns002: string[] = ['STT', 'ID', 'ParentName', 'TaiKhoan', 'Name', 'Email', 'Active', 'Save'];
         
     List: ThanhVien[] | undefined;
     ListFilter: ThanhVien[] | undefined;

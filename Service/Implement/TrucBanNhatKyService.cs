@@ -15,7 +15,14 @@ namespace Service.Implement
         {
             BaseInitialization(model);
 
-            model.NgayGhiNhan = GlobalHelper.InitializationDateTime;
+            if (model.NgayGhiNhan == null)
+            {
+                model.NgayGhiNhan = GlobalHelper.InitializationDateTime;
+            }
+            if (model.ID == 0)
+            {
+                model.NgayGhiNhan = GlobalHelper.InitializationDateTime;
+            }
 
             if (string.IsNullOrEmpty(model.Khu))
             {

@@ -34,6 +34,9 @@ export class ThanhVienComponent implements OnInit {
   ThanhVienSearch() {
     this.ThanhVienService.SearchAllNotEmpty(this.ThanhVienSort, this.ThanhVienPaginator);
   }
-  
+  ThanhVienDelete(element: ThanhVien) {
+    this.ThanhVienService.BaseParameter.ID = element.ID;
+    this.NotificationService.warn(this.ThanhVienService.ComponentDeleteAllNotEmpty(this.ThanhVienSort, this.ThanhVienPaginator));
+  }
 
 }

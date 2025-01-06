@@ -71,7 +71,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Điện thoại"
-                                    name="Display{{element.ID}}" [(ngModel)]="element.Display">
+                                    name="Display{{element.ID}}" [(ngModel)]="element.Display" style="width: 100px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Khu">
@@ -79,7 +79,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Khu" name="Khu{{element.ID}}"
-                                    [(ngModel)]="element.Khu">
+                                    [(ngModel)]="element.Khu" style="width: 50px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Tang">
@@ -87,7 +87,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Tầng" name="Tang{{element.ID}}"
-                                    [(ngModel)]="element.Tang">
+                                    [(ngModel)]="element.Tang" style="width: 50px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Khoa">
@@ -95,7 +95,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Khoa" name="Khoa{{element.ID}}"
-                                    [(ngModel)]="element.Khoa">
+                                    [(ngModel)]="element.Khoa" style="width: 150px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Phong">
@@ -103,7 +103,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Phòng" name="Phong{{element.ID}}"
-                                    [(ngModel)]="element.Phong">
+                                    [(ngModel)]="element.Phong" style="width: 50px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="TaiKhoan">
@@ -111,7 +111,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Tài khoản"
-                                    name="TaiKhoan{{element.ID}}" [(ngModel)]="element.TaiKhoan">
+                                    name="TaiKhoan{{element.ID}}" [(ngModel)]="element.TaiKhoan" style="width: 50px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="ThucTrang">
@@ -127,11 +127,11 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Xử lý" name="XuLy{{element.ID}}"
-                                    [(ngModel)]="element.XuLy">
+                                    [(ngModel)]="element.XuLy" style="min-width: 500px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Active">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích hoạt
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kết thúc
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <label>
@@ -158,6 +158,98 @@
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #TrucBanNhatKyPaginator="matPaginator"
                         [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                    <table *ngIf="NotificationService.IsMobile" mat-table matSort #TrucBanNhatKySort="matSort"
+                        [dataSource]="TrucBanNhatKyService.DataSource" class="table table-striped m-0">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Danh sách
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div class="row gx-4">
+                                    <div class="col s12 m12 l12">
+                                        <label>Ngày ghi nhận</label>
+                                        <br />
+                                        <input [ngModel]="element.NgayGhiNhan | date:'yyyy-MM-dd HH:mm:ss'"
+                                            style="text-align: right;"
+                                            (ngModelChange)="DateNgayGhiNhan(element, $event)"
+                                            [ngModelOptions]="{ updateOn: 'blur' }" type="datetime-local"
+                                            class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Điện thoại</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Điện thoại"
+                                            name="Display{{element.ID}}" [(ngModel)]="element.Display">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Khu</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Khu"
+                                            name="Khu{{element.ID}}" [(ngModel)]="element.Khu">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Tầng</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Tầng"
+                                            name="Tang{{element.ID}}" [(ngModel)]="element.Tang">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Khoa</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Khoa"
+                                            name="Khoa{{element.ID}}" [(ngModel)]="element.Khoa">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Phòng</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Phòng"
+                                            name="Phong{{element.ID}}" [(ngModel)]="element.Phong">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Tài khoản</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Tài khoản"
+                                            name="TaiKhoan{{element.ID}}" [(ngModel)]="element.TaiKhoan">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Thực trạng</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Thực trạng"
+                                            name="ThucTrang{{element.ID}}" [(ngModel)]="element.ThucTrang">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>Xử lý</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Xử lý"
+                                            name="XuLy{{element.ID}}" [(ngModel)]="element.XuLy">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>
+                                            <input type="checkbox" name="Active{{element.ID}}"
+                                                [(ngModel)]="element.Active">
+                                            <span>Kết thúc</span>
+                                        </label>
+                                    </div>
+                                    <div class="col s6 m6 l6">
+                                        <a (click)="TrucBanNhatKySave(element)" style="color:#2196f3;"><i
+                                                class="material-icons">save</i></a>
+                                    </div>
+                                    <div class="col s6 m6 l6">
+                                        <a *ngIf="element.ID>0" (click)="TrucBanNhatKyDelete(element)"
+                                            style="color: red;"><i class="material-icons">delete_forever</i></a>
+                                    </div>
+                                </div>
+                                <br />
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="TrucBanNhatKyService.DisplayColumnsMobile">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: TrucBanNhatKyService.DisplayColumnsMobile;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="NotificationService.IsMobile" #TrucBanNhatKyPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
 
                 </div>
             </div>
