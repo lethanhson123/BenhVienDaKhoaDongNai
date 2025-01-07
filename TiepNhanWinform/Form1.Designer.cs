@@ -39,7 +39,7 @@
             cbbDanhMucDichVu.FormattingEnabled = true;
             cbbDanhMucDichVu.Location = new Point(12, 12);
             cbbDanhMucDichVu.Name = "cbbDanhMucDichVu";
-            cbbDanhMucDichVu.Size = new Size(260, 23);
+            cbbDanhMucDichVu.Size = new Size(210, 23);
             cbbDanhMucDichVu.TabIndex = 0;
             cbbDanhMucDichVu.SelectedIndexChanged += cbbDanhMucDichVu_SelectedIndexChanged;
             // 
@@ -48,14 +48,14 @@
             cbbDanhMucQuayDichVu.FormattingEnabled = true;
             cbbDanhMucQuayDichVu.Location = new Point(12, 41);
             cbbDanhMucQuayDichVu.Name = "cbbDanhMucQuayDichVu";
-            cbbDanhMucQuayDichVu.Size = new Size(260, 23);
+            cbbDanhMucQuayDichVu.Size = new Size(210, 23);
             cbbDanhMucQuayDichVu.TabIndex = 1;
             // 
             // txtSoHienTai
             // 
             txtSoHienTai.Location = new Point(12, 70);
             txtSoHienTai.Name = "txtSoHienTai";
-            txtSoHienTai.Size = new Size(260, 23);
+            txtSoHienTai.Size = new Size(210, 23);
             txtSoHienTai.TabIndex = 2;
             txtSoHienTai.Text = "0";
             txtSoHienTai.TextAlign = HorizontalAlignment.Right;
@@ -63,10 +63,10 @@
             // btnSoTiepTheo
             // 
             btnSoTiepTheo.BackColor = Color.Cyan;
-            btnSoTiepTheo.Font = new Font("Segoe UI", 12F);
+            btnSoTiepTheo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSoTiepTheo.Location = new Point(12, 99);
             btnSoTiepTheo.Name = "btnSoTiepTheo";
-            btnSoTiepTheo.Size = new Size(260, 40);
+            btnSoTiepTheo.Size = new Size(210, 40);
             btnSoTiepTheo.TabIndex = 3;
             btnSoTiepTheo.Text = "SỐ TIẾP THEO (F1)";
             btnSoTiepTheo.UseVisualStyleBackColor = false;
@@ -76,13 +76,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(284, 141);
+            ClientSize = new Size(234, 141);
             Controls.Add(btnSoTiepTheo);
             Controls.Add(txtSoHienTai);
             Controls.Add(cbbDanhMucQuayDichVu);
             Controls.Add(cbbDanhMucDichVu);
             Name = "Form1";
-            Text = "BVDKDN-Tiếp nhận";
+            Text = "Tiếp nhận";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

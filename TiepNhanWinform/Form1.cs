@@ -19,42 +19,49 @@
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string url = APICapSoSite + "/api/v1/DanhMucDichVu/GetByActiveToListAsync?Active=true";
-            HttpClient client = new HttpClient();
-            string response = client.GetStringAsync(url).Result;
-            ListDanhMucDichVu = JsonConvert.DeserializeObject<List<DanhMucDichVu>>(response);
-            if (ListDanhMucDichVu != null)
+            try
             {
-                if (ListDanhMucDichVu.Count > 0)
+                string url = APICapSoSite + "/api/v1/DanhMucDichVu/GetByActiveToListAsync?Active=true";
+                HttpClient client = new HttpClient();
+                string response = client.GetStringAsync(url).Result;
+                ListDanhMucDichVu = JsonConvert.DeserializeObject<List<DanhMucDichVu>>(response);
+                if (ListDanhMucDichVu != null)
                 {
-                    cbbDanhMucDichVu.DataSource = ListDanhMucDichVu;
-                    cbbDanhMucDichVu.ValueMember = "ID";
-                    cbbDanhMucDichVu.DisplayMember = "Name";
-                }
-            }
-
-            url = APICapSoSite + "/api/v1/DanhMucQuayDichVu/GetByActiveToListAsync?Active=true";
-            client = new HttpClient();
-            response = client.GetStringAsync(url).Result;
-            ListDanhMucQuayDichVu = JsonConvert.DeserializeObject<List<DanhMucQuayDichVu>>(response);
-            if (ListDanhMucQuayDichVu != null)
-            {
-                if (ListDanhMucQuayDichVu.Count > 0)
-                {
-                    if (ListDanhMucDichVu != null)
+                    if (ListDanhMucDichVu.Count > 0)
                     {
-                        if (ListDanhMucDichVu.Count > 0)
+                        cbbDanhMucDichVu.DataSource = ListDanhMucDichVu;
+                        cbbDanhMucDichVu.ValueMember = "ID";
+                        cbbDanhMucDichVu.DisplayMember = "Name";
+                    }
+                }
+
+                url = APICapSoSite + "/api/v1/DanhMucQuayDichVu/GetByActiveToListAsync?Active=true";
+                client = new HttpClient();
+                response = client.GetStringAsync(url).Result;
+                ListDanhMucQuayDichVu = JsonConvert.DeserializeObject<List<DanhMucQuayDichVu>>(response);
+                if (ListDanhMucQuayDichVu != null)
+                {
+                    if (ListDanhMucQuayDichVu.Count > 0)
+                    {
+                        if (ListDanhMucDichVu != null)
                         {
-                            long DanhMucDichVuID = ListDanhMucDichVu[0].ID;
-                            ListDanhMucQuayDichVuSub = ListDanhMucQuayDichVu.Where(item => item.DanhMucDichVuID == DanhMucDichVuID).ToList();
-                            cbbDanhMucQuayDichVu.DataSource = ListDanhMucQuayDichVuSub;
-                            cbbDanhMucQuayDichVu.ValueMember = "ID";
-                            cbbDanhMucQuayDichVu.DisplayMember = "Name";
+                            if (ListDanhMucDichVu.Count > 0)
+                            {
+                                long DanhMucDichVuID = ListDanhMucDichVu[0].ID;
+                                ListDanhMucQuayDichVuSub = ListDanhMucQuayDichVu.Where(item => item.DanhMucDichVuID == DanhMucDichVuID).ToList();
+                                cbbDanhMucQuayDichVu.DataSource = ListDanhMucQuayDichVuSub;
+                                cbbDanhMucQuayDichVu.ValueMember = "ID";
+                                cbbDanhMucQuayDichVu.DisplayMember = "Name";
+                            }
                         }
                     }
                 }
             }
-
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                MessageBox.Show(msg);
+            }
             NgayHienTai = DateTime.Now;
         }
 
@@ -65,7 +72,7 @@
         private void SoTiepTheo()
         {
             try
-            {                
+            {
                 if (NgayHienTai.Value.Day != DateTime.Now.Day)
                 {
                     NgayHienTai = DateTime.Now;
@@ -134,7 +141,7 @@
             {
                 string msg = ex.Message;
             }
-            
+
         }
     }
 }
