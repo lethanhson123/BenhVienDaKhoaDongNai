@@ -3,6 +3,10 @@
     public partial class Form1 : Form
     {
         public DateTime? NgayHienTai { get; set; }
+        public string? APICapSoSite { get; set; }
+        public List<DanhMucDichVu>? ListDanhMucDichVu { get; set; }
+        public List<DanhMucQuayDichVu>? ListDanhMucQuayDichVu { get; set; }
+        public List<DanhMucQuayDichVu>? ListDanhMucQuayDichVuSub { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -10,15 +14,15 @@
             StartPosition = FormStartPosition.Manual;
             Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
             this.TopMost = true;
+            APICapSoSite = "http://10.84.3.124:901";
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string APICapSoSite = "http://10.84.3.124:901";
             string url = APICapSoSite + "/api/v1/DanhMucDichVu/GetByActiveToListAsync?Active=true";
             HttpClient client = new HttpClient();
             string response = client.GetStringAsync(url).Result;
-            List<DanhMucDichVu> ListDanhMucDichVu = JsonConvert.DeserializeObject<List<DanhMucDichVu>>(response);
+            ListDanhMucDichVu = JsonConvert.DeserializeObject<List<DanhMucDichVu>>(response);
             if (ListDanhMucDichVu != null)
             {
                 if (ListDanhMucDichVu.Count > 0)
@@ -29,17 +33,25 @@
                 }
             }
 
-            url = APICapSoSite + "/api/v1/DanhMucQuayDichVu/GetByParentIDAndActiveToListAsync?ParentID=1&Active=true";
+            url = APICapSoSite + "/api/v1/DanhMucQuayDichVu/GetByActiveToListAsync?Active=true";
             client = new HttpClient();
             response = client.GetStringAsync(url).Result;
-            List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = JsonConvert.DeserializeObject<List<DanhMucQuayDichVu>>(response);
+            ListDanhMucQuayDichVu = JsonConvert.DeserializeObject<List<DanhMucQuayDichVu>>(response);
             if (ListDanhMucQuayDichVu != null)
             {
                 if (ListDanhMucQuayDichVu.Count > 0)
                 {
-                    cbbDanhMucQuayDichVu.DataSource = ListDanhMucQuayDichVu;
-                    cbbDanhMucQuayDichVu.ValueMember = "ID";
-                    cbbDanhMucQuayDichVu.DisplayMember = "Name";
+                    if (ListDanhMucDichVu != null)
+                    {
+                        if (ListDanhMucDichVu.Count > 0)
+                        {
+                            long DanhMucDichVuID = ListDanhMucDichVu[0].ID;
+                            ListDanhMucQuayDichVuSub = ListDanhMucQuayDichVu.Where(item => item.DanhMucDichVuID == DanhMucDichVuID).ToList();
+                            cbbDanhMucQuayDichVu.DataSource = ListDanhMucQuayDichVuSub;
+                            cbbDanhMucQuayDichVu.ValueMember = "ID";
+                            cbbDanhMucQuayDichVu.DisplayMember = "Name";
+                        }
+                    }
                 }
             }
 
@@ -53,7 +65,7 @@
         private void SoTiepTheo()
         {
             try
-            {
+            {                
                 if (NgayHienTai.Value.Day != DateTime.Now.Day)
                 {
                     NgayHienTai = DateTime.Now;
@@ -97,6 +109,32 @@
                 default:
                     return base.ProcessCmdKey(ref msg, keyData);
             }
+        }
+
+        private void cbbDanhMucDichVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbbDanhMucDichVu.Items.Count > 0)
+                {
+                    long DanhMucDichVuID = (long)cbbDanhMucDichVu.SelectedValue;
+                    ListDanhMucQuayDichVuSub = ListDanhMucQuayDichVu.Where(item => item.DanhMucDichVuID == DanhMucDichVuID).ToList();
+                    if (ListDanhMucQuayDichVuSub != null)
+                    {
+                        if (ListDanhMucQuayDichVuSub.Count > 0)
+                        {
+                            cbbDanhMucQuayDichVu.DataSource = ListDanhMucQuayDichVuSub;
+                            cbbDanhMucQuayDichVu.ValueMember = "ID";
+                            cbbDanhMucQuayDichVu.DisplayMember = "Name";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            
         }
     }
 }

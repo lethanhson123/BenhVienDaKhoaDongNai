@@ -41,6 +41,7 @@
             cbbDanhMucDichVu.Name = "cbbDanhMucDichVu";
             cbbDanhMucDichVu.Size = new Size(260, 23);
             cbbDanhMucDichVu.TabIndex = 0;
+            cbbDanhMucDichVu.SelectedIndexChanged += cbbDanhMucDichVu_SelectedIndexChanged;
             // 
             // cbbDanhMucQuayDichVu
             // 
@@ -82,7 +83,7 @@
             Controls.Add(cbbDanhMucDichVu);
             Name = "Form1";
             Text = "BVDKDN-Tiếp nhận";
-            Load += Form1_Load;            
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
