@@ -5,7 +5,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ChartJSComponent } from './chart-js/chart-js.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/ChartJS', pathMatch: 'full' },
+  { path: '', redirectTo: '/Homepage', pathMatch: 'full' },
   {
     path: 'Homepage', component: HomepageComponent,
   }, 
