@@ -22,7 +22,9 @@
         List<T> GetByStoredProcedureToList(string storedProcedureName, params SqlParameter[] parameters);
         Task<List<T>> GetByStoredProcedureToListAsync(string storedProcedureName, params SqlParameter[] parameters);
         List<T> GetAllAndEmptyToList();
-        Task<List<T>> GetAllAndEmptyToListAsync();       
+        Task<List<T>> GetAllAndEmptyToListAsync();
+        List<T> GetBySearchStringAndEmptyToList(string SearchString);
+        Task<List<T>> GetBySearchStringAndEmptyToListAsync(string SearchString);
         Task<string> InsertItemsByDataTableAsync(DataTable table, string storedProcedureName);
 
     }

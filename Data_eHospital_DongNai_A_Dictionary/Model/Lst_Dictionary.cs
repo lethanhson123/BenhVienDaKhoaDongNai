@@ -2,6 +2,7 @@
 {
     public partial class Lst_Dictionary : BaseModel
     {
+        [Key]
         public int? Dictionary_Id { get; set; }
         public int? Dictionary_Type_Id { get; set; }
         public string? Dictionary_Type_Code { get; set; }

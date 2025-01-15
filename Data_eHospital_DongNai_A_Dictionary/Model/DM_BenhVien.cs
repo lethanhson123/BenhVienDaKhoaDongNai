@@ -2,6 +2,7 @@
 {
     public partial class DM_BenhVien : BaseModel
     {
+        [Key]
         public int? BenhVien_Id { get; set; }
         public string? MaBenhVien { get; set; }
         public string? TenBenhVien { get; set; }

@@ -51,6 +51,11 @@ import { ZaloZNSComponent } from './zalo-zns/zalo-zns.component';
 import { KhamSucKhoeComponent } from './kham-suc-khoe/kham-suc-khoe.component';
 import { KhamSucKhoeInfoComponent } from './kham-suc-khoe-info/kham-suc-khoe-info.component';
 import { TrucBanNhatKyComponent } from './truc-ban-nhat-ky/truc-ban-nhat-ky.component';
+import { LstDictionaryTypeComponent } from './eHospital_DongNai_A_Dictionary/lst-dictionary-type/lst-dictionary-type.component';
+import { LstDictionaryComponent } from './eHospital_DongNai_A_Dictionary/lst-dictionary/lst-dictionary.component';
+import { DMDonViHanhChinhComponent } from './eHospital_DongNai_A_Dictionary/dm-don-vi-hanh-chinh/dm-don-vi-hanh-chinh.component';
+import { DMBenhVienComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-vien/dm-benh-vien.component';
+import { DMBenhNhanComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan/dm-benh-nhan.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +99,11 @@ import { TrucBanNhatKyComponent } from './truc-ban-nhat-ky/truc-ban-nhat-ky.comp
     KhamSucKhoeComponent,
     KhamSucKhoeInfoComponent,
     TrucBanNhatKyComponent,
+    LstDictionaryTypeComponent,
+    LstDictionaryComponent,
+    DMDonViHanhChinhComponent,
+    DMBenhVienComponent,
+    DMBenhNhanComponent,
 
   ],
   imports: [

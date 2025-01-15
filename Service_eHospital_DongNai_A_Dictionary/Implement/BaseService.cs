@@ -17,13 +17,13 @@
         {
         }
         public virtual T Save(T model)
-        {            
+        {
             return model;
         }
         public virtual async Task<T> SaveAsync(T model)
-        {          
+        {
             return model;
-        }       
+        }
         public virtual int Add(T model)
         {
             Initialization(model);
@@ -56,12 +56,12 @@
         {
             return await _repository.RemoveAsync(model);
         }
-       
+
         public virtual IQueryable<T> GetByCondition(Expression<Func<T, bool>> whereCondition)
         {
             return _repository.GetByCondition(whereCondition);
         }
-        
+
         public virtual List<T> GetAllToList()
         {
             return _repository.GetAllToList();
@@ -70,7 +70,7 @@
         {
             return await _repository.GetAllToListAsync();
         }
-      
+
         public virtual List<T> GetBySearchStringToList(string searchString)
         {
             return _repository.GetBySearchStringToList(searchString);
@@ -86,7 +86,7 @@
         public virtual async Task<List<T>> GetByPageAndPageSizeToListAsync(int page, int pageSize)
         {
             return await _repository.GetByPageAndPageSizeToListAsync(page, pageSize);
-        }       
+        }
         public virtual string ExecuteNonQueryByStoredProcedure(string storedProcedureName, params SqlParameter[] parameters)
         {
             return _repository.ExecuteNonQueryByStoredProcedure(storedProcedureName, parameters);
@@ -134,7 +134,38 @@
             }
             return result;
         }
-        
+        public virtual List<T> GetBySearchStringAndEmptyToList(string SearchString)
+        {
+            List<T> result = new List<T>();
+            T empty = (T)Activator.CreateInstance(typeof(T));
+            result.Add(empty);
+            List<T> list = GetBySearchStringToList(SearchString);
+            if (list.Count > 0)
+            {
+                result.AddRange(list);
+            }
+            return result;
+        }
+        public virtual async Task<List<T>> GetBySearchStringAndEmptyToListAsync(string SearchString)
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                T empty = (T)Activator.CreateInstance(typeof(T));
+                result.Add(empty);
+                List<T> list = await GetBySearchStringToListAsync(SearchString);
+                if (list.Count > 0)
+                {
+                    result.AddRange(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
+            return result;
+        }
+
         public async Task<string> InsertItemsByDataTableAsync(DataTable table, string storedProcedureName)
         {
             string result = GlobalHelper.InitializationString;

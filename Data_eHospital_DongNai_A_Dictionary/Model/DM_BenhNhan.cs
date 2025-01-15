@@ -1,7 +1,10 @@
-﻿namespace Data_eHospital_DongNai_A_Dictionary.Model
+﻿
+
+namespace Data_eHospital_DongNai_A_Dictionary.Model
 {
     public partial class DM_BenhNhan : BaseModel
     {
+        [Key]
         public int? BenhNhan_Id { get; set; }
         public string? MaYTe { get; set; }
         public string? MaBenhVien { get; set; }
@@ -11,7 +14,7 @@
         public string? Ten { get; set; }
         public string? GioiTinh { get; set; }
         public DateTime? NgaySinh { get; set; }
-        public int? NamSinh { get; set; }
+        public short? NamSinh { get; set; }
         public string? SoNha { get; set; }
         public string? DiaChi { get; set; }
         public int? NhomMau_Id { get; set; }
@@ -36,7 +39,7 @@
         public DateTime? NgayCapNhat { get; set; }
         public int? NguoiCapNhat_Id { get; set; }
         public DateTime? NgayCapThe { get; set; }
-        public int? NamCapThe { get; set; }
+        public short? NamCapThe { get; set; }
         public DateTime? ThoiGianCapThe { get; set; }
         public int? NhanVien_Id { get; set; }
         public string? TienSuBenh { get; set; }

@@ -4,6 +4,8 @@ export const environment = {
   DomainDestination: "",
   APIURL: "http://10.84.3.124:900/api/v1/",
   APIRootURL: "http://10.84.3.124:900/",
+  API_eHospital_DongNai_A_DictionaryURL: "https://localhost:7085/api/v1/",
+  API_eHospital_DongNai_A_DictionaryRootURL: "https://localhost:7085/",
   IPRegistry: "https://ipv4.myexternalip.com/json",
   IPRegistryURL: "https://api.ipregistry.co/?key=tryout",
   LoadingFile: "loading.gif",

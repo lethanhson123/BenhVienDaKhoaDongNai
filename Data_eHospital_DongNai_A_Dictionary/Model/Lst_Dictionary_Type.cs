@@ -2,12 +2,13 @@
 {
     public partial class Lst_Dictionary_Type : BaseModel
     {
+        [Key]
         public int? Dictionary_Type_Id { get; set; }
         public string? Dictionary_Type_Code { get; set; }
         public string? Dictionary_Type_Name { get; set; }
         public string? Dictionary_Type_Name_En { get; set; }
         public string? Dictionary_Type_Name_Ru { get; set; }
-        public int? Level { get; set; }
+        public short? Level { get; set; }
         public int? Parent_Id { get; set; }
         public int? Idx { get; set; }
         public string? Table_Name { get; set; }

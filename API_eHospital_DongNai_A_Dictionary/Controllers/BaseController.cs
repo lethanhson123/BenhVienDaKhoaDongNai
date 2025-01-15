@@ -1,6 +1,6 @@
 ﻿namespace API_eHospital_DongNai_A_Dictionary.Controllers.v1
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BaseController<T, TBaseService> : Controller
         where T : BaseModel
         where TBaseService : IBaseService<T>
@@ -190,6 +190,37 @@
             }
             return result;
         }
-
+        [HttpPost]
+        [Route("GetBySearchStringAndEmptyToList")]
+        public virtual List<T> GetBySearchStringAndEmptyToList()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = _BaseService.GetBySearchStringAndEmptyToList(baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetBySearchStringAndEmptyToListAsync")]
+        public virtual async Task<List<T>> GetBySearchStringAndEmptyToListAsync()
+        {
+            List<T> result = new List<T>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetBySearchStringAndEmptyToListAsync(baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }

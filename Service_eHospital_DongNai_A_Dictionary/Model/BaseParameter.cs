@@ -6,7 +6,8 @@
 		public int? PageSize { get; set; }              
 		public string? SearchString { get; set; }				
 		public DateTime? BatDau { get; set; }
-		public DateTime? KetThuc { get; set; }			
+		public DateTime? KetThuc { get; set; }
+        public int? Dictionary_Type_Id { get; set; }
         public BaseParameter()
 		{
 		}

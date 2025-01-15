@@ -35,6 +35,9 @@ import { ZaloZNSComponent } from './zalo-zns/zalo-zns.component';
 import { KhamSucKhoeComponent } from './kham-suc-khoe/kham-suc-khoe.component';
 import { KhamSucKhoeInfoComponent } from './kham-suc-khoe-info/kham-suc-khoe-info.component';
 import { TrucBanNhatKyComponent } from './truc-ban-nhat-ky/truc-ban-nhat-ky.component';
+import { LstDictionaryTypeComponent } from './eHospital_DongNai_A_Dictionary/lst-dictionary-type/lst-dictionary-type.component';
+import { LstDictionaryComponent } from './eHospital_DongNai_A_Dictionary/lst-dictionary/lst-dictionary.component';
+import { DMBenhVienComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-vien/dm-benh-vien.component';
 
 
 
@@ -152,6 +155,16 @@ const routes: Routes = [
   
   {
     path: 'Dashboard001', component: Dashboard001Component,
+  },
+
+  {
+    path: 'LstDictionaryType', component: LstDictionaryTypeComponent,
+  },
+  {
+    path: 'LstDictionary', component: LstDictionaryComponent,
+  },
+  {
+    path: 'DMBenhVien', component: DMBenhVienComponent,
   },
 ];
 
