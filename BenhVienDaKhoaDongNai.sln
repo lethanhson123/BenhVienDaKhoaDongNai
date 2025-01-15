@@ -21,6 +21,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.KiemSoatThuChi", "API.K
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiepNhanWinform", "TiepNhanWinform\TiepNhanWinform.csproj", "{6821437F-40ED-4126-9921-769CFD20E9E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Context_eHospital_DongNai_A_Dictionary", "Context_eHospital_DongNai_A_Dictionary\Context_eHospital_DongNai_A_Dictionary.csproj", "{62DF85C5-D2B4-4BEE-804A-49AFD98A953C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_eHospital_DongNai_A_Dictionary", "Data_eHospital_DongNai_A_Dictionary\Data_eHospital_DongNai_A_Dictionary.csproj", "{4EB86609-A692-451D-B14A-16AB1A3F0114}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reposity_eHospital_DongNai_A_Dictionary", "Reposity_eHospital_DongNai_A_Dictionary\Reposity_eHospital_DongNai_A_Dictionary.csproj", "{5E768650-4845-4CF8-B31D-D8E5DF89CE83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_eHospital_DongNai_A_Dictionary", "Service_eHospital_DongNai_A_Dictionary\Service_eHospital_DongNai_A_Dictionary.csproj", "{51090192-FAA4-4DFE-BD4C-5DA21544103C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_eHospital_DongNai_A_Dictionary", "API_eHospital_DongNai_A_Dictionary\API_eHospital_DongNai_A_Dictionary.csproj", "{94A969F4-17EF-49B3-A7CF-8449E929C64A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +73,26 @@ Global
 		{6821437F-40ED-4126-9921-769CFD20E9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6821437F-40ED-4126-9921-769CFD20E9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6821437F-40ED-4126-9921-769CFD20E9E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62DF85C5-D2B4-4BEE-804A-49AFD98A953C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62DF85C5-D2B4-4BEE-804A-49AFD98A953C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62DF85C5-D2B4-4BEE-804A-49AFD98A953C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62DF85C5-D2B4-4BEE-804A-49AFD98A953C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB86609-A692-451D-B14A-16AB1A3F0114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB86609-A692-451D-B14A-16AB1A3F0114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB86609-A692-451D-B14A-16AB1A3F0114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB86609-A692-451D-B14A-16AB1A3F0114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E768650-4845-4CF8-B31D-D8E5DF89CE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E768650-4845-4CF8-B31D-D8E5DF89CE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E768650-4845-4CF8-B31D-D8E5DF89CE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E768650-4845-4CF8-B31D-D8E5DF89CE83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51090192-FAA4-4DFE-BD4C-5DA21544103C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51090192-FAA4-4DFE-BD4C-5DA21544103C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51090192-FAA4-4DFE-BD4C-5DA21544103C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51090192-FAA4-4DFE-BD4C-5DA21544103C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A969F4-17EF-49B3-A7CF-8449E929C64A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A969F4-17EF-49B3-A7CF-8449E929C64A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A969F4-17EF-49B3-A7CF-8449E929C64A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A969F4-17EF-49B3-A7CF-8449E929C64A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
