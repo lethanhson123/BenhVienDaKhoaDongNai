@@ -26,7 +26,10 @@ export class HomepageComponent implements OnInit {
     public DanhMucDichVuService: DanhMucDichVuService,
     public GoiSoService: GoiSoService,
     public KhachHangService: KhachHangService,
-  ) { }
+  ) {
+    this.GoiSoService.BaseParameter.IsInPhieu = true;
+    this.GoiSoService.BaseParameter.IsGuiZalo = false;
+  }
 
   ngOnInit(): void {
     document.getElementById("Code").focus();
@@ -55,12 +58,16 @@ export class HomepageComponent implements OnInit {
     this.GoiSoService.BaseParameter.DanhMucDichVuID = DanhMucDichVuID;
     this.GoiSoService.BaseParameter.Code = this.GoiSoService.FormData.Code;
     this.GoiSoService.BaseParameter.Display = this.GoiSoService.FormData.Display;
-    this.GoiSoService.SaveByDanhMucDichVuID_Code_DisplayAsync().subscribe(
+    this.GoiSoService.SaveByDanhMucDichVuID_Code_Display_IsInPhieu_IsGuiZaloAsync().subscribe(
       res => {
         this.GoiSoService.FormData = res as GoiSo;
         this.GoiSoService.FormData.Code = environment.InitializationString;
         this.GoiSoService.FormData.Display = environment.InitializationString;
-        this.NotificationService.OpenWindowByURLMin(this.GoiSoService.FormData.FileName);
+        if (this.GoiSoService.BaseParameter.IsInPhieu == true) {
+          this.NotificationService.OpenWindowByURLMin(this.GoiSoService.FormData.FileName);
+        }
+        this.GoiSoService.BaseParameter.IsInPhieu = true;
+        this.GoiSoService.BaseParameter.IsGuiZalo = false;
       },
       err => {
       },
@@ -70,13 +77,13 @@ export class HomepageComponent implements OnInit {
     );
     document.getElementById("Code").focus();
   }
-  GoiSoChiTietCodeChange() {    
-    this.GoiSoService.IsShowLoading = true;        
+  GoiSoChiTietCodeChange() {
+    this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.FormData.Display = environment.InitializationString;
     this.KhachHangService.BaseParameter.SearchString = this.GoiSoService.FormData.Code;
     this.KhachHangService.GetBySearchStringToAsync().subscribe(
       res => {
-        this.KhachHangService.FormData = res as KhachHang;        
+        this.KhachHangService.FormData = res as KhachHang;
         this.GoiSoService.FormData.Display = this.KhachHangService.FormData.DienThoai;
       },
       err => {

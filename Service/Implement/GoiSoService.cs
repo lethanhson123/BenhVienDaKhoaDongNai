@@ -597,6 +597,54 @@ namespace Service.Implement
             }
             return result;
         }
+        public virtual async Task<GoiSo> SaveByDanhMucDichVuID_Code_Display_IsInPhieu_IsGuiZaloAsync(long DanhMucDichVuID, string Code, string Display, bool IsInPhieu, bool IsGuiZalo)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                if (DanhMucDichVuID > 0)
+                {
+                    DateTime Now = GlobalHelper.InitializationDateTime;
+                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                    if (result == null)
+                    {
+                        result = new GoiSo();
+                        result.DanhMucDichVuID = DanhMucDichVuID;
+                        result.NgayGhiNhan = Now;
+                        result.TongCong = 0;
+                        result.SoHienTai = 0;
+                    }
+                    if (!string.IsNullOrEmpty(Code))
+                    {
+                        Code = Code.Split('|')[0];
+                    }
+                    result.Code = Code;
+                    result.Display = Display;
+                    result.TongCong = result.TongCong + 1;
+                    result = await SaveAsync(result);
+                    if (result.ID > 0)
+                    {
+                        if (IsGuiZalo == true)
+                        {
+                            await ZaloZNSSendAsync(result);
+                        }
+                        if (IsInPhieu == true)
+                        {
+                            result = await CreateHTML002ByModelAsync(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }
+            return result;
+        }
         public virtual async Task<GoiSo> CreateHTMLByModelAsync(GoiSo result)
         {
             try
@@ -751,15 +799,15 @@ namespace Service.Implement
                         contentHTML = r.ReadToEnd();
                     }
                 }
-                DateTime NgayIn = GlobalHelper.InitializationDateTime;                
+                DateTime NgayIn = GlobalHelper.InitializationDateTime;
 
-                contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));                
+                contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));
 
                 contentHTML = contentHTML.Replace("[APISite]", GlobalHelper.APISite);
 
                 contentHTML = contentHTML.Replace("[DanhMucDichVuName]", result.DanhMucDichVuName);
                 contentHTML = contentHTML.Replace("[Note]", result.Note);
-                contentHTML = contentHTML.Replace("[TongCongString]", result.TongCongString);                
+                contentHTML = contentHTML.Replace("[TongCongString]", result.TongCongString);
 
                 if (!string.IsNullOrEmpty(result.Code))
                 {
@@ -805,6 +853,10 @@ namespace Service.Implement
             {
                 if (!string.IsNullOrEmpty(result.Display))
                 {
+                    if (string.IsNullOrEmpty(result.Code))
+                    {
+                        result.Code = result.Display;
+                    }
                     ZaloToken ZaloToken = await _ZaloTokenService.GetLatestAsync();
                     if (!string.IsNullOrEmpty(ZaloToken.OAAccessToken))
                     {
@@ -812,6 +864,10 @@ namespace Service.Implement
                         if (result.Display.Length == 10)
                         {
                             ZaloZNSDataRequest.phone = "84" + result.Display.Substring(1);
+                        }
+                        if (result.Display.Length == 9)
+                        {
+                            ZaloZNSDataRequest.phone = "84" + result.Display;
                         }
                         if (!string.IsNullOrEmpty(ZaloZNSDataRequest.phone))
                         {

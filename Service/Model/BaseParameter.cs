@@ -32,6 +32,8 @@
         public string? NgayCapSoSoThuTuString { get; set; }        
         public int? Number { get; set; }
         public bool? IsBHYT { get; set; }
+        public bool? IsInPhieu { get; set; }
+        public bool? IsGuiZalo { get; set; }
         public BaseParameter()
 		{
 		}

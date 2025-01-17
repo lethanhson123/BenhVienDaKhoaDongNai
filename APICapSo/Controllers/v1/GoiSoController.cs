@@ -131,6 +131,23 @@
             return result;
         }
         [HttpPost]
+        [Route("SaveByDanhMucDichVuID_Code_Display_IsInPhieu_IsGuiZaloAsync")]
+        public virtual async Task<GoiSo> SaveByDanhMucDichVuID_Code_Display_IsInPhieu_IsGuiZaloAsync()
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.SaveByDanhMucDichVuID_Code_Display_IsInPhieu_IsGuiZaloAsync(baseParameter.DanhMucDichVuID.Value, baseParameter.Code, baseParameter.Display, baseParameter.IsInPhieu.Value, baseParameter.IsGuiZalo.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GoiSoTiepTheoByDanhMucPhongKhamIDAsync")]
         public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucPhongKhamIDAsync()
         {
