@@ -37,6 +37,15 @@ export class LstDictionaryComponent implements OnInit {
   }
   Lst_Dictionary_TypeSearch() {
     this.Lst_Dictionary_TypeService.ComponentGetAllToListAsync(this.Lst_DictionaryService);
+    this.Lst_Dictionary_TypeService.GetAllToListAsync().subscribe(
+      res => {
+        this.Lst_Dictionary_TypeService.List = (res as Lst_Dictionary_Type[]).sort((a, b) => (a.Dictionary_Type_Name > b.Dictionary_Type_Name ? 1 : -1));;        
+      },
+      err => {
+      },
+      () => {
+      }
+    );
   }
 
   Lst_DictionarySearch() {

@@ -13,6 +13,22 @@
             _WebHostEnvironment = WebHostEnvironment;
         }
         [HttpPost]
+        [Route("GetByDictionary_Type_IdToListAsync")]
+        public virtual async Task<List<Lst_Dictionary>> GetByDictionary_Type_IdToListAsync()
+        {
+            List<Lst_Dictionary> result = new List<Lst_Dictionary>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _Lst_DictionaryService.GetByDictionary_Type_IdToListAsync(baseParameter.Dictionary_Type_Id.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByDictionary_Type_IdAndEmptyToListAsync")]
         public virtual async Task<List<Lst_Dictionary>> GetByDictionary_Type_IdAndEmptyToListAsync()
         {

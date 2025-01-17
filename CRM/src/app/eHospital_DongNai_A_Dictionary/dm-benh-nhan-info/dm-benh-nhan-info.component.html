@@ -119,17 +119,7 @@
                             <label>Điện thoại</label>
                             <input placeholder="Điện thoại" [(ngModel)]="DM_BenhNhanService.FormData.SoDienThoai"
                                 name="DM_BenhNhanService.FormData.SoDienThoai" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>Email</label>
-                            <input placeholder="Điện thoại" [(ngModel)]="DM_BenhNhanService.FormData.Email"
-                                name="DM_BenhNhanService.FormData.Email" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>CCCD/Hộ chiếu</label>
-                            <input placeholder="CCCD/Hộ chiếu" [(ngModel)]="DM_BenhNhanService.FormData.CMND"
-                                name="DM_BenhNhanService.FormData.CMND" type="text" class="form-control">
-                        </div>
+                        </div>            
                         <div>
                             <label>Nơi cấp</label>
                             <input placeholder="Nơi cấp" [(ngModel)]="DM_BenhNhanService.FormData.CMND_NoiCap"
@@ -183,38 +173,48 @@
                             <label>Thường trú</label>
                             <input placeholder="Thường trú" [(ngModel)]="DM_BenhNhanService.FormData.DiaChiThuongTru"
                                 name="DM_BenhNhanService.FormData.DiaChiThuongTru" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>CCCD/Hộ chiếu</label>
+                            <input placeholder="CCCD/Hộ chiếu" [(ngModel)]="DM_BenhNhanService.FormData.CMND"
+                                name="DM_BenhNhanService.FormData.CMND" type="text" class="form-control">
                         </div>                        
                     </div>
                     <div class="col s12 m12 l3">
                         <div>
                             <label>Quốc tịch
-                                [{{DM_BenhNhanService.FormData.TinhThanh_Id}}]</label>
-                            <select class="browser-default form-select" name="TinhThanh_Id"
-                                [(ngModel)]="DM_BenhNhanService.FormData.TinhThanh_Id">
-                                <option *ngFor="let item of DM_DonViHanhChinhService.ListTinhThanh;"
-                                    [value]="item.DonViHanhChinh_Id">
-                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                                [{{DM_BenhNhanService.FormData.QuocTich_Id}}]</label>
+                            <select class="browser-default form-select" name="QuocTich_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.QuocTich_Id">
+                                <option *ngFor="let item of Lst_DictionaryService.ListQuocTich;"
+                                    [value]="item.Dictionary_Id">
+                                    {{item.Dictionary_Name}} [{{item.Dictionary_Id}}]</option>
                             </select>
                         </div>
                         <div>
                             <label>Dân tộc
-                                [{{DM_BenhNhanService.FormData.QuanHuyen_Id}}]</label>
-                            <select class="browser-default form-select" name="QuanHuyen_Id"
-                                [(ngModel)]="DM_BenhNhanService.FormData.QuanHuyen_Id">
-                                <option *ngFor="let item of DM_DonViHanhChinhService.ListQuanHuyen;"
-                                    [value]="item.DonViHanhChinh_Id">
-                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                                [{{DM_BenhNhanService.FormData.DanToc_Id}}]</label>
+                            <select class="browser-default form-select" name="DanToc_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.DanToc_Id">
+                                <option *ngFor="let item of Lst_DictionaryService.ListDanToc;"
+                                    [value]="item.Dictionary_Id">
+                                    {{item.Dictionary_Name}} [{{item.Dictionary_Id}}]</option>
                             </select>
                         </div>
                         <div>
                             <label>Nghề nghiệp
-                                [{{DM_BenhNhanService.FormData.XaPhuong_Id}}]</label>
-                            <select class="browser-default form-select" name="XaPhuong_Id"
-                                [(ngModel)]="DM_BenhNhanService.FormData.XaPhuong_Id">
-                                <option *ngFor="let item of DM_DonViHanhChinhService.ListXaPhuong;"
-                                    [value]="item.DonViHanhChinh_Id">
-                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                                [{{DM_BenhNhanService.FormData.NgheNghiep_Id}}]</label>
+                            <select class="browser-default form-select" name="NgheNghiep_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.NgheNghiep_Id">
+                                <option *ngFor="let item of Lst_DictionaryService.ListNgheNghiep;"
+                                    [value]="item.Dictionary_Id">
+                                    {{item.Dictionary_Name}} [{{item.Dictionary_Id}}]</option>
                             </select>
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input placeholder="Điện thoại" [(ngModel)]="DM_BenhNhanService.FormData.Email"
+                                name="DM_BenhNhanService.FormData.Email" type="text" class="form-control">
                         </div>
                         <div>
                             <label>Ghi chú</label>

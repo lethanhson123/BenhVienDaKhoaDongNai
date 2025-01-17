@@ -12,12 +12,22 @@ export class Lst_DictionaryService extends BaseService {
     List: Lst_Dictionary[] | undefined;
     ListFilter: Lst_Dictionary[] | undefined;
     FormData!: Lst_Dictionary;
+
+    ListQuocTich: Lst_Dictionary[] | undefined;
+    ListDanToc: Lst_Dictionary[] | undefined;
+    ListNgheNghiep: Lst_Dictionary[] | undefined;
+    
     
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "Lst_Dictionary";
     }
-
+    GetByDictionary_Type_IdToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByDictionary_Type_IdToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     GetByDictionary_Type_IdAndEmptyToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByDictionary_Type_IdAndEmptyToListAsync';
         const formUpload: FormData = new FormData();

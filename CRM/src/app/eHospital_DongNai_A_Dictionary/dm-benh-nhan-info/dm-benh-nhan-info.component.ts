@@ -8,9 +8,11 @@ import { environment } from 'src/environments/environment';
 import { NotificationService } from 'src/app/shared/Notification.service';
 import { DownloadService } from 'src/app/shared/Download.service';
 
-
 import { DM_DonViHanhChinh } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_DonViHanhChinh.model';
 import { DM_DonViHanhChinhService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_DonViHanhChinh.service';
+
+import { Lst_Dictionary } from 'src/app/shared/eHospital_DongNai_A_Dictionary/Lst_Dictionary.model';
+import { Lst_DictionaryService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/Lst_Dictionary.service';
 
 import { DM_BenhNhan } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_BenhNhan.model';
 import { DM_BenhNhanService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_BenhNhan.service';
@@ -28,6 +30,7 @@ export class DMBenhNhanInfoComponent implements OnInit {
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
+    public Lst_DictionaryService: Lst_DictionaryService,
     public DM_DonViHanhChinhService: DM_DonViHanhChinhService,
     public DM_BenhNhanService: DM_BenhNhanService,
   ) { }
@@ -47,6 +50,42 @@ export class DMBenhNhanInfoComponent implements OnInit {
   }
   DateNgayTuVong(value) {
     this.DM_BenhNhanService.FormData.NgayTuVong = new Date(value);
+  }
+  Lst_Dictionary_TypeSearchQuocTich() {
+    this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = 33;
+    this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.ListQuocTich = (res as Lst_Dictionary[]);        
+      },
+      err => {
+      },
+      () => {
+      }
+    );
+  }
+  Lst_Dictionary_TypeSearchDanToc() {
+    this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = 34;
+    this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.ListDanToc = (res as Lst_Dictionary[]);        
+      },
+      err => {
+      },
+      () => {
+      }
+    );
+  }
+  Lst_Dictionary_TypeSearchNgheNghiep() {
+    this.Lst_DictionaryService.BaseParameter.CapDonVi = 42;
+    this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.ListNgheNghiep = (res as Lst_Dictionary[]);        
+      },
+      err => {
+      },
+      () => {
+      }
+    );
   }
   DM_DonViHanhChinhSearchTinhThanh() {
     this.DM_DonViHanhChinhService.BaseParameter.CapDonVi = 2;
@@ -95,6 +134,10 @@ export class DMBenhNhanInfoComponent implements OnInit {
         if (this.DM_BenhNhanService.FormData.BenhNhan_Id == environment.InitializationNumber) {
         }
         this.DM_DonViHanhChinhSearchTinhThanh();
+        this.Lst_Dictionary_TypeSearchQuocTich();
+        this.Lst_Dictionary_TypeSearchDanToc();
+        this.Lst_Dictionary_TypeSearchNgheNghiep();
+
       },
       err => {
       }
