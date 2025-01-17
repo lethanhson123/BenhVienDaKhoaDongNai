@@ -7,4 +7,10 @@ export class BaseParameter extends Base{
     Page?: number;
     PageSize?: number;     
     Dictionary_Type_Id?: number;        
+    CapDonVi?: number;      
+    CapTren_Id?: number;      
+    TinhThanh_Id?: number;      
+    QuanHuyen_Id?: number;      
+    XaPhuong_Id?: number;      
+    BenhNhan_Id?: number;      
 }

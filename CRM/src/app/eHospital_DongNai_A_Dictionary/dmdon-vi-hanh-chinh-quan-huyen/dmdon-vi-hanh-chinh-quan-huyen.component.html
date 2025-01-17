@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col s12 m6 l6">
                     <h6 class="breadcrumbs-title">
-                        Đơn vị hành chính
+                        Quận huyện
                         <span *ngIf="DM_DonViHanhChinhService.List">({{DM_DonViHanhChinhService.List.length-1}}
                             items)</span>
                     </h6>
@@ -22,8 +22,8 @@
                             <a routerLink="#" title="eHospital Dictionary">eHospital Dictionary</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a routerLink="/DM_DonViHanhChinh" title="DM_DonViHanhChinh">
-                                Đơn vị hành chính
+                            <a routerLink="/DMDonViHanhChinhQuanHuyen" title="DMDonViHanhChinhQuanHuyen">
+                                Quận huyện
                             </a>
                         </li>
                     </ol>
@@ -34,7 +34,14 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l5">
+                    <select class="browser-default form-select" name="DM_DonViHanhChinhService.BaseParameter.CapTren_Id"
+                        [(ngModel)]="DM_DonViHanhChinhService.BaseParameter.CapTren_Id">
+                        <option *ngFor="let item of DM_DonViHanhChinhService.ListTinhThanh;" [value]="item.DonViHanhChinh_Id">
+                            {{item.TenDonVi}}</option>
+                    </select>
+                </div>
+                <div class="col s12 m12 l5">
                     <input [(ngModel)]="DM_DonViHanhChinhService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DM_DonViHanhChinhSearch()">
                 </div>

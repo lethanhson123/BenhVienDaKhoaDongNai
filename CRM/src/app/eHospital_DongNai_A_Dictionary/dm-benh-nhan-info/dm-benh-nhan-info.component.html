@@ -1,0 +1,238 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Bệnh nhân:
+                        <b>{{DM_BenhNhanService.FormData.TenBenhNhan}} [{{DM_BenhNhanService.FormData.MaYTe}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="eHospital Dictionary">eHospital Dictionary</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/DM_BenhNhan" title="Bệnh nhân">Bệnh nhân</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l3">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;"><i
+                                class="material-icons">more</i></a>
+                        <!-- <a title="Thêm mới" (click)="DM_BenhNhanAdd()" style="color: green;"><i
+                                class="material-icons">add_box</i></a> -->
+                        <a title="Lưu thay đổi" (click)="DM_BenhNhanSave()" style="color:#2196f3;"><i
+                                class="material-icons">save</i></a>
+                    </div>
+                    <div class="col s6 m6 l3">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="VietKieu"
+                                [(ngModel)]="DM_BenhNhanService.FormData.VietKieu" />
+                            <span>Việt kiều</span>
+                        </label>
+                    </div>
+                    <div class="col s6 m6 l3">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="NguoiNuocNgoai"
+                                [(ngModel)]="DM_BenhNhanService.FormData.NguoiNuocNgoai" />
+                            <span>Người nước ngoài</span>
+                        </label>
+                    </div>
+                    <div class="col s6 m6 l3">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="TuVong"
+                                [(ngModel)]="DM_BenhNhanService.FormData.TuVong" />
+                            <span>Tử vong</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Mã y tế</label>
+                            <input placeholder="Mã y tế" [(ngModel)]="DM_BenhNhanService.FormData.MaYTe"
+                                name="DM_BenhNhanService.FormData.MaYTe" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Số lưu trữ nội trú</label>
+                            <input placeholder="Số lưu trữ nội trú"
+                                [(ngModel)]="DM_BenhNhanService.FormData.SoLuuTruNoiTru"
+                                name="DM_BenhNhanService.FormData.SoLuuTruNoiTru" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Số lưu trữ ngoại trú</label>
+                            <input placeholder="Số lưu trữ ngoại trú"
+                                [(ngModel)]="DM_BenhNhanService.FormData.SoLuuTruNgoaiTru"
+                                name="DM_BenhNhanService.FormData.SoLuuTruNgoaiTru" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Tiền sử bệnh</label>
+                            <input placeholder="Tiền sử bệnh" [(ngModel)]="DM_BenhNhanService.FormData.TienSuBenh"
+                                name="DM_BenhNhanService.FormData.TienSuBenh" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Ngày cấp thẻ</label>
+                            <input [ngModel]="DM_BenhNhanService.FormData.NgayCapThe | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateNgayCapThe($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Ngày tử vong (nếu có)</label>
+                            <input [ngModel]="DM_BenhNhanService.FormData.NgayTuVong | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateNgayTuVong($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Bệnh nhân</label>
+                            <input placeholder="Bệnh nhân" [(ngModel)]="DM_BenhNhanService.FormData.TenBenhNhan"
+                                name="DM_BenhNhanService.FormData.TenBenhNhan" type="text" class="form-control">
+                        </div>                        
+                        <div>
+                            <label>Giới tính</label>
+                            <input placeholder="Giới tính" [(ngModel)]="DM_BenhNhanService.FormData.GioiTinh"
+                                name="DM_BenhNhanService.FormData.GioiTinh" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Ngày sinh</label>
+                            <input [ngModel]="DM_BenhNhanService.FormData.NgaySinh | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateNgaySinh($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Điện thoại</label>
+                            <input placeholder="Điện thoại" [(ngModel)]="DM_BenhNhanService.FormData.SoDienThoai"
+                                name="DM_BenhNhanService.FormData.SoDienThoai" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input placeholder="Điện thoại" [(ngModel)]="DM_BenhNhanService.FormData.Email"
+                                name="DM_BenhNhanService.FormData.Email" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>CCCD/Hộ chiếu</label>
+                            <input placeholder="CCCD/Hộ chiếu" [(ngModel)]="DM_BenhNhanService.FormData.CMND"
+                                name="DM_BenhNhanService.FormData.CMND" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Nơi cấp</label>
+                            <input placeholder="Nơi cấp" [(ngModel)]="DM_BenhNhanService.FormData.CMND_NoiCap"
+                                name="DM_BenhNhanService.FormData.CMND_NoiCap" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Ngày cấp</label>
+                            <input [ngModel]="DM_BenhNhanService.FormData.CMND_NgayCap | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateCMND_NgayCap($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Tỉnh thành
+                                [{{DM_BenhNhanService.FormData.TinhThanh_Id}}]</label>
+                            <select class="browser-default form-select" name="TinhThanh_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.TinhThanh_Id">
+                                <option *ngFor="let item of DM_DonViHanhChinhService.ListTinhThanh;"
+                                    [value]="item.DonViHanhChinh_Id">
+                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Quận huyện
+                                [{{DM_BenhNhanService.FormData.QuanHuyen_Id}}]</label>
+                            <select class="browser-default form-select" name="QuanHuyen_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.QuanHuyen_Id">
+                                <option *ngFor="let item of DM_DonViHanhChinhService.ListQuanHuyen;"
+                                    [value]="item.DonViHanhChinh_Id">
+                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Xã phường
+                                [{{DM_BenhNhanService.FormData.XaPhuong_Id}}]</label>
+                            <select class="browser-default form-select" name="XaPhuong_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.XaPhuong_Id">
+                                <option *ngFor="let item of DM_DonViHanhChinhService.ListXaPhuong;"
+                                    [value]="item.DonViHanhChinh_Id">
+                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Số nhà</label>
+                            <input placeholder="Địa chỉ" [(ngModel)]="DM_BenhNhanService.FormData.SoNha"
+                                name="DM_BenhNhanService.FormData.SoNha" type="text" class="form-control">
+                        </div>                        
+                        <div>
+                            <label>Thường trú</label>
+                            <input placeholder="Thường trú" [(ngModel)]="DM_BenhNhanService.FormData.DiaChiThuongTru"
+                                name="DM_BenhNhanService.FormData.DiaChiThuongTru" type="text" class="form-control">
+                        </div>                        
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Quốc tịch
+                                [{{DM_BenhNhanService.FormData.TinhThanh_Id}}]</label>
+                            <select class="browser-default form-select" name="TinhThanh_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.TinhThanh_Id">
+                                <option *ngFor="let item of DM_DonViHanhChinhService.ListTinhThanh;"
+                                    [value]="item.DonViHanhChinh_Id">
+                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Dân tộc
+                                [{{DM_BenhNhanService.FormData.QuanHuyen_Id}}]</label>
+                            <select class="browser-default form-select" name="QuanHuyen_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.QuanHuyen_Id">
+                                <option *ngFor="let item of DM_DonViHanhChinhService.ListQuanHuyen;"
+                                    [value]="item.DonViHanhChinh_Id">
+                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Nghề nghiệp
+                                [{{DM_BenhNhanService.FormData.XaPhuong_Id}}]</label>
+                            <select class="browser-default form-select" name="XaPhuong_Id"
+                                [(ngModel)]="DM_BenhNhanService.FormData.XaPhuong_Id">
+                                <option *ngFor="let item of DM_DonViHanhChinhService.ListXaPhuong;"
+                                    [value]="item.DonViHanhChinh_Id">
+                                    {{item.TenDonVi}} [{{item.DonViHanhChinh_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Ghi chú</label>
+                            <input placeholder="Ghi chú" [(ngModel)]="DM_BenhNhanService.FormData.GhiChu"
+                                name="DM_BenhNhanService.FormData.GhiChu" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Ngày cập nhật</label>
+                            <input disabled [ngModel]="DM_BenhNhanService.FormData.CMND_NgayCap | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateCMND_NgayCap($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="DM_BenhNhanService.IsShowLoading"></app-loading>

@@ -38,6 +38,13 @@ import { TrucBanNhatKyComponent } from './truc-ban-nhat-ky/truc-ban-nhat-ky.comp
 import { LstDictionaryTypeComponent } from './eHospital_DongNai_A_Dictionary/lst-dictionary-type/lst-dictionary-type.component';
 import { LstDictionaryComponent } from './eHospital_DongNai_A_Dictionary/lst-dictionary/lst-dictionary.component';
 import { DMBenhVienComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-vien/dm-benh-vien.component';
+import { DMDonViHanhChinhComponent } from './eHospital_DongNai_A_Dictionary/dm-don-vi-hanh-chinh/dm-don-vi-hanh-chinh.component';
+import { DMDonViHanhChinhTinhThanhComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-tinh-thanh/dmdon-vi-hanh-chinh-tinh-thanh.component';
+import { DMDonViHanhChinhQuanHuyenComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-quan-huyen/dmdon-vi-hanh-chinh-quan-huyen.component';
+import { DMDonViHanhChinhXaPhuongComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-xa-phuong/dmdon-vi-hanh-chinh-xa-phuong.component';
+import { DMBenhNhanComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan/dm-benh-nhan.component';
+import { DMBenhNhanInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan-info/dm-benh-nhan-info.component';
+
 
 
 
@@ -166,6 +173,27 @@ const routes: Routes = [
   {
     path: 'DMBenhVien', component: DMBenhVienComponent,
   },
+  {
+    path: 'DMDonViHanhChinh', component: DMDonViHanhChinhComponent,
+  },
+  {
+    path: 'DMDonViHanhChinhTinhThanh', component: DMDonViHanhChinhTinhThanhComponent,
+  },
+  {
+    path: 'DMDonViHanhChinhQuanHuyen', component: DMDonViHanhChinhQuanHuyenComponent,
+  },
+  {
+    path: 'DMDonViHanhChinhXaPhuong', component: DMDonViHanhChinhXaPhuongComponent,
+  },
+
+
+  {
+    path: 'DMBenhNhan', component: DMBenhNhanComponent,
+  },
+  {
+    path: 'DMBenhNhanInfo/:ID', component: DMBenhNhanInfoComponent,
+  }, 
+  
 ];
 
 @NgModule({

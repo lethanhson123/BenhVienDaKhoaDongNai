@@ -852,11 +852,7 @@ namespace Service.Implement
             try
             {
                 if (!string.IsNullOrEmpty(result.Display))
-                {
-                    if (string.IsNullOrEmpty(result.Code))
-                    {
-                        result.Code = result.Display;
-                    }
+                {                   
                     ZaloToken ZaloToken = await _ZaloTokenService.GetLatestAsync();
                     if (!string.IsNullOrEmpty(ZaloToken.OAAccessToken))
                     {

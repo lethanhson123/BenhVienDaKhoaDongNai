@@ -28,6 +28,7 @@ export const environment = {
   GoiSoInfo: "GoiSoInfo/",
   KhachHangInfo: "KhachHangInfo/",
   KhamSucKhoeInfo: "KhamSucKhoeInfo/",
+  DMBenhNhanInfo: "DMBenhNhanInfo/",
   Download: "Download",
   LineWidth: 3,
   MapZoom: 10,  

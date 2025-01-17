@@ -33,39 +33,14 @@ export class DMBenhVienComponent implements OnInit {
   }
 
   DM_BenhVienSearch() {
-    this.DM_BenhVienService.GetBySearchStringAndEmptyToListAsync().subscribe(
-      res => {
-        this.DM_BenhVienService.List = (res as DM_BenhVien[]);
-        this.DM_BenhVienService.DataSource = new MatTableDataSource(this.DM_BenhVienService.List);
-        this.DM_BenhVienService.DataSource.sort = this.DM_BenhVienSort;
-        this.DM_BenhVienService.DataSource.paginator = this.DM_BenhVienPaginator;
-      },
-      err => {
-      },
-      () => {
-      }
-    );
+    this.DM_BenhVienService.SearchBySearchStringAndEmptyToListAsync(this.DM_BenhVienSort, this.DM_BenhVienPaginator);    
   }
   DM_BenhVienSave(element: DM_BenhVien) {
     this.DM_BenhVienService.FormData = element;
-    this.DM_BenhVienService.IsShowLoading = true;
-    this.DM_BenhVienService.FormData = element;
-    this.DM_BenhVienService.SaveAsync().subscribe(
-      res => {
-        this.DM_BenhVienService.FormData = res as DM_BenhVien;
-        this.DM_BenhVienSearch();
-        this.NotificationService.warn(environment.SaveSuccess);
-      },
-      err => {
-        this.NotificationService.warn(environment.SaveNotSuccess);
-      },
-      () => {
-        this.DM_BenhVienService.IsShowLoading = false;
-      }
-    );
+    this.NotificationService.warn(this.DM_BenhVienService.ComponentSaveSearchString(this.DM_BenhVienSort, this.DM_BenhVienPaginator));
   }
   DM_BenhVienDelete(element: DM_BenhVien) {
     this.DM_BenhVienService.FormData = element;
-    this.NotificationService.warn(this.DM_BenhVienService.ComponentDeleteAll(this.DM_BenhVienSort, this.DM_BenhVienPaginator));
+    this.NotificationService.warn(this.DM_BenhVienService.ComponentDeleteSearchString(this.DM_BenhVienSort, this.DM_BenhVienPaginator));
   }
 }

@@ -36,6 +36,9 @@ export class BaseService {
         };
         this.BaseParameter = {
             SearchString: environment.InitializationString,           
+            TinhThanh_Id: environment.InitializationNumber,         
+            QuanHuyen_Id: environment.InitializationNumber,         
+            XaPhuong_Id: environment.InitializationNumber,         
         };        
         this.List = [];
         this.ListFilter = [];
@@ -114,6 +117,56 @@ export class BaseService {
             this.RemoveAsync().subscribe(
                 res => {
                     this.SearchAll(sort, paginator);
+                    return environment.SaveSuccess;
+                },
+                err => {
+                    return environment.SaveNotSuccess;
+                },
+                () => {
+                    this.IsShowLoading = false;
+                }
+            );
+            return environment.SaveSuccess;
+        }
+    }
+    SearchBySearchStringAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator) {
+        this.IsShowLoading = true;
+        this.GetBySearchStringAndEmptyToListAsync().subscribe(
+            res => {
+                this.List = (res as any[]);                                
+                this.DataSource = new MatTableDataSource(this.List);
+                this.DataSource.sort = sort;
+                this.DataSource.paginator = paginator;
+            },
+            err => {
+            },
+            () => {
+                this.IsShowLoading = false;
+            }
+        );
+    }
+    ComponentSaveSearchString(sort: MatSort, paginator: MatPaginator) {
+        this.IsShowLoading = true;
+        this.SaveAsync().subscribe(
+            res => {
+                this.SearchBySearchStringAndEmptyToListAsync(sort, paginator);
+                return environment.SaveSuccess;
+            },
+            err => {
+                return environment.SaveNotSuccess;
+            },
+            () => {
+                this.IsShowLoading = false;
+            }
+        );
+        return environment.SaveSuccess;
+    }
+    ComponentDeleteSearchString(sort: MatSort, paginator: MatPaginator) {
+        if (confirm(environment.DeleteConfirm)) {
+            this.IsShowLoading = true;
+            this.RemoveAsync().subscribe(
+                res => {
+                    this.SearchBySearchStringAndEmptyToListAsync(sort, paginator);
                     return environment.SaveSuccess;
                 },
                 err => {

@@ -56,6 +56,11 @@ import { LstDictionaryComponent } from './eHospital_DongNai_A_Dictionary/lst-dic
 import { DMDonViHanhChinhComponent } from './eHospital_DongNai_A_Dictionary/dm-don-vi-hanh-chinh/dm-don-vi-hanh-chinh.component';
 import { DMBenhVienComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-vien/dm-benh-vien.component';
 import { DMBenhNhanComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan/dm-benh-nhan.component';
+import { DMDonViHanhChinhTinhThanhComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-tinh-thanh/dmdon-vi-hanh-chinh-tinh-thanh.component';
+import { DMDonViHanhChinhQuanHuyenComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-quan-huyen/dmdon-vi-hanh-chinh-quan-huyen.component';
+import { DMDonViHanhChinhXaPhuongComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-xa-phuong/dmdon-vi-hanh-chinh-xa-phuong.component';
+import { DMBenhNhanInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan-info/dm-benh-nhan-info.component';
+
 
 @NgModule({
   declarations: [
@@ -104,6 +109,11 @@ import { DMBenhNhanComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nh
     DMDonViHanhChinhComponent,
     DMBenhVienComponent,
     DMBenhNhanComponent,
+    DMDonViHanhChinhTinhThanhComponent,
+    DMDonViHanhChinhQuanHuyenComponent,
+    DMDonViHanhChinhXaPhuongComponent,
+    DMBenhNhanInfoComponent,
+    
 
   ],
   imports: [
