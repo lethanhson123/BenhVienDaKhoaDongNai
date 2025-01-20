@@ -6,6 +6,8 @@ export const environment = {
   APIRootURL: "http://10.84.3.124:900/",
   API_eHospital_DongNai_A_DictionaryURL: "https://localhost:7085/api/v1/",
   API_eHospital_DongNai_A_DictionaryRootURL: "https://localhost:7085/",
+  API_eHospital_DongNai_A_SystemURL: "https://localhost:7242/api/v1/",
+  API_eHospital_DongNai_A_SystemRootURL: "https://localhost:7242/",
   IPRegistry: "https://ipv4.myexternalip.com/json",
   IPRegistryURL: "https://api.ipregistry.co/?key=tryout",
   LoadingFile: "loading.gif",

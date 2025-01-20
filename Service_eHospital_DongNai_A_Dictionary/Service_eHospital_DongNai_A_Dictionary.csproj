@@ -13,7 +13,7 @@
 
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Reposity_eHospital_DongNai_A_Dictionary\Reposity_eHospital_DongNai_A_Dictionary.csproj" />
+    <ProjectReference Include="..\Reposity_eHospital_DongNai_A_Dictionary\Repository_eHospital_DongNai_A_Dictionary.csproj" />
   </ItemGroup>
  
 

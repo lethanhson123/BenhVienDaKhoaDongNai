@@ -44,8 +44,14 @@ import { DMDonViHanhChinhQuanHuyenComponent } from './eHospital_DongNai_A_Dictio
 import { DMDonViHanhChinhXaPhuongComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-xa-phuong/dmdon-vi-hanh-chinh-xa-phuong.component';
 import { DMBenhNhanComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan/dm-benh-nhan.component';
 import { DMBenhNhanInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan-info/dm-benh-nhan-info.component';
-
-
+import { SysUsersComponent } from './eHospital_DongNai_A_System/sys-users/sys-users.component';
+import { SysUsersInfoComponent } from './eHospital_DongNai_A_System/sys-users-info/sys-users-info.component';
+import { SysGroupMenusComponent } from './eHospital_DongNai_A_System/sys-group-menus/sys-group-menus.component';
+import { SysGroupsComponent } from './eHospital_DongNai_A_System/sys-groups/sys-groups.component';
+import { SysMenusComponent } from './eHospital_DongNai_A_System/sys-menus/sys-menus.component';
+import { SysParametersComponent } from './eHospital_DongNai_A_System/sys-parameters/sys-parameters.component';
+import { SysReportsComponent } from './eHospital_DongNai_A_System/sys-reports/sys-reports.component';
+import { SysReportsInfoComponent } from './eHospital_DongNai_A_System/sys-reports-info/sys-reports-info.component';
 
 
 
@@ -63,51 +69,51 @@ const routes: Routes = [
 
   {
     path: 'DanhMucThanhVien', component: DanhMucThanhVienComponent,
-  }, 
+  },
   {
     path: 'DanhMucChucNang', component: DanhMucChucNangComponent,
-  },    
+  },
   {
     path: 'DanhMucUngDung', component: DanhMucUngDungComponent,
-  }, 
+  },
 
-  
+
   {
     path: 'DanhMucTinhThanh', component: DanhMucTinhThanhComponent,
-  }, 
+  },
   {
     path: 'DanhMucQuanHuyen', component: DanhMucQuanHuyenComponent,
-  }, 
+  },
   {
     path: 'DanhMucXaPhuong', component: DanhMucXaPhuongComponent,
   },
   {
     path: 'DanhMucTinhThanhToaDo', component: DanhMucTinhThanhToaDoComponent,
-  }, 
-  
+  },
+
 
   {
     path: 'DanhMucKhoaChuyenMon', component: DanhMucKhoaChuyenMonComponent,
-  }, 
+  },
   {
     path: 'DanhMucDichVu', component: DanhMucDichVuComponent,
-  }, 
+  },
   {
     path: 'DanhMucKhuVuc', component: DanhMucKhuVucComponent,
-  }, 
+  },
   {
     path: 'DanhMucPhongKham', component: DanhMucPhongKhamComponent,
-  }, 
+  },
   {
     path: 'DanhMucQuayDichVu', component: DanhMucQuayDichVuComponent,
-  }, 
+  },
 
   {
     path: 'ThanhVien', component: ThanhVienComponent,
-  },   
+  },
   {
     path: 'ThanhVienInfo/:ID', component: ThanhVienInfoComponent,
-  }, 
+  },
   {
     path: 'ThanhVienThongTin', component: ThanhVienThongTinComponent,
   },
@@ -117,7 +123,7 @@ const routes: Routes = [
   },
   {
     path: 'GoiSoInfo/:ID', component: GoiSoInfoComponent,
-  }, 
+  },
   {
     path: 'GoiSoThamSo', component: GoiSoThamSoComponent,
   },
@@ -144,22 +150,22 @@ const routes: Routes = [
 
   {
     path: 'KhachHang', component: KhachHangComponent,
-  },   
+  },
   {
     path: 'KhachHangInfo/:ID', component: KhachHangInfoComponent,
-  }, 
+  },
 
   {
     path: 'KhamSucKhoe', component: KhamSucKhoeComponent,
-  },   
+  },
   {
     path: 'KhamSucKhoeInfo/:ID', component: KhamSucKhoeInfoComponent,
-  }, 
+  },
 
   {
     path: 'TrucBanNhatKy', component: TrucBanNhatKyComponent,
-  }, 
-  
+  },
+
   {
     path: 'Dashboard001', component: Dashboard001Component,
   },
@@ -192,8 +198,39 @@ const routes: Routes = [
   },
   {
     path: 'DMBenhNhanInfo/:ID', component: DMBenhNhanInfoComponent,
-  }, 
-  
+  },
+
+
+  {
+    path: 'SysGroupMenus', component: SysGroupMenusComponent,
+  },
+  {
+    path: 'SysGroups', component: SysGroupsComponent,
+  },
+  {
+    path: 'SysMenus', component: SysMenusComponent,
+  },
+  {
+    path: 'SysParameters', component: SysParametersComponent,
+  },
+
+
+  {
+    path: 'SysReports', component: SysReportsComponent,
+  },
+  {
+    path: 'SysReportsInfo/:ID', component: SysReportsInfoComponent,
+  },
+
+
+  {
+    path: 'SysUsers', component: SysUsersComponent,
+  },
+  {
+    path: 'SysUsersInfo/:ID', component: SysUsersInfoComponent,
+  },
+
+
 ];
 
 @NgModule({

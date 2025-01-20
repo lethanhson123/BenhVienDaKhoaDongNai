@@ -22,7 +22,7 @@
         public DateTime? NgayHuong5Nam { get; set; }
 
         public DM_BenhNhan_BHYT()
-        {
+        {            
         }
     }
 }

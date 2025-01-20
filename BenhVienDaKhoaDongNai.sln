@@ -25,11 +25,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Context_eHospital_DongNai_A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_eHospital_DongNai_A_Dictionary", "Data_eHospital_DongNai_A_Dictionary\Data_eHospital_DongNai_A_Dictionary.csproj", "{4EB86609-A692-451D-B14A-16AB1A3F0114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reposity_eHospital_DongNai_A_Dictionary", "Reposity_eHospital_DongNai_A_Dictionary\Reposity_eHospital_DongNai_A_Dictionary.csproj", "{5E768650-4845-4CF8-B31D-D8E5DF89CE83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository_eHospital_DongNai_A_Dictionary", "Reposity_eHospital_DongNai_A_Dictionary\Repository_eHospital_DongNai_A_Dictionary.csproj", "{5E768650-4845-4CF8-B31D-D8E5DF89CE83}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_eHospital_DongNai_A_Dictionary", "Service_eHospital_DongNai_A_Dictionary\Service_eHospital_DongNai_A_Dictionary.csproj", "{51090192-FAA4-4DFE-BD4C-5DA21544103C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_eHospital_DongNai_A_Dictionary", "API_eHospital_DongNai_A_Dictionary\API_eHospital_DongNai_A_Dictionary.csproj", "{94A969F4-17EF-49B3-A7CF-8449E929C64A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_eHospital_DongNai_A_System", "Data_eHospital_DongNai_A_System\Data_eHospital_DongNai_A_System.csproj", "{F2BE2C6B-F9BF-4F5B-AD77-9F4EB6FE80C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Context_eHospital_DongNai_A_System", "Context_eHospital_DongNai_A_System\Context_eHospital_DongNai_A_System.csproj", "{C10346CF-2B12-4539-9391-DD16643E1698}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository_eHospital_DongNai_A_System", "Repository_eHospital_DongNai_A_System\Repository_eHospital_DongNai_A_System.csproj", "{4CEA366A-53B4-43D3-AC20-9EA47772ECB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_eHospital_DongNai_A_System", "Service_eHospital_DongNai_A_System\Service_eHospital_DongNai_A_System.csproj", "{B64FB259-2894-46B8-9525-ED255F0645F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_eHospital_DongNai_A_System", "API_eHospital_DongNai_A_System\API_eHospital_DongNai_A_System.csproj", "{96C028F4-F217-4A70-831A-563AAE522AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +103,26 @@ Global
 		{94A969F4-17EF-49B3-A7CF-8449E929C64A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94A969F4-17EF-49B3-A7CF-8449E929C64A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94A969F4-17EF-49B3-A7CF-8449E929C64A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2BE2C6B-F9BF-4F5B-AD77-9F4EB6FE80C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2BE2C6B-F9BF-4F5B-AD77-9F4EB6FE80C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2BE2C6B-F9BF-4F5B-AD77-9F4EB6FE80C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BE2C6B-F9BF-4F5B-AD77-9F4EB6FE80C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10346CF-2B12-4539-9391-DD16643E1698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10346CF-2B12-4539-9391-DD16643E1698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10346CF-2B12-4539-9391-DD16643E1698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10346CF-2B12-4539-9391-DD16643E1698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CEA366A-53B4-43D3-AC20-9EA47772ECB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CEA366A-53B4-43D3-AC20-9EA47772ECB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CEA366A-53B4-43D3-AC20-9EA47772ECB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CEA366A-53B4-43D3-AC20-9EA47772ECB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B64FB259-2894-46B8-9525-ED255F0645F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B64FB259-2894-46B8-9525-ED255F0645F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B64FB259-2894-46B8-9525-ED255F0645F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B64FB259-2894-46B8-9525-ED255F0645F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96C028F4-F217-4A70-831A-563AAE522AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96C028F4-F217-4A70-831A-563AAE522AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96C028F4-F217-4A70-831A-563AAE522AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96C028F4-F217-4A70-831A-563AAE522AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

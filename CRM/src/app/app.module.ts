@@ -60,6 +60,16 @@ import { DMDonViHanhChinhTinhThanhComponent } from './eHospital_DongNai_A_Dictio
 import { DMDonViHanhChinhQuanHuyenComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-quan-huyen/dmdon-vi-hanh-chinh-quan-huyen.component';
 import { DMDonViHanhChinhXaPhuongComponent } from './eHospital_DongNai_A_Dictionary/dmdon-vi-hanh-chinh-xa-phuong/dmdon-vi-hanh-chinh-xa-phuong.component';
 import { DMBenhNhanInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-benh-nhan-info/dm-benh-nhan-info.component';
+import { SysUsersComponent } from './eHospital_DongNai_A_System/sys-users/sys-users.component';
+import { SysUsersInfoComponent } from './eHospital_DongNai_A_System/sys-users-info/sys-users-info.component';
+import { SysGroupsComponent } from './eHospital_DongNai_A_System/sys-groups/sys-groups.component';
+import { SysGroupMenusComponent } from './eHospital_DongNai_A_System/sys-group-menus/sys-group-menus.component';
+import { SysMenusComponent } from './eHospital_DongNai_A_System/sys-menus/sys-menus.component';
+import { SysReportsComponent } from './eHospital_DongNai_A_System/sys-reports/sys-reports.component';
+import { SysParametersComponent } from './eHospital_DongNai_A_System/sys-parameters/sys-parameters.component';
+import { SysReportsInfoComponent } from './eHospital_DongNai_A_System/sys-reports-info/sys-reports-info.component';
+
+
 
 
 @NgModule({
@@ -113,6 +123,16 @@ import { DMBenhNhanInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-ben
     DMDonViHanhChinhQuanHuyenComponent,
     DMDonViHanhChinhXaPhuongComponent,
     DMBenhNhanInfoComponent,
+    SysUsersComponent,
+    SysUsersInfoComponent,
+    SysGroupsComponent,
+    SysGroupMenusComponent,
+    SysMenusComponent,
+    SysReportsComponent,
+    SysParametersComponent,
+    SysReportsInfoComponent,
+    
+    
     
 
   ],

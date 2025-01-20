@@ -348,6 +348,14 @@
                 return builder.Build().GetSection("AppSettings").GetSection("SQLServerConectionString_eHospital_DongNai_A_Dictionary").Value;
             }
         }
+        public static string SQLServerConectionString_eHospital_DongNai_A_System
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("SQLServerConectionString_eHospital_DongNai_A_System").Value;
+            }
+        }
 
         #endregion
         #region Functions
