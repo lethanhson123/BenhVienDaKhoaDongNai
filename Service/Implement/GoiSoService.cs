@@ -801,8 +801,7 @@ namespace Service.Implement
                 }
                 DateTime NgayIn = GlobalHelper.InitializationDateTime;
 
-                int PhieuDangKyFontSize = GlobalHelper.PhieuDangKyKichThuoc;
-
+                //int PhieuDangKyFontSize = GlobalHelper.PhieuDangKyKichThuoc;
                 //GoiSoThamSo GoiSoThamSo = await _GoiSoThamSoRepository.GetByIDAsync(GlobalHelper.GoiSoThamSoID);
                 //if (GoiSoThamSo.ID > 0)
                 //{
@@ -816,7 +815,6 @@ namespace Service.Implement
                 //    PhieuDangKyFontSize = GlobalHelper.PhieuDangKyKichThuoc;
                 //}
                 //int PhieuDangKyLineHeight = PhieuDangKyFontSize - 30;
-
                 //contentHTML = contentHTML.Replace("[PhieuDangKyFontSize]", PhieuDangKyFontSize.ToString());
                 //contentHTML = contentHTML.Replace("[PhieuDangKyLineHeight]", PhieuDangKyLineHeight.ToString());
 
