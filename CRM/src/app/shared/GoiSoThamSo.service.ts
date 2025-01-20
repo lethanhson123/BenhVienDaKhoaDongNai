@@ -11,6 +11,7 @@ export class GoiSoThamSoService extends BaseService {
     DisplayColumns002: string[] = ['STT', 'ID', 'Name', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'SortOrder', 'Active', 'Save'];
     DisplayColumns003: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'Save'];
     DisplayColumns004: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'Save'];
+    DisplayColumns005: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'KichThuocChu006', 'Save'];
 
     List: GoiSoThamSo[] | undefined;
     ListFilter: GoiSoThamSo[] | undefined;

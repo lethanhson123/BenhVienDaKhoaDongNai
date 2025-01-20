@@ -801,6 +801,25 @@ namespace Service.Implement
                 }
                 DateTime NgayIn = GlobalHelper.InitializationDateTime;
 
+                int PhieuDangKyFontSize = GlobalHelper.PhieuDangKyKichThuoc;
+
+                //GoiSoThamSo GoiSoThamSo = await _GoiSoThamSoRepository.GetByIDAsync(GlobalHelper.GoiSoThamSoID);
+                //if (GoiSoThamSo.ID > 0)
+                //{
+                //    if (GoiSoThamSo.KichThuocChu006 != null)
+                //    {
+                //        PhieuDangKyFontSize = GoiSoThamSo.KichThuocChu006.Value;
+                //    }
+                //}
+                //if (PhieuDangKyFontSize == null)
+                //{
+                //    PhieuDangKyFontSize = GlobalHelper.PhieuDangKyKichThuoc;
+                //}
+                //int PhieuDangKyLineHeight = PhieuDangKyFontSize - 30;
+
+                //contentHTML = contentHTML.Replace("[PhieuDangKyFontSize]", PhieuDangKyFontSize.ToString());
+                //contentHTML = contentHTML.Replace("[PhieuDangKyLineHeight]", PhieuDangKyLineHeight.ToString());
+
                 contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));
 
                 contentHTML = contentHTML.Replace("[APISite]", GlobalHelper.APISite);
@@ -846,13 +865,12 @@ namespace Service.Implement
             }
             return result;
         }
-
         public virtual async Task<GoiSo> ZaloZNSSendAsync(GoiSo result)
         {
             try
             {
                 if (!string.IsNullOrEmpty(result.Display))
-                {                   
+                {
                     ZaloToken ZaloToken = await _ZaloTokenService.GetLatestAsync();
                     if (!string.IsNullOrEmpty(ZaloToken.OAAccessToken))
                     {

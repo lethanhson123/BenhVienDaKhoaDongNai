@@ -118,7 +118,15 @@
                                 <input class="form-control" type="number" placeholder="0" name="KichThuocChu005{{element.ID}}"
                                     [(ngModel)]="element.KichThuocChu005" style="text-align: right;">
                             </td>
-                        </ng-container>                                                              
+                        </ng-container>              
+                        <ng-container matColumnDef="KichThuocChu006">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phiếu đăng ký (px)
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="KichThuocChu006{{element.ID}}"
+                                    [(ngModel)]="element.KichThuocChu006" style="text-align: right;">
+                            </td>
+                        </ng-container>                                                     
                         <ng-container matColumnDef="Save">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>
                             </th>
@@ -129,9 +137,9 @@
                                         class="material-icons">delete_forever</i></a>
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="GoiSoThamSoService.DisplayColumns004">
+                        <tr mat-header-row *matHeaderRowDef="GoiSoThamSoService.DisplayColumns005">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: GoiSoThamSoService.DisplayColumns004;">
+                        <tr mat-row *matRowDef="let row; columns: GoiSoThamSoService.DisplayColumns005;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #GoiSoThamSoPaginator="matPaginator"
