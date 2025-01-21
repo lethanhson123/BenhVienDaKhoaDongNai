@@ -19,6 +19,7 @@ namespace Data.Context
         public virtual DbSet<Data.Model.DanhMucBieuMau> DanhMucBieuMau { get; set; }
         public virtual DbSet<Data.Model.DanhMucHinhThucThanhToan> DanhMucHinhThucThanhToan { get; set; }
         public virtual DbSet<Data.Model.DanhMucUngDung> DanhMucUngDung { get; set; }
+        public virtual DbSet<Data.Model.DanhMucMauSac> DanhMucMauSac { get; set; }
         public virtual DbSet<Data.Model.DanhMucQuanHuyen> DanhMucQuanHuyen { get; set; }
         public virtual DbSet<Data.Model.DanhMucQuocGia> DanhMucQuocGia { get; set; }
         public virtual DbSet<Data.Model.DanhMucTinhThanh> DanhMucTinhThanh { get; set; }

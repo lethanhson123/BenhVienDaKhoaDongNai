@@ -131,6 +131,7 @@ namespace Service.Implement
                 model.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
                 model.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
                 model.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                model.Note = DanhMucQuayDichVu.Note;
             }
             if (model.DanhMucPhongKhamID > 0)
             {

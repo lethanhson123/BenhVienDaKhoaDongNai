@@ -38,11 +38,7 @@
             List<DM_BenhNhan> result = new List<DM_BenhNhan>();
             if (!string.IsNullOrEmpty(searchString))
             {
-                result = await GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
-                if (result == null)
-                {
-                    result = await GetByCondition(item => item.BenhNhan_Id.Value.ToString().Contains(searchString)).ToListAsync();
-                }
+                result = await GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();                
                 if (result == null)
                 {
                     result = await GetByCondition(item => item.CMND.Contains(searchString)).ToListAsync();
@@ -54,6 +50,10 @@
                 if (result == null)
                 {
                     result = await GetByCondition(item => item.TenBenhNhan.Contains(searchString)).ToListAsync();
+                }
+                if (result == null)
+                {
+                    result = await GetByCondition(item => item.BenhNhan_Id.Value.ToString().Contains(searchString)).ToListAsync();
                 }
             }
             else

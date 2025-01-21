@@ -38,6 +38,7 @@
             services.AddTransient<IDanhMucBieuMauService, DanhMucBieuMauService>();
             services.AddTransient<IDanhMucHinhThucThanhToanService, DanhMucHinhThucThanhToanService>();
             services.AddTransient<IDanhMucUngDungService, DanhMucUngDungService>();
+            services.AddTransient<IDanhMucMauSacService, DanhMucMauSacService>();
             services.AddTransient<IDanhMucQuanHuyenService, DanhMucQuanHuyenService>();
             services.AddTransient<IDanhMucQuocGiaService, DanhMucQuocGiaService>();
             services.AddTransient<IDanhMucTinhThanhService, DanhMucTinhThanhService>();
@@ -112,6 +113,7 @@
             services.AddTransient<IDanhMucBieuMauRepository, DanhMucBieuMauRepository>();
             services.AddTransient<IDanhMucHinhThucThanhToanRepository, DanhMucHinhThucThanhToanRepository>();
             services.AddTransient<IDanhMucUngDungRepository, DanhMucUngDungRepository>();
+            services.AddTransient<IDanhMucMauSacRepository, DanhMucMauSacRepository>();
             services.AddTransient<IDanhMucQuanHuyenRepository, DanhMucQuanHuyenRepository>();
             services.AddTransient<IDanhMucQuocGiaRepository, DanhMucQuocGiaRepository>();
             services.AddTransient<IDanhMucTinhThanhRepository, DanhMucTinhThanhRepository>();

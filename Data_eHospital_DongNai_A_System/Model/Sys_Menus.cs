@@ -32,6 +32,7 @@
 
         public Sys_Menus()
         {
+            Idx = -1;
         }
     }
 }

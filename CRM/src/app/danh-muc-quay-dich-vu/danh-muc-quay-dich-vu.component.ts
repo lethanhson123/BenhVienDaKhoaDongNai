@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { NotificationService } from 'src/app/shared/Notification.service';
 import { DownloadService } from 'src/app/shared/Download.service';
 
+import { DanhMucMauSac } from 'src/app/shared/DanhMucMauSac.model';
+import { DanhMucMauSacService } from 'src/app/shared/DanhMucMauSac.service';
 
 import { DanhMucQuayDichVu } from 'src/app/shared/DanhMucQuayDichVu.model';
 import { DanhMucQuayDichVuService } from 'src/app/shared/DanhMucQuayDichVu.service';
@@ -35,11 +37,13 @@ export class DanhMucQuayDichVuComponent implements OnInit {
     public DanhMucQuayDichVuService: DanhMucQuayDichVuService,
     public DanhMucKhuVucService: DanhMucKhuVucService,
     public DanhMucDichVuService: DanhMucDichVuService,
+    public DanhMucMauSacService: DanhMucMauSacService,
   ) { }
 
   ngOnInit(): void { 
     this.DanhMucKhuVucSearch();
     this.DanhMucDichVuSearch();
+    this.DanhMucMauSacSearch();
     this.DanhMucQuayDichVuSearch();    
   }
 
@@ -48,6 +52,9 @@ export class DanhMucQuayDichVuComponent implements OnInit {
   }
   DanhMucDichVuSearch() {
     this.DanhMucDichVuService.ComponentGetAllToListAsync(this.DanhMucQuayDichVuService);
+  }
+  DanhMucMauSacSearch() {
+    this.DanhMucMauSacService.ComponentGetAllToListAsync(this.DanhMucQuayDichVuService);
   }
 
   DanhMucQuayDichVuSearch() {

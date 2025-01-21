@@ -28,13 +28,24 @@ export class SysMenusComponent implements OnInit {
     public Sys_MenusService: Sys_MenusService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.Sys_MenusSearchAll();
+  }
+  Sys_MenusFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.Sys_MenusService.ListFilter = this.Sys_MenusService.ListAll.filter(item => item.Menu_Name.toLocaleLowerCase().indexOf(searchString) !== -1 || item.Menu_Code.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.Sys_MenusService.ListFilter = this.Sys_MenusService.ListAll;
+    }
   }
   Sys_MenusSearchAll() {
     this.Sys_MenusService.GetAllToListAsync().subscribe(
       res => {
-        this.Sys_MenusService.ListFilter = (res as Sys_Menus[]).sort((a, b) => (a.Menu_Level > b.Menu_Level ? 1 : -1));
+        this.Sys_MenusService.ListAll = (res as Sys_Menus[]).sort((a, b) => (a.Menu_Level > b.Menu_Level ? 1 : -1));
+        this.Sys_MenusService.ListFilter = this.Sys_MenusService.ListAll;
       },
       err => {
       },
@@ -50,9 +61,10 @@ export class SysMenusComponent implements OnInit {
       }
     }
     else {
+      this.Sys_MenusService.IsShowLoading = true;
       this.Sys_MenusService.GetByParent_IdAndEmptyToListAsync().subscribe(
         res => {
-          this.Sys_MenusService.List = (res as Sys_Menus[]).sort((a, b) => (a.Menu_Id > b.Menu_Id ? 1 : -1));
+          this.Sys_MenusService.List = (res as Sys_Menus[]).sort((a, b) => (a.Idx > b.Idx ? 1 : -1));
           this.Sys_MenusService.DataSource = new MatTableDataSource(this.Sys_MenusService.List);
           this.Sys_MenusService.DataSource.sort = this.Sys_MenusSort;
           this.Sys_MenusService.DataSource.paginator = this.Sys_MenusPaginator;
@@ -60,6 +72,7 @@ export class SysMenusComponent implements OnInit {
         err => {
         },
         () => {
+          this.Sys_MenusService.IsShowLoading = false;
         }
       );
     }

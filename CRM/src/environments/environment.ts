@@ -31,6 +31,7 @@ export const environment = {
   KhachHangInfo: "KhachHangInfo/",
   KhamSucKhoeInfo: "KhamSucKhoeInfo/",
   DMBenhNhanInfo: "DMBenhNhanInfo/",
+  SysUsersInfo: "SysUsersInfo/",
   Download: "Download",
   LineWidth: 3,
   MapZoom: 10,  

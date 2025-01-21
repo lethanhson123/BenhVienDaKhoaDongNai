@@ -10,6 +10,7 @@ import { DownloadService } from 'src/app/shared/Download.service';
 
 import { Sys_Users } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Users.model';
 import { Sys_UsersService } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Users.service';
+
 @Component({
   selector: 'app-sys-users',
   templateUrl: './sys-users.component.html',
@@ -32,7 +33,28 @@ export class SysUsersComponent implements OnInit {
   }
 
   Sys_UsersSearch() {
-    this.Sys_UsersService.SearchAll(this.Sys_UsersSort, this.Sys_UsersPaginator);
+    if (this.Sys_UsersService.BaseParameter.SearchString.length > 0) {
+      this.Sys_UsersService.BaseParameter.SearchString = this.Sys_UsersService.BaseParameter.SearchString.trim();
+      if (this.Sys_UsersService.DataSource) {
+        this.Sys_UsersService.DataSource.filter = this.Sys_UsersService.BaseParameter.SearchString.toLowerCase();
+      }
+    }
+    else {
+      this.Sys_UsersService.IsShowLoading = true;
+      this.Sys_UsersService.GetAllToListAsync().subscribe(
+        res => {
+          this.Sys_UsersService.List = (res as Sys_Users[]).sort((a, b) => (a.User_Code > b.User_Code ? 1 : -1));
+          this.Sys_UsersService.DataSource = new MatTableDataSource(this.Sys_UsersService.List);
+          this.Sys_UsersService.DataSource.sort = this.Sys_UsersSort;
+          this.Sys_UsersService.DataSource.paginator = this.Sys_UsersPaginator;
+        },
+        err => {
+        },
+        () => {
+          this.Sys_UsersService.IsShowLoading = false;
+        }
+      );
+    }
   }
   Sys_UsersSave(element: Sys_Users) {
     this.Sys_UsersService.FormData = element;

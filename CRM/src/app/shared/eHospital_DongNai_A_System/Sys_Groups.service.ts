@@ -12,6 +12,8 @@ export class Sys_GroupsService extends BaseService{
     List: Sys_Groups[] | undefined;
     ListFilter: Sys_Groups[] | undefined;
     FormData!: Sys_Groups;
+
+     ListAll: Sys_Groups[] | undefined;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "Sys_Groups";

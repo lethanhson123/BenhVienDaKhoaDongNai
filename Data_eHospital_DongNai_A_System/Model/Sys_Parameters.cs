@@ -18,7 +18,7 @@ public bool? Is_Database_Parameter { get; set; }
 public bool? Is_Common_Formula { get; set; }
 public bool? Is_Common_Parameter { get; set; }
 public bool? Is_Common_MethodParameter { get; set; }
-public int? Idx { get; set; }
+public short? Idx { get; set; }
 public string? Lov_Procedure { get; set; }
 public string? ComboData_Procedure { get; set; }
 public string? DataGroup { get; set; }

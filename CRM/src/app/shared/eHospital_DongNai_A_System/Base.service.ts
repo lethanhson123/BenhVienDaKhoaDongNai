@@ -35,7 +35,8 @@ export class BaseService {
         this.FormData = {
         };
         this.BaseParameter = {
-            SearchString: environment.InitializationString,              
+            SearchString: environment.InitializationString,  
+            Parent_Id: environment.InitializationNumber
         };        
         this.List = [];
         this.ListFilter = [];

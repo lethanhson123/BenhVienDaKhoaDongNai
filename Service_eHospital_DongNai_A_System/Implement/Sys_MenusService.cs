@@ -54,6 +54,38 @@
             }
             return result;
         }
+        public override async Task<List<Sys_Menus>> GetBySearchStringToListAsync(string searchString)
+        {
+            List<Sys_Menus> result = new List<Sys_Menus>();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                result = await GetByCondition(item => item.Menu_Code.Contains(searchString)).ToListAsync();
+                if (result == null)
+                {
+                    result = await GetByCondition(item => item.Menu_Name.Contains(searchString)).ToListAsync();
+                }
+            }
+            else
+            {
+                result = await GetByCondition(item => 1 == 1).Take(10).ToListAsync();
+            }
+            if (result == null)
+            {
+                result = new List<Sys_Menus>();
+            }
+            return result;
+        }
+        public virtual async Task<List<Sys_Menus>> GetBySearchString_Menu_IdToListAsync(string searchString, int Menu_Id)
+        {
+            List<Sys_Menus> result = new List<Sys_Menus>();
+            Sys_Menus Sys_Menus = await GetByCondition(item => item.Menu_Id == Menu_Id).FirstOrDefaultAsync();
+            if (Sys_Menus != null)
+            {
+                result.Add(Sys_Menus);
+            }
+            result.AddRange(await GetBySearchStringToListAsync(searchString));
+            return result;
+        }
     }
 }
 

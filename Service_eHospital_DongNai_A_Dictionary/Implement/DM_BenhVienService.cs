@@ -27,15 +27,7 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             List<DM_BenhVien> result = new List<DM_BenhVien>();
             if (!string.IsNullOrEmpty(searchString))
             {
-                result = await GetByCondition(item => item.BenhVien_Id.Value.ToString().Contains(searchString)).ToListAsync();
-                if (result == null)
-                {
-                    result = await GetByCondition(item => item.MaBenhVien.Contains(searchString)).ToListAsync();
-                }
-                if (result == null)
-                {
-                    result = await GetByCondition(item => item.TenBenhVien.Contains(searchString)).ToListAsync();
-                }
+                result = await GetByCondition(item => item.MaBenhVien.Contains(searchString) || item.TenBenhVien.Contains(searchString)).ToListAsync();               
             }
             else
             {

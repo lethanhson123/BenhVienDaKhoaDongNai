@@ -34,7 +34,6 @@ export class HomepageComponent implements OnInit {
 
   ManHinhThongBaoIndex: number = environment.InitializationNumber;
   IsBHYT: boolean = true;
-
   constructor(
     public ActiveRouter: ActivatedRoute,
     public DownloadService: DownloadService,
@@ -48,7 +47,7 @@ export class HomepageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.GetGoiSoChiTietDangKy();
+    this.GoiSoChiTietDangKy();
     this.ManHinhThongBaoSearch();
     this.ManHinhTapTinDinhKemSearch();
     this.GoiSoThamSoSearch();
@@ -89,6 +88,14 @@ export class HomepageComponent implements OnInit {
     this.GoiSoThamSoService.GetByIDAsync().subscribe(
       res => {
         this.GoiSoThamSoService.FormData = (res as GoiSoThamSo);
+        if ((this.DanhMucQuayDichVuService.FormData01.Active == false) || (this.DanhMucQuayDichVuService.FormData02.Active == false)) {
+          this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
+          this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
+        }
+        if ((this.DanhMucQuayDichVuService.FormData01.ID == 0) || (this.DanhMucQuayDichVuService.FormData02.ID == 0)) {
+          this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
+          this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
+        }
       },
       err => {
       },
@@ -131,25 +138,40 @@ export class HomepageComponent implements OnInit {
     );
   }
 
-  GetGoiSoChiTietDangKy() {
-    this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code01;
-    if ((this.GoiSoChiTietService.BaseParameter.Code == "29") || (this.GoiSoChiTietService.BaseParameter.Code == "30") || (this.GoiSoChiTietService.BaseParameter.Code == "31") || (this.GoiSoChiTietService.BaseParameter.Code == "32")) {
-      this.IsBHYT = false;
-    }
-    this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-    this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
+  GoiSoChiTietDangKy() {
+
+    this.DanhMucQuayDichVuService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code01;
+    this.DanhMucQuayDichVuService.GetByCodeAsync().subscribe(
       res => {
-        this.GoiSoChiTietService.List01 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
-        if (this.GoiSoChiTietService.List01) {
-          if (this.GoiSoChiTietService.List01.length > 0) {
-            this.GoiSoChiTietService.FormData01 = this.GoiSoChiTietService.List01[0];
-          }
-        }
-        for (let i = 0; i < this.GoiSoChiTietService.List01.length; i++) {
-          if (this.GoiSoChiTietService.List01[i].NgayTiepNhanSoThuTuString) {
-          }
-          else {
-            this.GoiSoChiTietService.List01[i].NgayTiepNhanSoThuTuString = "0000";
+        this.DanhMucQuayDichVuService.FormData01 = (res as DanhMucQuayDichVu);
+        if (this.DanhMucQuayDichVuService.FormData01) {
+          if (this.DanhMucQuayDichVuService.FormData01.Active) {
+            this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code01;
+            if ((this.GoiSoChiTietService.BaseParameter.Code == "29") || (this.GoiSoChiTietService.BaseParameter.Code == "30") || (this.GoiSoChiTietService.BaseParameter.Code == "31") || (this.GoiSoChiTietService.BaseParameter.Code == "32")) {
+              this.IsBHYT = false;
+            }
+            this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
+              res => {
+                this.GoiSoChiTietService.List01 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
+                if (this.GoiSoChiTietService.List01) {
+                  if (this.GoiSoChiTietService.List01.length > 0) {
+                    this.GoiSoChiTietService.FormData01 = this.GoiSoChiTietService.List01[0];
+                  }
+                }
+                for (let i = 0; i < this.GoiSoChiTietService.List01.length; i++) {
+                  if (this.GoiSoChiTietService.List01[i].NgayTiepNhanSoThuTuString) {
+                  }
+                  else {
+                    this.GoiSoChiTietService.List01[i].NgayTiepNhanSoThuTuString = "0000";
+                  }
+                }
+              },
+              err => {
+              },
+              () => {
+              }
+            );
           }
         }
       },
@@ -159,21 +181,35 @@ export class HomepageComponent implements OnInit {
       }
     );
 
-    this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code02;
-    this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-    this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
+    this.DanhMucQuayDichVuService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code02;
+    this.DanhMucQuayDichVuService.GetByCodeAsync().subscribe(
       res => {
-        this.GoiSoChiTietService.List02 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
-        if (this.GoiSoChiTietService.List02) {
-          if (this.GoiSoChiTietService.List02.length > 0) {
-            this.GoiSoChiTietService.FormData02 = this.GoiSoChiTietService.List02[0];
-          }
-        }
-        for (let i = 0; i < this.GoiSoChiTietService.List02.length; i++) {
-          if (this.GoiSoChiTietService.List02[i].NgayTiepNhanSoThuTuString) {
-          }
-          else {
-            this.GoiSoChiTietService.List02[i].NgayTiepNhanSoThuTuString = "0000";
+        this.DanhMucQuayDichVuService.FormData02 = (res as DanhMucQuayDichVu);
+        if (this.DanhMucQuayDichVuService.FormData02) {
+          if (this.DanhMucQuayDichVuService.FormData02.Active) {
+            this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code02;
+            this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
+              res => {
+                this.GoiSoChiTietService.List02 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
+                if (this.GoiSoChiTietService.List02) {
+                  if (this.GoiSoChiTietService.List02.length > 0) {
+                    this.GoiSoChiTietService.FormData02 = this.GoiSoChiTietService.List02[0];
+                  }
+                }
+                for (let i = 0; i < this.GoiSoChiTietService.List02.length; i++) {
+                  if (this.GoiSoChiTietService.List02[i].NgayTiepNhanSoThuTuString) {
+                  }
+                  else {
+                    this.GoiSoChiTietService.List02[i].NgayTiepNhanSoThuTuString = "0000";
+                  }
+                }
+              },
+              err => {
+              },
+              () => {
+              }
+            );
           }
         }
       },
@@ -182,14 +218,12 @@ export class HomepageComponent implements OnInit {
       () => {
       }
     );
-
-
   }
 
 
   StartTimerInterval() {
     setInterval(() => {
-      this.GetGoiSoChiTietDangKy();
+      this.GoiSoChiTietDangKy();
       this.GoiSoThamSoSearch();
     }, environment.Interval)
   }

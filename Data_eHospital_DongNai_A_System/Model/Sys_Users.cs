@@ -27,7 +27,7 @@ public string? Login_Hostname { get; set; }
 public bool? IsLogin { get; set; }
 public DateTime? Last_Login_Time { get; set; }
 public string? Last_Login_Hostname { get; set; }
-public int? MinPasswordLen { get; set; }
+public byte? MinPasswordLen { get; set; }
 public bool? StrongPassword { get; set; }
 public string? Latin_Name { get; set; }
 public string? UserOption1 { get; set; }

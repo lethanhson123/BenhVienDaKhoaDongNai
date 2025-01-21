@@ -2,6 +2,7 @@
 {
     public interface ISys_UsersService : IBaseService<Sys_Users>
     {
+        Task<Sys_Users> GetByUser_IdAsync(int User_Id);
     }
-    }
+}
 

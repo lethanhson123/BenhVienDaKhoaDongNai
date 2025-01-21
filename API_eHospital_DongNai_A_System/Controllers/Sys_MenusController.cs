@@ -60,6 +60,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetBySearchString_Menu_IdToListAsync")]
+        public virtual async Task<List<Sys_Menus>> GetBySearchString_Menu_IdToListAsync()
+        {
+            List<Sys_Menus> result = new List<Sys_Menus>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _Sys_MenusService.GetBySearchString_Menu_IdToListAsync(baseParameter.SearchString, baseParameter.Menu_Id.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

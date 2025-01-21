@@ -80,6 +80,7 @@ namespace Service.Implement
                 model.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
                 model.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
                 model.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                model.Note = DanhMucQuayDichVu.Note;
             }
 
             if (!string.IsNullOrEmpty(model.Code))
@@ -255,11 +256,11 @@ namespace Service.Implement
                                         GoiSo.Display = model.Display;
                                         GoiSo.NgayGhiNhan = model.NgayGhiNhan;
                                         GoiSo.DanhMucDichVuID = model.DanhMucDichVuID;
-                                        GoiSo.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                        GoiSo.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;                                        
                                         GoiSo.TongCong = 0;
                                         GoiSo.SoHienTai = 0;
                                     }
-                                    GoiSo.TongCong = GoiSo.TongCong + 1;
+                                    GoiSo.TongCong = GoiSo.TongCong + 1;                                    
                                     await SaveAsync(GoiSo);
                                     if (GoiSo.ID > 0)
                                     {

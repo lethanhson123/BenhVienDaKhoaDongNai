@@ -68,6 +68,7 @@ import { SysMenusComponent } from './eHospital_DongNai_A_System/sys-menus/sys-me
 import { SysReportsComponent } from './eHospital_DongNai_A_System/sys-reports/sys-reports.component';
 import { SysParametersComponent } from './eHospital_DongNai_A_System/sys-parameters/sys-parameters.component';
 import { SysReportsInfoComponent } from './eHospital_DongNai_A_System/sys-reports-info/sys-reports-info.component';
+import { DanhMucMauSacComponent } from './danh-muc-mau-sac/danh-muc-mau-sac.component';
 
 
 
@@ -131,6 +132,7 @@ import { SysReportsInfoComponent } from './eHospital_DongNai_A_System/sys-report
     SysReportsComponent,
     SysParametersComponent,
     SysReportsInfoComponent,
+    DanhMucMauSacComponent,
     
     
     

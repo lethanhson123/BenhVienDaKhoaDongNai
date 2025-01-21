@@ -5,6 +5,7 @@
         Task<List<Sys_Menus>> GetByMenu_LevelToListAsync(int Menu_Level);
         Task<List<Sys_Menus>> GetByParent_IdToListAsync(int Parent_Id);
         Task<List<Sys_Menus>> GetByParent_IdAndEmptyToListAsync(int Parent_Id);
+        Task<List<Sys_Menus>> GetBySearchString_Menu_IdToListAsync(string searchString, int Menu_Id);
     }
 }
 

@@ -8,4 +8,7 @@ export class BaseParameter extends Base{
     PageSize?: number;     
     Menu_Level?: number;     
     Parent_Id?: number;     
+    Group_Id?: number;     
+    Menu_Id?: number;     
+    User_Id?: number;     
 }

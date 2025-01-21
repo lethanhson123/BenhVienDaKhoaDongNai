@@ -16,6 +16,10 @@ export class DanhMucQuayDichVuService extends BaseService {
     List02: DanhMucQuayDichVu[] | undefined;
     List03: DanhMucQuayDichVu[] | undefined;
 
+    FormData!: DanhMucQuayDichVu;
+    FormData01!: DanhMucQuayDichVu;
+    FormData02!: DanhMucQuayDichVu;
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "DanhMucQuayDichVu";
@@ -23,6 +27,12 @@ export class DanhMucQuayDichVuService extends BaseService {
         this.List01 = [];
         this.List02 = [];        
         this.List03 = [];  
+        this.FormData01 = {
+            ID: environment.InitializationNumber,
+        };
+        this.FormData02 = {
+            ID: environment.InitializationNumber,
+        };
     }
 
     GetAllToListAsync() {
