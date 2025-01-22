@@ -2,6 +2,7 @@
 
 export class GoiSoThamSo extends Base{
 
+    IsBanner?: boolean;
     SoDauTien?: number;
     BuocNhayDangKy?: number;
     BuocNhayTiepNhan?: number;

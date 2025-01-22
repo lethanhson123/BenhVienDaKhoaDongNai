@@ -12,15 +12,15 @@
                 <tbody *ngFor="let item of GoiSoChiTietService.List01; index as i">
                     <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
                         <td
-                            style="color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
                             {{item.NgayTiepNhanSoThuTuString}}</td>
                     </tr>
                     <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
                         <td
-                            style="color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
                             {{item.NgayTiepNhanSoThuTuString}}</td>
-                    </tr>
-                </tbody>
+                    </tr>                    
+                </tbody>               
             </table>
         </div>
         <div class="{{GoiSoThamSoService.FormData.Name}}" style="margin: 0px; padding: 0px;">
@@ -35,18 +35,18 @@
                 <tbody *ngFor="let item of GoiSoChiTietService.List02; index as i" style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
                     <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
                         <td
-                            style="text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
                             {{item.NgayTiepNhanSoThuTuString}}</td>
                     </tr>
                     <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
                         <td
-                            style="text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
                             {{item.NgayTiepNhanSoThuTuString}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="{{GoiSoThamSoService.FormData.Code}}" style="margin: 0px; padding: 0px;">           
+        <div *ngIf="GoiSoThamSoService.FormData.IsBanner" class="{{GoiSoThamSoService.FormData.Code}}" style="margin: 0px; padding: 0px;">           
             <div *ngIf="IsBHYT==true"
                 style="text-align: center; text-transform: uppercase; color: #1565c0; font-weight: bolder; font-family: 'Arial Narrow', sans-serif; font-size: {{GoiSoThamSoService.FormData.KichThuocChu003}}vh;">
                 Đăng ký cho bệnh nhân                

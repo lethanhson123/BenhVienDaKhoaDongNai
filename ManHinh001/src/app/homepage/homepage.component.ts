@@ -47,10 +47,9 @@ export class HomepageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.GoiSoChiTietDangKy();
+    this.GoiSoThamSoSearch();
     this.ManHinhThongBaoSearch();
     this.ManHinhTapTinDinhKemSearch();
-    this.GoiSoThamSoSearch();
 
     this.StartTimerInterval();
     this.StartTimer600000();
@@ -87,15 +86,16 @@ export class HomepageComponent implements OnInit {
     this.GoiSoThamSoService.BaseParameter.ID = environment.GoiSoThamSoID;
     this.GoiSoThamSoService.GetByIDAsync().subscribe(
       res => {
-        this.GoiSoThamSoService.FormData = (res as GoiSoThamSo);
-        if ((this.DanhMucQuayDichVuService.FormData01.Active == false) || (this.DanhMucQuayDichVuService.FormData02.Active == false)) {
-          this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
-          this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
-        }
-        if ((this.DanhMucQuayDichVuService.FormData01.ID == 0) || (this.DanhMucQuayDichVuService.FormData02.ID == 0)) {
-          this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
-          this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
-        }
+        this.GoiSoThamSoService.FormData = (res as GoiSoThamSo);        
+        // if ((this.DanhMucQuayDichVuService.FormData01.Active == false) || (this.DanhMucQuayDichVuService.FormData02.Active == false)) {
+        //   this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
+        //   this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
+        // }
+        // if ((this.DanhMucQuayDichVuService.FormData01.ID == 0) || (this.DanhMucQuayDichVuService.FormData02.ID == 0)) {
+        //   this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
+        //   this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
+        // }
+        this.GoiSoChiTietDangKy();
       },
       err => {
       },
@@ -151,6 +151,13 @@ export class HomepageComponent implements OnInit {
               this.IsBHYT = false;
             }
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
+            if (this.GoiSoThamSoService.FormData) {
+              if (this.GoiSoThamSoService.FormData.BuocNhayTiepNhan) {
+                if (this.GoiSoThamSoService.FormData.BuocNhayTiepNhan > 0) {
+                  this.GoiSoChiTietService.BaseParameter.Number = this.GoiSoThamSoService.FormData.BuocNhayTiepNhan;
+                }
+              }
+            }
             this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List01 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
@@ -189,6 +196,13 @@ export class HomepageComponent implements OnInit {
           if (this.DanhMucQuayDichVuService.FormData02.Active) {
             this.GoiSoChiTietService.BaseParameter.Code = this.ActiveRouter.snapshot.params.Code02;
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
+            if (this.GoiSoThamSoService.FormData) {
+              if (this.GoiSoThamSoService.FormData.BuocNhayTiepNhan) {
+                if (this.GoiSoThamSoService.FormData.BuocNhayTiepNhan > 0) {
+                  this.GoiSoChiTietService.BaseParameter.Number = this.GoiSoThamSoService.FormData.BuocNhayTiepNhan;
+                }
+              }
+            }
             this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan04_001ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List02 = (res as GoiSoChiTiet[]).sort((a, b) => (a.NgayTiepNhanSoThuTu > b.NgayTiepNhanSoThuTu ? 1 : -1));
@@ -223,7 +237,6 @@ export class HomepageComponent implements OnInit {
 
   StartTimerInterval() {
     setInterval(() => {
-      this.GoiSoChiTietDangKy();
       this.GoiSoThamSoSearch();
     }, environment.Interval)
   }
