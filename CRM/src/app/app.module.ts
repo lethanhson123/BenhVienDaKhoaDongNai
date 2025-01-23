@@ -69,6 +69,11 @@ import { SysReportsComponent } from './eHospital_DongNai_A_System/sys-reports/sy
 import { SysParametersComponent } from './eHospital_DongNai_A_System/sys-parameters/sys-parameters.component';
 import { SysReportsInfoComponent } from './eHospital_DongNai_A_System/sys-reports-info/sys-reports-info.component';
 import { DanhMucMauSacComponent } from './danh-muc-mau-sac/danh-muc-mau-sac.component';
+import { SysModulesComponent } from './eHospital_DongNai_A_System/sys-modules/sys-modules.component';
+import { SysFunctionsComponent } from './eHospital_DongNai_A_System/sys-functions/sys-functions.component';
+import { SysCommandsComponent } from './eHospital_DongNai_A_System/sys-commands/sys-commands.component';
+import { SysGroupCommandsComponent } from './eHospital_DongNai_A_System/sys-group-commands/sys-group-commands.component';
+import { SysUserCommandsComponent } from './eHospital_DongNai_A_System/sys-user-commands/sys-user-commands.component';
 
 
 
@@ -133,6 +138,11 @@ import { DanhMucMauSacComponent } from './danh-muc-mau-sac/danh-muc-mau-sac.comp
     SysParametersComponent,
     SysReportsInfoComponent,
     DanhMucMauSacComponent,
+    SysModulesComponent,
+    SysFunctionsComponent,
+    SysCommandsComponent,
+    SysGroupCommandsComponent,
+    SysUserCommandsComponent,
     
     
     

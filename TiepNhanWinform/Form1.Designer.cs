@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             cbbDanhMucDichVu = new ComboBox();
             cbbDanhMucQuayDichVu = new ComboBox();
             txtSoHienTai = new TextBox();
             btnSoTiepTheo = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // cbbDanhMucDichVu
@@ -63,6 +65,7 @@
             // btnSoTiepTheo
             // 
             btnSoTiepTheo.BackColor = Color.Cyan;
+            btnSoTiepTheo.Enabled = false;
             btnSoTiepTheo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSoTiepTheo.Location = new Point(12, 99);
             btnSoTiepTheo.Name = "btnSoTiepTheo";
@@ -71,6 +74,12 @@
             btnSoTiepTheo.Text = "SỐ TIẾP THEO (F1)";
             btnSoTiepTheo.UseVisualStyleBackColor = false;
             btnSoTiepTheo.Click += btnSoTiepTheo_Click;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 5000;
+            timer1.Tick += timer1_Tick;
             // 
             // Form1
             // 
@@ -94,5 +103,6 @@
         private ComboBox cbbDanhMucQuayDichVu;
         private TextBox txtSoHienTai;
         private Button btnSoTiepTheo;
+        private System.Windows.Forms.Timer timer1;
     }
 }

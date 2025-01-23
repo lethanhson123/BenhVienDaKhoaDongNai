@@ -86,7 +86,7 @@ export class HomepageComponent implements OnInit {
     this.GoiSoThamSoService.BaseParameter.ID = environment.GoiSoThamSoID;
     this.GoiSoThamSoService.GetByIDAsync().subscribe(
       res => {
-        this.GoiSoThamSoService.FormData = (res as GoiSoThamSo);        
+        this.GoiSoThamSoService.FormData = (res as GoiSoThamSo);
         // if ((this.DanhMucQuayDichVuService.FormData01.Active == false) || (this.DanhMucQuayDichVuService.FormData02.Active == false)) {
         //   this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
         //   this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
@@ -95,7 +95,7 @@ export class HomepageComponent implements OnInit {
         //   this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
         //   this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
         // }
-        this.GoiSoChiTietDangKy();
+        this.GoiSoChiTietDangKy();        
       },
       err => {
       },

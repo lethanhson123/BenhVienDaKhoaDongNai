@@ -6,7 +6,8 @@
                     <tr>
                         <th style="text-transform: uppercase; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu001}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu001 + 4}}vh;"
                             *ngIf="GoiSoChiTietService.FormData01 && GoiSoChiTietService.FormData01.DanhMucQuayDichVuName">
-                            {{GoiSoChiTietService.FormData01.DanhMucQuayDichVuName}}</th>
+                            {{GoiSoChiTietService.FormData01.DanhMucQuayDichVuName}}
+                        </th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let item of GoiSoChiTietService.List01; index as i">
@@ -71,6 +72,11 @@
             <div style="color: black; font-size: {{GoiSoThamSoService.FormData.KichThuocChu005}}vh;">
                 {{ManHinhThongBaoService.FormData.Description}}
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12" style="margin: 0px; padding: 0px;">
+            <a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a>
         </div>
     </div>
 </div>

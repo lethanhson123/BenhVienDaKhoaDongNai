@@ -15,6 +15,7 @@
             Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
             this.TopMost = true;
             APICapSoSite = "http://10.84.3.124:901";
+            //APICapSoSite = "http://localhost:5097";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -85,7 +86,6 @@
             }
             try
             {
-                string APICapSoSite = "http://10.84.3.124:901";
                 long DanhMucDichVuID = long.Parse(cbbDanhMucDichVu.SelectedValue.ToString());
                 long DanhMucQuayDichVuID = long.Parse(cbbDanhMucQuayDichVu.SelectedValue.ToString());
                 int SoHienTai = int.Parse(txtSoHienTai.Text.Trim());
@@ -142,6 +142,30 @@
                 string msg = ex.Message;
             }
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                long DanhMucDichVuID = long.Parse(cbbDanhMucDichVu.SelectedValue.ToString());
+                long DanhMucQuayDichVuID = long.Parse(cbbDanhMucQuayDichVu.SelectedValue.ToString());               
+
+                string url = APICapSoSite + "/api/v1/GoiSo/GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuIDAsync?DanhMucDichVuID=" + DanhMucDichVuID + "&DanhMucQuayDichVuID=" + DanhMucQuayDichVuID;
+                HttpClient client = new HttpClient();
+                string response = client.GetStringAsync(url).Result;
+                GoiSo GoiSo = JsonConvert.DeserializeObject<GoiSo>(response);
+                if (GoiSo != null)
+                {
+                    txtSoHienTai.Text = GoiSo.SoHienTai.ToString();
+                    string TieuDe = "SỐ TIẾP THEO (F1)";
+                    btnSoTiepTheo.Text = TieuDe + " [" + GoiSo.SoHienTai + "/" + GoiSo.TongCong + "]";
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+            }
         }
     }
 }

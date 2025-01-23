@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.IdentityModel.Tokens;
 using Service.Interface;
+using ZXing.QrCode.Internal;
 
 namespace Service.Implement
 {
@@ -391,6 +392,32 @@ namespace Service.Implement
             {
                 string mes = ex.Message;
             }
+            return result;
+        }
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuIDAsync(long DanhMucDichVuID, long DanhMucQuayDichVuID)
+        {
+            GoiSo result = new GoiSo();
+            DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucDichVuID);
+            try
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;
+                if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
+                {
+                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                }
+                else
+                {
+                    result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
+                }                
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new GoiSo();
+            }           
             return result;
         }
         public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync(long DanhMucDichVuID, long DanhMucQuayDichVuID, int SoHienTai, string Code)

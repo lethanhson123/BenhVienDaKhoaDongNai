@@ -2,6 +2,7 @@
 {
     public interface ISys_GroupCommandsService : IBaseService<Sys_GroupCommands>
     {
+        Task<List<Sys_GroupCommands>> GetByGroup_IdAndEmptyToListAsync(int Group_Id);
     }
-    }
+}
 

@@ -16,5 +16,17 @@ export class Sys_UserPasswordHistoryService extends BaseService{
         super(httpClient);
         this.Controller = "Sys_UserPasswordHistory";
     }
+    GetByUser_IdToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByUser_IdToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByUser_IdAndEmptyToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByUser_IdAndEmptyToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

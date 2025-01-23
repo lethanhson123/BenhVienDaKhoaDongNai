@@ -12,6 +12,8 @@ export class Sys_CommandsService extends BaseService{
     List: Sys_Commands[] | undefined;
     ListFilter: Sys_Commands[] | undefined;
     FormData!: Sys_Commands;
+
+    ListAll: Sys_Commands[] | undefined;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "Sys_Commands";

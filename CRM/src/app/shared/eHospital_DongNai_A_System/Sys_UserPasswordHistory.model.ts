@@ -3,9 +3,9 @@
 export class Sys_UserPasswordHistory extends Base{
 ID?: number;
 User_Id?: number;
-ChangedDate?: string;
+ChangedDate?: Date;
 ChangedDateTime?: Date;
-ExpirationDate?: string;
+ExpirationDate?: Date;
 User_Password?: string;
 
 }

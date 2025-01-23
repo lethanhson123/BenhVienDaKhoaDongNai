@@ -64,6 +64,22 @@
             return result;
         }
         [HttpGet]
+        [Route("GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuIDAsync")]
+        public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuIDAsync(long DanhMucDichVuID, long DanhMucQuayDichVuID)
+        {
+            GoiSo result = new GoiSo();
+            try
+            {
+                result = await _GoiSoService.GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuIDAsync(DanhMucDichVuID, DanhMucQuayDichVuID);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
+        [HttpGet]
         [Route("GetGoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTaiAsync")]
         public virtual async Task<GoiSo> GetGoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTaiAsync(long DanhMucDichVuID, long DanhMucQuayDichVuID, int SoHienTai)
         {

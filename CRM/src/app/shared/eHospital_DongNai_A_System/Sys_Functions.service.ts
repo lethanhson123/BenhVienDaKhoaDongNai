@@ -12,6 +12,8 @@ export class Sys_FunctionsService extends BaseService{
     List: Sys_Functions[] | undefined;
     ListFilter: Sys_Functions[] | undefined;
     FormData!: Sys_Functions;
+
+    ListAll: Sys_Functions[] | undefined;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "Sys_Functions";

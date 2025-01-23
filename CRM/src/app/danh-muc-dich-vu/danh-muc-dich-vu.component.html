@@ -80,8 +80,8 @@
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Hiển thị
                             </th>
                             <td mat-cell *matCellDef="let element">
-                                <input class="form-control" type="text" placeholder="Hiển thị" name="Display{{element.ID}}"
-                                    [(ngModel)]="element.Display">
+                                <input class="form-control" type="text" placeholder="Hiển thị"
+                                    name="Display{{element.ID}}" [(ngModel)]="element.Display">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Code">
@@ -124,7 +124,8 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <label>
-                                    <input class="form-check-input" type="checkbox" name="IsHangDoiPhanNhanh{{element.ID}}"
+                                    <input class="form-check-input" type="checkbox"
+                                        name="IsHangDoiPhanNhanh{{element.ID}}"
                                         [(ngModel)]="element.IsHangDoiPhanNhanh">
                                     <span></span>
                                 </label>
@@ -147,8 +148,8 @@
                             <td mat-cell *matCellDef="let element">
                                 <a (click)="DanhMucDichVuSave(element)" style="color:#2196f3;"><i
                                         class="material-icons">save</i></a>
-                                <a *ngIf="element.ID>0" (click)="DanhMucDichVuDelete(element)"
-                                    style="color: red;"><i class="material-icons">delete_forever</i></a>
+                                <a *ngIf="element.ID>0" (click)="DanhMucDichVuDelete(element)" style="color: red;"><i
+                                        class="material-icons">delete_forever</i></a>
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="DanhMucDichVuService.DisplayColumns05">
@@ -212,6 +213,14 @@
                                             <input type="checkbox" name="IsBHYT{{element.ID}}"
                                                 [(ngModel)]="element.IsBHYT">
                                             <span>BHYT</span>
+                                        </label>
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox"
+                                                name="IsHangDoiPhanNhanh{{element.ID}}"
+                                                [(ngModel)]="element.IsHangDoiPhanNhanh">
+                                            <span>Bộ số nhánh</span>
                                         </label>
                                     </div>
                                     <div class="col s12 m12 l12">

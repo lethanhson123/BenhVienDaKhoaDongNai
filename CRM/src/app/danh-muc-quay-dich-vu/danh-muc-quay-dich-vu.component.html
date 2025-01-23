@@ -115,7 +115,8 @@
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Màu chữ
                             </th>
                             <td mat-cell *matCellDef="let element">
-                                <select class="browser-default form-select" name="TypeName{{element.ID}}" [(ngModel)]="element.TypeName">
+                                <select class="browser-default form-select" name="TypeName{{element.ID}}"
+                                    [(ngModel)]="element.TypeName">
                                     <option *ngFor="let item of DanhMucMauSacService.ListFilter;" [value]="item.Code">
                                         {{item.Name}}</option>
                                 </select>
@@ -234,7 +235,7 @@
                                     <div class="col s12 m12 l12">
                                         <label class="form-label">Màu chữ</label>
                                         <br />
-                                        <select class="form-select" name="TypeName{{element.ID}}"
+                                        <select class="browser-default form-select" name="TypeName{{element.ID}}"
                                             [(ngModel)]="element.TypeName">
                                             <option *ngFor="let item of DanhMucMauSacService.ListFilter;"
                                                 [value]="item.Code">

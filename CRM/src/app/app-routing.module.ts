@@ -53,6 +53,10 @@ import { SysParametersComponent } from './eHospital_DongNai_A_System/sys-paramet
 import { SysReportsComponent } from './eHospital_DongNai_A_System/sys-reports/sys-reports.component';
 import { SysReportsInfoComponent } from './eHospital_DongNai_A_System/sys-reports-info/sys-reports-info.component';
 import { DanhMucMauSacComponent } from './danh-muc-mau-sac/danh-muc-mau-sac.component';
+import { SysFunctionsComponent } from './eHospital_DongNai_A_System/sys-functions/sys-functions.component';
+import { SysModulesComponent } from './eHospital_DongNai_A_System/sys-modules/sys-modules.component';
+import { SysCommandsComponent } from './eHospital_DongNai_A_System/sys-commands/sys-commands.component';
+import { SysGroupCommandsComponent } from './eHospital_DongNai_A_System/sys-group-commands/sys-group-commands.component';
 
 
 
@@ -203,7 +207,9 @@ const routes: Routes = [
     path: 'DMBenhNhanInfo/:ID', component: DMBenhNhanInfoComponent,
   },
 
-
+  {
+    path: 'SysGroupCommands', component: SysGroupCommandsComponent,
+  },
   {
     path: 'SysGroupMenus', component: SysGroupMenusComponent,
   },
@@ -216,7 +222,15 @@ const routes: Routes = [
   {
     path: 'SysParameters', component: SysParametersComponent,
   },
-
+  {
+    path: 'SysModules', component: SysModulesComponent,
+  },
+  {
+    path: 'SysFunctions', component: SysFunctionsComponent,
+  },
+  {
+    path: 'SysCommands', component: SysCommandsComponent,
+  },  
 
   {
     path: 'SysReports', component: SysReportsComponent,

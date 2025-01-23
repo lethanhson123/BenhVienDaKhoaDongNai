@@ -12,6 +12,8 @@ export class Sys_ModulesService extends BaseService{
     List: Sys_Modules[] | undefined;
     ListFilter: Sys_Modules[] | undefined;
     FormData!: Sys_Modules;
+
+    ListAll: Sys_Modules[] | undefined;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "Sys_Modules";

@@ -160,8 +160,8 @@
                             <td mat-cell *matCellDef="let element">
                                 <a (click)="GoiSoThamSoSave(element)" style="color:#2196f3;"><i
                                         class="material-icons">save</i></a>
-                                <a *ngIf="element.ID>0" (click)="GoiSoThamSoDelete(element)" style="color: red;"><i
-                                        class="material-icons">delete_forever</i></a>
+                                <!-- <a *ngIf="element.ID>0" (click)="GoiSoThamSoDelete(element)" style="color: red;"><i
+                                        class="material-icons">delete_forever</i></a> -->
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="GoiSoThamSoService.DisplayColumns006">
@@ -182,46 +182,88 @@
                             <td mat-cell *matCellDef="let element; index as i;">
                                 <div class="row gx-4">
                                     <div class="col s12 m12 l12">
-                                        <label class="form-label">Tiêu đề</label>
+                                        <label class="form-label">CSS Quầy</label>
                                         <br />
-                                        <input class="form-control" type="text" placeholder="Tiêu đề"
+                                        <input class="form-control" type="text" placeholder="CSS Quầy"
                                             name="Name{{element.ID}}" [(ngModel)]="element.Name">
                                     </div>
                                     <div class="col s12 m12 l12">
-                                        <label class="form-label">Mã quản lý</label>
+                                        <label class="form-label">CSS TVC</label>
                                         <br />
-                                        <input class="form-control" type="text" placeholder="Mã quản lý"
+                                        <input class="form-control" type="text" placeholder="CSS TVC"
                                             name="Code{{element.ID}}" [(ngModel)]="element.Code">
                                     </div>
                                     <div class="col s12 m12 l12">
-                                        <label class="form-label">Ghi chú</label>
-                                        <br />
-                                        <input class="form-control" type="text" placeholder="Ghi chú"
-                                            name="Note{{element.ID}}" [(ngModel)]="element.Note">
-                                    </div>
-                                    <div class="col s12 m12 l12">
-                                        <label class="form-label">Sắp xếp</label>
+                                        <label class="form-label">Tiếp nhận - Bước nhảy</label>
                                         <br />
                                         <input class="form-control" type="number" placeholder="0"
-                                            name="SortOrder{{element.ID}}" [(ngModel)]="element.SortOrder"
+                                            name="BuocNhayTiepNhan{{element.ID}}" [(ngModel)]="element.BuocNhayTiepNhan"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Kích thước Quầy (vh)</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="KichThuocChu001{{element.ID}}" [(ngModel)]="element.KichThuocChu001"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Kích thước hiển thị (vh)</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="KichThuocChu002{{element.ID}}" [(ngModel)]="element.KichThuocChu002"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Tiêu đề BHXH (vh)</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="KichThuocChu003{{element.ID}}" [(ngModel)]="element.KichThuocChu003"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Tiêu đề Không BHXH (vh)</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="KichThuocChu004{{element.ID}}" [(ngModel)]="element.KichThuocChu004"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Thông báo (vh)</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="KichThuocChu005{{element.ID}}" [(ngModel)]="element.KichThuocChu005"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Phiếu đăng ký (px)</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="KichThuocChu006{{element.ID}}" [(ngModel)]="element.KichThuocChu006"
+                                            style="text-align: right;">
+                                    </div>
+                                    <div class="col s12 m12 l12">
+                                        <label class="form-label">Giãn chữ (px)</label>
+                                        <br />
+                                        <input class="form-control" type="number" placeholder="0"
+                                            name="KichThuocChu007{{element.ID}}" [(ngModel)]="element.KichThuocChu007"
                                             style="text-align: right;">
                                     </div>
                                     <div class="col s12 m12 l12">
                                         <label>
-                                            <input type="checkbox" name="Active{{element.ID}}"
-                                                [(ngModel)]="element.Active">
-                                            <span>Kích hoạt</span>
+                                            <input class="form-check-input" type="checkbox" name="IsBanner{{element.ID}}"
+                                                [(ngModel)]="element.IsBanner">
+                                            <span>Hiện TVC</span>
                                         </label>
                                     </div>
                                     <div class="col s6 m6 l6">
                                         <a (click)="GoiSoThamSoSave(element)" style="color:#2196f3;"><i
                                                 class="material-icons">save</i></a>
                                     </div>
-                                    <div class="col s6 m6 l6">
+                                    <!-- <div class="col s6 m6 l6">
                                         <a *ngIf="element.ID>0" (click)="GoiSoThamSoDelete(element)"
                                             style="color: red;"><i class="material-icons">delete_forever</i></a>
-                                    </div>
-
+                                    </div> -->
                                 </div>
                                 <br />
                             </td>
