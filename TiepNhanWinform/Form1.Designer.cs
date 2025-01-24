@@ -65,7 +65,6 @@
             // btnSoTiepTheo
             // 
             btnSoTiepTheo.BackColor = Color.Cyan;
-            btnSoTiepTheo.Enabled = false;
             btnSoTiepTheo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSoTiepTheo.Location = new Point(12, 99);
             btnSoTiepTheo.Name = "btnSoTiepTheo";
