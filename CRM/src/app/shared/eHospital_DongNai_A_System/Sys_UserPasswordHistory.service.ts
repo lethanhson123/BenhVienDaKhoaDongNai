@@ -8,6 +8,7 @@ import { BaseService } from './Base.service';
 })
 export class Sys_UserPasswordHistoryService extends BaseService{
     DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'User_Id', 'ChangedDate', 'ChangedDateTime', 'ExpirationDate', 'User_Password'];
+    DisplayColumns002: string[] = ['Save', 'STT', 'ID', 'ChangedDate', 'ChangedDateTime', 'ExpirationDate', 'User_Password'];
 
     List: Sys_UserPasswordHistory[] | undefined;
     ListFilter: Sys_UserPasswordHistory[] | undefined;

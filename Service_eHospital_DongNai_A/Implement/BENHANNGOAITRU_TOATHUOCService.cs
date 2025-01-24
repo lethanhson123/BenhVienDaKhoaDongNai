@@ -1,0 +1,13 @@
+﻿namespace Service_eHospital_DongNai_A.Implement
+{
+    public class BENHANNGOAITRU_TOATHUOCService : BaseService<BENHANNGOAITRU_TOATHUOC, IBENHANNGOAITRU_TOATHUOCRepository>
+    , IBENHANNGOAITRU_TOATHUOCService
+    {
+    private readonly IBENHANNGOAITRU_TOATHUOCRepository _BENHANNGOAITRU_TOATHUOCRepository;
+    public BENHANNGOAITRU_TOATHUOCService(IBENHANNGOAITRU_TOATHUOCRepository BENHANNGOAITRU_TOATHUOCRepository) : base(BENHANNGOAITRU_TOATHUOCRepository)
+    {
+    _BENHANNGOAITRU_TOATHUOCRepository = BENHANNGOAITRU_TOATHUOCRepository;
+    }
+    }
+    }
+

@@ -1,0 +1,13 @@
+﻿namespace Service_eHospital_DongNai_A.Implement
+{
+    public class BENHANNGOAITRU_KHAMBENHService : BaseService<BENHANNGOAITRU_KHAMBENH, IBENHANNGOAITRU_KHAMBENHRepository>
+    , IBENHANNGOAITRU_KHAMBENHService
+    {
+    private readonly IBENHANNGOAITRU_KHAMBENHRepository _BENHANNGOAITRU_KHAMBENHRepository;
+    public BENHANNGOAITRU_KHAMBENHService(IBENHANNGOAITRU_KHAMBENHRepository BENHANNGOAITRU_KHAMBENHRepository) : base(BENHANNGOAITRU_KHAMBENHRepository)
+    {
+    _BENHANNGOAITRU_KHAMBENHRepository = BENHANNGOAITRU_KHAMBENHRepository;
+    }
+    }
+    }
+

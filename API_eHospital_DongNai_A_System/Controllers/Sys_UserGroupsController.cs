@@ -13,6 +13,38 @@
             _WebHostEnvironment = WebHostEnvironment;
         }
         [HttpPost]
+        [Route("GetByUser_Id_SearchStringToListAsync")]
+        public virtual async Task<List<Sys_UserGroups>> GetByUser_Id_SearchStringToListAsync()
+        {
+            List<Sys_UserGroups> result = new List<Sys_UserGroups>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _Sys_UserGroupsService.GetByUser_Id_SearchStringToListAsync(baseParameter.User_Id.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByUser_Id_SearchStringAndEmptyToListAsync")]
+        public virtual async Task<List<Sys_UserGroups>> GetByUser_Id_SearchStringAndEmptyToListAsync()
+        {
+            List<Sys_UserGroups> result = new List<Sys_UserGroups>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _Sys_UserGroupsService.GetByUser_Id_SearchStringAndEmptyToListAsync(baseParameter.User_Id.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByUser_IdToListAsync")]
         public virtual async Task<List<Sys_UserGroups>> GetByUser_IdToListAsync()
         {

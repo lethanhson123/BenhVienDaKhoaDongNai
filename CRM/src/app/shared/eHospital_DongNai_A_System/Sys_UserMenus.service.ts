@@ -18,6 +18,18 @@ export class Sys_UserMenusService extends BaseService{
         super(httpClient);
         this.Controller = "Sys_UserMenus";
     }
+    GetByUser_Id_SearchStringToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByUser_Id_SearchStringToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByUser_Id_SearchStringAndEmptyToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByUser_Id_SearchStringAndEmptyToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     GetByUser_IdToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByUser_IdToListAsync';
         const formUpload: FormData = new FormData();

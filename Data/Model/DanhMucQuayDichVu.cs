@@ -7,6 +7,7 @@
         public bool? IsNhaThuoc { get; set; }
         public long? DanhMucDichVuID { get; set; }
         public string? DanhMucDichVuName { get; set; }
+        public bool? IsBannerShow { get; set; }
         public DanhMucQuayDichVu()
         {
         }

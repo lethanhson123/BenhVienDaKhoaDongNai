@@ -41,6 +41,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_eHospital_DongNai_A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_eHospital_DongNai_A_System", "API_eHospital_DongNai_A_System\API_eHospital_DongNai_A_System.csproj", "{96C028F4-F217-4A70-831A-563AAE522AD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_eHospital_DongNai_A", "Data_eHospital_DongNai_A\Data_eHospital_DongNai_A.csproj", "{585B36B0-FE21-4254-BE6D-33BFA74D6BED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Context_eHospital_DongNai_A", "Context_eHospital_DongNai_A\Context_eHospital_DongNai_A.csproj", "{387B0EA7-A498-4210-BA89-26B13DEE8E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository_eHospital_DongNai_A", "Repository_eHospital_DongNai_A\Repository_eHospital_DongNai_A.csproj", "{B4637A0B-A2D9-45B2-976F-16F21D3C1C59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_eHospital_DongNai_A", "Service_eHospital_DongNai_A\Service_eHospital_DongNai_A.csproj", "{F4166A47-68F3-479B-8533-3B99E2AE7F92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_eHospital_DongNai_A", "API_eHospital_DongNai_A\API_eHospital_DongNai_A.csproj", "{888D5C52-9F54-47B4-821A-776AD7C779F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +133,26 @@ Global
 		{96C028F4-F217-4A70-831A-563AAE522AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96C028F4-F217-4A70-831A-563AAE522AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96C028F4-F217-4A70-831A-563AAE522AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585B36B0-FE21-4254-BE6D-33BFA74D6BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585B36B0-FE21-4254-BE6D-33BFA74D6BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585B36B0-FE21-4254-BE6D-33BFA74D6BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585B36B0-FE21-4254-BE6D-33BFA74D6BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387B0EA7-A498-4210-BA89-26B13DEE8E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387B0EA7-A498-4210-BA89-26B13DEE8E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387B0EA7-A498-4210-BA89-26B13DEE8E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387B0EA7-A498-4210-BA89-26B13DEE8E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4637A0B-A2D9-45B2-976F-16F21D3C1C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4637A0B-A2D9-45B2-976F-16F21D3C1C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4637A0B-A2D9-45B2-976F-16F21D3C1C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4637A0B-A2D9-45B2-976F-16F21D3C1C59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4166A47-68F3-479B-8533-3B99E2AE7F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4166A47-68F3-479B-8533-3B99E2AE7F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4166A47-68F3-479B-8533-3B99E2AE7F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4166A47-68F3-479B-8533-3B99E2AE7F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888D5C52-9F54-47B4-821A-776AD7C779F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888D5C52-9F54-47B4-821A-776AD7C779F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888D5C52-9F54-47B4-821A-776AD7C779F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888D5C52-9F54-47B4-821A-776AD7C779F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

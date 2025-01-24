@@ -13,6 +13,38 @@
             _WebHostEnvironment = WebHostEnvironment;
         }
         [HttpPost]
+        [Route("GetByUser_Id_SearchStringToListAsync")]
+        public virtual async Task<List<Sys_UserCommands>> GetByUser_Id_SearchStringToListAsync()
+        {
+            List<Sys_UserCommands> result = new List<Sys_UserCommands>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _Sys_UserCommandsService.GetByUser_Id_SearchStringToListAsync(baseParameter.User_Id.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByUser_Id_SearchStringAndEmptyToListAsync")]
+        public virtual async Task<List<Sys_UserCommands>> GetByUser_Id_SearchStringAndEmptyToListAsync()
+        {
+            List<Sys_UserCommands> result = new List<Sys_UserCommands>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _Sys_UserCommandsService.GetByUser_Id_SearchStringAndEmptyToListAsync(baseParameter.User_Id.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByUser_IdToListAsync")]
         public virtual async Task<List<Sys_UserCommands>> GetByUser_IdToListAsync()
         {

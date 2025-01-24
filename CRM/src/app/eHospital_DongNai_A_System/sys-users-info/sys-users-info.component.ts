@@ -14,7 +14,8 @@ import { Sys_Groups } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Groups
 import { Sys_GroupsService } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Groups.service';
 import { Sys_Commands } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Commands.model';
 import { Sys_CommandsService } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Commands.service';
-
+import { Sys_Functions } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Functions.model';
+import { Sys_FunctionsService } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Functions.service';
 
 import { Sys_Users } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Users.model';
 import { Sys_UsersService } from 'src/app/shared/eHospital_DongNai_A_System/Sys_Users.service';
@@ -55,6 +56,7 @@ export class SysUsersInfoComponent implements OnInit {
     public Sys_MenusService: Sys_MenusService,
     public Sys_GroupsService: Sys_GroupsService,
     public Sys_CommandsService: Sys_CommandsService,
+    public Sys_FunctionsService: Sys_FunctionsService,
 
     public Sys_UsersService: Sys_UsersService,
     public Sys_UserPasswordHistoryService: Sys_UserPasswordHistoryService,
@@ -67,6 +69,50 @@ export class SysUsersInfoComponent implements OnInit {
   ngOnInit(): void {
     this.Sys_UsersService.BaseParameter.User_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.Sys_UsersSearch();
+  }
+  Sys_CommandsFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.Sys_CommandsService.ListFilter = this.Sys_CommandsService.ListAll.filter(item => item.Command_Name.toLocaleLowerCase().indexOf(searchString) !== -1 || item.Command_Text.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.Sys_CommandsService.ListFilter = this.Sys_CommandsService.ListAll;
+    }
+  }
+  Sys_CommandsSearch() {
+    this.Sys_CommandsService.GetAllToListAsync().subscribe(
+      res => {
+        this.Sys_CommandsService.ListAll = (res as Sys_Commands[]).sort((a, b) => (a.Command_Name > b.Command_Name ? 1 : -1));
+        this.Sys_CommandsService.ListFilter = this.Sys_CommandsService.ListAll;
+      },
+      err => {
+      },
+      () => {
+      }
+    );
+  }
+  Sys_FunctionsFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.Sys_FunctionsService.ListFilter = this.Sys_FunctionsService.ListAll.filter(item => item.Function_Name.toLocaleLowerCase().indexOf(searchString) !== -1 || item.Function_Class.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.Sys_FunctionsService.ListFilter = this.Sys_FunctionsService.ListAll;
+    }
+  }
+  Sys_FunctionsSearch() {
+    this.Sys_FunctionsService.GetAllToListAsync().subscribe(
+      res => {
+        this.Sys_FunctionsService.ListAll = (res as Sys_Functions[]).sort((a, b) => (a.Function_Name > b.Function_Name ? 1 : -1));
+        this.Sys_FunctionsService.ListFilter = this.Sys_FunctionsService.ListAll;
+      },
+      err => {
+      },
+      () => {
+      }
+    );
   }
   Sys_GroupsFilter(searchString: string) {
     if (searchString.length > 0) {
@@ -112,28 +158,53 @@ export class SysUsersInfoComponent implements OnInit {
       }
     );
   }
-  Sys_UserGroupsSearch() {
-    if (this.Sys_UserGroupsService.BaseParameter.SearchString.length > 0) {
-      this.Sys_UserGroupsService.BaseParameter.SearchString = this.Sys_UserGroupsService.BaseParameter.SearchString.trim();
-      if (this.Sys_UserGroupsService.DataSource) {
-        this.Sys_UserGroupsService.DataSource.filter = this.Sys_UserGroupsService.BaseParameter.SearchString.toLowerCase();
+  Sys_UserCommandsSearch() {
+    this.Sys_UserCommandsService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
+    this.Sys_UserCommandsService.GetByUser_Id_SearchStringAndEmptyToListAsync().subscribe(
+      res => {
+        this.Sys_UserCommandsService.List = (res as Sys_UserCommands[]).sort((a, b) => (a.Menu_Id > b.Menu_Id ? 1 : -1));        
+        this.Sys_UserCommandsService.DataSource = new MatTableDataSource(this.Sys_UserCommandsService.List);
+        this.Sys_UserCommandsService.DataSource.sort = this.Sys_UserCommandsSort;
+        this.Sys_UserCommandsService.DataSource.paginator = this.Sys_UserCommandsPaginator;
+      },
+      err => {
+      },
+      () => {
       }
-    }
-    else {
-      this.Sys_UserGroupsService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
-      this.Sys_UserGroupsService.GetByUser_IdAndEmptyToListAsync().subscribe(
-        res => {
-          this.Sys_UserGroupsService.List = (res as Sys_UserGroups[]).sort((a, b) => (a.Group_Id > b.Group_Id ? 1 : -1));
-          this.Sys_UserGroupsService.DataSource = new MatTableDataSource(this.Sys_UserGroupsService.List);
-          this.Sys_UserGroupsService.DataSource.sort = this.Sys_UserGroupsSort;
-          this.Sys_UserGroupsService.DataSource.paginator = this.Sys_UserGroupsPaginator;
-        },
-        err => {
-        },
-        () => {
-        }
-      );
-    }
+    );
+  }
+  Sys_UserCommandsSave(element: Sys_UserCommands) {
+    this.Sys_UserCommandsService.IsShowLoading = true;
+    element.User_Id = this.Sys_UsersService.FormData.User_Id;
+    this.Sys_UserCommandsService.FormData = element;
+    this.Sys_UserCommandsService.SaveAsync().subscribe(
+      res => {
+        this.Sys_UserCommandsService.FormData = res as Sys_UserCommands;
+        this.Sys_UserCommandsSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.Sys_UsersService.IsShowLoading = false;
+      }
+    );
+  }
+  Sys_UserGroupsSearch() {
+    this.Sys_UserGroupsService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
+    this.Sys_UserGroupsService.GetByUser_Id_SearchStringAndEmptyToListAsync().subscribe(
+      res => {
+        this.Sys_UserGroupsService.List = (res as Sys_UserGroups[]).sort((a, b) => (a.Group_Id > b.Group_Id ? 1 : -1));
+        this.Sys_UserGroupsService.DataSource = new MatTableDataSource(this.Sys_UserGroupsService.List);
+        this.Sys_UserGroupsService.DataSource.sort = this.Sys_UserGroupsSort;
+        this.Sys_UserGroupsService.DataSource.paginator = this.Sys_UserGroupsPaginator;
+      },
+      err => {
+      },
+      () => {
+      }
+    );
   }
   Sys_UserGroupsSave(element: Sys_UserGroups) {
     this.Sys_UsersService.IsShowLoading = true;
@@ -154,27 +225,19 @@ export class SysUsersInfoComponent implements OnInit {
     );
   }
   Sys_UserMenusSearch() {
-    if (this.Sys_UserMenusService.BaseParameter.SearchString.length > 0) {
-      this.Sys_UserMenusService.BaseParameter.SearchString = this.Sys_UserMenusService.BaseParameter.SearchString.trim();
-      if (this.Sys_UserMenusService.DataSource) {
-        this.Sys_UserMenusService.DataSource.filter = this.Sys_UserMenusService.BaseParameter.SearchString.toLowerCase();
+    this.Sys_UserMenusService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
+    this.Sys_UserMenusService.GetByUser_Id_SearchStringAndEmptyToListAsync().subscribe(
+      res => {
+        this.Sys_UserMenusService.List = (res as Sys_UserMenus[]).sort((a, b) => (a.Menu_Id > b.Menu_Id ? 1 : -1));
+        this.Sys_UserMenusService.DataSource = new MatTableDataSource(this.Sys_UserMenusService.List);
+        this.Sys_UserMenusService.DataSource.sort = this.Sys_UserMenusSort;
+        this.Sys_UserMenusService.DataSource.paginator = this.Sys_UserMenusPaginator;
+      },
+      err => {
+      },
+      () => {
       }
-    }
-    else {
-      this.Sys_UserMenusService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
-      this.Sys_UserMenusService.GetByUser_IdAndEmptyToListAsync().subscribe(
-        res => {
-          this.Sys_UserMenusService.List = (res as Sys_UserMenus[]).sort((a, b) => (a.Menu_Id > b.Menu_Id ? 1 : -1));
-          this.Sys_UserMenusService.DataSource = new MatTableDataSource(this.Sys_UserMenusService.List);
-          this.Sys_UserMenusService.DataSource.sort = this.Sys_UserMenusSort;
-          this.Sys_UserMenusService.DataSource.paginator = this.Sys_UserMenusPaginator;
-        },
-        err => {
-        },
-        () => {
-        }
-      );
-    }
+    );
   }
   Sys_UserMenusSave(element: Sys_UserMenus) {
     this.Sys_UsersService.IsShowLoading = true;
@@ -226,9 +289,13 @@ export class SysUsersInfoComponent implements OnInit {
         }
         this.Sys_MenusSearch();
         this.Sys_GroupsSearch();
+        this.Sys_FunctionsSearch();
+        this.Sys_CommandsSearch();
+
         this.Sys_UserPasswordHistorySearch();
         this.Sys_UserMenusSearch();
         this.Sys_UserGroupsSearch();
+        this.Sys_UserCommandsSearch();
       },
       err => {
       },

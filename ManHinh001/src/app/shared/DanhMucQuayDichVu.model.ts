@@ -7,6 +7,7 @@ export class DanhMucQuayDichVu extends Base{
     IsNhaThuoc?: boolean;
     DanhMucDichVuID?: number;
     DanhMucDichVuName?: boolean;
+    IsBannerShow?: boolean;
 }
 
 
