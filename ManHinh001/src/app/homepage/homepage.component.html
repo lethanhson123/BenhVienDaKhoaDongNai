@@ -1,6 +1,6 @@
 <div class="section" id="user-profile" style="margin: 0px; padding: 0px;">
     <div class="row" style="margin: 0px; padding: 0px;">
-        <div class="{{GoiSoThamSoService.FormData.Name}}" style="margin: 0px; padding: 0px;">
+        <div *ngIf="DanhMucQuayDichVuService.FormData01.Active" class="{{GoiSoThamSoService.FormData.Name}}" style="margin: 0px; padding: 0px;">
             <table class="striped" style="width: 100%;">
                 <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
                     <tr>
@@ -24,7 +24,7 @@
                 </tbody>               
             </table>
         </div>
-        <div class="{{GoiSoThamSoService.FormData.Name}}" style="margin: 0px; padding: 0px;">
+        <div *ngIf="DanhMucQuayDichVuService.FormData02.Active" class="{{GoiSoThamSoService.FormData.Name}}" style="margin: 0px; padding: 0px;">
             <table class="striped" style="width: 100%;">
                 <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
                     <tr>
