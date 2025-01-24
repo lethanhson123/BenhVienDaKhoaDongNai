@@ -3,5 +3,5 @@
     public interface IXML2Service : IBaseService<XML2>
     {
     }
-    }
+}
 

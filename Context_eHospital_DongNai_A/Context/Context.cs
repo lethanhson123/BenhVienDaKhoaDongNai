@@ -585,7 +585,7 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(GlobalHelper.SQLServerConectionString);
+                optionsBuilder.UseSqlServer(GlobalHelper.SQLServerConectionString_eHospital_DongNai_A);
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

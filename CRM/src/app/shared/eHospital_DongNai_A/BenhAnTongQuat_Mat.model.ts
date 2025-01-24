@@ -1,0 +1,75 @@
+﻿import { Base } from "./Base.model";
+
+export class BenhAnTongQuat_Mat extends Base{
+BenhAnTongQuat_ChiTiet_Id?: number;
+BenhAnTongQuat_Id?: number;
+Field_1?: string;
+Field_2?: number;
+Field_3?: string;
+Field_4?: string;
+Field_5?: string;
+Field_6?: string;
+Field_7?: string;
+Field_8?: string;
+Field_9?: string;
+Field_10?: string;
+Field_11?: string;
+Field_12?: string;
+Field_13?: string;
+Field_14?: string;
+Field_15?: string;
+Field_16?: string;
+Field_17?: string;
+Field_18?: string;
+Field_19?: string;
+Field_20?: string;
+Field_21?: string;
+Field_22?: string;
+Field_23?: string;
+Field_24?: string;
+Field_25?: string;
+Field_26?: string;
+Field_27?: string;
+Field_28?: string;
+Field_29?: string;
+Field_30?: string;
+Field_31?: string;
+Field_32?: string;
+Field_33?: string;
+Field_34?: string;
+Field_35?: string;
+Field_36?: string;
+Field_37?: string;
+Field_38?: string;
+Field_39?: string;
+Field_40?: string;
+Field_41?: string;
+Field_42?: string;
+Field_43?: string;
+Field_44?: string;
+Field_45?: string;
+Field_46?: number;
+Field_47?: number;
+Field_48?: number;
+Field_49?: number;
+Field_50?: number;
+Field_51?: number;
+Field_52?: string;
+Field_53?: string;
+Field_54?: string;
+Field_55?: string;
+Field_56?: string;
+Field_57?: string;
+Field_58?: string;
+Field_59?: string;
+Field_60?: string;
+Field_61?: string;
+Field_62?: string;
+Field_63?: string;
+Field_64?: string;
+Field_65?: string;
+Field_66?: string;
+
+}
+
+

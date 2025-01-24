@@ -3,5 +3,5 @@
     public interface IXML2Repository : IBaseRepository<XML2>
     {
     }
-    }
+}
 

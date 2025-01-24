@@ -356,7 +356,14 @@
                 return builder.Build().GetSection("AppSettings").GetSection("SQLServerConectionString_eHospital_DongNai_A_System").Value;
             }
         }
-
+        public static string SQLServerConectionString_eHospital_DongNai_A
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("SQLServerConectionString_eHospital_DongNai_A").Value;
+            }
+        }
         #endregion
         #region Functions
         public static Barcode CreateBarcode128(string FTP, string Code)

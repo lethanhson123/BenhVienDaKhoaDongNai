@@ -1,8 +1,12 @@
-﻿namespace Data_eHospital_DongNai_A.Model
+﻿
+
+namespace Data_eHospital_DongNai_A.Model
 {
     public partial class KhamBenh_HenTaiKham : BaseModel
     {
         [Key]
+        [Column("KhamBenh_HenTaiKham")]
+        public string KhamBenh_HenTaiKhamID { get; set; }
         public int? KhamBenh_Id { get; set; }
         public int? BenhNhan_Id { get; set; }
         public DateTime? NgayTaiKham { get; set; }
