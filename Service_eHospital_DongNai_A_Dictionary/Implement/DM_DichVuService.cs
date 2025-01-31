@@ -15,15 +15,15 @@
             {
                 searchString = searchString.Trim();
                 result = await GetByCondition(item => item.MaDichVu.Contains(searchString)).ToListAsync();
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.DichVu_Id.Value.ToString().Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.TenDichVu.Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.MaQuiDinh.Contains(searchString)).ToListAsync();
                 }

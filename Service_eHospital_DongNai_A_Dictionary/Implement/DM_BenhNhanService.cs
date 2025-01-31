@@ -39,20 +39,20 @@
             if (!string.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.Trim();
-                result = await GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();                
-                if (result == null)
+                result = await GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.CMND.Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.SoDienThoai.Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.TenBenhNhan.Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.BenhNhan_Id.Value.ToString().Contains(searchString)).ToListAsync();
                 }

@@ -26,11 +26,11 @@
             if (!string.IsNullOrEmpty(searchString))
             {
                 result = await GetByCondition(item => item.DonViHanhChinh_Id.Value.ToString().Contains(searchString)).ToListAsync();
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.MaDonVi.Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.TenDonVi.Contains(searchString)).ToListAsync();
                 }

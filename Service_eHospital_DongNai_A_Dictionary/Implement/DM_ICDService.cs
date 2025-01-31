@@ -15,15 +15,15 @@
             {
                 searchString = searchString.Trim();
                 result = await GetByCondition(item => item.MaICD.Contains(searchString)).ToListAsync();
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.TenICD.Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.TenICD_En.Contains(searchString)).ToListAsync();
                 }
-                if (result == null)
+                if (result.Count == GlobalHelper.InitializationNumber)
                 {
                     result = await GetByCondition(item => item.MucICD.Contains(searchString)).ToListAsync();
                 }
