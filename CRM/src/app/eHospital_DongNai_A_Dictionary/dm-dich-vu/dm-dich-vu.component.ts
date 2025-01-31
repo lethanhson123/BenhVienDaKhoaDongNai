@@ -34,6 +34,7 @@ export class DMDichVuComponent implements OnInit {
 
   ngOnInit(): void {
     this.DM_NhomDichVuSearch();
+    //this.DM_DichVuSearch001();
   }
   DM_NhomDichVuSearch() {
     this.DM_NhomDichVuService.ComponentGetAllToListAsync(this.DM_DichVuService);
@@ -48,30 +49,47 @@ export class DMDichVuComponent implements OnInit {
       this.DM_NhomDichVuService.ListFilter = this.DM_NhomDichVuService.List;
     }
   }
-  DM_DichVuSearch() {
-    if (this.DM_DichVuService.BaseParameter.SearchString.length > 0) {
-      this.DM_DichVuService.BaseParameter.SearchString = this.DM_DichVuService.BaseParameter.SearchString.trim();
-      if (this.DM_DichVuService.DataSource) {
-        this.DM_DichVuService.DataSource.filter = this.DM_DichVuService.BaseParameter.SearchString.toLowerCase();
+  DM_DichVuSearch001() {
+    this.DM_DichVuService.GetByNhomDichVu_IdAndEmptyToListAsync().subscribe(
+      res => {
+        this.DM_DichVuService.ListAll = (res as any[]);
+        this.DM_DichVuService.ListFilter = this.DM_DichVuService.ListAll;
+      },
+      err => {
+      },
+      () => {
       }
+    );
+  }
+  DM_DichVuFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.DM_DichVuService.ListFilter = this.DM_DichVuService.ListAll.filter(item => item.TenDichVu.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaDichVu.toLocaleLowerCase().indexOf(searchString) !== -1);
     }
     else {
-      this.DM_DichVuService.IsShowLoading = true;
-      this.DM_DichVuService.GetByNhomDichVu_IdAndEmptyToListAsync().subscribe(
-        res => {
-          this.DM_DichVuService.List = (res as any[]);
-          //this.DM_DichVuService.List = (res as DM_DichVu[]).sort((a, b) => (a.CapTren_Id > b.CapTren_Id ? 1 : -1));
-          this.DM_DichVuService.DataSource = new MatTableDataSource(this.DM_DichVuService.List);
-          this.DM_DichVuService.DataSource.sort = this.DM_DichVuSort;
-          this.DM_DichVuService.DataSource.paginator = this.DM_DichVuPaginator;
-        },
-        err => {
-        },
-        () => {
-          this.DM_DichVuService.IsShowLoading = false;
-        }
-      );
+      this.DM_DichVuService.ListFilter = this.DM_DichVuService.ListAll;
     }
+  }
+  DM_DichVuSearch() {
+    this.DM_DichVuService.IsShowLoading = true;
+    this.DM_DichVuService.GetByNhomDichVu_Id_SearchStringToListAsync().subscribe(
+      res => {
+        this.DM_DichVuService.List = (res as any[]);
+        //this.DM_DichVuService.List = (res as DM_DichVu[]).sort((a, b) => (a.CapTren_Id > b.CapTren_Id ? 1 : -1));
+        this.DM_DichVuService.DataSource = new MatTableDataSource(this.DM_DichVuService.List);
+        this.DM_DichVuService.DataSource.sort = this.DM_DichVuSort;
+        this.DM_DichVuService.DataSource.paginator = this.DM_DichVuPaginator;
+
+        this.DM_DichVuService.ListAll = (res as any[]);
+        this.DM_DichVuService.ListFilter = this.DM_DichVuService.ListAll;
+      },
+      err => {
+      },
+      () => {
+        this.DM_DichVuService.IsShowLoading = false;
+      }
+    );
   }
   DM_DichVuSave(element: DM_DichVu) {
     this.DM_DichVuService.FormData = element;

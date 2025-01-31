@@ -11,6 +11,7 @@ export class DM_DichVuService extends BaseService{
 
     List: DM_DichVu[] | undefined;
     ListFilter: DM_DichVu[] | undefined;
+    ListAll: DM_DichVu[] | undefined;
     FormData!: DM_DichVu;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
@@ -18,6 +19,12 @@ export class DM_DichVuService extends BaseService{
     }
     GetByNhomDichVu_IdAndEmptyToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByNhomDichVu_IdAndEmptyToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByNhomDichVu_Id_SearchStringToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByNhomDichVu_Id_SearchStringToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

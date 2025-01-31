@@ -38,6 +38,7 @@
             List<DM_BenhNhan> result = new List<DM_BenhNhan>();
             if (!string.IsNullOrEmpty(searchString))
             {
+                searchString = searchString.Trim();
                 result = await GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();                
                 if (result == null)
                 {

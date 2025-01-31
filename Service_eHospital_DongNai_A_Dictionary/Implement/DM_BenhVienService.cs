@@ -27,6 +27,7 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             List<DM_BenhVien> result = new List<DM_BenhVien>();
             if (!string.IsNullOrEmpty(searchString))
             {
+                searchString = searchString.Trim();
                 result = await GetByCondition(item => item.MaBenhVien.Contains(searchString) || item.TenBenhVien.Contains(searchString)).ToListAsync();               
             }
             else

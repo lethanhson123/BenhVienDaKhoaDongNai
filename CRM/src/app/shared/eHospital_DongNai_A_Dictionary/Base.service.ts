@@ -39,6 +39,8 @@ export class BaseService {
             TinhThanh_Id: environment.InitializationNumber,         
             QuanHuyen_Id: environment.InitializationNumber,         
             XaPhuong_Id: environment.InitializationNumber,         
+            ICD_Nhom_Id: environment.InitializationNumber,        
+            NhomDichVu_Id: environment.InitializationNumber, 
         };        
         this.List = [];
         this.ListFilter = [];

@@ -16,5 +16,18 @@ export class DM_ICDService extends BaseService{
         super(httpClient);
         this.Controller = "DM_ICD";
     }
+    GetByICD_Nhom_IdAndEmptyToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByICD_Nhom_IdAndEmptyToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByICD_Nhom_Id_SearchStringAndEmptyToListAsync() {
+        console.log(this.BaseParameter);
+        let url = this.APIURL + this.Controller + '/GetByICD_Nhom_Id_SearchStringAndEmptyToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

@@ -28,6 +28,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByNhomDichVu_Id_SearchStringToListAsync")]
+        public virtual async Task<List<DM_DichVu>> GetByNhomDichVu_Id_SearchStringToListAsync()
+        {
+            List<DM_DichVu> result = new List<DM_DichVu>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DM_DichVuService.GetByNhomDichVu_Id_SearchStringToListAsync(baseParameter.NhomDichVu_Id.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 
