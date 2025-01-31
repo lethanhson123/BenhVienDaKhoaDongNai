@@ -77,7 +77,8 @@ export class AppComponent {
             if (this.ThanhVienTokenService.FormData.ParentID > 0) {
               this.ThanhVienService.BaseParameter.ID = this.ThanhVienTokenService.FormData.ParentID;
               let Bearer = this.ThanhVienService.Headers.getAll("Authorization")[0];
-              if (Bearer == environment.Bearer) {
+              Bearer = Bearer.trim();              
+              if ((Bearer == environment.Bearer) || (Bearer == "Bearer")) {
                 this.ThanhVienService.Headers = new HttpHeaders();
                 this.ThanhVienService.Headers = this.ThanhVienService.Headers.append('Authorization', 'Bearer ' + this.Token);
               }
@@ -96,48 +97,44 @@ export class AppComponent {
                     this.DanhMucChucNangGetByThanhVienIDToListAsync();
                     //this.ThanhVienLichSuTruyCapSaveNewAsync(this.queryString);
                     //this.GetByParentID_ReadJSONFileToListAsync();
-                    //this.StartTimer();
+                    //this.StartTimer();                                 
                   }
                   else {
                     isLogin = false;
-                    if (isLogin == false) {
-                      this.Router.navigate(['/' + environment.Login]);
-                    }
+                    this.RouterNavigate(isLogin);
                   }
                 },
                 err => {
                   isLogin = false;
-                  if (isLogin == false) {
-                    this.Router.navigate(['/' + environment.Login]);
-                  }
+                  this.RouterNavigate(isLogin);
                 }
               );
             }
             else {
               isLogin = false;
-              if (isLogin == false) {
-                this.Router.navigate(['/' + environment.Login]);
-              }
+              this.RouterNavigate(isLogin);
             }
           }
           else {
             isLogin = false;
-            if (isLogin == false) {
-              this.Router.navigate(['/' + environment.Login]);
-            }
+            this.RouterNavigate(isLogin);
           }
         },
         err => {
           isLogin = false;
-          if (isLogin == false) {
-            this.Router.navigate(['/' + environment.Login]);
-          }
+          this.RouterNavigate(isLogin);
         }
       );
     }
+    this.RouterNavigate(isLogin);
+  }
+  RouterNavigate(isLogin: boolean) {
     if (isLogin == false) {
       this.Router.navigate(['/' + environment.Login]);
     }
+    // else{
+    //   this.Router.navigate(['/' + environment.Homepage]);
+    // }
   }
   DanhMucChucNangGetByThanhVienIDToListAsync() {
     if (this.queryString) {
@@ -146,13 +143,14 @@ export class AppComponent {
       }
     }
     let Bearer = this.DanhMucChucNangService.Headers.getAll("Authorization")[0];
-    if (Bearer == environment.Bearer) {
+    Bearer = Bearer.trim();
+    if ((Bearer == environment.Bearer) || (Bearer == "Bearer")) {
       this.DanhMucChucNangService.Headers = new HttpHeaders();
       this.DanhMucChucNangService.Headers = this.DanhMucChucNangService.Headers.append('Authorization', 'Bearer ' + this.Token);
     }
     this.DanhMucChucNangService.GetByThanhVienID_ActiveToListAsync().subscribe(
       res => {
-        this.DanhMucChucNangService.ListChild = (res as DanhMucChucNang[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));        
+        this.DanhMucChucNangService.ListChild = (res as DanhMucChucNang[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
         this.DanhMucChucNangService.ListParent = [];
         let isLogin = false;
         for (var i = 0; i < this.DanhMucChucNangService.ListChild.length; i++) {
@@ -182,16 +180,16 @@ export class AppComponent {
             this.DanhMucChucNangService.ListParent.push(this.DanhMucChucNangService.ListChild[i]);
           }
         }
-        if (this.queryStringSub.indexOf("Info") > -1) {
+        if (this.queryStringSub.includes(environment.Homepage)) {
           isLogin = true;
         }
-        if (this.queryStringSub.indexOf("ThanhVienThongTin") > -1) {
+        if (this.queryStringSub.includes("Info")) {
           isLogin = true;
         }
-        if (this.queryStringSub.indexOf("Homepage") > -1) {
+        if (this.queryStringSub.includes("ThanhVienThongTin")) {
           isLogin = true;
         }
-        if (this.queryStringSub.indexOf("GioiThieu") > -1) {
+        if (this.queryStringSub.includes("GioiThieu")) {
           isLogin = true;
         }
         if (isLogin == false) {
@@ -317,7 +315,7 @@ export class AppComponent {
   Logout() {
     localStorage.setItem(environment.Token, environment.InitializationString);
     localStorage.setItem(environment.ThanhVienID, environment.InitializationString);
-    this.Router.navigate(['/' + environment.Login]);
+    window.location.href = "";
   }
   interval;
   StartTimer() {

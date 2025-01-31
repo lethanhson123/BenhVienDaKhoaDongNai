@@ -13,4 +13,7 @@ export class BaseParameter extends Base{
     QuanHuyen_Id?: number;      
     XaPhuong_Id?: number;      
     BenhNhan_Id?: number;      
+    LoaiDichVu_Id?: number;    
+    NhomDichVu_Id?: number;    
+    PhongBan_Id?: number;    
 }

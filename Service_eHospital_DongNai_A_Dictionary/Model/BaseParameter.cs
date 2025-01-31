@@ -14,6 +14,9 @@
         public int? QuanHuyen_Id { get; set; }
         public int? XaPhuong_Id { get; set; }
         public int? BenhNhan_Id { get; set; }
+        public int? LoaiDichVu_Id { get; set; }
+        public int? NhomDichVu_Id { get; set; }
+        public int? PhongBan_Id { get; set; }
         public BaseParameter()
 		{
 		}

@@ -28,7 +28,16 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l5">
+                    <select class="browser-default form-select" name="DanhMucChucNangService.BaseParameter.ParentID"
+                        [(ngModel)]="DanhMucChucNangService.BaseParameter.ParentID">
+                        <option [value]="0">
+                            Tất cả</option>
+                        <option *ngFor="let item of DanhMucChucNangService.ListFilter001;" [value]="item.ID">
+                            {{item.Name}}</option>
+                    </select>
+                </div>
+                <div class="col s12 m12 l5">
                     <input [(ngModel)]="DanhMucChucNangService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DanhMucChucNangSearch()">
                 </div>
@@ -54,7 +63,7 @@
                                     [(ngModel)]="element.ParentID">
                                     <option [value]="0">
                                         Root</option>
-                                    <option *ngFor="let item of DanhMucChucNangService.ListFilter;" [value]="item.ID">
+                                    <option *ngFor="let item of DanhMucChucNangService.ListFilter001;" [value]="item.ID">
                                         {{item.Name}}</option>
                                 </select>
                             </td>

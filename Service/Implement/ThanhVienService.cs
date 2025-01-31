@@ -195,6 +195,8 @@
                     {
                         result.Note = result.TypeName + "Homepage?" + GlobalHelper.Token + "=" + thanhVienToken.Token;
                         result.HTMLContent = thanhVienToken.Token;
+                        result.GUIDCode = GlobalHelper.InitializationString;
+                        result.MatKhau = GlobalHelper.InitializationString;
                     }
                 }
                 else

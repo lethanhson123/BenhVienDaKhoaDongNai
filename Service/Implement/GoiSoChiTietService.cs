@@ -138,7 +138,7 @@ namespace Service.Implement
                 DanhMucPhongKham DanhMucPhongKham = _DanhMucPhongKhamRepository.GetByID(model.DanhMucPhongKhamID.Value);
                 model.DanhMucPhongKhamName = DanhMucPhongKham.Name;
                 model.DanhMucPhongKhamCode = DanhMucPhongKham.Code;
-            }
+            }            
 
             if (model.NgayCapSoSoThuTu > 0)
             {

@@ -74,6 +74,16 @@ import { SysFunctionsComponent } from './eHospital_DongNai_A_System/sys-function
 import { SysCommandsComponent } from './eHospital_DongNai_A_System/sys-commands/sys-commands.component';
 import { SysGroupCommandsComponent } from './eHospital_DongNai_A_System/sys-group-commands/sys-group-commands.component';
 import { SysUserCommandsComponent } from './eHospital_DongNai_A_System/sys-user-commands/sys-user-commands.component';
+import { DMDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-dich-vu/dm-dich-vu.component';
+import { DMICDComponent } from './eHospital_DongNai_A_Dictionary/dm-icd/dm-icd.component';
+import { DMKhoDuocComponent } from './eHospital_DongNai_A_Dictionary/dm-kho-duoc/dm-kho-duoc.component';
+import { DMPhongBanComponent } from './eHospital_DongNai_A_Dictionary/dm-phong-ban/dm-phong-ban.component';
+import { DMNhomDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-nhom-dich-vu/dm-nhom-dich-vu.component';
+import { DMDonViTinhComponent } from './eHospital_DongNai_A_Dictionary/dm-don-vi-tinh/dm-don-vi-tinh.component';
+import { DMICDChuongComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-chuong/dm-icd-chuong.component';
+import { DMICDCommonComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-common/dm-icd-common.component';
+import { DMICDNhomComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-nhom/dm-icd-nhom.component';
+import { DMLoaiDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-dich-vu/dm-loai-dich-vu.component';
 
 
 
@@ -143,6 +153,16 @@ import { SysUserCommandsComponent } from './eHospital_DongNai_A_System/sys-user-
     SysCommandsComponent,
     SysGroupCommandsComponent,
     SysUserCommandsComponent,
+    DMDichVuComponent,
+    DMICDComponent,
+    DMKhoDuocComponent,
+    DMPhongBanComponent,
+    DMNhomDichVuComponent,
+    DMDonViTinhComponent,
+    DMICDChuongComponent,
+    DMICDCommonComponent,
+    DMICDNhomComponent,
+    DMLoaiDichVuComponent,
     
     
     

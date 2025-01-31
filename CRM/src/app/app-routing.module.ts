@@ -57,6 +57,16 @@ import { SysFunctionsComponent } from './eHospital_DongNai_A_System/sys-function
 import { SysModulesComponent } from './eHospital_DongNai_A_System/sys-modules/sys-modules.component';
 import { SysCommandsComponent } from './eHospital_DongNai_A_System/sys-commands/sys-commands.component';
 import { SysGroupCommandsComponent } from './eHospital_DongNai_A_System/sys-group-commands/sys-group-commands.component';
+import { DMDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-dich-vu/dm-dich-vu.component';
+import { DMDonViTinhComponent } from './eHospital_DongNai_A_Dictionary/dm-don-vi-tinh/dm-don-vi-tinh.component';
+import { DMICDComponent } from './eHospital_DongNai_A_Dictionary/dm-icd/dm-icd.component';
+import { DMICDChuongComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-chuong/dm-icd-chuong.component';
+import { DMICDCommonComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-common/dm-icd-common.component';
+import { DMICDNhomComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-nhom/dm-icd-nhom.component';
+import { DMKhoDuocComponent } from './eHospital_DongNai_A_Dictionary/dm-kho-duoc/dm-kho-duoc.component';
+import { DMNhomDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-nhom-dich-vu/dm-nhom-dich-vu.component';
+import { DMPhongBanComponent } from './eHospital_DongNai_A_Dictionary/dm-phong-ban/dm-phong-ban.component';
+import { DMLoaiDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-dich-vu/dm-loai-dich-vu.component';
 
 
 
@@ -198,6 +208,37 @@ const routes: Routes = [
   {
     path: 'DMDonViHanhChinhXaPhuong', component: DMDonViHanhChinhXaPhuongComponent,
   },
+  {
+    path: 'DMDichVu', component: DMDichVuComponent,
+  },
+  {
+    path: 'DMDonViTinh', component: DMDonViTinhComponent,
+  },
+  {
+    path: 'DMICD', component: DMICDComponent,
+  },
+  {
+    path: 'DMICDChuong', component: DMICDChuongComponent,
+  },
+  {
+    path: 'DMICDCommon', component: DMICDCommonComponent,
+  },
+  {
+    path: 'DMICDNhom', component: DMICDNhomComponent,
+  },
+  {
+    path: 'DMKhoDuoc', component: DMKhoDuocComponent,
+  },
+  {
+    path: 'DMNhomDichVu', component: DMNhomDichVuComponent,
+  },
+  {
+    path: 'DMLoaiDichVu', component: DMLoaiDichVuComponent,
+  },
+  {
+    path: 'DMPhongBan', component: DMPhongBanComponent,
+  },
+  
 
 
   {

@@ -23,7 +23,7 @@ export class DanhMucChucNangComponent implements OnInit {
 
   DanhMucUngDungID: number = environment.InitializationNumber;
 
-  constructor(    
+  constructor(
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
@@ -31,19 +31,33 @@ export class DanhMucChucNangComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DanhMucChucNangSearch();
+    this.DanhMucChucNangSearch001();
+  }
+  DanhMucChucNangSearch001() {
+    this.DanhMucChucNangService.IsShowLoading = true;
+    this.DanhMucChucNangService.GetAllToListAsync().subscribe(
+      res => {
+        this.DanhMucChucNangService.ListFilter001 = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        this.DanhMucChucNangService.ListFilter001 = this.DanhMucChucNangService.ListFilter001.filter(item => item.ParentID == 0);
+      },
+      err => {
+      },
+      () => {
+        this.DanhMucChucNangService.IsShowLoading = false;
+      }
+    );
   }
   DanhMucChucNangSearch() {
-    this.DanhMucChucNangService.SearchAll(this.DanhMucChucNangSort, this.DanhMucChucNangPaginator);
+    this.DanhMucChucNangService.SearchByParentID(this.DanhMucChucNangSort, this.DanhMucChucNangPaginator, this.DanhMucChucNangService);
   }
 
   DanhMucChucNangSave(element: DanhMucChucNang) {
     this.DanhMucChucNangService.FormData = element;
-    this.NotificationService.warn(this.DanhMucChucNangService.ComponentSaveAll(this.DanhMucChucNangSort, this.DanhMucChucNangPaginator));
+    this.NotificationService.warn(this.DanhMucChucNangService.ComponentSaveByParentID(this.DanhMucChucNangSort, this.DanhMucChucNangPaginator, this.DanhMucChucNangService));
   }
 
   DanhMucChucNangDelete(element: DanhMucChucNang) {
     this.DanhMucChucNangService.BaseParameter.ID = element.ID;
-    this.NotificationService.warn(this.DanhMucChucNangService.ComponentDeleteAll(this.DanhMucChucNangSort, this.DanhMucChucNangPaginator));
-  }  
+    this.NotificationService.warn(this.DanhMucChucNangService.ComponentDeleteByParentID(this.DanhMucChucNangSort, this.DanhMucChucNangPaginator, this.DanhMucChucNangService));
+  }
 }

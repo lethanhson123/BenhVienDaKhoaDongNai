@@ -14,6 +14,7 @@ export class DanhMucChucNangService extends BaseService{
     ListParent: DanhMucChucNang[] | undefined;
     List: DanhMucChucNang[] | undefined;
     ListFilter: DanhMucChucNang[] | undefined;
+    ListFilter001: DanhMucChucNang[] | undefined;
     FormData!: DanhMucChucNang;
 
     

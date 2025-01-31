@@ -1,0 +1,228 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Kho dược
+                        <span *ngIf="DM_KhoDuocService.List">({{DM_KhoDuocService.List.length-1}} items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="eHospital Dictionary">eHospital Dictionary</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/DMKhoDuoc" title="DMKhoDuoc">
+                                Kho dược
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l5">
+                    <mat-select
+                        style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                        name="DM_KhoDuocService.BaseParameter.PhongBan_Id" class="browser-default"
+                        [(ngModel)]="DM_KhoDuocService.BaseParameter.PhongBan_Id">
+                        <input placeholder="Tìm..." (keyup)="DM_PhongBanFilter($event.target.value)"
+                            style="color: orange;">
+                        <mat-option *ngFor="let item of DM_PhongBanService.ListFilter" [value]="item.PhongBan_Id"
+                            style="color:green;">
+                            {{item.TenPhongBan}} - {{item.MaPhongBan}} [{{item.PhongBan_Id}}]
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="DM_KhoDuocService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="DM_KhoDuocSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="DM_KhoDuocSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DM_KhoDuocSort="matSort"
+                        [dataSource]="DM_KhoDuocService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="DM_KhoDuocPaginator">
+                                    {{
+                                    DM_KhoDuocPaginator.pageSize *
+                                    DM_KhoDuocPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="DM_KhoDuocSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="DM_KhoDuocDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="KhoDuoc_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>KhoDuoc_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="KhoDuoc_Id" name="KhoDuoc_Id" [(ngModel)]="element.KhoDuoc_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaKho">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaKho</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaKho" name="MaKho" [(ngModel)]="element.MaKho"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TenKho">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenKho</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TenKho" name="TenKho" [(ngModel)]="element.TenKho"
+                                    style="width: 400px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="PhongBan_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>PhongBan_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 300px;"
+                                    name="element.PhongBan_Id" class="browser-default"
+                                    [(ngModel)]="element.PhongBan_Id">
+                                    <input placeholder="Tìm..." (keyup)="DM_PhongBanFilter($event.target.value)"
+                                        style="color: orange;">
+                                    <mat-option *ngFor="let item of DM_PhongBanService.ListFilter"
+                                        [value]="item.PhongBan_Id" style="color:green;">
+                                        {{item.TenPhongBan}} - {{item.MaPhongBan}} [{{item.PhongBan_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LoaiKho_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LoaiKho_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <select class="browser-default form-select" name="element.LoaiKho_Id"
+                                    [(ngModel)]="element.LoaiKho_Id" style="width: 200px;">
+                                    <option *ngFor="let item of Lst_DictionaryService.List;"
+                                        [value]="item.Dictionary_Id">
+                                        {{item.Dictionary_Name}} - {{item.Dictionary_Code}} [{{item.Dictionary_Id}}]
+                                    </option>
+                                </select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TamNgung">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TamNgung</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TamNgung" name="TamNgung" [(ngModel)]="element.TamNgung"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TenKhongDau">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenKhongDau</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TenKhongDau" name="TenKhongDau" [(ngModel)]="element.TenKhongDau"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayTao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayTao</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NgayTao" name="NgayTao" [(ngModel)]="element.NgayTao"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NguoiTao_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NguoiTao_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NguoiTao_Id" name="NguoiTao_Id" [(ngModel)]="element.NguoiTao_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayCapNhat">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayCapNhat</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NgayCapNhat" name="NgayCapNhat" [(ngModel)]="element.NgayCapNhat"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NguoiCapNhat_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NguoiCapNhat_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NguoiCapNhat_Id" name="NguoiCapNhat_Id"
+                                    [(ngModel)]="element.NguoiCapNhat_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="QLNguon">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>QLNguon</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="QLNguon" name="QLNguon" [(ngModel)]="element.QLNguon"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="KhoDuoc">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>KhoDuoc</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="KhoDuoc" name="KhoDuoc" [(ngModel)]="element.KhoDuoc"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="KhoTaiSan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>KhoTaiSan</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="KhoTaiSan" name="KhoTaiSan" [(ngModel)]="element.KhoTaiSan"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="KhoNHM">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>KhoNHM</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="KhoNHM" name="KhoNHM" [(ngModel)]="element.KhoNHM"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="KhoVPP">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>KhoVPP</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="KhoVPP" name="KhoVPP" [(ngModel)]="element.KhoVPP"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="KhoTTB">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>KhoTTB</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="KhoTTB" name="KhoTTB" [(ngModel)]="element.KhoTTB"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ChuyenKhoa_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ChuyenKhoa_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ChuyenKhoa_Id" name="ChuyenKhoa_Id"
+                                    [(ngModel)]="element.ChuyenKhoa_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CostCenter_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CostCenter_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CostCenter_Id" name="CostCenter_Id"
+                                    [(ngModel)]="element.CostCenter_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SiteCode">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SiteCode</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="SiteCode" name="SiteCode" [(ngModel)]="element.SiteCode"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Mapping_Public_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mapping_Public_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Mapping_Public_Id" name="Mapping_Public_Id"
+                                    [(ngModel)]="element.Mapping_Public_Id"></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="DM_KhoDuocService.DisplayColumns001">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: DM_KhoDuocService.DisplayColumns001;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_KhoDuocPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="DM_KhoDuocService.IsShowLoading"></app-loading>

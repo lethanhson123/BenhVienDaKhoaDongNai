@@ -23,6 +23,19 @@
                 model.Code = "#";
             }
         }
+        public override async Task<List<DanhMucChucNang>> GetByParentIDToListAsync(long parentID)
+        {
+            List<DanhMucChucNang> result = new List<DanhMucChucNang>();
+            if (parentID > 0)
+            {
+                result = await _DanhMucChucNangRepository.GetByParentIDToListAsync(parentID);
+            }
+            else
+            {
+                result = await GetAllToListAsync();
+            }
+            return result;
+        }
         public virtual async Task<List<DanhMucChucNang>> GetSQLByThanhVienID_ActiveToListAsync(long ThanhVienID, bool Active)
         {
             List<DanhMucChucNang> result = new List<DanhMucChucNang>();

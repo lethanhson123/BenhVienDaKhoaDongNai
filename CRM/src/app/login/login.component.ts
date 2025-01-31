@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
       res => {
         this.ThanhVienService.FormDataLogin = res as ThanhVien;
         if (this.ThanhVienService.FormDataLogin) {
-          if (this.ThanhVienService.FormDataLogin.HTMLContent) {
+          if (this.ThanhVienService.FormDataLogin.HTMLContent) {            
             localStorage.setItem(environment.Token, this.ThanhVienService.FormDataLogin.HTMLContent);
             localStorage.setItem(environment.ThanhVienID, this.ThanhVienService.FormDataLogin.ID.toString());
             localStorage.setItem(environment.ThanhVienParentID, this.ThanhVienService.FormDataLogin.ParentID.toString());

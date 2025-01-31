@@ -257,11 +257,11 @@ namespace Service.Implement
                                         GoiSo.Display = model.Display;
                                         GoiSo.NgayGhiNhan = model.NgayGhiNhan;
                                         GoiSo.DanhMucDichVuID = model.DanhMucDichVuID;
-                                        GoiSo.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;                                        
+                                        GoiSo.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
                                         GoiSo.TongCong = 0;
                                         GoiSo.SoHienTai = 0;
                                     }
-                                    GoiSo.TongCong = GoiSo.TongCong + 1;                                    
+                                    GoiSo.TongCong = GoiSo.TongCong + 1;
                                     await SaveAsync(GoiSo);
                                     if (GoiSo.ID > 0)
                                     {
@@ -408,7 +408,7 @@ namespace Service.Implement
                 else
                 {
                     result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -417,7 +417,7 @@ namespace Service.Implement
             if (result == null)
             {
                 result = new GoiSo();
-            }           
+            }
             return result;
         }
         public virtual async Task<GoiSo> GoiSoTiepTheoByDanhMucDichVuID_DanhMucQuayDichVuID_SoHienTai_CodeAsync(long DanhMucDichVuID, long DanhMucQuayDichVuID, int SoHienTai, string Code)
@@ -425,13 +425,14 @@ namespace Service.Implement
             GoiSo result = new GoiSo();
             DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucDichVuID);
             GoiSoThamSo GoiSoThamSo = await _GoiSoThamSoRepository.GetByIDAsync(GlobalHelper.GoiSoThamSoID);
+            DateTime Now = GlobalHelper.InitializationDateTime;
             if (GoiSoThamSo.ID == GlobalHelper.InitializationNumber)
             {
                 GoiSoThamSo.BuocNhayTiepNhan = GlobalHelper.CapSoBuocNhay;
             }
             try
             {
-                DateTime Now = GlobalHelper.InitializationDateTime;
+
                 if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
                 {
                     result = await GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayGhiNhan.Value.Year == Now.Year && item.NgayGhiNhan.Value.Month == Now.Month && item.NgayGhiNhan.Value.Day == Now.Day).FirstOrDefaultAsync();
@@ -472,7 +473,9 @@ namespace Service.Implement
             {
                 result = new GoiSo();
             }
-            for (int i = SoHienTai + 1; i <= SoHienTai + GoiSoThamSo.BuocNhayTiepNhan; i++)
+            int BatDau = SoHienTai + 1;
+            int KetThuc = SoHienTai + GoiSoThamSo.BuocNhayTiepNhan.Value;
+            for (int i = BatDau; i <= KetThuc; i++)
             {
                 if (i > 0)
                 {
@@ -481,14 +484,13 @@ namespace Service.Implement
                         GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
                         try
                         {
-                            DateTime Now = GlobalHelper.InitializationDateTime;
                             if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
                             {
-                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day && item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
                             }
                             else
                             {
-                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day &&  item.DanhMucDichVuID == DanhMucDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
                             }
                             if (GoiSoChiTiet != null)
                             {
