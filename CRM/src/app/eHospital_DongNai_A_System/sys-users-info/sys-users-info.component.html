@@ -335,8 +335,9 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l6">
-                    <h6 class="card-title">Phân quyền phòng ban
-                        <span *ngIf="Sys_AppPrivateSettingsService.List001">({{Sys_AppPrivateSettingsService.List001.length}}
+                    <h6 class="card-title">Phân quyền Phòng ban
+                        <span
+                            *ngIf="Sys_AppPrivateSettingsService.List001">({{Sys_AppPrivateSettingsService.List001.length}}
                             items)</span>
                     </h6>
                 </div>
@@ -350,17 +351,18 @@
                     </a>
                 </div>
                 <div class="KhungOverflow">
-                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #Sys_AppPrivateSettingsSort001="matSort"
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #Sys_AppPrivateSettingsSort001="matSort"
                         [dataSource]="Sys_AppPrivateSettingsService.DataSource001">
                         <ng-container matColumnDef="STT">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>
                                 STT
                             </th>
                             <td mat-cell *matCellDef="let element; index as i;">
-                                <div *ngIf="Sys_AppPrivateSettingsPaginator">
+                                <div *ngIf="Sys_AppPrivateSettingsPaginator001">
                                     {{
-                                    Sys_AppPrivateSettingsPaginator.pageSize *
-                                    Sys_AppPrivateSettingsPaginator.pageIndex + i + 1
+                                    Sys_AppPrivateSettingsPaginator001.pageSize *
+                                    Sys_AppPrivateSettingsPaginator001.pageIndex + i + 1
                                     }}
                                 </div>
                             </td>
@@ -379,18 +381,31 @@
                         </ng-container>
                         <ng-container matColumnDef="Setting_Id">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Setting_Id</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="Setting_Id" name="Setting_Id" [(ngModel)]="element.Setting_Id"></td>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Setting_Id}}
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="Group_Code">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Code</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="Group_Code" name="Group_Code" [(ngModel)]="element.Group_Code"></td>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Group_Code" name="Group_Code"
+                                    [(ngModel)]="element.Group_Code">
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="Code">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="Code" name="Code" [(ngModel)]="element.Code"></td>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng ban</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.Code" class="browser-default" [(ngModel)]="element.Code">
+                                    <input placeholder="Tìm..." (keyup)="DM_PhongBanFilter($event.target.value)"
+                                        style="color: orange;">
+                                    <mat-option *ngFor="let item of DM_PhongBanService.ListFilter"
+                                        [value]="item.MaPhongBan" style="color:green;">
+                                        {{item.TenPhongBan}} - {{item.MaPhongBan}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="User_Id">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Id</th>
@@ -414,26 +429,29 @@
                         </ng-container>
                         <ng-container matColumnDef="CreationDate">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="CreationDate" name="CreationDate" [(ngModel)]="element.CreationDate">
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CreationDate | date:'dd/MM/yyyy HH:mm:ss'}}
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="CreatedBy">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="CreatedBy" name="CreatedBy" [(ngModel)]="element.CreatedBy"></td>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.CreatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.CreatedBy}}"><b>{{element.CreatedBy}}</b></a>
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="LastUpdateDate">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdateDate</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="LastUpdateDate" name="LastUpdateDate"
-                                    [(ngModel)]="element.LastUpdateDate"></td>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LastUpdateDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="LastUpdatedBy">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedBy</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="LastUpdatedBy" name="LastUpdatedBy"
-                                    [(ngModel)]="element.LastUpdatedBy"></td>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.LastUpdatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.LastUpdatedBy}}"><b>{{element.LastUpdatedBy}}</b></a>
+                            </td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="Sys_AppPrivateSettingsService.DisplayColumns002">
@@ -441,8 +459,277 @@
                         <tr mat-row *matRowDef="let row; columns: Sys_AppPrivateSettingsService.DisplayColumns002;">
                         </tr>
                     </table>
-                    <mat-paginator *ngIf="!NotificationService.IsMobile" #Sys_AppPrivateSettingsPaginator001="matPaginator"
-                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #Sys_AppPrivateSettingsPaginator001="matPaginator" [pageSizeOptions]="[10,20,50,100,1000]"
+                        [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Phân quyền Kho dược
+                        <span
+                            *ngIf="Sys_AppPrivateSettingsService.List002">({{Sys_AppPrivateSettingsService.List002.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_AppPrivateSettingsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_AppPrivateSettingsSearch002()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_AppPrivateSettingsSearch002()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #Sys_AppPrivateSettingsSort002="matSort"
+                        [dataSource]="Sys_AppPrivateSettingsService.DataSource002">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_AppPrivateSettingsPaginator002">
+                                    {{
+                                    Sys_AppPrivateSettingsPaginator002.pageSize *
+                                    Sys_AppPrivateSettingsPaginator002.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="Sys_AppPrivateSettingsSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="Sys_AppPrivateSettingsDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Setting_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Setting_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Setting_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Group_Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Code</th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Group_Code" name="Group_Code"
+                                    [(ngModel)]="element.Group_Code">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kho dược</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.Code" class="browser-default" [(ngModel)]="element.Code">
+                                    <input placeholder="Tìm..." (keyup)="DM_KhoDuocFilter($event.target.value)"
+                                        style="color: orange;">
+                                    <mat-option *ngFor="let item of DM_KhoDuocService.ListFilter"
+                                        [value]="item.MaKho" style="color:green;">
+                                        {{item.TenKho}} - {{item.MaKho}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="User_Id" name="User_Id" [(ngModel)]="element.User_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Computer">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Computer</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Computer" name="Computer" [(ngModel)]="element.Computer"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Value">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Value" name="Value" [(ngModel)]="element.Value"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreationDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CreationDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.CreatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.CreatedBy}}"><b>{{element.CreatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdateDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdateDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LastUpdateDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.LastUpdatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.LastUpdatedBy}}"><b>{{element.LastUpdatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_AppPrivateSettingsService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_AppPrivateSettingsService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #Sys_AppPrivateSettingsPaginator002="matPaginator" [pageSizeOptions]="[10,20,50,100,1000]"
+                        [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Phân quyền Cận lâm sàng
+                        <span
+                            *ngIf="Sys_AppPrivateSettingsService.List003">({{Sys_AppPrivateSettingsService.List003.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_AppPrivateSettingsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_AppPrivateSettingsSearch003()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_AppPrivateSettingsSearch003()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #Sys_AppPrivateSettingsSort003="matSort"
+                        [dataSource]="Sys_AppPrivateSettingsService.DataSource003">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_AppPrivateSettingsPaginator003">
+                                    {{
+                                    Sys_AppPrivateSettingsPaginator003.pageSize *
+                                    Sys_AppPrivateSettingsPaginator003.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="Sys_AppPrivateSettingsSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="Sys_AppPrivateSettingsDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Setting_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Setting_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Setting_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Group_Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Code</th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Group_Code" name="Group_Code"
+                                    [(ngModel)]="element.Group_Code">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cận lâm sàng</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.Code" class="browser-default" [(ngModel)]="element.Code">
+                                    <input placeholder="Tìm..." (keyup)="DM_NhomDichVuFilter($event.target.value)"
+                                        style="color: orange;">
+                                    <mat-option *ngFor="let item of DM_NhomDichVuService.ListFilter"
+                                        [value]="item.MaNhomDichVu" style="color:green;">
+                                        {{item.TenNhomDichVu}} - {{item.MaNhomDichVu}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="User_Id" name="User_Id" [(ngModel)]="element.User_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Computer">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Computer</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Computer" name="Computer" [(ngModel)]="element.Computer"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Value">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Value" name="Value" [(ngModel)]="element.Value"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreationDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CreationDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.CreatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.CreatedBy}}"><b>{{element.CreatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdateDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdateDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LastUpdateDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.LastUpdatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.LastUpdatedBy}}"><b>{{element.LastUpdatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_AppPrivateSettingsService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_AppPrivateSettingsService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #Sys_AppPrivateSettingsPaginator003="matPaginator" [pageSizeOptions]="[10,20,50,100,1000]"
+                        [pageSize]="10" [showFirstLastButtons]></mat-paginator>
 
                 </div>
             </div>
@@ -627,7 +914,8 @@
                             <td mat-cell *matCellDef="let element" style="width: 30%;">
                                 <mat-select
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
-                                    name="element.Function_Id" class="browser-default" [(ngModel)]="element.Function_Id">
+                                    name="element.Function_Id" class="browser-default"
+                                    [(ngModel)]="element.Function_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_FunctionsFilter($event.target.value)"
                                         style="color: orange;">
                                     <mat-option *ngFor="let item of Sys_FunctionsService.ListFilter"
@@ -653,7 +941,7 @@
                                 </mat-select>
                             </td>
                         </ng-container>
-    
+
                         <tr mat-header-row *matHeaderRowDef="Sys_UserCommandsService.DisplayColumns002">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: Sys_UserCommandsService.DisplayColumns002;">
@@ -661,7 +949,7 @@
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #Sys_UserCommandsPaginator="matPaginator"
                         [pageSizeOptions]="[10,20,50,100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
-    
+
                 </div>
             </div>
         </div>

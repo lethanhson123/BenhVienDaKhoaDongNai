@@ -29,14 +29,14 @@
             return result;
         }
         [HttpPost]
-        [Route("GetByUser_IdAndCodeAndEmptyToListAsync")]
-        public virtual async Task<List<Sys_AppPrivateSettings>> GetByUser_IdAndCodeAndEmptyToListAsync()
+        [Route("GetByUser_IdAndGroup_CodeAndEmptyToListAsync")]
+        public virtual async Task<List<Sys_AppPrivateSettings>> GetByUser_IdAndGroup_CodeAndEmptyToListAsync()
         {
             List<Sys_AppPrivateSettings> result = new List<Sys_AppPrivateSettings>();
             try
             {
                 BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
-                result = await _Sys_AppPrivateSettingsService.GetByUser_IdAndCodeAndEmptyToListAsync(baseParameter.User_Id.Value, baseParameter.Code);
+                result = await _Sys_AppPrivateSettingsService.GetByUser_IdAndGroup_CodeAndEmptyToListAsync(baseParameter.User_Id.Value, baseParameter.Group_Code);
             }
             catch (Exception ex)
             {

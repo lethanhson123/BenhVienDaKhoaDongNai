@@ -32,6 +32,15 @@ import { Sys_UserCommandsService } from 'src/app/shared/eHospital_DongNai_A_Syst
 import { Sys_AppPrivateSettings } from 'src/app/shared/eHospital_DongNai_A_Config/Sys_AppPrivateSettings.model';
 import { Sys_AppPrivateSettingsService } from 'src/app/shared/eHospital_DongNai_A_Config/Sys_AppPrivateSettings.service';
 
+import { DM_PhongBan } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_PhongBan.model';
+import { DM_PhongBanService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_PhongBan.service';
+
+import { DM_KhoDuoc } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_KhoDuoc.model';
+import { DM_KhoDuocService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_KhoDuoc.service';
+
+import { DM_NhomDichVu } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_NhomDichVu.model';
+import { DM_NhomDichVuService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_NhomDichVu.service';
+
 @Component({
   selector: 'app-sys-users-info',
   templateUrl: './sys-users-info.component.html',
@@ -79,11 +88,54 @@ export class SysUsersInfoComponent implements OnInit {
     public Sys_UserCommandsService: Sys_UserCommandsService,
     public Sys_AppPrivateSettingsService: Sys_AppPrivateSettingsService,
 
+    public DM_PhongBanService: DM_PhongBanService,
+    public DM_KhoDuocService: DM_KhoDuocService,
+    public DM_NhomDichVuService: DM_NhomDichVuService,
+
   ) { }
 
   ngOnInit(): void {
     this.Sys_UsersService.BaseParameter.User_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.Sys_UsersSearch();
+  }
+  DM_NhomDichVuFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.DM_NhomDichVuService.ListFilter = this.DM_NhomDichVuService.List.filter(item => item.TenNhomDichVu.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaNhomDichVu.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.DM_NhomDichVuService.ListFilter = this.DM_NhomDichVuService.List;
+    }
+  }
+  DM_NhomDichVuSearch() {
+    this.DM_NhomDichVuService.ComponentGetAllToListAsync(this.DM_NhomDichVuService);
+  }
+  DM_KhoDuocFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.DM_KhoDuocService.ListFilter = this.DM_KhoDuocService.List.filter(item => item.TenKho.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaKho.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.DM_KhoDuocService.ListFilter = this.DM_KhoDuocService.List;
+    }
+  }
+  DM_KhoDuocSearch() {
+    this.DM_KhoDuocService.ComponentGetAllToListAsync(this.DM_KhoDuocService);
+  }
+  DM_PhongBanFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.DM_PhongBanService.ListFilter = this.DM_PhongBanService.List.filter(item => item.TenPhongBan.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaPhongBan.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.DM_PhongBanService.ListFilter = this.DM_PhongBanService.List;
+    }
+  }
+  DM_PhongBanSearch() {
+    this.DM_PhongBanService.ComponentGetAllToListAsync(this.DM_PhongBanService);
   }
   Sys_CommandsFilter(searchString: string) {
     if (searchString.length > 0) {
@@ -208,10 +260,10 @@ export class SysUsersInfoComponent implements OnInit {
     else {
       this.Sys_UsersService.IsShowLoading = true;
       this.Sys_AppPrivateSettingsService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
-      this.Sys_AppPrivateSettingsService.BaseParameter.Code = environment.PhongBan;
-      this.Sys_AppPrivateSettingsService.GetByUser_IdAndCodeAndEmptyToListAsync().subscribe(
+      this.Sys_AppPrivateSettingsService.BaseParameter.Group_Code = environment.PhongBan;
+      this.Sys_AppPrivateSettingsService.GetByUser_IdAndGroup_CodeAndEmptyToListAsync().subscribe(
         res => {
-          this.Sys_AppPrivateSettingsService.List001 = (res as Sys_AppPrivateSettings[]);
+          this.Sys_AppPrivateSettingsService.List001 = (res as Sys_AppPrivateSettings[]);          
           this.Sys_AppPrivateSettingsService.DataSource001 = new MatTableDataSource(this.Sys_AppPrivateSettingsService.List001);
           this.Sys_AppPrivateSettingsService.DataSource001.sort = this.Sys_AppPrivateSettingsSort001;
           this.Sys_AppPrivateSettingsService.DataSource001.paginator = this.Sys_AppPrivateSettingsPaginator001;
@@ -234,8 +286,8 @@ export class SysUsersInfoComponent implements OnInit {
     else {
       this.Sys_UsersService.IsShowLoading = true;
       this.Sys_AppPrivateSettingsService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
-      this.Sys_AppPrivateSettingsService.BaseParameter.Code = environment.KhoDuoc;
-      this.Sys_AppPrivateSettingsService.GetByUser_IdAndCodeAndEmptyToListAsync().subscribe(
+      this.Sys_AppPrivateSettingsService.BaseParameter.Group_Code = environment.KhoDuoc;
+      this.Sys_AppPrivateSettingsService.GetByUser_IdAndGroup_CodeAndEmptyToListAsync().subscribe(
         res => {
           this.Sys_AppPrivateSettingsService.List002 = (res as Sys_AppPrivateSettings[]);
           this.Sys_AppPrivateSettingsService.DataSource002 = new MatTableDataSource(this.Sys_AppPrivateSettingsService.List002);
@@ -260,8 +312,8 @@ export class SysUsersInfoComponent implements OnInit {
     else {
       this.Sys_UsersService.IsShowLoading = true;
       this.Sys_AppPrivateSettingsService.BaseParameter.User_Id = this.Sys_UsersService.FormData.User_Id;
-      this.Sys_AppPrivateSettingsService.BaseParameter.Code = environment.NhomCanLamSang;
-      this.Sys_AppPrivateSettingsService.GetByUser_IdAndCodeAndEmptyToListAsync().subscribe(
+      this.Sys_AppPrivateSettingsService.BaseParameter.Group_Code = environment.NhomCanLamSang;
+      this.Sys_AppPrivateSettingsService.GetByUser_IdAndGroup_CodeAndEmptyToListAsync().subscribe(
         res => {
           this.Sys_AppPrivateSettingsService.List003 = (res as Sys_AppPrivateSettings[]);
           this.Sys_AppPrivateSettingsService.DataSource003 = new MatTableDataSource(this.Sys_AppPrivateSettingsService.List003);
@@ -423,16 +475,21 @@ export class SysUsersInfoComponent implements OnInit {
         this.Sys_UsersService.FormData = res as Sys_Users;
         if (this.Sys_UsersService.FormData.User_Id == environment.InitializationNumber) {
         }
+        this.DM_PhongBanSearch();
+        this.DM_KhoDuocSearch();
+        this.DM_NhomDichVuSearch();
         this.Sys_MenusSearch();
         this.Sys_GroupsSearch();
         this.Sys_FunctionsSearch();
         this.Sys_CommandsSearch();
 
         this.Sys_UserPasswordHistorySearch();
-        //this.Sys_UserMenusSearch();
-        //this.Sys_UserGroupsSearch();
-        //this.Sys_UserCommandsSearch();
+        this.Sys_UserMenusSearch();
+        this.Sys_UserGroupsSearch();
+        this.Sys_UserCommandsSearch();
         this.Sys_AppPrivateSettingsSearch001();
+        this.Sys_AppPrivateSettingsSearch002();
+        this.Sys_AppPrivateSettingsSearch003();
       },
       err => {
       },

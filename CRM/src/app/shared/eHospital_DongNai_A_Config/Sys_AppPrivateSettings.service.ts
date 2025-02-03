@@ -37,8 +37,8 @@ export class Sys_AppPrivateSettingsService extends BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    GetByUser_IdAndCodeAndEmptyToListAsync() {
-        let url = this.APIURL + this.Controller + '/GetByUser_IdAndCodeAndEmptyToListAsync';
+    GetByUser_IdAndGroup_CodeAndEmptyToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByUser_IdAndGroup_CodeAndEmptyToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

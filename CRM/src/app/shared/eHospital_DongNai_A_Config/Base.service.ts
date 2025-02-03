@@ -37,7 +37,7 @@ export class BaseService {
         this.BaseParameter = {
             SearchString: environment.InitializationString,           
             User_Id: environment.InitializationNumber,         
-            Code: environment.InitializationString,                     
+            Group_Code: environment.InitializationString,                     
         };        
         this.List = [];
         this.ListFilter = [];

@@ -25,12 +25,12 @@
             }
             return result;
         }
-        public virtual async Task<List<Sys_AppPrivateSettings>> GetByUser_IdAndCodeToListAsync(int User_Id, string Code)
+        public virtual async Task<List<Sys_AppPrivateSettings>> GetByUser_IdAndGroup_CodeToListAsync(int User_Id, string Group_Code)
         {
             List<Sys_AppPrivateSettings> result = new List<Sys_AppPrivateSettings>();
             if (User_Id > 0)
             {
-                result = await GetByCondition(item => item.User_Id == User_Id && item.Code == Code).ToListAsync();
+                result = await GetByCondition(item => item.User_Id == User_Id && item.Group_Code == Group_Code).ToListAsync();
             }
             else
             {
@@ -54,12 +54,12 @@
             }
             return result;
         }
-        public virtual async Task<List<Sys_AppPrivateSettings>> GetByUser_IdAndCodeAndEmptyToListAsync(int User_Id, string Code)
+        public virtual async Task<List<Sys_AppPrivateSettings>> GetByUser_IdAndGroup_CodeAndEmptyToListAsync(int User_Id, string Group_Code)
         {
             List<Sys_AppPrivateSettings> result = new List<Sys_AppPrivateSettings>();
             Sys_AppPrivateSettings empty = new Sys_AppPrivateSettings();
             result.Add(empty);
-            List<Sys_AppPrivateSettings> list = await GetByUser_IdAndCodeToListAsync(User_Id, Code);
+            List<Sys_AppPrivateSettings> list = await GetByUser_IdAndGroup_CodeToListAsync(User_Id, Group_Code);
             if (list.Count > 0)
             {
                 result.AddRange(list);

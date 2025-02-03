@@ -8,7 +8,7 @@
 		public DateTime? BatDau { get; set; }
 		public DateTime? KetThuc { get; set; }
         public int? User_Id { get; set; }
-        public string? Code { get; set; }
+        public string? Group_Code { get; set; }
         public BaseParameter()
 		{
 		}

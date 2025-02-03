@@ -7,6 +7,6 @@ export class BaseParameter extends Base{
     Page?: number;
     PageSize?: number;     
     User_Id?: number;        
-    Code?: string;      
+    Group_Code?: string;      
     
 }
