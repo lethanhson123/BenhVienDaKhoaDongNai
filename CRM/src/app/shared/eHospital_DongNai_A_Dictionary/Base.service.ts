@@ -47,10 +47,8 @@ export class BaseService {
 
         let token = localStorage.getItem(environment.Token);
         this.Headers = this.Headers.append('Authorization', 'Bearer ' + token);
-    }   
-
-   
-    SearchAll(sort: MatSort, paginator: MatPaginator) {
+    }      
+    SearchAllAndNotEmpty(sort: MatSort, paginator: MatPaginator) {
         if (this.BaseParameter.SearchString.length > 0) {
             this.BaseParameter.SearchString = this.BaseParameter.SearchString.trim();
             if (this.DataSource) {
@@ -58,8 +56,24 @@ export class BaseService {
             }
         }
         else {
-            this.ComponentGetAllAndEmptyToListAsync(sort, paginator);
+            this.ComponentGetAllAndNotEmptyToListAsync(sort, paginator);
         }
+    }
+    ComponentGetAllAndNotEmptyToListAsync(sort: MatSort, paginator: MatPaginator) {
+        this.IsShowLoading = true;
+        this.GetAllToListAsync().subscribe(
+            res => {
+                this.List = (res as any[]);                                
+                this.DataSource = new MatTableDataSource(this.List);
+                this.DataSource.sort = sort;
+                this.DataSource.paginator = paginator;
+            },
+            err => {
+            },
+            () => {
+                this.IsShowLoading = false;
+            }
+        );
     }
     ComponentGetAllToListAsync(Service: BaseService) {       
         if (this.List) {
@@ -79,6 +93,17 @@ export class BaseService {
             }
         }
         else{           
+        }
+    }
+    SearchAll(sort: MatSort, paginator: MatPaginator) {
+        if (this.BaseParameter.SearchString.length > 0) {
+            this.BaseParameter.SearchString = this.BaseParameter.SearchString.trim();
+            if (this.DataSource) {
+                this.DataSource.filter = this.BaseParameter.SearchString.toLowerCase();
+            }
+        }
+        else {
+            this.ComponentGetAllAndEmptyToListAsync(sort, paginator);
         }
     }
     ComponentGetAllAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator) {

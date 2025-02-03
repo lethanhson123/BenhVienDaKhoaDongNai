@@ -26,6 +26,11 @@ namespace Data_eHospital_DongNai_A_Dictionary.Context
         public virtual DbSet<DM_NhomDichVu> DM_NhomDichVu { get; set; }
         public virtual DbSet<DM_PhongBan> DM_PhongBan { get; set; }
         public virtual DbSet<DM_LoaiDichVu> DM_LoaiDichVu { get; set; }
+        public virtual DbSet<DM_BangGia> DM_BangGia { get; set; }
+        public virtual DbSet<DM_BangGia_CPH> DM_BangGia_CPH { get; set; }
+        public virtual DbSet<DM_DichVu_DonGia> DM_DichVu_DonGia { get; set; }
+        public virtual DbSet<DM_DichVu_DonGia_CPH> DM_DichVu_DonGia_CPH { get; set; }
+        public virtual DbSet<DM_LoaiGia> DM_LoaiGia { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

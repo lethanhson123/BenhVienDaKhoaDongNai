@@ -45,6 +45,11 @@
             services.AddTransient<IDM_NhomDichVuService, DM_NhomDichVuService>();
             services.AddTransient<IDM_PhongBanService, DM_PhongBanService>();
             services.AddTransient<IDM_LoaiDichVuService, DM_LoaiDichVuService>();
+            services.AddTransient<IDM_BangGiaService, DM_BangGiaService>();
+            services.AddTransient<IDM_BangGia_CPHService, DM_BangGia_CPHService>();
+            services.AddTransient<IDM_DichVu_DonGiaService, DM_DichVu_DonGiaService>();
+            services.AddTransient<IDM_DichVu_DonGia_CPHService, DM_DichVu_DonGia_CPHService>();
+            services.AddTransient<IDM_LoaiGiaService, DM_LoaiGiaService>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
 
@@ -69,6 +74,11 @@
             services.AddTransient<IDM_NhomDichVuRepository, DM_NhomDichVuRepository>();
             services.AddTransient<IDM_PhongBanRepository, DM_PhongBanRepository>();
             services.AddTransient<IDM_LoaiDichVuRepository, DM_LoaiDichVuRepository>();
+            services.AddTransient<IDM_BangGiaRepository, DM_BangGiaRepository>();
+            services.AddTransient<IDM_BangGia_CPHRepository, DM_BangGia_CPHRepository>();
+            services.AddTransient<IDM_DichVu_DonGiaRepository, DM_DichVu_DonGiaRepository>();
+            services.AddTransient<IDM_DichVu_DonGia_CPHRepository, DM_DichVu_DonGia_CPHRepository>();
+            services.AddTransient<IDM_LoaiGiaRepository, DM_LoaiGiaRepository>();
 
             return services;
         }      

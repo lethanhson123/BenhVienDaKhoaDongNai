@@ -84,6 +84,12 @@ import { DMICDChuongComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-ch
 import { DMICDCommonComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-common/dm-icd-common.component';
 import { DMICDNhomComponent } from './eHospital_DongNai_A_Dictionary/dm-icd-nhom/dm-icd-nhom.component';
 import { DMLoaiDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-dich-vu/dm-loai-dich-vu.component';
+import { DMLoaiGiaComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-gia/dm-loai-gia.component';
+import { DMBangGiaComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia/dm-bang-gia.component';
+import { DMBangGiaInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-info/dm-bang-gia-info.component';
+import { DMDichVuInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-dich-vu-info/dm-dich-vu-info.component';
+import { DMBangGiaCPHComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-cph/dm-bang-gia-cph.component';
+import { DMBangGiaCPHInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-cphinfo/dm-bang-gia-cphinfo.component';
 
 
 
@@ -163,6 +169,12 @@ import { DMLoaiDichVuComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-
     DMICDCommonComponent,
     DMICDNhomComponent,
     DMLoaiDichVuComponent,
+    DMLoaiGiaComponent,
+    DMBangGiaComponent,
+    DMBangGiaInfoComponent,
+    DMDichVuInfoComponent,
+    DMBangGiaCPHComponent,
+    DMBangGiaCPHInfoComponent,
     
     
     

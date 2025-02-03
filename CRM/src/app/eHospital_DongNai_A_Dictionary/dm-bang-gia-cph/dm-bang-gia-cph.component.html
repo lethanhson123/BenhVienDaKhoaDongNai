@@ -1,0 +1,176 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Bảng giá CPH
+                        <span *ngIf="DM_BangGia_CPHService.List">({{DM_BangGia_CPHService.List.length-1}} items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="eHospital Dictionary">eHospital Dictionary</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/DMBangGia" title="DMBangGia">
+                                Bảng giá
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l11">
+                    <input [(ngModel)]="DM_BangGia_CPHService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="DM_BangGia_CPHSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="DM_BangGia_CPHSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DM_BangGia_CPHSort="matSort"
+                        [dataSource]="DM_BangGia_CPHService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="DM_BangGia_CPHPaginator">
+                                    {{
+                                    DM_BangGia_CPHPaginator.pageSize *
+                                    DM_BangGia_CPHPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <!-- <a (click)="DM_BangGia_CPHSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a> -->
+                                <!-- <a (click)="DM_BangGia_CPHDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="BangGia_CPH_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>BangGia_CPH_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.BangGia_CPH_Id}}" class="link-primary"
+                                    routerLink="/DMBangGiaCPHInfo/{{element.BangGia_CPH_Id}}"><b>{{element.BangGia_CPH_Id}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LoaiBangGia">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LoaiBangGia</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LoaiBangGia}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LoaiGia_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LoaiGia_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <select class="browser-default form-select" name="LoaiGia_Id"
+                                    [(ngModel)]="element.LoaiGia_Id" disabled>
+                                    <option *ngFor="let item of DM_LoaiGiaService.List;" [value]="item.LoaiGia_Id">
+                                        {{item.TenLoaiGia}} - {{item.MaLoaiGia}} [{{item.LoaiGia_Id}}]</option>
+                                </select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TienTe_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TienTe_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.TienTe_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayBanHanh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayBanHanh</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayBanHanh | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayHieuLuc">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayHieuLuc</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayHieuLuc | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayHetHieuLuc">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayHetHieuLuc</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayHetHieuLuc | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TrangThai">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TrangThai</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.TrangThai}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TamNgung">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TamNgung</th>
+                            <td mat-cell *matCellDef="let element">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" name="TamNgung{{element.ID}}"
+                                        [(ngModel)]="element.TamNgung">
+                                    <span></span>
+                                </label>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NguoiTao_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NguoiTao_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.NguoiTao_Id}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.NguoiTao_Id}}"><b>{{element.NguoiTao_Id}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayTao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayTao</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayTao | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NguoiCapNhat_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NguoiCapNhat_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.NguoiCapNhat_Id}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.NguoiCapNhat_Id}}"><b>{{element.NguoiCapNhat_Id}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayCapNhat">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayCapNhat</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayCapNhat | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="DM_BangGia_CPHService.DisplayColumns001">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: DM_BangGia_CPHService.DisplayColumns001;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_BangGia_CPHPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="DM_BangGia_CPHService.IsShowLoading"></app-loading>
