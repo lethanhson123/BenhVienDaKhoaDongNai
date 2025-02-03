@@ -226,7 +226,7 @@ namespace Service.Implement
                             }
                             else
                             {
-                                List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.Active == true && item.IsTiepNhan == true).OrderBy(item => item.Display).ToListAsync();
+                                List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.Active == true && item.IsTiepNhan == true).OrderBy(item => item.SortOrder).ToListAsync();
                                 if (ListDanhMucQuayDichVu == null)
                                 {
                                     ListDanhMucQuayDichVu = new List<DanhMucQuayDichVu>();
@@ -247,8 +247,38 @@ namespace Service.Implement
                                     {
                                         Index = ListDanhMucQuayDichVu.Count - 1;
                                     }
-
-                                    DanhMucQuayDichVu DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                    DanhMucQuayDichVu DanhMucQuayDichVu = new DanhMucQuayDichVu();
+                                    if (model.TongCong > 60)
+                                    {
+                                        DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                    }
+                                    else
+                                    {
+                                        if (model.TongCong % 2 == 0)
+                                        {
+                                            try
+                                            {
+                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[0];
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                string msg = ex.Message;
+                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                            }
+                                        }
+                                        else
+                                        {
+                                            try
+                                            {
+                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[1];
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                string msg = ex.Message;
+                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                            }
+                                        }
+                                    }
                                     GoiSo GoiSo = await GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVu.ID && item.NgayGhiNhan.Value.Year == model.NgayGhiNhan.Value.Year && item.NgayGhiNhan.Value.Month == model.NgayGhiNhan.Value.Month && item.NgayGhiNhan.Value.Day == model.NgayGhiNhan.Value.Day).FirstOrDefaultAsync();
                                     if (GoiSo == null)
                                     {
@@ -490,7 +520,7 @@ namespace Service.Implement
                             }
                             else
                             {
-                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day &&  item.DanhMucDichVuID == DanhMucDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day && item.DanhMucDichVuID == DanhMucDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
                             }
                             if (GoiSoChiTiet != null)
                             {
