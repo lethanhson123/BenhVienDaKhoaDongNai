@@ -12,6 +12,12 @@ global using Repository_eHospital_DongNai_A.Interface;
 global using Service_eHospital_DongNai_A.Implement;
 global using Service_eHospital_DongNai_A.Interface;
 
+global using Data_eHospital_DongNai_A_Dictionary.Model;
+global using Data_eHospital_DongNai_A_Dictionary.Context;
+global using Repository_eHospital_DongNai_A_Dictionary.Implement;
+global using Repository_eHospital_DongNai_A_Dictionary.Interface;
+global using Service_eHospital_DongNai_A_Dictionary.Implement;
+global using Service_eHospital_DongNai_A_Dictionary.Interface;
 
 global using Helper;
 global using Helper.Model;

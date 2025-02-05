@@ -1,8 +1,8 @@
 ﻿namespace Service_eHospital_DongNai_A.Implement
 {
-    public class BaseService<T, TRepository> : IBaseService<T>
-        where T : BaseModel
-        where TRepository : IBaseRepository<T>
+    public class BaseService<T, TRepository> : Service_eHospital_DongNai_A.Interface.IBaseService<T>
+        where T : class
+        where TRepository : Repository_eHospital_DongNai_A.Interface.IBaseRepository<T>
     {
         private readonly TRepository _repository;
         public BaseService(TRepository repository)

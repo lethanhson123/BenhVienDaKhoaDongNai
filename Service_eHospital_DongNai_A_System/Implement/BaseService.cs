@@ -1,7 +1,7 @@
 ﻿namespace Service_eHospital_DongNai_A_System.Implement
 {
     public class BaseService<T, TRepository> : IBaseService<T>
-        where T : BaseModel
+        where T : class
         where TRepository : IBaseRepository<T>
     {
         private readonly TRepository _repository;

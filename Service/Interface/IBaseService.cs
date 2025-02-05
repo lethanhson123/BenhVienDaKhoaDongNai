@@ -25,7 +25,7 @@
         T GetByName(string name);
         Task<T> GetByNameAsync(string name);
         T GetByCode(string code);
-        Task<T> GetByCodeAsync(string code);
+        Task<T> GetByCodeAsync(string code);        
         List<T> GetAllToList();
         Task<List<T>> GetAllToListAsync();
         List<T> GetByIDToList(long ID);

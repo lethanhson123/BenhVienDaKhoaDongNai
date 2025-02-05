@@ -10,7 +10,8 @@
         int Update(T model);
         Task<int> UpdateAsync(T model);
         int Remove(T model);
-        Task<int> RemoveAsync(T model);       
+        Task<int> RemoveAsync(T model);
+        IQueryable<T> GetByCondition(Expression<Func<T, bool>> whereCondition);
         List<T> GetAllToList();
         Task<List<T>> GetAllToListAsync();      
         List<T> GetBySearchStringToList(string searchString);

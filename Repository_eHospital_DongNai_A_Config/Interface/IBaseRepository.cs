@@ -1,6 +1,6 @@
 ﻿namespace Repository_eHospital_DongNai_A_Config.Interface
 {
-    public interface IBaseRepository<T> where T : BaseModel
+    public interface IBaseRepository<T> where T : class
     {
         DbSet<T> DbSet();
         int Add(T model);

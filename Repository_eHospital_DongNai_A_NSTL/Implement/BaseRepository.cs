@@ -1,6 +1,6 @@
 ﻿namespace Repository_eHospital_DongNai_A_NSTL.Implement
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : BaseModel
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly DbContext _context;
 

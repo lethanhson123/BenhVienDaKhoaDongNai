@@ -1,4 +1,6 @@
-﻿namespace Service_eHospital_DongNai_A
+﻿using Repository_eHospital_DongNai_A_Dictionary.Interface;
+
+namespace Service_eHospital_DongNai_A
 {
     public static class ConfigureService
     {
@@ -22,10 +24,8 @@
         }
         public static IServiceCollection AddContext(this IServiceCollection services)
         {
-            services.AddDbContext<Context>
-    (opts =>
-    {
-    });
+            services.AddDbContext<Data_eHospital_DongNai_A.Context.Context>(opts =>{});
+            services.AddDbContext<Data_eHospital_DongNai_A_Dictionary.Context.Context>(opts => { });
             return services;
         }
         public static IServiceCollection AddService(this IServiceCollection services)
@@ -598,6 +598,8 @@
             services.AddTransient<IzzzzBenhAnMienGiam_AllService, zzzzBenhAnMienGiam_AllService>();
             services.AddTransient<IzzzzBenhAnMienGiam_tempService, zzzzBenhAnMienGiam_tempService>();
             services.AddTransient<IzzzzBenhAnMienGiam_Temp_AllService, zzzzBenhAnMienGiam_Temp_AllService>();
+
+            services.AddTransient<IDM_BenhNhanService, DM_BenhNhanService>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
             return services;
@@ -1173,6 +1175,8 @@
             services.AddTransient<IzzzzBenhAnMienGiam_AllRepository, zzzzBenhAnMienGiam_AllRepository>();
             services.AddTransient<IzzzzBenhAnMienGiam_tempRepository, zzzzBenhAnMienGiam_tempRepository>();
             services.AddTransient<IzzzzBenhAnMienGiam_Temp_AllRepository, zzzzBenhAnMienGiam_Temp_AllRepository>();
+
+            services.AddTransient<IDM_BenhNhanRepository, DM_BenhNhanRepository>();
 
             return services;
         }

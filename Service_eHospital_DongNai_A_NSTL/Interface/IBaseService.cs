@@ -4,15 +4,16 @@
         where T : class
     {
         T Save(T model);
-        Task<T> SaveAsync(T model);       
+        Task<T> SaveAsync(T model);
         int Add(T model);
         Task<int> AddAsync(T model);
         int Update(T model);
         Task<int> UpdateAsync(T model);
         int Remove(T model);
-        Task<int> RemoveAsync(T model);       
+        Task<int> RemoveAsync(T model);
+        IQueryable<T> GetByCondition(Expression<Func<T, bool>> whereCondition);
         List<T> GetAllToList();
-        Task<List<T>> GetAllToListAsync();      
+        Task<List<T>> GetAllToListAsync();
         List<T> GetBySearchStringToList(string searchString);
         Task<List<T>> GetBySearchStringToListAsync(string searchString);
         List<T> GetByPageAndPageSizeToList(int page, int pageSize);
