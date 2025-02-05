@@ -129,8 +129,8 @@
                             <td mat-cell *matCellDef="let element">
                                 <a (click)="DanhMucPhongKhamSave(element)" style="color:#2196f3;"><i
                                         class="material-icons">save</i></a>
-                                <a *ngIf="element.ID>0" (click)="DanhMucPhongKhamDelete(element)" style="color: red;"><i
-                                        class="material-icons">delete_forever</i></a>
+                                <!-- <a *ngIf="element.ID>0" (click)="DanhMucPhongKhamDelete(element)" style="color: red;"><i
+                                        class="material-icons">delete_forever</i></a> -->
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="DanhMucPhongKhamService.DisplayColumns03">
@@ -186,10 +186,10 @@
                                         <a (click)="DanhMucPhongKhamSave(element)" style="color:#2196f3;"><i
                                                 class="material-icons">save</i></a>
                                     </div>
-                                    <div class="col s6 m6 l6">
+                                    <!-- <div class="col s6 m6 l6">
                                         <a *ngIf="element.ID>0" (click)="DanhMucPhongKhamDelete(element)"
                                             style="color: red;"><i class="material-icons">delete_forever</i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <br />
                             </td>

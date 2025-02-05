@@ -40,6 +40,26 @@
             }
             return result;
         }
+        public virtual async Task<List<BenhAn>> GetByNgayVaoVienToListAsync(DateTime NgayVaoVien)
+        {
+            List<BenhAn> result = new List<BenhAn>();
+            result = await GetByCondition(item => item.NgayVaoVien.Value.Year == NgayVaoVien.Year && item.NgayVaoVien.Value.Month == NgayVaoVien.Month && item.NgayVaoVien.Value.Day == NgayVaoVien.Day).ToListAsync();
+            if (result == null)
+            {
+                result = new List<BenhAn>();
+            }
+            return result;
+        }
+        public virtual async Task<List<BenhAn>> GetByKhoaVao_IdToListAsync(int PhongBan_Id)
+        {
+            List<BenhAn> result = new List<BenhAn>();
+            result = await GetByCondition(item => item.KhoaVao_Id == PhongBan_Id).ToListAsync();
+            if (result == null)
+            {
+                result = new List<BenhAn>();
+            }
+            return result;
+        }
         public virtual async Task<List<BenhAn>> GetByNgayVaoVien_SearchStringToListAsync(DateTime NgayVaoVien, string SearchString)
         {
             List<BenhAn> result = new List<BenhAn>();
@@ -49,7 +69,7 @@
             }
             else
             {
-                result = await GetByCondition(item => item.NgayVaoVien.Value.Year == NgayVaoVien.Year && item.NgayVaoVien.Value.Month == NgayVaoVien.Month && item.NgayVaoVien.Value.Day == NgayVaoVien.Day).ToListAsync();
+                result = await GetByNgayVaoVienToListAsync(NgayVaoVien);
             }
             if (result == null)
             {

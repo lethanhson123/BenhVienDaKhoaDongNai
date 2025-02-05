@@ -29,6 +29,9 @@ import { DM_ICDService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_
 import { DM_PhongBan } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_PhongBan.model';
 import { DM_PhongBanService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_PhongBan.service';
 
+import { NS_NHANVIEN } from 'src/app/shared/eHospital_DongNai_A_NSTL/NS_NHANVIEN.model';
+import { NS_NHANVIENService } from 'src/app/shared/eHospital_DongNai_A_NSTL/NS_NHANVIEN.service';
+
 @Component({
   selector: 'app-benh-an',
   templateUrl: './benh-an.component.html',
@@ -51,6 +54,7 @@ export class BenhAnComponent implements OnInit {
     public DM_DoiTuongService: DM_DoiTuongService,
     public DM_ICDService: DM_ICDService,
     public DM_PhongBanService: DM_PhongBanService,
+    public NS_NHANVIENService: NS_NHANVIENService,
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +63,7 @@ export class BenhAnComponent implements OnInit {
     this.DM_DoiTuongSearch();
     this.DM_ICDSearch();
     this.DM_PhongBanSearch();
+    this.NS_NHANVIENSearch();
     //this.BenhAnSearch();
   }
   DateNgayVaoVien(value) {
@@ -68,7 +73,16 @@ export class BenhAnComponent implements OnInit {
     this.Sys_UsersService.ComponentGetAllToListAsync(this.Sys_UsersService);
   }
   Lst_DictionarySearch() {
-    this.Lst_DictionaryService.ComponentGetAllToListAsync(this.Lst_DictionaryService);
+    this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = environment.Lst_Dictionary_TypeIDLoaiBenhAn;
+    this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.List = (res as Lst_Dictionary[]);
+      },
+      err => {
+      },
+      () => {
+      }
+    );
   }
   DM_BenhNhanSearch() {
     this.DM_BenhNhanService.ComponentGetAllToListAsync(this.DM_BenhNhanService);
@@ -82,12 +96,15 @@ export class BenhAnComponent implements OnInit {
   DM_PhongBanSearch() {
     this.DM_PhongBanService.ComponentGetAllToListAsync(this.DM_PhongBanService);
   }
+  NS_NHANVIENSearch() {
+    this.NS_NHANVIENService.ComponentGetAllToListAsync(this.NS_NHANVIENService);
+  }
   BenhAnSearch() {
     this.BenhAnService.IsShowLoading = true;
     this.BenhAnService.GetByNgayVaoVien_SearchStringToListAsync().subscribe(
       res => {
-        this.BenhAnService.List = (res as BenhAn[]).sort((a, b) => (a.NgayRaVien > b.NgayRaVien ? 1 : -1));
-        var ListBenhNhan = this.BenhAnService.List.map(function (a) { return a.BenhNhan_Id; });        
+        this.BenhAnService.List = (res as BenhAn[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
+        var ListBenhNhan = this.BenhAnService.List.map(function (a) { return a.BenhNhan_Id; });
         if (ListBenhNhan) {
           this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhan;
           this.DM_BenhNhanService.GetByListIDToListAsync().subscribe(
@@ -97,13 +114,26 @@ export class BenhAnComponent implements OnInit {
                 let Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiTao_Id);
                 if (Sys_Users) {
                   if (Sys_Users.length) {
-                    this.BenhAnService.List[i].NguoiTaoName = Sys_Users[0].User_Name;
+                    this.BenhAnService.List[i].NguoiTaoName = Sys_Users[0].User_Name + " - " + Sys_Users[0].User_Code;
                   }
                 }
                 Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiCapNhat_Id);
                 if (Sys_Users) {
                   if (Sys_Users.length) {
-                    this.BenhAnService.List[i].NguoiCapNhatName = Sys_Users[0].User_Name;
+                    this.BenhAnService.List[i].NguoiCapNhatName = Sys_Users[0].User_Name + " - " + Sys_Users[0].User_Code;
+                  }
+                }
+                // Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiLap_Id);
+                // if (Sys_Users) {
+                //   if (Sys_Users.length) {
+                //     this.BenhAnService.List[i].NguoiLapName = Sys_Users[0].User_Name + " - " + Sys_Users[0].User_Code;
+                //   }
+                // }
+                let NS_NHANVIEN = this.NS_NHANVIENService.List.filter(item => item.NhanVien_Id == this.BenhAnService.List[i].NguoiLap_Id);
+                this.BenhAnService.List[i].NguoiLapName = "" + this.BenhAnService.List[i].NguoiLap_Id;
+                if (NS_NHANVIEN) {
+                  if (NS_NHANVIEN.length) {
+                    this.BenhAnService.List[i].NguoiLapName = NS_NHANVIEN[0].Ho + " " + NS_NHANVIEN[0].Ten + " - " + NS_NHANVIEN[0].MaNhanVien;
                   }
                 }
                 let Lst_Dictionary = this.Lst_DictionaryService.List.filter(item => item.Dictionary_Id == this.BenhAnService.List[i].LoaiBenhAn_Id);
@@ -151,14 +181,14 @@ export class BenhAnComponent implements OnInit {
               }
               this.BenhAnService.DataSource = new MatTableDataSource(this.BenhAnService.List);
               this.BenhAnService.DataSource.sort = this.BenhAnSort;
-              this.BenhAnService.DataSource.paginator = this.BenhAnPaginator;     
+              this.BenhAnService.DataSource.paginator = this.BenhAnPaginator;
             },
             err => {
             },
             () => {
             }
           );
-        }        
+        }
       },
       err => {
       },

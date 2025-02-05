@@ -24,7 +24,7 @@ export class BaseService {
     FileToUpload: FileList
     BaseParameter!: BaseParameter;
     IsShowLoading: boolean = false;
-    APIURL: string = environment.API_eHospital_DongNai_AURL;
+    APIURL: string = environment.API_eHospital_DongNai_A_NSTLURL;
     Controller: string = "Base";
     Headers: HttpHeaders = new HttpHeaders();
 

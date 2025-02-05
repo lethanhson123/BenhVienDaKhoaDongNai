@@ -17,18 +17,18 @@ import { GoiSoThamSoService } from 'src/app/shared/GoiSoThamSo.service';
   styleUrls: ['./goi-so-tham-so.component.css']
 })
 export class GoiSoThamSoComponent {
-  
+
   @ViewChild('GoiSoThamSoSort') GoiSoThamSoSort: MatSort;
   @ViewChild('GoiSoThamSoPaginator') GoiSoThamSoPaginator: MatPaginator;
 
-  constructor(    
+  constructor(
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
     public GoiSoThamSoService: GoiSoThamSoService,
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.GoiSoThamSoSearch();
   }
 
@@ -42,5 +42,21 @@ export class GoiSoThamSoComponent {
   GoiSoThamSoDelete(element: GoiSoThamSo) {
     this.GoiSoThamSoService.BaseParameter.ID = element.ID;
     this.NotificationService.warn(this.GoiSoThamSoService.ComponentDeleteAll(this.GoiSoThamSoSort, this.GoiSoThamSoPaginator));
-  }  
+  }
+  GoiSoThamSoKhoiPhuc() {
+    this.GoiSoThamSoService.IsShowLoading = true;
+    this.GoiSoThamSoService.KhoiPhucAsync().subscribe(
+      res => {
+        this.GoiSoThamSoService.List = (res as GoiSoThamSo[]);
+        this.GoiSoThamSoService.DataSource = new MatTableDataSource(this.GoiSoThamSoService.List);
+        this.GoiSoThamSoService.DataSource.sort = this.GoiSoThamSoSort;
+        this.GoiSoThamSoService.DataSource.paginator = this.GoiSoThamSoPaginator;
+      },
+      err => {
+      },
+      () => {
+        this.GoiSoThamSoService.IsShowLoading = false;
+      }
+    );
+  }
 }

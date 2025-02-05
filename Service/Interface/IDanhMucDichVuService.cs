@@ -3,6 +3,7 @@
     public interface IDanhMucDichVuService : IBaseService<DanhMucDichVu>
     {
         Task<List<DanhMucDichVu>> GetByIsBHYTToListAsync(bool IsBHYT);
+        Task<List<DanhMucDichVu>> KhoiPhucAsync();
     }
 }
 

@@ -118,6 +118,11 @@ NoiLapName?: string;
 KhoaVaoName?: string;
 KhoaRaName?: string;
 BacSiDieuTriChinhName?: string;
+NguoiLapName?: string;
+MaYTe?: string;
+CCCD?: string;
+DienThoai?: string;
+BHYT?: string;
 
 }
 

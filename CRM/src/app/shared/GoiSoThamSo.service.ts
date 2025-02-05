@@ -22,5 +22,11 @@ export class GoiSoThamSoService extends BaseService {
         super(httpClient);
         this.Controller = "GoiSoThamSo";
     }
+    KhoiPhucAsync() {
+        let url = this.APIURL + this.Controller + '/KhoiPhucAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

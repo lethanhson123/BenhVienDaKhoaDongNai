@@ -12,5 +12,11 @@ export class DanhMucKhuVucService extends BaseService{
         super(httpClient);
         this.Controller = "DanhMucKhuVuc";
     }
+    KhoiPhucAsync() {
+        let url = this.APIURL + this.Controller + '/KhoiPhucAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

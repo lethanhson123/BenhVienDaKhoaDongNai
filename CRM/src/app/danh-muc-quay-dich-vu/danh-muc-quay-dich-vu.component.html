@@ -28,13 +28,17 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l10">
                     <input [(ngModel)]="DanhMucQuayDichVuService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DanhMucQuayDichVuSearch()">
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Tìm" (click)="DanhMucQuayDichVuSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Khôi phục" (click)="DanhMucQuayDichVuKhoiPhuc()"><i
+                        class="material-icons">all_inclusive</i></a>
                 </div>
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DanhMucQuayDichVuSort="matSort"
@@ -180,8 +184,8 @@
                             <td mat-cell *matCellDef="let element">
                                 <a (click)="DanhMucQuayDichVuSave(element)" style="color:#2196f3;"><i
                                         class="material-icons">save</i></a>
-                                <a *ngIf="element.ID>0" (click)="DanhMucQuayDichVuDelete(element)"
-                                    style="color: red;"><i class="material-icons">delete_forever</i></a>
+                                <!-- <a *ngIf="element.ID>0" (click)="DanhMucQuayDichVuDelete(element)"
+                                    style="color: red;"><i class="material-icons">delete_forever</i></a> -->
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="DanhMucQuayDichVuService.DisplayColumns07">
@@ -292,10 +296,10 @@
                                         <a (click)="DanhMucQuayDichVuSave(element)" style="color:#2196f3;"><i
                                                 class="material-icons">save</i></a>
                                     </div>
-                                    <div class="col s6 m6 l6">
+                                    <!-- <div class="col s6 m6 l6">
                                         <a *ngIf="element.ID>0" (click)="DanhMucQuayDichVuDelete(element)"
                                             style="color: red;"><i class="material-icons">delete_forever</i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <br />
                             </td>

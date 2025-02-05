@@ -26,13 +26,17 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l10">
                     <input [(ngModel)]="GoiSoThamSoService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="GoiSoThamSoSearch()">
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Tìm" (click)="GoiSoThamSoSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Khôi phục" (click)="GoiSoThamSoKhoiPhuc()"><i
+                        class="material-icons">all_inclusive</i></a>
                 </div>
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #GoiSoThamSoSort="matSort"

@@ -33,7 +33,7 @@ export class DanhMucDichVuComponent implements OnInit {
     public DanhMucKhuVucService: DanhMucKhuVucService,
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.DanhMucKhuVucSearch();
     this.DanhMucDichVuSearch();
   }
@@ -50,5 +50,21 @@ export class DanhMucDichVuComponent implements OnInit {
   DanhMucDichVuDelete(element: DanhMucDichVu) {
     this.DanhMucDichVuService.BaseParameter.ID = element.ID;
     this.NotificationService.warn(this.DanhMucDichVuService.ComponentDeleteAll(this.DanhMucDichVuSort, this.DanhMucDichVuPaginator));
-  }  
+  }
+  DanhMucDichVuKhoiPhuc() {
+    this.DanhMucDichVuService.IsShowLoading = true;
+    this.DanhMucDichVuService.KhoiPhucAsync().subscribe(
+      res => {
+        this.DanhMucDichVuService.List = (res as DanhMucDichVu[]);
+        this.DanhMucDichVuService.DataSource = new MatTableDataSource(this.DanhMucDichVuService.List);
+        this.DanhMucDichVuService.DataSource.sort = this.DanhMucDichVuSort;
+        this.DanhMucDichVuService.DataSource.paginator = this.DanhMucDichVuPaginator;
+      },
+      err => {
+      },
+      () => {
+        this.DanhMucDichVuService.IsShowLoading = false;
+      }
+    );
+  }
 }

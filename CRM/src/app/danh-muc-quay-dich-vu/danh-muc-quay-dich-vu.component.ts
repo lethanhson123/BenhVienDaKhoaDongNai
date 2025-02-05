@@ -40,11 +40,11 @@ export class DanhMucQuayDichVuComponent implements OnInit {
     public DanhMucMauSacService: DanhMucMauSacService,
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.DanhMucKhuVucSearch();
     this.DanhMucDichVuSearch();
     this.DanhMucMauSacSearch();
-    this.DanhMucQuayDichVuSearch();    
+    this.DanhMucQuayDichVuSearch();
   }
 
   DanhMucKhuVucSearch() {
@@ -67,5 +67,21 @@ export class DanhMucQuayDichVuComponent implements OnInit {
   DanhMucQuayDichVuDelete(element: DanhMucQuayDichVu) {
     this.DanhMucQuayDichVuService.BaseParameter.ID = element.ID;
     this.NotificationService.warn(this.DanhMucQuayDichVuService.ComponentDeleteAll(this.DanhMucQuayDichVuSort, this.DanhMucQuayDichVuPaginator));
-  }  
+  }
+  DanhMucQuayDichVuKhoiPhuc() {
+    this.DanhMucQuayDichVuService.IsShowLoading = true;
+    this.DanhMucQuayDichVuService.KhoiPhucAsync().subscribe(
+      res => {
+        this.DanhMucQuayDichVuService.List = (res as DanhMucQuayDichVu[]);
+        this.DanhMucQuayDichVuService.DataSource = new MatTableDataSource(this.DanhMucQuayDichVuService.List);
+        this.DanhMucQuayDichVuService.DataSource.sort = this.DanhMucQuayDichVuSort;
+        this.DanhMucQuayDichVuService.DataSource.paginator = this.DanhMucQuayDichVuPaginator;
+      },
+      err => {
+      },
+      () => {
+        this.DanhMucQuayDichVuService.IsShowLoading = false;
+      }
+    );
+  }
 }

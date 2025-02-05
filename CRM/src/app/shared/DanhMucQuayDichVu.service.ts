@@ -33,5 +33,11 @@ export class DanhMucQuayDichVuService extends BaseService {
         this.List02 = [];        
         this.List03 = [];  
     }
+    KhoiPhucAsync() {
+        let url = this.APIURL + this.Controller + '/KhoiPhucAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

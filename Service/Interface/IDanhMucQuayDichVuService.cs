@@ -2,6 +2,7 @@
 {
     public interface IDanhMucQuayDichVuService : IBaseService<DanhMucQuayDichVu>
     {
+        Task<List<DanhMucQuayDichVu>> KhoiPhucAsync();
     }
-    }
+}
 
