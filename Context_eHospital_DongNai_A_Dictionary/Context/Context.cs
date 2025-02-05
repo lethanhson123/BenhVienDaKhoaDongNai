@@ -31,6 +31,8 @@ namespace Data_eHospital_DongNai_A_Dictionary.Context
         public virtual DbSet<DM_DichVu_DonGia> DM_DichVu_DonGia { get; set; }
         public virtual DbSet<DM_DichVu_DonGia_CPH> DM_DichVu_DonGia_CPH { get; set; }
         public virtual DbSet<DM_LoaiGia> DM_LoaiGia { get; set; }
+        public virtual DbSet<DM_LoaiBenhAn> DM_LoaiBenhAn { get; set; }
+        public virtual DbSet<DM_DoiTuong> DM_DoiTuong { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)

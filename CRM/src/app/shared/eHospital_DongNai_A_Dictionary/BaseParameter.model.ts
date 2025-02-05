@@ -18,5 +18,6 @@ export class BaseParameter extends Base{
     PhongBan_Id?: number;    
     ICD_Nhom_Id?: number;    
     BangGia_Id?: number;    
-    BangGia_CPH_Id?: number;    
+    BangGia_CPH_Id?: number;  
+    ListID?: number[];  
 }

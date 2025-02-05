@@ -44,6 +44,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByListIDToListAsync")]
+        public virtual async Task<List<DM_BenhNhan>> GetByListIDToListAsync()
+        {
+            List<DM_BenhNhan> result = new List<DM_BenhNhan>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DM_BenhNhanService.GetByListIDToListAsync(baseParameter.ListID);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

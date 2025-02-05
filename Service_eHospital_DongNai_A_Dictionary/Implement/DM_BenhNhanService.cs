@@ -54,7 +54,7 @@
                 }
                 if (result.Count == GlobalHelper.InitializationNumber)
                 {
-                    result = await GetByCondition(item => item.BenhNhan_Id.Value.ToString().Contains(searchString)).ToListAsync();
+                    result = await GetByCondition(item => item.BenhNhan_Id.ToString().Contains(searchString)).ToListAsync();
                 }
             }
             else
@@ -102,6 +102,22 @@
             if (result.Count == 0)
             {
                 result = await GetByCondition(item => 1 == 1).Take(20).ToListAsync();
+            }
+            return result;
+        }
+        public virtual async Task<List<DM_BenhNhan>> GetByListIDToListAsync(List<int> ListID)
+        {
+            List<DM_BenhNhan> result = new List<DM_BenhNhan>();
+            if (ListID.Count > 0)
+            {
+                foreach (var ID in ListID)
+                {
+                    result.Add(await GetByCondition(item => item.BenhNhan_Id == ID).FirstOrDefaultAsync());
+                }
+            }
+            if (result == null)
+            {
+                result = new List<DM_BenhNhan>();
             }
             return result;
         }

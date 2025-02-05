@@ -108,6 +108,16 @@ IsDaChuyenKhu?: boolean;
 TruongKhoa_Id?: number;
 ThuTruong_Id?: number;
 Export?: boolean;
+NguoiTaoName?: string;
+NguoiCapNhatName?: string;
+BenhNhanName?: string;
+LoaiBenhAnName?: string;
+DoiTuongName?: string;
+ICDVaoKhoaName?: string;
+NoiLapName?: string;
+KhoaVaoName?: string;
+KhoaRaName?: string;
+BacSiDieuTriChinhName?: string;
 
 }
 

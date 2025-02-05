@@ -217,6 +217,7 @@ namespace Service.Implement
                 {
                     if (model.TongCong > 0)
                     {
+                        GoiSoThamSo GoiSoThamSo = await _GoiSoThamSoRepository.GetByIDAsync(GlobalHelper.GoiSoThamSoID);
                         DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(model.DanhMucDichVuID.Value);
                         if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
                         {
@@ -247,35 +248,42 @@ namespace Service.Implement
                                     {
                                         Index = ListDanhMucQuayDichVu.Count - 1;
                                     }
-                                    DanhMucQuayDichVu DanhMucQuayDichVu = new DanhMucQuayDichVu();
-                                    if (model.TongCong > 60)
+                                    DanhMucQuayDichVu DanhMucQuayDichVu = new DanhMucQuayDichVu();                                    
+                                    if (GoiSoThamSo.HTMLContent.Contains(model.NgayGhiNhan.Value.DayOfWeek.ToString()))
                                     {
                                         DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
                                     }
                                     else
                                     {
-                                        if (model.TongCong % 2 == 0)
+                                        if (model.TongCong > GoiSoThamSo.KichThuocChu008 * 2)
                                         {
-                                            try
-                                            {
-                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[0];
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                string msg = ex.Message;
-                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
-                                            }
+                                            DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
                                         }
                                         else
                                         {
-                                            try
+                                            if (model.TongCong % 2 == 0)
                                             {
-                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[1];
+                                                try
+                                                {
+                                                    DanhMucQuayDichVu = ListDanhMucQuayDichVu[0];
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    string msg = ex.Message;
+                                                    DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                                }
                                             }
-                                            catch (Exception ex)
+                                            else
                                             {
-                                                string msg = ex.Message;
-                                                DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                                try
+                                                {
+                                                    DanhMucQuayDichVu = ListDanhMucQuayDichVu[1];
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    string msg = ex.Message;
+                                                    DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
+                                                }
                                             }
                                         }
                                     }

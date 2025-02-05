@@ -33,7 +33,7 @@ export class HomepageComponent implements OnInit {
     this.GoiSoService.IsShowLoading = true;
     this.DanhMucDichVuService.BaseParameter.ParentID = environment.AG;
     this.DanhMucDichVuService.BaseParameter.Active = true;
-    this.DanhMucDichVuService.GetByParentIDAndActiveToListAsync().subscribe(
+    this.DanhMucDichVuService.GetByActiveToListAsync().subscribe(
       res => {
         this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
         this.DanhMucDichVuService.List001 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == true);

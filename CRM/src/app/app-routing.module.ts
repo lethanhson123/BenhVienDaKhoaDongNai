@@ -73,6 +73,8 @@ import { DMBangGiaInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-bang
 import { DMDichVuInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-dich-vu-info/dm-dich-vu-info.component';
 import { DMBangGiaCPHComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-cph/dm-bang-gia-cph.component';
 import { DMBangGiaCPHInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-cphinfo/dm-bang-gia-cphinfo.component';
+import { BenhAnComponent } from './eHospital_DongNai_A/benh-an/benh-an.component';
+import { BenhAnInfoComponent } from './eHospital_DongNai_A/benh-an-info/benh-an-info.component';
 
 
 
@@ -308,6 +310,13 @@ const routes: Routes = [
   },
   {
     path: 'SysUsersInfo/:ID', component: SysUsersInfoComponent,
+  },
+
+  {
+    path: 'BenhAn', component: BenhAnComponent,
+  },
+  {
+    path: 'BenhAnInfo/:ID', component: BenhAnInfoComponent,
   },
 
 

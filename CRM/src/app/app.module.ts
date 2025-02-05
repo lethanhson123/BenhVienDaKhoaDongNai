@@ -90,6 +90,9 @@ import { DMBangGiaInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-bang
 import { DMDichVuInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-dich-vu-info/dm-dich-vu-info.component';
 import { DMBangGiaCPHComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-cph/dm-bang-gia-cph.component';
 import { DMBangGiaCPHInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-cphinfo/dm-bang-gia-cphinfo.component';
+import { BenhAnComponent } from './eHospital_DongNai_A/benh-an/benh-an.component';
+import { BenhAnInfoComponent } from './eHospital_DongNai_A/benh-an-info/benh-an-info.component';
+import { DMLoaiBenhAnComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-benh-an/dm-loai-benh-an.component';
 
 
 
@@ -175,6 +178,9 @@ import { DMBangGiaCPHInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-b
     DMDichVuInfoComponent,
     DMBangGiaCPHComponent,
     DMBangGiaCPHInfoComponent,
+    BenhAnComponent,
+    BenhAnInfoComponent,
+    DMLoaiBenhAnComponent,
     
     
     

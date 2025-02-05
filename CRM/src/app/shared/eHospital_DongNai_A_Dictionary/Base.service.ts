@@ -35,7 +35,8 @@ export class BaseService {
         this.FormData = {
         };
         this.BaseParameter = {
-            SearchString: environment.InitializationString,           
+            SearchString: environment.InitializationString,       
+            ListID: [],              
             TinhThanh_Id: environment.InitializationNumber,         
             QuanHuyen_Id: environment.InitializationNumber,         
             XaPhuong_Id: environment.InitializationNumber,         

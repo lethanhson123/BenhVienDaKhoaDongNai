@@ -1,0 +1,6 @@
+@API_eHospital_DongNai_A_NSTL_HostAddress = http://localhost:5067
+
+GET {{API_eHospital_DongNai_A_NSTL_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

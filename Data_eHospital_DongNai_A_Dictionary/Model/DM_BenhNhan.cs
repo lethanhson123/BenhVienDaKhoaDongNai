@@ -5,7 +5,7 @@ namespace Data_eHospital_DongNai_A_Dictionary.Model
     public partial class DM_BenhNhan : BaseModel
     {
         [Key]
-        public int? BenhNhan_Id { get; set; }
+        public int BenhNhan_Id { get; set; }
         public string? MaYTe { get; set; }
         public string? MaBenhVien { get; set; }
         public string? SoVaoVien { get; set; }

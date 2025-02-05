@@ -13,6 +13,7 @@ export class GoiSoThamSoService extends BaseService {
     DisplayColumns004: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'Save'];
     DisplayColumns005: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'KichThuocChu006', 'Save'];
     DisplayColumns006: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'KichThuocChu006', 'KichThuocChu007', 'Save'];
+    DisplayColumns007: string[] = ['STT', 'ID', 'Name', 'Code', 'BuocNhayTiepNhan', 'KichThuocChu001', 'KichThuocChu002', 'KichThuocChu003', 'KichThuocChu004', 'KichThuocChu005', 'KichThuocChu006', 'KichThuocChu007', 'KichThuocChu008', 'HTMLContent', 'Save'];
 
     List: GoiSoThamSo[] | undefined;
     ListFilter: GoiSoThamSo[] | undefined;
