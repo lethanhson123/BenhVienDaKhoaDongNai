@@ -11,4 +11,5 @@ export class BaseParameter extends Base{
     TiepNhan_Id?: number; 
     NgayVaoVien?: Date;            
     NgayTiepNhan?: Date;
+    Note?: string;
 }

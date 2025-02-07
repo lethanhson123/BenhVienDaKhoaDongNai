@@ -35,29 +35,37 @@ namespace Service_eHospital_DongNai_A.Implement
                 if (!string.IsNullOrEmpty(searchString))
                 {
                     searchString = searchString.Trim();
-                    result = await GetByCondition(item => item.SoBenhAn.Contains(searchString)).ToListAsync();
+                    result = await GetByCondition(item => item.BenhAn_Id.Value.ToString() == searchString).ToListAsync();
                     if (result.Count == GlobalHelper.InitializationNumber)
                     {
-                        result = await GetByCondition(item => item.SoLuuTru.Contains(searchString)).ToListAsync();
+                        result = await GetByCondition(item => item.SoBenhAn.Trim().Contains(searchString)).ToListAsync();
                     }
                     if (result.Count == GlobalHelper.InitializationNumber)
                     {
-                        List<DM_BenhNhan> ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
+                        result = await GetByCondition(item => item.SoLuuTru.Trim() == searchString).ToListAsync();
+                    }
+                    if (result.Count == GlobalHelper.InitializationNumber)
+                    {
+                        List<DM_BenhNhan> ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.BenhNhan_Id.ToString() == searchString).ToListAsync();
                         if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
                         {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.CMND.Contains(searchString)).ToListAsync();
+                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
                         }
                         if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
                         {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.SoDienThoai.Contains(searchString)).ToListAsync();
+                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.CMND.Trim() == searchString).ToListAsync();
                         }
                         if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
                         {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.SoBHXH.Contains(searchString)).ToListAsync();
+                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.SoDienThoai.Trim() == searchString).ToListAsync();
                         }
                         if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
                         {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.TenBenhNhan.Contains(searchString)).ToListAsync();
+                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.SoBHXH.Trim() == searchString).ToListAsync();
+                        }
+                        if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
+                        {
+                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.TenBenhNhan.Trim() == searchString).ToListAsync();
                         }
                         if (ListDM_BenhNhan.Count > 0)
                         {
@@ -66,15 +74,12 @@ namespace Service_eHospital_DongNai_A.Implement
                             {
                                 try
                                 {
-                                    BenhAn BenhAn = await GetByCondition(item => item.BenhNhan_Id == ID).FirstOrDefaultAsync();
-                                    if (BenhAn != null)
+                                    List<BenhAn> List = await GetByCondition(item => item.BenhNhan_Id == ID).ToListAsync();
+                                    if (List != null)
                                     {
-                                        if (BenhAn.BenhAn_Id != null)
+                                        if (List.Count > 0)
                                         {
-                                            if (BenhAn.BenhAn_Id > 0)
-                                            {
-                                                result.Add(BenhAn);
-                                            }
+                                            result.AddRange(List);
                                         }
                                     }
                                 }

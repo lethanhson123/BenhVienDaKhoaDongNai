@@ -64,7 +64,7 @@ export class TiepNhanComponent implements OnInit {
   ngOnInit(): void {
     this.TiepNhanService.BaseParameter.NgayTiepNhan = new Date();
     this.Sys_UsersSearch();
-    this.DM_DoiTuongSearch();    
+    this.DM_DoiTuongSearch();
     this.DM_PhongBanSearch();
     this.NS_NHANVIENSearch();
     this.DM_BenhVienSearch();
@@ -78,7 +78,7 @@ export class TiepNhanComponent implements OnInit {
   }
   DM_DoiTuongSearch() {
     this.DM_DoiTuongService.ComponentGetAllToListAsync(this.DM_DoiTuongService);
-  }  
+  }
   DM_PhongBanSearch() {
     this.DM_PhongBanService.ComponentGetAllToListAsync(this.DM_PhongBanService);
   }
@@ -95,7 +95,7 @@ export class TiepNhanComponent implements OnInit {
     this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = environment.Lst_Dictionary_TypeIDHinhThucDenKhamBenh;
     this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
       res => {
-        this.Lst_DictionaryService.ListHinhThucDenKhamBenh = (res as Lst_Dictionary[]);        
+        this.Lst_DictionaryService.ListHinhThucDenKhamBenh = (res as Lst_Dictionary[]);
       },
       err => {
       },
@@ -148,10 +148,30 @@ export class TiepNhanComponent implements OnInit {
     this.TiepNhanService.GetByNgayTiepNhan_SearchStringToListAsync().subscribe(
       res => {
         this.TiepNhanService.List = (res as TiepNhan[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
-        var ListBenhNhan = this.TiepNhanService.List.map(function (a) { return a.BenhNhan_Id; });
-        if (ListBenhNhan) {
+
+        var ListNoiTiepNhan = [...new Map(this.TiepNhanService.List.map(item => [item.NoiTiepNhan_Id, item])).values()];
+        var ListNoiTiepNhanID = ListNoiTiepNhan.map(function (a) { return a.NoiTiepNhan_Id; });
+        this.TiepNhanService.BaseParameter.Note = environment.InitializationString;
+        for (let i = 0; i < ListNoiTiepNhanID.length; i++) {
+          let NoiTiepNhanSub = this.TiepNhanService.List.filter(item => item.NoiTiepNhan_Id == ListNoiTiepNhanID[i]);
+          if (NoiTiepNhanSub) {
+            let DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == ListNoiTiepNhanID[i]);           
+            if (DM_PhongBan) {
+              if (DM_PhongBan.length) {                
+                this.TiepNhanService.BaseParameter.Note = this.TiepNhanService.BaseParameter.Note + ", " + DM_PhongBan[0].TenPhongBan + " (" + NoiTiepNhanSub.length + ")";
+              }       
+              else{
+                this.TiepNhanService.BaseParameter.Note = this.TiepNhanService.BaseParameter.Note + ", Kios (" + NoiTiepNhanSub.length + ")";
+              }      
+            }                         
+          }
+        }
+
+        var ListBenhNhan = [...new Map(this.TiepNhanService.List.map(item => [item.BenhNhan_Id, item])).values()];
+        var ListBenhNhanID = ListBenhNhan.map(function (a) { return a.BenhNhan_Id; });
+        if (ListBenhNhanID) {
           this.TiepNhanService.IsShowLoading = true;
-          this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhan;          
+          this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhanID;
           this.DM_BenhNhanService.GetByListIDToListAsync().subscribe(
             res => {
               this.DM_BenhNhanService.List = (res as DM_BenhNhan[]);
@@ -223,6 +243,8 @@ export class TiepNhanComponent implements OnInit {
                     this.TiepNhanService.List[i].LyDoChuyenVien = Lst_Dictionary[0].Dictionary_Name;
                   }
                 }
+
+
               }
               this.TiepNhanService.DataSource = new MatTableDataSource(this.TiepNhanService.List);
               this.TiepNhanService.DataSource.sort = this.TiepNhanSort;
@@ -231,7 +253,7 @@ export class TiepNhanComponent implements OnInit {
             },
             err => {
             },
-            () => {              
+            () => {
             }
           );
         }
@@ -239,7 +261,7 @@ export class TiepNhanComponent implements OnInit {
       },
       err => {
       },
-      () => {        
+      () => {
       }
     );
   }

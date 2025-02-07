@@ -105,10 +105,27 @@ export class BenhAnComponent implements OnInit {
     this.BenhAnService.GetByNgayVaoVien_SearchStringToListAsync().subscribe(
       res => {
         this.BenhAnService.List = (res as BenhAn[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
-        var ListBenhNhan = this.BenhAnService.List.map(function (a) { return a.BenhNhan_Id; });
-        if (ListBenhNhan) {
+
+        var ListKhoaVao = [...new Map(this.BenhAnService.List.map(item => [item.KhoaVao_Id, item])).values()];
+        var ListKhoaVaoID = ListKhoaVao.map(function (a) { return a.KhoaVao_Id; });
+        this.BenhAnService.BaseParameter.Note = environment.InitializationString;
+        for (let i = 0; i < ListKhoaVaoID.length; i++) {
+          let KhoaVaoSub = this.BenhAnService.List.filter(item => item.KhoaVao_Id == ListKhoaVaoID[i]);
+          if (KhoaVaoSub) {
+            let DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == ListKhoaVaoID[i]);
+            if (DM_PhongBan) {
+              if (DM_PhongBan.length) {                
+                this.BenhAnService.BaseParameter.Note = this.BenhAnService.BaseParameter.Note + ", " + DM_PhongBan[0].TenPhongBan + " (" + KhoaVaoSub.length + ")";
+              }
+            }            
+          }
+        }
+
+        var ListBenhNhan = [...new Map(this.BenhAnService.List.map(item => [item.BenhNhan_Id, item])).values()];
+        var ListBenhNhanID = ListBenhNhan.map(function (a) { return a.BenhNhan_Id; });
+        if (ListBenhNhanID) {
           this.BenhAnService.IsShowLoading = true;
-          this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhan;
+          this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhanID;
           this.DM_BenhNhanService.GetByListIDToListAsync().subscribe(
             res => {
               this.DM_BenhNhanService.List = (res as DM_BenhNhan[]);

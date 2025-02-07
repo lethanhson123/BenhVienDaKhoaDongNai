@@ -48,6 +48,7 @@ export const environment = {
   DMBangGiaInfo: "DMBangGiaInfo/",
   DMBangGiaCPHInfo: "DMBangGiaCPHInfo/",
   BenhAnInfo: "BenhAnInfo/",
+  TiepNhanInfo: "TiepNhanInfo/",
   Download: "Download",
   PhongBan: "PhongBan",
   NhomCanLamSang: "NhomCanLamSang",
