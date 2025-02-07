@@ -16,6 +16,12 @@ export class Lst_DictionaryService extends BaseService {
     ListQuocTich: Lst_Dictionary[] | undefined;
     ListDanToc: Lst_Dictionary[] | undefined;
     ListNgheNghiep: Lst_Dictionary[] | undefined;
+    ListLoaiBenhAn: Lst_Dictionary[] | undefined;
+    ListHinhThucDenKhamBenh: Lst_Dictionary[] | undefined;
+    ListLyDoTiepNhan: Lst_Dictionary[] | undefined;
+    ListTuyenKhamChuaBenh: Lst_Dictionary[] | undefined;
+    ListHinhThucChuyenVien: Lst_Dictionary[] | undefined;
+    ListLyDoChuyenVien: Lst_Dictionary[] | undefined;
     
     
     constructor(public httpClient: HttpClient) {

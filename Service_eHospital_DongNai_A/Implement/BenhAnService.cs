@@ -12,7 +12,6 @@ namespace Service_eHospital_DongNai_A.Implement
 
             , IDM_BenhNhanService dM_BenhNhanService
 
-
         ) : base(BenhAnRepository)
         {
             _BenhAnRepository = BenhAnRepository;
@@ -37,10 +36,10 @@ namespace Service_eHospital_DongNai_A.Implement
                 {
                     searchString = searchString.Trim();
                     result = await GetByCondition(item => item.SoBenhAn.Contains(searchString)).ToListAsync();
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.SoLuuTru.Contains(searchString)).ToListAsync();
-                    //}
+                    if (result.Count == GlobalHelper.InitializationNumber)
+                    {
+                        result = await GetByCondition(item => item.SoLuuTru.Contains(searchString)).ToListAsync();
+                    }
                     if (result.Count == GlobalHelper.InitializationNumber)
                     {
                         List<DM_BenhNhan> ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
@@ -68,11 +67,14 @@ namespace Service_eHospital_DongNai_A.Implement
                                 try
                                 {
                                     BenhAn BenhAn = await GetByCondition(item => item.BenhNhan_Id == ID).FirstOrDefaultAsync();
-                                    if (BenhAn.BenhAn_Id != null)
+                                    if (BenhAn != null)
                                     {
-                                        if (BenhAn.BenhAn_Id > 0)
+                                        if (BenhAn.BenhAn_Id != null)
                                         {
-                                            result.Add(BenhAn);
+                                            if (BenhAn.BenhAn_Id > 0)
+                                            {
+                                                result.Add(BenhAn);
+                                            }
                                         }
                                     }
                                 }

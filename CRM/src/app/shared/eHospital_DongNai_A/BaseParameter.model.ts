@@ -8,5 +8,7 @@ export class BaseParameter extends Base{
     PageSize?: number;     
     BenhAn_Id?: number;        
     PhongBan_Id?: number;      
+    TiepNhan_Id?: number; 
     NgayVaoVien?: Date;            
+    NgayTiepNhan?: Date;
 }

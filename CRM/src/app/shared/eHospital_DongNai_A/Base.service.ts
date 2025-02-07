@@ -39,6 +39,7 @@ export class BaseService {
             BenhAn_Id: environment.InitializationNumber,         
             PhongBan_Id: environment.InitializationNumber,         
             NgayVaoVien: new Date(),         
+            NgayTiepNhan: new Date(),         
         };        
         this.List = [];
         this.ListFilter = [];

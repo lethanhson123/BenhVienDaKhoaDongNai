@@ -35,6 +35,7 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l4">
+                    <label>Tỉnh thành</label>
                     <select class="browser-default form-select" name="DM_DonViHanhChinhService.BaseParameter.TinhThanh_Id"
                         [(ngModel)]="DM_DonViHanhChinhService.BaseParameter.TinhThanh_Id" (change)="DM_DonViHanhChinhSearchQuanHuyen()">
                         <option *ngFor="let item of DM_DonViHanhChinhService.ListTinhThanh;" [value]="item.DonViHanhChinh_Id">
@@ -42,6 +43,7 @@
                     </select>
                 </div>
                 <div class="col s12 m12 l4">
+                    <label>Quận huyện</label>
                     <select class="browser-default form-select" name="DM_DonViHanhChinhService.BaseParameter.QuanHuyen_Id"
                         [(ngModel)]="DM_DonViHanhChinhService.BaseParameter.QuanHuyen_Id">
                         <option *ngFor="let item of DM_DonViHanhChinhService.ListQuanHuyen;" [value]="item.DonViHanhChinh_Id">
@@ -49,10 +51,12 @@
                     </select>
                 </div>
                 <div class="col s12 m12 l3">
+                    <label>.</label>
                     <input [(ngModel)]="DM_DonViHanhChinhService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DM_DonViHanhChinhSearch()">
                 </div>
                 <div class="col s12 m12 l1">
+                    <br/>
                     <a style="color: green;" title="Tìm" (click)="DM_DonViHanhChinhSearch()">
                         <i class="material-icons">play_circle_filled</i>
                     </a>

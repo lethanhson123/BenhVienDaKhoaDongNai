@@ -93,6 +93,8 @@ import { DMBangGiaCPHInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-b
 import { BenhAnComponent } from './eHospital_DongNai_A/benh-an/benh-an.component';
 import { BenhAnInfoComponent } from './eHospital_DongNai_A/benh-an-info/benh-an-info.component';
 import { DMLoaiBenhAnComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-benh-an/dm-loai-benh-an.component';
+import { TiepNhanComponent } from './eHospital_DongNai_A/tiep-nhan/tiep-nhan.component';
+import { TiepNhanInfoComponent } from './eHospital_DongNai_A/tiep-nhan-info/tiep-nhan-info.component';
 
 
 
@@ -181,6 +183,8 @@ import { DMLoaiBenhAnComponent } from './eHospital_DongNai_A_Dictionary/dm-loai-
     BenhAnComponent,
     BenhAnInfoComponent,
     DMLoaiBenhAnComponent,
+    TiepNhanComponent,
+    TiepNhanInfoComponent,
     
     
     

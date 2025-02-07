@@ -75,6 +75,8 @@ import { DMBangGiaCPHComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-
 import { DMBangGiaCPHInfoComponent } from './eHospital_DongNai_A_Dictionary/dm-bang-gia-cphinfo/dm-bang-gia-cphinfo.component';
 import { BenhAnComponent } from './eHospital_DongNai_A/benh-an/benh-an.component';
 import { BenhAnInfoComponent } from './eHospital_DongNai_A/benh-an-info/benh-an-info.component';
+import { TiepNhanComponent } from './eHospital_DongNai_A/tiep-nhan/tiep-nhan.component';
+import { TiepNhanInfoComponent } from './eHospital_DongNai_A/tiep-nhan-info/tiep-nhan-info.component';
 
 
 
@@ -318,7 +320,12 @@ const routes: Routes = [
   {
     path: 'BenhAnInfo/:ID', component: BenhAnInfoComponent,
   },
-
+  {
+    path: 'TiepNhan', component: TiepNhanComponent,
+  },
+  {
+    path: 'TiepNhanInfo/:ID', component: TiepNhanInfoComponent,
+  },
 
 ];
 

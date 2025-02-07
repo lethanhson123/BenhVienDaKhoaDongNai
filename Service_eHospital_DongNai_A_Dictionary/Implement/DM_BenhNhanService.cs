@@ -113,9 +113,12 @@
                 foreach (var ID in ListID)
                 {
                     DM_BenhNhan DM_BenhNhan = await GetByCondition(item => item.BenhNhan_Id == ID).FirstOrDefaultAsync();
-                    if (DM_BenhNhan.BenhNhan_Id > 0)
+                    if (DM_BenhNhan != null)
                     {
-                        result.Add(DM_BenhNhan);
+                        if (DM_BenhNhan.BenhNhan_Id > 0)
+                        {
+                            result.Add(DM_BenhNhan);
+                        }
                     }
                 }
             }

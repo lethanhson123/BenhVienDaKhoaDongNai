@@ -8,8 +8,10 @@
 		public DateTime? BatDau { get; set; }
 		public DateTime? KetThuc { get; set; }
         public int? BenhAn_Id { get; set; }
+        public int? TiepNhan_Id { get; set; }
         public int? PhongBan_Id { get; set; }
         public DateTime? NgayVaoVien { get; set; }
+        public DateTime? NgayTiepNhan { get; set; }
         public BaseParameter()
 		{
 		}

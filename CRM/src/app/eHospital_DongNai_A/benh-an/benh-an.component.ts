@@ -58,6 +58,7 @@ export class BenhAnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.BenhAnService.BaseParameter.NgayVaoVien = new Date();
     this.Sys_UsersSearch();
     this.Lst_DictionarySearch();
     this.DM_DoiTuongSearch();
@@ -76,7 +77,7 @@ export class BenhAnComponent implements OnInit {
     this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = environment.Lst_Dictionary_TypeIDLoaiBenhAn;
     this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
       res => {
-        this.Lst_DictionaryService.List = (res as Lst_Dictionary[]);
+        this.Lst_DictionaryService.ListLoaiBenhAn = (res as Lst_Dictionary[]);
       },
       err => {
       },
@@ -106,21 +107,23 @@ export class BenhAnComponent implements OnInit {
         this.BenhAnService.List = (res as BenhAn[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
         var ListBenhNhan = this.BenhAnService.List.map(function (a) { return a.BenhNhan_Id; });
         if (ListBenhNhan) {
+          this.BenhAnService.IsShowLoading = true;
           this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhan;
           this.DM_BenhNhanService.GetByListIDToListAsync().subscribe(
             res => {
               this.DM_BenhNhanService.List = (res as DM_BenhNhan[]);
+              this.BenhAnService.IsShowLoading = true;
               for (let i = 0; i < this.BenhAnService.List.length; i++) {
                 let Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiTao_Id);
                 if (Sys_Users) {
                   if (Sys_Users.length) {
-                    this.BenhAnService.List[i].NguoiTaoName = Sys_Users[0].User_Name + " - " + Sys_Users[0].User_Code;
+                    this.BenhAnService.List[i].NguoiTaoName = Sys_Users[0].User_Name
                   }
                 }
                 Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiCapNhat_Id);
                 if (Sys_Users) {
                   if (Sys_Users.length) {
-                    this.BenhAnService.List[i].NguoiCapNhatName = Sys_Users[0].User_Name + " - " + Sys_Users[0].User_Code;
+                    this.BenhAnService.List[i].NguoiCapNhatName = Sys_Users[0].User_Name
                   }
                 }
                 // Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiLap_Id);
@@ -136,7 +139,7 @@ export class BenhAnComponent implements OnInit {
                     this.BenhAnService.List[i].NguoiLapName = NS_NHANVIEN[0].Ho + " " + NS_NHANVIEN[0].Ten + " - " + NS_NHANVIEN[0].MaNhanVien;
                   }
                 }
-                let Lst_Dictionary = this.Lst_DictionaryService.List.filter(item => item.Dictionary_Id == this.BenhAnService.List[i].LoaiBenhAn_Id);
+                let Lst_Dictionary = this.Lst_DictionaryService.ListLoaiBenhAn.filter(item => item.Dictionary_Id == this.BenhAnService.List[i].LoaiBenhAn_Id);
                 if (Lst_Dictionary) {
                   if (Lst_Dictionary.length) {
                     this.BenhAnService.List[i].LoaiBenhAnName = Lst_Dictionary[0].Dictionary_Name;
@@ -145,7 +148,7 @@ export class BenhAnComponent implements OnInit {
                 let DM_BenhNhan = this.DM_BenhNhanService.List.filter(item => item.BenhNhan_Id == this.BenhAnService.List[i].BenhNhan_Id);
                 if (DM_BenhNhan) {
                   if (DM_BenhNhan.length) {
-                    this.BenhAnService.List[i].BenhNhanName = DM_BenhNhan[0].TenBenhNhan;
+                    this.BenhAnService.List[i].BenhNhanName = DM_BenhNhan[0].TenBenhNhan + " - " + DM_BenhNhan[0].CMND;
                   }
                 }
                 let DM_DoiTuong = this.DM_DoiTuongService.List.filter(item => item.DoiTuong_Id == this.BenhAnService.List[i].DoiTuong_Id);
@@ -182,18 +185,18 @@ export class BenhAnComponent implements OnInit {
               this.BenhAnService.DataSource = new MatTableDataSource(this.BenhAnService.List);
               this.BenhAnService.DataSource.sort = this.BenhAnSort;
               this.BenhAnService.DataSource.paginator = this.BenhAnPaginator;
+              this.BenhAnService.IsShowLoading = false;
             },
             err => {
             },
-            () => {
+            () => {              
             }
           );
         }
       },
       err => {
       },
-      () => {
-        this.BenhAnService.IsShowLoading = false;
+      () => {        
       }
     );
   }

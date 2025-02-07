@@ -71,9 +71,21 @@ export class BenhAnInfoComponent implements OnInit {
   DateNgayRaVien(value) {
     this.BenhAnService.FormData.NgayRaVien = new Date(value);
   }
+  DateThoiGianVaoKhoa(value) {
+    this.BenhAnService.FormData.ThoiGianVaoKhoa = new Date(value);
+  }
+  DateNgayVaoKhoa(value) {
+    this.BenhAnService.FormData.NgayVaoKhoa = new Date(value);
+  }
+  DateThoiGianLap(value) {
+    this.BenhAnService.FormData.ThoiGianLap = new Date(value);
+  }
+  DateNgayLap(value) {
+    this.BenhAnService.FormData.NgayLap = new Date(value);
+  } 
   DateThoiGianRaVien(value) {
     this.BenhAnService.FormData.ThoiGianRaVien = new Date(value);
-  }
+  } 
   Sys_UsersSearch() {
     this.Sys_UsersService.ComponentGetAllToListAsync(this.Sys_UsersService);
   }
@@ -108,11 +120,42 @@ export class BenhAnInfoComponent implements OnInit {
   DM_ICDSearch() {
     this.DM_ICDService.ComponentGetAllToListAsync(this.DM_ICDService);
   }
+  DM_ICDFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.DM_ICDService.ListFilter = this.DM_ICDService.List.filter(item => item.TenICD.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaICD.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.DM_ICDService.ListFilter = this.DM_ICDService.List;
+    }
+  }
   DM_PhongBanSearch() {
     this.DM_PhongBanService.ComponentGetAllToListAsync(this.DM_PhongBanService);
   }
+  DM_PhongBanFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.DM_PhongBanService.ListFilter = this.DM_PhongBanService.List.filter(item => item.TenPhongBan.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaPhongBan.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.DM_PhongBanService.ListFilter = this.DM_PhongBanService.List;
+    }
+  }
+ 
   NS_NHANVIENSearch() {
     this.NS_NHANVIENService.ComponentGetAllToListAsync(this.NS_NHANVIENService);
+  }
+  NS_NHANVIENFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.NS_NHANVIENService.ListFilter = this.NS_NHANVIENService.List.filter(item => item.MaNhanVien.toLocaleLowerCase().indexOf(searchString) !== -1 || item.Ho.toLocaleLowerCase().indexOf(searchString) !== -1 || item.Ten.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.NS_NHANVIENService.ListFilter = this.NS_NHANVIENService.List;
+    }
   }
   BenhAnSearch() {
     this.BenhAnService.IsShowLoading = true;

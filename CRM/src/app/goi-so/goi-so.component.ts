@@ -21,6 +21,8 @@ export class GoiSoComponent implements OnInit {
   @ViewChild('GoiSoSort') GoiSoSort: MatSort;
   @ViewChild('GoiSoPaginator') GoiSoPaginator: MatPaginator;
 
+
+
   constructor(
     private dialog: MatDialog,
     public NotificationService: NotificationService,
@@ -31,16 +33,25 @@ export class GoiSoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.GoiSoService.BaseParameter.KetThuc = new Date();
     this.GoiSoSearch();
   }
   DateKetThuc(value) {
     this.GoiSoService.BaseParameter.KetThuc = new Date(value);
   }
   GoiSoSearch() {
-    this.GoiSoService.IsShowLoading = true;    
+    this.GoiSoService.IsShowLoading = true;
     this.GoiSoService.GetByNgayGhiNhanToListAsync().subscribe(
       res => {
-        this.GoiSoService.List = (res as GoiSo[]);
+        this.GoiSoService.List = (res as GoiSo[]).sort((a, b) => (a.DanhMucDichVuID > b.DanhMucDichVuID ? 1 : -1));
+        this.GoiSoService.BaseParameter.Page = environment.InitializationNumber;
+        for (let i = 0; i < this.GoiSoService.List.length; i++) {
+          if (this.GoiSoService.List[i].DanhMucQuayDichVuID > 0) {
+          }
+          else {
+            this.GoiSoService.BaseParameter.Page = this.GoiSoService.BaseParameter.Page + this.GoiSoService.List[i].TongCong;
+          }
+        }
         this.GoiSoService.DataSource = new MatTableDataSource(this.GoiSoService.List);
         this.GoiSoService.DataSource.sort = this.GoiSoSort;
         this.GoiSoService.DataSource.paginator = this.GoiSoPaginator;
