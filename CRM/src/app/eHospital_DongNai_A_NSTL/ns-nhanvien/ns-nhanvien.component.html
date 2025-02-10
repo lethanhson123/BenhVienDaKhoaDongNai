@@ -1,0 +1,268 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Nhân viên
+                        <span *ngIf="NS_NHANVIENService.List">({{NS_NHANVIENService.List.length}} items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="Nhân viên">Nhân viên</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/NSNHANVIEN" title="Nhân viên">
+                                Nhân viên
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l11">
+                    <input [(ngModel)]="NS_NHANVIENService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="NS_NHANVIENSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="NS_NHANVIENSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #NS_NHANVIENSort="matSort"
+                        [dataSource]="NS_NHANVIENService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="NS_NHANVIENPaginator">
+                                    {{
+                                    NS_NHANVIENPaginator.pageSize *
+                                    NS_NHANVIENPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="NS_NHANVIENSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="NS_NHANVIENDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NhanVien_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.NhanVien_Id}}" class="link-primary"
+                                    routerLink="/NSNHANVIENInfo/{{element.NhanVien_Id}}"><b>{{element.NhanVien_Id}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaNhanVien">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã nhân viên</th>
+                            <td mat-cell *matCellDef="let element">
+                                <b>{{element.MaNhanVien}}</b>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Ho">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Ho}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Ten">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên</th>
+                            <td mat-cell *matCellDef="let element">
+                                <b>{{element.Ten}}</b>
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="DangLamViec">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Đang làm việc</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DangLamViec}}
+                            </td>
+                        </ng-container>  
+                        <ng-container matColumnDef="DangVien">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Đảng viên</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DangVien}}
+                            </td>
+                        </ng-container>  
+                        <ng-container matColumnDef="Didong">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Điện thoại</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Didong}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="MaTrinhDo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Trình độ</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.MaTrinhDo}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="ChuyenMon">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Chuyên môn</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.ChuyenMon}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="MaChucVu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Chức vụ</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.MaChucVu}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="MaChucDanh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Chức danh</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.MaChucDanh}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="MaPhongBan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng ban</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.MaPhongBan}}
+                            </td>
+                        </ng-container> 
+                        <ng-container matColumnDef="SoBHXH">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số BHXH</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.SoBHXH}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="MaSoThue">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã số thuế</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.MaSoThue}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="MaHopDong">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã hợp đồng</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.MaHopDong}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="CMND">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CCCD/Hộ chiếu</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CMND}}
+                            </td>
+                        </ng-container>   
+                        <ng-container matColumnDef="NgayCap">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày cấp</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayCap | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>    
+                        <ng-container matColumnDef="NgaySinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgaySinh | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>     
+                        <ng-container matColumnDef="NgayThuViec">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày thử việc</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayThuViec | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container> 
+                        <ng-container matColumnDef="NgayVaoLam">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày vào làm</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayVaoLam | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container> 
+                        <ng-container matColumnDef="NgayThamGiaCM">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày tham gia chuyên môn</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayThamGiaCM | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container> 
+                        <ng-container matColumnDef="NgayVaoDoan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày vào Đoàn</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayVaoDoan | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>          
+                        <ng-container matColumnDef="NgayVaoDang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày vào Đảng</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayVaoDang | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>           
+                        <ng-container matColumnDef="NgayNghiViec">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày nghỉ việc</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayNghiViec | date:'dd/MM/yyyy'}}
+                            </td>
+                        </ng-container>     
+                        <ng-container matColumnDef="LyDoNghi">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Lý do nghỉ</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LyDoNghi}}
+                            </td>
+                        </ng-container>                   
+                        <ng-container matColumnDef="GioiTinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.GioiTinh}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="SoTaikhoan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số tài khoản</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.SoTaikhoan}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Nganhang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngân hàng</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Nganhang}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Email">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Email}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DiaChiLienhe">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Địa chỉ liên hệ</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DiaChiLienhe}}
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="NS_NHANVIENService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: NS_NHANVIENService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #NS_NHANVIENPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="NS_NHANVIENService.IsShowLoading"></app-loading>

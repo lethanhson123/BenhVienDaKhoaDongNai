@@ -77,6 +77,8 @@ import { BenhAnComponent } from './eHospital_DongNai_A/benh-an/benh-an.component
 import { BenhAnInfoComponent } from './eHospital_DongNai_A/benh-an-info/benh-an-info.component';
 import { TiepNhanComponent } from './eHospital_DongNai_A/tiep-nhan/tiep-nhan.component';
 import { TiepNhanInfoComponent } from './eHospital_DongNai_A/tiep-nhan-info/tiep-nhan-info.component';
+import { NSNHANVIENComponent } from './eHospital_DongNai_A_NSTL/ns-nhanvien/ns-nhanvien.component';
+import { NSNHANVIENInfoComponent } from './eHospital_DongNai_A_NSTL/ns-nhanvieninfo/ns-nhanvieninfo.component';
 
 
 
@@ -312,6 +314,12 @@ const routes: Routes = [
   },
   {
     path: 'SysUsersInfo/:ID', component: SysUsersInfoComponent,
+  },
+  {
+    path: 'NSNHANVIEN', component: NSNHANVIENComponent,
+  },
+  {
+    path: 'NSNHANVIENInfo/:ID', component: NSNHANVIENInfoComponent,
   },
 
   {

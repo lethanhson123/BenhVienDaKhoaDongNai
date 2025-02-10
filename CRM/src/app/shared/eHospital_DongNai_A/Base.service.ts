@@ -38,8 +38,10 @@ export class BaseService {
             SearchString: environment.InitializationString,           
             BenhAn_Id: environment.InitializationNumber,         
             PhongBan_Id: environment.InitializationNumber,         
+            KhamBenh_Id: environment.InitializationNumber,         
             NgayVaoVien: new Date(),         
             NgayTiepNhan: new Date(),         
+            NgayKham: new Date(),         
         };        
         this.List = [];
         this.ListFilter = [];

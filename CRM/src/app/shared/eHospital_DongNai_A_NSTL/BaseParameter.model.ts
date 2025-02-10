@@ -6,7 +6,6 @@ export class BaseParameter extends Base{
     SearchString?: string;    
     Page?: number;
     PageSize?: number;     
-    BenhAn_Id?: number;        
-    PhongBan_Id?: number;      
-    NgayVaoVien?: Date;            
+    NhanVien_Id?: number;        
+    MaNhanVien?: string;                 
 }

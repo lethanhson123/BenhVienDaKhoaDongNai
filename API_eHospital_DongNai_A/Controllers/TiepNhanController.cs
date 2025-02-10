@@ -14,7 +14,7 @@
         }
         [HttpPost]
         [Route("GetByTiepNhan_IdAsync")]
-        public virtual async Task<TiepNhan> GetByBenhAn_IdAsync()
+        public virtual async Task<TiepNhan> GetByTiepNhan_IdAsync()
         {
             TiepNhan result = new TiepNhan();
             try

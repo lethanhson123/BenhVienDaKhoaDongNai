@@ -5,8 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from 'src/app/shared/Notification.service';
-import { Base } from 'src/app/shared/eHospital_DongNai_A/Base.model';
-import { BaseParameter } from 'src/app/shared/eHospital_DongNai_A/BaseParameter.model';
+import { Base } from 'src/app/shared/eHospital_DongNai_A_NSTL/Base.model';
+import { BaseParameter } from 'src/app/shared/eHospital_DongNai_A_NSTL/BaseParameter.model';
 @Injectable({
     providedIn: 'root'
 })
@@ -36,9 +36,8 @@ export class BaseService {
         };
         this.BaseParameter = {
             SearchString: environment.InitializationString,           
-            BenhAn_Id: environment.InitializationNumber,         
-            PhongBan_Id: environment.InitializationNumber,         
-            NgayVaoVien: new Date(),         
+            NhanVien_Id: environment.InitializationNumber,         
+            MaNhanVien: environment.InitializationString,                           
         };        
         this.List = [];
         this.ListFilter = [];
@@ -57,6 +56,17 @@ export class BaseService {
         }
         else {
             this.ComponentGetAllAndEmptyToListAsync(sort, paginator);
+        }
+    }
+    SearchAllNotEmpty(sort: MatSort, paginator: MatPaginator) {
+        if (this.BaseParameter.SearchString.length > 0) {
+            this.BaseParameter.SearchString = this.BaseParameter.SearchString.trim();
+            if (this.DataSource) {
+                this.DataSource.filter = this.BaseParameter.SearchString.toLowerCase();
+            }
+        }
+        else {
+            this.ComponentGetAllNotEmptyToListAsync(sort, paginator);
         }
     }
     ComponentGetAllToListAsync(Service: BaseService) {       
@@ -82,6 +92,22 @@ export class BaseService {
     ComponentGetAllAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator) {
         this.IsShowLoading = true;
         this.GetAllAndEmptyToListAsync().subscribe(
+            res => {
+                this.List = (res as any[]);                                
+                this.DataSource = new MatTableDataSource(this.List);
+                this.DataSource.sort = sort;
+                this.DataSource.paginator = paginator;
+            },
+            err => {
+            },
+            () => {
+                this.IsShowLoading = false;
+            }
+        );
+    }
+    ComponentGetAllNotEmptyToListAsync(sort: MatSort, paginator: MatPaginator) {
+        this.IsShowLoading = true;
+        this.GetAllToListAsync().subscribe(
             res => {
                 this.List = (res as any[]);                                
                 this.DataSource = new MatTableDataSource(this.List);
