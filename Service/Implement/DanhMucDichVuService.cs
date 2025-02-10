@@ -6,10 +6,16 @@ namespace Service.Implement
     , IDanhMucDichVuService
     {
         private readonly IDanhMucDichVuRepository _DanhMucDichVuRepository;
+        private readonly IThanhVienDichVuRepository _ThanhVienDichVuRepository;
         private readonly IWebHostEnvironment _WebHostEnvironment;
-        public DanhMucDichVuService(IDanhMucDichVuRepository DanhMucDichVuRepository, IWebHostEnvironment webHostEnvironment) : base(DanhMucDichVuRepository)
+        public DanhMucDichVuService(IDanhMucDichVuRepository DanhMucDichVuRepository
+
+            , IThanhVienDichVuRepository ThanhVienDichVuRepository
+
+            , IWebHostEnvironment webHostEnvironment) : base(DanhMucDichVuRepository)
         {
             _DanhMucDichVuRepository = DanhMucDichVuRepository;
+            _ThanhVienDichVuRepository = ThanhVienDichVuRepository;
             _WebHostEnvironment = webHostEnvironment;
         }
         public override void Initialization(DanhMucDichVu model)
@@ -44,6 +50,17 @@ namespace Service.Implement
             {
                 string mes = ex.Message;
             }
+            if (result == null)
+            {
+                result = new List<DanhMucDichVu>();
+            }
+            return result;
+        }
+        public virtual async Task<List<DanhMucDichVu>> GetByThanhVienID_ActiveToListAsync(long ThanhVienID, bool Active)
+        {
+            List<DanhMucDichVu> result = new List<DanhMucDichVu>();
+            List<long> ListID = await _ThanhVienDichVuRepository.GetByCondition(item => item.ParentID == ThanhVienID && item.Active == Active).Select(item => item.DanhMucDichVuID.Value).ToListAsync();
+            result = await GetByCondition(item => item.Active == Active && ListID.Contains(item.ID)).ToListAsync();
             if (result == null)
             {
                 result = new List<DanhMucDichVu>();

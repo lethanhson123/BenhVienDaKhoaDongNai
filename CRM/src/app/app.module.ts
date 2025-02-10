@@ -97,6 +97,10 @@ import { TiepNhanComponent } from './eHospital_DongNai_A/tiep-nhan/tiep-nhan.com
 import { TiepNhanInfoComponent } from './eHospital_DongNai_A/tiep-nhan-info/tiep-nhan-info.component';
 import { NSNHANVIENComponent } from './eHospital_DongNai_A_NSTL/ns-nhanvien/ns-nhanvien.component';
 import { NSNHANVIENInfoComponent } from './eHospital_DongNai_A_NSTL/ns-nhanvieninfo/ns-nhanvieninfo.component';
+import { KhamBenhInfoComponent } from './eHospital_DongNai_A/kham-benh-info/kham-benh-info.component';
+import { KhamBenhComponent } from './eHospital_DongNai_A/kham-benh/kham-benh.component';
+import { KhamBenhVaoVienComponent } from './eHospital_DongNai_A/kham-benh-vao-vien/kham-benh-vao-vien.component';
+import { KhamBenhVaoVienInfoComponent } from './eHospital_DongNai_A/kham-benh-vao-vien-info/kham-benh-vao-vien-info.component';
 
 
 
@@ -189,6 +193,10 @@ import { NSNHANVIENInfoComponent } from './eHospital_DongNai_A_NSTL/ns-nhanvieni
     TiepNhanInfoComponent,
     NSNHANVIENComponent,
     NSNHANVIENInfoComponent,
+    KhamBenhInfoComponent,
+    KhamBenhComponent,
+    KhamBenhVaoVienComponent,
+    KhamBenhVaoVienInfoComponent,
     
     
     

@@ -47,6 +47,8 @@ export class ThanhVienInfoComponent implements OnInit {
 
   IsThanhVienUngDungActiveAll: boolean = false;
 
+  IsThanhVienDichVuActiveAll: boolean = false;
+
   MatKhauIsActive: boolean = true;
 
   constructor(
@@ -85,6 +87,7 @@ export class ThanhVienInfoComponent implements OnInit {
         this.DanhMucThanhVienSearch();      
         this.ThanhVienChucNangSearch();  
         this.ThanhVienUngDungSearch();        
+        this.ThanhVienDichVuSearch();       
       },
       err => {
       }
@@ -218,6 +221,65 @@ export class ThanhVienInfoComponent implements OnInit {
     this.ThanhVienUngDungService.SaveListAsync(this.ThanhVienUngDungService.List).subscribe(
       res => {
         this.ThanhVienUngDungSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.ThanhVienService.IsShowLoading = false;
+      }
+    );
+  }
+
+  ThanhVienDichVuSearch() {
+    if (this.ThanhVienDichVuService.BaseParameter.SearchString.length > 0) {
+      this.ThanhVienDichVuService.DataSource.filter = this.ThanhVienDichVuService.BaseParameter.SearchString.toLowerCase();
+    }
+    else {
+      this.ThanhVienService.IsShowLoading = true;
+      this.ThanhVienDichVuService.BaseParameter.ParentID = this.ThanhVienService.FormData.ID;
+      this.ThanhVienDichVuService.GetSQLByParentIDToListAsync().subscribe(
+        res => {
+          this.ThanhVienDichVuService.List = (res as ThanhVienDichVu[]);
+          this.ThanhVienDichVuService.DataSource = new MatTableDataSource(this.ThanhVienDichVuService.List);
+          this.ThanhVienDichVuService.DataSource.sort = this.ThanhVienDichVuSort;
+          this.ThanhVienDichVuService.DataSource.paginator = this.ThanhVienDichVuPaginator;
+        },
+        err => {
+        },
+        () => {
+          this.ThanhVienService.IsShowLoading = false;
+        }
+      );
+    }
+  }
+  ThanhVienDichVuActiveChange(element: ThanhVienDichVu) {
+    this.ThanhVienService.IsShowLoading = true;
+    this.ThanhVienDichVuService.FormData = element;
+    this.ThanhVienDichVuService.FormData.ParentID = this.ThanhVienService.FormData.ID;
+    this.ThanhVienDichVuService.SaveAsync().subscribe(
+      res => {
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.ThanhVienService.IsShowLoading = false;
+      }
+    );
+  }
+  ThanhVienDichVuActiveAllChange() {
+    this.ThanhVienService.IsShowLoading = true;
+    for (let i = 0; i < this.ThanhVienDichVuService.List.length; i++) {
+      this.ThanhVienDichVuService.FormData = this.ThanhVienDichVuService.List[i];
+      this.ThanhVienDichVuService.FormData.ParentID = this.ThanhVienService.FormData.ID;
+      this.ThanhVienDichVuService.FormData.Active = this.IsThanhVienDichVuActiveAll;
+    }
+    this.ThanhVienDichVuService.SaveListAsync(this.ThanhVienDichVuService.List).subscribe(
+      res => {
+        this.ThanhVienDichVuSearch();
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {

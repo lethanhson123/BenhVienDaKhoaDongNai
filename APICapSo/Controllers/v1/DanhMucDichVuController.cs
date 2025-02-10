@@ -28,6 +28,22 @@
             return result;
         }
         [HttpPost]
+        [Route("GetByThanhVienID_ActiveToListAsync")]
+        public async Task<List<DanhMucDichVu>> GetByThanhVienID_ActiveToListAsync()
+        {
+            List<DanhMucDichVu> result = new List<DanhMucDichVu>();
+            try
+            {
+                BaseParameter model = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DanhMucDichVuService.GetByThanhVienID_ActiveToListAsync(model.ThanhVienID.Value, model.Active.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByIsBHYTToListAsync")]
         public virtual async Task<List<DanhMucDichVu>> GetByIsBHYTToListAsync()
         {

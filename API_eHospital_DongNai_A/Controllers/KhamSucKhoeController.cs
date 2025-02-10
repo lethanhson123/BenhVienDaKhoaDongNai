@@ -5,13 +5,13 @@
     [ApiVersion("1.0")]
     public class KhamSucKhoeController : BaseController<KhamSucKhoe, IKhamSucKhoeService>
     {
-    private readonly IKhamSucKhoeService _KhamSucKhoeService;
-    private readonly IWebHostEnvironment _WebHostEnvironment;
-    public KhamSucKhoeController(IKhamSucKhoeService KhamSucKhoeService, IWebHostEnvironment WebHostEnvironment) : base(KhamSucKhoeService, WebHostEnvironment)
-    {
-    _KhamSucKhoeService = KhamSucKhoeService;
-    _WebHostEnvironment = WebHostEnvironment;
+        private readonly IKhamSucKhoeService _KhamSucKhoeService;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
+        public KhamSucKhoeController(IKhamSucKhoeService KhamSucKhoeService, IWebHostEnvironment WebHostEnvironment) : base(KhamSucKhoeService, WebHostEnvironment)
+        {
+            _KhamSucKhoeService = KhamSucKhoeService;
+            _WebHostEnvironment = WebHostEnvironment;
+        }
     }
-    }
-    }
+}
 

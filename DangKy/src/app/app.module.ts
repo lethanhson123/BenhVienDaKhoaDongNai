@@ -14,12 +14,14 @@ import { NotificationService } from './shared/Notification.service';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './loading/loading.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
     HomepageComponent,
+    LoginComponent,
 
   ],
   imports: [
