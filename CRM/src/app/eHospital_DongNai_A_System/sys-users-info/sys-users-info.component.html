@@ -248,6 +248,99 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l6">
+                    <h6 class="card-title">Nhân viên và User
+                        <span *ngIf="NhanVien_User_MappingService.List">({{NhanVien_User_MappingService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="NhanVien_User_MappingService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="NhanVien_User_MappingSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="NhanVien_User_MappingSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #NhanVien_User_MappingSort="matSort"
+                        [dataSource]="NhanVien_User_MappingService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="NhanVien_User_MappingPaginator">
+                                    {{
+                                    NhanVien_User_MappingPaginator.pageSize *
+                                    NhanVien_User_MappingPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="NhanVien_User_MappingSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="NhanVien_User_MappingDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NhanVien_User_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nhân viên ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.NhanVien_Id" class="browser-default" [(ngModel)]="element.NhanVien_Id">
+                                    <input placeholder="Tìm..." (keyup)="NS_NHANVIENFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of NS_NHANVIENService.ListFilter"
+                                        [value]="item.NhanVien_Id" style="color:green;">
+                                        {{item.Ho}} {{item.Ten}} - {{item.MaNhanVien}} [{{item.NhanVien_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.User_Id" class="browser-default" [(ngModel)]="element.User_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_UsersFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_UsersService.ListFilter"
+                                        [value]="item.User_Id" style="color:green;">
+                                        {{item.User_Code}} - {{item.User_Name}} [{{item.User_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="NhanVien_User_MappingService.DisplayColumns003">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: NhanVien_User_MappingService.DisplayColumns003;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #NhanVien_User_MappingPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
                     <h6 class="card-title">Lịch sử thay đổi mật khẩu
                         <span
                             *ngIf="Sys_UserPasswordHistoryService.List">({{Sys_UserPasswordHistoryService.List.length}}
@@ -399,7 +492,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
                                     name="element.Code" class="browser-default" [(ngModel)]="element.Code">
                                     <input placeholder="Tìm..." (keyup)="DM_PhongBanFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of DM_PhongBanService.ListFilter"
                                         [value]="item.MaPhongBan" style="color:green;">
                                         {{item.TenPhongBan}} - {{item.MaPhongBan}}
@@ -533,7 +626,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
                                     name="element.Code" class="browser-default" [(ngModel)]="element.Code">
                                     <input placeholder="Tìm..." (keyup)="DM_KhoDuocFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of DM_KhoDuocService.ListFilter"
                                         [value]="item.MaKho" style="color:green;">
                                         {{item.TenKho}} - {{item.MaKho}}
@@ -667,7 +760,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
                                     name="element.Code" class="browser-default" [(ngModel)]="element.Code">
                                     <input placeholder="Tìm..." (keyup)="DM_NhomDichVuFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of DM_NhomDichVuService.ListFilter"
                                         [value]="item.MaNhomDichVu" style="color:green;">
                                         {{item.TenNhomDichVu}} - {{item.MaNhomDichVu}}
@@ -901,7 +994,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
                                     name="element.Command_Id" class="browser-default" [(ngModel)]="element.Command_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_CommandsFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_CommandsService.ListFilter"
                                         [value]="item.Command_Id" style="color:green;">
                                         {{item.Command_Name}} - {{item.Command_Text}} [ID: {{item.Command_Id}}]
@@ -917,7 +1010,7 @@
                                     name="element.Function_Id" class="browser-default"
                                     [(ngModel)]="element.Function_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_FunctionsFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_FunctionsService.ListFilter"
                                         [value]="item.Function_Id" style="color:green;">
                                         {{item.Function_Name}} - {{item.Function_Class}} [ID: {{item.Function_Id}}]
@@ -932,7 +1025,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
                                     name="element.Menu_Id" class="browser-default" [(ngModel)]="element.Menu_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_MenusFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_MenusService.ListFilter" [value]="item.Menu_Id"
                                         style="color:green;">
                                         {{item.Menu_Name}} - {{item.Menu_Code}} [ID: {{item.Menu_Id}}] [Level:
@@ -1007,7 +1100,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
                                     name="element.Menu_Id" class="browser-default" [(ngModel)]="element.Menu_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_MenusFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_MenusService.ListFilter" [value]="item.Menu_Id"
                                         style="color:green;">
                                         {{item.Menu_Name}} - {{item.Menu_Code}} [ID: {{item.Menu_Id}}] [Level:
@@ -1082,7 +1175,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
                                     name="element.Group_Id" class="browser-default" [(ngModel)]="element.Group_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_GroupsFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_GroupsService.ListFilter"
                                         [value]="item.Group_Id" style="color:green;">
                                         {{item.Group_Name}} - {{item.Group_Code}} [ID: {{item.Group_Id}}]

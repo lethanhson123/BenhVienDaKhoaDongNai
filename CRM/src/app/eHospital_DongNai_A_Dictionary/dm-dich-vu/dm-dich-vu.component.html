@@ -39,7 +39,7 @@
                         name="DM_DichVuService.BaseParameter.NhomDichVu_Id" class="browser-default"
                         [(ngModel)]="DM_DichVuService.BaseParameter.NhomDichVu_Id">
                         <input placeholder="Tìm..." (keyup)="DM_NhomDichVuFilter($event.target.value)"
-                            style="color: orange;">
+                            style="color: blue;">
                         <mat-option *ngFor="let item of DM_NhomDichVuService.ListFilter" [value]="item.NhomDichVu_Id"
                             style="color:green;">
                             {{item.TenNhomDichVu}} - {{item.MaNhomDichVu}} [{{item.NhomDichVu_Id}}]
@@ -96,7 +96,7 @@
                                     name="element.NhomDichVu_Id" class="browser-default"
                                     [(ngModel)]="element.NhomDichVu_Id">
                                     <input placeholder="Tìm..." (keyup)="DM_NhomDichVuFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of DM_NhomDichVuService.ListFilter"
                                         [value]="item.NhomDichVu_Id" style="color:green;">
                                         {{item.TenNhomDichVu}} - {{item.MaNhomDichVu}} [{{item.NhomDichVu_Id}}]
@@ -163,7 +163,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 300px;"
                                     name="element.CapTren_Id" class="browser-default" [(ngModel)]="element.CapTren_Id">
                                     <input placeholder="Tìm..." (keyup)="DM_DichVuFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of DM_DichVuService.ListFilter"
                                         [value]="item.DichVu_Id" style="color:green;">
                                         {{item.TenDichVu}} - {{item.MaDichVu}} [{{item.DichVu_Id}}]

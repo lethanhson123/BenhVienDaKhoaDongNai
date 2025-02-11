@@ -83,6 +83,8 @@ import { KhamBenhVaoVienInfoComponent } from './eHospital_DongNai_A/kham-benh-va
 import { KhamBenhVaoVienComponent } from './eHospital_DongNai_A/kham-benh-vao-vien/kham-benh-vao-vien.component';
 import { KhamBenhInfoComponent } from './eHospital_DongNai_A/kham-benh-info/kham-benh-info.component';
 import { KhamBenhComponent } from './eHospital_DongNai_A/kham-benh/kham-benh.component';
+import { ThanhVien001Component } from './thanh-vien001/thanh-vien001.component';
+import { SysUsersInfo001Component } from './eHospital_DongNai_A_System/sys-users-info001/sys-users-info001.component';
 
 
 
@@ -143,6 +145,9 @@ const routes: Routes = [
 
   {
     path: 'ThanhVien', component: ThanhVienComponent,
+  },
+  {
+    path: 'ThanhVien001', component: ThanhVien001Component,
   },
   {
     path: 'ThanhVienInfo/:ID', component: ThanhVienInfoComponent,
@@ -318,6 +323,9 @@ const routes: Routes = [
   },
   {
     path: 'SysUsersInfo/:ID', component: SysUsersInfoComponent,
+  },
+  {
+    path: 'SysUsersInfo001/:ID', component: SysUsersInfo001Component,
   },
   {
     path: 'NSNHANVIEN', component: NSNHANVIENComponent,

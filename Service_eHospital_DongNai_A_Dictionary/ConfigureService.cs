@@ -52,6 +52,7 @@
             services.AddTransient<IDM_LoaiGiaService, DM_LoaiGiaService>();
             services.AddTransient<IDM_LoaiBenhAnService, DM_LoaiBenhAnService>();
             services.AddTransient<IDM_DoiTuongService, DM_DoiTuongService>();
+            services.AddTransient<INhanVien_User_MappingService, NhanVien_User_MappingService>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
 
@@ -83,6 +84,7 @@
             services.AddTransient<IDM_LoaiGiaRepository, DM_LoaiGiaRepository>();
             services.AddTransient<IDM_LoaiBenhAnRepository, DM_LoaiBenhAnRepository>();
             services.AddTransient<IDM_DoiTuongRepository, DM_DoiTuongRepository>();
+            services.AddTransient<INhanVien_User_MappingRepository, NhanVien_User_MappingRepository>();
 
             return services;
         }      

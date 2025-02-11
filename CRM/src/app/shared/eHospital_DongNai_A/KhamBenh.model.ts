@@ -74,7 +74,18 @@ TLDG_MT_Text?: string;
 TLDG_MP_Text?: string;
 BenhAn_ID?: number;
 BenhManTinh_ID?: number;
-
+NguoiTaoName?: string;
+NguoiCapNhatName?: string;
+BenhNhanName?: string;    
+DoiTuongName?: string;
+DichVuName?: string;
+PhongBanName?: string;
+BacSiKhamName?: string;
+ChanDoanICDName?: string;
+ChanDoanPhuICDName?: string;
+HuongGiaiQuyetName?: string;
+NhapKhoaName?: string;
+LyDoNhapVienName?: string;
 }
 
 

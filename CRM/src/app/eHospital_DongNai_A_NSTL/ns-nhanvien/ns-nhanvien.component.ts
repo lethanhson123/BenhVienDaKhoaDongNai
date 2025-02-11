@@ -29,7 +29,7 @@ export class NSNHANVIENComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.NS_NHANVIENSearch();
+    this.NS_NHANVIENSearch();
   }
 
   NS_NHANVIENSearch() {    

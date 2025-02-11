@@ -2,6 +2,8 @@
 {
     public interface IKhamBenh_VaoVienService : IBaseService<KhamBenh_VaoVien>
     {
+        Task<KhamBenh_VaoVien> GetByKhamBenhVaoVien_IdAsync(int KhamBenhVaoVien_Id);
+        Task<List<KhamBenh_VaoVien>> GetByNgayKham_SearchStringToListAsync(DateTime NgayKham, string SearchString);
     }
-    }
+}
 

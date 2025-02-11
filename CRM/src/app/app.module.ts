@@ -101,6 +101,8 @@ import { KhamBenhInfoComponent } from './eHospital_DongNai_A/kham-benh-info/kham
 import { KhamBenhComponent } from './eHospital_DongNai_A/kham-benh/kham-benh.component';
 import { KhamBenhVaoVienComponent } from './eHospital_DongNai_A/kham-benh-vao-vien/kham-benh-vao-vien.component';
 import { KhamBenhVaoVienInfoComponent } from './eHospital_DongNai_A/kham-benh-vao-vien-info/kham-benh-vao-vien-info.component';
+import { ThanhVien001Component } from './thanh-vien001/thanh-vien001.component';
+import { SysUsersInfo001Component } from './eHospital_DongNai_A_System/sys-users-info001/sys-users-info001.component';
 
 
 
@@ -197,6 +199,8 @@ import { KhamBenhVaoVienInfoComponent } from './eHospital_DongNai_A/kham-benh-va
     KhamBenhComponent,
     KhamBenhVaoVienComponent,
     KhamBenhVaoVienInfoComponent,
+    ThanhVien001Component,
+    SysUsersInfo001Component,
     
     
     

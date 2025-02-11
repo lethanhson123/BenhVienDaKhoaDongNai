@@ -40,7 +40,7 @@
                         name="Sys_GroupCommandsService.BaseParameter.Group_Id" class="browser-default"
                         [(ngModel)]="Sys_GroupCommandsService.BaseParameter.Group_Id">
                         <input placeholder="Tìm..." (keyup)="Sys_GroupsFilter($event.target.value)"
-                            style="color: orange;">
+                            style="color: blue;">
                         <mat-option [value]="0" style="color:green;">
                             Tất cả
                         </mat-option>
@@ -100,7 +100,7 @@
                                     name="element.Command_Id" class="browser-default"
                                     [(ngModel)]="element.Command_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_CommandsFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_CommandsService.ListFilter"
                                         [value]="item.Command_Id" style="color:green;">
                                         {{item.Command_Name}} [ID: {{item.Command_Id}}]
@@ -116,7 +116,7 @@
                                     name="element.Function_Id" class="browser-default"
                                     [(ngModel)]="element.Function_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_FunctionsFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_FunctionsService.ListFilter"
                                         [value]="item.Function_Id" style="color:green;">
                                         {{item.Function_Name}} [ID: {{item.Function_Id}}]
@@ -131,7 +131,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 30vw;"
                                     name="element.Menu_Id" class="browser-default" [(ngModel)]="element.Menu_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_MenusFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_MenusService.ListFilter" [value]="item.Menu_Id"
                                         style="color:green;">
                                         {{item.Menu_Name}} - {{item.Menu_Code}} [ID: {{item.Menu_Id}}] [Level:

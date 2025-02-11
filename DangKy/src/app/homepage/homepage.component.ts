@@ -35,7 +35,7 @@ export class HomepageComponent implements OnInit {
     this.DanhMucDichVuSearch();
   }
 
-  DanhMucDichVuSearch() {
+  DanhMucDichVuSearch() {    
     if (this.ThanhVienService.FormDataLogin.ID > 0) {
       this.GoiSoService.IsShowLoading = true;
       this.DanhMucDichVuService.BaseParameter.ThanhVienID = this.ThanhVienService.FormDataLogin.ID;
@@ -53,7 +53,7 @@ export class HomepageComponent implements OnInit {
         }
       );
     }
-    else{
+    else {
       this.Router.navigate(['/' + environment.Login]);
     }
   }

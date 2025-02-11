@@ -165,7 +165,7 @@ export class BenhAnComponent implements OnInit {
                 let DM_BenhNhan = this.DM_BenhNhanService.List.filter(item => item.BenhNhan_Id == this.BenhAnService.List[i].BenhNhan_Id);
                 if (DM_BenhNhan) {
                   if (DM_BenhNhan.length) {
-                    this.BenhAnService.List[i].BenhNhanName = DM_BenhNhan[0].TenBenhNhan + " - " + DM_BenhNhan[0].CMND;
+                    this.BenhAnService.List[i].BenhNhanName = DM_BenhNhan[0].TenBenhNhan + " - " + DM_BenhNhan[0].MaYTe;
                   }
                 }
                 let DM_DoiTuong = this.DM_DoiTuongService.List.filter(item => item.DoiTuong_Id == this.BenhAnService.List[i].DoiTuong_Id);

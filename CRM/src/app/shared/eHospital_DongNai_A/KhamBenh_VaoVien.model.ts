@@ -108,7 +108,15 @@ KhongChuyen?: boolean;
 BenhAnNoiTru_ID?: number;
 NoiChuyen_ID?: number;
 LoaiTaiNan_ID?: number;
-
+NguoiTaoName?: string;
+NguoiCapNhatName?: string;
+BenhNhanName?: string;    
+DoiTuongName?: string;
+DichVuName?: string;
+PhongBanName?: string;
+BacSiName?: string;
+ICDKhamXetName?: string;
+NhapKhoaName?: string;
 }
 
 

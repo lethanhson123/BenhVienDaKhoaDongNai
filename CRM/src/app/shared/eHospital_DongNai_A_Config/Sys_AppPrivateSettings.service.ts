@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class Sys_AppPrivateSettingsService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'Setting_Id', 'Group_Code', 'Code', 'User_Id', 'Computer', 'Value', 'Description', 'CreationDate', 'CreatedBy', 'LastUpdateDate', 'LastUpdatedBy'];
     DisplayColumns002: string[] = ['Save', 'STT', 'Setting_Id', 'Code', 'Computer', 'CreationDate', 'CreatedBy', 'LastUpdateDate', 'LastUpdatedBy'];
-
+    DisplayColumns003: string[] = ['Save', 'Code'];
     List: Sys_AppPrivateSettings[] | undefined;
     ListFilter: Sys_AppPrivateSettings[] | undefined;
     FormData!: Sys_AppPrivateSettings;

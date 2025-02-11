@@ -105,7 +105,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 600px;"
                                     name="element.ICD_Chuong_Id" class="browser-default" [(ngModel)]="element.ICD_Chuong_Id">
                                     <input placeholder="Tìm..." (keyup)="DM_ICD_ChuongFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of DM_ICD_ChuongService.ListFilter"
                                         [value]="item.ICD_Chuong_Id" style="color:green;">
                                         {{item.TenChuongICD}} - {{item.MaChuongICD}} [{{item.ICD_Chuong_Id}}]

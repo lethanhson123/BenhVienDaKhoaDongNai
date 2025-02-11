@@ -75,7 +75,7 @@ export class BaseService {
                 this.GetAllToListAsync().subscribe(
                     res => {
                         this.List = (res as any[]);
-                        this.ListFilter = this.List;
+                        this.ListFilter = this.List;                        
                     },
                     err => {
                     },

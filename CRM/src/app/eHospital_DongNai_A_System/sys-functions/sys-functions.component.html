@@ -94,7 +94,7 @@
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 20vw;"
                                     name="element.Module_Id" class="browser-default" [(ngModel)]="element.Module_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_ModulesFilter($event.target.value)"
-                                        style="color: orange;">
+                                        style="color: blue;">
                                     <mat-option *ngFor="let item of Sys_ModulesService.ListFilter"
                                         [value]="item.Module_Id" style="color:green;">
                                         {{item.Module_Name}} - {{item.Module_Code}} [ID: {{item.Module_Id}}]

@@ -44,13 +44,12 @@ import { DM_NhomDichVuService } from 'src/app/shared/eHospital_DongNai_A_Diction
 
 import { NS_NHANVIEN } from 'src/app/shared/eHospital_DongNai_A_NSTL//NS_NHANVIEN.model';
 import { NS_NHANVIENService } from 'src/app/shared/eHospital_DongNai_A_NSTL//NS_NHANVIEN.service';
-
 @Component({
-  selector: 'app-sys-users-info',
-  templateUrl: './sys-users-info.component.html',
-  styleUrls: ['./sys-users-info.component.css']
+  selector: 'app-sys-users-info001',
+  templateUrl: './sys-users-info001.component.html',
+  styleUrls: ['./sys-users-info001.component.css']
 })
-export class SysUsersInfoComponent implements OnInit {
+export class SysUsersInfo001Component implements OnInit {
 
   @ViewChild('Sys_UserPasswordHistorySort') Sys_UserPasswordHistorySort: MatSort;
   @ViewChild('Sys_UserPasswordHistoryPaginator') Sys_UserPasswordHistoryPaginator: MatPaginator;

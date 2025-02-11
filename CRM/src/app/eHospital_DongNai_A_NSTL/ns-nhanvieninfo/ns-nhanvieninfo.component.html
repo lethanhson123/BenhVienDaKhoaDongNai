@@ -140,12 +140,22 @@
                             <label>Quequan</label>
                             <input placeholder="Quequan" [(ngModel)]="NS_NHANVIENService.FormData.Quequan"
                                 name="NS_NHANVIENService.FormData.Quequan" type="text" class="form-control">
-                        </div>                       
+                        </div>
                         <div>
                             <label>Passport</label>
                             <input placeholder="Passport" [(ngModel)]="NS_NHANVIENService.FormData.Passport"
                                 name="NS_NHANVIENService.FormData.Passport" type="text" class="form-control">
-                        </div>                        
+                        </div>
+                        <div>
+                            <label>Ghichu</label>
+                            <input placeholder="Ghichu" [(ngModel)]="NS_NHANVIENService.FormData.Ghichu"
+                                name="NS_NHANVIENService.FormData.Ghichu" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Congviec</label>
+                            <input placeholder="Congviec" [(ngModel)]="NS_NHANVIENService.FormData.Congviec"
+                                name="NS_NHANVIENService.FormData.Congviec" type="text" class="form-control">
+                        </div>
                     </div>
                     <div class="col s12 m12 l3">
                         <div>
@@ -167,7 +177,7 @@
                             <label>DiaChiLienhe</label>
                             <input placeholder="DiaChiLienhe" [(ngModel)]="NS_NHANVIENService.FormData.DiaChiLienhe"
                                 name="NS_NHANVIENService.FormData.DiaChiLienhe" type="text" class="form-control">
-                        </div>                       
+                        </div>
                         <div>
                             <label>SoBHXH</label>
                             <input placeholder="SoBHXH" [(ngModel)]="NS_NHANVIENService.FormData.SoBHXH"
@@ -203,7 +213,7 @@
                             <input placeholder="NhomMau" [(ngModel)]="NS_NHANVIENService.FormData.NhomMau"
                                 name="NS_NHANVIENService.FormData.NhomMau" type="text" class="form-control">
                         </div>
-                        
+
                         <div>
                             <label>HonNhan</label>
                             <input placeholder="HonNhan" [(ngModel)]="NS_NHANVIENService.FormData.HonNhan"
@@ -233,22 +243,13 @@
                             <label>MaNhom</label>
                             <input placeholder="MaNhom" [(ngModel)]="NS_NHANVIENService.FormData.MaNhom"
                                 name="NS_NHANVIENService.FormData.MaNhom" type="text" class="form-control">
-                        </div>                       
+                        </div>
                         <div>
                             <label>Nangkhieu</label>
                             <input placeholder="Nangkhieu" [(ngModel)]="NS_NHANVIENService.FormData.Nangkhieu"
                                 name="NS_NHANVIENService.FormData.Nangkhieu" type="text" class="form-control">
                         </div>
-                        <div>
-                            <label>Ghichu</label>
-                            <input placeholder="Ghichu" [(ngModel)]="NS_NHANVIENService.FormData.Ghichu"
-                                name="NS_NHANVIENService.FormData.Ghichu" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>Congviec</label>
-                            <input placeholder="Congviec" [(ngModel)]="NS_NHANVIENService.FormData.Congviec"
-                                name="NS_NHANVIENService.FormData.Congviec" type="text" class="form-control">
-                        </div>
+
                         <div>
                             <label>ID</label>
                             <input placeholder="ID" [(ngModel)]="NS_NHANVIENService.FormData.ID"
@@ -458,7 +459,91 @@
                 </div>
             </div>
         </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Nhân viên và User
+                        <span *ngIf="NhanVien_User_MappingService.List">({{NhanVien_User_MappingService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="NhanVien_User_MappingService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="NhanVien_User_MappingSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="NhanVien_User_MappingSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #NhanVien_User_MappingSort="matSort"
+                        [dataSource]="NhanVien_User_MappingService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="NhanVien_User_MappingPaginator">
+                                    {{
+                                    NhanVien_User_MappingPaginator.pageSize *
+                                    NhanVien_User_MappingPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="NhanVien_User_MappingSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="NhanVien_User_MappingDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NhanVien_User_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NhanVien_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NhanVien_Id" name="NhanVien_Id" [(ngModel)]="element.NhanVien_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.User_Id" class="browser-default" [(ngModel)]="element.User_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_UsersFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_UsersService.ListFilter"
+                                        [value]="item.User_Id" style="color:green;">
+                                        {{item.User_Code}} - {{item.User_Name}} [{{item.User_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="NhanVien_User_MappingService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: NhanVien_User_MappingService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #NhanVien_User_MappingPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 
 <app-loading *ngIf="NS_NHANVIENService.IsShowLoading"></app-loading>
