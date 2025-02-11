@@ -8,5 +8,7 @@ export class BaseParameter extends Base{
     PageSize?: number;     
     User_Id?: number;        
     Group_Code?: string;      
+    IsSoNgayDuyetThuoc?: boolean; 
+    IsVienPhiNgoaiTru?: boolean; 
     
 }

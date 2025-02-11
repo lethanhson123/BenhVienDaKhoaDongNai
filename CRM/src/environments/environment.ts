@@ -58,6 +58,8 @@ export const environment = {
   PhongBan: "PhongBan",
   NhomCanLamSang: "NhomCanLamSang",
   KhoDuoc: "KhoDuoc",
+  SoNgayDuyetThuoc: "SoNgayDuyetThuoc",
+  VienPhiNgoaiTru_ThoiGianLayDanhSachChiDinh_MAX: "VienPhiNgoaiTru_ThoiGianLayDanhSachChiDinh_MAX",
   LineWidth: 3,
   MapZoom: 10,  
   Latitude: 10.9521356, 

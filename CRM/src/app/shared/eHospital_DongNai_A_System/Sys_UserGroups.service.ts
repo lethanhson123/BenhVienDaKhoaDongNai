@@ -9,7 +9,7 @@ import { BaseService } from './Base.service';
 export class Sys_UserGroupsService extends BaseService{
     DisplayColumns001: string[] = ['Save', 'STT', 'User_Id', 'Group_Id'];
     DisplayColumns002: string[] = ['Save', 'STT', 'Group_Id'];
-
+    DisplayColumns003: string[] = ['Save', 'Group_Id'];
     List: Sys_UserGroups[] | undefined;
     ListFilter: Sys_UserGroups[] | undefined;
     FormData!: Sys_UserGroups;

@@ -103,6 +103,8 @@ import { KhamBenhVaoVienComponent } from './eHospital_DongNai_A/kham-benh-vao-vi
 import { KhamBenhVaoVienInfoComponent } from './eHospital_DongNai_A/kham-benh-vao-vien-info/kham-benh-vao-vien-info.component';
 import { ThanhVien001Component } from './thanh-vien001/thanh-vien001.component';
 import { SysUsersInfo001Component } from './eHospital_DongNai_A_System/sys-users-info001/sys-users-info001.component';
+import { SysAppSettingsComponent } from './eHospital_DongNai_A_Config/sys-app-settings/sys-app-settings.component';
+import { SysAppPrivateSettingsComponent } from './eHospital_DongNai_A_Config/sys-app-private-settings/sys-app-private-settings.component';
 
 
 
@@ -201,6 +203,8 @@ import { SysUsersInfo001Component } from './eHospital_DongNai_A_System/sys-users
     KhamBenhVaoVienInfoComponent,
     ThanhVien001Component,
     SysUsersInfo001Component,
+    SysAppSettingsComponent,
+    SysAppPrivateSettingsComponent,
     
     
     
