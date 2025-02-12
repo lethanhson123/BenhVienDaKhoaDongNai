@@ -42,7 +42,8 @@
 			{
 				client.EnableSsl = false;
 			}
-			client.Host = mail.SMTPServer;
+            
+            client.Host = mail.SMTPServer;
 			client.Port = mail.SMTPPort;
 			client.DeliveryMethod = SmtpDeliveryMethod.Network;
 			//credential

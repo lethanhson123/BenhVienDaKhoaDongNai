@@ -105,6 +105,9 @@ import { ThanhVien001Component } from './thanh-vien001/thanh-vien001.component';
 import { SysUsersInfo001Component } from './eHospital_DongNai_A_System/sys-users-info001/sys-users-info001.component';
 import { SysAppSettingsComponent } from './eHospital_DongNai_A_Config/sys-app-settings/sys-app-settings.component';
 import { SysAppPrivateSettingsComponent } from './eHospital_DongNai_A_Config/sys-app-private-settings/sys-app-private-settings.component';
+import { QuanLyCongViecComponent } from './quan-ly-cong-viec/quan-ly-cong-viec.component';
+import { KhamBenhToaThuocComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc/kham-benh-toa-thuoc.component';
+import { KhamBenhToaThuocInfoComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc-info/kham-benh-toa-thuoc-info.component';
 
 
 
@@ -205,6 +208,9 @@ import { SysAppPrivateSettingsComponent } from './eHospital_DongNai_A_Config/sys
     SysUsersInfo001Component,
     SysAppSettingsComponent,
     SysAppPrivateSettingsComponent,
+    QuanLyCongViecComponent,
+    KhamBenhToaThuocComponent,
+    KhamBenhToaThuocInfoComponent,
     
     
     

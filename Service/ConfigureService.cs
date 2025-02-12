@@ -94,6 +94,7 @@
             services.AddTransient<IKhamSucKhoeKetQuaService, KhamSucKhoeKetQuaService>();
 
             services.AddTransient<ITrucBanNhatKyService, TrucBanNhatKyService>();
+            services.AddTransient<IQuanLyCongViecService, QuanLyCongViecService>();
 
             services.AddTransient<IReportService, ReportService>();
 
@@ -169,6 +170,7 @@
             services.AddTransient<IKhamSucKhoeKetQuaRepository, KhamSucKhoeKetQuaRepository>();
 
             services.AddTransient<ITrucBanNhatKyRepository, TrucBanNhatKyRepository>();
+            services.AddTransient<IQuanLyCongViecRepository, QuanLyCongViecRepository>();
 
             services.AddTransient<IReportRepository, ReportRepository>();
 
