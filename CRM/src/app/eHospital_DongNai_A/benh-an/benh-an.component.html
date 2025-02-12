@@ -40,14 +40,21 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l4">
+                <div class="col s12 m12 l2">
                     <input [ngModel]="BenhAnService.BaseParameter.NgayVaoVien | date:'yyyy-MM-dd'"
                         style="text-align: right;" (ngModelChange)="DateNgayVaoVien($event)"
                         [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off"
                         (keyup.enter)="BenhAnSearch()">
                 </div>
-                <div class="col s12 m12 l7">
-                    <input [(ngModel)]="BenhAnService.BaseParameter.SearchString" placeholder="Tìm ..."
+                <div class="col s12 m12 l3">
+                    <label>
+                        <input type="checkbox" class="form-check-input" name="IsSearchAPI"
+                            [(ngModel)]="BenhAnService.BaseParameter.IsSearchAPI" />
+                        <span>Tìm kiếm dữ liệu / Tìm trên giao diện</span>
+                    </label>
+                </div>
+                <div class="col s12 m12 l6">
+                    <input [(ngModel)]="BenhAnService.BaseParameter.SearchString" placeholder="Tìm kiếm dữ liệu hoặc Tìm trên giao diện..."
                         class="form-control" (keyup.enter)="BenhAnSearch()">
                 </div>
                 <div class="col s12 m12 l1">

@@ -8,11 +8,15 @@ namespace Service.Implement
     {
         private readonly IDanhMucQuayDichVuRepository _DanhMucQuayDichVuRepository;
 
+        private readonly IThanhVienRepository _ThanhVienRepository;
+
         private readonly IDanhMucKhuVucRepository _DanhMucKhuVucRepository;
 
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public DanhMucQuayDichVuService(IDanhMucQuayDichVuRepository DanhMucQuayDichVuRepository
-            
+
+            , IThanhVienRepository ThanhVienRepository
+
             , IDanhMucKhuVucRepository danhMucKhuVucRepository
 
             , IWebHostEnvironment webHostEnvironment
@@ -20,6 +24,7 @@ namespace Service.Implement
             ) : base(DanhMucQuayDichVuRepository)
         {
             _DanhMucQuayDichVuRepository = DanhMucQuayDichVuRepository;
+            _ThanhVienRepository = ThanhVienRepository;
             _DanhMucKhuVucRepository = danhMucKhuVucRepository;
             _WebHostEnvironment = webHostEnvironment;
         }
@@ -93,6 +98,57 @@ namespace Service.Implement
                         result = JsonConvert.DeserializeObject<List<DanhMucQuayDichVu>>(json);
                     }
                 }
+            }
+            return result;
+        }
+        public virtual async Task<string> SendMailAsync()
+        {
+            string result = GlobalHelper.InitializationDateTimeCode0001;
+            DanhMucQuayDichVu model = new DanhMucQuayDichVu();
+            Helper.Model.Mail mail = new Helper.Model.Mail();
+            mail.MailFrom = GlobalHelper.MasterEmailUser;
+            mail.UserName = GlobalHelper.MasterEmailUser;
+            mail.Password = GlobalHelper.MasterEmailPassword;
+            mail.SMTPPort = GlobalHelper.SMTPPort;
+            mail.SMTPServer = GlobalHelper.SMTPServer;
+            mail.IsMailBodyHtml = GlobalHelper.IsMailBodyHtml;
+            mail.IsMailUsingSSL = GlobalHelper.IsMailUsingSSL;
+            mail.Display = GlobalHelper.MasterEmailDisplay;
+            mail.Subject = "Quầy tiếp nhận - " + GlobalHelper.InitializationDateTime.ToString("dd/MM/yyyy HH:mm:ss") + " | Gọi số";
+            string contentHTML = GlobalHelper.InitializationString;
+            var physicalPathRead = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Download, "DanhMucQuayDichVu.html");
+            using (FileStream fs = new FileStream(physicalPathRead, FileMode.Open))
+            {
+                using (StreamReader r = new StreamReader(fs, Encoding.UTF8))
+                {
+                    contentHTML = r.ReadToEnd();
+                }
+            }
+            List<DanhMucQuayDichVu> List = await GetAllToListAsync();
+            StringBuilder Content = new StringBuilder();
+            foreach (DanhMucQuayDichVu DanhMucQuayDichVu in List)
+            {
+                Content.AppendLine(@"<tr>");
+                Content.AppendLine(@"<td>");
+                Content.AppendLine(@"<div style='border-bottom: 1px #000000 dashed; padding: 5px; text-align: center;'>");
+                Content.AppendLine(@"" + DanhMucQuayDichVu.Name);
+                Content.AppendLine(@"</div>");
+                Content.AppendLine(@"</td>");
+                Content.AppendLine(@"<td>");
+                Content.AppendLine(@"<div style='border-bottom: 1px #000000 dashed; padding: 5px; text-align: center;'>");
+                Content.AppendLine(@"" + DanhMucQuayDichVu.Active);
+                Content.AppendLine(@"<div>");
+                Content.AppendLine(@"</td>");
+                Content.AppendLine(@"</tr>");
+            }
+            contentHTML = contentHTML.Replace("[Content]", Content.ToString());
+            mail.Content = contentHTML;
+            ThanhVien ThanhVien = await _ThanhVienRepository.GetByIDAsync(GlobalHelper.ThanhVienID);
+            if (!string.IsNullOrEmpty(ThanhVien.Email))
+            {
+                mail.Content = contentHTML;
+                mail.MailTo = ThanhVien.Email;
+                MailHelper.SendMail(mail);
             }
             return result;
         }

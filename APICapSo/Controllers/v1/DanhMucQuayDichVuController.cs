@@ -11,6 +11,22 @@
         {
             _DanhMucQuayDichVuService = DanhMucQuayDichVuService;
             _WebHostEnvironment = WebHostEnvironment;
+        }        
+        [HttpGet]
+        [Route("SendMailAsync")]
+        public virtual async Task<string> SendMailAsync()
+        {
+            string result = GlobalHelper.InitializationString;
+            try
+            {
+                result = await _DanhMucQuayDichVuService.SendMailAsync();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result = message;
+            }
+            return result;
         }
         [HttpPost]
         [Route("GetAllToListAsync")]
@@ -26,7 +42,7 @@
                 string message = ex.Message;
             }
             return result;
-        }       
+        }
     }
 }
 

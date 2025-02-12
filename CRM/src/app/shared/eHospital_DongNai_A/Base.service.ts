@@ -35,6 +35,7 @@ export class BaseService {
         this.FormData = {
         };
         this.BaseParameter = {
+            IsSearchAPI: true,          
             SearchString: environment.InitializationString,           
             BenhAn_Id: environment.InitializationNumber,         
             PhongBan_Id: environment.InitializationNumber,         

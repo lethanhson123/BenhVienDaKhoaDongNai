@@ -40,13 +40,20 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l4">
+                <div class="col s12 m12 l2">
                     <input [ngModel]="TiepNhanService.BaseParameter.NgayTiepNhan | date:'yyyy-MM-dd'"
                         style="text-align: right;" (ngModelChange)="DateNgayTiepNhan($event)"
                         [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off"
                         (keyup.enter)="TiepNhanSearch()">
                 </div>
-                <div class="col s12 m12 l7">
+                <div class="col s12 m12 l3">
+                    <label>
+                        <input type="checkbox" class="form-check-input" name="IsSearchAPI"
+                            [(ngModel)]="TiepNhanService.BaseParameter.IsSearchAPI" />
+                        <span>Tìm kiếm dữ liệu / Tìm trên giao diện</span>
+                    </label>
+                </div>
+                <div class="col s12 m12 l6">
                     <input [(ngModel)]="TiepNhanService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="TiepNhanSearch()">
                 </div>
@@ -84,7 +91,8 @@
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="TiepNhan_Id">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="white-space: nowrap;">Tiếp nhận</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="white-space: nowrap;">Tiếp nhận
+                            </th>
                             <td mat-cell *matCellDef="let element">
                                 <a style="cursor: pointer;" title="{{element.TiepNhan_Id}}" class="link-primary"
                                     routerLink="/TiepNhanInfo/{{element.TiepNhan_Id}}"><b>{{element.TiepNhan_Id}}</b></a>

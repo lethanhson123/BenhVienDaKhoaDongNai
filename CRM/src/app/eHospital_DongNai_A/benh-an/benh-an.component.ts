@@ -101,121 +101,129 @@ export class BenhAnComponent implements OnInit {
     this.NS_NHANVIENService.ComponentGetAllToListAsync(this.NS_NHANVIENService);
   }
   BenhAnSearch() {
-    this.BenhAnService.IsShowLoading = true;
-    this.BenhAnService.GetByNgayVaoVien_SearchStringToListAsync().subscribe(
-      res => {
-        this.BenhAnService.List = (res as BenhAn[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
+    if (this.BenhAnService.BaseParameter.IsSearchAPI == true) {
+      this.BenhAnService.IsShowLoading = true;
+      this.BenhAnService.GetByNgayVaoVien_SearchStringToListAsync().subscribe(
+        res => {
+          this.BenhAnService.List = (res as BenhAn[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
 
-        var ListKhoaVao = [...new Map(this.BenhAnService.List.map(item => [item.KhoaVao_Id, item])).values()];
-        var ListKhoaVaoID = ListKhoaVao.map(function (a) { return a.KhoaVao_Id; });
-        this.BenhAnService.BaseParameter.Note = environment.InitializationString;
-        for (let i = 0; i < ListKhoaVaoID.length; i++) {
-          let KhoaVaoSub = this.BenhAnService.List.filter(item => item.KhoaVao_Id == ListKhoaVaoID[i]);
-          if (KhoaVaoSub) {
-            let DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == ListKhoaVaoID[i]);
-            if (DM_PhongBan) {
-              if (DM_PhongBan.length) {                
-                this.BenhAnService.BaseParameter.Note = this.BenhAnService.BaseParameter.Note + ", " + DM_PhongBan[0].TenPhongBan + " (" + KhoaVaoSub.length + ")";
-              }
-            }            
-          }
-        }
-
-        var ListBenhNhan = [...new Map(this.BenhAnService.List.map(item => [item.BenhNhan_Id, item])).values()];
-        var ListBenhNhanID = ListBenhNhan.map(function (a) { return a.BenhNhan_Id; });
-        if (ListBenhNhanID) {
-          this.BenhAnService.IsShowLoading = true;
-          this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhanID;
-          this.DM_BenhNhanService.GetByListIDToListAsync().subscribe(
-            res => {
-              this.DM_BenhNhanService.List = (res as DM_BenhNhan[]);
-              this.BenhAnService.IsShowLoading = true;
-              for (let i = 0; i < this.BenhAnService.List.length; i++) {
-                let Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiTao_Id);
-                if (Sys_Users) {
-                  if (Sys_Users.length) {
-                    this.BenhAnService.List[i].NguoiTaoName = Sys_Users[0].User_Name
-                  }
-                }
-                Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiCapNhat_Id);
-                if (Sys_Users) {
-                  if (Sys_Users.length) {
-                    this.BenhAnService.List[i].NguoiCapNhatName = Sys_Users[0].User_Name
-                  }
-                }
-                // Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiLap_Id);
-                // if (Sys_Users) {
-                //   if (Sys_Users.length) {
-                //     this.BenhAnService.List[i].NguoiLapName = Sys_Users[0].User_Name + " - " + Sys_Users[0].User_Code;
-                //   }
-                // }
-                let NS_NHANVIEN = this.NS_NHANVIENService.List.filter(item => item.NhanVien_Id == this.BenhAnService.List[i].NguoiLap_Id);
-                this.BenhAnService.List[i].NguoiLapName = "" + this.BenhAnService.List[i].NguoiLap_Id;
-                if (NS_NHANVIEN) {
-                  if (NS_NHANVIEN.length) {
-                    this.BenhAnService.List[i].NguoiLapName = NS_NHANVIEN[0].Ho + " " + NS_NHANVIEN[0].Ten + " - " + NS_NHANVIEN[0].MaNhanVien;
-                  }
-                }
-                let Lst_Dictionary = this.Lst_DictionaryService.ListLoaiBenhAn.filter(item => item.Dictionary_Id == this.BenhAnService.List[i].LoaiBenhAn_Id);
-                if (Lst_Dictionary) {
-                  if (Lst_Dictionary.length) {
-                    this.BenhAnService.List[i].LoaiBenhAnName = Lst_Dictionary[0].Dictionary_Name;
-                  }
-                }
-                let DM_BenhNhan = this.DM_BenhNhanService.List.filter(item => item.BenhNhan_Id == this.BenhAnService.List[i].BenhNhan_Id);
-                if (DM_BenhNhan) {
-                  if (DM_BenhNhan.length) {
-                    this.BenhAnService.List[i].BenhNhanName = DM_BenhNhan[0].TenBenhNhan + " - " + DM_BenhNhan[0].MaYTe;
-                  }
-                }
-                let DM_DoiTuong = this.DM_DoiTuongService.List.filter(item => item.DoiTuong_Id == this.BenhAnService.List[i].DoiTuong_Id);
-                if (DM_DoiTuong) {
-                  if (DM_DoiTuong.length) {
-                    this.BenhAnService.List[i].DoiTuongName = DM_DoiTuong[0].TenDoiTuong;
-                  }
-                }
-                let DM_ICD = this.DM_ICDService.List.filter(item => item.ICD_Id == this.BenhAnService.List[i].ICD_VaoKhoa);
-                if (DM_ICD) {
-                  if (DM_ICD.length) {
-                    this.BenhAnService.List[i].ICDVaoKhoaName = DM_ICD[0].MaICD;
-                  }
-                }
-                let DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == this.BenhAnService.List[i].NoiLap_Id);
-                if (DM_PhongBan) {
-                  if (DM_PhongBan.length) {
-                    this.BenhAnService.List[i].NoiLapName = DM_PhongBan[0].TenPhongBan;
-                  }
-                }
-                DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == this.BenhAnService.List[i].KhoaVao_Id);
-                if (DM_PhongBan) {
-                  if (DM_PhongBan.length) {
-                    this.BenhAnService.List[i].KhoaVaoName = DM_PhongBan[0].TenPhongBan;
-                  }
-                }
-                DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == this.BenhAnService.List[i].KhoaRa_Id);
-                if (DM_PhongBan) {
-                  if (DM_PhongBan.length) {
-                    this.BenhAnService.List[i].KhoaRaName = DM_PhongBan[0].TenPhongBan;
-                  }
+          var ListKhoaVao = [...new Map(this.BenhAnService.List.map(item => [item.KhoaVao_Id, item])).values()];
+          var ListKhoaVaoID = ListKhoaVao.map(function (a) { return a.KhoaVao_Id; });
+          this.BenhAnService.BaseParameter.Note = environment.InitializationString;
+          for (let i = 0; i < ListKhoaVaoID.length; i++) {
+            let KhoaVaoSub = this.BenhAnService.List.filter(item => item.KhoaVao_Id == ListKhoaVaoID[i]);
+            if (KhoaVaoSub) {
+              let DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == ListKhoaVaoID[i]);
+              if (DM_PhongBan) {
+                if (DM_PhongBan.length) {
+                  this.BenhAnService.BaseParameter.Note = this.BenhAnService.BaseParameter.Note + ", " + DM_PhongBan[0].TenPhongBan + " (" + KhoaVaoSub.length + ")";
                 }
               }
-              this.BenhAnService.DataSource = new MatTableDataSource(this.BenhAnService.List);
-              this.BenhAnService.DataSource.sort = this.BenhAnSort;
-              this.BenhAnService.DataSource.paginator = this.BenhAnPaginator;
-              this.BenhAnService.IsShowLoading = false;
-            },
-            err => {
-            },
-            () => {              
             }
-          );
+          }
+
+          var ListBenhNhan = [...new Map(this.BenhAnService.List.map(item => [item.BenhNhan_Id, item])).values()];
+          var ListBenhNhanID = ListBenhNhan.map(function (a) { return a.BenhNhan_Id; });
+          if (ListBenhNhanID) {
+            this.BenhAnService.IsShowLoading = true;
+            this.DM_BenhNhanService.BaseParameter.ListID = ListBenhNhanID;
+            this.DM_BenhNhanService.GetByListIDToListAsync().subscribe(
+              res => {
+                this.DM_BenhNhanService.List = (res as DM_BenhNhan[]);
+                this.BenhAnService.IsShowLoading = true;
+                for (let i = 0; i < this.BenhAnService.List.length; i++) {
+                  let Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiTao_Id);
+                  if (Sys_Users) {
+                    if (Sys_Users.length) {
+                      this.BenhAnService.List[i].NguoiTaoName = Sys_Users[0].User_Name
+                    }
+                  }
+                  Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiCapNhat_Id);
+                  if (Sys_Users) {
+                    if (Sys_Users.length) {
+                      this.BenhAnService.List[i].NguoiCapNhatName = Sys_Users[0].User_Name
+                    }
+                  }
+                  // Sys_Users = this.Sys_UsersService.List.filter(item => item.User_Id == this.BenhAnService.List[i].NguoiLap_Id);
+                  // if (Sys_Users) {
+                  //   if (Sys_Users.length) {
+                  //     this.BenhAnService.List[i].NguoiLapName = Sys_Users[0].User_Name + " - " + Sys_Users[0].User_Code;
+                  //   }
+                  // }
+                  let NS_NHANVIEN = this.NS_NHANVIENService.List.filter(item => item.NhanVien_Id == this.BenhAnService.List[i].NguoiLap_Id);
+                  this.BenhAnService.List[i].NguoiLapName = "" + this.BenhAnService.List[i].NguoiLap_Id;
+                  if (NS_NHANVIEN) {
+                    if (NS_NHANVIEN.length) {
+                      this.BenhAnService.List[i].NguoiLapName = NS_NHANVIEN[0].Ho + " " + NS_NHANVIEN[0].Ten + " - " + NS_NHANVIEN[0].MaNhanVien;
+                    }
+                  }
+                  let Lst_Dictionary = this.Lst_DictionaryService.ListLoaiBenhAn.filter(item => item.Dictionary_Id == this.BenhAnService.List[i].LoaiBenhAn_Id);
+                  if (Lst_Dictionary) {
+                    if (Lst_Dictionary.length) {
+                      this.BenhAnService.List[i].LoaiBenhAnName = Lst_Dictionary[0].Dictionary_Name;
+                    }
+                  }
+                  let DM_BenhNhan = this.DM_BenhNhanService.List.filter(item => item.BenhNhan_Id == this.BenhAnService.List[i].BenhNhan_Id);
+                  if (DM_BenhNhan) {
+                    if (DM_BenhNhan.length) {
+                      this.BenhAnService.List[i].BenhNhanName = DM_BenhNhan[0].TenBenhNhan + " - " + DM_BenhNhan[0].MaYTe;
+                    }
+                  }
+                  let DM_DoiTuong = this.DM_DoiTuongService.List.filter(item => item.DoiTuong_Id == this.BenhAnService.List[i].DoiTuong_Id);
+                  if (DM_DoiTuong) {
+                    if (DM_DoiTuong.length) {
+                      this.BenhAnService.List[i].DoiTuongName = DM_DoiTuong[0].TenDoiTuong;
+                    }
+                  }
+                  let DM_ICD = this.DM_ICDService.List.filter(item => item.ICD_Id == this.BenhAnService.List[i].ICD_VaoKhoa);
+                  if (DM_ICD) {
+                    if (DM_ICD.length) {
+                      this.BenhAnService.List[i].ICDVaoKhoaName = DM_ICD[0].MaICD;
+                    }
+                  }
+                  let DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == this.BenhAnService.List[i].NoiLap_Id);
+                  if (DM_PhongBan) {
+                    if (DM_PhongBan.length) {
+                      this.BenhAnService.List[i].NoiLapName = DM_PhongBan[0].TenPhongBan;
+                    }
+                  }
+                  DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == this.BenhAnService.List[i].KhoaVao_Id);
+                  if (DM_PhongBan) {
+                    if (DM_PhongBan.length) {
+                      this.BenhAnService.List[i].KhoaVaoName = DM_PhongBan[0].TenPhongBan;
+                    }
+                  }
+                  DM_PhongBan = this.DM_PhongBanService.List.filter(item => item.PhongBan_Id == this.BenhAnService.List[i].KhoaRa_Id);
+                  if (DM_PhongBan) {
+                    if (DM_PhongBan.length) {
+                      this.BenhAnService.List[i].KhoaRaName = DM_PhongBan[0].TenPhongBan;
+                    }
+                  }
+                }
+                this.BenhAnService.DataSource = new MatTableDataSource(this.BenhAnService.List);
+                this.BenhAnService.DataSource.sort = this.BenhAnSort;
+                this.BenhAnService.DataSource.paginator = this.BenhAnPaginator;
+                this.BenhAnService.IsShowLoading = false;
+              },
+              err => {
+              },
+              () => {
+              }
+            );
+          }
+        },
+        err => {
+        },
+        () => {
         }
-      },
-      err => {
-      },
-      () => {        
+      );
+    }
+    else {
+      this.BenhAnService.BaseParameter.SearchString = this.BenhAnService.BaseParameter.SearchString.trim();
+      if (this.BenhAnService.DataSource) {
+        this.BenhAnService.DataSource.filter = this.BenhAnService.BaseParameter.SearchString.toLowerCase();
       }
-    );
+    }
   }
   BenhAnSave(element: BenhAn) {
   }
