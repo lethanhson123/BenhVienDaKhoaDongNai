@@ -108,6 +108,8 @@ import { SysAppPrivateSettingsComponent } from './eHospital_DongNai_A_Config/sys
 import { QuanLyCongViecComponent } from './quan-ly-cong-viec/quan-ly-cong-viec.component';
 import { KhamBenhToaThuocComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc/kham-benh-toa-thuoc.component';
 import { KhamBenhToaThuocInfoComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc-info/kham-benh-toa-thuoc-info.component';
+import { ChungTuComponent } from './eHospital_DongNai_A/chung-tu/chung-tu.component';
+import { ChungTuInfoComponent } from './eHospital_DongNai_A/chung-tu-info/chung-tu-info.component';
 
 
 
@@ -211,6 +213,8 @@ import { KhamBenhToaThuocInfoComponent } from './eHospital_DongNai_A/kham-benh-t
     QuanLyCongViecComponent,
     KhamBenhToaThuocComponent,
     KhamBenhToaThuocInfoComponent,
+    ChungTuComponent,
+    ChungTuInfoComponent,
     
     
     

@@ -8,6 +8,19 @@
         {
             _DM_DichVuRepository = DM_DichVuRepository;
         }
+        public virtual async Task<DM_DichVu> GetByDichVu_IdAsync(int DichVu_Id)
+        {
+            DM_DichVu result = new DM_DichVu();
+            if (DichVu_Id > 0)
+            {
+                result = await GetByCondition(item => item.DichVu_Id == DichVu_Id).FirstOrDefaultAsync();
+            }
+            if (result == null)
+            {
+                result = new DM_DichVu();
+            }
+            return result;
+        }
         public override async Task<List<DM_DichVu>> GetBySearchStringToListAsync(string searchString)
         {
             List<DM_DichVu> result = new List<DM_DichVu>();

@@ -46,27 +46,7 @@ namespace Service_eHospital_DongNai_A.Implement
                     }
                     if (result.Count == GlobalHelper.InitializationNumber)
                     {
-                        List<DM_BenhNhan> ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.BenhNhan_Id.ToString() == searchString).ToListAsync();
-                        if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
-                        {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
-                        }
-                        if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
-                        {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.CMND.Trim() == searchString).ToListAsync();
-                        }
-                        if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
-                        {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.SoDienThoai.Trim() == searchString).ToListAsync();
-                        }
-                        if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
-                        {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.SoBHXH.Trim() == searchString).ToListAsync();
-                        }
-                        if (ListDM_BenhNhan.Count == GlobalHelper.InitializationNumber)
-                        {
-                            ListDM_BenhNhan = await _DM_BenhNhanService.GetByCondition(item => item.TenBenhNhan.Trim() == searchString).ToListAsync();
-                        }
+                        List<DM_BenhNhan> ListDM_BenhNhan = await _DM_BenhNhanService.GetBySearchStringToListAsync(searchString);
                         if (ListDM_BenhNhan.Count > 0)
                         {
                             List<int> ListDM_BenhNhanID = ListDM_BenhNhan.Select(item => item.BenhNhan_Id).ToList();

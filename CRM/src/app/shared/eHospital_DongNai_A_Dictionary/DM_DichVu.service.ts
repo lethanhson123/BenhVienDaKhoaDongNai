@@ -17,6 +17,12 @@ export class DM_DichVuService extends BaseService{
         super(httpClient);
         this.Controller = "DM_DichVu";
     }
+    GetByDichVu_IdAsync() {
+        let url = this.APIURL + this.Controller + '/GetByDichVu_IdAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     GetByNhomDichVu_IdAndEmptyToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByNhomDichVu_IdAndEmptyToListAsync';
         const formUpload: FormData = new FormData();

@@ -13,6 +13,22 @@
             _WebHostEnvironment = WebHostEnvironment;
         }
         [HttpPost]
+        [Route("GetByDichVu_IdAsync")]
+        public virtual async Task<DM_DichVu> GetByDichVu_IdAsync()
+        {
+            DM_DichVu result = new DM_DichVu();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DM_DichVuService.GetByDichVu_IdAsync(baseParameter.DichVu_Id.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByNhomDichVu_IdAndEmptyToListAsync")]
         public virtual async Task<List<DM_DichVu>> GetByNhomDichVu_IdAndEmptyToListAsync()
         {

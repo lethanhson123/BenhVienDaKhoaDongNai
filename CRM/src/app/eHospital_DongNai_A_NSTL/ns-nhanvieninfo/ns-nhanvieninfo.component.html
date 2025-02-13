@@ -467,7 +467,7 @@
                             items)</span>
                     </h6>
                 </div>
-                <div class="col s12 m12 l5">
+                <div class="col s12 m12 l4">
                     <input [(ngModel)]="NhanVien_User_MappingService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="NhanVien_User_MappingSearch()">
                 </div>
@@ -475,6 +475,10 @@
                     <a style="color: green;" title="Tìm" (click)="NhanVien_User_MappingSearch()">
                         <i class="material-icons">play_circle_filled</i>
                     </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a title="Thêm mới" routerLink="/SysUsersInfo/0" style="color: green;"><i
+                            class="material-icons">add_box</i></a>
                 </div>
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #NhanVien_User_MappingSort="matSort"

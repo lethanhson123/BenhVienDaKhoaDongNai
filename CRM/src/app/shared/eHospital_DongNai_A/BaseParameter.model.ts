@@ -13,9 +13,12 @@ export class BaseParameter extends Base{
     KhamBenh_Id?: number; 
     KhamBenhVaoVien_Id?: number; 
     KhamBenh_ToaThuoc_Id?: number; 
+    ChungTu_Id?: number;
     NgayVaoVien?: Date;            
     NgayTiepNhan?: Date;
     NgayKham?: Date;
     NgayToaThuoc?: Date;
+    NgayChungTu?: Date;
     Note?: string;
+    Note001?: string;
 }

@@ -1,4 +1,6 @@
-﻿namespace Service_eHospital_DongNai_A_Dictionary.Implement
+﻿using Service_eHospital_DongNai_A_Dictionary.Interface;
+
+namespace Service_eHospital_DongNai_A_Dictionary.Implement
 {
     public class DM_BenhNhanService : BaseService<DM_BenhNhan, IDM_BenhNhanRepository>
     , IDM_BenhNhanService
@@ -39,22 +41,26 @@
             if (!string.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.Trim();
-                result = await GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
+                result = await GetByCondition(item => item.BenhNhan_Id.ToString() == searchString).ToListAsync();
                 if (result.Count == GlobalHelper.InitializationNumber)
                 {
-                    result = await GetByCondition(item => item.CMND.Contains(searchString)).ToListAsync();
+                    result = await GetByCondition(item => item.MaYTe.Contains(searchString)).ToListAsync();
                 }
                 if (result.Count == GlobalHelper.InitializationNumber)
                 {
-                    result = await GetByCondition(item => item.SoDienThoai.Contains(searchString)).ToListAsync();
+                    result = await GetByCondition(item => item.CMND.Trim() == searchString).ToListAsync();
                 }
                 if (result.Count == GlobalHelper.InitializationNumber)
                 {
-                    result = await GetByCondition(item => item.TenBenhNhan.Contains(searchString)).ToListAsync();
+                    result = await GetByCondition(item => item.SoDienThoai.Trim() == searchString).ToListAsync();
                 }
                 if (result.Count == GlobalHelper.InitializationNumber)
                 {
-                    result = await GetByCondition(item => item.BenhNhan_Id.ToString().Contains(searchString)).ToListAsync();
+                    result = await GetByCondition(item => item.SoBHXH.Trim() == searchString).ToListAsync();
+                }
+                if (result.Count == GlobalHelper.InitializationNumber)
+                {
+                    result = await GetByCondition(item => item.TenBenhNhan.Trim() == searchString).ToListAsync();
                 }
             }
             else

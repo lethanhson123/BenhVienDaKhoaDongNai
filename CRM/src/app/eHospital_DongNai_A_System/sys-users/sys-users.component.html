@@ -33,7 +33,7 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l10">
                     <input [(ngModel)]="Sys_UsersService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="Sys_UsersSearch()">
                 </div>
@@ -41,6 +41,10 @@
                     <a style="color: green;" title="Tìm" (click)="Sys_UsersSearch()">
                         <i class="material-icons">play_circle_filled</i>
                     </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a title="Thêm mới" routerLink="/SysUsersInfo/0" style="color: green;"><i
+                            class="material-icons">add_box</i></a>
                 </div>
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #Sys_UsersSort="matSort"
@@ -146,7 +150,7 @@
                                 <a style="cursor: pointer;" title="{{element.Last_Updated_By}}" class="link-primary"
                                     routerLink="/SysUsersInfo/{{element.Last_Updated_By}}"><b>{{element.Last_Updated_By}}</b></a>
                             </td>
-                        </ng-container>                       
+                        </ng-container>
                         <tr mat-header-row *matHeaderRowDef="Sys_UsersService.DisplayColumns003">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: Sys_UsersService.DisplayColumns003;">

@@ -1,12 +1,17 @@
-﻿namespace Service_eHospital_DongNai_A.Implement
+﻿using System.Collections.Generic;
+
+namespace Service_eHospital_DongNai_A.Implement
 {
     public class KhamBenh_ToaThuocService : BaseService<KhamBenh_ToaThuoc, IKhamBenh_ToaThuocRepository>
     , IKhamBenh_ToaThuocService
     {
         private readonly IKhamBenh_ToaThuocRepository _KhamBenh_ToaThuocRepository;
-        public KhamBenh_ToaThuocService(IKhamBenh_ToaThuocRepository KhamBenh_ToaThuocRepository) : base(KhamBenh_ToaThuocRepository)
+
+        private readonly IKhamBenhService _KhamBenhService;
+        public KhamBenh_ToaThuocService(IKhamBenh_ToaThuocRepository KhamBenh_ToaThuocRepository, IKhamBenhService KhamBenhService) : base(KhamBenh_ToaThuocRepository)
         {
             _KhamBenh_ToaThuocRepository = KhamBenh_ToaThuocRepository;
+            _KhamBenhService = KhamBenhService;
         }
         public virtual async Task<KhamBenh_ToaThuoc> GetByKhamBenh_ToaThuoc_IdAsync(int KhamBenh_ToaThuoc_Id)
         {
@@ -30,7 +35,30 @@
                     if (result.Count == GlobalHelper.InitializationNumber)
                     {
                         result = await GetByCondition(item => item.SoThuTuToa.Trim().Contains(searchString)).ToListAsync();
-                    }                    
+                    }
+                    if (result.Count == GlobalHelper.InitializationNumber)
+                    {
+                        List<KhamBenh> ListKhamBenh = await _KhamBenhService.GetBySearchStringToListAsync(searchString);
+                        List<int?> ListID = ListKhamBenh.Select(item => item.KhamBenh_Id).ToList();
+                        foreach (var ID in ListID)
+                        {
+                            try
+                            {
+                                List<KhamBenh_ToaThuoc> List = await GetByCondition(item => item.KhamBenh_Id == ID).ToListAsync();
+                                if (List != null)
+                                {
+                                    if (List.Count > 0)
+                                    {
+                                        result.AddRange(List);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                string message = ex.Message;
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -69,6 +97,7 @@
             {
                 result = new List<KhamBenh_ToaThuoc>();
             }
+            //result = result.OrderByDescending(item => item.ThoiGianToaThuoc).ToList();
             return result;
         }
     }

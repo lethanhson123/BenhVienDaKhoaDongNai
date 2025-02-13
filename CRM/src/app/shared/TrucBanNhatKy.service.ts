@@ -13,6 +13,7 @@ export class TrucBanNhatKyService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'TrucBanNhatKyID', 'DanhMucNgonNguName', 'TrucBanNhatKyName'];
 
     DisplayColumns002: string[] = ['STT', 'ID', 'NgayGhiNhan', 'Display', 'Khu', 'Tang', 'Khoa', 'Phong', 'TaiKhoan', 'ThucTrang', 'XuLy', 'Active', 'Save'];
+    DisplayColumns003: string[] = ['STT', 'NgayGhiNhan', 'Display', 'Khu', 'Tang', 'Khoa', 'Phong', 'TaiKhoan', 'ThucTrang', 'XuLy', 'Active', 'Save'];
 
     List: TrucBanNhatKy[] | undefined;
     ListFilter: TrucBanNhatKy[] | undefined;

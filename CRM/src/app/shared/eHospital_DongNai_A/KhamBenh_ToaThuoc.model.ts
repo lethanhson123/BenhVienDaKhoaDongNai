@@ -22,7 +22,7 @@ NgayDuyet?: Date;
 ThoiGianDuyet?: Date;
 NguoiDuyet_Id?: number;
 ThoiGianTao?: Date;
-
+KhoXuatName?: string;
 }
 
 

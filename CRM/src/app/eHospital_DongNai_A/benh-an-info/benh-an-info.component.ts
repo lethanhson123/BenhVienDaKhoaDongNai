@@ -48,6 +48,7 @@ export class BenhAnInfoComponent implements OnInit {
     public DownloadService: DownloadService,
 
     public BenhAnService: BenhAnService,
+    
     public Sys_UsersService: Sys_UsersService,
     public Lst_DictionaryService: Lst_DictionaryService,
     public DM_BenhNhanService: DM_BenhNhanService,

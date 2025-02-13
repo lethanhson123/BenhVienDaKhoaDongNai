@@ -88,6 +88,10 @@ import { SysUsersInfo001Component } from './eHospital_DongNai_A_System/sys-users
 import { SysAppSettingsComponent } from './eHospital_DongNai_A_Config/sys-app-settings/sys-app-settings.component';
 import { SysAppPrivateSettingsComponent } from './eHospital_DongNai_A_Config/sys-app-private-settings/sys-app-private-settings.component';
 import { QuanLyCongViecComponent } from './quan-ly-cong-viec/quan-ly-cong-viec.component';
+import { KhamBenhToaThuocComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc/kham-benh-toa-thuoc.component';
+import { KhamBenhToaThuocInfoComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc-info/kham-benh-toa-thuoc-info.component';
+import { ChungTuComponent } from './eHospital_DongNai_A/chung-tu/chung-tu.component';
+import { ChungTuInfoComponent } from './eHospital_DongNai_A/chung-tu-info/chung-tu-info.component';
 
 
 
@@ -369,6 +373,18 @@ const routes: Routes = [
   },
   {
     path: 'KhamBenhVaoVienInfo/:ID', component: KhamBenhVaoVienInfoComponent,
+  },
+  {
+    path: 'KhamBenhToaThuoc', component: KhamBenhToaThuocComponent,
+  },
+  {
+    path: 'KhamBenhToaThuocInfo/:ID', component: KhamBenhToaThuocInfoComponent,
+  },
+  {
+    path: 'ChungTu', component: ChungTuComponent,
+  },
+  {
+    path: 'ChungTuInfo/:ID', component: ChungTuInfoComponent,
   },
 
 ];

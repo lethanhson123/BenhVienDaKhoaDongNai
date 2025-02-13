@@ -44,10 +44,10 @@
                     <div class="col s6 m6 l2">
                         <a title="Quay lại" href="javascript:history.back()" style="color: green;"><i
                                 class="material-icons">more</i></a>
-                        <!-- <a title="Thêm mới" (click)="Sys_UsersAdd()" style="color: green;"><i
-                                class="material-icons">add_box</i></a> 
+                        <a title="Thêm mới" routerLink="/SysUsersInfo/0" style="color: green;"><i
+                                class="material-icons">add_box</i></a>
                         <a title="Lưu thay đổi" (click)="Sys_UsersSave()" style="color:#2196f3;"><i
-                                class="material-icons">save</i></a>-->
+                                class="material-icons">save</i></a>
                     </div>
                     <div class="col s6 m6 l2">
                         <label>
@@ -311,7 +311,8 @@
                             <td mat-cell *matCellDef="let element">
                                 <mat-select
                                     style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
-                                    name="element.NhanVien_Id" class="browser-default" [(ngModel)]="element.NhanVien_Id">
+                                    name="element.NhanVien_Id" class="browser-default"
+                                    [(ngModel)]="element.NhanVien_Id">
                                     <input placeholder="Tìm..." (keyup)="NS_NHANVIENFilter($event.target.value)"
                                         style="color: blue;">
                                     <mat-option *ngFor="let item of NS_NHANVIENService.ListFilter"
@@ -329,8 +330,8 @@
                                     name="element.User_Id" class="browser-default" [(ngModel)]="element.User_Id">
                                     <input placeholder="Tìm..." (keyup)="Sys_UsersFilter($event.target.value)"
                                         style="color: blue;">
-                                    <mat-option *ngFor="let item of Sys_UsersService.ListFilter"
-                                        [value]="item.User_Id" style="color:green;">
+                                    <mat-option *ngFor="let item of Sys_UsersService.ListFilter" [value]="item.User_Id"
+                                        style="color:green;">
                                         {{item.User_Code}} - {{item.User_Name}} [{{item.User_Id}}]
                                     </mat-option>
                                 </mat-select>
@@ -637,8 +638,8 @@
                                     name="element.Code" class="browser-default" [(ngModel)]="element.Code">
                                     <input placeholder="Tìm..." (keyup)="DM_KhoDuocFilter($event.target.value)"
                                         style="color: blue;">
-                                    <mat-option *ngFor="let item of DM_KhoDuocService.ListFilter"
-                                        [value]="item.MaKho" style="color:green;">
+                                    <mat-option *ngFor="let item of DM_KhoDuocService.ListFilter" [value]="item.MaKho"
+                                        style="color:green;">
                                         {{item.TenKho}} - {{item.MaKho}}
                                     </mat-option>
                                 </mat-select>

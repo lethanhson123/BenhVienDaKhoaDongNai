@@ -17,6 +17,7 @@
         public int? LoaiDichVu_Id { get; set; }
         public int? NhomDichVu_Id { get; set; }
         public int? PhongBan_Id { get; set; }
+        public int? DichVu_Id { get; set; }
         public int? ICD_Nhom_Id { get; set; }
         public int? BangGia_Id { get; set; }
         public int? BangGia_CPH_Id { get; set; }

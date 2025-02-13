@@ -16,5 +16,11 @@ export class DM_PhongBanService extends BaseService{
         super(httpClient);
         this.Controller = "DM_PhongBan";
     }
+    GetByPhongBan_IdAsync() {
+        let url = this.APIURL + this.Controller + '/GetByPhongBan_IdAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

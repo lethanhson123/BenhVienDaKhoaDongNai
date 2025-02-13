@@ -113,7 +113,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Phòng" name="Phong{{element.ID}}"
-                                    [(ngModel)]="element.Phong" style="width: 50px;">
+                                    [(ngModel)]="element.Phong" style="width: 100px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="TaiKhoan">
@@ -137,7 +137,7 @@
                             </th>
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="text" placeholder="Xử lý" name="XuLy{{element.ID}}"
-                                    [(ngModel)]="element.XuLy" style="min-width: 500px;">
+                                    [(ngModel)]="element.XuLy" style="min-width: 400px;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Active">
@@ -161,9 +161,9 @@
                                         class="material-icons">delete_forever</i></a>
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="TrucBanNhatKyService.DisplayColumns002">
+                        <tr mat-header-row *matHeaderRowDef="TrucBanNhatKyService.DisplayColumns003">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: TrucBanNhatKyService.DisplayColumns002;">
+                        <tr mat-row *matRowDef="let row; columns: TrucBanNhatKyService.DisplayColumns003;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #TrucBanNhatKyPaginator="matPaginator"

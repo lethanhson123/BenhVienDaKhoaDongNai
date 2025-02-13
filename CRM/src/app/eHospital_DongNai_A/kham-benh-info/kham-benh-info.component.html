@@ -48,29 +48,33 @@
                 <div class="row">
                     <div class="col s12 m12 l3">
                         <div>
-                            <label>KhamBenh_Id</label>
+                            <label>Khám bệnh</label>
                             <input placeholder="KhamBenh_Id" [(ngModel)]="KhamBenhService.FormData.KhamBenh_Id"
                                 name="KhamBenhService.FormData.KhamBenh_Id" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>BenhNhan_Id</label>
-                            <input placeholder="BenhNhan_Id" [(ngModel)]="KhamBenhService.FormData.BenhNhan_Id"
-                                name="KhamBenhService.FormData.BenhNhan_Id" type="text" class="form-control">
+                            <label>Bệnh nhân <a target="_blank" style="cursor: pointer;"
+                                title="{{KhamBenhService.FormData.BenhNhan_Id}}" class="link-primary"
+                                routerLink="/DMBenhNhanInfo/{{KhamBenhService.FormData.BenhNhan_Id}}"><b>[{{KhamBenhService.FormData.BenhNhan_Id}}]</b></a></label>
+                                <input placeholder="BenhNhanName" [(ngModel)]="KhamBenhService.FormData.BenhNhanName"
+                                name="KhamBenhService.FormData.BenhNhanName" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>TiepNhan_Id</label>
+                            <label>Tiếp nhận <a target="_blank" style="cursor: pointer;"
+                                title="{{KhamBenhService.FormData.TiepNhan_Id}}" class="link-primary"
+                                routerLink="/TiepNhanInfo/{{KhamBenhService.FormData.TiepNhan_Id}}"><b>[{{KhamBenhService.FormData.TiepNhan_Id}}]</b></a></label>
                             <input placeholder="TiepNhan_Id" [(ngModel)]="KhamBenhService.FormData.TiepNhan_Id"
                                 name="KhamBenhService.FormData.TiepNhan_Id" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>DichVu_Id</label>
-                            <input placeholder="DichVu_Id" [(ngModel)]="KhamBenhService.FormData.DichVu_Id"
-                                name="KhamBenhService.FormData.DichVu_Id" type="text" class="form-control">
+                            <label>Dịch vụ</label>
+                            <input placeholder="DichVuName" [(ngModel)]="KhamBenhService.FormData.DichVuName"
+                                name="KhamBenhService.FormData.DichVuName" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>PhongBan_Id</label>
-                            <input placeholder="PhongBan_Id" [(ngModel)]="KhamBenhService.FormData.PhongBan_Id"
-                                name="KhamBenhService.FormData.PhongBan_Id" type="text" class="form-control">
+                            <label>Phòng ban</label>
+                            <input placeholder="PhongBanName" [(ngModel)]="KhamBenhService.FormData.PhongBanName"
+                                name="KhamBenhService.FormData.PhongBanName" type="text" class="form-control">
                         </div>
                         <div>
                             <label>NgayKham</label>
@@ -320,23 +324,33 @@
                         </div>
                         <div>
                             <label>NgayTao</label>
-                            <input placeholder="NgayTao" [(ngModel)]="KhamBenhService.FormData.NgayTao"
+                            <input placeholder="NgayTao" [(ngModel)]="KhamBenhService.FormData.NgayTao" disabled
                                 name="KhamBenhService.FormData.NgayTao" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>NguoiTao_Id</label>
-                            <input placeholder="NguoiTao_Id" [(ngModel)]="KhamBenhService.FormData.NguoiTao_Id"
-                                name="KhamBenhService.FormData.NguoiTao_Id" type="text" class="form-control">
+                            <label>NguoiTao_Id <a target="_blank" style="cursor: pointer;"
+                                    title="{{KhamBenhService.FormData.NguoiTao_Id}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{KhamBenhService.FormData.NguoiTao_Id}}"><b>[{{KhamBenhService.FormData.NguoiTao_Id}}]</b></a></label>
+                            <select class="browser-default form-select" name="NguoiTao_Id" disabled
+                                [(ngModel)]="KhamBenhService.FormData.NguoiTao_Id">
+                                <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
+                                    {{item.User_Name}} - {{item.User_Code}}</option>
+                            </select>
                         </div>
                         <div>
                             <label>NgayCapNhat</label>
-                            <input placeholder="NgayCapNhat" [(ngModel)]="KhamBenhService.FormData.NgayCapNhat"
+                            <input placeholder="NgayCapNhat" [(ngModel)]="KhamBenhService.FormData.NgayCapNhat" disabled
                                 name="KhamBenhService.FormData.NgayCapNhat" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>NguoiCapNhat_Id</label>
-                            <input placeholder="NguoiCapNhat_Id" [(ngModel)]="KhamBenhService.FormData.NguoiCapNhat_Id"
-                                name="KhamBenhService.FormData.NguoiCapNhat_Id" type="text" class="form-control">
+                            <label>NguoiCapNhat_Id <a target="_blank" style="cursor: pointer;"
+                                    title="{{KhamBenhService.FormData.NguoiCapNhat_Id}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{KhamBenhService.FormData.NguoiCapNhat_Id}}"><b>[{{KhamBenhService.FormData.NguoiCapNhat_Id}}]</b></a></label>
+                            <select class="browser-default form-select" name="NguoiCapNhat_Id" disabled
+                                [(ngModel)]="KhamBenhService.FormData.NguoiCapNhat_Id">
+                                <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
+                                    {{item.User_Name}} - {{item.User_Code}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col s12 m12 l3">

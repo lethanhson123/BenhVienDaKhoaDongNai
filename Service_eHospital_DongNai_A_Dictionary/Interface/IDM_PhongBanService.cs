@@ -2,6 +2,7 @@
 {
     public interface IDM_PhongBanService : IBaseService<DM_PhongBan>
     {
+        Task<DM_PhongBan> GetByPhongBan_IdAsync(int PhongBan_Id);
     }
-    }
+}
 

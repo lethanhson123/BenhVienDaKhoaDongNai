@@ -16,6 +16,7 @@ export class BaseParameter extends Base{
     LoaiDichVu_Id?: number;    
     NhomDichVu_Id?: number;    
     PhongBan_Id?: number;    
+    DichVu_Id?: number;    
     ICD_Nhom_Id?: number;    
     BangGia_Id?: number;    
     BangGia_CPH_Id?: number;  
