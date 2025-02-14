@@ -11,7 +11,8 @@ import { DownloadService } from 'src/app/shared/Download.service';
 import { KhamBenh } from 'src/app/shared/eHospital_DongNai_A/KhamBenh.model';
 import { KhamBenhService } from 'src/app/shared/eHospital_DongNai_A/KhamBenh.service';
 
-
+import { ThanhVien } from 'src/app/shared/ThanhVien.model';
+import { ThanhVienService } from 'src/app/shared/ThanhVien.service';
 
 @Component({
   selector: 'app-kham-benh',
@@ -29,20 +30,21 @@ export class KhamBenhComponent implements OnInit {
 
     public KhamBenhService: KhamBenhService,
 
-   
+    public ThanhVienService: ThanhVienService,
+
   ) { }
 
   ngOnInit(): void {
-    this.KhamBenhService.BaseParameter.NgayKham = new Date();    
+    this.KhamBenhService.BaseParameter.BatDau = new Date();    
   }
-  DateNgayKham(value) {
-    this.KhamBenhService.BaseParameter.NgayKham = new Date(value);
+  DateBatDau(value) {
+    this.KhamBenhService.BaseParameter.BatDau = new Date(value);
   }
- 
+
   KhamBenhSearch() {
     if (this.KhamBenhService.BaseParameter.IsSearchAPI == true) {
       this.KhamBenhService.IsShowLoading = true;
-      this.KhamBenhService.GetByNgayKham_SearchStringToListAsync().subscribe(
+      this.KhamBenhService.GetByYear_Month_Day_SearchStringToListAsync().subscribe(
         res => {
           this.KhamBenhService.List = (res as KhamBenh[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
 

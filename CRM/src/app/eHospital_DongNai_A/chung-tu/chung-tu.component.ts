@@ -28,15 +28,15 @@ export class ChungTuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.ChungTuService.BaseParameter.NgayChungTu = new Date();
+    this.ChungTuService.BaseParameter.BatDau = new Date();
   }
-  DateNgayChungTu(value) {
-    this.ChungTuService.BaseParameter.NgayChungTu = new Date(value);
+  DateBatDau(value) {
+    this.ChungTuService.BaseParameter.BatDau = new Date(value);
   }
   ChungTuSearch() {
     if (this.ChungTuService.BaseParameter.IsSearchAPI == true) {
       this.ChungTuService.IsShowLoading = true;
-      this.ChungTuService.GetByNgayChungTu_SearchStringToListAsync().subscribe(
+      this.ChungTuService.GetByYear_Month_Day_SearchStringToListAsync().subscribe(
         res => {
           this.ChungTuService.List = (res as ChungTu[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
 

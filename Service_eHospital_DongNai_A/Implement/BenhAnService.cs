@@ -120,6 +120,33 @@ namespace Service_eHospital_DongNai_A.Implement
             }
             return result;
         }
+        public virtual async Task<List<BenhAn>> GetByYear_Month_DayToListAsync(int Year, int Month, int Day)
+        {
+            List<BenhAn> result = new List<BenhAn>();
+            result = await GetByCondition(item => item.NgayVaoVien.Value.Year == Year && item.NgayVaoVien.Value.Month == Month && item.NgayVaoVien.Value.Day == Day).ToListAsync();
+            if (result == null)
+            {
+                result = new List<BenhAn>();
+            }
+            return result;
+        }
+        public virtual async Task<List<BenhAn>> GetByYear_Month_Day_SearchStringToListAsync(int Year, int Month, int Day, string SearchString)
+        {
+            List<BenhAn> result = new List<BenhAn>();
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                result = await GetBySearchStringToListAsync(SearchString);
+            }
+            else
+            {
+                result = await GetByYear_Month_DayToListAsync(Year, Month, Day);
+            }
+            if (result == null)
+            {
+                result = new List<BenhAn>();
+            }
+            return result;
+        }
     }
 }
 

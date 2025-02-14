@@ -96,8 +96,34 @@ namespace Service_eHospital_DongNai_A.Implement
             if (result == null)
             {
                 result = new List<KhamBenh_ToaThuoc>();
+            }            
+            return result;
+        }
+        public virtual async Task<List<KhamBenh_ToaThuoc>> GetByYear_Month_DayToListAsync(int Year, int Month, int Day)
+        {
+            List<KhamBenh_ToaThuoc> result = new List<KhamBenh_ToaThuoc>();
+            result = await GetByCondition(item => item.NgayToaThuoc.Value.Year == Year && item.NgayToaThuoc.Value.Month == Month && item.NgayToaThuoc.Value.Day == Day).ToListAsync();
+            if (result == null)
+            {
+                result = new List<KhamBenh_ToaThuoc>();
             }
-            //result = result.OrderByDescending(item => item.ThoiGianToaThuoc).ToList();
+            return result;
+        }
+        public virtual async Task<List<KhamBenh_ToaThuoc>> GetByYear_Month_Day_SearchStringToListAsync(int Year, int Month, int Day, string SearchString)
+        {
+            List<KhamBenh_ToaThuoc> result = new List<KhamBenh_ToaThuoc>();
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                result = await GetBySearchStringToListAsync(SearchString);
+            }
+            else
+            {
+                result = await GetByYear_Month_DayToListAsync(Year, Month, Day);
+            }
+            if (result == null)
+            {
+                result = new List<KhamBenh_ToaThuoc>();
+            }
             return result;
         }
     }

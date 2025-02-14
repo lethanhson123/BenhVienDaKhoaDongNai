@@ -4,6 +4,7 @@
     {
         Task<ChungTu> GetByChungTu_IdAsync(int ChungTu_Id);
         Task<List<ChungTu>> GetByNgayChungTu_SearchStringToListAsync(DateTime NgayChungTu, string SearchString);
+        Task<List<ChungTu>> GetByYear_Month_Day_SearchStringToListAsync(int Year, int Month, int Day, string SearchString);
     }
 }
 

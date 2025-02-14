@@ -48,8 +48,8 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l2">
-                    <input [ngModel]="ChungTuService.BaseParameter.NgayChungTu | date:'yyyy-MM-dd'"
-                        style="text-align: right;" (ngModelChange)="DateNgayChungTu($event)"
+                    <input [ngModel]="ChungTuService.BaseParameter.BatDau | date:'yyyy-MM-dd'"
+                        style="text-align: right;" (ngModelChange)="DateBatDau($event)"
                         [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off"
                         (keyup.enter)="ChungTuSearch()">
                 </div>

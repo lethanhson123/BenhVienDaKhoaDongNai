@@ -13,7 +13,14 @@
             _BaseService = baseService;
             _WebHostEnvironment = WebHostEnvironment;
         }
-
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("InitializationDateTime")]
+        public DateTime InitializationDateTime()
+        {
+            DateTime result = GlobalHelper.InitializationDateTime;
+            return result;
+        }
         [HttpPost]
         [Route("Save")]
         public virtual T Save()

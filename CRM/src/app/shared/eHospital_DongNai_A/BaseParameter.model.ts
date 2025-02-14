@@ -3,7 +3,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 export class BaseParameter extends Base{    
-    IsSearchAPI?: boolean;      
+    IsSearchAPI?: boolean;  
+    BatDau?: Date;    
+    KetThuc?: Date;    
     SearchString?: string;    
     Page?: number;
     PageSize?: number;     
@@ -21,4 +23,7 @@ export class BaseParameter extends Base{
     NgayChungTu?: Date;
     Note?: string;
     Note001?: string;
+    Year?: number;
+    Month?: number;
+    Day?: number;
 }

@@ -44,6 +44,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByYear_Month_Day_SearchStringToListAsync")]
+        public virtual async Task<List<ChungTu>> GetByYear_Month_Day_SearchStringToListAsync()
+        {
+            List<ChungTu> result = new List<ChungTu>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _ChungTuService.GetByYear_Month_Day_SearchStringToListAsync(baseParameter.Year.Value, baseParameter.Month.Value, baseParameter.Day.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

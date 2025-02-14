@@ -41,8 +41,8 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l2">
-                    <input [ngModel]="BenhAnService.BaseParameter.NgayVaoVien | date:'yyyy-MM-dd'"
-                        style="text-align: right;" (ngModelChange)="DateNgayVaoVien($event)"
+                    <input [ngModel]="BenhAnService.BaseParameter.BatDau | date:'yyyy-MM-dd'"
+                        style="text-align: right;" (ngModelChange)="DateBatDau($event)"
                         [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off"
                         (keyup.enter)="BenhAnSearch()">
                 </div>

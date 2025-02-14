@@ -972,7 +972,12 @@ export class BaseService {
             return environment.SaveSuccess;
         }
     }
-
+    InitializationDateTime() {
+        this.Initialization();
+        let url = this.APIURL + this.Controller + '/InitializationDateTime';
+        const formUpload: FormData = new FormData();        
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
     Save() {
         this.Initialization();
         let url = this.APIURL + this.Controller + '/Save';

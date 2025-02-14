@@ -95,6 +95,34 @@
             }
             return result;
         }
+
+        public virtual async Task<List<KhamBenh>> GetByYear_Month_DayToListAsync(int Year, int Month, int Day)
+        {
+            List<KhamBenh> result = new List<KhamBenh>();
+            result = await GetByCondition(item => item.NgayKham.Value.Year == Year && item.NgayKham.Value.Month == Month && item.NgayKham.Value.Day == Day).ToListAsync();
+            if (result == null)
+            {
+                result = new List<KhamBenh>();
+            }
+            return result;
+        }
+        public virtual async Task<List<KhamBenh>> GetByYear_Month_Day_SearchStringToListAsync(int Year, int Month, int Day, string SearchString)
+        {
+            List<KhamBenh> result = new List<KhamBenh>();
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                result = await GetBySearchStringToListAsync(SearchString);
+            }
+            else
+            {
+                result = await GetByYear_Month_DayToListAsync(Year, Month, Day);
+            }
+            if (result == null)
+            {
+                result = new List<KhamBenh>();
+            }
+            return result;
+        }
     }
 }
 

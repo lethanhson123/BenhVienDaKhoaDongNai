@@ -30,17 +30,17 @@ export class BenhAnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.BenhAnService.BaseParameter.NgayVaoVien = new Date();
+    this.BenhAnService.BaseParameter.BatDau = new Date();
     
   }
-  DateNgayVaoVien(value) {
-    this.BenhAnService.BaseParameter.NgayVaoVien = new Date(value);
+  DateBatDau(value) {
+    this.BenhAnService.BaseParameter.BatDau = new Date(value);
   }
   
   BenhAnSearch() {
     if (this.BenhAnService.BaseParameter.IsSearchAPI == true) {
       this.BenhAnService.IsShowLoading = true;
-      this.BenhAnService.GetByNgayVaoVien_SearchStringToListAsync().subscribe(
+      this.BenhAnService.GetByYear_Month_Day_SearchStringToListAsync().subscribe(
         res => {
           this.BenhAnService.List = (res as BenhAn[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
 

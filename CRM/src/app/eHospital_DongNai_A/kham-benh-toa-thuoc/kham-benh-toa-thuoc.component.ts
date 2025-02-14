@@ -34,11 +34,11 @@ export class KhamBenhToaThuocComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.KhamBenh_ToaThuocService.BaseParameter.NgayToaThuoc = new Date();
+    this.KhamBenh_ToaThuocService.BaseParameter.BatDau = new Date();
     this.DM_KhoDuocSearch();
   }
-  DateNgayToaThuoc(value) {
-    this.KhamBenh_ToaThuocService.BaseParameter.NgayToaThuoc = new Date(value);
+  DateBatDau(value) {
+    this.KhamBenh_ToaThuocService.BaseParameter.BatDau = new Date(value);
   }
   DM_KhoDuocSearch() {
     this.DM_KhoDuocService.ComponentGetAllToListAsync(this.DM_KhoDuocService);
@@ -46,7 +46,7 @@ export class KhamBenhToaThuocComponent implements OnInit {
   KhamBenh_ToaThuocSearch() {
     if (this.KhamBenh_ToaThuocService.BaseParameter.IsSearchAPI == true) {
       this.KhamBenh_ToaThuocService.IsShowLoading = true;
-      this.KhamBenh_ToaThuocService.GetByNgayToaThuoc_SearchStringToListAsync().subscribe(
+      this.KhamBenh_ToaThuocService.GetByYear_Month_Day_SearchStringToListAsync().subscribe(
         res => {
           this.KhamBenh_ToaThuocService.List = (res as KhamBenh_ToaThuoc[]).sort((a, b) => (a.ThoiGianToaThuoc < b.ThoiGianToaThuoc ? 1 : -1));
 
