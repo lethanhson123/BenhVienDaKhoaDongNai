@@ -35,23 +35,27 @@ export class BaseService {
         this.FormData = {
         };
         this.BaseParameter = {
-            IsSearchAPI: true,          
-            SearchString: environment.InitializationString,           
-            BenhAn_Id: environment.InitializationNumber,         
-            PhongBan_Id: environment.InitializationNumber,         
-            KhamBenh_Id: environment.InitializationNumber,         
-            NgayVaoVien: new Date(),         
-            NgayTiepNhan: new Date(),         
-            NgayKham: new Date(),         
-        };        
+            ListYear: [],
+            ListMonth: [],
+            IsSearchAPI: true,
+            SearchString: environment.InitializationString,
+            BenhAn_Id: environment.InitializationNumber,
+            PhongBan_Id: environment.InitializationNumber,
+            KhamBenh_Id: environment.InitializationNumber,
+            NgayVaoVien: new Date(),
+            NgayTiepNhan: new Date(),
+            NgayKham: new Date(),
+            Year: new Date().getFullYear(),
+            Month: new Date().getMonth() + 1,
+        };
         this.List = [];
         this.ListFilter = [];
 
         let token = localStorage.getItem(environment.Token);
         this.Headers = this.Headers.append('Authorization', 'Bearer ' + token);
-    }   
+    }
 
-   
+
     SearchAll(sort: MatSort, paginator: MatPaginator) {
         if (this.BaseParameter.SearchString.length > 0) {
             this.BaseParameter.SearchString = this.BaseParameter.SearchString.trim();
@@ -63,7 +67,7 @@ export class BaseService {
             this.ComponentGetAllAndEmptyToListAsync(sort, paginator);
         }
     }
-    ComponentGetAllToListAsync(Service: BaseService) {       
+    ComponentGetAllToListAsync(Service: BaseService) {
         if (this.List) {
             if (this.List.length == 0) {
                 this.GetAllToListAsync().subscribe(
@@ -73,21 +77,21 @@ export class BaseService {
                     },
                     err => {
                     },
-                    () => {                        
+                    () => {
                     }
                 );
             }
-            else{            
+            else {
             }
         }
-        else{           
+        else {
         }
     }
     ComponentGetAllAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator) {
         this.IsShowLoading = true;
         this.GetAllAndEmptyToListAsync().subscribe(
             res => {
-                this.List = (res as any[]);                                
+                this.List = (res as any[]);
                 this.DataSource = new MatTableDataSource(this.List);
                 this.DataSource.sort = sort;
                 this.DataSource.paginator = paginator;
@@ -137,7 +141,7 @@ export class BaseService {
         this.IsShowLoading = true;
         this.GetBySearchStringAndEmptyToListAsync().subscribe(
             res => {
-                this.List = (res as any[]);                                
+                this.List = (res as any[]);
                 this.DataSource = new MatTableDataSource(this.List);
                 this.DataSource.sort = sort;
                 this.DataSource.paginator = paginator;
@@ -183,19 +187,19 @@ export class BaseService {
             return environment.SaveSuccess;
         }
     }
-    Save() {        
+    Save() {
         let url = this.APIURL + this.Controller + '/Save';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.FormData));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
     SaveAsync() {
-        
+
         let url = this.APIURL + this.Controller + '/SaveAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.FormData));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }    
+    }
     Remove() {
         let url = this.APIURL + this.Controller + '/Remove';
         const formUpload: FormData = new FormData();
@@ -208,7 +212,7 @@ export class BaseService {
         formUpload.append('data', JSON.stringify(this.FormData));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    
+
     GetAllToList() {
         let url = this.APIURL + this.Controller + '/GetAllToList';
         const formUpload: FormData = new FormData();
@@ -219,7 +223,7 @@ export class BaseService {
         const formUpload: FormData = new FormData();
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    
+
     GetBySearchStringToList() {
         let url = this.APIURL + this.Controller + '/GetBySearchStringToList';
         const formUpload: FormData = new FormData();
@@ -244,7 +248,7 @@ export class BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-   
+
     GetAllAndEmptyToList() {
         let url = this.APIURL + this.Controller + '/GetAllAndEmptyToList';
         const formUpload: FormData = new FormData();
@@ -254,7 +258,7 @@ export class BaseService {
         let url = this.APIURL + this.Controller + '/GetAllAndEmptyToListAsync';
         const formUpload: FormData = new FormData();
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }  
+    }
     GetBySearchStringAndEmptyToList() {
         let url = this.APIURL + this.Controller + '/GetBySearchStringAndEmptyToList';
         const formUpload: FormData = new FormData();

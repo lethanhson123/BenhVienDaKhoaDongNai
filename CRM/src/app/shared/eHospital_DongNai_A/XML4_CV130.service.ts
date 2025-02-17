@@ -7,14 +7,21 @@ import { BaseService } from './Base.service';
     providedIn: 'root'
 })
 export class XML4_CV130Service extends BaseService{
-    DisplayColumns001: string[] = ['Save', 'STT', 'XML4_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'STT', 'MA_DICH_VU', 'MA_CHI_SO', 'TEN_CHI_SO', 'GIA_TRI', 'DON_VI_DO', 'MO_TA', 'KET_LUAN', 'NGAY_KQ', 'MA_BS_DOC_KQ', 'DU_PHONG'];
+    DisplayColumns001: string[] = ['STT', 'XML4_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'STT', 'MA_DICH_VU', 'MA_CHI_SO', 'TEN_CHI_SO', 'GIA_TRI', 'DON_VI_DO', 'MO_TA', 'KET_LUAN', 'NGAY_KQ', 'MA_BS_DOC_KQ', 'DU_PHONG'];
 
     List: XML4_CV130[] | undefined;
     ListFilter: XML4_CV130[] | undefined;
     FormData!: XML4_CV130;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
-        this.Controller = "XML4_CV130";
+        this.Controller = "XML4_CV";
+    }
+
+    GetByYear_Month_SearchStringToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByYear_Month_SearchStringToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 }
 

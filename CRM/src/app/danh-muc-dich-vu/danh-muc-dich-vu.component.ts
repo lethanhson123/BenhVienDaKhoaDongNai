@@ -67,4 +67,20 @@ export class DanhMucDichVuComponent implements OnInit {
       }
     );
   }
+  DanhMucDichVuSaveList() {
+    this.DanhMucDichVuService.IsShowLoading = true;
+    this.DanhMucDichVuService.ListFilter = this.DanhMucDichVuService.List.filter(item => item.ID > 0);    
+    this.DanhMucDichVuService.SaveListAsync(this.DanhMucDichVuService.ListFilter).subscribe(
+      res => {
+        this.DanhMucDichVuSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.DanhMucDichVuService.IsShowLoading = false;
+      }
+    );
+  }
 }

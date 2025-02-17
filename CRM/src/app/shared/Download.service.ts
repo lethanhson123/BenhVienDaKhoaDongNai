@@ -61,7 +61,7 @@ export class DownloadService {
         }
         if (KinhDo < -180) {
             KinhDo = -180;
-        }      
+        }
         return KinhDo;
     }
     GetViDo(ViDo: number) {
@@ -127,41 +127,21 @@ export class DownloadService {
         const formUpload: FormData = new FormData();
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    ExportToChucHoNuoiToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucHoNuoiToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    ListYear() {
+        let List: number[];
+        List = [];
+        for (let i = environment.NamBatDau; i < environment.NamKetThuc; i++) {
+            List.push(i);
+        }
+        return List;
     }
-    ExportToChucCuaHangToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucCuaHangToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucTramQuanTracToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucTramQuanTracToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucPhuongTienKhaiThacToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucPhuongTienKhaiThacToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucGiongToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucGiongToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
-    ExportToChucDanhMucGiongToExcelAsync() {
-        let url = this.APIURL + this.Controller + '/ExportToChucDanhMucGiongToExcelAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    ListMonth() {
+        let List: number[];
+        List = [];
+        for (let i = 1; i < 13; i++) {
+            List.push(i);
+        }
+        return List;
     }
 }
 

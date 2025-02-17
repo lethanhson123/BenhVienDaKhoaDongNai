@@ -28,13 +28,17 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l10">
+                <div class="col s12 m12 l9">
                     <input [(ngModel)]="DanhMucQuayDichVuService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DanhMucQuayDichVuSearch()">
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Tìm" (click)="DanhMucQuayDichVuSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: #2196f3;" title="Lưu thay đổi" (click)="DanhMucQuayDichVuSaveList()"><i
+                            class="material-icons">save</i></a>
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Khôi phục" (click)="DanhMucQuayDichVuKhoiPhuc()"><i
@@ -204,9 +208,9 @@
                                     style="color: red;"><i class="material-icons">delete_forever</i></a> -->
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="DanhMucQuayDichVuService.DisplayColumns08">
+                        <tr mat-header-row *matHeaderRowDef="DanhMucQuayDichVuService.DisplayColumns09">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DanhMucQuayDichVuService.DisplayColumns08;">
+                        <tr mat-row *matRowDef="let row; columns: DanhMucQuayDichVuService.DisplayColumns09;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DanhMucQuayDichVuPaginator="matPaginator"

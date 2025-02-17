@@ -2,6 +2,7 @@
 {
     public interface IXML4_CV130Service : IBaseService<XML4_CV130>
     {
+        Task<List<XML4_CV130>> GetByYear_Month_SearchStringToListAsync(int Year, int Month, string SearchString);
     }
-    }
+}
 

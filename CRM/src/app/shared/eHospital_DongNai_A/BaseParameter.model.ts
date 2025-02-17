@@ -3,6 +3,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 export class BaseParameter extends Base{    
+    ListYear?: number[];  
+    ListMonth?: number[];  
     IsSearchAPI?: boolean;  
     BatDau?: Date;    
     KetThuc?: Date;    

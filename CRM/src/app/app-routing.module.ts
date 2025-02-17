@@ -92,6 +92,21 @@ import { KhamBenhToaThuocComponent } from './eHospital_DongNai_A/kham-benh-toa-t
 import { KhamBenhToaThuocInfoComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc-info/kham-benh-toa-thuoc-info.component';
 import { ChungTuComponent } from './eHospital_DongNai_A/chung-tu/chung-tu.component';
 import { ChungTuInfoComponent } from './eHospital_DongNai_A/chung-tu-info/chung-tu-info.component';
+import { XML9CV130Component } from './eHospital_DongNai_A/xml9-cv130/xml9-cv130.component';
+import { XML15CV130Component } from './eHospital_DongNai_A/xml15-cv130/xml15-cv130.component';
+import { XML14CV130Component } from './eHospital_DongNai_A/xml14-cv130/xml14-cv130.component';
+import { XML13CV130Component } from './eHospital_DongNai_A/xml13-cv130/xml13-cv130.component';
+import { XML12CV130Component } from './eHospital_DongNai_A/xml12-cv130/xml12-cv130.component';
+import { XML11CV130Component } from './eHospital_DongNai_A/xml11-cv130/xml11-cv130.component';
+import { XML10CV130Component } from './eHospital_DongNai_A/xml10-cv130/xml10-cv130.component';
+import { XML8CV130Component } from './eHospital_DongNai_A/xml8-cv130/xml8-cv130.component';
+import { XML7CV130Component } from './eHospital_DongNai_A/xml7-cv130/xml7-cv130.component';
+import { XML6CV130Component } from './eHospital_DongNai_A/xml6-cv130/xml6-cv130.component';
+import { XML5CV130Component } from './eHospital_DongNai_A/xml5-cv130/xml5-cv130.component';
+import { XML4CV130Component } from './eHospital_DongNai_A/xml4-cv130/xml4-cv130.component';
+import { XML3CV130Component } from './eHospital_DongNai_A/xml3-cv130/xml3-cv130.component';
+import { XML2CV130Component } from './eHospital_DongNai_A/xml2-cv130/xml2-cv130.component';
+import { XML1CV130Component } from './eHospital_DongNai_A/xml1-cv130/xml1-cv130.component';
 
 
 
@@ -385,6 +400,52 @@ const routes: Routes = [
   },
   {
     path: 'ChungTuInfo/:ID', component: ChungTuInfoComponent,
+  },
+
+  {
+    path: 'XML1CV130', component: XML1CV130Component,
+  },
+  {
+    path: 'XML2CV130', component: XML2CV130Component,
+  },
+  {
+    path: 'XML3CV130', component: XML3CV130Component,
+  },
+  {
+    path: 'XML4CV130', component: XML4CV130Component,
+  },
+  {
+    path: 'XML5CV130', component: XML5CV130Component,
+  },
+  {
+    path: 'XML6CV130', component: XML6CV130Component,
+  },
+  {
+    path: 'XML7CV130', component: XML7CV130Component,
+  },
+  {
+    path: 'XML8CV130', component: XML8CV130Component,
+  },
+  {
+    path: 'XML9CV130', component: XML9CV130Component,
+  },
+  {
+    path: 'XML10CV130', component: XML10CV130Component,
+  },
+  {
+    path: 'XML11CV130', component: XML11CV130Component,
+  },
+  {
+    path: 'XML12CV130', component: XML12CV130Component,
+  },
+  {
+    path: 'XML13CV130', component: XML13CV130Component,
+  },
+  {
+    path: 'XML14CV130', component: XML14CV130Component,
+  },
+  {
+    path: 'XML15CV130', component: XML15CV130Component,
   },
 
 ];

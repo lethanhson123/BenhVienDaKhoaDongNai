@@ -110,6 +110,21 @@ import { KhamBenhToaThuocComponent } from './eHospital_DongNai_A/kham-benh-toa-t
 import { KhamBenhToaThuocInfoComponent } from './eHospital_DongNai_A/kham-benh-toa-thuoc-info/kham-benh-toa-thuoc-info.component';
 import { ChungTuComponent } from './eHospital_DongNai_A/chung-tu/chung-tu.component';
 import { ChungTuInfoComponent } from './eHospital_DongNai_A/chung-tu-info/chung-tu-info.component';
+import { XML9CV130Component } from './eHospital_DongNai_A/xml9-cv130/xml9-cv130.component';
+import { XML10CV130Component } from './eHospital_DongNai_A/xml10-cv130/xml10-cv130.component';
+import { XML11CV130Component } from './eHospital_DongNai_A/xml11-cv130/xml11-cv130.component';
+import { XML12CV130Component } from './eHospital_DongNai_A/xml12-cv130/xml12-cv130.component';
+import { XML13CV130Component } from './eHospital_DongNai_A/xml13-cv130/xml13-cv130.component';
+import { XML14CV130Component } from './eHospital_DongNai_A/xml14-cv130/xml14-cv130.component';
+import { XML15CV130Component } from './eHospital_DongNai_A/xml15-cv130/xml15-cv130.component';
+import { XML1CV130Component } from './eHospital_DongNai_A/xml1-cv130/xml1-cv130.component';
+import { XML2CV130Component } from './eHospital_DongNai_A/xml2-cv130/xml2-cv130.component';
+import { XML3CV130Component } from './eHospital_DongNai_A/xml3-cv130/xml3-cv130.component';
+import { XML4CV130Component } from './eHospital_DongNai_A/xml4-cv130/xml4-cv130.component';
+import { XML5CV130Component } from './eHospital_DongNai_A/xml5-cv130/xml5-cv130.component';
+import { XML6CV130Component } from './eHospital_DongNai_A/xml6-cv130/xml6-cv130.component';
+import { XML7CV130Component } from './eHospital_DongNai_A/xml7-cv130/xml7-cv130.component';
+import { XML8CV130Component } from './eHospital_DongNai_A/xml8-cv130/xml8-cv130.component';
 
 
 
@@ -215,6 +230,21 @@ import { ChungTuInfoComponent } from './eHospital_DongNai_A/chung-tu-info/chung-
     KhamBenhToaThuocInfoComponent,
     ChungTuComponent,
     ChungTuInfoComponent,
+    XML9CV130Component,
+    XML10CV130Component,
+    XML11CV130Component,
+    XML12CV130Component,
+    XML13CV130Component,
+    XML14CV130Component,
+    XML15CV130Component,
+    XML1CV130Component,
+    XML2CV130Component,
+    XML3CV130Component,
+    XML4CV130Component,
+    XML5CV130Component,
+    XML6CV130Component,
+    XML7CV130Component,
+    XML8CV130Component,
     
     
     

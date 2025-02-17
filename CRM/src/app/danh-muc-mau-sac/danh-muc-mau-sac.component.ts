@@ -43,4 +43,20 @@ export class DanhMucMauSacComponent implements OnInit {
     this.DanhMucMauSacService.BaseParameter.ID = element.ID;
     this.NotificationService.warn(this.DanhMucMauSacService.ComponentDeleteAll(this.DanhMucMauSacSort, this.DanhMucMauSacPaginator));
   }  
+  DanhMucMauSacSaveList() {
+    this.DanhMucMauSacService.IsShowLoading = true;
+    this.DanhMucMauSacService.ListFilter = this.DanhMucMauSacService.List.filter(item => item.ID > 0);    
+    this.DanhMucMauSacService.SaveListAsync(this.DanhMucMauSacService.ListFilter).subscribe(
+      res => {
+        this.DanhMucMauSacSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.DanhMucMauSacService.IsShowLoading = false;
+      }
+    );
+  }
 }

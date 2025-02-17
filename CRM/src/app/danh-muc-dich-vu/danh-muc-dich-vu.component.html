@@ -28,13 +28,17 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l10">
+                <div class="col s12 m12 l9">
                     <input [(ngModel)]="DanhMucDichVuService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DanhMucDichVuSearch()">
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Tìm" (click)="DanhMucDichVuSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: #2196f3;" title="Lưu thay đổi" (click)="DanhMucDichVuSaveList()"><i
+                            class="material-icons">save</i></a>
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Khôi phục" (click)="DanhMucDichVuKhoiPhuc()"><i

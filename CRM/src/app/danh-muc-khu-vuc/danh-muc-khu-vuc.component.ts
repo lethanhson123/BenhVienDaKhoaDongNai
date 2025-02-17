@@ -60,4 +60,20 @@ export class DanhMucKhuVucComponent implements OnInit {
       }
     );
   }
+  DanhMucKhuVucSaveList() {
+    this.DanhMucKhuVucService.IsShowLoading = true;
+    this.DanhMucKhuVucService.ListFilter = this.DanhMucKhuVucService.List.filter(item => item.ID > 0);    
+    this.DanhMucKhuVucService.SaveListAsync(this.DanhMucKhuVucService.ListFilter).subscribe(
+      res => {
+        this.DanhMucKhuVucSearch();
+        this.NotificationService.warn(environment.SaveSuccess);
+      },
+      err => {
+        this.NotificationService.warn(environment.SaveNotSuccess);
+      },
+      () => {
+        this.DanhMucKhuVucService.IsShowLoading = false;
+      }
+    );
+  }
 }
