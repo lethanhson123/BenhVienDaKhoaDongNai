@@ -21,7 +21,7 @@
                             <a routerLink="#" title="XML">XML</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a routerLink="/XML10_CV130" title="XML10_CV130">
+                            <a routerLink="/XML10CV130" title="XML10 CV130">
                                 XML10 CV130
                             </a>
                         </li>
@@ -60,9 +60,9 @@
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #XML10_CV130Sort="matSort"
                         [dataSource]="XML10_CV130Service.DataSource">
-                        <ng-container matColumnDef="STT">
+                        <ng-container matColumnDef="No">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                                STT
+                                No
                             </th>
                             <td mat-cell *matCellDef="let element; index as i;">
                                 <div *ngIf="XML10_CV130Paginator">

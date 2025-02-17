@@ -79,6 +79,7 @@ export class DMBenhNhanComponent implements OnInit {
     );
   }
   DM_BenhNhanSearch() {
+    this.DM_BenhNhanService.IsShowLoading = true;
     this.DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchStringToListAsync().subscribe(
       res => {
         this.DM_BenhNhanService.List = (res as DM_BenhNhan[]).sort((a, b) => (a.TenBenhNhan > b.TenBenhNhan ? 1 : -1));
@@ -89,6 +90,7 @@ export class DMBenhNhanComponent implements OnInit {
       err => {
       },
       () => {
+        this.DM_BenhNhanService.IsShowLoading = false;
       }
     );
   }

@@ -35,6 +35,24 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             }
             return result;
         }
+        public virtual async Task<DM_BenhNhan> GetBySearchStringAsync(string SearchString)
+        {
+            DM_BenhNhan result = new DM_BenhNhan();
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                SearchString = SearchString.Trim();
+                result = await GetByCondition(item => item.MaYTe.Trim().Contains(SearchString)).FirstOrDefaultAsync();
+                if (result == null)
+                {
+                    result = await GetByCondition(item => item.CMND.Trim() == SearchString).FirstOrDefaultAsync();
+                }
+            }
+            if (result == null)
+            {
+                result = new DM_BenhNhan();
+            }
+            return result;
+        }
         public override async Task<List<DM_BenhNhan>> GetBySearchStringToListAsync(string searchString)
         {
             List<DM_BenhNhan> result = new List<DM_BenhNhan>();
@@ -65,7 +83,7 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             }
             else
             {
-                result = await GetByCondition(item => 1 == 1).Take(19).ToListAsync();
+                result = await GetByCondition(item => 1 == 1).Take(60).ToListAsync();
             }
             if (result == null)
             {
@@ -107,7 +125,7 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             }
             if (result.Count == 0)
             {
-                result = await GetByCondition(item => 1 == 1).Take(20).ToListAsync();
+                result = await GetByCondition(item => 1 == 1).Take(60).ToListAsync();
             }
             return result;
         }

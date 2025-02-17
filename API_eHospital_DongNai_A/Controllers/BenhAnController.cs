@@ -29,6 +29,22 @@
             return result;
         }
         [HttpPost]
+        [Route("GetBySearchStringAsync")]
+        public virtual async Task<BenhAn> GetBySearchStringAsync()
+        {
+            BenhAn result = new BenhAn();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BenhAnService.GetBySearchStringAsync(baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByNgayVaoVien_SearchStringToListAsync")]
         public virtual async Task<List<BenhAn>> GetByNgayVaoVien_SearchStringToListAsync()
         {

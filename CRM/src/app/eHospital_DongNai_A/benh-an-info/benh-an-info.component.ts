@@ -48,7 +48,7 @@ export class BenhAnInfoComponent implements OnInit {
     public DownloadService: DownloadService,
 
     public BenhAnService: BenhAnService,
-    
+
     public Sys_UsersService: Sys_UsersService,
     public Lst_DictionaryService: Lst_DictionaryService,
     public DM_BenhNhanService: DM_BenhNhanService,
@@ -83,10 +83,10 @@ export class BenhAnInfoComponent implements OnInit {
   }
   DateNgayLap(value) {
     this.BenhAnService.FormData.NgayLap = new Date(value);
-  } 
+  }
   DateThoiGianRaVien(value) {
     this.BenhAnService.FormData.ThoiGianRaVien = new Date(value);
-  } 
+  }
   Sys_UsersSearch() {
     this.Sys_UsersService.ComponentGetAllToListAsync(this.Sys_UsersService);
   }
@@ -144,7 +144,7 @@ export class BenhAnInfoComponent implements OnInit {
       this.DM_PhongBanService.ListFilter = this.DM_PhongBanService.List;
     }
   }
- 
+
   NS_NHANVIENSearch() {
     this.NS_NHANVIENService.ComponentGetAllToListAsync(this.NS_NHANVIENService);
   }
@@ -163,6 +163,30 @@ export class BenhAnInfoComponent implements OnInit {
     this.BenhAnService.GetByBenhAn_IdAsync().subscribe(
       res => {
         this.BenhAnService.FormData = res as BenhAn;
+        if (this.BenhAnService.FormData.BenhAn_Id == environment.InitializationNumber) {
+          this.BenhAnService.IsShowLoading = true;
+          this.BenhAnService.BaseParameter.SearchString = this.ActiveRouter.snapshot.params.ID;
+          this.BenhAnService.GetBySearchStringAsync().subscribe(
+            res => {
+              this.BenhAnService.FormData = res as BenhAn;
+              this.Sys_UsersSearch();
+              this.Lst_DictionarySearch();
+              this.DM_DoiTuongSearch();
+              this.DM_ICDSearch();
+              this.DM_PhongBanSearch();
+              this.NS_NHANVIENSearch();
+              this.DM_BenhNhanSearch();
+            },
+            err => {
+            },
+            () => {
+              this.BenhAnService.IsShowLoading = false;
+            }
+          );
+        }
+        else {
+          this.BenhAnService.IsShowLoading = false;
+        }
         this.Sys_UsersSearch();
         this.Lst_DictionarySearch();
         this.DM_DoiTuongSearch();

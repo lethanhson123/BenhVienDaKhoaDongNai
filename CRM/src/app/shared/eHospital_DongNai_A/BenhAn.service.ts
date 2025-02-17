@@ -195,6 +195,12 @@ export class BenhAnService extends BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GetBySearchStringAsync() {
+      let url = this.APIURL + this.Controller + '/GetBySearchStringAsync';
+      const formUpload: FormData = new FormData();
+      formUpload.append('data', JSON.stringify(this.BaseParameter));
+      return this.httpClient.post(url, formUpload, { headers: this.Headers });
+  }
     GetByNgayVaoVien_SearchStringToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByNgayVaoVien_SearchStringToListAsync';
         const formUpload: FormData = new FormData();

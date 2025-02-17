@@ -23,6 +23,7 @@
         public int? BangGia_CPH_Id { get; set; }
         public int? NhanVien_Id { get; set; }
         public int? User_Id { get; set; }
+        public string? MaYTe { get; set; }
         public List<int> ListID { get; set; }
         public BaseParameter()
         {

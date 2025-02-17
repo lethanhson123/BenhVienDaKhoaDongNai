@@ -7,7 +7,7 @@ import { BaseService } from './Base.service';
     providedIn: 'root'
 })
 export class XML13_CV130Service extends BaseService{
-    DisplayColumns001: string[] = ['STT', 'XML13_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'SO_HOSO', 'SO_CHUYENTUYEN', 'GIAY_CHUYEN_TUYEN', 'MA_CSKCB', 'MA_NOI_DI', 'MA_NOI_DEN', 'HO_TEN', 'NGAY_SINH', 'GIOI_TINH', 'MA_QUOCTICH', 'MA_DANTOC', 'MA_NGHE_NGHIEP', 'DIA_CHI', 'MA_THE_BHYT', 'GT_THE_DEN', 'NGAY_VAO', 'NGAY_VAO_NOI_TRU', 'NGAY_RA', 'DAU_HIEU_LS', 'CHAN_DOAN_RV', 'QT_BENHLY', 'TOMTAT_KQ', 'PP_DIEUTRI', 'MA_BENH_CHINH', 'MA_BENH_KT', 'MA_BENH_YHCT', 'PP_DIEU_TRI', 'MA_LOAI_RV', 'MA_LYDO_CT', 'HUONG_DIEU_TRI', 'PHUONGTIEN_VC', 'HOTEN_NGUOI_HT', 'CHUCDANH_NGUOI_HT', 'MA_BAC_SI', 'MA_TTDV', 'DU_PHONG'];
+    DisplayColumns001: string[] = ['XML13_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'SO_HOSO', 'SO_CHUYENTUYEN', 'GIAY_CHUYEN_TUYEN', 'MA_CSKCB', 'MA_NOI_DI', 'MA_NOI_DEN', 'HO_TEN', 'NGAY_SINH', 'GIOI_TINH', 'MA_QUOCTICH', 'MA_DANTOC', 'MA_NGHE_NGHIEP', 'DIA_CHI', 'MA_THE_BHYT', 'GT_THE_DEN', 'NGAY_VAO', 'NGAY_VAO_NOI_TRU', 'NGAY_RA', 'DAU_HIEU_LS', 'CHAN_DOAN_RV', 'QT_BENHLY', 'TOMTAT_KQ', 'PP_DIEUTRI', 'MA_BENH_CHINH', 'MA_BENH_KT', 'MA_BENH_YHCT', 'PP_DIEU_TRI', 'MA_LOAI_RV', 'MA_LYDO_CT', 'HUONG_DIEU_TRI', 'PHUONGTIEN_VC', 'HOTEN_NGUOI_HT', 'CHUCDANH_NGUOI_HT', 'MA_BAC_SI', 'MA_TTDV', 'DU_PHONG'];
 
     List: XML13_CV130[] | undefined;
     ListFilter: XML13_CV130[] | undefined;

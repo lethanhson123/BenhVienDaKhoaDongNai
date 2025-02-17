@@ -75,7 +75,7 @@ export class DMBenhNhanInfoComponent implements OnInit {
     element.NgayHuong5Nam = new Date(value);
   }
   DM_BenhVienSearch() {
-    this.DM_BenhVienService.ComponentGetAllToListAsync(this.DM_BenhNhanService);    
+    this.DM_BenhVienService.ComponentGetAllToListAsync(this.DM_BenhNhanService);
   }
   Lst_Dictionary_TypeSearchQuocTich() {
     this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = 33;
@@ -157,20 +157,38 @@ export class DMBenhNhanInfoComponent implements OnInit {
     this.DM_BenhNhanService.IsShowLoading = true;
     this.DM_BenhNhanService.GetByBenhNhan_IdAsync().subscribe(
       res => {
-        this.DM_BenhNhanService.FormData = res as DM_BenhNhan;
+        this.DM_BenhNhanService.FormData = res as DM_BenhNhan;        
         if (this.DM_BenhNhanService.FormData.BenhNhan_Id == environment.InitializationNumber) {
+          this.DM_BenhNhanService.IsShowLoading = true;
+          this.DM_BenhNhanService.BaseParameter.SearchString = this.ActiveRouter.snapshot.params.ID;
+          this.DM_BenhNhanService.GetBySearchStringAsync().subscribe(
+            res => {
+              this.DM_BenhNhanService.FormData = res as DM_BenhNhan;     
+              this.DM_DonViHanhChinhSearchTinhThanh();
+              this.Lst_Dictionary_TypeSearchQuocTich();
+              this.Lst_Dictionary_TypeSearchDanToc();
+              this.Lst_Dictionary_TypeSearchNgheNghiep();        
+              this.DM_BenhNhan_BHYTSearch();         
+            },
+            err => {
+            },
+            () => {
+              this.DM_BenhNhanService.IsShowLoading = false;
+            }
+          );
+        }
+        else{
+          this.DM_BenhNhanService.IsShowLoading = false;
         }
         this.DM_DonViHanhChinhSearchTinhThanh();
         this.Lst_Dictionary_TypeSearchQuocTich();
         this.Lst_Dictionary_TypeSearchDanToc();
-        this.Lst_Dictionary_TypeSearchNgheNghiep();
-        //this.DM_BenhVienSearch();
+        this.Lst_Dictionary_TypeSearchNgheNghiep();        
         this.DM_BenhNhan_BHYTSearch();
       },
       err => {
       },
-      () => {
-        this.DM_BenhNhanService.IsShowLoading = false;
+      () => {        
       }
     );
   }

@@ -60,9 +60,9 @@
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #XML9_CV130Sort="matSort"
                         [dataSource]="XML9_CV130Service.DataSource">
-                        <ng-container matColumnDef="STT">
+                        <ng-container matColumnDef="No">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                                STT
+                                No
                             </th>
                             <td mat-cell *matCellDef="let element; index as i;">
                                 <div *ngIf="XML9_CV130Paginator">

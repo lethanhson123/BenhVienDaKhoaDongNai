@@ -27,6 +27,24 @@ namespace Service_eHospital_DongNai_A.Implement
             }
             return result;
         }
+        public virtual async Task<BenhAn> GetBySearchStringAsync(string SearchString)
+        {
+            BenhAn result = new BenhAn();
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                SearchString = SearchString.Trim();
+                result = await GetByCondition(item => item.SoBenhAn.Trim() == SearchString).FirstOrDefaultAsync();
+                if (result == null)
+                {
+                    result = await GetByCondition(item => item.SoLuuTru.Trim() == SearchString).FirstOrDefaultAsync();
+                }
+            }
+            if (result == null)
+            {
+                result = new BenhAn();
+            }
+            return result;
+        }
         public override async Task<List<BenhAn>> GetBySearchStringToListAsync(string searchString)
         {
             List<BenhAn> result = new List<BenhAn>();

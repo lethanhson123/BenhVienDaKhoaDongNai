@@ -29,6 +29,22 @@
             return result;
         }
         [HttpPost]
+        [Route("GetBySearchStringAsync")]
+        public virtual async Task<DM_BenhNhan> GetBySearchStringAsync()
+        {
+            DM_BenhNhan result = new DM_BenhNhan();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DM_BenhNhanService.GetBySearchStringAsync(baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchStringToListAsync")]
         public virtual async Task<List<DM_BenhNhan>> GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchStringToListAsync()
         {

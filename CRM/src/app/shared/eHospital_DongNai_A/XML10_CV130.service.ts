@@ -7,7 +7,7 @@ import { BaseService } from './Base.service';
     providedIn: 'root'
 })
 export class XML10_CV130Service extends BaseService{
-    DisplayColumns001: string[] = ['STT', 'XML10_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'SO_SERI', 'SO_CT', 'SO_NGAY', 'DON_VI', 'CHAN_DOAN_RV', 'TU_NGAY', 'DEN_NGAY', 'MA_TTDV', 'TEN_BS', 'MA_BS', 'NGAY_CT'];
+    DisplayColumns001: string[] = ['XML10_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'SO_SERI', 'SO_CT', 'SO_NGAY', 'DON_VI', 'CHAN_DOAN_RV', 'TU_NGAY', 'DEN_NGAY', 'MA_TTDV', 'TEN_BS', 'MA_BS', 'NGAY_CT'];
 
     List: XML10_CV130[] | undefined;
     ListFilter: XML10_CV130[] | undefined;

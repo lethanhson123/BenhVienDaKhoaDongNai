@@ -7,7 +7,7 @@ import { BaseService } from './Base.service';
     providedIn: 'root'
 })
 export class XML5_CV130Service extends BaseService{
-    DisplayColumns001: string[] = ['STT', 'XML5_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'STT', 'DIEN_BIEN_LS', 'GIAI_DOAN_BENH', 'HOI_CHAN', 'PHAU_THUAT', 'THOI_DIEM_DBLS', 'NGUOI_THUC_HIEN', 'DU_PHONG'];
+    DisplayColumns001: string[] = ['XML5_CV130_Id', 'BenhAn_Id', 'TiepNhan_Id', 'BenhNhan_Id', 'XacNhanChiPhi_Id', 'MA_LK', 'STT', 'DIEN_BIEN_LS', 'GIAI_DOAN_BENH', 'HOI_CHAN', 'PHAU_THUAT', 'THOI_DIEM_DBLS', 'NGUOI_THUC_HIEN', 'DU_PHONG'];
 
     List: XML5_CV130[] | undefined;
     ListFilter: XML5_CV130[] | undefined;

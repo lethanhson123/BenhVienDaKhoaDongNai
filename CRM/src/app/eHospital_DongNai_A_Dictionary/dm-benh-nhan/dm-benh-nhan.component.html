@@ -46,6 +46,7 @@
                 <div class="col s12 m12 l3">
                     <select class="browser-default form-select" name="DM_BenhNhanService.BaseParameter.QuanHuyen_Id"
                         [(ngModel)]="DM_BenhNhanService.BaseParameter.QuanHuyen_Id" (change)="DM_DonViHanhChinhSearchXaPhuong()">
+                        <option value="0">Tất cả</option>
                         <option *ngFor="let item of DM_DonViHanhChinhService.ListQuanHuyen;"
                             [value]="item.DonViHanhChinh_Id">
                             {{item.TenDonVi}}</option>
@@ -54,6 +55,7 @@
                 <div class="col s12 m12 l3">
                     <select class="browser-default form-select" name="DM_BenhNhanService.BaseParameter.XaPhuong_Id"
                         [(ngModel)]="DM_BenhNhanService.BaseParameter.XaPhuong_Id">
+                        <option value="0">Tất cả</option>
                         <option *ngFor="let item of DM_DonViHanhChinhService.ListXaPhuong;"
                             [value]="item.DonViHanhChinh_Id">
                             {{item.TenDonVi}}</option>
@@ -108,8 +110,7 @@
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã y tế
                             </th>
                             <td mat-cell *matCellDef="let element">
-                                <a style="cursor: pointer;" title="{{element.MaYTe}}" class="link-primary"
-                                    routerLink="/DMBenhNhanInfo/{{element.BenhNhan_Id}}"><b>{{element.MaYTe}}</b></a>
+                                <b>{{element.MaYTe}}</b>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="CMND">
