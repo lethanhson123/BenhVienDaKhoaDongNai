@@ -1760,6 +1760,10 @@
                     {
                         string fileExtension = Path.GetExtension(file.FileName);
                         model.FileName = model.GetType().Name + "_" + model.ID + "_" + GlobalHelper.InitializationDateTimeCode0001 + fileExtension;
+                        if (!string.IsNullOrEmpty(model.Name))
+                        {
+                            model.FileName = GlobalHelper.SetName(model.Name) + "_" + GlobalHelper.InitializationDateTimeCode0001 + fileExtension;
+                        }
                         string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
                         bool isFolderExists = System.IO.Directory.Exists(folderPath);
                         if (!isFolderExists)
@@ -1802,6 +1806,10 @@
                     {
                         string fileExtension = Path.GetExtension(file.FileName);
                         model.FileName = model.GetType().Name + "_" + model.ID + "_" + GlobalHelper.InitializationDateTimeCode0001 + fileExtension;
+                        if (!string.IsNullOrEmpty(model.Name))
+                        {
+                            model.FileName = GlobalHelper.SetName(model.Name) + "_" + GlobalHelper.InitializationDateTimeCode0001 + fileExtension;
+                        }
                         string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
                         bool isFolderExists = System.IO.Directory.Exists(folderPath);
                         if (!isFolderExists)
