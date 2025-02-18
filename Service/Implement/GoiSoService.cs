@@ -1,9 +1,4 @@
-﻿
-using Microsoft.IdentityModel.Tokens;
-using Service.Interface;
-using ZXing.QrCode.Internal;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class GoiSoService : BaseService<GoiSo, IGoiSoRepository>
     , IGoiSoService

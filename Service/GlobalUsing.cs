@@ -27,6 +27,8 @@ global using System.Collections.Generic;
 global using System.Drawing.Printing;
 global using System.IdentityModel.Tokens.Jwt;
 global using System.Security.Claims;
+global using System.Net.Http.Headers;
+
 
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.IdentityModel.Tokens;

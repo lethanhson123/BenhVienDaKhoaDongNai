@@ -1,6 +1,4 @@
-﻿using Data.Model;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class DuAnQuyetToanPhanKyService : BaseService<DuAnQuyetToanPhanKy, IDuAnQuyetToanPhanKyRepository>
     , IDuAnQuyetToanPhanKyService

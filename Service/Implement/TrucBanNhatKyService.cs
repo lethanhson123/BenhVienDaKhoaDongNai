@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.IdentityModel.Tokens;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class TrucBanNhatKyService : BaseService<TrucBanNhatKy, ITrucBanNhatKyRepository>
     , ITrucBanNhatKyService

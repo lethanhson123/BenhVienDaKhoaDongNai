@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Service.Interface;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class DanhMucQuayDichVuService : BaseService<DanhMucQuayDichVu, IDanhMucQuayDichVuRepository>
     , IDanhMucQuayDichVuService

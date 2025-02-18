@@ -1,10 +1,4 @@
-﻿
-using Azure.Core;
-using Microsoft.AspNetCore.Http;
-using System.Net.Http.Headers;
-using ZXing.QrCode.Internal;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class ZaloTokenService : BaseService<ZaloToken, IZaloTokenRepository>
     , IZaloTokenService

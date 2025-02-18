@@ -1,7 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Hosting;
-
-namespace Service.Implement
+﻿namespace Service.Implement
 {
     public class GoiSoThamSoService : BaseService<GoiSoThamSo, IGoiSoThamSoRepository>
     , IGoiSoThamSoService
