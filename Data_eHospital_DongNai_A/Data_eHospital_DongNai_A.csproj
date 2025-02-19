@@ -11,4 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Helper\Helper.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ModelTranfer\" />
+  </ItemGroup>
 </Project>

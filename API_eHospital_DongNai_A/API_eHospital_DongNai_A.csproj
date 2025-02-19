@@ -25,12 +25,4 @@
     <ProjectReference Include="..\Service_eHospital_DongNai_A\Service_eHospital_DongNai_A.csproj" />
   </ItemGroup>
 
-
-
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
 </Project>

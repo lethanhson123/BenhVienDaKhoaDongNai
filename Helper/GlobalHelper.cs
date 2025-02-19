@@ -109,6 +109,21 @@
         }
         #endregion
         #region AppSettings 
+        public static string XMLHeader
+        {
+            get
+            {                
+                return @"<?xml version=""1.0"" encoding=""utf-8""?>";
+            }
+        }
+        public static string MACSKCB
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("MACSKCB").Value;
+            }
+        }
         public static string ZaloTemplateID
         {
             get

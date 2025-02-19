@@ -83,10 +83,10 @@
                                 <b>{{element.MaNhanVien}}</b>
                             </td>
                         </ng-container>
-                        <ng-container matColumnDef="Ho">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ</th>
+                        <ng-container matColumnDef="HoTen">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ tên</th>
                             <td mat-cell *matCellDef="let element">
-                                {{element.Ho}}
+                                {{element.HoTen}}
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Ten">
@@ -252,9 +252,9 @@
                             </td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="NS_NHANVIENService.DisplayColumns002">
+                        <tr mat-header-row *matHeaderRowDef="NS_NHANVIENService.DisplayColumns003">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: NS_NHANVIENService.DisplayColumns002;">
+                        <tr mat-row *matRowDef="let row; columns: NS_NHANVIENService.DisplayColumns003;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #NS_NHANVIENPaginator="matPaginator"

@@ -125,6 +125,7 @@ import { XML5CV130Component } from './eHospital_DongNai_A/xml5-cv130/xml5-cv130.
 import { XML6CV130Component } from './eHospital_DongNai_A/xml6-cv130/xml6-cv130.component';
 import { XML7CV130Component } from './eHospital_DongNai_A/xml7-cv130/xml7-cv130.component';
 import { XML8CV130Component } from './eHospital_DongNai_A/xml8-cv130/xml8-cv130.component';
+import { XMLCV130Component } from './eHospital_DongNai_A/xml-cv130/xml-cv130.component';
 
 
 
@@ -245,6 +246,7 @@ import { XML8CV130Component } from './eHospital_DongNai_A/xml8-cv130/xml8-cv130.
     XML6CV130Component,
     XML7CV130Component,
     XML8CV130Component,
+    XMLCV130Component,
     
     
     

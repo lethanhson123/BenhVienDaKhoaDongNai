@@ -21,7 +21,7 @@
         public DateTime? NgayTiepNhan { get; set; }
         public DateTime? NgayKham { get; set; }
         public DateTime? NgayToaThuoc { get; set; }
-        public DateTime? NgayChungTu { get; set; }
+        public DateTime? NgayChungTu { get; set; }      
         public BaseParameter()
 		{
 		}

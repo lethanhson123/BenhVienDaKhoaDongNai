@@ -16,30 +16,12 @@
                 if (!string.IsNullOrEmpty(searchString))
                 {
                     searchString = searchString.Trim();
-                    result = await GetByCondition(item => item.TiepNhan_Id.Value.ToString() == searchString).ToListAsync();
-                    if (result.Count == GlobalHelper.InitializationNumber)
+                    foreach (string SearchStringSub in searchString.Split(';'))
                     {
-                        result = await GetByCondition(item => item.BenhAn_Id.Value.ToString() == searchString).ToListAsync();
-                    }
-                    if (result.Count == GlobalHelper.InitializationNumber)
-                    {
-                        result = await GetByCondition(item => item.XacNhanChiPhi_Id.Value.ToString() == searchString).ToListAsync();
-                    }
-                    if (result.Count == GlobalHelper.InitializationNumber)
-                    {
-                        result = await GetByCondition(item => item.MA_LK.Trim() == searchString).ToListAsync();
-                    }
-                    if (result.Count == GlobalHelper.InitializationNumber)
-                    {
-                        result = await GetByCondition(item => item.SO_SERI.Trim() == searchString).ToListAsync();
-                    }
-                    if (result.Count == GlobalHelper.InitializationNumber)
-                    {
-                        result = await GetByCondition(item => item.MA_TTDV.Trim() == searchString).ToListAsync();
-                    }
-                    if (result.Count == GlobalHelper.InitializationNumber)
-                    {
-                        result = await GetByCondition(item => item.MA_BS.Trim() == searchString).ToListAsync();
+                        if (!string.IsNullOrEmpty(SearchStringSub))
+                        {
+                            result.AddRange(await GetByCondition(item => item.MA_LK.Trim() == SearchStringSub).ToListAsync());
+                        }
                     }
                 }
             }

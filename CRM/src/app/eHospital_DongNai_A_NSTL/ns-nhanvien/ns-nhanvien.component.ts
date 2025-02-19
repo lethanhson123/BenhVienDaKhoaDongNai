@@ -32,7 +32,7 @@ export class NSNHANVIENComponent implements OnInit {
     this.NS_NHANVIENSearch();
   }
 
-  NS_NHANVIENSearch() {    
+  NS_NHANVIENSearch() {
     if (this.NS_NHANVIENService.BaseParameter.SearchString.length > 0) {
       this.NS_NHANVIENService.BaseParameter.SearchString = this.NS_NHANVIENService.BaseParameter.SearchString.trim();
       if (this.NS_NHANVIENService.DataSource) {
@@ -43,6 +43,10 @@ export class NSNHANVIENComponent implements OnInit {
       this.NS_NHANVIENService.GetAllToListAsync().subscribe(
         res => {
           this.NS_NHANVIENService.List = (res as NS_NHANVIEN[])//.sort((a, b) => (a.Ten > b.Ten ? 1 : -1));
+          for (let index = 0; index < this.NS_NHANVIENService.List.length; index++) {
+            this.NS_NHANVIENService.List[index].HoTen = this.NS_NHANVIENService.List[index].Ho + " " + this.NS_NHANVIENService.List[index].Ten;
+          }
+          //this.NS_NHANVIENService.List = this.NS_NHANVIENService.List.sort((a, b) => (a.HoTen > b.HoTen ? 1 : -1));
           this.NS_NHANVIENService.DataSource = new MatTableDataSource(this.NS_NHANVIENService.List);
           this.NS_NHANVIENService.DataSource.sort = this.NS_NHANVIENSort;
           this.NS_NHANVIENService.DataSource.paginator = this.NS_NHANVIENPaginator;

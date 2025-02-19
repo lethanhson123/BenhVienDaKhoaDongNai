@@ -107,6 +107,7 @@ import { XML4CV130Component } from './eHospital_DongNai_A/xml4-cv130/xml4-cv130.
 import { XML3CV130Component } from './eHospital_DongNai_A/xml3-cv130/xml3-cv130.component';
 import { XML2CV130Component } from './eHospital_DongNai_A/xml2-cv130/xml2-cv130.component';
 import { XML1CV130Component } from './eHospital_DongNai_A/xml1-cv130/xml1-cv130.component';
+import { XMLCV130Component } from './eHospital_DongNai_A/xml-cv130/xml-cv130.component';
 
 
 
@@ -446,6 +447,9 @@ const routes: Routes = [
   },
   {
     path: 'XML15CV130', component: XML15CV130Component,
+  },
+  {
+    path: 'XMLCV130', component: XMLCV130Component,
   },
 
 ];

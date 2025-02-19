@@ -79,7 +79,7 @@ MocTinhPhep?: Date;
 TenKhongDau?: string;
 Trai_Id?: number;
 SapXep_Trai?: number;
-
+HoTen?: string;
 }
 
 
