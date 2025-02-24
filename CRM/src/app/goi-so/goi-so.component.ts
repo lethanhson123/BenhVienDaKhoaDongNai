@@ -33,15 +33,15 @@ export class GoiSoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.GoiSoService.BaseParameter.KetThuc = new Date();
+    this.GoiSoService.BaseParameter.NgayGhiNhan = new Date();
     this.GoiSoSearch();
   }
-  DateKetThuc(value) {
-    this.GoiSoService.BaseParameter.KetThuc = new Date(value);
+  DateNgayGhiNhan(value) {
+    this.GoiSoService.BaseParameter.NgayGhiNhan = new Date(value);
   }
   GoiSoSearch() {
     this.GoiSoService.IsShowLoading = true;
-    this.GoiSoService.GetByNgayGhiNhanToListAsync().subscribe(
+    this.GoiSoService.GetByYear_Month_DayToListAsync().subscribe(
       res => {
         this.GoiSoService.List = (res as GoiSo[]).sort((a, b) => (a.DanhMucDichVuID > b.DanhMucDichVuID ? 1 : -1));
         this.GoiSoService.BaseParameter.Page = environment.InitializationNumber;

@@ -9,6 +9,5 @@ export class BaseParameter extends Base{
     User_Id?: number;        
     Group_Code?: string;      
     IsSoNgayDuyetThuoc?: boolean; 
-    IsVienPhiNgoaiTru?: boolean; 
-    
+    IsVienPhiNgoaiTru?: boolean;     
 }

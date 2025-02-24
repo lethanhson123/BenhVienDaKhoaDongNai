@@ -12,6 +12,26 @@
             _Lst_Dictionary_TypeService = Lst_Dictionary_TypeService;
             _WebHostEnvironment = WebHostEnvironment;
         }
+        [HttpPost]
+        [Route("KhoiPhucAsync")]
+        public virtual async Task<List<Lst_Dictionary_Type>> KhoiPhucAsync()
+        {
+            List<Lst_Dictionary_Type> result = new List<Lst_Dictionary_Type>();
+            try
+            {
+                result = await _Lst_Dictionary_TypeService.KhoiPhucAsync();
+                foreach (Lst_Dictionary_Type item in result)
+                {
+                    await _Lst_Dictionary_TypeService.SaveAsync(item);
+                    result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

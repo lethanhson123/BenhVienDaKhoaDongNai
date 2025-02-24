@@ -28,6 +28,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByYear_Month_Day_SearchStringToListAsync")]
+        public virtual async Task<List<XML1_CV130>> GetByYear_Month_Day_SearchStringToListAsync()
+        {
+            List<XML1_CV130> result = new List<XML1_CV130>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _XML1_CV130Service.GetByYear_Month_Day_SearchStringToListAsync(baseParameter.Year.Value, baseParameter.Month.Value, baseParameter.Day.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

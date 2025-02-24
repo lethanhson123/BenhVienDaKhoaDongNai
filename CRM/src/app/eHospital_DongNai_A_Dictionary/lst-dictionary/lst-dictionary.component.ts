@@ -35,11 +35,21 @@ export class LstDictionaryComponent implements OnInit {
   ngOnInit(): void {
     this.Lst_Dictionary_TypeSearch();
   }
+  Lst_Dictionary_TypeFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.Lst_Dictionary_TypeService.ListFilter = this.Lst_Dictionary_TypeService.List.filter(item => item.Dictionary_Type_Id.toString().toLocaleLowerCase().indexOf(searchString) !== -1 || item.Dictionary_Type_Name.toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.Lst_Dictionary_TypeService.ListFilter = this.Lst_Dictionary_TypeService.List;
+    }
+  }
   Lst_Dictionary_TypeSearch() {
     this.Lst_Dictionary_TypeService.ComponentGetAllToListAsync(this.Lst_DictionaryService);
     this.Lst_Dictionary_TypeService.GetAllToListAsync().subscribe(
       res => {
-        this.Lst_Dictionary_TypeService.List = (res as Lst_Dictionary_Type[]).sort((a, b) => (a.Dictionary_Type_Name > b.Dictionary_Type_Name ? 1 : -1));;        
+        this.Lst_Dictionary_TypeService.List = (res as Lst_Dictionary_Type[]).sort((a, b) => (a.Dictionary_Type_Name > b.Dictionary_Type_Name ? 1 : -1));;
       },
       err => {
       },
@@ -47,7 +57,12 @@ export class LstDictionaryComponent implements OnInit {
       }
     );
   }
-
+  Lst_Dictionary001() {
+    this.Lst_DictionaryService.DisplayColumns003 = this.Lst_DictionaryService.DisplayColumns001;
+  }
+  Lst_Dictionary002() {
+    this.Lst_DictionaryService.DisplayColumns003 = this.Lst_DictionaryService.DisplayColumns002;
+  }
   Lst_DictionarySearch() {
     if (this.Lst_DictionaryService.BaseParameter.SearchString.length > 0) {
       this.Lst_DictionaryService.BaseParameter.SearchString = this.Lst_DictionaryService.BaseParameter.SearchString.trim();
@@ -86,10 +101,26 @@ export class LstDictionaryComponent implements OnInit {
       () => {
         this.Lst_DictionaryService.IsShowLoading = false;
       }
-    );    
+    );
   }
   Lst_DictionaryDelete(element: Lst_Dictionary) {
     this.Lst_DictionaryService.FormData = element;
     this.NotificationService.warn(this.Lst_DictionaryService.ComponentDeleteAll(this.Lst_DictionarySort, this.Lst_DictionaryPaginator));
+  }
+  Lst_DictionaryKhoiPhuc() {
+    this.Lst_DictionaryService.IsShowLoading = true;
+    this.Lst_DictionaryService.KhoiPhucAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.List = (res as Lst_Dictionary[]);
+        this.Lst_DictionaryService.DataSource = new MatTableDataSource(this.Lst_DictionaryService.List);
+        this.Lst_DictionaryService.DataSource.sort = this.Lst_DictionarySort;
+        this.Lst_DictionaryService.DataSource.paginator = this.Lst_DictionaryPaginator;
+      },
+      err => {
+      },
+      () => {
+        this.Lst_DictionaryService.IsShowLoading = false;
+      }
+    );
   }
 }

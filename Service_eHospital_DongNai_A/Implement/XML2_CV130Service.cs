@@ -16,20 +16,33 @@
                 if (!string.IsNullOrEmpty(searchString))
                 {
                     searchString = searchString.Trim();
-                    foreach (string SearchStringSub in searchString.Split(';'))
-                    {
-                        if (!string.IsNullOrEmpty(SearchStringSub))
-                        {
-                            result.AddRange(await GetByCondition(item => item.MA_LK.Trim() == SearchStringSub).ToListAsync());
-                        }
-                    }
+                    result = await GetByCondition(item => searchString.Contains(item.MA_LK.Trim())).ToListAsync();
                 }
             }
             catch (Exception ex)
             {
                 string message = ex.Message;
             }
-
+            if (result == null)
+            {
+                result = new List<XML2_CV130>();
+            }
+            return result;
+        }
+        public virtual async Task<List<XML2_CV130>> GetByListIDStringToListAsync(List<string> ListIDString)
+        {
+            List<XML2_CV130> result = new List<XML2_CV130>();
+            try
+            {
+                if (ListIDString.Count > 0)
+                {
+                    result = await GetByCondition(item => EF.Constant(ListIDString).Contains(item.MA_LK.Trim())).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
             if (result == null)
             {
                 result = new List<XML2_CV130>();

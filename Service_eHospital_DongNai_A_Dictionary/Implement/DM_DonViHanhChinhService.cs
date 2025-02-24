@@ -8,6 +8,14 @@
         {
             _DM_DonViHanhChinhRepository = DM_DonViHanhChinhRepository;
         }
+        public override void Initialization(DM_DonViHanhChinh model)
+        {
+            BaseInitialization(model);
+            if (model.TamNgung == null)
+            {
+                model.TamNgung = false;
+            }
+        }
         public override async Task<DM_DonViHanhChinh> SaveAsync(DM_DonViHanhChinh model)
         {
             if (model.DonViHanhChinh_Id > 0)

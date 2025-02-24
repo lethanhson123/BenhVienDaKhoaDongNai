@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace Service_eHospital_DongNai_A_Dictionary.Implement
 {
     public class DM_BenhVienService : BaseService<DM_BenhVien, IDM_BenhVienRepository>
@@ -9,6 +8,18 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
         public DM_BenhVienService(IDM_BenhVienRepository DM_BenhVienRepository) : base(DM_BenhVienRepository)
         {
             _DM_BenhVienRepository = DM_BenhVienRepository;
+        }
+        public override void Initialization(DM_BenhVien model)
+        {
+            BaseInitialization(model);
+            if (string.IsNullOrEmpty(model.TenBenhVien_En))
+            {
+                model.TenBenhVien_En = model.MaBenhVien;
+            }
+            if (string.IsNullOrEmpty(model.TenBenhVien_Ru))
+            {
+                model.TenBenhVien_Ru = GlobalHelper.SetName(model.TenBenhVien);
+            }
         }
         public override async Task<DM_BenhVien> SaveAsync(DM_BenhVien model)
         {

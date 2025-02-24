@@ -36,6 +36,26 @@
             }
             return result;
         }
+        public virtual async Task<List<XML15_CV130>> GetByListIDStringToListAsync(List<string> ListIDString)
+        {
+            List<XML15_CV130> result = new List<XML15_CV130>();
+            try
+            {
+                if (ListIDString.Count > 0)
+                {
+                    result = await GetByCondition(item => EF.Constant(ListIDString).Contains(item.MA_LK.Trim())).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<XML15_CV130>();
+            }
+            return result;
+        }
         public virtual async Task<List<XML15_CV130>> GetByYear_Month_SearchStringToListAsync(int Year, int Month, string SearchString)
         {
             List<XML15_CV130> result = new List<XML15_CV130>();

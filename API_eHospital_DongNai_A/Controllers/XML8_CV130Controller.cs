@@ -28,6 +28,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByListIDStringToListAsync")]
+        public virtual async Task<List<XML8_CV130>> GetByListIDStringToListAsync()
+        {
+            List<XML8_CV130> result = new List<XML8_CV130>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _XML8_CV130Service.GetByListIDStringToListAsync(baseParameter.ListIDString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

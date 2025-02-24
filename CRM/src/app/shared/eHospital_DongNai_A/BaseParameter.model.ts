@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class BaseParameter extends Base{    
     ListYear?: number[];  
     ListMonth?: number[];  
+    ListIDString?: string[];  
     IsSearchAPI?: boolean;  
     BatDau?: Date;    
     KetThuc?: Date;    

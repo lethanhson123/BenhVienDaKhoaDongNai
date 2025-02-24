@@ -44,6 +44,26 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("KhoiPhucAsync")]
+        public virtual async Task<List<Lst_Dictionary>> KhoiPhucAsync()
+        {
+            List<Lst_Dictionary> result = new List<Lst_Dictionary>();
+            try
+            {
+                result = await _Lst_DictionaryService.KhoiPhucAsync();
+                foreach (Lst_Dictionary item in result)
+                {
+                    await _Lst_DictionaryService.SaveAsync(item);
+                    result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

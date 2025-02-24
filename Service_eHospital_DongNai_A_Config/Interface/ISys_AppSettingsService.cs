@@ -2,6 +2,7 @@
 {
     public interface ISys_AppSettingsService : IBaseService<Sys_AppSettings>
     {
+        Task<List<Sys_AppSettings>> KhoiPhucAsync();        
     }
-    }
+}
 

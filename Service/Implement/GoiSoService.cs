@@ -1101,6 +1101,24 @@
             }
             return result;
         }
+        public virtual async Task<List<GoiSo>> GetByYear_Month_DayToListAsync(int Year, int Month, int Day)
+        {
+            List<GoiSo> result = new List<GoiSo>();
+            try
+            {
+                result = await GetByCondition(item => item.NgayGhiNhan.Value.Year == Year && item.NgayGhiNhan.Value.Month == Month && item.NgayGhiNhan.Value.Day == Day).ToListAsync();
+
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<GoiSo>();
+            }
+            return result;
+        }
     }
 }
 

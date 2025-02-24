@@ -108,6 +108,9 @@ import { XML3CV130Component } from './eHospital_DongNai_A/xml3-cv130/xml3-cv130.
 import { XML2CV130Component } from './eHospital_DongNai_A/xml2-cv130/xml2-cv130.component';
 import { XML1CV130Component } from './eHospital_DongNai_A/xml1-cv130/xml1-cv130.component';
 import { XMLCV130Component } from './eHospital_DongNai_A/xml-cv130/xml-cv130.component';
+import { SysAppSettingsCheckBHXHComponent } from './eHospital_DongNai_A_Config/sys-app-settings-check-bhxh/sys-app-settings-check-bhxh.component';
+import { TiepNhan2025Component } from './eHospital_BenhAnDienTu/tiep-nhan2025/tiep-nhan2025.component';
+import { KhamBenhNgoaiTru2025Component } from './eHospital_BenhAnDienTu/kham-benh-ngoai-tru2025/kham-benh-ngoai-tru2025.component';
 
 
 
@@ -340,6 +343,9 @@ const routes: Routes = [
     path: 'SysAppSettings', component: SysAppSettingsComponent,
   },
   {
+    path: 'SysAppSettingsCheckBHXH', component: SysAppSettingsCheckBHXHComponent,
+  },
+  {
     path: 'SysAppPrivateSettings', component: SysAppPrivateSettingsComponent,
   },
 
@@ -451,6 +457,14 @@ const routes: Routes = [
   {
     path: 'XMLCV130', component: XMLCV130Component,
   },
+
+  {
+    path: 'TiepNhan2025', component: TiepNhan2025Component,
+  },
+  {
+    path: 'KhamBenhNgoaiTru2025', component: KhamBenhNgoaiTru2025Component,
+  },
+
 
 ];
 

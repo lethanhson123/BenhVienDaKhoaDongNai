@@ -9,6 +9,9 @@ import { BaseService } from './Base.service';
 export class DM_DonViHanhChinhService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'DonViHanhChinh_Id', 'MaDonVi', 'TenDonVi', 'CapDonVi', 'CapTren_Id', 'MaVung_Id', 'KhuVucLuuTru_Id', 'TamNgung', 'TenTat', 'TenTat_2', 'TenTat_3', 'TenKhongDau', 'NgayTao', 'NguoiTao_Id', 'NgayCapNhat', 'NguoiCapNhat_Id', 'SiteCode', 'Mapping_Public_Id', 'MaDonVi_HSSK'];
 
+    DisplayColumns002: string[] = ['Save', 'STT', 'MaDonVi', 'TenDonVi', 'CapDonVi', 'TamNgung'];
+    DisplayColumns003: string[] = ['Save', 'STT', 'MaDonVi', 'TenDonVi', 'CapDonVi', 'TamNgung'];
+
     List: DM_DonViHanhChinh[] | undefined;
     ListFilter: DM_DonViHanhChinh[] | undefined;
     FormData!: DM_DonViHanhChinh;

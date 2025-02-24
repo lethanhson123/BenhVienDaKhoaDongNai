@@ -31,7 +31,12 @@ export class DMDonViHanhChinhQuanHuyenComponent implements OnInit {
   ngOnInit(): void {
     this.DM_DonViHanhChinhSearchTinhThanh();
   }
-
+  DM_DonViHanhChinh001() {
+    this.DM_DonViHanhChinhService.DisplayColumns003 = this.DM_DonViHanhChinhService.DisplayColumns001;
+  }
+  DM_DonViHanhChinh002() {
+    this.DM_DonViHanhChinhService.DisplayColumns003 = this.DM_DonViHanhChinhService.DisplayColumns002;
+  }
   DM_DonViHanhChinhSearchTinhThanh() {
     this.DM_DonViHanhChinhService.BaseParameter.CapDonVi = 2;
     this.DM_DonViHanhChinhService.GetByCapDonViToListAsync().subscribe(

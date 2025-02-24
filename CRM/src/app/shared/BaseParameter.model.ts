@@ -23,6 +23,9 @@ export class BaseParameter extends Base{
     NgayGhiNhan?: Date;
     BatDau?: Date;
     KetThuc?: Date;  
+    Year?: number;  
+    Month?: number;  
+    Day?: number;  
     DanhMucDichVuID?: number;    
     DanhMucQuayDichVuID?: number;    
     SoHienTai?: number;    

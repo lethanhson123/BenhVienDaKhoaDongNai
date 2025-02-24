@@ -26,8 +26,8 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l4">
-                    <input [ngModel]="GoiSoService.BaseParameter.KetThuc | date:'yyyy-MM-dd'" style="text-align: right;"
-                        (ngModelChange)="DateKetThuc($event)" [ngModelOptions]="{ updateOn: 'blur' }" type="date"
+                    <input [ngModel]="GoiSoService.BaseParameter.NgayGhiNhan | date:'yyyy-MM-dd'" style="text-align: right;"
+                        (ngModelChange)="DateNgayGhiNhan($event)" [ngModelOptions]="{ updateOn: 'blur' }" type="date"
                         class="form-control" autocomplete="off" (keyup.enter)="GoiSoSearch()">
                 </div>
                 <div class="col s12 m12 l7">

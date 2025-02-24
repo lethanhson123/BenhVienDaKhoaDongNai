@@ -78,6 +78,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByYear_Month_DayToListAsync")]
+        public async Task<List<GoiSo>> GetByYear_Month_DayToListAsync()
+        {
+            List<GoiSo> result = new List<GoiSo>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoService.GetByYear_Month_DayToListAsync(baseParameter.Year.Value, baseParameter.Month.Value, baseParameter.Day.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

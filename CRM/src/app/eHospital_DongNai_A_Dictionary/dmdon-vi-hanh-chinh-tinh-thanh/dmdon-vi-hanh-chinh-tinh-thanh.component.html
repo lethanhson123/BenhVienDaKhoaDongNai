@@ -34,13 +34,23 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l9">
                     <input [(ngModel)]="DM_DonViHanhChinhService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DM_DonViHanhChinhSearch()">
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Tìm" (click)="DM_DonViHanhChinhSearch()">
                         <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Đầy đủ" (click)="DM_DonViHanhChinh001()">
+                        <i class="material-icons">bluetooth</i>
+                    </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Rút gọn" (click)="DM_DonViHanhChinh002()">
+                        <i class="material-icons">bluetooth_disabled</i>
                     </a>
                 </div>
                 <div class="KhungOverflow">
@@ -66,9 +76,9 @@
                                 <a (click)="DM_DonViHanhChinhSave(element)" style="color:#2196f3;">
                                     <i class="material-icons">save</i>
                                 </a>
-                                <a (click)="DM_DonViHanhChinhDelete(element)" style="color: red;">
+                                <!-- <a (click)="DM_DonViHanhChinhDelete(element)" style="color: red;">
                                     <i class="material-icons">delete_forever</i>
-                                </a>
+                                </a> -->
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="DonViHanhChinh_Id">
@@ -85,7 +95,7 @@
                         <ng-container matColumnDef="TenDonVi">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>TenDonVi</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TenDonVi" name="TenDonVi" [(ngModel)]="element.TenDonVi" style="width: 200px;"></td>
+                                    placeholder="TenDonVi" name="TenDonVi" [(ngModel)]="element.TenDonVi"></td>
                         </ng-container>
                         <ng-container matColumnDef="CapDonVi">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>CapDonVi</th>
@@ -110,8 +120,13 @@
                         </ng-container>
                         <ng-container matColumnDef="TamNgung">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>TamNgung</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TamNgung" name="TamNgung" [(ngModel)]="element.TamNgung"></td>
+                            <td mat-cell *matCellDef="let element">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" name="TamNgung"
+                                        [(ngModel)]="element.TamNgung">
+                                    <span></span>
+                                </label>
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="TenTat">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>TenTat</th>
@@ -172,9 +187,9 @@
                             </td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="DM_DonViHanhChinhService.DisplayColumns001">
+                        <tr mat-header-row *matHeaderRowDef="DM_DonViHanhChinhService.DisplayColumns003">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DM_DonViHanhChinhService.DisplayColumns001;">
+                        <tr mat-row *matRowDef="let row; columns: DM_DonViHanhChinhService.DisplayColumns003;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_DonViHanhChinhPaginator="matPaginator"

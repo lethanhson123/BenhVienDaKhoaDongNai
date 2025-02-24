@@ -110,20 +110,6 @@ export class XMLCV130Component implements OnInit {
   }
   XMLCV130Search() {
     this.XML1_CV130Search();
-    this.XML2_CV130Search();
-    this.XML3_CV130Search();
-    this.XML4_CV130Search();
-    this.XML5_CV130Search();
-    this.XML6_CV130Search();
-    this.XML7_CV130Search();
-    this.XML8_CV130Search();
-    this.XML9_CV130Search();
-    this.XML10_CV130Search();
-    this.XML11_CV130Search();
-    this.XML12_CV130Search();
-    this.XML13_CV130Search();
-    this.XML14_CV130Search();
-    this.XML15_CV130Search();
   }
   XMLCV130Download() {
     this.XML1_CV130Service.IsShowLoading = true;
@@ -145,9 +131,9 @@ export class XMLCV130Component implements OnInit {
       this.XML15_CV130Service.List,
     ).subscribe(
       res => {
-        if(res){
-          window.open(res.toString(), "_blank");   
-        }                   
+        if (res) {
+          window.open(res.toString(), "_blank");
+        }
       },
       err => {
       },
@@ -156,16 +142,48 @@ export class XMLCV130Component implements OnInit {
       }
     );
   }
+  XML1_CV130Search() {
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML1_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString.trim();
+    this.XML1_CV130Service.GetByYear_Month_Day_SearchStringToListAsync().subscribe(
+      res => {
+        this.XML1_CV130Service.List = (res as XML1_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
+        this.XML1_CV130Service.DataSource = new MatTableDataSource(this.XML1_CV130Service.List);
+        this.XML1_CV130Service.DataSource.sort = this.XML1_CV130Sort;
+        this.XML1_CV130Service.DataSource.paginator = this.XML1_CV130Paginator;
+        var List = [...new Map(this.XML1_CV130Service.List.map(item => [item.MA_LK, item])).values()];
+        this.XML1_CV130Service.BaseParameter.ListIDString = List.map(function (a) { return a.MA_LK; });                 
+        this.XML2_CV130Search();
+        this.XML3_CV130Search();
+        this.XML4_CV130Search();
+        this.XML5_CV130Search();
+        this.XML6_CV130Search();
+        this.XML7_CV130Search();
+        this.XML8_CV130Search();
+        this.XML9_CV130Search();
+        this.XML10_CV130Search();
+        this.XML11_CV130Search();
+        this.XML12_CV130Search();
+        this.XML13_CV130Search();
+        this.XML14_CV130Search();
+        this.XML15_CV130Search();
+      },
+      err => {
+      },
+      () => {
+        //this.XML1_CV130Service.IsShowLoading = false;
+      }
+    );
+  }
   XML15_CV130Search() {
-    this.XML15_CV130Service.IsShowLoading = true;
-    this.XML15_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML15_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;        
+    this.XML15_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML15_CV130Service.List = (res as XML15_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML15_CV130Service.DataSource = new MatTableDataSource(this.XML15_CV130Service.List);
         this.XML15_CV130Service.DataSource.sort = this.XML15_CV130Sort;
-        this.XML15_CV130Service.DataSource.paginator = this.XML15_CV130Paginator;
-        this.XML15_CV130Service.IsShowLoading = false;
+        this.XML15_CV130Service.DataSource.paginator = this.XML15_CV130Paginator;        
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -174,15 +192,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML14_CV130Search() {
-    this.XML14_CV130Service.IsShowLoading = true;
-    this.XML14_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML14_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML14_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML14_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML14_CV130Service.List = (res as XML14_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML14_CV130Service.DataSource = new MatTableDataSource(this.XML14_CV130Service.List);
         this.XML14_CV130Service.DataSource.sort = this.XML14_CV130Sort;
         this.XML14_CV130Service.DataSource.paginator = this.XML14_CV130Paginator;
-        this.XML14_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -191,15 +209,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML13_CV130Search() {
-    this.XML13_CV130Service.IsShowLoading = true;
-    this.XML13_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML13_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML13_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML13_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML13_CV130Service.List = (res as XML13_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML13_CV130Service.DataSource = new MatTableDataSource(this.XML13_CV130Service.List);
         this.XML13_CV130Service.DataSource.sort = this.XML13_CV130Sort;
         this.XML13_CV130Service.DataSource.paginator = this.XML13_CV130Paginator;
-        this.XML13_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -208,15 +226,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML12_CV130Search() {
-    this.XML12_CV130Service.IsShowLoading = true;
-    this.XML12_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML12_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML12_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML12_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML12_CV130Service.List = (res as XML12_CV130[]).sort((a, b) => (a.NGAY_CHUNG_TU > b.NGAY_CHUNG_TU ? 1 : -1));
         this.XML12_CV130Service.DataSource = new MatTableDataSource(this.XML12_CV130Service.List);
         this.XML12_CV130Service.DataSource.sort = this.XML12_CV130Sort;
         this.XML12_CV130Service.DataSource.paginator = this.XML12_CV130Paginator;
-        this.XML12_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -225,15 +243,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML11_CV130Search() {
-    this.XML11_CV130Service.IsShowLoading = true;
-    this.XML11_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML11_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML11_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML11_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML11_CV130Service.List = (res as XML11_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML11_CV130Service.DataSource = new MatTableDataSource(this.XML11_CV130Service.List);
         this.XML11_CV130Service.DataSource.sort = this.XML11_CV130Sort;
         this.XML11_CV130Service.DataSource.paginator = this.XML11_CV130Paginator;
-        this.XML11_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -242,15 +260,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML10_CV130Search() {
-    this.XML10_CV130Service.IsShowLoading = true;
-    this.XML10_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML10_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML10_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML10_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML10_CV130Service.List = (res as XML10_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML10_CV130Service.DataSource = new MatTableDataSource(this.XML10_CV130Service.List);
         this.XML10_CV130Service.DataSource.sort = this.XML10_CV130Sort;
         this.XML10_CV130Service.DataSource.paginator = this.XML10_CV130Paginator;
-        this.XML10_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -259,15 +277,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML9_CV130Search() {
-    this.XML9_CV130Service.IsShowLoading = true;
-    this.XML9_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML9_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML9_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML9_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML9_CV130Service.List = (res as XML9_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML9_CV130Service.DataSource = new MatTableDataSource(this.XML9_CV130Service.List);
         this.XML9_CV130Service.DataSource.sort = this.XML9_CV130Sort;
         this.XML9_CV130Service.DataSource.paginator = this.XML9_CV130Paginator;
-        this.XML9_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -276,15 +294,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML8_CV130Search() {
-    this.XML8_CV130Service.IsShowLoading = true;
-    this.XML8_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML8_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML8_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML8_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML8_CV130Service.List = (res as XML8_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML8_CV130Service.DataSource = new MatTableDataSource(this.XML8_CV130Service.List);
         this.XML8_CV130Service.DataSource.sort = this.XML8_CV130Sort;
         this.XML8_CV130Service.DataSource.paginator = this.XML8_CV130Paginator;
-        this.XML8_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -293,32 +311,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML7_CV130Search() {
-    this.XML7_CV130Service.IsShowLoading = true;
-    this.XML7_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML7_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML7_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML7_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML7_CV130Service.List = (res as XML7_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML7_CV130Service.DataSource = new MatTableDataSource(this.XML7_CV130Service.List);
         this.XML7_CV130Service.DataSource.sort = this.XML7_CV130Sort;
         this.XML7_CV130Service.DataSource.paginator = this.XML7_CV130Paginator;
-        this.XML7_CV130Service.IsShowLoading = false;
-      },
-      err => {
-      },
-      () => {
-      }
-    );
-  }
-  XML1_CV130Search() {
-    this.XML1_CV130Service.IsShowLoading = true;
-    this.XML1_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString.trim();
-    this.XML1_CV130Service.GetBySearchStringToListAsync().subscribe(
-      res => {
-        this.XML1_CV130Service.List = (res as XML1_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
-        this.XML1_CV130Service.DataSource = new MatTableDataSource(this.XML1_CV130Service.List);
-        this.XML1_CV130Service.DataSource.sort = this.XML1_CV130Sort;
-        this.XML1_CV130Service.DataSource.paginator = this.XML1_CV130Paginator;
-        this.XML1_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -327,15 +328,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML2_CV130Search() {
-    this.XML2_CV130Service.IsShowLoading = true;
-    this.XML2_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML2_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;    
+    this.XML2_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML2_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML2_CV130Service.List = (res as XML2_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML2_CV130Service.DataSource = new MatTableDataSource(this.XML2_CV130Service.List);
         this.XML2_CV130Service.DataSource.sort = this.XML2_CV130Sort;
         this.XML2_CV130Service.DataSource.paginator = this.XML2_CV130Paginator;
-        this.XML2_CV130Service.IsShowLoading = false;
+        this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -344,15 +345,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML3_CV130Search() {
-    this.XML3_CV130Service.IsShowLoading = true;
-    this.XML3_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML3_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML3_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML3_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML3_CV130Service.List = (res as XML3_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML3_CV130Service.DataSource = new MatTableDataSource(this.XML3_CV130Service.List);
         this.XML3_CV130Service.DataSource.sort = this.XML3_CV130Sort;
         this.XML3_CV130Service.DataSource.paginator = this.XML3_CV130Paginator;
-        this.XML3_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -361,15 +362,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML4_CV130Search() {
-    this.XML4_CV130Service.IsShowLoading = true;
-    this.XML4_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML4_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML4_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML4_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML4_CV130Service.List = (res as XML4_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML4_CV130Service.DataSource = new MatTableDataSource(this.XML4_CV130Service.List);
         this.XML4_CV130Service.DataSource.sort = this.XML4_CV130Sort;
         this.XML4_CV130Service.DataSource.paginator = this.XML4_CV130Paginator;
-        this.XML4_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -378,15 +379,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML5_CV130Search() {
-    this.XML5_CV130Service.IsShowLoading = true;
-    this.XML5_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML5_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML5_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML5_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML5_CV130Service.List = (res as XML5_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML5_CV130Service.DataSource = new MatTableDataSource(this.XML5_CV130Service.List);
         this.XML5_CV130Service.DataSource.sort = this.XML5_CV130Sort;
         this.XML5_CV130Service.DataSource.paginator = this.XML5_CV130Paginator;
-        this.XML5_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },
@@ -395,15 +396,15 @@ export class XMLCV130Component implements OnInit {
     );
   }
   XML6_CV130Search() {
-    this.XML6_CV130Service.IsShowLoading = true;
-    this.XML6_CV130Service.BaseParameter.SearchString = this.XML1_CV130Service.BaseParameter.SearchString;
-    this.XML6_CV130Service.GetBySearchStringToListAsync().subscribe(
+    this.XML1_CV130Service.IsShowLoading = true;
+    this.XML6_CV130Service.BaseParameter.ListIDString = this.XML1_CV130Service.BaseParameter.ListIDString;
+    this.XML6_CV130Service.GetByListIDStringToListAsync().subscribe(
       res => {
         this.XML6_CV130Service.List = (res as XML6_CV130[]).sort((a, b) => (a.MA_LK > b.MA_LK ? 1 : -1));
         this.XML6_CV130Service.DataSource = new MatTableDataSource(this.XML6_CV130Service.List);
         this.XML6_CV130Service.DataSource.sort = this.XML6_CV130Sort;
         this.XML6_CV130Service.DataSource.paginator = this.XML6_CV130Paginator;
-        this.XML6_CV130Service.IsShowLoading = false;
+        //this.XML1_CV130Service.IsShowLoading = false;
       },
       err => {
       },

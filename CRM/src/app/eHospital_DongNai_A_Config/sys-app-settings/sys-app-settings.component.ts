@@ -10,7 +10,6 @@ import { DownloadService } from 'src/app/shared/Download.service';
 
 import { Sys_AppSettings } from 'src/app/shared/eHospital_DongNai_A_Config/Sys_AppSettings.model';
 import { Sys_AppSettingsService } from 'src/app/shared/eHospital_DongNai_A_Config/Sys_AppSettings.service';
-import * as e from 'express';
 
 @Component({
   selector: 'app-sys-app-settings',
@@ -34,7 +33,7 @@ export class SysAppSettingsComponent implements OnInit {
   }
   IsSoNgayDuyetThuocChange() {
     if (this.Sys_AppSettingsService.BaseParameter.IsSoNgayDuyetThuoc == true) {
-      this.Sys_AppSettingsService.BaseParameter.SearchString = environment.SoNgayDuyetThuoc;     
+      this.Sys_AppSettingsService.BaseParameter.SearchString = environment.SoNgayDuyetThuoc;
     }
     else {
       this.Sys_AppSettingsService.BaseParameter.SearchString = environment.InitializationString;
@@ -43,7 +42,7 @@ export class SysAppSettingsComponent implements OnInit {
   }
   IsVienPhiNgoaiTruChange() {
     if (this.Sys_AppSettingsService.BaseParameter.IsVienPhiNgoaiTru == true) {
-      this.Sys_AppSettingsService.BaseParameter.SearchString = environment.VienPhiNgoaiTru_ThoiGianLayDanhSachChiDinh_MAX;      
+      this.Sys_AppSettingsService.BaseParameter.SearchString = environment.VienPhiNgoaiTru_ThoiGianLayDanhSachChiDinh_MAX;
     }
     else {
       this.Sys_AppSettingsService.BaseParameter.SearchString = environment.InitializationString;
@@ -60,5 +59,21 @@ export class SysAppSettingsComponent implements OnInit {
   Sys_AppSettingsDelete(element: Sys_AppSettings) {
     this.Sys_AppSettingsService.FormData = element;
     this.NotificationService.warn(this.Sys_AppSettingsService.ComponentDeleteAll(this.Sys_AppSettingsSort, this.Sys_AppSettingsPaginator));
+  }
+  Sys_AppSettingsKhoiPhuc() {
+    this.Sys_AppSettingsService.IsShowLoading = true;
+    this.Sys_AppSettingsService.KhoiPhucAsync().subscribe(
+      res => {
+        this.Sys_AppSettingsService.List = (res as Sys_AppSettings[]);
+        this.Sys_AppSettingsService.DataSource = new MatTableDataSource(this.Sys_AppSettingsService.List);
+        this.Sys_AppSettingsService.DataSource.sort = this.Sys_AppSettingsSort;
+        this.Sys_AppSettingsService.DataSource.paginator = this.Sys_AppSettingsPaginator;
+      },
+      err => {
+      },
+      () => {
+        this.Sys_AppSettingsService.IsShowLoading = false;
+      }
+    );
   }
 }

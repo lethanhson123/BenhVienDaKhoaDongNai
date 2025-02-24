@@ -8,13 +8,19 @@ import { BaseService } from './Base.service';
 })
 export class Sys_AppSettingsService extends BaseService{
     DisplayColumns001: string[] = ['Save', 'STT', 'Setting_Id', 'Code', 'Language_Id', 'Value', 'Description', 'Locked', 'SystemEditOnly', 'CreationDate', 'CreatedBy', 'LastUpdateDate', 'LastUpdatedBy'];
-
+    DisplayColumns002: string[] = ['Save', 'STT', 'Setting_Id', 'Code', 'Language_Id', 'Value', 'Description'];
     List: Sys_AppSettings[] | undefined;
     ListFilter: Sys_AppSettings[] | undefined;
     FormData!: Sys_AppSettings;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "Sys_AppSettings";
+    }
+    KhoiPhucAsync() {
+        let url = this.APIURL + this.Controller + '/KhoiPhucAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 }
 

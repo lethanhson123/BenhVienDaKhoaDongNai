@@ -34,7 +34,7 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l10">
                     <input [(ngModel)]="Lst_Dictionary_TypeService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="Lst_Dictionary_TypeSearch()">
                 </div>
@@ -42,6 +42,10 @@
                     <a style="color: green;" title="Tìm" (click)="Lst_Dictionary_TypeSearch()">
                         <i class="material-icons">play_circle_filled</i>
                     </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Khôi phục" (click)="Lst_Dictionary_TypeKhoiPhuc()"><i
+                            class="material-icons">all_inclusive</i></a>
                 </div>
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #Lst_Dictionary_TypeSort="matSort"
@@ -66,10 +70,10 @@
                                 <a (click)="Lst_Dictionary_TypeSave(element)" style="color:#2196f3;">
                                     <i class="material-icons">save</i>
                                 </a>
-                                <a (click)="Lst_Dictionary_TypeDelete(element)"
+                                <!-- <a (click)="Lst_Dictionary_TypeDelete(element)"
                                     style="color: red;">
                                     <i class="material-icons">delete_forever</i>
-                                </a>
+                                </a> -->
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="Dictionary_Type_Id">

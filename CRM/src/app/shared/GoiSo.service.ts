@@ -6,23 +6,23 @@ import { BaseService } from './Base.service';
 @Injectable({
     providedIn: 'root'
 })
-export class GoiSoService extends BaseService{
-  
-    DisplayColumns001: string[] = ['STT', 'ID', 'Name', 'Active'];   
-    DisplayColumns002: string[] = ['DanhMucThanhVienID', 'Save'];   
+export class GoiSoService extends BaseService {
 
-    DisplayColumns03: string[] = ['STT', 'ID', 'NgayGhiNhan', 'DanhMucDichVuName', 'DanhMucPhongKhamName', 'TongCong', 'SoHienTai', 'Save'];   
-    DisplayColumns04: string[] = ['STT', 'ID', 'NgayGhiNhan', 'DanhMucDichVuName', 'DanhMucQuayDichVuName', 'DanhMucPhongKhamName', 'TongCong', 'SoHienTai', 'Save'];   
-        
+    DisplayColumns001: string[] = ['STT', 'ID', 'Name', 'Active'];
+    DisplayColumns002: string[] = ['DanhMucThanhVienID', 'Save'];
+
+    DisplayColumns03: string[] = ['STT', 'ID', 'NgayGhiNhan', 'DanhMucDichVuName', 'DanhMucPhongKhamName', 'TongCong', 'SoHienTai', 'Save'];
+    DisplayColumns04: string[] = ['STT', 'ID', 'NgayGhiNhan', 'DanhMucDichVuName', 'DanhMucQuayDichVuName', 'DanhMucPhongKhamName', 'TongCong', 'SoHienTai', 'Save'];
+
     List: GoiSo[] | undefined;
     ListFilter: GoiSo[] | undefined;
     FormData!: GoiSo;
-    
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "GoiSo";
         this.FormData = {
-            SoHienTai: environment.InitializationNumber,           
+            SoHienTai: environment.InitializationNumber,
         };
     }
     GoiSoTiepTheoAsync() {
@@ -45,6 +45,18 @@ export class GoiSoService extends BaseService{
     }
     GetByNgayGhiNhanToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByNgayGhiNhanToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByYear_Month_DayToListAsync() {
+        if (this.BaseParameter.NgayGhiNhan == null) {
+            this.BaseParameter.NgayGhiNhan = new Date();
+        }
+        this.BaseParameter.Year = this.BaseParameter.NgayGhiNhan.getFullYear();
+        this.BaseParameter.Month = this.BaseParameter.NgayGhiNhan.getMonth() + 1;
+        this.BaseParameter.Day = this.BaseParameter.NgayGhiNhan.getDate();
+        let url = this.APIURL + this.Controller + '/GetByYear_Month_DayToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

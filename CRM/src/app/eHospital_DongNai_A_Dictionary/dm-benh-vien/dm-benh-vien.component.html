@@ -33,13 +33,23 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l9">
                     <input [(ngModel)]="DM_BenhVienService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DM_BenhVienSearch()">
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Tìm" (click)="DM_BenhVienSearch()">
                         <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Đầy đủ" (click)="DM_BenhVien001()">
+                        <i class="material-icons">bluetooth</i>
+                    </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Rút gọn" (click)="DM_BenhVien002()">
+                        <i class="material-icons">bluetooth_disabled</i>
                     </a>
                 </div>
                 <div class="KhungOverflow">
@@ -83,8 +93,7 @@
                         <ng-container matColumnDef="TenBenhVien">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>TenBenhVien</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TenBenhVien" name="TenBenhVien" [(ngModel)]="element.TenBenhVien"
-                                    style="width: 200px;"></td>
+                                    placeholder="TenBenhVien" name="TenBenhVien" [(ngModel)]="element.TenBenhVien"></td>
                         </ng-container>
                         <ng-container matColumnDef="TenBenhVien_En">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>TenBenhVien_En</th>
@@ -173,9 +182,9 @@
                                     [(ngModel)]="element.Mapping_Public_Id"></td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="DM_BenhVienService.DisplayColumns001">
+                        <tr mat-header-row *matHeaderRowDef="DM_BenhVienService.DisplayColumns003">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DM_BenhVienService.DisplayColumns001;">
+                        <tr mat-row *matRowDef="let row; columns: DM_BenhVienService.DisplayColumns003;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_BenhVienPaginator="matPaginator"

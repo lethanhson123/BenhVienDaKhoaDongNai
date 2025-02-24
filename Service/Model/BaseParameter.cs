@@ -16,8 +16,11 @@
 		public string? Token { get; set; }
 		public DateTime? NgayGhiNhan { get; set; }
 		public DateTime? BatDau { get; set; }
-		public DateTime? KetThuc { get; set; }	
-		public long? ThanhVienID { get; set; }
+		public DateTime? KetThuc { get; set; }
+        public int? Year { get; set; }
+        public int? Month { get; set; }
+        public int? Day { get; set; }
+        public long? ThanhVienID { get; set; }
         public long? KhachHangID { get; set; }
         public string? QRCode { get; set; }
         public string? URL { get; set; }

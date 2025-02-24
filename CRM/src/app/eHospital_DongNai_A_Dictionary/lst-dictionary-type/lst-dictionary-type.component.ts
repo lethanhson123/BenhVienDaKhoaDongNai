@@ -39,8 +39,24 @@ export class LstDictionaryTypeComponent implements OnInit {
     this.Lst_Dictionary_TypeService.FormData = element;
     this.NotificationService.warn(this.Lst_Dictionary_TypeService.ComponentSaveAll(this.Lst_Dictionary_TypeSort, this.Lst_Dictionary_TypePaginator));
   }
-  Lst_Dictionary_TypeDelete(element: Lst_Dictionary_Type) {    
+  Lst_Dictionary_TypeDelete(element: Lst_Dictionary_Type) {
     this.Lst_Dictionary_TypeService.FormData = element;
     this.NotificationService.warn(this.Lst_Dictionary_TypeService.ComponentDeleteAll(this.Lst_Dictionary_TypeSort, this.Lst_Dictionary_TypePaginator));
+  }
+  Lst_Dictionary_TypeKhoiPhuc() {
+    this.Lst_Dictionary_TypeService.IsShowLoading = true;
+    this.Lst_Dictionary_TypeService.KhoiPhucAsync().subscribe(
+      res => {
+        this.Lst_Dictionary_TypeService.List = (res as Lst_Dictionary_Type[]);
+        this.Lst_Dictionary_TypeService.DataSource = new MatTableDataSource(this.Lst_Dictionary_TypeService.List);
+        this.Lst_Dictionary_TypeService.DataSource.sort = this.Lst_Dictionary_TypeSort;
+        this.Lst_Dictionary_TypeService.DataSource.paginator = this.Lst_Dictionary_TypePaginator;
+      },
+      err => {
+      },
+      () => {
+        this.Lst_Dictionary_TypeService.IsShowLoading = false;
+      }
+    );
   }
 }

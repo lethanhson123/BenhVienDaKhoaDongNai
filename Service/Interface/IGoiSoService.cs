@@ -15,6 +15,7 @@ namespace Service.Interface
         Task<GoiSo> SaveByDanhMucPhongKhamID_GoiSoChiTietIDAsync(long DanhMucPhongKhamID, long GoiSoChiTietID);
         Task<GoiSo> CreateHTMLByModelAsync(GoiSo result);
         Task<List<GoiSo>> GetByNgayGhiNhanToListAsync(DateTime NgayGhiNhan);
+        Task<List<GoiSo>> GetByYear_Month_DayToListAsync(int Year, int Month, int Day);
     }
 }
 

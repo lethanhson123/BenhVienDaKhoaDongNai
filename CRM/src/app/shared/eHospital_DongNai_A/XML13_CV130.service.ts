@@ -23,5 +23,11 @@ export class XML13_CV130Service extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    GetByListIDStringToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetByListIDStringToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 
