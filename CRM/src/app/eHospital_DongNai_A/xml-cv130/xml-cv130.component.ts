@@ -318,7 +318,7 @@ export class XMLCV130Component implements OnInit {
     });
   }
   XML11_CV130Add(element: XML11_CV130) {
-    this.XML10_CV130Service.FormData = element;
+    this.XML11_CV130Service.FormData = element;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -330,7 +330,7 @@ export class XMLCV130Component implements OnInit {
     });
   }
   XML12_CV130Add(element: XML12_CV130) {
-    this.XML10_CV130Service.FormData = element;
+    this.XML12_CV130Service.FormData = element;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -342,7 +342,7 @@ export class XMLCV130Component implements OnInit {
     });
   }
   XML13_CV130Add(element: XML13_CV130) {
-    this.XML10_CV130Service.FormData = element;
+    this.XML13_CV130Service.FormData = element;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -354,7 +354,7 @@ export class XMLCV130Component implements OnInit {
     });
   }
   XML14_CV130Add(element: XML14_CV130) {
-    this.XML10_CV130Service.FormData = element;
+    this.XML14_CV130Service.FormData = element;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -366,7 +366,7 @@ export class XMLCV130Component implements OnInit {
     });
   }
   XML15_CV130Add(element: XML15_CV130) {
-    this.XML10_CV130Service.FormData = element;
+    this.XML15_CV130Service.FormData = element;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
