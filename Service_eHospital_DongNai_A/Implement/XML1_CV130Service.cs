@@ -10,6 +10,28 @@ namespace Service_eHospital_DongNai_A.Implement
         {
             _XML1_CV130Repository = XML1_CV130Repository;
         }
+        public override async Task<XML1_CV130> SaveAsync(XML1_CV130 model)
+        {
+            if (model.XML1_CV130_Id > 0)
+            {
+                await UpdateAsync(model);
+            }
+            else
+            {
+                await AddAsync(model);
+            }
+            return model;
+        }
+        public override async Task<XML1_CV130> GetByIDAsync(int ID)
+        {
+            XML1_CV130 result = new XML1_CV130();
+            result = await GetByCondition(item => item.XML1_CV130_Id == ID).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                result = new XML1_CV130();
+            }
+            return result;
+        }
         public override async Task<List<XML1_CV130>> GetBySearchStringToListAsync(string searchString)
         {
             List<XML1_CV130> result = new List<XML1_CV130>();
@@ -24,39 +46,7 @@ namespace Service_eHospital_DongNai_A.Implement
                         {
                             result.AddRange(await GetByCondition(item => item.MA_LK.Trim() == SearchStringSub).ToListAsync());
                         }
-                    }
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.TiepNhan_Id.Value.ToString() == searchString).ToListAsync();
-                    //}
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.BenhAn_Id.Value.ToString() == searchString).ToListAsync();
-                    //}
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.XacNhanChiPhi_Id.Value.ToString() == searchString).ToListAsync();
-                    //}
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.MA_BN.Trim() == searchString).ToListAsync();
-                    //}
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.MA_HSBA.Trim() == searchString).ToListAsync();
-                    //}
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.SO_CCCD.Trim() == searchString).ToListAsync();
-                    //}
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.MA_THE_BHYT.Trim() == searchString).ToListAsync();
-                    //}
-                    //if (result.Count == GlobalHelper.InitializationNumber)
-                    //{
-                    //    result = await GetByCondition(item => item.MA_BENH_CHINH.Trim() == searchString).ToListAsync();
-                    //}
+                    }                   
                 }
             }
             catch (Exception ex)

@@ -134,17 +134,7 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             List<DM_BenhNhan> result = new List<DM_BenhNhan>();
             if (ListID.Count > 0)
             {
-                foreach (var ID in ListID)
-                {
-                    DM_BenhNhan DM_BenhNhan = await GetByCondition(item => item.BenhNhan_Id == ID).FirstOrDefaultAsync();
-                    if (DM_BenhNhan != null)
-                    {
-                        if (DM_BenhNhan.BenhNhan_Id > 0)
-                        {
-                            result.Add(DM_BenhNhan);
-                        }
-                    }
-                }
+                result=await GetByCondition(item => EF.Constant(ListID).Contains(item.BenhNhan_Id)).ToListAsync();               
             }
             if (result == null)
             {

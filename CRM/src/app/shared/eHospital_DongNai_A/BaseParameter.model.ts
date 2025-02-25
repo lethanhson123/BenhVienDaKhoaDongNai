@@ -29,4 +29,5 @@ export class BaseParameter extends Base{
     Year?: number;
     Month?: number;
     Day?: number;
+    ID?: number;
 }

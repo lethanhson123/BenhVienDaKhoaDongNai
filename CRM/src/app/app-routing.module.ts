@@ -111,6 +111,7 @@ import { XMLCV130Component } from './eHospital_DongNai_A/xml-cv130/xml-cv130.com
 import { SysAppSettingsCheckBHXHComponent } from './eHospital_DongNai_A_Config/sys-app-settings-check-bhxh/sys-app-settings-check-bhxh.component';
 import { TiepNhan2025Component } from './eHospital_BenhAnDienTu/tiep-nhan2025/tiep-nhan2025.component';
 import { KhamBenhNgoaiTru2025Component } from './eHospital_BenhAnDienTu/kham-benh-ngoai-tru2025/kham-benh-ngoai-tru2025.component';
+import { XMLCV130TagComponent } from './eHospital_DongNai_A/xmlcv130-tag/xmlcv130-tag.component';
 
 
 
@@ -456,6 +457,9 @@ const routes: Routes = [
   },
   {
     path: 'XMLCV130', component: XMLCV130Component,
+  },
+  {
+    path: 'XMLCV130Tag', component: XMLCV130TagComponent,
   },
 
   {

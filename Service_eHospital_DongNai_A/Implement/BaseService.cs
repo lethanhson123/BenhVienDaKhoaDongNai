@@ -61,7 +61,16 @@
         {
             return _repository.GetByCondition(whereCondition);
         }
-
+        public virtual T GetByID(int ID)
+        {
+            T result = (T)Activator.CreateInstance(typeof(T));
+            return result;
+        }
+        public virtual async Task<T> GetByIDAsync(int ID)
+        {
+            T result = (T)Activator.CreateInstance(typeof(T));
+            return result;
+        }
         public virtual List<T> GetAllToList()
         {
             return _repository.GetAllToList();

@@ -8,6 +8,28 @@
         {
             _XML5_CV130Repository = XML5_CV130Repository;
         }
+        public override async Task<XML5_CV130> SaveAsync(XML5_CV130 model)
+        {
+            if (model.XML5_CV130_Id > 0)
+            {
+                await UpdateAsync(model);
+            }
+            else
+            {
+                await AddAsync(model);
+            }
+            return model;
+        }
+        public override async Task<XML5_CV130> GetByIDAsync(int ID)
+        {
+            XML5_CV130 result = new XML5_CV130();
+            result = await GetByCondition(item => item.XML5_CV130_Id == ID).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                result = new XML5_CV130();
+            }
+            return result;
+        }
         public override async Task<List<XML5_CV130>> GetBySearchStringToListAsync(string searchString)
         {
             List<XML5_CV130> result = new List<XML5_CV130>();

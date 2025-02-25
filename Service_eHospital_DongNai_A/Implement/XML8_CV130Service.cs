@@ -8,6 +8,28 @@
         {
             _XML8_CV130Repository = XML8_CV130Repository;
         }
+        public override async Task<XML8_CV130> SaveAsync(XML8_CV130 model)
+        {
+            if (model.XML8_CV130_Id > 0)
+            {
+                await UpdateAsync(model);
+            }
+            else
+            {
+                await AddAsync(model);
+            }
+            return model;
+        }
+        public override async Task<XML8_CV130> GetByIDAsync(int ID)
+        {
+            XML8_CV130 result = new XML8_CV130();
+            result = await GetByCondition(item => item.XML8_CV130_Id == ID).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                result = new XML8_CV130();
+            }
+            return result;
+        }
         public override async Task<List<XML8_CV130>> GetBySearchStringToListAsync(string searchString)
         {
             List<XML8_CV130> result = new List<XML8_CV130>();

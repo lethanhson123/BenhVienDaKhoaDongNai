@@ -129,6 +129,22 @@ import { XMLCV130Component } from './eHospital_DongNai_A/xml-cv130/xml-cv130.com
 import { SysAppSettingsCheckBHXHComponent } from './eHospital_DongNai_A_Config/sys-app-settings-check-bhxh/sys-app-settings-check-bhxh.component';
 import { TiepNhan2025Component } from './eHospital_BenhAnDienTu/tiep-nhan2025/tiep-nhan2025.component';
 import { KhamBenhNgoaiTru2025Component } from './eHospital_BenhAnDienTu/kham-benh-ngoai-tru2025/kham-benh-ngoai-tru2025.component';
+import { XML1CV130DetailComponent } from './eHospital_DongNai_A/xml1-cv130-detail/xml1-cv130-detail.component';
+import { XML10CV130DetailComponent } from './eHospital_DongNai_A/xml10-cv130-detail/xml10-cv130-detail.component';
+import { XML11CV130DetailComponent } from './eHospital_DongNai_A/xml11-cv130-detail/xml11-cv130-detail.component';
+import { XML12CV130DetailComponent } from './eHospital_DongNai_A/xml12-cv130-detail/xml12-cv130-detail.component';
+import { XML13CV130DetailComponent } from './eHospital_DongNai_A/xml13-cv130-detail/xml13-cv130-detail.component';
+import { XML14CV130DetailComponent } from './eHospital_DongNai_A/xml14-cv130-detail/xml14-cv130-detail.component';
+import { XML15CV130DetailComponent } from './eHospital_DongNai_A/xml15-cv130-detail/xml15-cv130-detail.component';
+import { XML2CV130DetailComponent } from './eHospital_DongNai_A/xml2-cv130-detail/xml2-cv130-detail.component';
+import { XML3CV130DetailComponent } from './eHospital_DongNai_A/xml3-cv130-detail/xml3-cv130-detail.component';
+import { XML4CV130DetailComponent } from './eHospital_DongNai_A/xml4-cv130-detail/xml4-cv130-detail.component';
+import { XML5CV130DetailComponent } from './eHospital_DongNai_A/xml5-cv130-detail/xml5-cv130-detail.component';
+import { XML6CV130DetailComponent } from './eHospital_DongNai_A/xml6-cv130-detail/xml6-cv130-detail.component';
+import { XML7CV130DetailComponent } from './eHospital_DongNai_A/xml7-cv130-detail/xml7-cv130-detail.component';
+import { XML8CV130DetailComponent } from './eHospital_DongNai_A/xml8-cv130-detail/xml8-cv130-detail.component';
+import { XML9CV130DetailComponent } from './eHospital_DongNai_A/xml9-cv130-detail/xml9-cv130-detail.component';
+import { XMLCV130TagComponent } from './eHospital_DongNai_A/xmlcv130-tag/xmlcv130-tag.component';
 
 
 
@@ -253,6 +269,22 @@ import { KhamBenhNgoaiTru2025Component } from './eHospital_BenhAnDienTu/kham-ben
     SysAppSettingsCheckBHXHComponent,
     TiepNhan2025Component,
     KhamBenhNgoaiTru2025Component,
+    XML1CV130DetailComponent,
+    XML10CV130DetailComponent,
+    XML11CV130DetailComponent,
+    XML12CV130DetailComponent,
+    XML13CV130DetailComponent,
+    XML14CV130DetailComponent,
+    XML15CV130DetailComponent,
+    XML2CV130DetailComponent,
+    XML3CV130DetailComponent,
+    XML4CV130DetailComponent,
+    XML5CV130DetailComponent,
+    XML6CV130DetailComponent,
+    XML7CV130DetailComponent,
+    XML8CV130DetailComponent,
+    XML9CV130DetailComponent,
+    XMLCV130TagComponent,
     
     
     

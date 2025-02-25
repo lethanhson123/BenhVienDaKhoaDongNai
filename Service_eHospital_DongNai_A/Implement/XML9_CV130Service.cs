@@ -17,6 +17,28 @@ namespace Service_eHospital_DongNai_A.Implement
             _XML9_CV130Repository = XML9_CV130Repository;
             _TiepNhanService = TiepNhanService;
         }
+        public override async Task<XML9_CV130> SaveAsync(XML9_CV130 model)
+        {
+            if (model.XML9_CV130_Id > 0)
+            {
+                await UpdateAsync(model);
+            }
+            else
+            {
+                await AddAsync(model);
+            }
+            return model;
+        }
+        public override async Task<XML9_CV130> GetByIDAsync(int ID)
+        {
+            XML9_CV130 result = new XML9_CV130();
+            result = await GetByCondition(item => item.XML9_CV130_Id == ID).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                result = new XML9_CV130();
+            }
+            return result;
+        }
         public override async Task<List<XML9_CV130>> GetBySearchStringToListAsync(string searchString)
         {
             List<XML9_CV130> result = new List<XML9_CV130>();

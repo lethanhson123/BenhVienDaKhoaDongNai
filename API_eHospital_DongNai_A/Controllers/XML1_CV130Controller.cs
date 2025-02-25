@@ -44,6 +44,60 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetXMLCV130TagAsync")]
+        public virtual async Task<XMLCV130Tag> GetXMLCV130TagAsync()
+        {
+            XMLCV130Tag result = new XMLCV130Tag();
+            try
+            {
+                string fileName02 = result.GetType().Name + ".json";
+                string path02 = Path.Combine(_WebHostEnvironment.WebRootPath, fileName02);
+                bool isFileExists = System.IO.File.Exists(path02);
+                if (isFileExists)
+                {
+                    using (FileStream fs = new FileStream(path02, FileMode.Open))
+                    {
+                        using (StreamReader r = new StreamReader(fs, Encoding.UTF8))
+                        {
+                            string json = r.ReadToEnd();
+                            result = JsonConvert.DeserializeObject<XMLCV130Tag>(json);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("SaveXMLCV130TagAsync")]
+        public virtual async Task<XMLCV130Tag> SaveXMLCV130TagAsync()
+        {
+            XMLCV130Tag result = new XMLCV130Tag();
+            try
+            {
+                result = JsonConvert.DeserializeObject<XMLCV130Tag>(Request.Form["data"]);
+                string fileName01 = result.GetType().Name + ".json";
+                string path01 = Path.Combine(_WebHostEnvironment.WebRootPath, fileName01);
+                bool isFileExists = System.IO.File.Exists(path01);
+                string json = JsonConvert.SerializeObject(result);
+                using (FileStream fs = new FileStream(path01, FileMode.Create))
+                {
+                    using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                    {
+                        w.WriteLine(json);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

@@ -26,7 +26,7 @@
             }
             catch (Exception ex)
             {
-                string message = ex.Message;                
+                string message = ex.Message;
             }
             return result;
         }
@@ -42,10 +42,10 @@
             }
             catch (Exception ex)
             {
-                string message = ex.Message;                
+                string message = ex.Message;
             }
             return result;
-        }       
+        }
         [HttpPost]
         [Route("Remove")]
         public virtual string Remove()
@@ -80,7 +80,38 @@
             }
             return result;
         }
-       
+        [HttpPost]
+        [Route("GetByID")]
+        public virtual T GetByID()
+        {
+            T result = (T)Activator.CreateInstance(typeof(T));
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = _BaseService.GetByID(baseParameter.ID.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByIDAsync")]
+        public virtual async Task<T> GetByIDAsync()
+        {
+            T result = (T)Activator.CreateInstance(typeof(T));
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BaseService.GetByIDAsync(baseParameter.ID.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
         [HttpPost]
         [Route("GetAllToList")]
         public virtual List<T> GetAllToList()
@@ -111,7 +142,7 @@
             }
             return result;
         }
-       
+
         [HttpPost]
         [Route("GetBySearchStringToListAsync")]
         public virtual async Task<List<T>> GetBySearchStringToListAsync()

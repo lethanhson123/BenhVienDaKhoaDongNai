@@ -8,6 +8,28 @@
         {
             _XML4_CV130Repository = XML4_CV130Repository;
         }
+        public override async Task<XML4_CV130> SaveAsync(XML4_CV130 model)
+        {
+            if (model.XML4_CV130_Id > 0)
+            {
+                await UpdateAsync(model);
+            }
+            else
+            {
+                await AddAsync(model);
+            }
+            return model;
+        }
+        public override async Task<XML4_CV130> GetByIDAsync(int ID)
+        {
+            XML4_CV130 result = new XML4_CV130();
+            result = await GetByCondition(item => item.XML4_CV130_Id == ID).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                result = new XML4_CV130();
+            }
+            return result;
+        }
         public override async Task<List<XML4_CV130>> GetBySearchStringToListAsync(string searchString)
         {
             List<XML4_CV130> result = new List<XML4_CV130>();

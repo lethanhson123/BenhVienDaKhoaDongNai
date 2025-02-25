@@ -11,6 +11,7 @@
         public int? Month { get; set; }
         public int? Day { get; set; }
         public List<string>? ListIDString { get; set; }
+        public int? ID { get; set; }
         public int? BenhAn_Id { get; set; }
         public int? TiepNhan_Id { get; set; }
         public int? PhongBan_Id { get; set; }

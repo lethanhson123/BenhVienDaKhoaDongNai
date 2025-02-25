@@ -12,6 +12,8 @@
         int Remove(T model);
         Task<int> RemoveAsync(T model);
         IQueryable<T> GetByCondition(Expression<Func<T, bool>> whereCondition);
+        T GetByID(int ID);
+        Task<T> GetByIDAsync(int ID);
         List<T> GetAllToList();
         Task<List<T>> GetAllToListAsync();      
         List<T> GetBySearchStringToList(string searchString);

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { XML1_CV130 } from './XML1_CV130.model';
 import { BaseService } from './Base.service';
+import { XMLCV130Tag } from './XMLCV130Tag.model';
 @Injectable({
     providedIn: 'root'
 })
@@ -12,11 +13,11 @@ export class XML1_CV130Service extends BaseService {
     List: XML1_CV130[] | undefined;
     ListFilter: XML1_CV130[] | undefined;
     FormData!: XML1_CV130;
+    XMLCV130Tag!: XMLCV130Tag;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "XML1_CV";
-    }
-
+    }    
     GetByYear_Month_SearchStringToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByYear_Month_SearchStringToListAsync';
         const formUpload: FormData = new FormData();
@@ -33,6 +34,18 @@ export class XML1_CV130Service extends BaseService {
         let url = this.APIURL + this.Controller + '/GetByYear_Month_Day_SearchStringToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetXMLCV130TagAsync() {
+        let url = this.APIURL + this.Controller + '/GetXMLCV130TagAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    SaveXMLCV130TagAsync() {
+        let url = this.APIURL + this.Controller + '/SaveXMLCV130TagAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.XMLCV130Tag));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 }

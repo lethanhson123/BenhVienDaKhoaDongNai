@@ -8,6 +8,28 @@
         {
             _XML2_CV130Repository = XML2_CV130Repository;
         }
+        public override async Task<XML2_CV130> SaveAsync(XML2_CV130 model)
+        {
+            if (model.XML2_CV130_Id > 0)
+            {
+                await UpdateAsync(model);
+            }
+            else
+            {
+                await AddAsync(model);
+            }
+            return model;
+        }
+        public override async Task<XML2_CV130> GetByIDAsync(int ID)
+        {
+            XML2_CV130 result = new XML2_CV130();
+            result = await GetByCondition(item => item.XML2_CV130_Id == ID).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                result = new XML2_CV130();
+            }
+            return result;
+        }
         public override async Task<List<XML2_CV130>> GetBySearchStringToListAsync(string searchString)
         {
             List<XML2_CV130> result = new List<XML2_CV130>();

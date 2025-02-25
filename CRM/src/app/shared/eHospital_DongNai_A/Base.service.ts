@@ -213,6 +213,19 @@ export class BaseService {
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 
+    GetByID() {
+        let url = this.APIURL + this.Controller + '/GetByID';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    GetByIDAsync() {
+        let url = this.APIURL + this.Controller + '/GetByIDAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+
     GetAllToList() {
         let url = this.APIURL + this.Controller + '/GetAllToList';
         const formUpload: FormData = new FormData();
