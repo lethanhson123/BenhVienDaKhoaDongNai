@@ -44,6 +44,22 @@
             }
             return result;
         }
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetAllowAnonymousByThanhVienID_ActiveToListAsync")]
+        public async Task<List<DanhMucDichVu>> GetAllowAnonymousByThanhVienID_ActiveToListAsync(long ThanhVienID, bool Active)
+        {
+            List<DanhMucDichVu> result = new List<DanhMucDichVu>();
+            try
+            {                
+                result = await _DanhMucDichVuService.GetByThanhVienID_ActiveToListAsync(ThanhVienID, Active);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
         [HttpPost]
         [Route("GetByIsBHYTToListAsync")]
         public virtual async Task<List<DanhMucDichVu>> GetByIsBHYTToListAsync()

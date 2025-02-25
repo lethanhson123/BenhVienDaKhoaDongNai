@@ -204,7 +204,7 @@ export class Dashboard001Component {
         container: this.mapContainer.nativeElement,
         style: 'https://api.maptiler.com/maps/streets/style.json?key=' + environment.MaptilerAPIKey,
         center: [longitude, latitude],
-        zoom: zoom,
+        zoom: zoom,        
         pitch: 45,
       });
     }

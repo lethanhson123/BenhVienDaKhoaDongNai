@@ -29,6 +29,25 @@
             }
             return result;
         }
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("GetAuthenticationAsync")]
+        public virtual async Task<ThanhVien> GetAuthenticationAsync(string TaiKhoan, string MatKhau)
+        {
+            ThanhVien result = new ThanhVien();
+            try
+            {
+                result.TaiKhoan = TaiKhoan;
+                result.MatKhau = MatKhau;
+                result = await _ThanhVienService.AuthenticationAsync(result);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
     }
 }
 
