@@ -1,6 +1,6 @@
 ﻿import { Base } from "./Base.model";
 
-export class XMLCV130Tag extends Base{
+export class XMLCV130Tag extends Base {
 
     XML1?: string;
     XML2?: string;

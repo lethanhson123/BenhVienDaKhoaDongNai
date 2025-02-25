@@ -17,6 +17,8 @@ export class XML1_CV130Service extends BaseService {
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "XML1_CV";
+        this.XMLCV130Tag = {
+        };
     }    
     GetByYear_Month_SearchStringToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByYear_Month_SearchStringToListAsync';
