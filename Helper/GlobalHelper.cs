@@ -109,10 +109,18 @@
         }
         #endregion
         #region AppSettings 
+        public static int APIDataLimit
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("APIDataLimit").Value);
+            }
+        }
         public static string XMLHeader
         {
             get
-            {                
+            {
                 return @"<?xml version=""1.0"" encoding=""utf-8""?>";
             }
         }
@@ -139,7 +147,7 @@
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                 return builder.Build().GetSection("AppSettings").GetSection("ZaloTokenNote").Value;
             }
-        }        
+        }
         public static string ZaloZNSAPIURL
         {
             get
@@ -159,7 +167,7 @@
         public static string APICapSoSite
         {
             get
-            {                
+            {
                 return "http://10.84.3.124:901";
             }
         }

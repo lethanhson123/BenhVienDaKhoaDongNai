@@ -40,7 +40,7 @@ export class KhamBenhVaoVienComponent implements OnInit {
   KhamBenh_VaoVienSearch() {
     if (this.KhamBenh_VaoVienService.BaseParameter.IsSearchAPI == true) {
       this.KhamBenh_VaoVienService.IsShowLoading = true;
-      this.KhamBenh_VaoVienService.GetByNgayKham_SearchStringToListAsync().subscribe(
+      this.KhamBenh_VaoVienService.GetByYear_Month_Day_SearchStringToListAsync().subscribe(
         res => {
           this.KhamBenh_VaoVienService.List = (res as KhamBenh_VaoVien[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
 

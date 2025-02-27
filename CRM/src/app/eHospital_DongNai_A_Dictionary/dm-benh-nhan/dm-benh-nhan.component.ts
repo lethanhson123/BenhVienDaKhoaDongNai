@@ -43,6 +43,7 @@ export class DMBenhNhanComponent implements OnInit {
     this.DM_DonViHanhChinhService.GetByCapDonViToListAsync().subscribe(
       res => {
         this.DM_DonViHanhChinhService.ListTinhThanh = (res as DM_DonViHanhChinh[]).sort((a, b) => (a.TenDonVi > b.TenDonVi ? 1 : -1));
+        //this.DM_BenhNhanService.BaseParameter.TinhThanh_Id = environment.TinhThanhIDDongNai;
         this.DM_DonViHanhChinhSearchQuanHuyen();
       },
       err => {
@@ -70,7 +71,7 @@ export class DMBenhNhanComponent implements OnInit {
     this.DM_DonViHanhChinhService.BaseParameter.CapDonVi = 4;
     this.DM_DonViHanhChinhService.GetByCapDonVi_CapTren_IdToListAsync().subscribe(
       res => {
-        this.DM_DonViHanhChinhService.ListXaPhuong = (res as DM_DonViHanhChinh[]).sort((a, b) => (a.TenDonVi > b.TenDonVi ? 1 : -1));        
+        this.DM_DonViHanhChinhService.ListXaPhuong = (res as DM_DonViHanhChinh[]).sort((a, b) => (a.TenDonVi > b.TenDonVi ? 1 : -1));
       },
       err => {
       },
@@ -80,17 +81,43 @@ export class DMBenhNhanComponent implements OnInit {
   }
   DM_BenhNhanSearch() {
     this.DM_BenhNhanService.IsShowLoading = true;
-    this.DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchStringToListAsync().subscribe(
-      res => {
-        this.DM_BenhNhanService.List = (res as DM_BenhNhan[]).sort((a, b) => (a.TenBenhNhan > b.TenBenhNhan ? 1 : -1));
-        this.DM_BenhNhanService.DataSource = new MatTableDataSource(this.DM_BenhNhanService.List);
-        this.DM_BenhNhanService.DataSource.sort = this.DM_BenhNhanSort;
-        this.DM_BenhNhanService.DataSource.paginator = this.DM_BenhNhanPaginator;
+    this.DM_BenhNhanService.BaseParameter.Page = 0;
+    this.DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToCountAsync().subscribe(
+      res => {        
+        let PageCount = (res as number);        
+        for (let i = 0; i <= PageCount; i++) {          
+          this.DM_BenhNhanService.IsShowLoading = true;
+          this.DM_BenhNhanService.BaseParameter.Page = i;
+          this.DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToListAsync().subscribe(
+            res => {              
+              if (res) {
+                let List = (res as DM_BenhNhan[]);
+                if (List) {
+                  for (let j = 0; j < List.length; j++) {
+                    this.DM_BenhNhanService.List.push(List[j]);
+                  }                  
+                  this.DM_BenhNhanService.List = this.DM_BenhNhanService.List.sort((a, b) => (a.TenBenhNhan > b.TenBenhNhan ? 1 : -1));
+                  this.DM_BenhNhanService.DataSource = new MatTableDataSource(this.DM_BenhNhanService.List);
+                  this.DM_BenhNhanService.DataSource.sort = this.DM_BenhNhanSort;
+                  this.DM_BenhNhanService.DataSource.paginator = this.DM_BenhNhanPaginator;
+                }
+              }
+            },
+            err => {
+            },
+            () => {
+              this.DM_BenhNhanService.IsShowLoading = false;
+            }
+          );
+        }
+        if (PageCount == environment.InitializationNumber) {
+          this.DM_BenhNhanService.IsShowLoading = false;
+        }
+
       },
       err => {
       },
       () => {
-        this.DM_BenhNhanService.IsShowLoading = false;
       }
     );
   }

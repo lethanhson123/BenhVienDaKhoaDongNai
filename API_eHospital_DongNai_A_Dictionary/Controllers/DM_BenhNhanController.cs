@@ -61,6 +61,38 @@
             return result;
         }
         [HttpPost]
+        [Route("GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToListAsync")]
+        public virtual async Task<List<DM_BenhNhan>> GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToListAsync()
+        {
+            List<DM_BenhNhan> result = new List<DM_BenhNhan>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToListAsync(baseParameter.TinhThanh_Id.Value, baseParameter.QuanHuyen_Id.Value, baseParameter.XaPhuong_Id.Value, baseParameter.SearchString, baseParameter.Page.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToCountAsync")]
+        public virtual async Task<int> GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToCountAsync()
+        {
+            int result = GlobalHelper.InitializationNumber;
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToCountAsync(baseParameter.TinhThanh_Id.Value, baseParameter.QuanHuyen_Id.Value, baseParameter.XaPhuong_Id.Value, baseParameter.SearchString);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByListIDToListAsync")]
         public virtual async Task<List<DM_BenhNhan>> GetByListIDToListAsync()
         {

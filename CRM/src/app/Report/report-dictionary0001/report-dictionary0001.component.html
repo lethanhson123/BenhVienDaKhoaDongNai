@@ -1,0 +1,465 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Bệnh nhân
+                        <span *ngIf="ReportService.List">({{ReportService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a title="áo cáo thống kê">Báo cáo thống kê</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Report" title="Bệnh nhân">Bệnh nhân</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">    
+                <div class="col s12 m12 l3">
+                    <input [(ngModel)]="ReportService.BaseParameter.Year" placeholder="Năm tiếp nhận"
+                        class="form-control" (keyup.enter)="ReportDictionary0001Search()" type="number">
+                </div>           
+                <div class="col s12 m12 l8">
+                    <input [(ngModel)]="ReportService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="ReportDictionary0001Search()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="ReportDictionary0001Search()"><i
+                            class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #ReportSort="matSort"
+                        [dataSource]="ReportService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                <div *ngIf="ReportPaginator">
+                                    {{ReportPaginator.pageSize *
+                                    ReportPaginator.pageIndex + i + 1}}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TinhThanhName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tỉnh thành
+                            </th>
+                            <td mat-cell *matCellDef="let element">                                                                                                
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.TinhThanhName}} [{{element.TinhThanhID}}]
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.TinhThanhName}} [{{element.TinhThanhID}}]
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.TinhThanhName}} [{{element.TinhThanhID}}]
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.TinhThanhName}} [{{element.TinhThanhID}}]
+                                        </div>   
+                                    </div>
+                                </div>                                
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="QuanHuyenName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Quận huyện
+                            </th>
+                            <td mat-cell *matCellDef="let element">                                 
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.QuanHuyenName}} [{{element.QuanHuyenID}}]
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.QuanHuyenName}} [{{element.QuanHuyenID}}]
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.QuanHuyenName}} [{{element.QuanHuyenID}}]   
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.QuanHuyenName}} [{{element.QuanHuyenID}}]
+                                        </div>   
+                                    </div>
+                                </div>                                                          
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="XaPhuongName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Xã phường
+                            </th>
+                            <td mat-cell *matCellDef="let element">   
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.XaPhuongName}} [{{element.XaPhuongID}}]
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.XaPhuongName}} [{{element.XaPhuongID}}]
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.XaPhuongName}} [{{element.XaPhuongID}}]   
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.XaPhuongName}} [{{element.XaPhuongID}}]
+                                        </div>   
+                                    </div>
+                                </div>                                                                                                   
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe001">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Khu vực
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">                                
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    <b>{{element.ThongKe001 | number:'1.0-0'}}</b>
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        <b>{{element.ThongKe001 | number:'1.0-0'}}</b>
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            <b>{{element.ThongKe001 | number:'1.0-0'}}</b>
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            <b>{{element.ThongKe001 | number:'1.0-0'}}</b>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe002">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nam
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">                                
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe002 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe002 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe002 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe002 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe003">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nữ
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe003 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe003 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe003 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe003 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe004">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 00 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe004 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe004 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe004 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe004 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe005">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 05 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe005 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe005 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe005 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe005 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe006">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 10 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe006 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe006 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe006 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe006 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe007">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 20 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe007 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe007 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe007 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe007 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe008">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 30 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe008 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe008 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe008 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe008 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe009">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 40 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe009 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe009 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe009 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe009 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe010">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 50 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe010 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe010 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe010 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe010 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe011">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 60 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe011 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe011 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe011 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe011 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe012">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 70 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe012 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe012 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe012 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe012 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe013">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 80 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe013 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe013 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe013 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe013 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe014">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 90 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe014 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe014 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe014 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe014 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe015">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>> 100 tuổi
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <div *ngIf="element.TinhThanhID==-100" style="color: green;">
+                                    {{element.ThongKe015 | number:'1.0-0'}}
+                                </div>   
+                                <div *ngIf="element.TinhThanhID!=-100">
+                                    <div *ngIf="element.QuanHuyenID==-100" style="color: darkorange;">
+                                        {{element.ThongKe015 | number:'1.0-0'}}
+                                    </div>    
+                                    <div *ngIf="element.QuanHuyenID!=-100">
+                                        <div *ngIf="element.XaPhuongID==-100" style="color: brown;">
+                                            {{element.ThongKe015 | number:'1.0-0'}}
+                                        </div>    
+                                        <div *ngIf="element.XaPhuongID!=-100">
+                                            {{element.ThongKe015 | number:'1.0-0'}}
+                                        </div>   
+                                    </div>
+                                </div> 
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="ReportService.DisplayColumns0001">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: ReportService.DisplayColumns0001;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #ReportPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100,1000,10000,100000]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="ReportService.IsShowLoading"></app-loading>

@@ -112,6 +112,9 @@ import { SysAppSettingsCheckBHXHComponent } from './eHospital_DongNai_A_Config/s
 import { TiepNhan2025Component } from './eHospital_BenhAnDienTu/tiep-nhan2025/tiep-nhan2025.component';
 import { KhamBenhNgoaiTru2025Component } from './eHospital_BenhAnDienTu/kham-benh-ngoai-tru2025/kham-benh-ngoai-tru2025.component';
 import { XMLCV130TagComponent } from './eHospital_DongNai_A/xmlcv130-tag/xmlcv130-tag.component';
+import { DMDanTocComponent } from './eHospital_DongNai_A_Dictionary/dmdan-toc/dmdan-toc.component';
+import { DMQuocGiaComponent } from './eHospital_DongNai_A_Dictionary/dmquoc-gia/dmquoc-gia.component';
+import { ReportDictionary0001Component } from './Report/report-dictionary0001/report-dictionary0001.component';
 
 
 
@@ -258,6 +261,12 @@ const routes: Routes = [
   },
   {
     path: 'DMDonViHanhChinhXaPhuong', component: DMDonViHanhChinhXaPhuongComponent,
+  },
+  {
+    path: 'DMDanToc', component: DMDanTocComponent,
+  },
+  {
+    path: 'DMQuocGia', component: DMQuocGiaComponent,
   },
   {
     path: 'DMDichVu', component: DMDichVuComponent,
@@ -469,6 +478,10 @@ const routes: Routes = [
     path: 'KhamBenhNgoaiTru2025', component: KhamBenhNgoaiTru2025Component,
   },
 
+
+  {
+    path: 'ReportDictionary0001', component: ReportDictionary0001Component,
+  },
 
 ];
 

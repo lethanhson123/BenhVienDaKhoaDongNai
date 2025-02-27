@@ -35,6 +35,7 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l3">
+                    <label>Tỉnh thành [{{DM_BenhNhanService.BaseParameter.TinhThanh_Id}}]</label>
                     <select class="browser-default form-select" name="DM_BenhNhanService.BaseParameter.TinhThanh_Id"
                         [(ngModel)]="DM_BenhNhanService.BaseParameter.TinhThanh_Id"
                         (change)="DM_DonViHanhChinhSearchQuanHuyen()">
@@ -44,6 +45,7 @@
                     </select>
                 </div>
                 <div class="col s12 m12 l3">
+                    <label>Quận huyện [{{DM_BenhNhanService.BaseParameter.QuanHuyen_Id}}]</label>
                     <select class="browser-default form-select" name="DM_BenhNhanService.BaseParameter.QuanHuyen_Id"
                         [(ngModel)]="DM_BenhNhanService.BaseParameter.QuanHuyen_Id" (change)="DM_DonViHanhChinhSearchXaPhuong()">
                         <option value="0">Tất cả</option>
@@ -53,6 +55,7 @@
                     </select>
                 </div>
                 <div class="col s12 m12 l3">
+                    <label>Xã phường [{{DM_BenhNhanService.BaseParameter.XaPhuong_Id}}]</label>
                     <select class="browser-default form-select" name="DM_BenhNhanService.BaseParameter.XaPhuong_Id"
                         [(ngModel)]="DM_BenhNhanService.BaseParameter.XaPhuong_Id">
                         <option value="0">Tất cả</option>
@@ -62,10 +65,12 @@
                     </select>
                 </div>
                 <div class="col s12 m12 l2">
+                    <label>.</label>
                     <input [(ngModel)]="DM_BenhNhanService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DM_BenhNhanSearch()">
                 </div>
                 <div class="col s12 m12 l1">
+                    <br/>
                     <a style="color: green;" title="Tìm" (click)="DM_BenhNhanSearch()">
                         <i class="material-icons">play_circle_filled</i>
                     </a>

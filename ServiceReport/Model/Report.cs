@@ -1,0 +1,30 @@
+﻿namespace ServiceReport.Model
+{
+	public class Report : ServiceReport.Model.BaseModel
+    {       
+		public string? TinhThanhName { get; set; }
+        public string? QuanHuyenName { get; set; }
+        public string? XaPhuongName { get; set; }
+        public int? TinhThanhID { get; set; }
+        public int? QuanHuyenID { get; set; }
+        public int? XaPhuongID { get; set; }
+        public decimal? ThongKe001 { get; set; }
+        public decimal? ThongKe002 { get; set; }
+        public decimal? ThongKe003 { get; set; }
+        public decimal? ThongKe004 { get; set; }
+        public decimal? ThongKe005 { get; set; }
+        public decimal? ThongKe006 { get; set; }
+        public decimal? ThongKe007 { get; set; }
+        public decimal? ThongKe008 { get; set; }
+        public decimal? ThongKe009 { get; set; }
+        public decimal? ThongKe010 { get; set; }
+        public decimal? ThongKe011 { get; set; }
+        public decimal? ThongKe012 { get; set; }
+        public decimal? ThongKe013 { get; set; }
+        public decimal? ThongKe014 { get; set; }
+        public decimal? ThongKe015 { get; set; }
+        public Report()
+		{              
+        }
+	}
+}

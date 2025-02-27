@@ -36,7 +36,7 @@ export class TiepNhanComponent implements OnInit {
   TiepNhanSearch() {
     if (this.TiepNhanService.BaseParameter.IsSearchAPI == true) {
       this.TiepNhanService.IsShowLoading = true;
-      this.TiepNhanService.GetByNgayTiepNhan_SearchStringToListAsync().subscribe(
+      this.TiepNhanService.GetByYear_Month_Day_SearchStringToListAsync().subscribe(
         res => {
           this.TiepNhanService.List = (res as TiepNhan[]).sort((a, b) => (a.NgayTao < b.NgayTao ? 1 : -1));
 

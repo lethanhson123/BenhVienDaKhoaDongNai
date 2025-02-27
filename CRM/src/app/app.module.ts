@@ -145,6 +145,9 @@ import { XML7CV130DetailComponent } from './eHospital_DongNai_A/xml7-cv130-detai
 import { XML8CV130DetailComponent } from './eHospital_DongNai_A/xml8-cv130-detail/xml8-cv130-detail.component';
 import { XML9CV130DetailComponent } from './eHospital_DongNai_A/xml9-cv130-detail/xml9-cv130-detail.component';
 import { XMLCV130TagComponent } from './eHospital_DongNai_A/xmlcv130-tag/xmlcv130-tag.component';
+import { DMDanTocComponent } from './eHospital_DongNai_A_Dictionary/dmdan-toc/dmdan-toc.component';
+import { DMQuocGiaComponent } from './eHospital_DongNai_A_Dictionary/dmquoc-gia/dmquoc-gia.component';
+import { ReportDictionary0001Component } from './Report/report-dictionary0001/report-dictionary0001.component';
 
 
 
@@ -285,6 +288,9 @@ import { XMLCV130TagComponent } from './eHospital_DongNai_A/xmlcv130-tag/xmlcv13
     XML8CV130DetailComponent,
     XML9CV130DetailComponent,
     XMLCV130TagComponent,
+    DMDanTocComponent,
+    DMQuocGiaComponent,
+    ReportDictionary0001Component,
     
     
     

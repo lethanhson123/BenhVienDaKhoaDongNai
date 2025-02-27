@@ -71,6 +71,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_eHospital_DongNai_A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_eHospital_DongNai_A_NSTL", "API_eHospital_DongNai_A_NSTL\API_eHospital_DongNai_A_NSTL.csproj", "{191E2DF6-6497-4802-BE92-070689C14591}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceReport", "ServiceReport\ServiceReport.csproj", "{7E5DF38D-03B6-4004-B0B8-00DC3E7D70BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIReport", "APIReport\APIReport.csproj", "{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +217,14 @@ Global
 		{191E2DF6-6497-4802-BE92-070689C14591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{191E2DF6-6497-4802-BE92-070689C14591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{191E2DF6-6497-4802-BE92-070689C14591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E5DF38D-03B6-4004-B0B8-00DC3E7D70BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E5DF38D-03B6-4004-B0B8-00DC3E7D70BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E5DF38D-03B6-4004-B0B8-00DC3E7D70BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E5DF38D-03B6-4004-B0B8-00DC3E7D70BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

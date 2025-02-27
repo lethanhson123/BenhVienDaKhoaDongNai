@@ -1,4 +1,5 @@
 ﻿using Service_eHospital_DongNai_A_Dictionary.Interface;
+using System.Drawing.Printing;
 
 namespace Service_eHospital_DongNai_A_Dictionary.Implement
 {
@@ -129,12 +130,74 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             }
             return result;
         }
+        public virtual async Task<List<DM_BenhNhan>> GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToListAsync(int TinhThanh_Id, int QuanHuyen_Id, int XaPhuong_Id, string searchString, int Page)
+        {
+            List<DM_BenhNhan> result = new List<DM_BenhNhan>();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                result = await GetBySearchStringToListAsync(searchString);
+            }
+            else
+            {
+                if (XaPhuong_Id > 0)
+                {
+                    result = await GetByCondition(item => item.XaPhuong_Id == XaPhuong_Id).ToListAsync();
+                }
+                else
+                {
+                    if (QuanHuyen_Id > 0)
+                    {
+                        result = await GetByCondition(item => item.QuanHuyen_Id == QuanHuyen_Id).ToListAsync();
+                    }
+                    else
+                    {
+                        if (TinhThanh_Id > 0)
+                        {
+                            result = await GetByCondition(item => item.TinhThanh_Id == TinhThanh_Id).ToListAsync();
+                        }
+                    }
+                }
+            }
+            if (result == null)
+            {
+                result = new List<DM_BenhNhan>();
+            }
+            int PageCount = 0;
+            if (result.Count == 0)
+            {
+                result = await GetByCondition(item => 1 == 1).Take(60).ToListAsync();
+            }
+            else
+            {
+                if (result.Count > GlobalHelper.APIDataLimit)
+                {
+                    PageCount = result.Count / GlobalHelper.APIDataLimit;
+                }
+                result = result.Skip(Page * GlobalHelper.APIDataLimit).Take(GlobalHelper.APIDataLimit).ToList();
+            }
+            result[0].NguoiTao_Id = PageCount;
+            return result;
+        }
+        public virtual async Task<int> GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToCountAsync(int TinhThanh_Id, int QuanHuyen_Id, int XaPhuong_Id, string searchString)
+        {
+            List<DM_BenhNhan> result = new List<DM_BenhNhan>();
+            result = await GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchStringToListAsync(TinhThanh_Id, QuanHuyen_Id, XaPhuong_Id, searchString);
+            int PageCount = 0;
+            if (result.Count > 0)
+            {
+                if (result.Count > GlobalHelper.APIDataLimit)
+                {
+                    PageCount = result.Count / GlobalHelper.APIDataLimit;
+                }
+            }
+            return PageCount;
+        }
         public virtual async Task<List<DM_BenhNhan>> GetByListIDToListAsync(List<int> ListID)
         {
             List<DM_BenhNhan> result = new List<DM_BenhNhan>();
             if (ListID.Count > 0)
             {
-                result=await GetByCondition(item => EF.Constant(ListID).Contains(item.BenhNhan_Id)).ToListAsync();               
+                result = await GetByCondition(item => EF.Constant(ListID).Contains(item.BenhNhan_Id)).ToListAsync();
             }
             if (result == null)
             {
