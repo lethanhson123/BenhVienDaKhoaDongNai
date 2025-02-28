@@ -50,6 +50,26 @@
             }
             return result;
         }
+        public virtual async Task<List<Report>> ReportA0001ToListAsync(int Year, int Month, int Day, int PhongBanID)
+        {
+            List<Report> result = new List<Report>();
+            try
+            {
+                SqlParameter[] parameters =
+                {
+                        new SqlParameter("@Year",Year),
+                        new SqlParameter("@Month",Month),
+                        new SqlParameter("@Day",Day),
+                        new SqlParameter("@PhongBanID",PhongBanID),
+                };
+                result = await GetByStoredProcedureToListAsync(GlobalHelper.SQLServerConectionString_eHospital_DongNai_A, "sp_ReportA0001", parameters);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

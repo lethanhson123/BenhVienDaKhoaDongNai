@@ -115,6 +115,7 @@ import { XMLCV130TagComponent } from './eHospital_DongNai_A/xmlcv130-tag/xmlcv13
 import { DMDanTocComponent } from './eHospital_DongNai_A_Dictionary/dmdan-toc/dmdan-toc.component';
 import { DMQuocGiaComponent } from './eHospital_DongNai_A_Dictionary/dmquoc-gia/dmquoc-gia.component';
 import { ReportDictionary0001Component } from './Report/report-dictionary0001/report-dictionary0001.component';
+import { ReportA0001Component } from './Report/report-a0001/report-a0001.component';
 
 
 
@@ -481,6 +482,9 @@ const routes: Routes = [
 
   {
     path: 'ReportDictionary0001', component: ReportDictionary0001Component,
+  },
+  {
+    path: 'ReportA0001', component: ReportA0001Component,
   },
 
 ];

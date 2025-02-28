@@ -11,7 +11,8 @@
         public int? Month { get; set; }
         public int? Day { get; set; }
         public List<string>? ListIDString { get; set; }
-        public int? ID { get; set; }         
+        public int? ID { get; set; }
+        public int? PhongBanID { get; set; }
         public BaseParameter()
 		{
 		}

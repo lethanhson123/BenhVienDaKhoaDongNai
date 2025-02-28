@@ -260,6 +260,28 @@
 			font-size: 12px;
 		}
 	</style>
+	<script>
+		function OpenWindowByBenhAn(URLParamater, w = 100, h = 200) {
+			var width = screen.width;
+			var height = screen.height;
+			var width01 = width - w;
+			var height01 = height - h;
+			var left = (width - width01) / 2;
+			var top = (height - height01) / 3;
+			var url = "/#/BenhAnInfo/" + URLParamater;
+			window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
+		}
+		function OpenWindowByBenhNhan(URLParamater, w = 100, h = 200) {
+			var width = screen.width;
+			var height = screen.height;
+			var width01 = width - w;
+			var height01 = height - h;
+			var left = (width - width01) / 2;
+			var top = (height - height01) / 3;
+			var url = "/#/DMBenhNhanInfo/" + URLParamater;
+			window.open(url, '_blank', 'location=yes,height=' + height01 + ',width=' + width01 + ',scrollbars=yes,status=yes,toolbar=yes,top=' + top + ',left=' + left + '');
+		}
+	</script>
 </head>
 
 <body class="horizontal-layout page-header-light horizontal-menu 2-columns  " data-open="click"

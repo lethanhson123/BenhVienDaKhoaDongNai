@@ -29,6 +29,11 @@ import { DM_PhongBanService } from 'src/app/shared/eHospital_DongNai_A_Dictionar
 
 import { NS_NHANVIEN } from 'src/app/shared/eHospital_DongNai_A_NSTL/NS_NHANVIEN.model';
 import { NS_NHANVIENService } from 'src/app/shared/eHospital_DongNai_A_NSTL/NS_NHANVIEN.service';
+
+import { Report } from 'src/app/shared/APIReport/Report.model';
+import { ReportService } from 'src/app/shared/APIReport/Report.service';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,6 +53,8 @@ export class BenhAnService extends BaseService {
     public DM_ICDService: DM_ICDService,
     public DM_PhongBanService: DM_PhongBanService,
     public NS_NHANVIENService: NS_NHANVIENService,
+
+    public ReportService: ReportService,
   ) {
     super(httpClient);
     this.Controller = "BenhAn";
@@ -91,6 +98,7 @@ export class BenhAnService extends BaseService {
     var List = [...new Map(this.List.map(item => [item.KhoaVao_Id, item])).values()];
     var ListID = List.map(function (a) { return a.KhoaVao_Id; });
     this.BaseParameter.Note = environment.InitializationString;
+    this.ReportService.ListTemporary = [];
     for (let i = 0; i < ListID.length; i++) {
       let ListSub = this.List.filter(item => item.KhoaVao_Id == ListID[i]);
       if (ListSub) {
@@ -98,11 +106,43 @@ export class BenhAnService extends BaseService {
         if (Model) {
           if (Model.length) {
             this.BaseParameter.Note = this.BaseParameter.Note + ", " + Model[0].TenPhongBan + " (" + ListSub.length + ")";
+            this.ReportService.FormTemporary = {
+              ID: environment.InitializationNumber,
+              Name: environment.InitializationString,
+              Year: environment.InitializationNumber,
+              Month: environment.InitializationNumber,
+              Day: environment.InitializationNumber,
+              Hour: environment.InitializationNumber,
+              TinhThanhName: environment.InitializationString,
+              QuanHuyenName: environment.InitializationString,
+              XaPhuongName: environment.InitializationString,
+              TinhThanhID: environment.InitializationNumber,
+              QuanHuyenID: environment.InitializationNumber,
+              XaPhuongID: environment.InitializationNumber,
+              ThongKe001: environment.InitializationNumber,
+              ThongKe002: environment.InitializationNumber,
+              ThongKe003: environment.InitializationNumber,
+              ThongKe004: environment.InitializationNumber,
+              ThongKe005: environment.InitializationNumber,
+              ThongKe006: environment.InitializationNumber,
+              ThongKe007: environment.InitializationNumber,
+              ThongKe008: environment.InitializationNumber,
+              ThongKe009: environment.InitializationNumber,
+              ThongKe010: environment.InitializationNumber,
+              ThongKe011: environment.InitializationNumber,
+              ThongKe012: environment.InitializationNumber,
+              ThongKe013: environment.InitializationNumber,
+              ThongKe014: environment.InitializationNumber,
+              ThongKe015: environment.InitializationNumber,
+            }
+            this.ReportService.FormTemporary.Name = Model[0].TenPhongBan;
+            this.ReportService.FormTemporary.ThongKe001 = ListSub.length;            
+            this.ReportService.ListTemporary.push(this.ReportService.FormTemporary);
           }
         }
       }
     }
-
+    
     var ListBenhNhan = [...new Map(this.List.map(item => [item.BenhNhan_Id, item])).values()];
     var ListBenhNhanID = ListBenhNhan.map(function (a) { return a.BenhNhan_Id; });
     ListBenhNhanID = ListBenhNhanID.filter(item => item > 0);

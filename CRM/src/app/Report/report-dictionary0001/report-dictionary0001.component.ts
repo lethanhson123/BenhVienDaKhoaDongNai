@@ -42,8 +42,8 @@ export class ReportDictionary0001Component implements OnInit {
       this.ReportService.IsShowLoading = true;
       this.ReportService.ReportDictionary0003ToListAsync().subscribe(
         res => {
-          this.ReportService.List = (res as Report[]);
-          this.ReportService.DataSource = new MatTableDataSource(this.ReportService.List);
+          this.ReportService.ListReportDictionary = (res as Report[]);
+          this.ReportService.DataSource = new MatTableDataSource(this.ReportService.ListReportDictionary);
           this.ReportService.DataSource.sort = this.ReportSort;
           this.ReportService.DataSource.paginator = this.ReportPaginator;
         },

@@ -1,6 +1,12 @@
 ﻿import { Base } from "./Base.model";
 
 export class Report extends Base{   
+    ID: number;
+    Name: string;   
+    Year: number;
+    Month: number;
+    Day: number;
+    Hour: number;
     TinhThanhName: string;   
     QuanHuyenName: string;   
     XaPhuongName: string;   

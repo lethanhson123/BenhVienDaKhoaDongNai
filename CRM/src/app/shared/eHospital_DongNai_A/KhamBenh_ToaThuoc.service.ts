@@ -11,6 +11,10 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { DM_KhoDuoc } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_KhoDuoc.model';
 import { DM_KhoDuocService } from 'src/app/shared/eHospital_DongNai_A_Dictionary/DM_KhoDuoc.service';
+
+import { Report } from 'src/app/shared/APIReport/Report.model';
+import { ReportService } from 'src/app/shared/APIReport/Report.service';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -23,6 +27,8 @@ export class KhamBenh_ToaThuocService extends BaseService {
     constructor(
         public httpClient: HttpClient,
         public DM_KhoDuocService: DM_KhoDuocService,
+
+        public ReportService: ReportService,
     ) {
         super(httpClient);
         this.Controller = "KhamBenh_ToaThuoc";
@@ -31,11 +37,13 @@ export class KhamBenh_ToaThuocService extends BaseService {
     }
     DM_KhoDuocSearch() {
         this.DM_KhoDuocService.ComponentGetAllToListAsync(this.DM_KhoDuocService);
-      }
+    }
     RenderToListTransfer(Sort: MatSort, Paginator: MatPaginator) {
         var List = [...new Map(this.List.map(item => [item.KhoXuat_Id, item])).values()];
         var ListID = List.map(function (a) { return a.KhoXuat_Id; });
         this.BaseParameter.Note = environment.InitializationString;
+
+        this.ReportService.ListFilter = [];
         for (let i = 0; i < ListID.length; i++) {
             let ListSub = this.List.filter(item => item.KhoXuat_Id == ListID[i]);
             if (ListSub) {
@@ -43,6 +51,40 @@ export class KhamBenh_ToaThuocService extends BaseService {
                 if (Model) {
                     if (Model.length) {
                         this.BaseParameter.Note = this.BaseParameter.Note + ", " + Model[0].TenKho + " (" + ListSub.length + ")";
+
+                        this.ReportService.FormTemporary = {
+                            ID: environment.InitializationNumber,
+                            Name: environment.InitializationString,
+                            Year: environment.InitializationNumber,
+                            Month: environment.InitializationNumber,
+                            Day: environment.InitializationNumber,
+                            Hour: environment.InitializationNumber,
+                            TinhThanhName: environment.InitializationString,
+                            QuanHuyenName: environment.InitializationString,
+                            XaPhuongName: environment.InitializationString,
+                            TinhThanhID: environment.InitializationNumber,
+                            QuanHuyenID: environment.InitializationNumber,
+                            XaPhuongID: environment.InitializationNumber,
+                            ThongKe001: environment.InitializationNumber,
+                            ThongKe002: environment.InitializationNumber,
+                            ThongKe003: environment.InitializationNumber,
+                            ThongKe004: environment.InitializationNumber,
+                            ThongKe005: environment.InitializationNumber,
+                            ThongKe006: environment.InitializationNumber,
+                            ThongKe007: environment.InitializationNumber,
+                            ThongKe008: environment.InitializationNumber,
+                            ThongKe009: environment.InitializationNumber,
+                            ThongKe010: environment.InitializationNumber,
+                            ThongKe011: environment.InitializationNumber,
+                            ThongKe012: environment.InitializationNumber,
+                            ThongKe013: environment.InitializationNumber,
+                            ThongKe014: environment.InitializationNumber,
+                            ThongKe015: environment.InitializationNumber,
+                        }
+                        this.ReportService.FormTemporary.Name = Model[0].TenKho;
+                        this.ReportService.FormTemporary.ThongKe001 = ListSub.length;
+                        this.ReportService.ListFilter.push(this.ReportService.FormTemporary);
+
                     }
                 }
             }
@@ -74,6 +116,9 @@ export class KhamBenh_ToaThuocService extends BaseService {
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
     GetByYear_Month_Day_SearchStringToListAsync() {
+        if (this.BaseParameter.BatDau == null) {
+            this.BaseParameter.BatDau = new Date();
+        }
         this.BaseParameter.Year = this.BaseParameter.BatDau.getFullYear();
         this.BaseParameter.Month = this.BaseParameter.BatDau.getMonth() + 1;
         this.BaseParameter.Day = this.BaseParameter.BatDau.getDate();

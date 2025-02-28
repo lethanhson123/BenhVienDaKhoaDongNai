@@ -58,6 +58,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("ReportA0001ToListAsync")]
+        public async Task<List<Report>> ReportA0001ToListAsync()
+        {
+            List<Report> result = new List<Report>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _ReportService.ReportA0001ToListAsync(baseParameter.Year.Value, baseParameter.Month.Value, baseParameter.Day.Value, baseParameter.PhongBanID.Value);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 
