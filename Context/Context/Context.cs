@@ -10,10 +10,18 @@ namespace Data.Context
 			: base(options)
 		{
 		}
-        public virtual DbSet<Data.Model.DanhMucBenhVien> DanhMucBenhVien { get; set; }
+
         public virtual DbSet<Data.Model.DanhMucChucDanh> DanhMucChucDanh { get; set; }
-        public virtual DbSet<Data.Model.DanhMucChucNang> DanhMucChucNang { get; set; }
         public virtual DbSet<Data.Model.DanhMucPhongBan> DanhMucPhongBan { get; set; }
+        public virtual DbSet<Data.Model.DanhMucBacLuong> DanhMucBacLuong { get; set; }
+        public virtual DbSet<Data.Model.DanhMucBangCap> DanhMucBangCap { get; set; }
+        public virtual DbSet<Data.Model.DanhMucChucVu> DanhMucChucVu { get; set; }
+        public virtual DbSet<Data.Model.DanhMucChuyenNganh> DanhMucChuyenNganh { get; set; }
+        public virtual DbSet<Data.Model.DanhMucPhuCap> DanhMucPhuCap { get; set; }
+        public virtual DbSet<Data.Model.DanhMucToChucDaoTao> DanhMucToChucDaoTao { get; set; }        
+
+        public virtual DbSet<Data.Model.DanhMucBenhVien> DanhMucBenhVien { get; set; }        
+        public virtual DbSet<Data.Model.DanhMucChucNang> DanhMucChucNang { get; set; }        
         public virtual DbSet<Data.Model.DanhMucThanhVien> DanhMucThanhVien { get; set; }
         public virtual DbSet<Data.Model.DanhMucTinhTrang> DanhMucTinhTrang { get; set; }
         public virtual DbSet<Data.Model.DanhMucBieuMau> DanhMucBieuMau { get; set; }
@@ -49,13 +57,13 @@ namespace Data.Context
 
         public virtual DbSet<Data.Model.KhachHang> KhachHang { get; set; }
 
-        public virtual DbSet<Data.Model.DuAn> DuAn { get; set; }
-        public virtual DbSet<Data.Model.DuAnTapTinDinhKem> DuAnTapTinDinhKem { get; set; }
-        public virtual DbSet<Data.Model.DuAnThuChi> DuAnThuChi { get; set; }
-        public virtual DbSet<Data.Model.DuAnQuyetDinh> DuAnQuyetDinh { get; set; }
-        public virtual DbSet<Data.Model.DuAnQuyetToan> DuAnQuyetToan { get; set; }
-        public virtual DbSet<Data.Model.DuAnQuyetToanLuyKe> DuAnQuyetToanLuyKe { get; set; }
-        public virtual DbSet<Data.Model.DuAnQuyetToanPhanKy> DuAnQuyetToanPhanKy { get; set; }
+        //public virtual DbSet<Data.Model.DuAn> DuAn { get; set; }
+        //public virtual DbSet<Data.Model.DuAnTapTinDinhKem> DuAnTapTinDinhKem { get; set; }
+        //public virtual DbSet<Data.Model.DuAnThuChi> DuAnThuChi { get; set; }
+        //public virtual DbSet<Data.Model.DuAnQuyetDinh> DuAnQuyetDinh { get; set; }
+        //public virtual DbSet<Data.Model.DuAnQuyetToan> DuAnQuyetToan { get; set; }
+        //public virtual DbSet<Data.Model.DuAnQuyetToanLuyKe> DuAnQuyetToanLuyKe { get; set; }
+        //public virtual DbSet<Data.Model.DuAnQuyetToanPhanKy> DuAnQuyetToanPhanKy { get; set; }
 
         public virtual DbSet<Data.Model.GoiSo> GoiSo { get; set; }
         public virtual DbSet<Data.Model.GoiSoChiTiet> GoiSoChiTiet { get; set; }

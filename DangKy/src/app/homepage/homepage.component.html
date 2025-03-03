@@ -4,14 +4,14 @@
             <input id="Code" name="GoiSoService.FormData.Code" [(ngModel)]="GoiSoService.FormData.Code"
                 placeholder="Mã y tế-BHYT-CCCD-Điện thoại" type="text"
                 style="text-align: right; font-size: 8vh; height: 10vh; color:darkorange;" autofocus (change)="GoiSoChiTietCodeChange()" (keyup.enter)="GoiSoChiTietCodeChange()">
-            <div style="color: #000000; font-size: 3vh; text-transform: uppercase;">Bệnh nhân có Bảo hiểm y tế</div>
+            <div style="color: #000000; font-size: 4vh; text-transform: uppercase;">Bệnh nhân có Bảo hiểm y tế</div>
             <a *ngFor="let item of DanhMucDichVuService.List001;" (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
                 class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mb-1"
-                style="width: 100%; font-size: 6vh; height: 10vh; align-content: center;">{{item.Display}}</a>
-            <div style="color: #000000; font-size: 3vh; text-transform: uppercase;">Bệnh nhân không Bảo hiểm y tế</div>
+                style="width: 100%; font-size: 6vh; height: 12vh; align-content: center;">{{item.Display}}</a>
+            <div style="color: #000000; font-size: 4vh; text-transform: uppercase;">Bệnh nhân không Bảo hiểm y tế</div>
             <a *ngFor="let item of DanhMucDichVuService.List002;" (click)="SaveByDanhMucDichVuIDAsync(item.ID)"
                 class="waves-effect waves-light btn btn-large gradient-45deg-light-blue-cyan mb-1"
-                style="width: 100%; font-size: 6vh; height: 10vh; align-content: center;">{{item.Display}}</a>
+                style="width: 100%; font-size: 6vh; height: 12vh; align-content: center;">{{item.Display}}</a>
         </div>
         <div class="col s12 m6 l3">
             <img src="image/logo001.png">

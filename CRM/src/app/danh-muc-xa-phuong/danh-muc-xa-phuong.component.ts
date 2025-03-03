@@ -48,6 +48,11 @@ export class DanhMucXaPhuongComponent implements OnInit {
     this.DanhMucTinhThanhService.GetAllToListAsync().subscribe(
       res => {
         this.DanhMucTinhThanhService.List = (res as DanhMucTinhThanh[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        if (this.DanhMucTinhThanhService.List) {
+          if (this.DanhMucTinhThanhService.List.length > 0) {
+            this.DanhMucQuanHuyenService.BaseParameter.ParentID = this.DanhMucTinhThanhService.List[0].ID;
+          }
+        }
         this.DanhMucQuanHuyenSearch();
       },
       err => {
@@ -62,6 +67,11 @@ export class DanhMucXaPhuongComponent implements OnInit {
     this.DanhMucQuanHuyenService.GetByParentIDToListAsync().subscribe(
       res => {
         this.DanhMucQuanHuyenService.List = (res as DanhMucQuanHuyen[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+        if (this.DanhMucQuanHuyenService.List) {
+          if (this.DanhMucQuanHuyenService.List.length > 0) {
+            this.DanhMucXaPhuongService.BaseParameter.ParentID = this.DanhMucQuanHuyenService.List[0].ID;
+          }
+        }
         this.DanhMucXaPhuongSearch();
       },
       err => {

@@ -29,6 +29,7 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l3">
+                    <label>Tỉnh thành [{{DanhMucQuanHuyenService.BaseParameter.ParentID}}]</label>
                     <select class="browser-default form-select" name="DanhMucQuanHuyenService.BaseParameter.ParentID"
                         [(ngModel)]="DanhMucQuanHuyenService.BaseParameter.ParentID">
                         <option *ngFor="let item of DanhMucTinhThanhService.ListFilter;" [value]="item.ID">
@@ -36,10 +37,12 @@
                     </select>
                 </div>
                 <div class="col s12 m12 l8">
+                    <label>.</label>
                     <input [(ngModel)]="DanhMucQuanHuyenService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DanhMucQuanHuyenSearch()">
                 </div>
                 <div class="col s12 m12 l1">
+                    <br/>
                     <a style="color: green;" title="Tìm" (click)="DanhMucQuanHuyenSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
                 </div>
@@ -107,6 +110,14 @@
                                     [(ngModel)]="element.ViDo">
                             </td>
                         </ng-container>
+                        <ng-container matColumnDef="DanhMucUngDungID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>eHospital ID
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="eHospital ID" name="DanhMucUngDungID{{element.ID}}"
+                                    [(ngModel)]="element.DanhMucUngDungID">
+                            </td>
+                        </ng-container>
                         <ng-container matColumnDef="Note">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Ghi chú
                             </th>
@@ -146,94 +157,14 @@
                                     style="color: green;"><i class="material-icons">cloud_download</i></a>
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="DanhMucQuanHuyenService.DisplayColumns003">
+                        <tr mat-header-row *matHeaderRowDef="DanhMucQuanHuyenService.DisplayColumns004">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DanhMucQuanHuyenService.DisplayColumns003;">
+                        <tr mat-row *matRowDef="let row; columns: DanhMucQuanHuyenService.DisplayColumns004;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DanhMucQuanHuyenPaginator="matPaginator"
                         [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
-                    <table *ngIf="NotificationService.IsMobile" mat-table matSort #DanhMucQuanHuyenSort="matSort"
-                        [dataSource]="DanhMucQuanHuyenService.DataSource" class="table table-striped m-0">
-                        <ng-container matColumnDef="STT">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                                Danh sách
-                            </th>
-                            <td mat-cell *matCellDef="let element; index as i;">
-                                <div class="row gx-4">
-                                    <div class="col s12 m12 l12">
-                                        <label class="form-label">Tỉnh thành</label>
-                                        <br />
-                                        <select class="browser-default form-select" name="element.ParentID"
-                                            [(ngModel)]="element.ParentID">
-                                            <option *ngFor="let item of DanhMucTinhThanhService.ListFilter;"
-                                                [value]="item.ID">
-                                                {{item.Name}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-12">
-                                        <label class="form-label">Tiêu đề</label>
-                                        <br />
-                                        <input class="form-control" type="text" placeholder="Tiêu đề"
-                                            name="Name{{element.ID}}" [(ngModel)]="element.Name">
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-12">
-                                        <label class="form-label">Mã quản lý</label>
-                                        <br />
-                                        <input class="form-control" type="text" placeholder="Mã quản lý"
-                                            name="Code{{element.ID}}" [(ngModel)]="element.Code">
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-12">
-                                        <label class="form-label">Kinh độ</label>
-                                        <br />
-                                        <input class="form-control" type="text" placeholder="Kinh độ"
-                                            name="KinhDo{{element.ID}}" [(ngModel)]="element.KinhDo">
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-12">
-                                        <label class="form-label">Vĩ độ</label>
-                                        <br />
-                                        <input class="form-control" type="text" placeholder="Vĩ độ"
-                                            name="ViDo{{element.ID}}" [(ngModel)]="element.ViDo">
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-12">
-                                        <label class="form-label">Ghi chú</label>
-                                        <br />
-                                        <input class="form-control" type="text" placeholder="Ghi chú"
-                                            name="Note{{element.ID}}" [(ngModel)]="element.Note">
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 col-12">
-                                        <label class="form-label">Sắp xếp</label>
-                                        <br />
-                                        <input class="form-control" type="number" placeholder="0"
-                                            name="SortOrder{{element.ID}}" [(ngModel)]="element.SortOrder"
-                                            style="text-align: right;">
-                                    </div>
-                                    <div class="col s12 m12 l12">
-                                        <label>
-                                            <input type="checkbox" name="Active{{element.ID}}"
-                                                [(ngModel)]="element.Active">
-                                            <span>Kích hoạt</span>
-                                        </label>
-                                    </div>
-                                    <div class="col s6 m6 l6">
-                                        <a (click)="DanhMucQuanHuyenSave(element)" style="color:#2196f3;"><i
-                                                class="material-icons">save</i></a>
-                                    </div>
-                                    <div class="col s6 m6 l6">
-                                        <a *ngIf="element.ID>0" (click)="DanhMucQuanHuyenDelete(element)"
-                                            style="color: red;"><i class="material-icons">delete_forever</i></a>
-                                    </div>
-                                </div>
-                                <br />
-                            </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="DanhMucQuanHuyenService.DisplayColumnsMobile">
-                        </tr>
-                        <tr mat-row *matRowDef="let row; columns: DanhMucQuanHuyenService.DisplayColumnsMobile;">
-                        </tr>
-                    </table>
-                    <mat-paginator *ngIf="NotificationService.IsMobile" #DanhMucQuanHuyenPaginator="matPaginator"
-                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
+                  
                 </div>
             </div>
         </div>

@@ -149,6 +149,13 @@ import { DMDanTocComponent } from './eHospital_DongNai_A_Dictionary/dmdan-toc/dm
 import { DMQuocGiaComponent } from './eHospital_DongNai_A_Dictionary/dmquoc-gia/dmquoc-gia.component';
 import { ReportDictionary0001Component } from './Report/report-dictionary0001/report-dictionary0001.component';
 import { ReportA0001Component } from './Report/report-a0001/report-a0001.component';
+import { DanhMucBacLuongComponent } from './HR/danh-muc-bac-luong/danh-muc-bac-luong.component';
+import { DanhMucBangCapComponent } from './HR/danh-muc-bang-cap/danh-muc-bang-cap.component';
+import { DanhMucChucDanhComponent } from './HR/danh-muc-chuc-danh/danh-muc-chuc-danh.component';
+import { DanhMucChucVuComponent } from './HR/danh-muc-chuc-vu/danh-muc-chuc-vu.component';
+import { DanhMucChuyenNganhComponent } from './HR/danh-muc-chuyen-nganh/danh-muc-chuyen-nganh.component';
+import { DanhMucPhuCapComponent } from './HR/danh-muc-phu-cap/danh-muc-phu-cap.component';
+import { DanhMucToChucDaoTaoComponent } from './HR/danh-muc-to-chuc-dao-tao/danh-muc-to-chuc-dao-tao.component';
 
 
 
@@ -293,6 +300,13 @@ import { ReportA0001Component } from './Report/report-a0001/report-a0001.compone
     DMQuocGiaComponent,
     ReportDictionary0001Component,
     ReportA0001Component,
+    DanhMucBacLuongComponent,
+    DanhMucBangCapComponent,
+    DanhMucChucDanhComponent,
+    DanhMucChucVuComponent,
+    DanhMucChuyenNganhComponent,
+    DanhMucPhuCapComponent,
+    DanhMucToChucDaoTaoComponent,
     
     
     

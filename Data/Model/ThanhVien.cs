@@ -14,7 +14,8 @@
         public string? CCCD { get; set; }
         public string? TaiKhoan { get; set; }
         public string? MatKhau { get; set; }
-        public string? GUIDCode { get; set; }
+        public string? GUIDCode { get; set; }        
+        public long? HRNhanVIenID { get; set; }
 
         public ThanhVien()
         {

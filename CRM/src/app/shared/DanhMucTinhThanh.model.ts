@@ -4,6 +4,7 @@ export class DanhMucTinhThanh extends Base{
 
 KinhDo?: string;
 ViDo?: string;
+EHID?: number;
 
 }
 
