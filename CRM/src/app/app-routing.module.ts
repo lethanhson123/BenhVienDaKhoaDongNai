@@ -123,6 +123,16 @@ import { DanhMucChucDanhComponent } from './HR/danh-muc-chuc-danh/danh-muc-chuc-
 import { DanhMucChucVuComponent } from './HR/danh-muc-chuc-vu/danh-muc-chuc-vu.component';
 import { DanhMucChuyenNganhComponent } from './HR/danh-muc-chuyen-nganh/danh-muc-chuyen-nganh.component';
 import { DanhMucPhuCapComponent } from './HR/danh-muc-phu-cap/danh-muc-phu-cap.component';
+import { DanhMucChamCongComponent } from './HR/danh-muc-cham-cong/danh-muc-cham-cong.component';
+import { DanhMucGiamTruComponent } from './HR/danh-muc-giam-tru/danh-muc-giam-tru.component';
+import { DanhMucHopDongComponent } from './HR/danh-muc-hop-dong/danh-muc-hop-dong.component';
+import { DanhMucLuongCoBanComponent } from './HR/danh-muc-luong-co-ban/danh-muc-luong-co-ban.component';
+import { DanhMucNganHangComponent } from './HR/danh-muc-ngan-hang/danh-muc-ngan-hang.component';
+import { DanhMucThueComponent } from './HR/danh-muc-thue/danh-muc-thue.component';
+import { HRBangLuongComponent } from './HR/hrbang-luong/hrbang-luong.component';
+import { HRChamCongComponent } from './HR/hrcham-cong/hrcham-cong.component';
+import { HRLichCongTacComponent } from './HR/hrlich-cong-tac/hrlich-cong-tac.component';
+import { HRNhanVienComponent } from './HR/hrnhan-vien/hrnhan-vien.component';
 
 
 
@@ -515,7 +525,37 @@ const routes: Routes = [
   {
     path: 'DanhMucBacLuong', component: DanhMucBacLuongComponent,
   },
-
+  {
+    path: 'DanhMucChamCong', component: DanhMucChamCongComponent,
+  },
+  {
+    path: 'DanhMucGiamTru', component: DanhMucGiamTruComponent,
+  },
+  {
+    path: 'DanhMucHopDong', component: DanhMucHopDongComponent,
+  },
+  {
+    path: 'DanhMucLuongCoBan', component: DanhMucLuongCoBanComponent,
+  },
+  {
+    path: 'DanhMucNganHang', component: DanhMucNganHangComponent,
+  },
+  {
+    path: 'DanhMucThue', component: DanhMucThueComponent,
+  },
+  {
+    path: 'HRBangLuong', component: HRBangLuongComponent,
+  },
+  {
+    path: 'HRChamCong', component: HRChamCongComponent,
+  },
+  {
+    path: 'HRLichCongTac', component: HRLichCongTacComponent,
+  },
+  {
+    path: 'HRNhanVien', component: HRNhanVienComponent,
+  },
+  
 
 ];
 
