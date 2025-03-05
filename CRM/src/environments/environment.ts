@@ -65,6 +65,8 @@ export const environment = {
   KhamBenhInfo: "KhamBenhInfo/",
   KhamBenhVaoVienInfo: "KhamBenhVaoVienInfo/",
   KhamBenhToaThuocInfo: "KhamBenhToaThuocInfo/",
+  HRNhanVienInfo: "HRNhanVienInfo/",
+  DanhMucHopDongInfo: "DanhMucHopDongInfo/",
   Download: "Download",
   PhongBan: "PhongBan",
   NhomCanLamSang: "NhomCanLamSang",

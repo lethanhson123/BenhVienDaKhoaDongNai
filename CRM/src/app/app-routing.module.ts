@@ -133,6 +133,16 @@ import { HRBangLuongComponent } from './HR/hrbang-luong/hrbang-luong.component';
 import { HRChamCongComponent } from './HR/hrcham-cong/hrcham-cong.component';
 import { HRLichCongTacComponent } from './HR/hrlich-cong-tac/hrlich-cong-tac.component';
 import { HRNhanVienComponent } from './HR/hrnhan-vien/hrnhan-vien.component';
+import { DanhMucDonViTinhComponent } from './HR/danh-muc-don-vi-tinh/danh-muc-don-vi-tinh.component';
+import { DanhMucMayChamCongComponent } from './HR/danh-muc-may-cham-cong/danh-muc-may-cham-cong.component';
+import { HRNhanVienHopDongComponent } from './HR/hrnhan-vien-hop-dong/hrnhan-vien-hop-dong.component';
+import { HRBangLuongInfoComponent } from './HR/hrbang-luong-info/hrbang-luong-info.component';
+import { HRChamCongInfoComponent } from './HR/hrcham-cong-info/hrcham-cong-info.component';
+import { HRLichCongTacInfoComponent } from './HR/hrlich-cong-tac-info/hrlich-cong-tac-info.component';
+import { HRNhanVienInfoComponent } from './HR/hrnhan-vien-info/hrnhan-vien-info.component';
+import { HRNhanVienHopDongInfoComponent } from './HR/hrnhan-vien-hop-dong-info/hrnhan-vien-hop-dong-info.component';
+import { DanhMucPhongBanComponent } from './HR/danh-muc-phong-ban/danh-muc-phong-ban.component';
+import { DanhMucHopDongInfoComponent } from './HR/danh-muc-hop-dong-info/danh-muc-hop-dong-info.component';
 
 
 
@@ -535,6 +545,9 @@ const routes: Routes = [
     path: 'DanhMucHopDong', component: DanhMucHopDongComponent,
   },
   {
+    path: 'DanhMucHopDongInfo/:ID', component: DanhMucHopDongInfoComponent,
+  },
+  {
     path: 'DanhMucLuongCoBan', component: DanhMucLuongCoBanComponent,
   },
   {
@@ -544,18 +557,44 @@ const routes: Routes = [
     path: 'DanhMucThue', component: DanhMucThueComponent,
   },
   {
+    path: 'DanhMucDonViTinh', component: DanhMucDonViTinhComponent,
+  },
+  {
+    path: 'DanhMucMayChamCong', component: DanhMucMayChamCongComponent,
+  },
+  {
+    path: 'DanhMucPhongBan', component: DanhMucPhongBanComponent,
+  },
+  {
     path: 'HRBangLuong', component: HRBangLuongComponent,
+  },
+  {
+    path: 'HRBangLuongInfo/:ID', component: HRBangLuongInfoComponent,
   },
   {
     path: 'HRChamCong', component: HRChamCongComponent,
   },
   {
+    path: 'HRChamCongInfo/:ID', component: HRChamCongInfoComponent,
+  },
+  {
     path: 'HRLichCongTac', component: HRLichCongTacComponent,
+  },
+  {
+    path: 'HRLichCongTacInfo/:ID', component: HRLichCongTacInfoComponent,
   },
   {
     path: 'HRNhanVien', component: HRNhanVienComponent,
   },
-  
+  {
+    path: 'HRNhanVienInfo/:ID', component: HRNhanVienInfoComponent,
+  },
+  {
+    path: 'HRNhanVienHopDong', component: HRNhanVienHopDongComponent,
+  },
+  {
+    path: 'HRNhanVienHopDongInfo/:ID', component: HRNhanVienHopDongInfoComponent,
+  },
 
 ];
 

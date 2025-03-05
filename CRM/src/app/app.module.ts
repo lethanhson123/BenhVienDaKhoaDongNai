@@ -163,18 +163,19 @@ import { DanhMucLuongCoBanComponent } from './HR/danh-muc-luong-co-ban/danh-muc-
 import { DanhMucNganHangComponent } from './HR/danh-muc-ngan-hang/danh-muc-ngan-hang.component';
 import { DanhMucThueComponent } from './HR/danh-muc-thue/danh-muc-thue.component';
 import { HRBangLuongComponent } from './HR/hrbang-luong/hrbang-luong.component';
-import { HRBangLuongChiTietComponent } from './HR/hrbang-luong-chi-tiet/hrbang-luong-chi-tiet.component';
 import { HRChamCongComponent } from './HR/hrcham-cong/hrcham-cong.component';
-import { HRChamCongChiTietComponent } from './HR/hrcham-cong-chi-tiet/hrcham-cong-chi-tiet.component';
 import { HRLichCongTacComponent } from './HR/hrlich-cong-tac/hrlich-cong-tac.component';
-import { HRLichCongTacChiTietComponent } from './HR/hrlich-cong-tac-chi-tiet/hrlich-cong-tac-chi-tiet.component';
 import { HRNhanVienComponent } from './HR/hrnhan-vien/hrnhan-vien.component';
-import { HRNhanVienBangCapComponent } from './HR/hrnhan-vien-bang-cap/hrnhan-vien-bang-cap.component';
+import { DanhMucDonViTinhComponent } from './HR/danh-muc-don-vi-tinh/danh-muc-don-vi-tinh.component';
+import { DanhMucMayChamCongComponent } from './HR/danh-muc-may-cham-cong/danh-muc-may-cham-cong.component';
 import { HRNhanVienHopDongComponent } from './HR/hrnhan-vien-hop-dong/hrnhan-vien-hop-dong.component';
-import { HRNhanVienNganHangComponent } from './HR/hrnhan-vien-ngan-hang/hrnhan-vien-ngan-hang.component';
-import { HRNhanVienPhuCapComponent } from './HR/hrnhan-vien-phu-cap/hrnhan-vien-phu-cap.component';
-import { HRNhanVienTapTinDinhKemComponent } from './HR/hrnhan-vien-tap-tin-dinh-kem/hrnhan-vien-tap-tin-dinh-kem.component';
-import { HRNhanVienThanhVienComponent } from './HR/hrnhan-vien-thanh-vien/hrnhan-vien-thanh-vien.component';
+import { HRNhanVienInfoComponent } from './HR/hrnhan-vien-info/hrnhan-vien-info.component';
+import { HRBangLuongInfoComponent } from './HR/hrbang-luong-info/hrbang-luong-info.component';
+import { HRLichCongTacInfoComponent } from './HR/hrlich-cong-tac-info/hrlich-cong-tac-info.component';
+import { HRChamCongInfoComponent } from './HR/hrcham-cong-info/hrcham-cong-info.component';
+import { HRNhanVienHopDongInfoComponent } from './HR/hrnhan-vien-hop-dong-info/hrnhan-vien-hop-dong-info.component';
+import { DanhMucPhongBanComponent } from './HR/danh-muc-phong-ban/danh-muc-phong-ban.component';
+import { DanhMucHopDongInfoComponent } from './HR/danh-muc-hop-dong-info/danh-muc-hop-dong-info.component';
 
 
 
@@ -332,20 +333,10 @@ import { HRNhanVienThanhVienComponent } from './HR/hrnhan-vien-thanh-vien/hrnhan
     DanhMucLuongCoBanComponent,
     DanhMucNganHangComponent,
     DanhMucThueComponent,
-    HRBangLuongComponent,
-    HRBangLuongChiTietComponent,
-    HRChamCongComponent,
-    HRChamCongChiTietComponent,
-    HRLichCongTacComponent,
-    HRLichCongTacChiTietComponent,
-    HRNhanVienComponent,
-    HRNhanVienBangCapComponent,
-    HRNhanVienHopDongComponent,
-    HRNhanVienNganHangComponent,
-    HRNhanVienPhuCapComponent,
-    HRNhanVienTapTinDinhKemComponent,
-    HRNhanVienThanhVienComponent,
-    
+    HRBangLuongComponent,    
+    HRChamCongComponent,    
+    HRLichCongTacComponent,    
+    HRNhanVienComponent, DanhMucDonViTinhComponent, DanhMucMayChamCongComponent, HRNhanVienHopDongComponent, HRNhanVienInfoComponent, HRBangLuongInfoComponent, HRLichCongTacInfoComponent, HRChamCongInfoComponent, HRNhanVienHopDongInfoComponent, DanhMucPhongBanComponent, DanhMucHopDongInfoComponent,    
     
     
 

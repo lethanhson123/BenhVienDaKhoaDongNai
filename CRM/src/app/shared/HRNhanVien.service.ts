@@ -8,6 +8,8 @@ import { BaseService } from './Base.service';
 })
 export class HRNhanVienService extends BaseService{
     DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'DanhMucUngDungID', 'DanhMucNgonNguName', 'DanhMucUngDungName', 'DanhMucTinhThanhID', 'DanhMucTinhThanhName', 'DanhMucQuanHuyenID', 'DanhMucQuanHuyenName', 'DanhMucXaPhuongID', 'DanhMucXaPhuongName', 'CCCD', 'Email', 'DiaChiThuongTru', 'DiaChi', 'DienThoai', 'IsNghiViec'];
+    DisplayColumns002: string[] = ['STT', 'ID', 'ParentName', 'Code', 'Name', 'CCCD', 'DienThoai', 'Active'];
+
 
     List: HRNhanVien[] | undefined;
     ListFilter: HRNhanVien[] | undefined;

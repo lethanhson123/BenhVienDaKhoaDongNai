@@ -124,6 +124,40 @@
             return result;
         }
         [HttpPost]
+        [Route("RemoveByModel")]
+        public virtual string RemoveByModel()
+        {
+            string result = GlobalHelper.InitializationString;
+            try
+            {
+                T model = JsonConvert.DeserializeObject<T>(Request.Form["data"]);
+                result = _BaseService.Remove(model).ToString();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result = message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("RemoveByModelAsync")]
+        public virtual async Task<string> RemoveByModelAsync()
+        {
+            string result = GlobalHelper.InitializationString;
+            try
+            {
+                T model = JsonConvert.DeserializeObject<T>(Request.Form["data"]);
+                await _BaseService.RemoveAsync(model);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result = message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetByID")]
         public virtual T GetByID()
         {

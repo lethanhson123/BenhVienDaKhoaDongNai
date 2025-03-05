@@ -194,6 +194,40 @@
             }
             return result;
         }
+        public virtual int Remove(T existModel)
+        {
+            int result = 0;
+            try
+            {
+                if (existModel != null)
+                {
+                    _context.Set<T>().Remove(existModel);
+                    result = _context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+        public virtual async Task<int> RemoveAsync(T existModel)
+        {
+            int result = 0;
+            try
+            {
+                if (existModel != null)
+                {
+                    _context.Set<T>().Remove(existModel);
+                    result = await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
         public virtual int AddRange(List<T> list)
         {
             int result = 0;

@@ -12,9 +12,7 @@
         public string? Email { get; set; }
         public string? DiaChiThuongTru { get; set; }
         public string? DiaChi { get; set; }
-        public string? DienThoai { get; set; }
-        public bool? IsNghiViec { get; set; }
-
+        public string? DienThoai { get; set; }       
         public HRNhanVien()
         {
         }

@@ -109,6 +109,30 @@
         }
         #endregion
         #region AppSettings 
+        public static string PageTitle
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("PageTitle").Value;
+            }
+        }
+        public static string MainContent
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("MainContent").Value;
+            }
+        }
+        public static string BieuMauFileName
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("BieuMauFileName").Value;
+            }
+        }
         public static int APIDataLimit
         {
             get

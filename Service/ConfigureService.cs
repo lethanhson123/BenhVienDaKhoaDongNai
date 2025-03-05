@@ -46,6 +46,8 @@ namespace Service
             services.AddTransient<IDanhMucLuongCoBanService, DanhMucLuongCoBanService>();
             services.AddTransient<IDanhMucNganHangService, DanhMucNganHangService>();
             services.AddTransient<IDanhMucThueService, DanhMucThueService>();
+            services.AddTransient<IDanhMucDonViTinhService, DanhMucDonViTinhService>();
+            services.AddTransient<IDanhMucMayChamCongService, DanhMucMayChamCongService>();
 
             services.AddTransient<IHRBangLuongService, HRBangLuongService>();
             services.AddTransient<IHRBangLuongChiTietService, HRBangLuongChiTietService>();
@@ -150,6 +152,8 @@ namespace Service
             services.AddTransient<IDanhMucLuongCoBanRepository, DanhMucLuongCoBanRepository>();
             services.AddTransient<IDanhMucNganHangRepository, DanhMucNganHangRepository>();
             services.AddTransient<IDanhMucThueRepository, DanhMucThueRepository>();
+            services.AddTransient<IDanhMucDonViTinhRepository, DanhMucDonViTinhRepository>();
+            services.AddTransient<IDanhMucMayChamCongRepository, DanhMucMayChamCongRepository>();
 
             services.AddTransient<IHRBangLuongRepository, HRBangLuongRepository>();
             services.AddTransient<IHRBangLuongChiTietRepository, HRBangLuongChiTietRepository>();

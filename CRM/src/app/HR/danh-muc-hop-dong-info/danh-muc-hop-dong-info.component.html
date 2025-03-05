@@ -1,0 +1,111 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Danh mục Văn bản:
+                        <b>{{DanhMucHopDongService.FormData.Name}} [{{DanhMucHopDongService.FormData.ID}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/HRNhanVien" title="Nhân sự">Nhân sự</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/DanhMucHopDong" title="DanhMucHopDong">
+                                Danh mục Văn bản
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l3">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;">
+                            <i class="material-icons">more</i>
+                        </a>
+                        <a title="Thêm mới" (click)="DanhMucHopDongAdd()" style="color: green;"><i
+                                class="material-icons">add_box</i></a>
+                        <a title="Lưu thay đổi" (click)="DanhMucHopDongSave()" style="color:#2196f3;">
+                            <i class="material-icons">save</i>
+                        </a>
+                        <a *ngIf="DanhMucHopDongService.FormData.ID>0" title="Xóa" (click)="DanhMucHopDongDelete(element)" style="color: red;">
+                            <i class="material-icons">delete_forever</i>
+                        </a>
+                        <a *ngIf="DanhMucHopDongService.FormData.ID>0" title="Tạo bản copy" (click)="DanhMucHopDongCopy()" style="color:#2196f3;">
+                            <i class="material-icons">content_copy</i>
+                        </a>
+                        <a *ngIf="DanhMucHopDongService.FormData.ID>0 && DanhMucHopDongService.FormData.TypeName"
+                            title="In biểu mẫu" style="color: green;"
+                            href="{{DanhMucHopDongService.FormData.TypeName}}" target="_blank"><i
+                                class="material-icons">print</i></a>
+                        <a *ngIf="DanhMucHopDongService.FormData.ID>0 && DanhMucHopDongService.FormData.FileName"
+                            title="Tải về biểu mẫu" style="color: green;"
+                            href="{{DanhMucHopDongService.FormData.FileName}}" target="_blank"><i
+                                class="material-icons">cloud_download</i></a>
+                    </div>
+                    <div class="col s6 m6 l3">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="Active"
+                                [(ngModel)]="DanhMucHopDongService.FormData.Active" />
+                            <span>Kích hoạt</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Mã quản lý</label>
+                            <input placeholder="Mã quản lý" [(ngModel)]="DanhMucHopDongService.FormData.Code"
+                                name="DanhMucHopDongService.FormData.Code" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Tiêu đề</label>
+                            <input placeholder="Tiêu đề" [(ngModel)]="DanhMucHopDongService.FormData.Name"
+                                name="DanhMucHopDongService.FormData.Name" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Sắp xếp</label>
+                            <input placeholder="Sắp xếp" [(ngModel)]="DanhMucHopDongService.FormData.SortOrder"
+                                name="DanhMucHopDongService.FormData.SortOrder" type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Tập tin đính kèm</label>
+                            <br />
+                            <input class="form-control" type="file"
+                                (change)="DanhMucHopDongFileNameChange($event.target.files)">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <ck-editor [config]="{'height': 500, 'width': 1800, 'versionCheck': false}" name="HTMLContent"
+                            [(ngModel)]="DanhMucHopDongService.FormData.HTMLContent" skin="moono-lisa" language="en"
+                            [fullPage]="true"></ck-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="DanhMucHopDongService.IsShowLoading"></app-loading>

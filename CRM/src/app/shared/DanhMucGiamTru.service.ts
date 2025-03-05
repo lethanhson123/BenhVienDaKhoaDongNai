@@ -8,7 +8,8 @@ import { BaseService } from './Base.service';
 })
 export class DanhMucGiamTruService extends BaseService{
     DisplayColumns001: string[] = ['Save', 'STT', 'ID', 'ParentID', 'ParentName', 'CreatedDate', 'CreatedMembershipID', 'LastUpdatedDate', 'LastUpdatedMembershipID', 'RowVersion', 'SortOrder', 'Active', 'TypeName', 'Name', 'Code', 'Note', 'Display', 'FileName', 'Description', 'HTMLContent', 'DanhMucNgonNguID', 'DanhMucUngDungID', 'DanhMucNgonNguName', 'DanhMucUngDungName', 'HeSo'];
-
+    DisplayColumns002: string[] = ['STT', 'ID', 'Code', 'Name', 'DanhMucUngDungID', 'SortOrder', 'Active', 'Save'];
+    
     List: DanhMucGiamTru[] | undefined;
     ListFilter: DanhMucGiamTru[] | undefined;
     FormData!: DanhMucGiamTru;

@@ -94,6 +94,14 @@
         {
             return await _repository.RemoveAsync(ID);
         }
+        public virtual int Remove(T existModel)
+        {
+            return _repository.Remove(existModel);
+        }
+        public virtual async Task<int> RemoveAsync(T existModel)
+        {
+            return await _repository.RemoveAsync(existModel);
+        }
         public virtual int AddRange(List<T> list)
         {
             return _repository.AddRange(list);

@@ -31,4 +31,8 @@ export class BaseParameter extends Base{
     SoHienTai?: number;    
     NgayCapSoSoThuTu?: number;    
     Number?: number;    
+    DanhMucTinhThanhID?: number;    
+    DanhMucQuanHuyenID?: number;    
+    DanhMucXaPhuongID?: number;    
+    
 }

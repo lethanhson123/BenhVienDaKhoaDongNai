@@ -1,0 +1,599 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Nhân viên:
+                        <b>{{HRNhanVienService.FormData.Name}} [{{HRNhanVienService.FormData.ID}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/HRNhanVien" title="Nhân sự">Nhân sự</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/HRNhanVien" title="HRNhanVien">
+                                Nhân viên
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l3">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;">
+                            <i class="material-icons">more</i>
+                        </a>
+                        <a title="Thêm mới" (click)="HRNhanVienAdd()" style="color: green;"><i
+                                class="material-icons">add_box</i></a>
+                        <a title="Lưu thay đổi" (click)="HRNhanVienSave()" style="color:#2196f3;">
+                            <i class="material-icons">save</i>
+                        </a>
+                    </div>
+                    <div class="col s6 m6 l3">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="Active"
+                                [(ngModel)]="HRNhanVienService.FormData.Active" />
+                            <span>Đang làm việc</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Mã nhân viên</label>
+                            <input placeholder="Mã nhân viên" [(ngModel)]="HRNhanVienService.FormData.Code"
+                                name="HRNhanVienService.FormData.Code" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Nhân viên</label>
+                            <input placeholder="Nhân viên" [(ngModel)]="HRNhanVienService.FormData.Name"
+                                name="HRNhanVienService.FormData.Name" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>CCCD / Hộ chiếu</label>
+                            <input placeholder="CCCD / Hộ chiếu" [(ngModel)]="HRNhanVienService.FormData.CCCD"
+                                name="HRNhanVienService.FormData.CCCD" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Ghi chú</label>
+                            <input placeholder="Ghi chú" [(ngModel)]="HRNhanVienService.FormData.Note"
+                                name="HRNhanVienService.FormData.Note" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Điện thoại</label>
+                            <input placeholder="Điện thoại" [(ngModel)]="HRNhanVienService.FormData.DienThoai"
+                                name="HRNhanVienService.FormData.DienThoai" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input placeholder="Email" [(ngModel)]="HRNhanVienService.FormData.Email"
+                                name="HRNhanVienService.FormData.Email" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Địa chỉ</label>
+                            <input placeholder="Địa chỉ" [(ngModel)]="HRNhanVienService.FormData.DiaChi"
+                                name="HRNhanVienService.FormData.DiaChi" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Thường trú</label>
+                            <input placeholder="Thường trú" [(ngModel)]="HRNhanVienService.FormData.DiaChiThuongTru"
+                                name="HRNhanVienService.FormData.DiaChiThuongTru" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Khoa phòng [{{HRNhanVienService.FormData.ParentID}}]</label>
+                            <mat-select
+                                style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; margin-bottom: 6px; color:green; width: 100%; min-width: 400px;"
+                                name="HRNhanVienService.FormData.ParentID" class="browser-default"
+                                [(ngModel)]="HRNhanVienService.FormData.ParentID">
+                                <input placeholder="Tìm..." (keyup)="DanhMucPhongBanFilter($event.target.value)"
+                                    style="color: blue;">
+                                <mat-option *ngFor="let item of DanhMucPhongBanService.ListFilter;" [value]="item.ID"
+                                    style="color:green;">
+                                    {{item.Name}} - {{item.Code}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <div>
+                            <label>Tỉnh thành [{{HRNhanVienService.FormData.DanhMucTinhThanhID}}]</label>
+                            <mat-select
+                                style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; margin-bottom: 6px; color:green; width: 100%; min-width: 400px;"
+                                name="HRNhanVienService.FormData.DanhMucTinhThanhID" class="browser-default"
+                                [(ngModel)]="HRNhanVienService.FormData.DanhMucTinhThanhID"
+                                (selectionChange)="DanhMucQuanHuyenSearch()">
+                                <input placeholder="Tìm..." (keyup)="DanhMucTinhThanhFilter($event.target.value)"
+                                    style="color: blue;">
+                                <mat-option *ngFor="let item of DanhMucTinhThanhService.ListFilter;" [value]="item.ID"
+                                    style="color:green;">
+                                    {{item.Name}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <div>
+                            <label>Quận huyện [{{HRNhanVienService.FormData.DanhMucQuanHuyenID}}]</label>
+                            <mat-select
+                                style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; margin-bottom: 6px; color:green; width: 100%; min-width: 400px;"
+                                name="HRNhanVienService.FormData.DanhMucQuanHuyenID" class="browser-default"
+                                [(ngModel)]="HRNhanVienService.FormData.DanhMucQuanHuyenID"
+                                (selectionChange)="DanhMucXaPhuongSearch()">
+                                <input placeholder="Tìm..." (keyup)="DanhMucQuanHuyenFilter($event.target.value)"
+                                    style="color: blue;">
+                                <mat-option *ngFor="let item of DanhMucQuanHuyenService.ListFilter;" [value]="item.ID"
+                                    style="color:green;">
+                                    {{item.Name}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <div>
+                            <label>Xã phường [{{HRNhanVienService.FormData.DanhMucXaPhuongID}}]</label>
+                            <mat-select
+                                style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; margin-bottom: 6px; color:green; width: 100%; min-width: 400px;"
+                                name="HRNhanVienService.FormData.DanhMucXaPhuongID" class="browser-default"
+                                [(ngModel)]="HRNhanVienService.FormData.DanhMucXaPhuongID">
+                                <input placeholder="Tìm..." (keyup)="DanhMucXaPhuongFilter($event.target.value)"
+                                    style="color: blue;">
+                                <mat-option *ngFor="let item of DanhMucXaPhuongService.ListFilter;" [value]="item.ID"
+                                    style="color:green;">
+                                    {{item.Name}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>Hình đại diện (nếu có) &nbsp;&nbsp;</label>
+                            <input class="form-control" type="file"
+                                (change)="HRNhanVienFileNameChange($event.target.files)">
+                        </div>
+                        <div *ngIf="HRNhanVienService.FormData.FileName">
+                            <a target="_blank" title="{{HRNhanVienService.FormData.FileName}}"
+                                href="{{HRNhanVienService.FormData.FileName}}"><img width="30%" class="responsive-img"
+                                    alt="HRNhanVienService.FormData.FileName"
+                                    [src]="HRNhanVienService.FormData.FileName"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l6">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Tập tin đính kèm
+                        <span
+                            *ngIf="HRNhanVienTapTinDinhKemService.List">({{HRNhanVienTapTinDinhKemService.List.length-1}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s6 m6 l5">
+                    <input [(ngModel)]="HRNhanVienTapTinDinhKemService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="HRNhanVienTapTinDinhKemSearch()">
+                </div>
+                <div class="col s6 m6 l1">
+                    <a style="color: green;" title="Tìm" (click)="HRNhanVienTapTinDinhKemSearch()"><i
+                            class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #HRNhanVienTapTinDinhKemSort="matSort" [dataSource]="HRNhanVienTapTinDinhKemService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="HRNhanVienTapTinDinhKemPaginator">
+                                    {{
+                                    HRNhanVienTapTinDinhKemPaginator.pageSize *
+                                    HRNhanVienTapTinDinhKemPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="HRNhanVienTapTinDinhKemSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <a *ngIf="element.ID>0" (click)="HRNhanVienTapTinDinhKemDelete(element)"
+                                    style="color: red;">
+                                    <i class="material-icons">delete_forever</i>
+                                </a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.ID}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ParentID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ParentID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ParentID" name="ParentID" [(ngModel)]="element.ParentID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ParentName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ParentName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ParentName" name="ParentName" [(ngModel)]="element.ParentName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CreatedDate" name="CreatedDate" [(ngModel)]="element.CreatedDate"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedMembershipID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedMembershipID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CreatedMembershipID" name="CreatedMembershipID"
+                                    [(ngModel)]="element.CreatedMembershipID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="LastUpdatedDate" name="LastUpdatedDate"
+                                    [(ngModel)]="element.LastUpdatedDate"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedMembershipID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedMembershipID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="LastUpdatedMembershipID" name="LastUpdatedMembershipID"
+                                    [(ngModel)]="element.LastUpdatedMembershipID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="RowVersion">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>RowVersion</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="RowVersion" name="RowVersion" [(ngModel)]="element.RowVersion"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SortOrder">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Sắp xếp</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="number"
+                                    placeholder="Sắp xếp" name="SortOrder" [(ngModel)]="element.SortOrder"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Active">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kích hoạt</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Kích hoạt" name="Active" [(ngModel)]="element.Active"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TypeName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TypeName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TypeName" name="TypeName" [(ngModel)]="element.TypeName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiêu đề</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Tiêu đề" name="Name" [(ngModel)]="element.Name"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Code" name="Code" [(ngModel)]="element.Code"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Note">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Note</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Note" name="Note" [(ngModel)]="element.Note"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Display">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Display</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Display" name="Display" [(ngModel)]="element.Display"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="FileName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Đính kèm</th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="file" multiple
+                                    (change)="HRNhanVienTapTinDinhKemFileNameChange($event.target.files)">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="HTMLContent">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>HTMLContent</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="HTMLContent" name="HTMLContent" [(ngModel)]="element.HTMLContent"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucNgonNguID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucNgonNguID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucNgonNguID" name="DanhMucNgonNguID"
+                                    [(ngModel)]="element.DanhMucNgonNguID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucUngDungID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucUngDungID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucUngDungID" name="DanhMucUngDungID"
+                                    [(ngModel)]="element.DanhMucUngDungID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucNgonNguName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucNgonNguName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucNgonNguName" name="DanhMucNgonNguName"
+                                    [(ngModel)]="element.DanhMucNgonNguName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucUngDungName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucUngDungName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucUngDungName" name="DanhMucUngDungName"
+                                    [(ngModel)]="element.DanhMucUngDungName"></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="HRNhanVienTapTinDinhKemService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: HRNhanVienTapTinDinhKemService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #HRNhanVienTapTinDinhKemPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                        [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                    <table *ngIf="NotificationService.IsMobile" mat-table matSort #HRNhanVienTapTinDinhKemSort="matSort"
+                        [dataSource]="HRNhanVienTapTinDinhKemService.DataSource" class="table table-striped m-0">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Danh sách
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div class="row gx-4">
+                                    <div class="col-lg-12 col-sm-12 col-12">
+                                        <label>Tiêu đề</label>
+                                        <br />
+                                        <input class="form-control" type="text" placeholder="Tiêu đề"
+                                            name="Name{{element.ID}}" [(ngModel)]="element.Name">
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12 col-12">
+                                        <label>Đính kèm</label>
+                                        <br />
+                                        <input class="form-control" type="file" multiple
+                                            (change)="HRNhanVienTapTinDinhKemFileNameChange($event.target.files)">
+                                    </div>
+                                </div>
+                                <div class="row gx-4">
+                                    <div class="col s6 m6 l6">
+                                        <a (click)="HRNhanVienTapTinDinhKemSave(element)" style="color:#2196f3;">
+                                            <i class="material-icons">save</i>
+                                        </a>
+                                    </div>
+                                    <div class="col s6 m6 l6">
+                                        <a *ngIf="element.ID>0" (click)="HRNhanVienTapTinDinhKemDelete(element)"
+                                            style="color: red;"><i class="material-icons">delete_forever</i></a>
+                                    </div>
+                                </div>
+                                <br />
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="HRNhanVienTapTinDinhKemService.DisplayColumnsMobile">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: HRNhanVienTapTinDinhKemService.DisplayColumnsMobile;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="NotificationService.IsMobile" #HRNhanVienTapTinDinhKemPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10000" [showFirstLastButtons]></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l6">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Tài khoản ngân hàng
+                        <span *ngIf="HRNhanVienNganHangService.List">({{HRNhanVienNganHangService.List.length-1}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s6 m6 l5">
+                    <input [(ngModel)]="HRNhanVienNganHangService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="HRNhanVienNganHangSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="HRNhanVienNganHangSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #HRNhanVienNganHangSort="matSort"
+                        [dataSource]="HRNhanVienNganHangService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="HRNhanVienNganHangPaginator">
+                                    {{
+                                    HRNhanVienNganHangPaginator.pageSize *
+                                    HRNhanVienNganHangPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="HRNhanVienNganHangSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <a (click)="HRNhanVienNganHangDelete(element)" style="color: red;">
+                                    <i class="material-icons">delete_forever</i>
+                                </a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element">{{element.ID}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="ParentID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ParentID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ParentID" name="ParentID" [(ngModel)]="element.ParentID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ParentName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ParentName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ParentName" name="ParentName" [(ngModel)]="element.ParentName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CreatedDate" name="CreatedDate" [(ngModel)]="element.CreatedDate"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedMembershipID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedMembershipID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CreatedMembershipID" name="CreatedMembershipID"
+                                    [(ngModel)]="element.CreatedMembershipID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="LastUpdatedDate" name="LastUpdatedDate"
+                                    [(ngModel)]="element.LastUpdatedDate"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedMembershipID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedMembershipID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="LastUpdatedMembershipID" name="LastUpdatedMembershipID"
+                                    [(ngModel)]="element.LastUpdatedMembershipID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="RowVersion">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>RowVersion</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="RowVersion" name="RowVersion" [(ngModel)]="element.RowVersion"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SortOrder">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SortOrder</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="SortOrder" name="SortOrder" [(ngModel)]="element.SortOrder"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Active">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Active</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Active" name="Active" [(ngModel)]="element.Active"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TypeName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TypeName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TypeName" name="TypeName" [(ngModel)]="element.TypeName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số tài khoản</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Số tài khoản" name="Name" [(ngModel)]="element.Name"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Code" name="Code" [(ngModel)]="element.Code"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Note">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Note</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Note" name="Note" [(ngModel)]="element.Note"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Display">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Display</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Display" name="Display" [(ngModel)]="element.Display"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="FileName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>FileName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="FileName" name="FileName" [(ngModel)]="element.FileName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="HTMLContent">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>HTMLContent</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="HTMLContent" name="HTMLContent" [(ngModel)]="element.HTMLContent"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucNgonNguID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucNgonNguID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucNgonNguID" name="DanhMucNgonNguID"
+                                    [(ngModel)]="element.DanhMucNgonNguID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucUngDungID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngân hàng</th>
+                            <td mat-cell *matCellDef="let element">
+                                <select class="browser-default form-select" name="element.DanhMucUngDungID"
+                                    [(ngModel)]="element.DanhMucUngDungID">                                  
+                                    <option *ngFor="let item of DanhMucNganHangService.ListFilter;"
+                                        [value]="item.ID">
+                                        {{item.Code}} - {{item.Name}}</option>
+                                </select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucNgonNguName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucNgonNguName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucNgonNguName" name="DanhMucNgonNguName"
+                                    [(ngModel)]="element.DanhMucNgonNguName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucUngDungName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucUngDungName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucUngDungName" name="DanhMucUngDungName"
+                                    [(ngModel)]="element.DanhMucUngDungName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TaiKhoanNganHang">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TaiKhoanNganHang</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TaiKhoanNganHang" name="TaiKhoanNganHang"
+                                    [(ngModel)]="element.TaiKhoanNganHang"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucNganHangID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucNganHangID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucNganHangID" name="DanhMucNganHangID"
+                                    [(ngModel)]="element.DanhMucNganHangID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucNganHangName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DanhMucNganHangName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DanhMucNganHangName" name="DanhMucNganHangName"
+                                    [(ngModel)]="element.DanhMucNganHangName"></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="HRNhanVienNganHangService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: HRNhanVienNganHangService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #HRNhanVienNganHangPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="HRNhanVienService.IsShowLoading"></app-loading>

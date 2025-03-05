@@ -13,7 +13,6 @@ Email?: string;
 DiaChiThuongTru?: string;
 DiaChi?: string;
 DienThoai?: string;
-IsNghiViec?: boolean;
 
 }
 

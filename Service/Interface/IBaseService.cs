@@ -13,6 +13,8 @@
         Task<int> UpdateAsync(T model);
         int Remove(long ID);
         Task<int> RemoveAsync(long ID);
+        int Remove(T existModel);
+        Task<int> RemoveAsync(T existModel);
         int AddRange(List<T> list);
         Task<int> AddRangeAsync(List<T> list);
         int UpdateRange(List<T> list);

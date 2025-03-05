@@ -105,13 +105,13 @@
     <div class="col s12 m12 l4">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l6">
-                    <h6 class="card-title">Phân quyền Menu
+                <div class="col s12 m12 l4">
+                    <h6 class="card-title">Menu
                         <span *ngIf="ThanhVienChucNangService.List">({{ThanhVienChucNangService.List.length}}
                             items)</span>
                     </h6>
                 </div>
-                <div class="col s12 m12 l2">
+                <div class="col s12 m12 l3">
                     <input [(ngModel)]="ThanhVienChucNangService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="ThanhVienChucNangSearch()">
                 </div>
@@ -119,7 +119,7 @@
                     <a style="color: green;" title="Tìm" (click)="ThanhVienChucNangSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
                 </div>
-                <div class="col s12 m12 l2">
+                <div class="col s12 m12 l3">
                     <label>
                         <input name="IsThanhVienChucNangActiveAll" [(ngModel)]="IsThanhVienChucNangActiveAll"
                             (change)="ThanhVienChucNangActiveAllChange()" type="checkbox" class="form-check-input" />
@@ -211,13 +211,13 @@
     <div class="col s12 m12 l4">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l6">
-                    <h6 class="card-title">Phân quyền Ứng dụng
+                <div class="col s12 m12 l4">
+                    <h6 class="card-title">Ứng dụng
                         <span *ngIf="ThanhVienUngDungService.List">({{ThanhVienUngDungService.List.length}}
                             items)</span>
                     </h6>
                 </div>
-                <div class="col s12 m12 l2">
+                <div class="col s12 m12 l3">
                     <input [(ngModel)]="ThanhVienUngDungService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="ThanhVienUngDungSearch()">
                 </div>
@@ -225,7 +225,7 @@
                     <a style="color: green;" title="Tìm" (click)="ThanhVienUngDungSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
                 </div>
-                <div class="col s12 m12 l2">
+                <div class="col s12 m12 l3">
                     <label>
                         <input name="IsThanhVienUngDungActiveAll" [(ngModel)]="IsThanhVienUngDungActiveAll"
                             (change)="ThanhVienUngDungActiveAllChange()" type="checkbox" class="form-check-input" />
@@ -317,13 +317,13 @@
     <div class="col s12 m12 l4">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l6">
-                    <h6 class="card-title">Phân quyền Dịch vụ
+                <div class="col s12 m12 l4">
+                    <h6 class="card-title">Dịch vụ
                         <span *ngIf="ThanhVienDichVuService.List">({{ThanhVienDichVuService.List.length}}
                             items)</span>
                     </h6>
                 </div>
-                <div class="col s12 m12 l2">
+                <div class="col s12 m12 l3">
                     <input [(ngModel)]="ThanhVienDichVuService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="ThanhVienDichVuSearch()">
                 </div>
@@ -331,7 +331,7 @@
                     <a style="color: green;" title="Tìm" (click)="ThanhVienDichVuSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
                 </div>
-                <div class="col s12 m12 l2">
+                <div class="col s12 m12 l3">
                     <label>
                         <input name="IsThanhVienDichVuActiveAll" [(ngModel)]="IsThanhVienDichVuActiveAll"
                             (change)="ThanhVienDichVuActiveAllChange()" type="checkbox" class="form-check-input" />

@@ -35,13 +35,14 @@ export class BaseService {
         this.FormData = {
         };
         this.BaseParameter = {
+            ID: environment.InitializationNumber,
             SearchString: environment.InitializationString,
             BatDau: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
             KetThuc: new Date(),
             Nam: new Date().getFullYear(),
             Thang: new Date().getMonth() + 1,
-            ListID:[],
-        };        
+            ListID: [],
+        };
         this.List = [];
         this.ListFilter = [];
 
@@ -307,7 +308,7 @@ export class BaseService {
         this.IsShowLoading = true;
         this.GetAllAndEmptyToListAsync().subscribe(
             res => {
-                this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));                
+                this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
                 this.ListFilter = this.List.filter(item => item.ID > 0);
                 this.DataSource = new MatTableDataSource(this.List);
                 this.DataSource.sort = sort;
@@ -354,7 +355,7 @@ export class BaseService {
             }
         );
     }
-    ComponentGetByParentIDAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator, Service: BaseService) {        
+    ComponentGetByParentIDAndEmptyToListAsync(sort: MatSort, paginator: MatPaginator, Service: BaseService) {
         Service.IsShowLoading = true;
         this.GetByParentIDAndEmptyToListAsync().subscribe(
             res => {
@@ -362,7 +363,7 @@ export class BaseService {
                 this.ListFilter = this.List.filter(item => item.ID > 0);
                 this.DataSource = new MatTableDataSource(this.List);
                 this.DataSource.sort = sort;
-                this.DataSource.paginator = paginator;                
+                this.DataSource.paginator = paginator;
             },
             err => {
             },
@@ -507,7 +508,7 @@ export class BaseService {
             }
         );
     }
-    ComponentGetAllToListAsync(Service: BaseService) {       
+    ComponentGetAllToListAsync(Service: BaseService) {
         if (this.List) {
             if (this.List.length == 0) {
                 this.GetAllToListAsync().subscribe(
@@ -517,14 +518,14 @@ export class BaseService {
                     },
                     err => {
                     },
-                    () => {                        
+                    () => {
                     }
                 );
             }
-            else{            
+            else {
             }
         }
-        else{           
+        else {
         }
     }
     ComponentGetByIDToListAsync(Service: BaseService) {
@@ -574,11 +575,11 @@ export class BaseService {
         );
     }
     ComponentGetByActiveToListAsync(Service: BaseService) {
-        Service.IsShowLoading = true;        
+        Service.IsShowLoading = true;
         this.GetByActiveToListAsync().subscribe(
             res => {
                 this.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
-                this.ListFilter = this.List;                
+                this.ListFilter = this.List;
             },
             err => {
             },
@@ -667,7 +668,7 @@ export class BaseService {
         this.IsShowLoading = true;
         console.log(this.FormData);
         this.SaveAsync().subscribe(
-            res => {                
+            res => {
                 this.SearchAll(sort, paginator);
                 return environment.SaveSuccess;
             },
@@ -795,13 +796,16 @@ export class BaseService {
     ComponentDeleteAll(sort: MatSort, paginator: MatPaginator) {
         if (confirm(environment.DeleteConfirm)) {
             this.IsShowLoading = true;
+            if (this.BaseParameter.ID == environment.InitializationNumber) {
+                this.BaseParameter.ID = this.FormData.ID;
+            }
             this.RemoveAsync().subscribe(
                 res => {
                     this.SearchAll(sort, paginator);
-                    return environment.SaveSuccess;
+                    return environment.DeleteSuccess;
                 },
                 err => {
-                    return environment.SaveNotSuccess;
+                    return environment.DeleteNotSuccess;
                 },
                 () => {
                     this.IsShowLoading = false;
@@ -813,6 +817,9 @@ export class BaseService {
     ComponentDeleteAllNotEmpty(sort: MatSort, paginator: MatPaginator) {
         if (confirm(environment.DeleteConfirm)) {
             this.IsShowLoading = true;
+            if (this.BaseParameter.ID == environment.InitializationNumber) {
+                this.BaseParameter.ID = this.FormData.ID;
+            }
             this.RemoveAsync().subscribe(
                 res => {
                     this.SearchAllNotEmpty(sort, paginator);
@@ -975,7 +982,7 @@ export class BaseService {
     InitializationDateTime() {
         this.Initialization();
         let url = this.APIURL + this.Controller + '/InitializationDateTime';
-        const formUpload: FormData = new FormData();        
+        const formUpload: FormData = new FormData();
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
     Save() {
@@ -1016,6 +1023,18 @@ export class BaseService {
         let url = this.APIURL + this.Controller + '/RemoveAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    RemoveByModel() {
+        let url = this.APIURL + this.Controller + '/RemoveByModel';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.FormData));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    RemoveByModelAsync() {
+        let url = this.APIURL + this.Controller + '/RemoveByModelAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.FormData));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
     GetByID() {
