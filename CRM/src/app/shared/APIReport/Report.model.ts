@@ -3,10 +3,11 @@
 export class Report extends Base{   
     ID: number;
     Name: string;   
+    Code: string;
     Year: number;
     Month: number;
     Day: number;
-    Hour: number;
+    Hour: number;    
     TinhThanhName: string;   
     QuanHuyenName: string;   
     XaPhuongName: string;   

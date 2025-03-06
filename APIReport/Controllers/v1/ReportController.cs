@@ -74,6 +74,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("ReportNSTLA0001ToListAsync")]
+        public async Task<List<Report>> ReportNSTLA0001ToListAsync()
+        {
+            List<Report> result = new List<Report>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _ReportService.ReportNSTLA0001ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

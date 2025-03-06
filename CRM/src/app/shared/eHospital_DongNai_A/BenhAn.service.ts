@@ -109,6 +109,7 @@ export class BenhAnService extends BaseService {
             this.ReportService.FormTemporary = {
               ID: environment.InitializationNumber,
               Name: environment.InitializationString,
+              Code: environment.InitializationString,
               Year: environment.InitializationNumber,
               Month: environment.InitializationNumber,
               Day: environment.InitializationNumber,

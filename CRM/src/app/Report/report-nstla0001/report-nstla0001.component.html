@@ -1,0 +1,200 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12 l6">
+                    <h5>Nhân sự</h5>
+                </div>
+                <div class="col s12 m12 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/ReportA0001" title="Báo cáo thống kê">Báo cáo thống
+                                kê</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/ReportNSTLA0001" title="Nhân sự">Nhân sự</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l3">
+        <div class="card animate fadeLeft">
+            <div class="card-content green white-text">
+                <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe001 |
+                    number:
+                    '1.0-0'}}</h4>
+                <p class="card-stats-compare">
+                    <span class="green text text-lighten-5">Tất cả</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l3">
+        <div class="card animate fadeLeft">
+            <div class="card-content red white-text">
+                <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe002 |
+                    number:
+                    '1.0-0'}}</h4>
+                <p class="card-stats-compare">
+                    <span class="red text text-lighten-5">Bác sĩ</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l3">
+        <div class="card animate fadeLeft">
+            <div class="card-content orange white-text">
+                <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe003 |
+                    number:
+                    '1.0-0'}}</h4>
+                <p class="card-stats-compare">
+                    <span class="orange text text-lighten-5">Điều dưỡng</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l3">
+        <div class="card animate fadeLeft">
+            <div class="card-content cyan white-text">
+                <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe004 |
+                    number:
+                    '1.0-0'}}</h4>
+                <p class="card-stats-compare">
+                    <span class="cyan text text-lighten-5">Dược sĩ</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">        
+        <div class="col s12 m12 l9">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Khoa phòng</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0001_Data"
+                    [labels]="Report0002_0001_Label" [chartType]="Report0002_0001_Type" [colors]="Report0002_0001_Color"
+                    [options]="Report0002_0001_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+        <div class="col s12 m12 l3">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">              
+            </div>
+        </div>
+    </div>
+    <div class="row">   
+        <br />            
+        <div class="col s12 m12 l4">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6><b>Khoa phòng</b></h6>
+                <ul>
+                    <li *ngFor="let item of ReportService.List100; index as i;"><a class="link-primary" style="cursor: pointer;" (click)="ReportNSTLA0001Filter(item.TinhThanhName)">{{i + 1}}. {{item.Code}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12 m12 l8">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">     
+                <table>
+                    <thead>
+                        <th style="text-align: center;">STT</th>
+                        <th style="text-align: center;">Khoa phòng</th>
+                        <th style="text-align: center;">Chức danh</th>
+                        <th style="text-align: center;">Số lượng</th>                        
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ReportService.ListFilter; index as i;" style="padding: 0px; margin: 0px;">
+                            <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;">{{i + 1}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.TinhThanhName}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.QuanHuyenName}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;">{{item.ThongKe001}}</td>
+                        </tr>
+                    </tbody>
+                </table>         
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col s12 m12 l9">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Bác sĩ</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
+                    [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type" [colors]="Report0001_0001_Color"
+                    [options]="Report0001_0001_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+        <div class="col s12 m12 l3">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6><b>Bác sĩ</b></h6>
+                <ul>
+                    <li *ngFor="let item of ReportService.List10; index as i;">{{i + 1}}. {{item.Code}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col s12 m12 l9">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Điều dưỡng</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
+                    [labels]="Report0001_0002_Label" [chartType]="Report0001_0002_Type" [colors]="Report0001_0002_Color"
+                    [options]="Report0001_0002_Option" [plugins]="Report0001_0002_Plugin">
+                </canvas>
+            </div>
+        </div>
+        <div class="col s12 m12 l3">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6><b>Điều dưỡng</b></h6>
+                <ul>
+                    <li *ngFor="let item of ReportService.List20; index as i;">{{i + 1}}. {{item.Code}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col s12 m12 l9">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Dược sĩ</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0005_Data"
+                    [labels]="Report0001_0005_Label" [chartType]="Report0001_0005_Type" [colors]="Report0001_0005_Color"
+                    [options]="Report0001_0005_Option" [plugins]="Report0001_0005_Plugin">
+                </canvas>
+            </div>
+        </div>
+        <div class="col s12 m12 l3">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6><b>Dược sĩ</b></h6>
+                <ul>
+                    <li *ngFor="let item of ReportService.List50; index as i;">{{i + 1}}. {{item.Code}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>   
+    <div class="row">
+        <br />
+        <div class="col s12 m12 l9">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Chức danh</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0002_Data"
+                    [labels]="Report0002_0002_Label" [chartType]="Report0002_0002_Type" [colors]="Report0002_0002_Color"
+                    [options]="Report0002_0002_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+        <div class="col s12 m12 l3">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6><b>Chức danh</b></h6>
+                <ul>
+                    <li *ngFor="let item of ReportService.List200; index as i;">{{i + 1}}. {{item.Name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="ReportService.IsShowLoading"></app-loading>

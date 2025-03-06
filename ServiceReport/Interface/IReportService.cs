@@ -7,6 +7,7 @@
         Task<List<Report>> ReportDictionary0003ToListAsync(int Year);
 
         Task<List<Report>> ReportA0001ToListAsync(int Year, int Month, int Day, int PhongBanID);
+        Task<List<Report>> ReportNSTLA0001ToListAsync();
     }
 }
 

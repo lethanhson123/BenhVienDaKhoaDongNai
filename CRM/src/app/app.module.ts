@@ -176,6 +176,7 @@ import { HRChamCongInfoComponent } from './HR/hrcham-cong-info/hrcham-cong-info.
 import { HRNhanVienHopDongInfoComponent } from './HR/hrnhan-vien-hop-dong-info/hrnhan-vien-hop-dong-info.component';
 import { DanhMucPhongBanComponent } from './HR/danh-muc-phong-ban/danh-muc-phong-ban.component';
 import { DanhMucHopDongInfoComponent } from './HR/danh-muc-hop-dong-info/danh-muc-hop-dong-info.component';
+import { ReportNSTLA0001Component } from './Report/report-nstla0001/report-nstla0001.component';
 
 
 
@@ -336,7 +337,7 @@ import { DanhMucHopDongInfoComponent } from './HR/danh-muc-hop-dong-info/danh-mu
     HRBangLuongComponent,    
     HRChamCongComponent,    
     HRLichCongTacComponent,    
-    HRNhanVienComponent, DanhMucDonViTinhComponent, DanhMucMayChamCongComponent, HRNhanVienHopDongComponent, HRNhanVienInfoComponent, HRBangLuongInfoComponent, HRLichCongTacInfoComponent, HRChamCongInfoComponent, HRNhanVienHopDongInfoComponent, DanhMucPhongBanComponent, DanhMucHopDongInfoComponent,    
+    HRNhanVienComponent, DanhMucDonViTinhComponent, DanhMucMayChamCongComponent, HRNhanVienHopDongComponent, HRNhanVienInfoComponent, HRBangLuongInfoComponent, HRLichCongTacInfoComponent, HRChamCongInfoComponent, HRNhanVienHopDongInfoComponent, DanhMucPhongBanComponent, DanhMucHopDongInfoComponent, ReportNSTLA0001Component,    
     
     
 
