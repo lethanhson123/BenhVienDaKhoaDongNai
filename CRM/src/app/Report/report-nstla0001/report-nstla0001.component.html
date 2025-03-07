@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="col s12 m12 l3">
+    <div class="col s12 m12 l2">
         <div class="card animate fadeLeft">
             <div class="card-content green white-text">
                 <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe001 |
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col s12 m12 l3">
+    <div class="col s12 m12 l2">
         <div class="card animate fadeLeft">
             <div class="card-content red white-text">
                 <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe002 |
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div class="col s12 m12 l3">
+    <div class="col s12 m12 l2">
         <div class="card animate fadeLeft">
             <div class="card-content orange white-text">
                 <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe003 |
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div class="col s12 m12 l3">
+    <div class="col s12 m12 l2">
         <div class="card animate fadeLeft">
             <div class="card-content cyan white-text">
                 <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe004 |
@@ -70,8 +70,32 @@
             </div>
         </div>
     </div>
+    <div class="col s12 m12 l2">
+        <div class="card animate fadeLeft">
+            <div class="card-content green white-text">
+                <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe005 |
+                    number:
+                    '1.0-0'}}</h4>
+                <p class="card-stats-compare">
+                    <span class="green text text-lighten-5">Kỹ thuật viên</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l2">
+        <div class="card animate fadeLeft">
+            <div class="card-content red white-text">
+                <h4 class="card-stats-number white-text">{{ReportService.FormData.ThongKe006 |
+                    number:
+                    '1.0-0'}}</h4>
+                <p class="card-stats-compare">
+                    <span class="red text text-lighten-5">Hộ lý</span>
+                </p>
+            </div>
+        </div>
+    </div>
     <div class="row">        
-        <div class="col s12 m12 l9">
+        <div class="col s12 m12 l10">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Khoa phòng</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0001_Data"
@@ -80,7 +104,7 @@
                 </canvas>
             </div>
         </div>
-        <div class="col s12 m12 l3">
+        <div class="col s12 m12 l2">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">              
             </div>
         </div>
@@ -91,7 +115,10 @@
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
                 <h6><b>Khoa phòng</b></h6>
                 <ul>
-                    <li *ngFor="let item of ReportService.List100; index as i;"><a class="link-primary" style="cursor: pointer;" (click)="ReportNSTLA0001Filter(item.TinhThanhName)">{{i + 1}}. {{item.Code}}</a></li>
+                    <li *ngFor="let item of ReportService.List100; index as i;">
+                        <a class="link-primary" style="cursor: pointer;" (click)="ReportNSTLA0001Filter(item.TinhThanhName)" *ngIf="i<9">0{{i + 1}}. {{item.Code}}</a>
+                        <a class="link-primary" style="cursor: pointer;" (click)="ReportNSTLA0001Filter(item.TinhThanhName)" *ngIf="i>8">{{i + 1}}. {{item.Code}}</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -99,20 +126,41 @@
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">     
                 <table>
                     <thead>
-                        <th style="text-align: center;">STT</th>
-                        <th style="text-align: center;">Khoa phòng</th>
-                        <th style="text-align: center;">Chức danh</th>
+                        <th style="text-align: center; width: 5%;">STT</th>
+                        <th style="text-align: center; width: 30%;">Khoa phòng</th>
+                        <th style="text-align: center; width: 20%;">Chức danh</th>
                         <th style="text-align: center;">Số lượng</th>                        
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of ReportService.ListFilter; index as i;" style="padding: 0px; margin: 0px;">
-                            <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;">{{i + 1}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;" *ngIf="i<9">0{{i + 1}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;" *ngIf="i>8">{{i + 1}}</td>
                             <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.TinhThanhName}}</td>
                             <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.QuanHuyenName}}</td>
                             <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;">{{item.ThongKe001}}</td>
                         </tr>
                     </tbody>
                 </table>         
+                <br/>
+                <table>
+                    <thead>
+                        <th style="text-align: center; width: 5%;">STT</th>
+                        <th style="text-align: center; width: 30%;">Khoa phòng</th>
+                        <th style="text-align: center; width: 20%;">Chức danh</th>
+                        <th style="text-align: center;">Mã nhân viên</th>                        
+                        <th style="text-align: center;">Họ tên</th>                        
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ReportService.ListNSTLFilter; index as i;" style="padding: 0px; margin: 0px;">
+                            <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;" *ngIf="i<9">0{{i + 1}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center;" *ngIf="i>8">{{i + 1}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.Code}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.Name}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.Name001}}</td>
+                            <td style="padding: 0px; margin: 0px; font-weight: bold;">{{item.Name002}}</td>
+                        </tr>
+                    </tbody>
+                </table>        
             </div>
         </div>
     </div>
@@ -143,7 +191,7 @@
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Điều dưỡng</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
                     [labels]="Report0001_0002_Label" [chartType]="Report0001_0002_Type" [colors]="Report0001_0002_Color"
-                    [options]="Report0001_0002_Option" [plugins]="Report0001_0002_Plugin">
+                    [options]="Report0001_0002_Option" [plugins]="Report0001_0001_Plugin">
                 </canvas>
             </div>
         </div>
@@ -163,7 +211,7 @@
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Dược sĩ</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0005_Data"
                     [labels]="Report0001_0005_Label" [chartType]="Report0001_0005_Type" [colors]="Report0001_0005_Color"
-                    [options]="Report0001_0005_Option" [plugins]="Report0001_0005_Plugin">
+                    [options]="Report0001_0005_Option" [plugins]="Report0001_0001_Plugin">
                 </canvas>
             </div>
         </div>

@@ -36,24 +36,24 @@ export class BaseService {
         public httpClient: HttpClient
     ) {
         this.FormData = {
-        };       
+        };
         this.BaseParameter = {
-            SearchString: environment.InitializationString, 
+            SearchString: environment.InitializationString,
             BatDau: new Date(),
-            KetThuc: new Date(),         
+            KetThuc: new Date(),
             Year: new Date().getFullYear(),
-            Month: new Date().getMonth()+1,
+            Month: new Date().getMonth() + 1,
             Day: new Date().getDate(),
-        };        
+        };
         this.List = [];
-        this.ListFilter = [];        
+        this.ListFilter = [];
         let token = localStorage.getItem(environment.Token);
         this.Headers = this.Headers.append('Authorization', 'Bearer ' + token);
 
         this.FormTemporary = {
         };
         this.ListTemporary = [];
-    }  
+    }
 
 }
 

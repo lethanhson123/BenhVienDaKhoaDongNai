@@ -29,15 +29,32 @@ export class ReportNSTLA0001Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.Image.src = environment.Logo100_26;
+    this.Image.src = environment.Logo312_80;
     this.ReportSearch();
   }
   ReportSearch() {
     this.ReportNSTLA0001Search();
+    this.ReportNSTLA0002Search();
   }
-  ReportNSTLA0001Filter(TinhThanhName: string) {    
-    this.ReportService.ListFilter = this.ReportService.List.filter(item => item.TinhThanhName == TinhThanhName);
-    console.log(this.ReportService.ListFilter);
+  ReportNSTLA0001Filter(SearchString: string) {    
+    this.ReportService.ListFilter = this.ReportService.List.filter(item => item.TinhThanhName == SearchString);    
+    this.ReportService.ListFilter = this.ReportService.ListFilter.sort((a, b) => (a.Name > b.Name ? 1 : -1));
+      
+    this.ReportService.ListNSTLFilter = this.ReportService.ListNSTL.filter(item => item.Code == SearchString);
+    this.ReportService.ListNSTLFilter = this.ReportService.ListNSTLFilter.sort((a, b) => (a.Name > b.Name ? 1 : -1));
+  }
+  ReportNSTLA0002Search() {
+    this.ReportService.IsShowLoading = true;
+    this.ReportService.ReportNSTLA0002ToListAsync().subscribe(
+      res => {
+        this.ReportService.ListNSTL = (res as Report[]);       
+      },
+      err => {
+      },
+      () => {
+        this.ReportService.IsShowLoading = false;
+      }
+    );
   }
   ReportNSTLA0001Search() {
     this.ReportService.IsShowLoading = true;
@@ -48,6 +65,8 @@ export class ReportNSTLA0001Component implements OnInit {
         this.ReportService.List1000 = this.ReportService.ListReportA.filter(item => item.ID == 1000);
         this.ReportService.List10 = this.ReportService.ListReportA.filter(item => item.ID == 10);
         this.ReportService.List20 = this.ReportService.ListReportA.filter(item => item.ID == 20);
+        this.ReportService.List30 = this.ReportService.ListReportA.filter(item => item.ID == 30);
+        this.ReportService.List40 = this.ReportService.ListReportA.filter(item => item.ID == 40);
         this.ReportService.List50 = this.ReportService.ListReportA.filter(item => item.ID == 50);
         this.ReportService.List100 = this.ReportService.ListReportA.filter(item => item.ID == 100);
         this.ReportService.List200 = this.ReportService.ListReportA.filter(item => item.ID == 200);
@@ -59,7 +78,14 @@ export class ReportNSTLA0001Component implements OnInit {
             this.ReportService.FormData.ThongKe001 = this.ReportService.List1000[0].ThongKe001;
           }
         }
-
+        this.ReportService.FormData.ThongKe005 = environment.InitializationNumber;
+        this.ReportService.FormData.ThongKe006 = environment.InitializationNumber;
+        for (let i = 0; i < this.ReportService.List30.length; i++) {
+          this.ReportService.FormData.ThongKe005 = this.ReportService.FormData.ThongKe005 + this.ReportService.List30[i].ThongKe001;          
+        }
+        for (let i = 0; i < this.ReportService.List40.length; i++) {
+          this.ReportService.FormData.ThongKe006 = this.ReportService.FormData.ThongKe006 + this.ReportService.List40[i].ThongKe001;          
+        }
 
         this.ReportService.List10 = this.ReportService.List10.sort((a, b) => (a.ThongKe001 > b.ThongKe001 ? 1 : -1));
         this.ReportService.FormData.ThongKe002 = environment.InitializationNumber;
@@ -206,6 +232,9 @@ export class ReportNSTLA0001Component implements OnInit {
           const x = left;
           const y = top;
           ctx.drawImage(this.Image, x, y, this.Image.width, this.Image.height);
+          // const x = left + width / 2 - this.Image.width / 2;
+          // const y = top + height / 2 - this.Image.height / 2;
+          // ctx.drawImage(this.Image, x, y);
         } else {
           this.Image.onload = () => chart.draw();
         }
@@ -264,24 +293,6 @@ export class ReportNSTLA0001Component implements OnInit {
   public Report0001_0002_Type: ChartType = 'bar';
   public Report0001_0002_Legend = true;
 
-
-  public Report0001_0002_Plugin = [
-    {
-      id: 'customCanvasBackgroundImage',
-      beforeDraw: (chart) => {
-        if (this.Image.complete) {
-          const ctx = chart.ctx;
-          const { top, left, width, height } = chart.chartArea;
-          const x = left;
-          const y = top;
-          ctx.drawImage(this.Image, x, y, this.Image.width, this.Image.height);
-        } else {
-          this.Image.onload = () => chart.draw();
-        }
-      }
-    }
-  ];
-
   public Report0001_0002_Data: ChartDataSets[] = [
   ];
 
@@ -331,25 +342,7 @@ export class ReportNSTLA0001Component implements OnInit {
   ]
   public Report0001_0005_Label: Label[] = [];
   public Report0001_0005_Type: ChartType = 'bar';
-  public Report0001_0005_Legend = true;
-
-
-  public Report0001_0005_Plugin = [
-    {
-      id: 'customCanvasBackgroundImage',
-      beforeDraw: (chart) => {
-        if (this.Image.complete) {
-          const ctx = chart.ctx;
-          const { top, left, width, height } = chart.chartArea;
-          const x = left;
-          const y = top;
-          ctx.drawImage(this.Image, x, y, this.Image.width, this.Image.height);
-        } else {
-          this.Image.onload = () => chart.draw();
-        }
-      }
-    }
-  ];
+  public Report0001_0005_Legend = true; 
 
   public Report0001_0005_Data: ChartDataSets[] = [
   ];

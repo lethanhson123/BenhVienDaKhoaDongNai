@@ -90,6 +90,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("ReportNSTLA0002ToListAsync")]
+        public async Task<List<Report>> ReportNSTLA0002ToListAsync()
+        {
+            List<Report> result = new List<Report>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _ReportService.ReportNSTLA0002ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

@@ -29,11 +29,23 @@ export class ReportService extends BaseService {
     List200: Report[] | undefined;
     List1000: Report[] | undefined;
 
+    ListNSTL: Report[] | undefined;
+    ListNSTLFilter: Report[] | undefined;
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "Report";
 
         this.List10 = [];
+        this.List20 = [];
+        this.List30 = [];
+        this.List40 = [];
+        this.List50 = [];
+        this.List100 = [];
+        this.List200 = [];
+        this.List1000 = [];
+        this.ListNSTL = [];
+        this.ListNSTLFilter = [];
     }
 
     ReportDictionary0001ToListAsync() {
@@ -69,6 +81,12 @@ export class ReportService extends BaseService {
     }
     ReportNSTLA0001ToListAsync() {
         let url = this.APIURL + this.Controller + '/ReportNSTLA0001ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    ReportNSTLA0002ToListAsync() {
+        let url = this.APIURL + this.Controller + '/ReportNSTLA0002ToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });

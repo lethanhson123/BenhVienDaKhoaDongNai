@@ -8,6 +8,7 @@
 
         Task<List<Report>> ReportA0001ToListAsync(int Year, int Month, int Day, int PhongBanID);
         Task<List<Report>> ReportNSTLA0001ToListAsync();
+        Task<List<Report>> ReportNSTLA0002ToListAsync();
     }
 }
 

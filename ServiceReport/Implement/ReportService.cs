@@ -83,6 +83,19 @@
             }
             return result;
         }
+        public virtual async Task<List<Report>> ReportNSTLA0002ToListAsync()
+        {
+            List<Report> result = new List<Report>();
+            try
+            {
+                result = await GetByStoredProcedureToListAsync(GlobalHelper.SQLServerConectionString_NewComet_NSTL_A, "sp_ReportNSTLA0002");
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

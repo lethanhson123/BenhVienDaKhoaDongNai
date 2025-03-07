@@ -9,6 +9,16 @@
         public int? Hour { get; set; }
         public string? Name { get; set; }
         public string? Code { get; set; }
+        public string? Name001 { get; set; }
+        public string? Name002 { get; set; }
+        public string? Name003 { get; set; }
+        public string? Name004 { get; set; }
+        public string? Name005 { get; set; }
+        public string? Name006 { get; set; }
+        public string? Name007 { get; set; }
+        public string? Name008 { get; set; }
+        public string? Name009 { get; set; }
+        public string? Name010 { get; set; }        
         public string? TinhThanhName { get; set; }
         public string? QuanHuyenName { get; set; }
         public string? XaPhuongName { get; set; }

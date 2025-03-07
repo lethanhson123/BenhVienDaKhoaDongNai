@@ -4,6 +4,16 @@ export class Report extends Base{
     ID: number;
     Name: string;   
     Code: string;
+    Name001: string;   
+    Name002: string;   
+    Name003: string;   
+    Name004: string;   
+    Name005: string;   
+    Name006: string;   
+    Name007: string;   
+    Name008: string;   
+    Name009: string;   
+    Name010: string;       
     Year: number;
     Month: number;
     Day: number;
