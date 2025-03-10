@@ -50,6 +50,19 @@
             }
             return result;
         }
+        public virtual async Task<List<Report>> ReportDictionary0004ToListAsync()
+        {
+            List<Report> result = new List<Report>();
+            try
+            {               
+                result = await GetByStoredProcedureToListAsync(GlobalHelper.SQLServerConectionString_eHospital_DongNai_A_Dictionary, "sp_ReportDictionary0004");
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
         public virtual async Task<List<Report>> ReportA0001ToListAsync(int Year, int Month, int Day, int PhongBanID)
         {
             List<Report> result = new List<Report>();

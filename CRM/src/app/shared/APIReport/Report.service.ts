@@ -28,6 +28,7 @@ export class ReportService extends BaseService {
     List100: Report[] | undefined;
     List200: Report[] | undefined;
     List1000: Report[] | undefined;
+    List10000: Report[] | undefined;
 
     ListNSTL: Report[] | undefined;
     ListNSTLFilter: Report[] | undefined;
@@ -44,6 +45,7 @@ export class ReportService extends BaseService {
         this.List100 = [];
         this.List200 = [];
         this.List1000 = [];
+        this.List10000 = [];
         this.ListNSTL = [];
         this.ListNSTLFilter = [];
     }

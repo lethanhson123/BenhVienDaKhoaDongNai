@@ -39,6 +39,36 @@
                             class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2">Upload</button>
                     </div>
                 </div>
+                <div class="col s12 m12 l3">
+                    <h6>2. Danh mục Phòng ban</h6>
+                    <div>
+                        <label>Chọn tập tin Excel</label>
+                        <br />
+                        <input class="form-control" type="file" multiple
+                            (change)="DanhMucPhongBanChangeFile($event.target.files)">
+                    </div>
+                    <br />
+                    <div>
+                        <button [disabled]="!IsDanhMucPhongBan" (click)="DanhMucPhongBanSave()"
+                            style="width: 100%;"
+                            class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2">Upload</button>
+                    </div>
+                </div>
+                <div class="col s12 m12 l3">
+                    <h6>3. Danh mục Chức danh</h6>
+                    <div>
+                        <label>Chọn tập tin Excel</label>
+                        <br />
+                        <input class="form-control" type="file" multiple
+                            (change)="DanhMucChucDanhChangeFile($event.target.files)">
+                    </div>
+                    <br />
+                    <div>
+                        <button [disabled]="!IsDanhMucChucDanh" (click)="DanhMucChucDanhSave()"
+                            style="width: 100%;"
+                            class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2">Upload</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

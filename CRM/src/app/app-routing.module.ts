@@ -144,6 +144,9 @@ import { HRNhanVienHopDongInfoComponent } from './HR/hrnhan-vien-hop-dong-info/h
 import { DanhMucPhongBanComponent } from './HR/danh-muc-phong-ban/danh-muc-phong-ban.component';
 import { DanhMucHopDongInfoComponent } from './HR/danh-muc-hop-dong-info/danh-muc-hop-dong-info.component';
 import { ReportNSTLA0001Component } from './Report/report-nstla0001/report-nstla0001.component';
+import { DanhMucThongKeComponent } from './danh-muc-thong-ke/danh-muc-thong-ke.component';
+import { ThongKeComponent } from './thong-ke/thong-ke.component';
+import { ThongKeInfoComponent } from './thong-ke-info/thong-ke-info.component';
 
 
 
@@ -598,6 +601,16 @@ const routes: Routes = [
   },
   {
     path: 'HRNhanVienHopDongInfo/:ID', component: HRNhanVienHopDongInfoComponent,
+  },
+
+  {
+    path: 'DanhMucThongKe', component: DanhMucThongKeComponent,
+  },
+  {
+    path: 'ThongKe', component: ThongKeComponent,
+  },
+  {
+    path: 'ThongKeInfo/:ID', component: ThongKeInfoComponent,
   },
 
 ];

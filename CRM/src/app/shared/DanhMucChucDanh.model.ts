@@ -2,7 +2,7 @@
 
 export class DanhMucChucDanh extends Base{
 
-
+    GroupOrder?: number;
 }
 
 

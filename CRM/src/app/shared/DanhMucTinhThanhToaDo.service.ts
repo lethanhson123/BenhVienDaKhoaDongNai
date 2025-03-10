@@ -52,23 +52,6 @@ export class DanhMucTinhThanhToaDoService extends BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    PostDanhMucTinhThanhToaDo3ByJSONFileAsync() {
-        var lastUpdatedMembershipID = localStorage.getItem(environment.ThanhVienID);
-        if (lastUpdatedMembershipID) {
-            this.BaseParameter.ThanhVienID = Number(lastUpdatedMembershipID);
-        }
-        this.BaseParameter.Active = true;
-        let url = this.APIURL + this.Controller + '/PostDanhMucTinhThanhToaDo3ByJSONFileAsync';
-        const formUpload: FormData = new FormData();
-        formUpload.append('data', JSON.stringify(this.BaseParameter));
-        if (this.FileToUpload) {
-            if (this.FileToUpload.length > 0) {
-                for (var i = 0; i < this.FileToUpload.length; i++) {
-                    formUpload.append('file[]', this.FileToUpload[i]);
-                }
-            }
-        }
-        return this.httpClient.post(url, formUpload, { headers: this.Headers });
-    }
+   
 }
 

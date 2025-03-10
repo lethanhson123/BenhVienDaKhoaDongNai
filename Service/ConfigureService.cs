@@ -30,6 +30,9 @@ namespace Service
         }
         public static IServiceCollection AddService(this IServiceCollection services)
         {
+            services.AddTransient<IDanhMucThongKeService, DanhMucThongKeService>();
+            services.AddTransient<IThongKeService, ThongKeService>();
+            services.AddTransient<IThongKeChiTietService, ThongKeChiTietService>();
 
             services.AddTransient<IDanhMucBenhVienService, DanhMucBenhVienService>();
             services.AddTransient<IDanhMucChucDanhService, DanhMucChucDanhService>();
@@ -137,6 +140,10 @@ namespace Service
 
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
+            services.AddTransient<IDanhMucThongKeRepository, DanhMucThongKeRepository>();
+            services.AddTransient<IThongKeRepository, ThongKeRepository>();
+            services.AddTransient<IThongKeChiTietRepository, ThongKeChiTietRepository>();
+
             services.AddTransient<IDanhMucBenhVienRepository, DanhMucBenhVienRepository>();
             services.AddTransient<IDanhMucChucDanhRepository, DanhMucChucDanhRepository>();
             services.AddTransient<IDanhMucPhongBanRepository, DanhMucPhongBanRepository>();

@@ -97,6 +97,22 @@
     <div class="row">        
         <div class="col s12 m12 l10">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Tổng hợp</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0003_Data"
+                    [labels]="Report0002_0003_Label" [chartType]="Report0002_0003_Type" [colors]="Report0002_0003_Color"
+                    [options]="Report0002_0003_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+        <div class="col s12 m12 l2">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">              
+            </div>
+        </div>
+    </div>
+    <div class="row">  
+        <br />        
+        <div class="col s12 m12 l10">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Khoa phòng</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0002_0001_Data"
                     [labels]="Report0002_0001_Label" [chartType]="Report0002_0001_Type" [colors]="Report0002_0001_Color"

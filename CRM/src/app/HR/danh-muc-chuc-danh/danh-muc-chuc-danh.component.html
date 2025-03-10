@@ -194,10 +194,14 @@
                                     placeholder="DanhMucUngDungName" name="DanhMucUngDungName"
                                     [(ngModel)]="element.DanhMucUngDungName"></td>
                         </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="DanhMucChucDanhService.DisplayColumns002">
+                        <ng-container matColumnDef="GroupOrder">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nhóm</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="number"
+                                    placeholder="Nhóm" name="GroupOrder" [(ngModel)]="element.GroupOrder"></td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="DanhMucChucDanhService.DisplayColumns003">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DanhMucChucDanhService.DisplayColumns002;">
+                        <tr mat-row *matRowDef="let row; columns: DanhMucChucDanhService.DisplayColumns003;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DanhMucChucDanhPaginator="matPaginator"

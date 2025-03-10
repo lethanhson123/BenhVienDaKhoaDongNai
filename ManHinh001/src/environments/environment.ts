@@ -15,7 +15,7 @@ export const environment = {
   DanhMucUngDungID: 1,
   GoiSoThamSoID: 1,
   PageSize: 10,
-  Interval: 3000,
+  Interval: 5000,
   Number: 4,
   AG: 1,
   C5: 3,
