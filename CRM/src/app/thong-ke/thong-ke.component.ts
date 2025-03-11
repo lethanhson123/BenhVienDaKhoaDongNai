@@ -36,7 +36,7 @@ export class ThongKeComponent implements OnInit {
     this.ThongKeService.IsShowLoading = true;
     this.ThongKeService.GetAllToListAsync().subscribe(
       res => {
-        this.ThongKeService.List = (res as any[]).sort((a, b) => (a.BatDau > b.BatDau ? 1 : -1));
+        this.ThongKeService.List = (res as any[]).sort((a, b) => (a.BatDau < b.BatDau ? 1 : -1));
         this.ThongKeService.ListFilter = this.ThongKeService.List.filter(item => item.ID > 0);
         this.ThongKeService.DataSource = new MatTableDataSource(this.ThongKeService.List);
         this.ThongKeService.DataSource.sort = this.ThongKeSort;
@@ -45,7 +45,7 @@ export class ThongKeComponent implements OnInit {
       err => {
       },
       () => {
-        this.ThongKeService.IsShowLoading = false;
+        this.ThongKeService.IsShowLoading = false; 
       }
     );
   }
@@ -54,7 +54,21 @@ export class ThongKeComponent implements OnInit {
     this.NotificationService.warn(this.ThongKeService.ComponentSaveAll(this.ThongKeSort, this.ThongKePaginator));
   }
   ThongKeDelete(element: ThongKe) {
-    this.ThongKeService.FormData = element;
-    this.NotificationService.warn(this.ThongKeService.ComponentDeleteAll(this.ThongKeSort, this.ThongKePaginator));
+    if (confirm(environment.DeleteConfirm)) {
+      this.ThongKeService.IsShowLoading = true;
+      this.ThongKeService.BaseParameter.ID = element.ID;
+      this.ThongKeService.RemoveAsync().subscribe(
+        res => {
+          this.ThongKeSearch();
+          this.NotificationService.warn(environment.DeleteSuccess);
+        },
+        err => {
+          this.NotificationService.warn(environment.DeleteNotSuccess);
+        },
+        () => {
+          this.ThongKeService.IsShowLoading = false;
+        }
+      );
+    }
   }
 }

@@ -1,4 +1,6 @@
 ﻿
+using System.Reflection.Metadata;
+
 namespace Data_eHospital_DongNai_A_Dictionary.Context
 {
 	public partial class Context : DbContext
@@ -44,7 +46,8 @@ namespace Data_eHospital_DongNai_A_Dictionary.Context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			OnModelCreatingPartial(modelBuilder);
-		}
+            modelBuilder.Entity<DM_PhongBan>().ToTable(tb => tb.UseSqlOutputClause(false));
+        }
 		partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 	}
 }

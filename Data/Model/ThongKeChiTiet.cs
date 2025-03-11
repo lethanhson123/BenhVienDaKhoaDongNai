@@ -18,6 +18,8 @@
         public int? Month { get; set; }
         public int? Day { get; set; }
         public int? Hour { get; set; }
+        public int? Week { get; set; }
+        public decimal? ThongKe000 { get; set; }
         public decimal? ThongKe001 { get; set; }
         public decimal? ThongKe002 { get; set; }
         public decimal? ThongKe003 { get; set; }

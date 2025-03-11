@@ -32,7 +32,12 @@ export class DMPhongBanComponent implements OnInit {
   ngOnInit(): void {
     this.DM_PhongBanSearch();
   }
-
+  DM_PhongBan001() {
+    this.DM_PhongBanService.DisplayColumns003 = this.DM_PhongBanService.DisplayColumns001;
+  }
+  DM_PhongBan002() {
+    this.DM_PhongBanService.DisplayColumns003 = this.DM_PhongBanService.DisplayColumns002;
+  }
   DM_PhongBanSearch() {
     this.DM_PhongBanService.SearchAll(this.DM_PhongBanSort, this.DM_PhongBanPaginator);
   }

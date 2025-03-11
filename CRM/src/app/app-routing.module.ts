@@ -147,6 +147,7 @@ import { ReportNSTLA0001Component } from './Report/report-nstla0001/report-nstla
 import { DanhMucThongKeComponent } from './danh-muc-thong-ke/danh-muc-thong-ke.component';
 import { ThongKeComponent } from './thong-ke/thong-ke.component';
 import { ThongKeInfoComponent } from './thong-ke-info/thong-ke-info.component';
+import { ReportA0002Component } from './Report/report-a0002/report-a0002.component';
 
 
 
@@ -519,6 +520,9 @@ const routes: Routes = [
   },
   {
     path: 'ReportNSTLA0001', component: ReportNSTLA0001Component,
+  },
+  {
+    path: 'ReportA0002', component: ReportA0002Component,
   },
 
   {

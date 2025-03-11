@@ -1,4 +1,5 @@
-﻿global using System.Linq.Expressions;
+﻿global using System;
+global using System.Linq.Expressions;
 global using System.Data.SqlClient;
 
 global using Microsoft.Extensions.DependencyInjection;

@@ -8,6 +8,18 @@
         {
             _DM_PhongBanRepository = DM_PhongBanRepository;
         }
+        public override async Task<DM_PhongBan> SaveAsync(DM_PhongBan model)
+        {
+            if (model.PhongBan_Id > 0)
+            {
+                await UpdateAsync(model);
+            }
+            else
+            {
+                await AddAsync(model);
+            }
+            return model;
+        }
         public virtual async Task<DM_PhongBan> GetByPhongBan_IdAsync(int PhongBan_Id)
         {
             DM_PhongBan result = new DM_PhongBan();

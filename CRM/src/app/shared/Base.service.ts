@@ -39,6 +39,7 @@ export class BaseService {
             SearchString: environment.InitializationString,
             BatDau: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
             KetThuc: new Date(),
+            NgayGhiNhan: new Date(),
             Nam: new Date().getFullYear(),
             Thang: new Date().getMonth() + 1,
             ListID: [],

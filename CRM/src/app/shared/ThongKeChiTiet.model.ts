@@ -18,6 +18,8 @@ Year?: number;
 Month?: number;
 Day?: number;
 Hour?: number;
+Week?: number;
+ThongKe000?: number;
 ThongKe001?: number;
 ThongKe002?: number;
 ThongKe003?: number;

@@ -33,13 +33,23 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l11">
+                <div class="col s12 m12 l9">
                     <input [(ngModel)]="DM_PhongBanService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DM_PhongBanSearch()">
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Tìm" (click)="DM_PhongBanSearch()">
                         <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Đầy đủ" (click)="DM_PhongBan001()">
+                        <i class="material-icons">bluetooth</i>
+                    </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Rút gọn" (click)="DM_PhongBan002()">
+                        <i class="material-icons">bluetooth_disabled</i>
                     </a>
                 </div>
                 <div class="KhungOverflow">
@@ -72,18 +82,17 @@
                         </ng-container>
                         <ng-container matColumnDef="PhongBan_Id">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>PhongBan_Id</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="PhongBan_Id" name="PhongBan_Id" [(ngModel)]="element.PhongBan_Id"></td>
+                            <td mat-cell *matCellDef="let element"><b>{{element.PhongBan_Id}}</b></td>
                         </ng-container>
                         <ng-container matColumnDef="MaPhongBan">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaPhongBan</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã phòng ban</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="MaPhongBan" name="MaPhongBan" [(ngModel)]="element.MaPhongBan"></td>
+                                    placeholder="Mã phòng ban" name="MaPhongBan" [(ngModel)]="element.MaPhongBan"></td>
                         </ng-container>
                         <ng-container matColumnDef="TenPhongBan">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenPhongBan</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng ban</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TenPhongBan" name="TenPhongBan" [(ngModel)]="element.TenPhongBan" style="width: 400px;"></td>
+                                    placeholder="Phòng ban" name="TenPhongBan" [(ngModel)]="element.TenPhongBan" style="width: 100%; min-width: 400px;"></td>
                         </ng-container>
                         <ng-container matColumnDef="TenPhongBan_En">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>TenPhongBan_En</th>
@@ -130,9 +139,9 @@
                                     placeholder="TamNgung" name="TamNgung" [(ngModel)]="element.TamNgung"></td>
                         </ng-container>
                         <ng-container matColumnDef="TenKhongDau">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenKhongDau</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Thống kê</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TenKhongDau" name="TenKhongDau" [(ngModel)]="element.TenKhongDau"></td>
+                                    placeholder="Thống kê" name="TenKhongDau" [(ngModel)]="element.TenKhongDau"></td>
                         </ng-container>
                         <ng-container matColumnDef="NgayTao">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayTao</th>
@@ -185,15 +194,15 @@
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="CostCenTer_Id">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CostCenTer_Id</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="CostCenTer_Id" name="CostCenTer_Id"
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Thống kê ID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="number"
+                                    placeholder="Thống kê ID" name="CostCenTer_Id"
                                     [(ngModel)]="element.CostCenTer_Id"></td>
                         </ng-container>
                         <ng-container matColumnDef="ChuyenKhoa_Id">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ChuyenKhoa_Id</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="ChuyenKhoa_Id" name="ChuyenKhoa_Id"
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Sắp xếp</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="number"
+                                    placeholder="Sắp xếp" name="ChuyenKhoa_Id"
                                     [(ngModel)]="element.ChuyenKhoa_Id"></td>
                         </ng-container>
                         <ng-container matColumnDef="DiaDiemLamViec_Id">
@@ -242,9 +251,9 @@
                             </td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="DM_PhongBanService.DisplayColumns001">
+                        <tr mat-header-row *matHeaderRowDef="DM_PhongBanService.DisplayColumns003">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DM_PhongBanService.DisplayColumns001;">
+                        <tr mat-row *matRowDef="let row; columns: DM_PhongBanService.DisplayColumns003;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_PhongBanPaginator="matPaginator"

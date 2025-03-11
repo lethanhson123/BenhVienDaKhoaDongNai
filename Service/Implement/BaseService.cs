@@ -15,6 +15,10 @@
         }
         public virtual void BaseInitialization(T model)
         {
+            if (model.Active == null)
+            {
+                model.Active = false;
+            }
         }
         public virtual T Save(T model)
         {

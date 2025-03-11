@@ -9,6 +9,8 @@ import { NotificationService } from 'src/app/shared/Notification.service';
 import { DownloadService } from 'src/app/shared/Download.service';
 
 
+import { DanhMucThongKe } from 'src/app/shared/DanhMucThongKe.model';
+import { DanhMucThongKeService } from 'src/app/shared/DanhMucThongKe.service';
 
 import { ThongKe } from 'src/app/shared//ThongKe.model';
 import { ThongKeService } from 'src/app/shared//ThongKe.service';
@@ -31,6 +33,8 @@ export class ThongKeInfoComponent implements OnInit {
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
+    public DanhMucThongKeService: DanhMucThongKeService,
+
     public ThongKeService: ThongKeService,
     public ThongKeChiTietService: ThongKeChiTietService,
 
@@ -39,6 +43,9 @@ export class ThongKeInfoComponent implements OnInit {
   ngOnInit(): void {
     this.ThongKeService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.ThongKeSearch();
+  }
+  DanhMucThongKeSearch() {
+    this.DanhMucThongKeService.ComponentGetAllToListAsync(this.ThongKeService);
   }
   DateBatDau(value) {
     this.ThongKeService.FormData.BatDau = new Date(value);
@@ -57,6 +64,7 @@ export class ThongKeInfoComponent implements OnInit {
         if (this.ThongKeService.FormData.KetThuc == null) {
           this.ThongKeService.FormData.KetThuc = new Date();
         }
+        this.DanhMucThongKeSearch();
         this.ThongKeChiTietSearch();
       },
       err => {
@@ -71,7 +79,8 @@ export class ThongKeInfoComponent implements OnInit {
     this.ThongKeService.SaveAsync().subscribe(
       res => {
         this.ThongKeService.FormData = res as ThongKe;
-        this.Router.navigateByUrl(environment.ThongKeInfo + this.ThongKeService.FormData.ID);        
+        this.Router.navigateByUrl(environment.ThongKeInfo + this.ThongKeService.FormData.ID);
+        this.ThongKeChiTietSearch();
         this.NotificationService.warn(environment.SaveSuccess);
       },
       err => {
@@ -83,9 +92,11 @@ export class ThongKeInfoComponent implements OnInit {
     );
   }
   ThongKeChiTietSearch() {
+    this.ThongKeChiTietService.BaseParameter.ParentID = this.ThongKeService.FormData.ID;
     this.ThongKeChiTietService.SearchByParentID(this.ThongKeChiTietSort, this.ThongKeChiTietPaginator, this.ThongKeService);
   }
   ThongKeChiTietSave(element: ThongKeChiTiet) {
+    element.ParentID = this.ThongKeService.FormData.ID;
     this.ThongKeChiTietService.FormData = element;
     this.NotificationService.warn(this.ThongKeChiTietService.ComponentSaveByParentID(this.ThongKeChiTietSort, this.ThongKeChiTietPaginator, this.ThongKeService));
   }
