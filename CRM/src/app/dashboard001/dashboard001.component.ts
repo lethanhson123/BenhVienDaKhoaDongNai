@@ -40,9 +40,9 @@ export class Dashboard001Component {
   ) { }
 
   ngOnInit(): void {
-    this.DanhMucTinhThanhSearch();
-    this.DanhMucQuanHuyenSearch();
+   
   }
+  
   DanhMucTinhThanhSearch() {
     this.DanhMucTinhThanhService.ComponentGetAllToListAsync(this.DanhMucTinhThanhToaDoService);
   }
@@ -62,6 +62,8 @@ export class Dashboard001Component {
   private mapContainer!: ElementRef<HTMLElement>;
 
   ngAfterViewInit() {
+    this.DanhMucTinhThanhSearch();
+    this.DanhMucQuanHuyenSearch();
     this.MapLoad(1, environment.DanhMucTinhThanhID, environment.InitializationNumber);
   }
 

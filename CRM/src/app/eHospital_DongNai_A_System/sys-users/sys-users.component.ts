@@ -29,9 +29,11 @@ export class SysUsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.Sys_UsersSearch();
   }
-
   Sys_UsersSearch() {
     if (this.Sys_UsersService.BaseParameter.SearchString.length > 0) {
       this.Sys_UsersService.BaseParameter.SearchString = this.Sys_UsersService.BaseParameter.SearchString.trim();

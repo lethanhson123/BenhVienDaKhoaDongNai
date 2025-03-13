@@ -49,6 +49,9 @@ export class KhamBenhInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.KhamBenhService.BaseParameter.KhamBenh_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.KhamBenhSearch();
   }

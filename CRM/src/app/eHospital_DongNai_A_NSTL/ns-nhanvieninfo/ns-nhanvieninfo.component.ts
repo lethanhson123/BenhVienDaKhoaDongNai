@@ -41,6 +41,9 @@ export class NSNHANVIENInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.NS_NHANVIENService.BaseParameter.NhanVien_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.NS_NHANVIENSearch();
   }

@@ -38,6 +38,9 @@ export class QuanLyCongViecComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_PhongBanSearch();
     this.ThanhVienSearch();
     this.QuanLyCongViecSearch();

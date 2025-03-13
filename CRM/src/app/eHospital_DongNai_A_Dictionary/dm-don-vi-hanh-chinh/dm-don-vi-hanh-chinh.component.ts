@@ -29,9 +29,11 @@ export class DMDonViHanhChinhComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.DM_DonViHanhChinhSearch();
   }
-
   DM_DonViHanhChinhSearch() {
     this.DM_DonViHanhChinhService.SearchBySearchStringAndEmptyToListAsync(this.DM_DonViHanhChinhSort, this.DM_DonViHanhChinhPaginator);
   }

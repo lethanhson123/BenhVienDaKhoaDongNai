@@ -30,9 +30,11 @@ export class DanhMucKhoaChuyenMonComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucKhoaChuyenMonSearch();
   }
-
   DanhMucKhoaChuyenMonSearch() {
     this.DanhMucKhoaChuyenMonService.SearchAll(this.DanhMucKhoaChuyenMonSort, this.DanhMucKhoaChuyenMonPaginator);
   }

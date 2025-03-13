@@ -34,9 +34,11 @@ export class DanhMucTinhThanhComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucTinhThanhSearch();
   }
-
   DanhMucTinhThanhSearch() {
     this.DanhMucTinhThanhService.SearchAll(this.DanhMucTinhThanhSort, this.DanhMucTinhThanhPaginator);
   }

@@ -29,9 +29,11 @@ export class ManHinhThongBaoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+   
+  }
+  ngAfterViewInit() {
     this.ManHinhThongBaoSearch();
   }
-
   ManHinhThongBaoSearch() {
     this.ManHinhThongBaoService.SearchAll(this.ManHinhThongBaoSort, this.ManHinhThongBaoPaginator);
   }

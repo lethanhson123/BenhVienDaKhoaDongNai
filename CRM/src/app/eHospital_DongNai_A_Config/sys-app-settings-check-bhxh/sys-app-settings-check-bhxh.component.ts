@@ -29,6 +29,9 @@ export class SysAppSettingsCheckBHXHComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.Sys_AppSettingsSearch();
   }
   Sys_AppSettingsSearch() {

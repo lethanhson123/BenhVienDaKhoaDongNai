@@ -60,6 +60,9 @@ export class BenhAnInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.BenhAnService.BaseParameter.BenhAn_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.BenhAnSearch();
   }

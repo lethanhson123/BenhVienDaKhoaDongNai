@@ -33,10 +33,12 @@ export class DMBenhNhanComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DM_DonViHanhChinhSearchTinhThanh();
-    this.DM_BenhNhanSearch();
+   
   }
-
+  ngAfterViewInit() {
+    this.DM_DonViHanhChinhSearchTinhThanh();
+    this.DM_BenhNhanSearch();   
+  }
 
   DM_DonViHanhChinhSearchTinhThanh() {
     this.DM_DonViHanhChinhService.BaseParameter.CapDonVi = 2;

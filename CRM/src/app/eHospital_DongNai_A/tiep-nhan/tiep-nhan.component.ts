@@ -28,6 +28,9 @@ export class TiepNhanComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.TiepNhanService.BaseParameter.BatDau = new Date();   
   }
   DateBatDau(value) {

@@ -38,6 +38,9 @@ export class DanhMucPhongKhamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucKhuVucSearch();
     this.DanhMucKhoaChuyenMonSearch();
     this.DanhMucPhongKhamSearch();

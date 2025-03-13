@@ -29,9 +29,11 @@ export class ManHinhTapTinDinhKemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.ManHinhTapTinDinhKemSearch();
   }
-
   ManHinhTapTinDinhKemSearch() {
     this.ManHinhTapTinDinhKemService.SearchAll(this.ManHinhTapTinDinhKemSort, this.ManHinhTapTinDinhKemPaginator);
   }

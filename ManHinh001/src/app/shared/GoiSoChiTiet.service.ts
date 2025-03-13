@@ -105,5 +105,11 @@ export class GoiSoChiTietService extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }  
+    GetGoiSoChiTietTiepNhan05ToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetGoiSoChiTietTiepNhan05ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }  
 }
 

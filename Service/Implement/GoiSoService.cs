@@ -243,7 +243,7 @@
                                     {
                                         Index = ListDanhMucQuayDichVu.Count - 1;
                                     }
-                                    DanhMucQuayDichVu DanhMucQuayDichVu = new DanhMucQuayDichVu();                                    
+                                    DanhMucQuayDichVu DanhMucQuayDichVu = new DanhMucQuayDichVu();
                                     if (GoiSoThamSo.HTMLContent.Contains(model.NgayGhiNhan.Value.DayOfWeek.ToString()))
                                     {
                                         DanhMucQuayDichVu = ListDanhMucQuayDichVu[Index];
@@ -457,11 +457,10 @@
         {
             GoiSo result = new GoiSo();
             DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucDichVuID);
-            GoiSoThamSo GoiSoThamSo = await _GoiSoThamSoRepository.GetByIDAsync(GlobalHelper.GoiSoThamSoID);
             DateTime Now = GlobalHelper.InitializationDateTime;
-            if (GoiSoThamSo.ID == GlobalHelper.InitializationNumber)
+            if (DanhMucDichVu.BuocNhay == null)
             {
-                GoiSoThamSo.BuocNhayTiepNhan = GlobalHelper.CapSoBuocNhay;
+                DanhMucDichVu.BuocNhay = GlobalHelper.CapSoBuocNhay;
             }
             try
             {
@@ -489,7 +488,7 @@
                     }
                     if (result.SoHienTai < result.TongCong)
                     {
-                        result.SoHienTai = result.SoHienTai + GoiSoThamSo.BuocNhayTiepNhan;
+                        result.SoHienTai = result.SoHienTai + DanhMucDichVu.BuocNhay;
                         if (result.SoHienTai > result.TongCong)
                         {
                             result.SoHienTai = result.TongCong;
@@ -507,7 +506,7 @@
                 result = new GoiSo();
             }
             int BatDau = SoHienTai + 1;
-            int KetThuc = SoHienTai + GoiSoThamSo.BuocNhayTiepNhan.Value;
+            int KetThuc = SoHienTai + DanhMucDichVu.BuocNhay.Value;
             for (int i = BatDau; i <= KetThuc; i++)
             {
                 if (i > 0)

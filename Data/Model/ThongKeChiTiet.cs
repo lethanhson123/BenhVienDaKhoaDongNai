@@ -51,6 +51,7 @@
         public decimal? ThongKe029 { get; set; }
         public decimal? ThongKe030 { get; set; }
         public decimal? ThongKe031 { get; set; }
+        public decimal? ThongKe032 { get; set; }
 
         public ThongKeChiTiet()
         {

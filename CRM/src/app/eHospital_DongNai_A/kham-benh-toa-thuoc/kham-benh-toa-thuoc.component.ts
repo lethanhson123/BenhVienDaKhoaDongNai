@@ -34,6 +34,9 @@ export class KhamBenhToaThuocComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.KhamBenh_ToaThuocService.BaseParameter.BatDau = new Date();
     this.DM_KhoDuocSearch();
   }

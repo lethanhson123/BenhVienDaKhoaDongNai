@@ -42,9 +42,9 @@ export class HomepageComponent implements OnInit {
       this.DanhMucDichVuService.BaseParameter.Active = true;
       this.DanhMucDichVuService.GetByThanhVienID_ActiveToListAsync().subscribe(
         res => {
-          this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
+          this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));          
           this.DanhMucDichVuService.List001 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == true);
-          this.DanhMucDichVuService.List002 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == false);
+          this.DanhMucDichVuService.List002 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == false || item.IsBHYT == null);
         },
         err => {
         },

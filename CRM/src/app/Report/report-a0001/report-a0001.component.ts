@@ -67,11 +67,12 @@ export class ReportA0001Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.Image.src = environment.Logo100_26;
-    this.ReportSearch();
+    
   }
 
   ngAfterViewInit() {
+    this.Image.src = environment.Logo100_26;
+    this.ReportSearch();
     this.MapLoad(0, environment.DanhMucTinhThanhID, 0);
   }
 

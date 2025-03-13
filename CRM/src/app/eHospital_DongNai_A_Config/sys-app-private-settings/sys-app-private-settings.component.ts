@@ -29,9 +29,11 @@ export class SysAppPrivateSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.Sys_AppPrivateSettingsSearch();
   }
-
   Sys_AppPrivateSettingsSearch() {
     this.Sys_AppPrivateSettingsService.SearchAll(this.Sys_AppPrivateSettingsSort, this.Sys_AppPrivateSettingsPaginator);
   }

@@ -29,6 +29,9 @@ export class SysAppSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.Sys_AppSettingsSearch();
   }
   IsSoNgayDuyetThuocChange() {

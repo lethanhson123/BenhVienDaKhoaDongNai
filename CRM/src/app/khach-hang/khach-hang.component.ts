@@ -29,9 +29,11 @@ export class KhachHangComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.KhachHangSearch();
   }
-
   KhachHangSearch() {
     this.KhachHangService.SearchAllNotEmpty(this.KhachHangSort, this.KhachHangPaginator);
   }

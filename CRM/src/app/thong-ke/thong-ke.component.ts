@@ -29,9 +29,11 @@ export class ThongKeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.ThongKeSearch();
   }
-
   ThongKeSearch() {
     this.ThongKeService.IsShowLoading = true;
     this.ThongKeService.GetAllToListAsync().subscribe(

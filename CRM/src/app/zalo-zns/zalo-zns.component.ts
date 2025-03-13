@@ -29,9 +29,11 @@ export class ZaloZNSComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.ZaloZNSSearch();
   }
-
   ZaloZNSSearch() {
     this.ZaloZNSService.SearchAll(this.ZaloZNSSort, this.ZaloZNSPaginator);
   }

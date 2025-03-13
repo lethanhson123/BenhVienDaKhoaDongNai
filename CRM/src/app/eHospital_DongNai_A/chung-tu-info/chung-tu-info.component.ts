@@ -11,5 +11,7 @@ export class ChungTuInfoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

@@ -1,24 +1,28 @@
 <header class="page-topbar" id="header" style="min-height: 0px; height: 40px; line-height: 0px;">
     <div class="navbar navbar-fixed" style="min-height: 0px; height: 40px; line-height: 0px;">
-        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan" style="min-height: 0px; height: 40px; line-height: 0px;">            
-            <div class="nav-wrapper" style="min-height: 0px; height: 40px; line-height: 0px;">               
-                <ul class="left"> 
+        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan"
+            style="min-height: 0px; height: 40px; line-height: 0px;">
+            <div class="nav-wrapper" style="min-height: 0px; height: 40px; line-height: 0px;">
+                <ul class="left">
                     <li>
-                        <div class="logo-wrapper"><a class="brand-logo darken-1" routerLink="/Homepage" style="padding-top: 15px;"><span class="logo-text">{{PageTitle}}</span></a>
+                        <div class="logo-wrapper"><a class="brand-logo darken-1" routerLink="/Homepage"
+                                style="padding-top: 15px;"><span class="logo-text">{{PageTitle}}</span></a>
                         </div>
                     </li>
-                </ul>            
+                </ul>
                 <ul class="navbar-list right">
-                    <li><a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);" style="padding-top: 0px; margin-top: -10px;"><i class="material-icons">settings_overscan</i></a></li>
+                    <li><a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"
+                            style="padding-top: 0px; margin-top: -10px;"><i
+                                class="material-icons">settings_overscan</i></a></li>
                     <li><a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
                             data-target="profile-dropdown"><span class="avatar-status avatar-online"><img
                                     src="/image/logo.png" alt="avatar"><i></i></span></a>
-                    </li>                    
+                    </li>
                 </ul>
                 <ul class="dropdown-content" id="translation-dropdown">
                 </ul>
                 <ul class="dropdown-content" id="notifications-dropdown">
-                </ul>       
+                </ul>
                 <ul class="dropdown-content" id="profile-dropdown">
                     <li><a class="grey-text text-darken-1" routerLink="/Homepage"><i
                                 class="material-icons">person_outline</i> Trang chủ</a></li>
@@ -27,7 +31,7 @@
                                 class="material-icons">lock_outline</i> Đổi mật khẩu</a></li>
                     <li><a class="grey-text text-darken-1" (click)="Logout()"><i class="material-icons">keyboard_tab</i>
                             Thoát</a></li>
-                </ul>         
+                </ul>
             </div>
             <nav class="display-none search-sm">
                 <div class="nav-wrapper">
@@ -36,13 +40,17 @@
         </nav>
         <nav class="white hide-on-med-and-down" id="horizontal-nav" style="margin-top: 40px; height: 30px;">
             <div class="nav-wrapper" style="min-height: 0px; height: 30px;">
-                <ul class="left hide-on-med-and-down" id="ul-horizontal-nav" data-menu="menu-navigation" style="min-height: 0px; height: 30px;">
-                    <li *ngFor="let itemParent of DanhMucChucNangService.ListParent;" style="min-height: 0px; height: 30px;">
-                        <a style="width: 130px; font-size: 12px; color: black; padding-top: 0px; margin-top: -18px; height: 30px;" class="dropdown-menu" data-target="{{itemParent.ID}}"
-                            title="{{itemParent.Name}}" (click)="MenuClick(itemParent)">{{itemParent.Name}}</a>
+                <ul class="left hide-on-med-and-down" id="ul-horizontal-nav" data-menu="menu-navigation"
+                    style="min-height: 0px; height: 30px;">
+                    <li *ngFor="let itemParent of DanhMucChucNangService.ListParent;"
+                        style="min-height: 0px; height: 30px;">
+                        <a style="width: 130px; font-size: 12px; color: black; padding-top: 0px; margin-top: -18px; height: 30px;"
+                            class="dropdown-menu" data-target="{{itemParent.ID}}" title="{{itemParent.Name}}"
+                            (click)="MenuClick(itemParent)">{{itemParent.Name}}</a>
                         <ul class="dropdown-content dropdown-horizontal-list" id="{{itemParent.ID}}"
                             [style]="itemParent.CSS" style="margin-top: -34px;">
-                            <li data-menu="" *ngFor="let itemChild of itemParent.ListChild;"><a style="font-size: 12px;" routerLink="{{itemChild.Code}}" title="{{itemChild.Name}}">{{itemChild.Name}}</a>
+                            <li data-menu="" *ngFor="let itemChild of itemParent.ListChild;"><a style="font-size: 12px;"
+                                    routerLink="{{itemChild.Code}}" title="{{itemChild.Name}}">{{itemChild.Name}}</a>
                             </li>
                         </ul>
                     </li>

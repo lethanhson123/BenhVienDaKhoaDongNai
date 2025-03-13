@@ -30,9 +30,11 @@ export class DanhMucThongKeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucThongKeSearch();
   }
-
   DanhMucThongKeSearch() {
     this.DanhMucThongKeService.SearchAll(this.DanhMucThongKeSort, this.DanhMucThongKePaginator);
   }

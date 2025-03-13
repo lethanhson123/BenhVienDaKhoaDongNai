@@ -32,8 +32,11 @@ export class DanhMucDichVuComponent implements OnInit {
     public DanhMucDichVuService: DanhMucDichVuService,
     public DanhMucKhuVucService: DanhMucKhuVucService,
   ) { }
-
+  
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucKhuVucSearch();
     this.DanhMucDichVuSearch();
   }

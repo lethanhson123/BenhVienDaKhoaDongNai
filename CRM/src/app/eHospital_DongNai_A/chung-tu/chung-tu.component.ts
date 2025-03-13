@@ -30,6 +30,9 @@ export class ChungTuComponent implements OnInit {
   ngOnInit(): void {
     this.ChungTuService.BaseParameter.BatDau = new Date();
   }
+  ngAfterViewInit() {
+    this.ChungTuService.BaseParameter.BatDau = new Date();
+  }
   DateBatDau(value) {
     this.ChungTuService.BaseParameter.BatDau = new Date(value);
   }

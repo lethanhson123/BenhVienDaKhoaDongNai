@@ -31,6 +31,9 @@ export class KhamBenhVaoVienComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.KhamBenh_VaoVienService.BaseParameter.BatDau = new Date();
   }
   DateBatDau(value) {

@@ -46,8 +46,11 @@ export class DMBangGiaCPHInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+      
+  }
+  ngAfterViewInit() {
     this.DM_BangGia_CPHService.BaseParameter.BangGia_CPH_Id = Number(this.ActiveRouter.snapshot.params.ID);
-    this.DM_BangGia_CPHSearch();    
+    this.DM_BangGia_CPHSearch();  
   }
   DateNgayBanHanh(value) {
     this.DM_BangGia_CPHService.FormData.NgayBanHanh = new Date(value);

@@ -29,9 +29,11 @@ export class NSNHANVIENComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.NS_NHANVIENSearch();
   }
-
   NS_NHANVIENSearch() {
     if (this.NS_NHANVIENService.BaseParameter.SearchString.length > 0) {
       this.NS_NHANVIENService.BaseParameter.SearchString = this.NS_NHANVIENService.BaseParameter.SearchString.trim();

@@ -102,6 +102,9 @@ export class SysUsersInfo001Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.Sys_UsersService.BaseParameter.User_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.Sys_UsersSearch();
   }

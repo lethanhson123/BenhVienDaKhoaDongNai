@@ -11,5 +11,7 @@ export class KhamBenhNgoaiTru2025Component implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+   
+  }
 }

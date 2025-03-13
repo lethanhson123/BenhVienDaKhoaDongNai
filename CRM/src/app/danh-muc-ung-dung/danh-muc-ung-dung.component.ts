@@ -29,9 +29,11 @@ export class DanhMucUngDungComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucUngDungSearch();
   }
-
   DanhMucUngDungSearch() {
     this.DanhMucUngDungService.SearchAll(this.DanhMucUngDungSort, this.DanhMucUngDungPaginator);
   }

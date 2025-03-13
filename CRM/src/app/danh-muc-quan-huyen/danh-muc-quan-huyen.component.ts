@@ -36,6 +36,9 @@ export class DanhMucQuanHuyenComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucTinhThanhSearch();
   }
   DanhMucTinhThanhSearch() {

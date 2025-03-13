@@ -33,6 +33,9 @@ export class DMDichVuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_NhomDichVuSearch();
     //this.DM_DichVuSearch001();
   }

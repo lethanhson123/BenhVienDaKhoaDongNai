@@ -12,6 +12,10 @@ export class DanhMucDichVuService extends BaseService{
     DisplayColumns03: string[] = ['STT', 'ID', 'ParentID', 'Name', 'Code', 'Note', 'SortOrder', 'IsBHYT', 'Active', 'Save'];
     DisplayColumns04: string[] = ['STT', 'ID', 'ParentID', 'Name', 'Code', 'Note', 'SortOrder', 'IsBHYT', 'IsHangDoiPhanNhanh', 'Active', 'Save'];
     DisplayColumns05: string[] = ['STT', 'ID', 'ParentID', 'Name', 'Display', 'Code', 'Note', 'SortOrder', 'IsBHYT', 'IsHangDoiPhanNhanh', 'Active', 'Save'];
+    DisplayColumns06: string[] = ['STT', 'ID', 'ParentID', 'Name', 'Display', 'Code', 'Note', 'BuocNhay', 'GroupOrder', 'SortOrder', 'IsBHYT', 'IsHangDoiPhanNhanh', 'Active', 'Save'];
+    DisplayColumns07: string[] = ['STT', 'ID', 'ParentID', 'Name', 'Display', 'Code', 'Note', 'BuocNhay', 'GroupOrder', 'DanhMucNgonNguID', 'DanhMucNgonNguName', 'SortOrder', 'IsBHYT', 'IsHangDoiPhanNhanh', 'Active', 'Save'];
+    DisplayColumns08: string[] = ['STT', 'ID', 'ParentID', 'Name', 'Display', 'Code', 'Note', 'BuocNhay', 'GroupOrder', 'DanhMucNgonNguID', 'DanhMucNgonNguName', 'TypeName', 'Description', 'SortOrder', 'IsBHYT', 'IsHangDoiPhanNhanh', 'Active', 'Save'];
+
     List: DanhMucDichVu[] | undefined;
     ListFilter: DanhMucDichVu[] | undefined;
     FormData!: DanhMucDichVu;

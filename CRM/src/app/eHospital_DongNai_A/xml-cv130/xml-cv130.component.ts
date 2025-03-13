@@ -118,6 +118,9 @@ export class XMLCV130Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.XML1_CV130Service.BaseParameter.BatDau = new Date();
     this.XMLCV130Search();
   }

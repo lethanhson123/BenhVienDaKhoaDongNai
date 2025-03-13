@@ -519,7 +519,7 @@
         public virtual async Task<List<T>> GetByStoredProcedureToListAsync(string storedProcedureName, params SqlParameter[] parameters)
         {
             return await _repository.GetByStoredProcedureToListAsync(storedProcedureName, parameters);
-        }
+        }       
         public virtual List<T> GetAllAndEmptyToList()
         {
             List<T> result = new List<T>();

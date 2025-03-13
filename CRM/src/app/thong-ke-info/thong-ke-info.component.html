@@ -493,7 +493,11 @@
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="number"
                                     placeholder="ThongKe031" name="ThongKe031" [(ngModel)]="element.ThongKe031"></td>
                         </ng-container>
-
+                        <ng-container matColumnDef="ThongKe032">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ThongKe032</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="number"
+                                    placeholder="ThongKe032" name="ThongKe032" [(ngModel)]="element.ThongKe032"></td>
+                        </ng-container>
                         <tr mat-header-row *matHeaderRowDef="ThongKeChiTietService.DisplayColumns001">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: ThongKeChiTietService.DisplayColumns001;">

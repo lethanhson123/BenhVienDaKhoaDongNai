@@ -32,6 +32,9 @@ export class DMBangGiaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_LoaiGiaSearch();
     this.DM_BangGiaSearch();
   }

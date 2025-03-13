@@ -29,6 +29,9 @@ export class ThanhVien001Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.ThanhVienSearch();
   }
   ThanhVienSearch() {

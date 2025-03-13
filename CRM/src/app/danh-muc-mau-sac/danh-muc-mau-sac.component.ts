@@ -29,9 +29,11 @@ export class DanhMucMauSacComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucMauSacSearch();
   }
-
   DanhMucMauSacSearch() {
     this.DanhMucMauSacService.SearchAll(this.DanhMucMauSacSort, this.DanhMucMauSacPaginator);
   }

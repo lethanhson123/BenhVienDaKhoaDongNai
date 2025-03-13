@@ -29,6 +29,9 @@ export class DMBenhVienComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_BenhVienSearch();
   }
   DM_BenhVien001() {

@@ -30,8 +30,11 @@ export class BenhAnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.BenhAnService.BaseParameter.BatDau = new Date();
     
+    
+  }
+  ngAfterViewInit() {
+    this.BenhAnService.BaseParameter.BatDau = new Date();
   }
   DateBatDau(value) {
     this.BenhAnService.BaseParameter.BatDau = new Date(value);

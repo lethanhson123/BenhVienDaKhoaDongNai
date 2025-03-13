@@ -41,6 +41,9 @@ export class ThongKeInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.ThongKeService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.ThongKeSearch();
   }

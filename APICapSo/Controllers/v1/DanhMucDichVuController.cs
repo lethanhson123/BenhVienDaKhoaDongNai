@@ -76,6 +76,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByGroupOrderToListAsync")]
+        public virtual async Task<List<DanhMucDichVu>> GetByGroupOrderToListAsync()
+        {
+            List<DanhMucDichVu> result = new List<DanhMucDichVu>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _DanhMucDichVuService.GetByGroupOrderToListAsync(baseParameter.GroupOrder.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

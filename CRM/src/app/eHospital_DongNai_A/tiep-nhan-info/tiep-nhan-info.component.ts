@@ -60,6 +60,9 @@ export class TiepNhanInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.TiepNhanService.BaseParameter.TiepNhan_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.TiepNhanSearch();
   }

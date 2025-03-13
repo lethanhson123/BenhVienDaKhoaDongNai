@@ -51,6 +51,7 @@ ThongKe028?: number;
 ThongKe029?: number;
 ThongKe030?: number;
 ThongKe031?: number;
+ThongKe032?: number;
 
 }
 

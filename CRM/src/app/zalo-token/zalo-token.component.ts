@@ -29,9 +29,11 @@ export class ZaloTokenComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.ZaloTokenSearch();
   }
-
   DateNgayGhiNhan(element: ZaloToken, value) {
     element.NgayGhiNhan = new Date(value);
   }

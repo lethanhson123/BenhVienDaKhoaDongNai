@@ -42,6 +42,9 @@ export class KhamBenhToaThuocInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.KhamBenh_ToaThuocService.BaseParameter.KhamBenh_ToaThuoc_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.KhamBenh_ToaThuocSearch();
   }

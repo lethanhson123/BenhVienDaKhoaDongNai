@@ -27,6 +27,10 @@
             {
                 model.IsHangDoiPhanNhanh = false;
             }
+            if (model.IsBHYT == null)
+            {
+                model.IsBHYT = false;
+            }
         }
         public override async Task<DanhMucDichVu> SaveAsync(DanhMucDichVu model)
         {
@@ -47,6 +51,23 @@
             try
             {
                 result = await GetByCondition(item => item.IsBHYT == IsBHYT).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<DanhMucDichVu>();
+            }
+            return result;
+        }
+        public virtual async Task<List<DanhMucDichVu>> GetByGroupOrderToListAsync(int GroupOrder)
+        {
+            List<DanhMucDichVu> result = new List<DanhMucDichVu>();
+            try
+            {
+                result = await GetByCondition(item => item.GroupOrder == GroupOrder).ToListAsync();
             }
             catch (Exception ex)
             {

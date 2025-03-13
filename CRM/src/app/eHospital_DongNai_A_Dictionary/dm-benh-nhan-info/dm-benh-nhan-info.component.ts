@@ -47,8 +47,11 @@ export class DMBenhNhanInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_BenhNhanService.BaseParameter.BenhNhan_Id = Number(this.ActiveRouter.snapshot.params.ID);
-    this.DM_BenhNhanSearch();
+    this.DM_BenhNhanSearch(); 
   }
   DateNgaySinh(value) {
     this.DM_BenhNhanService.FormData.NgaySinh = new Date(value);

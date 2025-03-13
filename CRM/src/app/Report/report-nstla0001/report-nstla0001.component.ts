@@ -29,6 +29,9 @@ export class ReportNSTLA0001Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.Image.src = environment.Logo312_80;
     this.ReportSearch();
   }

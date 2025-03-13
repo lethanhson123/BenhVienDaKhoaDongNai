@@ -29,9 +29,11 @@ export class GoiSoThamSoComponent {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.GoiSoThamSoSearch();
   }
-
   GoiSoThamSoSearch() {
     this.GoiSoThamSoService.SearchAll(this.GoiSoThamSoSort, this.GoiSoThamSoPaginator);
   }

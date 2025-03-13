@@ -33,6 +33,9 @@ export class GoiSoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  
+  }
+  ngAfterViewInit() {
     this.GoiSoService.BaseParameter.NgayGhiNhan = new Date();
     this.GoiSoSearch();
   }

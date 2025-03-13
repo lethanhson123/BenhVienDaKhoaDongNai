@@ -68,6 +68,9 @@ export class ThanhVienInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  
+  }
+  ngAfterViewInit() {
     this.ThanhVienService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.ThanhVienSearch();
   }

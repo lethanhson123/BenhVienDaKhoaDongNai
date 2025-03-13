@@ -46,6 +46,9 @@ export class DMBangGiaInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_BangGiaService.BaseParameter.BangGia_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.DM_BangGiaSearch();    
   }

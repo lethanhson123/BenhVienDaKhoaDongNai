@@ -27,6 +27,9 @@ export class TiepNhan2025Component implements OnInit {
 
   ngOnInit(): void {
   }
+  ngAfterViewInit() {
+   
+  }
   TiepNhanSave() {  
   }
 }

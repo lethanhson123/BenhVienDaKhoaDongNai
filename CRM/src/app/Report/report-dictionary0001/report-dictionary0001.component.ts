@@ -30,7 +30,9 @@ export class ReportDictionary0001Component implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+   
+  }
   ReportDictionary0001Search() {
     if (this.ReportService.BaseParameter.SearchString.length > 0) {
       this.ReportService.BaseParameter.SearchString = this.ReportService.BaseParameter.SearchString.trim();

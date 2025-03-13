@@ -29,9 +29,11 @@ export class TaiLieuComponent {
   ) { }
 
   ngOnInit(): void { 
+   
+  }
+  ngAfterViewInit() {
     this.TaiLieuSearch();
   }
-
   TaiLieuSearch() {
     this.TaiLieuService.SearchAll(this.TaiLieuSort, this.TaiLieuPaginator);
   }

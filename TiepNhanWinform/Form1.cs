@@ -22,8 +22,8 @@ namespace TiepNhanWinform
             StartPosition = FormStartPosition.Manual;
             Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
             this.TopMost = true;
-            //APICapSoSite = "http://10.84.3.124:901";
-            APICapSoSite = "http://localhost:5097";
+            APICapSoSite = "http://10.84.3.124:901";
+            //APICapSoSite = "http://localhost:5097";
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -36,6 +36,9 @@ export class GoiSoInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.GoiSoService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.GoiSoSearch();
   }

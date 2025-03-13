@@ -35,6 +35,9 @@ export class TrucBanNhatKyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_PhongBanSearch();
     this.TrucBanNhatKySearch();
   }

@@ -33,9 +33,11 @@ export class DanhMucTinhThanhToaDoDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {    
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucTinhThanhToaDoSearch();
   }
-
   DanhMucTinhThanhToaDoSearch() {
     this.DanhMucTinhThanhToaDoService.SearchByParentID(this.DanhMucTinhThanhToaDoSort, this.DanhMucTinhThanhToaDoPaginator, this.DanhMucTinhThanhToaDoService);
   }

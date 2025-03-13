@@ -115,6 +115,7 @@
             // 
             txtMatKhau.Location = new Point(5, 51);
             txtMatKhau.Name = "txtMatKhau";
+            txtMatKhau.PasswordChar = '*';
             txtMatKhau.PlaceholderText = "Mật khẩu";
             txtMatKhau.Size = new Size(210, 23);
             txtMatKhau.TabIndex = 5;

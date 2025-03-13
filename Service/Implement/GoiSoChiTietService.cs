@@ -138,7 +138,7 @@ namespace Service.Implement
                 DanhMucPhongKham DanhMucPhongKham = _DanhMucPhongKhamRepository.GetByID(model.DanhMucPhongKhamID.Value);
                 model.DanhMucPhongKhamName = DanhMucPhongKham.Name;
                 model.DanhMucPhongKhamCode = DanhMucPhongKham.Code;
-            }            
+            }
 
             if (model.NgayCapSoSoThuTu > 0)
             {
@@ -776,6 +776,57 @@ namespace Service.Implement
                                 result.Add(GoiSoChiTiet);
                             }
                         }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan05ToListAsync(int GroupOrder, int Number)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                if (GroupOrder > 0)
+                {
+                    if (Number > 0)
+                    {
+                        DateTime Now = GlobalHelper.InitializationDateTime;
+                        List<DanhMucDichVu> ListDanhMucDichVu = await _DanhMucDichVuRepository.GetByCondition(item => item.Active == true && item.GroupOrder == GroupOrder).OrderBy(item => item.SortOrder).ToListAsync();
+                        List<long> ListDanhMucDichVuID = ListDanhMucDichVu.Select(item => item.ID).ToList();
+                        List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item => item.Active == true && ListDanhMucDichVuID.Contains(item.DanhMucDichVuID.Value)).OrderBy(item => item.SortOrder).ToListAsync();
+                        foreach (DanhMucQuayDichVu DanhMucQuayDichVu in ListDanhMucQuayDichVu)
+                        {
+                            List<GoiSoChiTiet> ListGoiSoChiTiet = await GetByCondition(item => item.DanhMucQuayDichVuID == DanhMucQuayDichVu.ID && item.Active == true && item.NgayTiepNhan.Value.Year == Now.Year && item.NgayTiepNhan.Value.Month == Now.Month && item.NgayTiepNhan.Value.Day == Now.Day).OrderByDescending(item => item.NgayTiepNhanSoThuTu).Take(Number).ToListAsync();
+                            if (ListGoiSoChiTiet.Count < Number)
+                            {
+                                for (int i = ListGoiSoChiTiet.Count; i < Number; i++)
+                                {
+                                    GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                    GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                                    GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                    GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                    GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                    GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                                    GoiSoChiTiet.NgayTiepNhan = Now;
+                                    ListGoiSoChiTiet.Add(GoiSoChiTiet);
+                                }
+                            }
+                            result.AddRange(ListGoiSoChiTiet);
+                        }
+
+                        if (result == null)
+                        {
+                            result = new List<GoiSoChiTiet>();
+                        }
+
                     }
                 }
             }

@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
+import { GroupComponent } from './group/group.component';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/Homepage/1/2/3', pathMatch: 'full' },
+  { path: '', redirectTo: '/Group/2', pathMatch: 'full' },
   {
     path: 'Homepage/:Code01/:Code02/:Number', component: HomepageComponent,
+  }, 
+  {
+    path: 'Group/:GroupOrder', component: GroupComponent,
   }, 
 ];
 

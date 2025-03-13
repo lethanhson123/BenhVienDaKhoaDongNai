@@ -707,9 +707,13 @@
         {
             List<T> result = new List<T>();
             try
-            {
-                DataTable dt = SQLHelper.FillDataTable(_context.Database.GetConnectionString(), storedProcedureName, parameters);
-                result = SQLHelper.ToList<T>(dt);
+            {               
+                DataSet ds = SQLHelper.FillDataSet(_context.Database.GetConnectionString(), storedProcedureName, parameters);
+                for (int i = 0; i < ds.Tables.Count; i++)
+                {
+                    DataTable dt = ds.Tables[i];
+                    result.AddRange(SQLHelper.ToList<T>(dt));
+                }
             }
             catch (Exception ex)
             {
@@ -722,8 +726,12 @@
             List<T> result = new List<T>();
             try
             {
-                DataTable dt = await SQLHelper.FillDataTableAsync(_context.Database.GetConnectionString(), storedProcedureName, parameters);
-                result = SQLHelper.ToList<T>(dt);
+                DataSet ds = await SQLHelper.FillDataSetAsync(_context.Database.GetConnectionString(), storedProcedureName, parameters);
+                for (int i = 0; i < ds.Tables.Count; i++)
+                {
+                    DataTable dt = ds.Tables[i];
+                    result.AddRange(SQLHelper.ToList<T>(dt));
+                }
             }
             catch (Exception ex)
             {
@@ -736,8 +744,12 @@
             List<T> result = new List<T>();
             try
             {
-                DataTable dt = SQLHelper.FillDataTable(ConnectionString, storedProcedureName, parameters);
-                result = SQLHelper.ToList<T>(dt);
+                DataSet ds = SQLHelper.FillDataSet(ConnectionString, storedProcedureName, parameters);
+                for (int i = 0; i < ds.Tables.Count; i++)
+                {
+                    DataTable dt = ds.Tables[i];
+                    result.AddRange(SQLHelper.ToList<T>(dt));
+                }
             }
             catch (Exception ex)
             {
@@ -750,8 +762,12 @@
             List<T> result = new List<T>();
             try
             {
-                DataTable dt = await SQLHelper.FillDataTableAsync(ConnectionString, storedProcedureName, parameters);
-                result = SQLHelper.ToList<T>(dt);
+                DataSet ds = await SQLHelper.FillDataSetAsync(ConnectionString, storedProcedureName, parameters);
+                for (int i = 0; i < ds.Tables.Count; i++)
+                {
+                    DataTable dt = ds.Tables[i];
+                    result.AddRange(SQLHelper.ToList<T>(dt));
+                }
             }
             catch (Exception ex)
             {
@@ -759,5 +775,6 @@
             }
             return result;
         }
+       
     }
 }

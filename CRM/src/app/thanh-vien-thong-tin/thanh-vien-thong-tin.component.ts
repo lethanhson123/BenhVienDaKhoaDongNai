@@ -37,6 +37,9 @@ export class ThanhVienThongTinComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.ThanhVienSearch();
   }
   MatKhauChangeType() {

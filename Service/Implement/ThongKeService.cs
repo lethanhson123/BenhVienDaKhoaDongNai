@@ -46,6 +46,9 @@
                     case 1:
                         model.Name = model.ParentName + " TUẦN " + model.Week + " THÁNG " + model.Month + " NĂM " + model.Year + " (" + model.BatDau.Value.ToString("dd/MM/yyyy") + " - " + model.KetThuc.Value.ToString("dd/MM/yyyy") + ")";
                         break;
+                    case 2:
+                        model.Name = model.ParentName + " TUẦN " + model.Week + " THÁNG " + model.Month + " NĂM " + model.Year + " (" + model.BatDau.Value.ToString("dd/MM/yyyy") + " - " + model.KetThuc.Value.ToString("dd/MM/yyyy") + ")";
+                        break;
                 }
             }
             if (string.IsNullOrEmpty(model.Note))
@@ -76,27 +79,65 @@
             {
                 if (model.Active == false)
                 {
-                    SqlParameter[] parameters =
+                    switch (model.ParentID)
                     {
-                        new SqlParameter("@ParentID", model.ID),
-                        new SqlParameter("@BatDau", model.BatDau.Value),
-                        new SqlParameter("@KetThuc", model.KetThuc.Value),
-                    };
-                    List<ThongKeChiTiet> ListThongKeChiTiet = await _ThongKeChiTietRepository.GetByStoredProcedureToListAsync(GlobalHelper.SQLServerConectionString_eHospital_DongNai_A, "sp_ReportA0002", parameters);
-                    if (ListThongKeChiTiet.Count > 0)
-                    {
-                        List<ThongKeChiTiet> ListThongKeChiTietExisted = await _ThongKeChiTietRepository.GetByParentIDToListAsync(model.ID);
-                        if (ListThongKeChiTietExisted.Count > 0)
-                        {
-                            int ResultRemove = await _ThongKeChiTietRepository.RemoveRangeAsync(ListThongKeChiTietExisted);
-                        }
-                        int ResultAdd = await _ThongKeChiTietRepository.AddRangeAsync(ListThongKeChiTiet);
+                        case 1:
+                            await Sync1(model);
+                            break;
+                        case 2:
+                            await Sync2(model);
+                            break;
                     }
-                    model.Active = true;
-                    await UpdateAsync(model);
+
                 }
             }
             return model;
+        }
+        private async Task<int> Sync1(ThongKe model)
+        {
+            int Result = 0;
+            SqlParameter[] parameters =
+                            {
+                            new SqlParameter("@ParentID", model.ID),
+                            new SqlParameter("@BatDau", model.BatDau.Value),
+                            new SqlParameter("@KetThuc", model.KetThuc.Value),
+                             };
+            List<ThongKeChiTiet> ListThongKeChiTiet = await _ThongKeChiTietRepository.GetByStoredProcedureToListAsync(GlobalHelper.SQLServerConectionString_eHospital_DongNai_A, "sp_ReportA0002", parameters);
+            if (ListThongKeChiTiet.Count > 0)
+            {
+                List<ThongKeChiTiet> ListThongKeChiTietExisted = await _ThongKeChiTietRepository.GetByParentIDToListAsync(model.ID);
+                if (ListThongKeChiTietExisted.Count > 0)
+                {
+                    int ResultRemove = await _ThongKeChiTietRepository.RemoveRangeAsync(ListThongKeChiTietExisted);
+                }
+                int ResultAdd = await _ThongKeChiTietRepository.AddRangeAsync(ListThongKeChiTiet);
+            }
+            model.Active = true;
+            await UpdateAsync(model);
+            return Result;
+        }
+        private async Task<int> Sync2(ThongKe model)
+        {
+            int Result = 0;
+            SqlParameter[] parameters =
+                            {
+                            new SqlParameter("@ParentID", model.ID),
+                            new SqlParameter("@BatDau", model.BatDau.Value),
+                            new SqlParameter("@KetThuc", model.KetThuc.Value),
+                             };
+            List<ThongKeChiTiet> ListThongKeChiTiet = await _ThongKeChiTietRepository.GetByStoredProcedureToListAsync(GlobalHelper.SQLServerConectionString_eHospital_DongNai_A, "sp_ReportA0003", parameters);
+            if (ListThongKeChiTiet.Count > 0)
+            {
+                List<ThongKeChiTiet> ListThongKeChiTietExisted = await _ThongKeChiTietRepository.GetByParentIDToListAsync(model.ID);
+                if (ListThongKeChiTietExisted.Count > 0)
+                {
+                    int ResultRemove = await _ThongKeChiTietRepository.RemoveRangeAsync(ListThongKeChiTietExisted);
+                }
+                int ResultAdd = await _ThongKeChiTietRepository.AddRangeAsync(ListThongKeChiTiet);
+            }
+            model.Active = true;
+            await UpdateAsync(model);
+            return Result;
         }
         public virtual async Task<ThongKe> GetByParentID_Year_Month_DayAsync(long ParentID, int Year, int Month, int Day)
         {

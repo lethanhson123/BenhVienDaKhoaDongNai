@@ -11,5 +11,7 @@ export class DMDichVuInfoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

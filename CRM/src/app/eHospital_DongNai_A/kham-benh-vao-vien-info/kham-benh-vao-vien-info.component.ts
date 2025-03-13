@@ -31,10 +31,12 @@ export class KhamBenhVaoVienInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.KhamBenh_VaoVienService.BaseParameter.KhamBenhVaoVien_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.KhamBenh_VaoVienSearch();
   }
-
   KhamBenh_VaoVienSearch() {
     this.KhamBenh_VaoVienService.IsShowLoading = true;
     this.KhamBenh_VaoVienService.GetByKhamBenhVaoVien_IdAsync().subscribe(

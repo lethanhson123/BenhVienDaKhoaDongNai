@@ -14,6 +14,7 @@ import { NotificationService } from './shared/Notification.service';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './loading/loading.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { GroupComponent } from './group/group.component';
 
 
 
@@ -22,6 +23,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     AppComponent,
     LoadingComponent,
     HomepageComponent,
+    GroupComponent,
 
   ],
   imports: [

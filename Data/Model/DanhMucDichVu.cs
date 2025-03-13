@@ -4,6 +4,8 @@
     {
         public bool? IsBHYT { get; set; }
         public bool? IsHangDoiPhanNhanh { get; set; }
+        public int? BuocNhay { get; set; }
+        public int? GroupOrder { get; set; }
         public DanhMucDichVu()
         {
         }
