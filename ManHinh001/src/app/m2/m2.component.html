@@ -1,0 +1,78 @@
+<div class="section" id="user-profile" style="margin: 0px; padding: 0px;">
+    <div class="row" style="margin: 0px; padding: 0px;">
+        <div class="col s6 m6 l6" style="margin: 0px; padding: 0px;">  
+            <table class="striped" style="width: 100%;">    
+                <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th style="text-transform: uppercase; text-align: center; font-size: 12vh; font-weight: bolder; padding: 0px; line-height: 14vh;">
+                            {{DanhMucQuayDichVuService.FormData01.Name}}
+                        </th>
+                    </tr>
+                </thead>          
+                <tbody *ngFor="let item of GoiSoChiTietService.List01; index as i" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">                   
+                    <tr style="background-color: #4882b2;">
+                        <td
+                        style="letter-spacing: 0px; color: #fffc00; text-align: center; font-size: 18vh; font-weight: bolder; padding: 0px; line-height: 18vh;">
+                            {{item.NgayTiepNhanSoThuTuString}}</td>
+                    </tr>                    
+                </tbody>
+            </table>         
+            <table class="striped" style="width: 100%;">    
+                <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th style="text-transform: uppercase; text-align: center; font-size: 6vh; font-weight: bolder; padding: 0px; line-height: 8vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>          
+                <tbody *ngFor="let item of GoiSoChiTietService.List02; index as i" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">                   
+                    <tr class="light-blue darken-2 white-text" style="border-bottom: #ffffff solid 1px;">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 12vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.NgayCapSoSoThuTuString}}</td>
+                    </tr>                     
+                </tbody>
+            </table>      
+        </div>       
+        <div class="col s6 m6 l6" style="margin: 0px; padding: 0px;">  
+            <table class="striped" style="width: 100%;">    
+                <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th style="text-transform: uppercase; text-align: center; font-size: 12vh; font-weight: bolder; padding: 0px; line-height: 14vh;">
+                            {{DanhMucQuayDichVuService.FormData02.Name}}
+                        </th>
+                    </tr>
+                </thead>          
+                <tbody *ngFor="let item of GoiSoChiTietService.List03; index as i" style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">                   
+                    <tr style="background-color: #4882b2;">
+                        <td
+                        style="letter-spacing: 0px; color: #ffff00; text-align: center; font-size: 18vh; font-weight: bolder; padding: 0px; line-height: 18vh;">
+                            {{item.NgayTiepNhanSoThuTuString}}</td>
+                    </tr>                    
+                </tbody>
+            </table>         
+            <table class="striped" style="width: 100%;">    
+                <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th style="text-transform: uppercase; text-align: center; font-size: 6vh; font-weight: bolder; padding: 0px; line-height: 8vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>          
+                <tbody *ngFor="let item of GoiSoChiTietService.List04; index as i">
+                    <tr class="light-blue darken-2 white-text" style="border-bottom: #ffffff solid 1px;">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 12vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.NgayCapSoSoThuTuString}}</td>
+                    </tr>                    
+                </tbody>
+            </table>      
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12" style="margin: 0px; padding: 0px;">
+            <a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>

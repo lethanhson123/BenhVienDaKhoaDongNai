@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { LoadingComponent } from './loading/loading.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { GroupComponent } from './group/group.component';
+import { M2Component } from './m2/m2.component';
 
 
 
@@ -24,6 +25,7 @@ import { GroupComponent } from './group/group.component';
     LoadingComponent,
     HomepageComponent,
     GroupComponent,
+    M2Component,
 
   ],
   imports: [

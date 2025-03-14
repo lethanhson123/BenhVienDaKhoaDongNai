@@ -6,7 +6,7 @@
             <a class="link-primary" (click)="ParentIDChange(2)" style="font-size: 16px;">Nội trú</a>
             <a class="link-primary" (click)="Show(1)" style="font-size: 12px;">Tổng hợp (Tròn)</a>
             <a class="link-primary" (click)="Show(2)" style="font-size: 12px;">Tổng hợp (Cột)</a>
-            <a class="link-primary" (click)="Show(4)" style="font-size: 12px;">Ngày trong tuần</a>
+            <a class="link-primary" (click)="Show(4)" style="font-size: 12px;">Ngày trong tuần (Cột)</a>
             <a class="link-primary" (click)="Show(5)" style="font-size: 12px;">Bảng kê</a>
             <a class="link-primary" (click)="Show(6)" style="font-size: 12px;">So sánh</a>
         </div>
@@ -28,7 +28,7 @@
 <div class="row" *ngIf="Is1">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Tổng hợp</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám theo nhóm phòng khám</h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
                 [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type" [colors]="Report0001_0001_Color"
                 [options]="Report0001_0001_Option" [plugins]="Report0001_0001_Plugin">
@@ -39,7 +39,7 @@
 <div class="row" *ngIf="Is2">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Tổng hợp</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám theo nhóm phòng khám</h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
                 [labels]="Report0001_0002_Label" [chartType]="Report0001_0002_Type" [colors]="Report0001_0002_Color"
                 [options]="Report0001_0002_Option" [plugins]="Report0001_0001_Plugin">
@@ -50,9 +50,7 @@
 <div class="row" *ngIf="Is3">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh giữa ngày
-                trong
-                trong tuần</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh lượt khám trong tuần</h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0003_Data"
                 [labels]="Report0001_0003_Label" [chartType]="Report0001_0003_Type" [colors]="Report0001_0003_Color"
                 [options]="Report0001_0003_Option" [plugins]="Report0001_0001_Plugin">
@@ -63,9 +61,7 @@
 <div class="row" *ngIf="Is4">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh giữa ngày
-                trong
-                trong tuần</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh lượt khám trong tuần</h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0004_Data"
                 [labels]="Report0001_0004_Label" [chartType]="Report0001_0004_Type" [colors]="Report0001_0004_Color"
                 [options]="Report0001_0004_Option" [plugins]="Report0001_0001_Plugin">

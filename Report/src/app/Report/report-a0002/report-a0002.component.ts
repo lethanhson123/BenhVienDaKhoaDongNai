@@ -33,7 +33,7 @@ export class ReportA0002Component implements OnInit {
   @ViewChild('ThongKeChiTietPaginator700') ThongKeChiTietPaginator700: MatPaginator;
 
   Image = new Image();
-
+  HienTai: number = 1;
   Is1: boolean = false;
   Is2: boolean = false;
   Is3: boolean = false;
@@ -70,8 +70,10 @@ export class ReportA0002Component implements OnInit {
   ParentIDChange(ParentID: number) {
     this.ThongKeService.BaseParameter.ParentID = ParentID;
     this.ThongKeSearch();
+    this.Show(this.HienTai);
   }
   Show(Action: number) {
+    this.HienTai = Action;
     this.Is1 = false;
     this.Is2 = false;
     this.Is3 = false;
@@ -158,7 +160,7 @@ export class ReportA0002Component implements OnInit {
         this.ThongKeService.FormData = (res as ThongKe);
         if (this.ThongKeService.FormData) {
           if (this.ThongKeService.FormData.ID > 0) {
-            this.Show(1);
+            this.Show(this.HienTai);
             this.ThongKeChiTietSearch();
           }
         }
@@ -183,7 +185,7 @@ export class ReportA0002Component implements OnInit {
         this.ThongKeChiTietService.List10 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 10);
         this.ThongKeChiTietService.List10 = this.ThongKeChiTietService.List10.sort((a, b) => (a.ThongKe000 > b.ThongKe000 ? 1 : -1));
 
-      
+
         this.ThongKeChiTietService.List100 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 100);
         this.ThongKeChiTietService.List100 = this.ThongKeChiTietService.List100.sort((a, b) => (a.ThongKe000 > b.ThongKe000 ? 1 : -1));
 
@@ -202,7 +204,7 @@ export class ReportA0002Component implements OnInit {
         this.ThongKeChiTietService.List05 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 5 && item.DanhMucNgonNguID == environment.TinhThanhIDDongNai);
         this.ThongKeChiTietService.List05 = this.ThongKeChiTietService.List05.sort((a, b) => (a.ThongKe001 > b.ThongKe001 ? 1 : -1));
 
-        this.ThongKeChiTietService.List70 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 70 && item.ThongKe001>=100);
+        this.ThongKeChiTietService.List70 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 70 && item.ThongKe001 >= 100);
         this.ThongKeChiTietService.List70 = this.ThongKeChiTietService.List70.sort((a, b) => (a.ThongKe001 > b.ThongKe001 ? 1 : -1));
 
         this.ThongKeChiTietService.List700 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 70);
@@ -210,7 +212,7 @@ export class ReportA0002Component implements OnInit {
 
         this.ThongKeChiTietService.List07 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 7);
         this.ThongKeChiTietService.List07 = this.ThongKeChiTietService.List07.sort((a, b) => (a.Name004 > b.Name004 ? 1 : -1));
-        
+
 
         this.ThongKeChiTietService.DataSource = new MatTableDataSource(this.ThongKeChiTietService.ListFilter);
         this.ThongKeChiTietService.DataSource.sort = this.ThongKeChiTietSort;
@@ -229,7 +231,7 @@ export class ReportA0002Component implements OnInit {
         let LabelArray70 = [];
         let DataArray70 = [];
         for (let i = 0; i < this.ThongKeChiTietService.List70.length; i++) {
-          let ThongKeChiTiet = this.ThongKeChiTietService.List70[i];          
+          let ThongKeChiTiet = this.ThongKeChiTietService.List70[i];
           LabelArray70.push(ThongKeChiTiet.Name005);
           DataArray70.push(ThongKeChiTiet.ThongKe001);
         }
@@ -271,7 +273,7 @@ export class ReportA0002Component implements OnInit {
           DataArray10.push(ThongKeChiTiet.ThongKe000);
         }
         this.Report0001_0001_Label = LabelArray10;
-        let Label10: string = 'Tổng hợp';
+        let Label10: string = 'Nhóm phòng khám';
         this.Report0001_0001_Data = [
           { data: DataArray10, label: Label10, stack: 'a', }
         ];
@@ -301,7 +303,7 @@ export class ReportA0002Component implements OnInit {
         DataArray100.push(this.ThongKeChiTietService.FormData.ThongKe007);
 
         this.Report0001_0003_Label = LabelArray100;
-        let Label100: string = 'So sánh giữa ngày trong trong tuần';
+        let Label100: string = 'Ngày trong tuần';
         this.Report0001_0003_Data = [
           { data: DataArray100, label: Label100, stack: 'a', }
         ];
@@ -521,7 +523,10 @@ export class ReportA0002Component implements OnInit {
         this.Report0001_0005_Data = [
           { data: DataArray400, label: Label204, stack: 'a', type: 'line', fill: false },
           { data: DataArray300, label: Label203, stack: 'a', type: 'line', fill: false },
-          { data: DataArray200, label: Label200, stack: 'a', }
+          //{ data: DataArray200, label: Label200, stack: 'a', type: 'line', fill: false },
+          { data: DataArray200, label: Label200, stack: 'a1', },
+          // { data: DataArray300, label: Label203, stack: 'a2', },
+          // { data: DataArray400, label: Label204, stack: 'a3', },
         ];
 
         let LabelArray600 = [];

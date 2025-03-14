@@ -41,7 +41,7 @@ export class DanhMucQuayDichVuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
   }
   ngAfterViewInit() {
     this.DanhMucKhuVucSearch();
@@ -87,8 +87,9 @@ export class DanhMucQuayDichVuComponent implements OnInit {
     );
   }
   DanhMucQuayDichVuSaveList() {
-    this.DanhMucQuayDichVuService.IsShowLoading = true;    
-    this.DanhMucQuayDichVuService.SaveListAsync(this.DanhMucQuayDichVuService.List).subscribe(
+    this.DanhMucQuayDichVuService.IsShowLoading = true;
+    this.DanhMucQuayDichVuService.ListFilter = this.DanhMucQuayDichVuService.List.filter(item => item.ID > 0);
+    this.DanhMucQuayDichVuService.SaveListAsync(this.DanhMucQuayDichVuService.ListFilter).subscribe(
       res => {
         this.DanhMucQuayDichVuSearch();
         this.NotificationService.warn(environment.SaveSuccess);

@@ -36,14 +36,14 @@
                     <a style="color: green;" title="Tìm" (click)="DanhMucQuayDichVuSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
                 </div>
-                <div class="col s12 m12 l1">
+                <!-- <div class="col s12 m12 l1">
                     <a style="color: #2196f3;" title="Lưu thay đổi" (click)="DanhMucQuayDichVuSaveList()"><i
                             class="material-icons">save</i></a>
                 </div>
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Khôi phục" (click)="DanhMucQuayDichVuKhoiPhuc()"><i
                             class="material-icons">all_inclusive</i></a>
-                </div>
+                </div> -->
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DanhMucQuayDichVuSort="matSort"
                         [dataSource]="DanhMucQuayDichVuService.DataSource" class="table table-striped m-0">

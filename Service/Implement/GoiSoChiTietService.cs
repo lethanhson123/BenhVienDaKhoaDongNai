@@ -840,6 +840,68 @@ namespace Service.Implement
             }
             return result;
         }
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan06ToListAsync(long DanhMucQuayDichVuID, int Number)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                if (DanhMucQuayDichVuID > 0)
+                {
+                    if (Number > 0)
+                    {
+                        DateTime Now = GlobalHelper.InitializationDateTime;
+                        DanhMucQuayDichVu DanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByIDAsync(DanhMucQuayDichVuID);
+                        List<GoiSoChiTiet> ListGoiSoChiTietActive = await GetByCondition(item => item.Active == true && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayTiepNhan.Value.Year == Now.Year && item.NgayTiepNhan.Value.Month == Now.Month && item.NgayTiepNhan.Value.Day == Now.Day).OrderByDescending(item => item.NgayTiepNhanSoThuTu).Take(1).ToListAsync();
+                        List<GoiSoChiTiet> ListGoiSoChiTiet = await GetByCondition(item => item.Active == false && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day).OrderBy(item => item.NgayCapSoSoThuTu).Take(Number).ToListAsync();
+
+                        if (ListGoiSoChiTietActive.Count == 0)
+                        {
+                            GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                            GoiSoChiTiet.Active = true;
+                            GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                            GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                            GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                            GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                            GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                            GoiSoChiTiet.NgayTiepNhan = Now;
+                            ListGoiSoChiTietActive.Add(GoiSoChiTiet);
+                        }
+                        if (ListGoiSoChiTiet.Count < Number)
+                        {
+                            for (int i = ListGoiSoChiTiet.Count; i < Number; i++)
+                            {
+                                GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                GoiSoChiTiet.Active = false;
+                                GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                                GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                                GoiSoChiTiet.NgayTiepNhan = Now;
+                                ListGoiSoChiTiet.Add(GoiSoChiTiet);
+                            }
+                        }
+
+
+                        result.AddRange(ListGoiSoChiTietActive);
+                        result.AddRange(ListGoiSoChiTiet);
+                        if (result == null)
+                        {
+                            result = new List<GoiSoChiTiet>();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
         public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan04_001ToListAsync(string Code, int Number)
         {
             List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();

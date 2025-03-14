@@ -238,6 +238,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetGoiSoChiTietTiepNhan06ToListAsync")]
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan06ToListAsync()
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietTiepNhan06ToListAsync(baseParameter.DanhMucQuayDichVuID.Value, baseParameter.Number.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 
