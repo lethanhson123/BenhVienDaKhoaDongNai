@@ -1,0 +1,555 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Nhân viên:
+                        <b>{{NS_NHANVIENService.FormData.MaNhanVien}} [{{NS_NHANVIENService.FormData.NhanVien_Id}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="Nhân viên">Nhân viên</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/NSNHANVIEN" title="Nhân viên">
+                                Nhân viên
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l2">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;">
+                            <i class="material-icons">more</i>
+                        </a>
+                        <!--<a title="Thêm mới" (click)="NS_NHANVIENAdd()" style="color: green;"><i
+                class="material-icons">add_box</i></a>-->
+                        <a title="Lưu thay đổi" (click)="NS_NHANVIENSave()" style="color:#2196f3;">
+                            <i class="material-icons">save</i>
+                        </a>
+                    </div>
+                    <div class="col s6 m6 l2">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="DangVien"
+                                [(ngModel)]="NS_NHANVIENService.FormData.DangVien" />
+                            <span>DangVien</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>NhanVien_Id</label>
+                            <input placeholder="NhanVien_Id" [(ngModel)]="NS_NHANVIENService.FormData.NhanVien_Id"
+                                name="NS_NHANVIENService.FormData.NhanVien_Id" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Mã nhân viên</label>
+                            <input placeholder="MaNhanVien" [(ngModel)]="NS_NHANVIENService.FormData.MaNhanVien"
+                                name="NS_NHANVIENService.FormData.MaNhanVien" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Họ</label>
+                            <input placeholder="Ho" [(ngModel)]="NS_NHANVIENService.FormData.Ho"
+                                name="NS_NHANVIENService.FormData.Ho" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Tên</label>
+                            <input placeholder="Ten" [(ngModel)]="NS_NHANVIENService.FormData.Ten"
+                                name="NS_NHANVIENService.FormData.Ten" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgaySinh</label>
+                            <input [ngModel]="NS_NHANVIENService.FormData.NgaySinh | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateNgaySinh($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Didong</label>
+                            <input placeholder="Didong" [(ngModel)]="NS_NHANVIENService.FormData.Didong"
+                                name="NS_NHANVIENService.FormData.Didong" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>DienThoai</label>
+                            <input placeholder="DienThoai" [(ngModel)]="NS_NHANVIENService.FormData.DienThoai"
+                                name="NS_NHANVIENService.FormData.DienThoai" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Email</label>
+                            <input placeholder="Email" [(ngModel)]="NS_NHANVIENService.FormData.Email"
+                                name="NS_NHANVIENService.FormData.Email" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>CMND</label>
+                            <input placeholder="CMND" [(ngModel)]="NS_NHANVIENService.FormData.CMND"
+                                name="NS_NHANVIENService.FormData.CMND" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NoiCap</label>
+                            <input placeholder="NoiCap" [(ngModel)]="NS_NHANVIENService.FormData.NoiCap"
+                                name="NS_NHANVIENService.FormData.NoiCap" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayCap</label>
+                            <input placeholder="NgayCap" [(ngModel)]="NS_NHANVIENService.FormData.NgayCap"
+                                name="NS_NHANVIENService.FormData.NgayCap" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NoiSinh</label>
+                            <input placeholder="NoiSinh" [(ngModel)]="NS_NHANVIENService.FormData.NoiSinh"
+                                name="NS_NHANVIENService.FormData.NoiSinh" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>GioiTinh</label>
+                            <input placeholder="GioiTinh" [(ngModel)]="NS_NHANVIENService.FormData.GioiTinh"
+                                name="NS_NHANVIENService.FormData.GioiTinh" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaDanToc</label>
+                            <input placeholder="MaDanToc" [(ngModel)]="NS_NHANVIENService.FormData.MaDanToc"
+                                name="NS_NHANVIENService.FormData.MaDanToc" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaQuocTich</label>
+                            <input placeholder="MaQuocTich" [(ngModel)]="NS_NHANVIENService.FormData.MaQuocTich"
+                                name="NS_NHANVIENService.FormData.MaQuocTich" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaTonGiao</label>
+                            <input placeholder="MaTonGiao" [(ngModel)]="NS_NHANVIENService.FormData.MaTonGiao"
+                                name="NS_NHANVIENService.FormData.MaTonGiao" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Quequan</label>
+                            <input placeholder="Quequan" [(ngModel)]="NS_NHANVIENService.FormData.Quequan"
+                                name="NS_NHANVIENService.FormData.Quequan" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Passport</label>
+                            <input placeholder="Passport" [(ngModel)]="NS_NHANVIENService.FormData.Passport"
+                                name="NS_NHANVIENService.FormData.Passport" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Ghichu</label>
+                            <input placeholder="Ghichu" [(ngModel)]="NS_NHANVIENService.FormData.Ghichu"
+                                name="NS_NHANVIENService.FormData.Ghichu" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Congviec</label>
+                            <input placeholder="Congviec" [(ngModel)]="NS_NHANVIENService.FormData.Congviec"
+                                name="NS_NHANVIENService.FormData.Congviec" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>SoTaikhoan</label>
+                            <input placeholder="SoTaikhoan" [(ngModel)]="NS_NHANVIENService.FormData.SoTaikhoan"
+                                name="NS_NHANVIENService.FormData.SoTaikhoan" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Nganhang</label>
+                            <input placeholder="Nganhang" [(ngModel)]="NS_NHANVIENService.FormData.Nganhang"
+                                name="NS_NHANVIENService.FormData.Nganhang" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>DiaChihokhau</label>
+                            <input placeholder="DiaChihokhau" [(ngModel)]="NS_NHANVIENService.FormData.DiaChihokhau"
+                                name="NS_NHANVIENService.FormData.DiaChihokhau" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>DiaChiLienhe</label>
+                            <input placeholder="DiaChiLienhe" [(ngModel)]="NS_NHANVIENService.FormData.DiaChiLienhe"
+                                name="NS_NHANVIENService.FormData.DiaChiLienhe" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SoBHXH</label>
+                            <input placeholder="SoBHXH" [(ngModel)]="NS_NHANVIENService.FormData.SoBHXH"
+                                name="NS_NHANVIENService.FormData.SoBHXH" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>BHXHTuNgay</label>
+                            <input placeholder="BHXHTuNgay" [(ngModel)]="NS_NHANVIENService.FormData.BHXHTuNgay"
+                                name="NS_NHANVIENService.FormData.BHXHTuNgay" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>BHXHDenNgay</label>
+                            <input placeholder="BHXHDenNgay" [(ngModel)]="NS_NHANVIENService.FormData.BHXHDenNgay"
+                                name="NS_NHANVIENService.FormData.BHXHDenNgay" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SoBHYT</label>
+                            <input placeholder="SoBHYT" [(ngModel)]="NS_NHANVIENService.FormData.SoBHYT"
+                                name="NS_NHANVIENService.FormData.SoBHYT" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>BHYTTuNgay</label>
+                            <input placeholder="BHYTTuNgay" [(ngModel)]="NS_NHANVIENService.FormData.BHYTTuNgay"
+                                name="NS_NHANVIENService.FormData.BHYTTuNgay" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>BHYTDenNgay</label>
+                            <input placeholder="BHYTDenNgay" [(ngModel)]="NS_NHANVIENService.FormData.BHYTDenNgay"
+                                name="NS_NHANVIENService.FormData.BHYTDenNgay" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NhomMau</label>
+                            <input placeholder="NhomMau" [(ngModel)]="NS_NHANVIENService.FormData.NhomMau"
+                                name="NS_NHANVIENService.FormData.NhomMau" type="text" class="form-control">
+                        </div>
+
+                        <div>
+                            <label>HonNhan</label>
+                            <input placeholder="HonNhan" [(ngModel)]="NS_NHANVIENService.FormData.HonNhan"
+                                name="NS_NHANVIENService.FormData.HonNhan" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayVaoLam</label>
+                            <input placeholder="NgayVaoLam" [(ngModel)]="NS_NHANVIENService.FormData.NgayVaoLam"
+                                name="NS_NHANVIENService.FormData.NgayVaoLam" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayNghiViec</label>
+                            <input placeholder="NgayNghiViec" [(ngModel)]="NS_NHANVIENService.FormData.NgayNghiViec"
+                                name="NS_NHANVIENService.FormData.NgayNghiViec" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaPhongBan</label>
+                            <input placeholder="MaPhongBan" [(ngModel)]="NS_NHANVIENService.FormData.MaPhongBan"
+                                name="NS_NHANVIENService.FormData.MaPhongBan" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>DangLamViec</label>
+                            <input placeholder="DangLamViec" [(ngModel)]="NS_NHANVIENService.FormData.DangLamViec"
+                                name="NS_NHANVIENService.FormData.DangLamViec" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaNhom</label>
+                            <input placeholder="MaNhom" [(ngModel)]="NS_NHANVIENService.FormData.MaNhom"
+                                name="NS_NHANVIENService.FormData.MaNhom" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Nangkhieu</label>
+                            <input placeholder="Nangkhieu" [(ngModel)]="NS_NHANVIENService.FormData.Nangkhieu"
+                                name="NS_NHANVIENService.FormData.Nangkhieu" type="text" class="form-control">
+                        </div>
+
+                        <div>
+                            <label>ID</label>
+                            <input placeholder="ID" [(ngModel)]="NS_NHANVIENService.FormData.ID"
+                                name="NS_NHANVIENService.FormData.ID" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SoSLD</label>
+                            <input placeholder="SoSLD" [(ngModel)]="NS_NHANVIENService.FormData.SoSLD"
+                                name="NS_NHANVIENService.FormData.SoSLD" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>NgayVaoDang</label>
+                            <input placeholder="NgayVaoDang" [(ngModel)]="NS_NHANVIENService.FormData.NgayVaoDang"
+                                name="NS_NHANVIENService.FormData.NgayVaoDang" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaChucVu</label>
+                            <input placeholder="MaChucVu" [(ngModel)]="NS_NHANVIENService.FormData.MaChucVu"
+                                name="NS_NHANVIENService.FormData.MaChucVu" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaChucDanh</label>
+                            <input placeholder="MaChucDanh" [(ngModel)]="NS_NHANVIENService.FormData.MaChucDanh"
+                                name="NS_NHANVIENService.FormData.MaChucDanh" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SucKhoe</label>
+                            <input placeholder="SucKhoe" [(ngModel)]="NS_NHANVIENService.FormData.SucKhoe"
+                                name="NS_NHANVIENService.FormData.SucKhoe" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ChieuCao</label>
+                            <input placeholder="ChieuCao" [(ngModel)]="NS_NHANVIENService.FormData.ChieuCao"
+                                name="NS_NHANVIENService.FormData.ChieuCao" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>CanNang</label>
+                            <input placeholder="CanNang" [(ngModel)]="NS_NHANVIENService.FormData.CanNang"
+                                name="NS_NHANVIENService.FormData.CanNang" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SLDCapNgay</label>
+                            <input placeholder="SLDCapNgay" [(ngModel)]="NS_NHANVIENService.FormData.SLDCapNgay"
+                                name="NS_NHANVIENService.FormData.SLDCapNgay" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SoQuyetDinh</label>
+                            <input placeholder="SoQuyetDinh" [(ngModel)]="NS_NHANVIENService.FormData.SoQuyetDinh"
+                                name="NS_NHANVIENService.FormData.SoQuyetDinh" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>TienTroCap</label>
+                            <input placeholder="TienTroCap" [(ngModel)]="NS_NHANVIENService.FormData.TienTroCap"
+                                name="NS_NHANVIENService.FormData.TienTroCap" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>LyDoNghi</label>
+                            <input placeholder="LyDoNghi" [(ngModel)]="NS_NHANVIENService.FormData.LyDoNghi"
+                                name="NS_NHANVIENService.FormData.LyDoNghi" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Dutru1</label>
+                            <input placeholder="Dutru1" [(ngModel)]="NS_NHANVIENService.FormData.Dutru1"
+                                name="NS_NHANVIENService.FormData.Dutru1" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Dutru2</label>
+                            <input placeholder="Dutru2" [(ngModel)]="NS_NHANVIENService.FormData.Dutru2"
+                                name="NS_NHANVIENService.FormData.Dutru2" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Dutru3</label>
+                            <input placeholder="Dutru3" [(ngModel)]="NS_NHANVIENService.FormData.Dutru3"
+                                name="NS_NHANVIENService.FormData.Dutru3" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Dutru4</label>
+                            <input placeholder="Dutru4" [(ngModel)]="NS_NHANVIENService.FormData.Dutru4"
+                                name="NS_NHANVIENService.FormData.Dutru4" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Dutru5</label>
+                            <input placeholder="Dutru5" [(ngModel)]="NS_NHANVIENService.FormData.Dutru5"
+                                name="NS_NHANVIENService.FormData.Dutru5" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaSoThue</label>
+                            <input placeholder="MaSoThue" [(ngModel)]="NS_NHANVIENService.FormData.MaSoThue"
+                                name="NS_NHANVIENService.FormData.MaSoThue" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NamVaoNganhDauKhi</label>
+                            <input placeholder="NamVaoNganhDauKhi"
+                                [(ngModel)]="NS_NHANVIENService.FormData.NamVaoNganhDauKhi"
+                                name="NS_NHANVIENService.FormData.NamVaoNganhDauKhi" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ChungChiTinHoc</label>
+                            <input placeholder="ChungChiTinHoc" [(ngModel)]="NS_NHANVIENService.FormData.ChungChiTinHoc"
+                                name="NS_NHANVIENService.FormData.ChungChiTinHoc" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>TinhThanh</label>
+                            <input placeholder="TinhThanh" [(ngModel)]="NS_NHANVIENService.FormData.TinhThanh"
+                                name="NS_NHANVIENService.FormData.TinhThanh" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SapXep</label>
+                            <input placeholder="SapXep" [(ngModel)]="NS_NHANVIENService.FormData.SapXep"
+                                name="NS_NHANVIENService.FormData.SapXep" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>MaHopDong</label>
+                            <input placeholder="MaHopDong" [(ngModel)]="NS_NHANVIENService.FormData.MaHopDong"
+                                name="NS_NHANVIENService.FormData.MaHopDong" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaUngvien</label>
+                            <input placeholder="MaUngvien" [(ngModel)]="NS_NHANVIENService.FormData.MaUngvien"
+                                name="NS_NHANVIENService.FormData.MaUngvien" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaTrinhDo</label>
+                            <input placeholder="MaTrinhDo" [(ngModel)]="NS_NHANVIENService.FormData.MaTrinhDo"
+                                name="NS_NHANVIENService.FormData.MaTrinhDo" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ChuyenMon</label>
+                            <input placeholder="ChuyenMon" [(ngModel)]="NS_NHANVIENService.FormData.ChuyenMon"
+                                name="NS_NHANVIENService.FormData.ChuyenMon" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayThuViec</label>
+                            <input placeholder="NgayThuViec" [(ngModel)]="NS_NHANVIENService.FormData.NgayThuViec"
+                                name="NS_NHANVIENService.FormData.NgayThuViec" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayHetThuViec</label>
+                            <input placeholder="NgayHetThuViec" [(ngModel)]="NS_NHANVIENService.FormData.NgayHetThuViec"
+                                name="NS_NHANVIENService.FormData.NgayHetThuViec" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayThamGiaCM</label>
+                            <input placeholder="NgayThamGiaCM" [(ngModel)]="NS_NHANVIENService.FormData.NgayThamGiaCM"
+                                name="NS_NHANVIENService.FormData.NgayThamGiaCM" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayVaoDoan</label>
+                            <input placeholder="NgayVaoDoan" [(ngModel)]="NS_NHANVIENService.FormData.NgayVaoDoan"
+                                name="NS_NHANVIENService.FormData.NgayVaoDoan" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaTrinhDoQuanLyNN</label>
+                            <input placeholder="MaTrinhDoQuanLyNN"
+                                [(ngModel)]="NS_NHANVIENService.FormData.MaTrinhDoQuanLyNN"
+                                name="NS_NHANVIENService.FormData.MaTrinhDoQuanLyNN" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayQuyetDinhNghiViec</label>
+                            <input placeholder="NgayQuyetDinhNghiViec"
+                                [(ngModel)]="NS_NHANVIENService.FormData.NgayQuyetDinhNghiViec"
+                                name="NS_NHANVIENService.FormData.NgayQuyetDinhNghiViec" type="text"
+                                class="form-control">
+                        </div>
+                        <div>
+                            <label>MaTrinhDoChinhTri</label>
+                            <input placeholder="MaTrinhDoChinhTri"
+                                [(ngModel)]="NS_NHANVIENService.FormData.MaTrinhDoChinhTri"
+                                name="NS_NHANVIENService.FormData.MaTrinhDoChinhTri" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MaChucVu_BaoCao</label>
+                            <input placeholder="MaChucVu_BaoCao"
+                                [(ngModel)]="NS_NHANVIENService.FormData.MaChucVu_BaoCao"
+                                name="NS_NHANVIENService.FormData.MaChucVu_BaoCao" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>MocTinhPhep</label>
+                            <input placeholder="MocTinhPhep" [(ngModel)]="NS_NHANVIENService.FormData.MocTinhPhep"
+                                name="NS_NHANVIENService.FormData.MocTinhPhep" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>TenKhongDau</label>
+                            <input placeholder="TenKhongDau" [(ngModel)]="NS_NHANVIENService.FormData.TenKhongDau"
+                                name="NS_NHANVIENService.FormData.TenKhongDau" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Trai_Id</label>
+                            <input placeholder="Trai_Id" [(ngModel)]="NS_NHANVIENService.FormData.Trai_Id"
+                                name="NS_NHANVIENService.FormData.Trai_Id" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>SapXep_Trai</label>
+                            <input placeholder="SapXep_Trai" [(ngModel)]="NS_NHANVIENService.FormData.SapXep_Trai"
+                                name="NS_NHANVIENService.FormData.SapXep_Trai" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>HinhAnh</label>
+                            <input placeholder="HinhAnh" [(ngModel)]="NS_NHANVIENService.FormData.HinhAnh"
+                                name="NS_NHANVIENService.FormData.HinhAnh" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Nhân viên và User
+                        <span *ngIf="NhanVien_User_MappingService.List">({{NhanVien_User_MappingService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l4">
+                    <input [(ngModel)]="NhanVien_User_MappingService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="NhanVien_User_MappingSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="NhanVien_User_MappingSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="col s12 m12 l1">
+                    <a title="Thêm mới" routerLink="/SysUsersInfo/0" style="color: green;"><i
+                            class="material-icons">add_box</i></a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #NhanVien_User_MappingSort="matSort"
+                        [dataSource]="NhanVien_User_MappingService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="NhanVien_User_MappingPaginator">
+                                    {{
+                                    NhanVien_User_MappingPaginator.pageSize *
+                                    NhanVien_User_MappingPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="NhanVien_User_MappingSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="NhanVien_User_MappingDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NhanVien_User_Id}} - 
+                                <a style="cursor: pointer;" title="{{element.User_Id}}" class="link-primary"
+                                    routerLink="/SysUsersInfo001/{{element.User_Id}}"><b>{{element.User_Id}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NhanVien_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NhanVien_Id" name="NhanVien_Id" [(ngModel)]="element.NhanVien_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.User_Id" class="browser-default" [(ngModel)]="element.User_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_UsersFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_UsersService.ListFilter"
+                                        [value]="item.User_Id" style="color:green;">
+                                        {{item.User_Code}} - {{item.User_Name}} [{{item.User_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="NhanVien_User_MappingService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: NhanVien_User_MappingService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #NhanVien_User_MappingPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-loading *ngIf="NS_NHANVIENService.IsShowLoading"></app-loading>

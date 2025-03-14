@@ -1,0 +1,330 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Khách hàng: <b>{{KhachHangService.FormData.HoTen}}
+                            [{{KhachHangService.FormData.ID}}]</b></h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/GoiSo" title="Gọi số">Gọi số</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/KhachHang" title="Khách hàng">Khách hàng</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l4">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;"><i
+                                class="material-icons">more</i></a>
+                        <a title="Thêm mới" (click)="KhachHangAdd()" style="color: green;"><i
+                                class="material-icons">add_box</i></a>
+                        <a title="Lưu thay đổi" (click)="KhachHangSave()" style="color:#2196f3;"><i
+                                class="material-icons">save</i></a>
+                    </div>
+                    <div class="col s6 m6 l4">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="Active"
+                                [(ngModel)]="KhachHangService.FormData.Active" />
+                            <span>Kích hoạt</span>
+                        </label>
+                    </div>
+                    <div class="col s6 m6 l4">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="GioiTinh"
+                                [(ngModel)]="KhachHangService.FormData.GioiTinh" />
+                            <span>Nam/Nữ</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label>Mã y tế</label>
+                            <input placeholder="Mã y tế" [(ngModel)]="KhachHangService.FormData.Code"
+                                name="KhachHangService.FormData.Code" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Mã bảo hiểm y tế</label>
+                            <input placeholder="Mã bảo hiểm y tế" [(ngModel)]="KhachHangService.FormData.BHYT"
+                                name="KhachHangService.FormData.BHYT" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>CCCD</label>
+                            <input placeholder="CCCD" [(ngModel)]="KhachHangService.FormData.CCCD"
+                                name="KhachHangService.FormData.CCCD" type="text" class="form-control">
+                        </div>                        
+                        <div>
+                            <label>Điện thoại</label>
+                            <input placeholder="Điện thoại" [(ngModel)]="KhachHangService.FormData.DienThoai"
+                                name="KhachHangService.FormData.CCCD" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label class="form-label">Ngày sinh</label>
+                            <input [ngModel]="KhachHangService.FormData.NgaySinh | date:'yyyy-MM-dd'"
+                                style="text-align: right;" (ngModelChange)="DateNgaySinh($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label>Năm sinh</label>
+                            <input placeholder="Năm sinh" [(ngModel)]="KhachHangService.FormData.NamSinh"
+                                name="KhachHangService.FormData.NamSinh" type="number" class="form-control" style="text-align: right;">
+                        </div>
+                        <div>
+                            <label>Họ tên</label>
+                            <input placeholder="Họ tên" [(ngModel)]="KhachHangService.FormData.HoTen"
+                                name="KhachHangService.FormData.HoTen" type="text" class="form-control">
+                        </div>                       
+                        <div>
+                            <label>Email</label>
+                            <input placeholder="Email" [(ngModel)]="KhachHangService.FormData.Email"
+                                name="KhachHangService.FormData.Email" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label>Tỉnh thành
+                                [{{KhachHangService.FormData.DanhMucTinhThanhID}}]</label>
+                            <select class="browser-default form-select" name="DanhMucTinhThanhID"
+                                [(ngModel)]="KhachHangService.FormData.DanhMucTinhThanhID" (change)="DanhMucQuanHuyenSearch()">
+                                <option *ngFor="let item of DanhMucTinhThanhService.List;" [value]="item.ID">
+                                    {{item.Name}} [{{item.ID}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Quận huyện
+                                [{{KhachHangService.FormData.DanhMucQuanHuyenID}}]</label>
+                            <select class="browser-default form-select" name="DanhMucQuanHuyenID"
+                                [(ngModel)]="KhachHangService.FormData.DanhMucQuanHuyenID" (change)="DanhMucXaPhuongSearch()">
+                                <option *ngFor="let item of DanhMucQuanHuyenService.List;" [value]="item.ID">
+                                    {{item.Name}} [{{item.ID}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Xã phường
+                                [{{KhachHangService.FormData.DanhMucXaPhuongID}}]</label>
+                            <select class="browser-default form-select" name="DanhMucXaPhuongID"
+                                [(ngModel)]="KhachHangService.FormData.DanhMucXaPhuongID">
+                                <option *ngFor="let item of DanhMucXaPhuongService.List;" [value]="item.ID">
+                                    {{item.Name}} [{{item.ID}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Địa chỉ</label>
+                            <input placeholder="Địa chỉ" [(ngModel)]="KhachHangService.FormData.DiaChi"
+                                name="KhachHangService.FormData.DiaChi" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Lịch sử Khám bệnh
+                        <span *ngIf="GoiSoChiTietService.List">({{GoiSoChiTietService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="GoiSoChiTietService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="GoiSoChiTietSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a title="Tìm" (click)="GoiSoChiTietSearch()" style="color: green;"><i
+                            class="material-icons">play_circle_filled</i></a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #GoiSoChiTietSort="matSort"
+                        [dataSource]="GoiSoChiTietService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;" style="text-align: center;">
+                                <div *ngIf="GoiSoChiTietPaginator">
+                                    {{GoiSoChiTietPaginator.pageSize *
+                                    GoiSoChiTietPaginator.pageIndex + i + 1}}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.ID}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayCapSo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cấp số</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div *ngIf="element.NgayCapSo" style="text-align: right;">
+                                    <b>{{element.NgayCapSo
+                                        |
+                                        date:'dd/MM/yyyy HH:mm:ss'}}</b>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayCapSoSoThuTu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số thứ tự
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayCapSoSoThuTuString}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayTiepNhan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiếp nhận</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div *ngIf="element.NgayTiepNhan" style="text-align: right;">
+                                    <b>{{element.NgayTiepNhan
+                                        |
+                                        date:'dd/MM/yyyy HH:mm:ss'}}</b>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayTiepNhanSoThuTu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số thứ tự
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayTiepNhanSoThuTuString}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayThanhToan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Thanh toán</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div *ngIf="element.NgayThanhToan" style="text-align: right;">
+                                    <b>{{element.NgayThanhToan
+                                        |
+                                        date:'dd/MM/yyyy HH:mm:ss'}}</b>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayThanhToanSoThuTu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số thứ tự
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayThanhToanSoThuTuString}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayLinhThuoc">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Lĩnh thuốc</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div *ngIf="element.NgayLinhThuoc" style="text-align: right;">
+                                    <b>{{element.NgayLinhThuoc
+                                        |
+                                        date:'dd/MM/yyyy HH:mm:ss'}}</b>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayLinhThuocSoThuTu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số thứ tự
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NgayLinhThuocSoThuTuString}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="KhachHangID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Khách hàng ID
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.KhachHangID}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã quản lý
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Code}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DienThoai">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Điện thoại
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DienThoai}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="HoTen">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ tên
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.HoTen}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NamSinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Năm sinh
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NamSinh}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="GioiTinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.GioiTinh}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="BHYT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>BHYT
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.BHYT}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CCCD">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CCCD
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CCCD}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucTinhThanhName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tỉnh thành
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DanhMucTinhThanhName}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucQuanHuyenName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Quận huyện
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DanhMucQuanHuyenName}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DanhMucXaPhuongName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Xã phường
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DanhMucXaPhuongName}}
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="GoiSoChiTietService.DisplayColumns005">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: GoiSoChiTietService.DisplayColumns005;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #GoiSoChiTietPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="KhachHangService.IsShowLoading"></app-loading>

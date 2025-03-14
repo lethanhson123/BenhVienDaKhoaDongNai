@@ -1,0 +1,72 @@
+﻿import { Base } from "./Base.model";
+
+export class BenhAnTongQuat_SoSinh extends Base{
+BenhAnTongQuat_ChiTiet_Id?: number;
+BenhAnTongQuat_Id?: number;
+Field_1?: string;
+Field_2?: number;
+Field_3?: string;
+Field_4?: string;
+Field_5?: string;
+Field_6?: string;
+Field_7?: number;
+Field_8?: number;
+Field_9?: number;
+Field_10?: string;
+Field_11?: number;
+Field_12?: number;
+Field_13?: string;
+Field_14?: number;
+Field_15?: number;
+Field_16?: number;
+Field_17?: string;
+Field_18?: string;
+Field_19?: string;
+Field_20?: number;
+Field_21?: string;
+Field_22?: number;
+Field_23?: string;
+Field_24?: number;
+Field_25?: string;
+Field_26?: string;
+Field_27?: string;
+Field_28?: string;
+Field_29?: string;
+Field_30?: string;
+Field_31?: string;
+Field_32?: string;
+Field_33?: string;
+Field_34?: Date;
+Field_35?: boolean;
+Field_36?: boolean;
+Field_37?: Date;
+Field_38?: string;
+Field_39?: boolean;
+Field_40?: boolean;
+Field_41?: boolean;
+Field_42?: string;
+Field_43?: string;
+Field_44?: string;
+Field_45?: number;
+Field_46?: string;
+Field_47?: boolean;
+Field_48?: boolean;
+Field_49?: boolean;
+Field_50?: boolean;
+Field_51?: boolean;
+Field_52?: boolean;
+Field_53?: string;
+Field_54?: boolean;
+Field_55?: boolean;
+Field_56?: boolean;
+Field_57?: boolean;
+Field_58?: boolean;
+Field_59?: boolean;
+Field_60?: boolean;
+Field_61?: string;
+Field_62?: string;
+Field_63?: string;
+
+}
+
+

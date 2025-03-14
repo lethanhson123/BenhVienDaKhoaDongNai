@@ -2,22 +2,25 @@
     <div id="breadcrumbs-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col s12 m12 l6">
-                    <br />
+                <div class="col s12 m12 l9">
                     <b style="font-size: 16px;">{{ThongKeService.FormData.Name}}</b>
-                </div>
-                <div class="col s12 m12 l3">
-                    <a class="link-primary" (click)="ParentIDChange(1)" style="font-size: 14px;">Ngoại trú</a>
-                    <a class="link-primary" (click)="ParentIDChange(2)" style="font-size: 14px;">Nội trú</a>
                     <br />
-                    <a class="link-primary" (click)="Show(1)" style="font-size: 12px;">TH 01</a>
-                    <a class="link-primary" (click)="Show(2)" style="font-size: 12px;">TH 02</a>
-                    <a class="link-primary" (click)="Show(3)" style="font-size: 12px;">Ngày 01</a>
-                    <a class="link-primary" (click)="Show(4)" style="font-size: 12px;">Ngày 02</a>
+                    <a class="link-primary" (click)="ParentIDChange(1)" style="font-size: 18px;">Ngoại trú</a>
+                    <a class="link-primary" (click)="ParentIDChange(2)" style="font-size: 18px;">Nội trú</a>
+                    <a class="link-primary" (click)="Show(1)" style="font-size: 12px;">Tổng hợp (Tròn)</a>
+                    <a class="link-primary" (click)="Show(2)" style="font-size: 12px;">Tổng hợp (Cột)</a>
+                    <!-- <a class="link-primary" (click)="Show(3)" style="font-size: 12px;">Thứ 01</a> -->
+                    <a class="link-primary" (click)="Show(4)" style="font-size: 12px;">Ngày trong tuần</a>
                     <a class="link-primary" (click)="Show(5)" style="font-size: 12px;">Bảng kê</a>
+                    <!-- <a class="link-primary" (click)="Show(7)" style="font-size: 12px;">Tuổi 01</a>
+                    <a class="link-primary" (click)="Show(8)" style="font-size: 12px;">Tuổi 02</a>
+                    <a class="link-primary" (click)="Show(9)" style="font-size: 12px;">Khu vực 01</a>
+                    <a class="link-primary" (click)="Show(10)" style="font-size: 12px;">Khu vực 02</a>
+                    <a class="link-primary" (click)="Show(11)" style="font-size: 12px;">ICD 01</a>
+                    <a class="link-primary" (click)="Show(12)" style="font-size: 12px;">ICD 02</a>
+                    <a class="link-primary" (click)="Show(13)" style="font-size: 12px;">Nhóm ICD</a>
+                    <a class="link-primary" (click)="Show(14)" style="font-size: 12px;">ICD Chi tiết</a> -->
                     <a class="link-primary" (click)="Show(6)" style="font-size: 12px;">So sánh</a>
-                    <a class="link-primary" (click)="Show(7)" style="font-size: 12px;">Độ tuổi</a>                    
-                    <a class="link-primary" (click)="Show(8)" style="font-size: 12px;">ICD</a>                    
                 </div>
                 <div class="col s12 m12 l3 right-align-md">
                     <div class="col s12 m12 l9">
@@ -46,12 +49,12 @@
                     [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type" [colors]="Report0001_0001_Color"
                     [options]="Report0001_0001_Option" [plugins]="Report0001_0001_Plugin">
                 </canvas>
-            </div>           
-        </div>      
+            </div>
+        </div>
     </div>
     <div class="row" *ngIf="Is2">
         <br />
-        <div class="col s12 m12 l12">          
+        <div class="col s12 m12 l12">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Tổng hợp</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
@@ -72,14 +75,14 @@
                     [labels]="Report0001_0003_Label" [chartType]="Report0001_0003_Type" [colors]="Report0001_0003_Color"
                     [options]="Report0001_0003_Option" [plugins]="Report0001_0001_Plugin">
                 </canvas>
-            </div>           
+            </div>
         </div>
         <div class="col s12 m12 l4">
         </div>
     </div>
     <div class="row" *ngIf="Is4">
         <br />
-        <div class="col s12 m12 l12">           
+        <div class="col s12 m12 l12">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh giữa ngày
                     trong
@@ -122,43 +125,52 @@
                         </ng-container>
                         <ng-container matColumnDef="ThongKe000">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Tuần</th>
-                            <td mat-cell *matCellDef="let element" style="font-weight: bold; text-align: center; font-size: 14px;">
+                            <td mat-cell *matCellDef="let element"
+                                style="font-weight: bold; text-align: center; font-size: 14px;">
                                 {{element.ThongKe000}}
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe008">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>%</th>
-                            <td mat-cell *matCellDef="let element" style="font-weight: bold; text-align: center; font-size: 14px;">
+                            <td mat-cell *matCellDef="let element"
+                                style="font-weight: bold; text-align: center; font-size: 14px;">
                                 {{element.ThongKe008}}
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe001">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Thứ hai</th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">{{element.ThongKe001}}</td>
+                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">
+                                {{element.ThongKe001}}</td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe002">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Thứ ba</th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">{{element.ThongKe002}}</td>
+                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">
+                                {{element.ThongKe002}}</td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe003">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Thứ tư</th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">{{element.ThongKe003}}</td>
+                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">
+                                {{element.ThongKe003}}</td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe004">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Thứ năm</th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">{{element.ThongKe004}}</td>
+                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">
+                                {{element.ThongKe004}}</td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe005">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Thứ sáu</th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">{{element.ThongKe005}}</td>
+                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">
+                                {{element.ThongKe005}}</td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe006">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Thứ bảy</th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">{{element.ThongKe006}}</td>
+                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">
+                                {{element.ThongKe006}}</td>
                         </ng-container>
                         <ng-container matColumnDef="ThongKe007">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Chủ nhật</th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">{{element.ThongKe007}}</td>
+                            <td mat-cell *matCellDef="let element" style="text-align: center; font-size: 14px;">
+                                {{element.ThongKe007}}</td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="ThongKeChiTietService.DisplayColumns004">
                         </tr>
@@ -167,14 +179,14 @@
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #ThongKeChiTietPaginator="matPaginator"
                         [pageSizeOptions]="[10,20,50,100,1000]" [pageSize]="1000"
-                        [showFirstLastButtons]></mat-paginator>                  
-                </div>              
+                        [showFirstLastButtons]></mat-paginator>
+                </div>
             </div>
         </div>
     </div>
     <div class="row" *ngIf="Is6">
         <br />
-        <div class="col s12 m12 l12">          
+        <div class="col s12 m12 l12">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0005_Data"
@@ -186,7 +198,7 @@
     </div>
     <div class="row" *ngIf="Is7">
         <br />
-        <div class="col s12 m12 l12">          
+        <div class="col s12 m12 l12">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
                 <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Độ tuổi</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0006_Data"
@@ -198,13 +210,184 @@
     </div>
     <div class="row" *ngIf="Is8">
         <br />
-        <div class="col s12 m12 l12">          
+        <div class="col s12 m12 l12">
             <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
-                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">ICD</h6>
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Độ tuổi</h6>
                 <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0007_Data"
                     [labels]="Report0001_0007_Label" [chartType]="Report0001_0007_Type" [colors]="Report0001_0007_Color"
                     [options]="Report0001_0007_Option" [plugins]="Report0001_0001_Plugin">
                 </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="Is9">
+        <br />
+        <div class="col s12 m12 l12">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Khu vực</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0009_Data"
+                    [labels]="Report0001_0009_Label" [chartType]="Report0001_0009_Type" [colors]="Report0001_0009_Color"
+                    [options]="Report0001_0009_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="Is10">
+        <br />
+        <div class="col s12 m12 l12">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Khu vực</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0010_Data"
+                    [labels]="Report0001_0010_Label" [chartType]="Report0001_0010_Type" [colors]="Report0001_0010_Color"
+                    [options]="Report0001_0010_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="Is11">
+        <br />
+        <div class="col s12 m12 l12">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Nhóm ICD (Lượt khám
+                    >=100)</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0011_Data"
+                    [labels]="Report0001_0011_Label" [chartType]="Report0001_0011_Type" [colors]="Report0001_0011_Color"
+                    [options]="Report0001_0011_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="Is12">
+        <br />
+        <div class="col s12 m12 l12">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Nhóm ICD (Lượt khám
+                    >=100)</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0012_Data"
+                    [labels]="Report0001_0012_Label" [chartType]="Report0001_0012_Type" [colors]="Report0001_0012_Color"
+                    [options]="Report0001_0012_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="Is13">
+        <div class="col s12 m12 l12">
+            <br />
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #ThongKeChiTietSort700="matSort"
+                        [dataSource]="ThongKeChiTietService.DataSource700">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="ThongKeChiTietPaginator700" style="text-align: center; font-size: 14px;">
+                                    {{
+                                    ThongKeChiTietPaginator700.pageSize *
+                                    ThongKeChiTietPaginator700.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name003">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã nhóm</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Name003}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name004">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nhóm ICD</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Name004}}
+                            </td>
+                        </ng-container>                       
+                        <ng-container matColumnDef="ThongKe001">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Lượt khám</th>
+                            <td mat-cell *matCellDef="let element"
+                                style="font-weight: bold; text-align: center; font-size: 14px;">
+                                {{element.ThongKe001}}
+                            </td>
+                        </ng-container>                 
+                        <ng-container matColumnDef="ThongKe002">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>%</th>
+                            <td mat-cell *matCellDef="let element"
+                                style="font-weight: bold; text-align: center; font-size: 14px;">
+                                {{element.ThongKe002}}
+                            </td>
+                        </ng-container>                
+                        <tr mat-header-row *matHeaderRowDef="ThongKeChiTietService.DisplayColumns006">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: ThongKeChiTietService.DisplayColumns006;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #ThongKeChiTietPaginator700="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100,1000]" [pageSize]="1000"
+                        [showFirstLastButtons]></mat-paginator>
+                </div>
+            </div>
+        </div>       
+    </div>
+    <div class="row" *ngIf="Is14">      
+        <div class="col s12 m12 l12">
+            <br />
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #ThongKeChiTietSort07="matSort"
+                        [dataSource]="ThongKeChiTietService.DataSource07">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="ThongKeChiTietPaginator07" style="text-align: center; font-size: 14px;">
+                                    {{
+                                    ThongKeChiTietPaginator07.pageSize *
+                                    ThongKeChiTietPaginator07.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name003">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã nhóm</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Name003}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name004">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nhóm ICD</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Name004}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name001">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã ICD</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Name001}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Name002">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ICD</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Name002}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThongKe001">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Lượt khám</th>
+                            <td mat-cell *matCellDef="let element"
+                                style="font-weight: bold; text-align: center; font-size: 14px;">
+                                {{element.ThongKe001}}
+                            </td>
+                        </ng-container>                       
+                        <tr mat-header-row *matHeaderRowDef="ThongKeChiTietService.DisplayColumns005">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: ThongKeChiTietService.DisplayColumns005;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #ThongKeChiTietPaginator07="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100,1000]" [pageSize]="1000"
+                        [showFirstLastButtons]></mat-paginator>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col s12 m12 l11">
+    </div>
+    <div class="col s12 m12 l1">
+        <a style="color: red;" title="Đóng" (click)="Close()"><i class="material-icons">close</i></a>
+    </div>
+    <div class="col s12 m12 l12">
+        <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">     
+            <table>
+                <thead>
+                    <th style="text-align: center; width: 5%; font-size: 30px;">STT</th>
+                    <th style="text-align: center; width: 20%; font-size: 30px;">Phòng khám</th>
+                    <th style="text-align: center; font-size: 30px;">Tuần</th>
+                    <th style="text-align: center; font-size: 30px;">Thứ hai</th>
+                    <th style="text-align: center; font-size: 30px;">Thứ ba</th>
+                    <th style="text-align: center; font-size: 30px;">Thứ tư</th>
+                    <th style="text-align: center; font-size: 30px;">Thứ năm</th>
+                    <th style="text-align: center; font-size: 30px;">Thứ sáu</th>
+                    <th style="text-align: center; font-size: 30px;">Thứ bảy</th>
+                    <th style="text-align: center; font-size: 30px;">Chủ nhật</th>                        
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of ThongKeChiTietService.List01; index as i;" style="padding: 0px; margin: 0px;">
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;" *ngIf="i<9">0{{i + 1}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;" *ngIf="i>8">{{i + 1}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold;"><a class="link-primary" style="font-size: 20px;">{{item.Name002}}</a></td>                        
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe000}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe001}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe002}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe003}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe004}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe005}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe006}}</td>
+                        <td style="padding: 0px; margin: 0px; font-weight: bold; text-align: center; font-size: 24px;">{{item.ThongKe007}}</td>                        
+                    </tr>                   
+                </tbody>
+            </table>                      
+        </div>
+    </div>
+</div>

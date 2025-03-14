@@ -1,0 +1,207 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Toa thuốc ngoại trú:
+                        <b>{{KhamBenh_ToaThuocService.FormData.SoThuTuToa}}
+                            [{{KhamBenh_ToaThuocService.FormData.KhamBenh_ToaThuoc_Id}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="Bệnh án">Bệnh án</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/KhamBenhToaThuoc" title="Khám bệnh - Toa thuốc">
+                                Khám bệnh - Toa thuốc
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l2">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;">
+                            <i class="material-icons">more</i>
+                        </a>
+                        <!--<a title="Thêm mới" (click)="KhamBenh_ToaThuocAdd()" style="color: green;"><i
+                class="material-icons">add_box</i></a>
+                        <a title="Lưu thay đổi" (click)="KhamBenh_ToaThuocSave()" style="color:#2196f3;">
+                            <i class="material-icons">save</i>
+                        </a>-->
+                    </div>
+                    <div class="col s6 m6 l2">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="HuyToaThuoc"
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.HuyToaThuoc" />
+                            <span>HuyToaThuoc</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>KhamBenh_ToaThuoc_Id</label>
+                            <input placeholder="KhamBenh_ToaThuoc_Id"
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.KhamBenh_ToaThuoc_Id"
+                                name="KhamBenh_ToaThuocService.FormData.KhamBenh_ToaThuoc_Id" type="text"
+                                class="form-control">
+                        </div>
+                        <div>
+                            <label>SoThuTuToa</label>
+                            <input placeholder="SoThuTuToa" [(ngModel)]="KhamBenh_ToaThuocService.FormData.SoThuTuToa"
+                                name="KhamBenh_ToaThuocService.FormData.SoThuTuToa" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>LoaiToaThuoc</label>
+                            <input placeholder="LoaiToaThuoc"
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.LoaiToaThuoc"
+                                name="KhamBenh_ToaThuocService.FormData.LoaiToaThuoc" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>KhamBenh_Id <a target="_blank" style="cursor: pointer;"
+                                    title="{{KhamBenh_ToaThuocService.FormData.KhamBenh_Id}}" class="link-primary"
+                                    routerLink="/KhamBenhInfo/{{KhamBenh_ToaThuocService.FormData.KhamBenh_Id}}"><b>[{{KhamBenh_ToaThuocService.FormData.KhamBenh_Id}}]</b></a></label>
+                            <input placeholder="KhamBenh_Id" [(ngModel)]="KhamBenh_ToaThuocService.FormData.KhamBenh_Id"
+                                name="KhamBenh_ToaThuocService.FormData.KhamBenh_Id" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>KhoXuat_Id <a target="_blank" style="cursor: pointer;"
+                                    title="{{KhamBenh_ToaThuocService.FormData.KhoXuat_Id}}" class="link-primary"
+                                    routerLink="/DMKhoDuoc"><b>[{{KhamBenh_ToaThuocService.FormData.KhoXuat_Id}}]</b></a></label>
+                            <input placeholder="KhoXuat_Id" [(ngModel)]="KhamBenh_ToaThuocService.FormData.KhoXuat_Id"
+                                name="KhamBenh_ToaThuocService.FormData.KhoXuat_Id" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>NgayToaThuoc</label>
+                            <input
+                                [ngModel]="KhamBenh_ToaThuocService.FormData.NgayToaThuoc | date:'yyyy-MM-dd HH:mm:ss'"
+                                style="text-align: right;" (ngModelChange)="DateNgayToaThuoc($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="datetime-local" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label>ThoiGianToaThuoc</label>
+                            <input
+                                [ngModel]="KhamBenh_ToaThuocService.FormData.ThoiGianToaThuoc | date:'yyyy-MM-dd HH:mm:ss'"
+                                style="text-align: right;" (ngModelChange)="DateThoiGianToaThuoc($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="datetime-local" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label>ThoiGianTao</label>
+                            <input
+                                [ngModel]="KhamBenh_ToaThuocService.FormData.ThoiGianTao | date:'yyyy-MM-dd HH:mm:ss'"
+                                style="text-align: right;" (ngModelChange)="DateThoiGianTao($event)"
+                                [ngModelOptions]="{ updateOn: 'blur' }" type="datetime-local" class="form-control"
+                                autocomplete="off">
+                        </div>
+                        <div>
+                            <label>ChungTuPhatThuoc_Id <a target="_blank" style="cursor: pointer;"
+                                    title="{{KhamBenh_ToaThuocService.FormData.ChungTuPhatThuoc_Id}}"
+                                    class="link-primary"
+                                    routerLink="/ChungTuPhatThuocInfo/{{KhamBenh_ToaThuocService.FormData.ChungTuPhatThuoc_Id}}"><b>[{{KhamBenh_ToaThuocService.FormData.ChungTuPhatThuoc_Id}}]</b></a></label>
+                            <input placeholder="ChungTuPhatThuoc_Id"
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.ChungTuPhatThuoc_Id"
+                                name="KhamBenh_ToaThuocService.FormData.ChungTuPhatThuoc_Id" type="text"
+                                class="form-control">
+                        </div>
+                        <div>
+                            <label>BacSi_Id</label>
+                            <input placeholder="BacSi_Id" [(ngModel)]="KhamBenh_ToaThuocService.FormData.BacSi_Id"
+                                name="KhamBenh_ToaThuocService.FormData.BacSi_Id" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>TrangThai</label>
+                            <input placeholder="TrangThai" [(ngModel)]="KhamBenh_ToaThuocService.FormData.TrangThai"
+                                name="KhamBenh_ToaThuocService.FormData.TrangThai" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Duyet</label>
+                            <input placeholder="Duyet" [(ngModel)]="KhamBenh_ToaThuocService.FormData.Duyet"
+                                name="KhamBenh_ToaThuocService.FormData.Duyet" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayDuyet</label>
+                            <input placeholder="NgayDuyet" [(ngModel)]="KhamBenh_ToaThuocService.FormData.NgayDuyet"
+                                name="KhamBenh_ToaThuocService.FormData.NgayDuyet" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ThoiGianDuyet</label>
+                            <input placeholder="ThoiGianDuyet"
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.ThoiGianDuyet"
+                                name="KhamBenh_ToaThuocService.FormData.ThoiGianDuyet" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NguoiDuyet_Id</label>
+                            <input placeholder="NguoiDuyet_Id"
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.NguoiDuyet_Id"
+                                name="KhamBenh_ToaThuocService.FormData.NguoiDuyet_Id" type="text" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>GhiChu</label>
+                            <input placeholder="GhiChu" [(ngModel)]="KhamBenh_ToaThuocService.FormData.GhiChu"
+                                name="KhamBenh_ToaThuocService.FormData.GhiChu" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NgayTao</label>
+                            <input placeholder="NgayTao" [(ngModel)]="KhamBenh_ToaThuocService.FormData.NgayTao"
+                                disabled name="KhamBenh_ToaThuocService.FormData.NgayTao" type="text"
+                                class="form-control">
+                        </div>
+                        <div>
+                            <label>NguoiTao_Id <a target="_blank" style="cursor: pointer;"
+                                    title="{{KhamBenh_ToaThuocService.FormData.NguoiTao_Id}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{KhamBenh_ToaThuocService.FormData.NguoiTao_Id}}"><b>[{{KhamBenh_ToaThuocService.FormData.NguoiTao_Id}}]</b></a></label>
+                            <select class="browser-default form-select" name="NguoiTao_Id" disabled
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.NguoiTao_Id">
+                                <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
+                                    {{item.User_Name}} - {{item.User_Code}}</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NgayCapNhat</label>
+                            <input placeholder="NgayCapNhat" [(ngModel)]="KhamBenh_ToaThuocService.FormData.NgayCapNhat"
+                                disabled name="KhamBenh_ToaThuocService.FormData.NgayCapNhat" type="text"
+                                class="form-control">
+                        </div>
+                        <div>
+                            <label>NguoiCapNhat_Id <a target="_blank" style="cursor: pointer;"
+                                    title="{{KhamBenh_ToaThuocService.FormData.NguoiCapNhat_Id}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{KhamBenh_ToaThuocService.FormData.NguoiCapNhat_Id}}"><b>[{{KhamBenh_ToaThuocService.FormData.NguoiCapNhat_Id}}]</b></a></label>
+                            <select class="browser-default form-select" name="NguoiCapNhat_Id" disabled
+                                [(ngModel)]="KhamBenh_ToaThuocService.FormData.NguoiCapNhat_Id">
+                                <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
+                                    {{item.User_Name}} - {{item.User_Code}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="KhamBenh_ToaThuocService.IsShowLoading"></app-loading>

@@ -1,0 +1,101 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        ICD Common
+                        <span *ngIf="DM_ICD_CommonService.List">({{DM_ICD_CommonService.List.length-1}} items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="eHospital Dictionary">eHospital Dictionary</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/DMICDCommon" title="DMICDCommon">
+                                ICD Common
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l11">
+                    <input [(ngModel)]="DM_ICD_CommonService.BaseParameter.SearchString" placeholder="Tìm ..."
+                           class="form-control" (keyup.enter)="DM_ICD_CommonSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="DM_ICD_CommonSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DM_ICD_CommonSort="matSort"
+                           [dataSource]="DM_ICD_CommonService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="DM_ICD_CommonPaginator">
+                                    {{
+DM_ICD_CommonPaginator.pageSize *
+                                    DM_ICD_CommonPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="DM_ICD_CommonSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="DM_ICD_CommonDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                            </ng-container>
+                            <ng-container matColumnDef="ICD_Common_Id">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>ICD_Common_Id</th>
+<td mat-cell *matCellDef="let element"><input class="form-control" type="text" placeholder="ICD_Common_Id" name="ICD_Common_Id" [(ngModel)]="element.ICD_Common_Id"></td>
+</ng-container>
+<ng-container matColumnDef="BacSi_Id">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>BacSi_Id</th>
+<td mat-cell *matCellDef="let element"><input class="form-control" type="text" placeholder="BacSi_Id" name="BacSi_Id" [(ngModel)]="element.BacSi_Id"></td>
+</ng-container>
+<ng-container matColumnDef="ICD_Id">
+<th mat-header-cell *matHeaderCellDef mat-sort-header>ICD_Id</th>
+<td mat-cell *matCellDef="let element"><input class="form-control" type="text" placeholder="ICD_Id" name="ICD_Id" [(ngModel)]="element.ICD_Id"></td>
+</ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="DM_ICD_CommonService.DisplayColumns001">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: DM_ICD_CommonService.DisplayColumns001;">
+                            </tr>
+                        </table>
+                        <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_ICD_CommonPaginator="matPaginator"
+                                       [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-loading *ngIf="DM_ICD_CommonService.IsShowLoading"></app-loading>
+

@@ -1,0 +1,1212 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Users:
+                        <b>{{Sys_UsersService.FormData.User_Name}} [{{Sys_UsersService.FormData.User_Code}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="eHospital System">eHospital System</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/SysUsers" title="Users">
+                                Users
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/SysUsersInfo001/{{Sys_UsersService.FormData.User_Id}}" title="Phân quyền">
+                                Phân quyền
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/SysUsersInfo/{{Sys_UsersService.FormData.User_Id}}" title="Đầy đủ">
+                                Đầy đủ
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s6 m6 l2">
+                        <a title="Quay lại" href="javascript:history.back()" style="color: green;"><i
+                                class="material-icons">more</i></a>
+                        <a title="Thêm mới" routerLink="/SysUsersInfo/0" style="color: green;"><i
+                                class="material-icons">add_box</i></a>
+                        <a title="Lưu thay đổi" (click)="Sys_UsersSave()" style="color:#2196f3;"><i
+                                class="material-icons">save</i></a>
+                    </div>
+                    <div class="col s6 m6 l2">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="Suspend"
+                                [(ngModel)]="Sys_UsersService.FormData.Suspend" />
+                            <span>Đình chỉ</span>
+                        </label>
+                    </div>
+                    <div class="col s6 m6 l2">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="TrangThaiSuspend"
+                                [(ngModel)]="Sys_UsersService.FormData.TrangThaiSuspend" />
+                            <span>Trạng thái Đình chỉ</span>
+                        </label>
+                    </div>
+                    <div class="col s6 m6 l2">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="Encryption_Password"
+                                [(ngModel)]="Sys_UsersService.FormData.Encryption_Password" />
+                            <span>Mã hóa</span>
+                        </label>
+                    </div>
+                    <div class="col s6 m6 l2">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="StrongPassword"
+                                [(ngModel)]="Sys_UsersService.FormData.StrongPassword" />
+                            <span>Mật khẩu mạnh</span>
+                        </label>
+                    </div>
+                    <div class="col s6 m6 l2">
+                        <label>
+                            <input type="checkbox" class="form-check-input" name="IsLogin"
+                                [(ngModel)]="Sys_UsersService.FormData.IsLogin" />
+                            <span>IsLogin</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label>User_Code</label>
+                            <input placeholder="User_Code" [(ngModel)]="Sys_UsersService.FormData.User_Code"
+                                name="Sys_UsersService.FormData.User_Code" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>User_Name</label>
+                            <input placeholder="User_Name" [(ngModel)]="Sys_UsersService.FormData.User_Name"
+                                name="Sys_UsersService.FormData.User_Name" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>User_Password</label>
+                            <input placeholder="User_Password" [(ngModel)]="Sys_UsersService.FormData.User_Password"
+                                name="Sys_UsersService.FormData.User_Password" type="password" class="form-control">
+                        </div>
+                        <div>
+                            <label>User_Position</label>
+                            <input placeholder="User_Position" [(ngModel)]="Sys_UsersService.FormData.User_Position"
+                                name="Sys_UsersService.FormData.User_Position" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Latin_Name</label>
+                            <input placeholder="Latin_Name" [(ngModel)]="Sys_UsersService.FormData.Latin_Name"
+                                name="Sys_UsersService.FormData.Latin_Name" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>EmailAddress</label>
+                            <input placeholder="EmailAddress" [(ngModel)]="Sys_UsersService.FormData.EmailAddress"
+                                name="Sys_UsersService.FormData.EmailAddress" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>PhoneNumber</label>
+                            <input placeholder="PhoneNumber" [(ngModel)]="Sys_UsersService.FormData.PhoneNumber"
+                                name="Sys_UsersService.FormData.PhoneNumber" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>FaxNumber</label>
+                            <input placeholder="FaxNumber" [(ngModel)]="Sys_UsersService.FormData.FaxNumber"
+                                name="Sys_UsersService.FormData.FaxNumber" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Language_Id</label>
+                            <input placeholder="Language_Id" [(ngModel)]="Sys_UsersService.FormData.Language_Id"
+                                name="Sys_UsersService.FormData.Language_Id" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>Domain_Id</label>
+                            <input placeholder="Domain_Id" [(ngModel)]="Sys_UsersService.FormData.Domain_Id"
+                                name="Sys_UsersService.FormData.Domain_Id" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label>UserOption1</label>
+                            <input placeholder="UserOption1" [(ngModel)]="Sys_UsersService.FormData.UserOption1"
+                                name="Sys_UsersService.FormData.UserOption1" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption2</label>
+                            <input placeholder="UserOption2" [(ngModel)]="Sys_UsersService.FormData.UserOption2"
+                                name="Sys_UsersService.FormData.UserOption2" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption3</label>
+                            <input placeholder="UserOption3" [(ngModel)]="Sys_UsersService.FormData.UserOption3"
+                                name="Sys_UsersService.FormData.UserOption3" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption4</label>
+                            <input placeholder="UserOption4" [(ngModel)]="Sys_UsersService.FormData.UserOption4"
+                                name="Sys_UsersService.FormData.UserOption4" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption5</label>
+                            <input placeholder="UserOption5" [(ngModel)]="Sys_UsersService.FormData.UserOption5"
+                                name="Sys_UsersService.FormData.UserOption5" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption6</label>
+                            <input placeholder="UserOption6" [(ngModel)]="Sys_UsersService.FormData.UserOption6"
+                                name="Sys_UsersService.FormData.UserOption6" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption7</label>
+                            <input placeholder="UserOption7" [(ngModel)]="Sys_UsersService.FormData.UserOption7"
+                                name="Sys_UsersService.FormData.UserOption7" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption8</label>
+                            <input placeholder="UserOption8" [(ngModel)]="Sys_UsersService.FormData.UserOption8"
+                                name="Sys_UsersService.FormData.UserOption8" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>UserOption9</label>
+                            <input placeholder="UserOption9" [(ngModel)]="Sys_UsersService.FormData.UserOption9"
+                                name="Sys_UsersService.FormData.UserOption9" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>StrongPassword</label>
+                            <input placeholder="StrongPassword" [(ngModel)]="Sys_UsersService.FormData.StrongPassword"
+                                name="Sys_UsersService.FormData.StrongPassword" type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <div>
+                            <label>Creation_Date</label>
+                            <input placeholder="Creation_Date" [(ngModel)]="Sys_UsersService.FormData.Creation_Date"
+                                name="Sys_UsersService.FormData.Creation_Date" type="text" class="form-control"
+                                disabled>
+                        </div>
+                        <div>
+                            <label>Created_By</label>
+                            <input placeholder="Created_By" [(ngModel)]="Sys_UsersService.FormData.Created_By"
+                                name="Sys_UsersService.FormData.Created_By" type="text" class="form-control" disabled>
+                        </div>
+                        <div>
+                            <label>Last_Update_Date</label>
+                            <input placeholder="Last_Update_Date"
+                                [(ngModel)]="Sys_UsersService.FormData.Last_Update_Date"
+                                name="Sys_UsersService.FormData.Last_Update_Date" type="text" class="form-control"
+                                disabled>
+                        </div>
+                        <div>
+                            <label>Last_Updated_By</label>
+                            <input placeholder="Last_Updated_By" [(ngModel)]="Sys_UsersService.FormData.Last_Updated_By"
+                                name="Sys_UsersService.FormData.Last_Updated_By" type="text" class="form-control"
+                                disabled>
+                        </div>
+                        <div>
+                            <label>Login_Time</label>
+                            <input placeholder="Login_Time" [(ngModel)]="Sys_UsersService.FormData.Login_Time"
+                                name="Sys_UsersService.FormData.Login_Time" type="text" class="form-control" disabled>
+                        </div>
+                        <div>
+                            <label>Login_Hostname</label>
+                            <input placeholder="Login_Hostname" [(ngModel)]="Sys_UsersService.FormData.Login_Hostname"
+                                name="Sys_UsersService.FormData.Login_Hostname" type="text" class="form-control"
+                                disabled>
+                        </div>
+                        <div>
+                            <label>Last_Login_Time</label>
+                            <input placeholder="Last_Login_Time" [(ngModel)]="Sys_UsersService.FormData.Last_Login_Time"
+                                name="Sys_UsersService.FormData.Last_Login_Time" type="text" class="form-control"
+                                disabled>
+                        </div>
+                        <div>
+                            <label>Last_Login_Hostname</label>
+                            <input placeholder="Last_Login_Hostname"
+                                [(ngModel)]="Sys_UsersService.FormData.Last_Login_Hostname"
+                                name="Sys_UsersService.FormData.Last_Login_Hostname" type="text" class="form-control"
+                                disabled>
+                        </div>
+                        <div>
+                            <label>Expiration_Days</label>
+                            <input placeholder="Expiration_Days" [(ngModel)]="Sys_UsersService.FormData.Expiration_Days"
+                                name="Sys_UsersService.FormData.Expiration_Days" type="text" class="form-control"
+                                disabled>
+                        </div>
+                        <div>
+                            <label>Expiration_Date</label>
+                            <input placeholder="Expiration_Date" [(ngModel)]="Sys_UsersService.FormData.Expiration_Date"
+                                name="Sys_UsersService.FormData.Expiration_Date" type="text" class="form-control"
+                                disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Nhân viên và User
+                        <span *ngIf="NhanVien_User_MappingService.List">({{NhanVien_User_MappingService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="NhanVien_User_MappingService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="NhanVien_User_MappingSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="NhanVien_User_MappingSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #NhanVien_User_MappingSort="matSort"
+                        [dataSource]="NhanVien_User_MappingService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="NhanVien_User_MappingPaginator">
+                                    {{
+                                    NhanVien_User_MappingPaginator.pageSize *
+                                    NhanVien_User_MappingPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="NhanVien_User_MappingSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="NhanVien_User_MappingDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.NhanVien_User_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhanVien_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nhân viên ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.NhanVien_Id" class="browser-default"
+                                    [(ngModel)]="element.NhanVien_Id">
+                                    <input placeholder="Tìm..." (keyup)="NS_NHANVIENFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of NS_NHANVIENService.ListFilter"
+                                        [value]="item.NhanVien_Id" style="color:green;">
+                                        {{item.Ho}} {{item.Ten}} - {{item.MaNhanVien}} [{{item.NhanVien_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.User_Id" class="browser-default" [(ngModel)]="element.User_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_UsersFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_UsersService.ListFilter" [value]="item.User_Id"
+                                        style="color:green;">
+                                        {{item.User_Code}} - {{item.User_Name}} [{{item.User_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="NhanVien_User_MappingService.DisplayColumns003">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: NhanVien_User_MappingService.DisplayColumns003;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #NhanVien_User_MappingPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Lịch sử thay đổi mật khẩu
+                        <span
+                            *ngIf="Sys_UserPasswordHistoryService.List">({{Sys_UserPasswordHistoryService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_UserPasswordHistoryService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_UserPasswordHistorySearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_UserPasswordHistorySearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #Sys_UserPasswordHistorySort="matSort" [dataSource]="Sys_UserPasswordHistoryService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_UserPasswordHistoryPaginator">
+                                    {{
+                                    Sys_UserPasswordHistoryPaginator.pageSize *
+                                    Sys_UserPasswordHistoryPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <!-- <a (click)="Sys_UserPasswordHistorySave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a> -->
+                                <!-- <a (click)="Sys_UserPasswordHistoryDelete(element)" style="color: red;">
+                                    <i class="material-icons">delete_forever</i>
+                                </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ID" name="ID" [(ngModel)]="element.ID"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ChangedDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ChangedDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ChangedDate" name="ChangedDate" [(ngModel)]="element.ChangedDate"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ChangedDateTime">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ChangedDateTime</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ChangedDateTime" name="ChangedDateTime"
+                                    [(ngModel)]="element.ChangedDateTime"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ExpirationDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ExpirationDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ExpirationDate" name="ExpirationDate"
+                                    [(ngModel)]="element.ExpirationDate"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Password">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Password</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="User_Password" name="User_Password"
+                                    [(ngModel)]="element.User_Password"></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_UserPasswordHistoryService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_UserPasswordHistoryService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #Sys_UserPasswordHistoryPaginator="matPaginator" [pageSizeOptions]="[10,20,50,100]"
+                        [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Phân quyền Phòng ban
+                        <span
+                            *ngIf="Sys_AppPrivateSettingsService.List001">({{Sys_AppPrivateSettingsService.List001.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_AppPrivateSettingsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_AppPrivateSettingsSearch001()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_AppPrivateSettingsSearch001()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #Sys_AppPrivateSettingsSort001="matSort"
+                        [dataSource]="Sys_AppPrivateSettingsService.DataSource001">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_AppPrivateSettingsPaginator001">
+                                    {{
+                                    Sys_AppPrivateSettingsPaginator001.pageSize *
+                                    Sys_AppPrivateSettingsPaginator001.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="Sys_AppPrivateSettingsSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="Sys_AppPrivateSettingsDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Setting_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Setting_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Setting_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Group_Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Code</th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Group_Code" name="Group_Code"
+                                    [(ngModel)]="element.Group_Code">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng ban</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.Code" class="browser-default" [(ngModel)]="element.Code">
+                                    <input placeholder="Tìm..." (keyup)="DM_PhongBanFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of DM_PhongBanService.ListFilter"
+                                        [value]="item.MaPhongBan" style="color:green;">
+                                        {{item.TenPhongBan}} - {{item.MaPhongBan}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="User_Id" name="User_Id" [(ngModel)]="element.User_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Computer">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Computer</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Computer" name="Computer" [(ngModel)]="element.Computer"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Value">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Value" name="Value" [(ngModel)]="element.Value"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreationDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CreationDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.CreatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.CreatedBy}}"><b>{{element.CreatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdateDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdateDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LastUpdateDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.LastUpdatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.LastUpdatedBy}}"><b>{{element.LastUpdatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_AppPrivateSettingsService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_AppPrivateSettingsService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #Sys_AppPrivateSettingsPaginator001="matPaginator" [pageSizeOptions]="[10,20,50,100,1000]"
+                        [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Phân quyền Kho dược
+                        <span
+                            *ngIf="Sys_AppPrivateSettingsService.List002">({{Sys_AppPrivateSettingsService.List002.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_AppPrivateSettingsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_AppPrivateSettingsSearch002()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_AppPrivateSettingsSearch002()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #Sys_AppPrivateSettingsSort002="matSort"
+                        [dataSource]="Sys_AppPrivateSettingsService.DataSource002">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_AppPrivateSettingsPaginator002">
+                                    {{
+                                    Sys_AppPrivateSettingsPaginator002.pageSize *
+                                    Sys_AppPrivateSettingsPaginator002.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="Sys_AppPrivateSettingsSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="Sys_AppPrivateSettingsDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Setting_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Setting_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Setting_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Group_Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Code</th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Group_Code" name="Group_Code"
+                                    [(ngModel)]="element.Group_Code">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kho dược</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.Code" class="browser-default" [(ngModel)]="element.Code">
+                                    <input placeholder="Tìm..." (keyup)="DM_KhoDuocFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of DM_KhoDuocService.ListFilter" [value]="item.MaKho"
+                                        style="color:green;">
+                                        {{item.TenKho}} - {{item.MaKho}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="User_Id" name="User_Id" [(ngModel)]="element.User_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Computer">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Computer</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Computer" name="Computer" [(ngModel)]="element.Computer"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Value">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Value" name="Value" [(ngModel)]="element.Value"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreationDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CreationDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.CreatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.CreatedBy}}"><b>{{element.CreatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdateDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdateDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LastUpdateDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.LastUpdatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.LastUpdatedBy}}"><b>{{element.LastUpdatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_AppPrivateSettingsService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_AppPrivateSettingsService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #Sys_AppPrivateSettingsPaginator002="matPaginator" [pageSizeOptions]="[10,20,50,100,1000]"
+                        [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Phân quyền Cận lâm sàng
+                        <span
+                            *ngIf="Sys_AppPrivateSettingsService.List003">({{Sys_AppPrivateSettingsService.List003.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_AppPrivateSettingsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_AppPrivateSettingsSearch003()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_AppPrivateSettingsSearch003()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort
+                        #Sys_AppPrivateSettingsSort003="matSort"
+                        [dataSource]="Sys_AppPrivateSettingsService.DataSource003">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_AppPrivateSettingsPaginator003">
+                                    {{
+                                    Sys_AppPrivateSettingsPaginator003.pageSize *
+                                    Sys_AppPrivateSettingsPaginator003.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="Sys_AppPrivateSettingsSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="Sys_AppPrivateSettingsDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Setting_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Setting_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.Setting_Id}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Group_Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Code</th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="text" placeholder="Group_Code" name="Group_Code"
+                                    [(ngModel)]="element.Group_Code">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cận lâm sàng</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%; min-width: 400px;"
+                                    name="element.Code" class="browser-default" [(ngModel)]="element.Code">
+                                    <input placeholder="Tìm..." (keyup)="DM_NhomDichVuFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of DM_NhomDichVuService.ListFilter"
+                                        [value]="item.MaNhomDichVu" style="color:green;">
+                                        {{item.TenNhomDichVu}} - {{item.MaNhomDichVu}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="User_Id" name="User_Id" [(ngModel)]="element.User_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Computer">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Computer</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Computer" name="Computer" [(ngModel)]="element.Computer"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Value">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Value" name="Value" [(ngModel)]="element.Value"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreationDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.CreationDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.CreatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.CreatedBy}}"><b>{{element.CreatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdateDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdateDate</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.LastUpdateDate | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedBy</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a style="cursor: pointer;" title="{{element.LastUpdatedBy}}" class="link-primary"
+                                    routerLink="/SysUsersInfo/{{element.LastUpdatedBy}}"><b>{{element.LastUpdatedBy}}</b></a>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_AppPrivateSettingsService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_AppPrivateSettingsService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile"
+                        #Sys_AppPrivateSettingsPaginator003="matPaginator" [pageSizeOptions]="[10,20,50,100,1000]"
+                        [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Phân quyền tổng hợp
+                        <span *ngIf="Sys_AppPrivateSettingsService.List">({{Sys_AppPrivateSettingsService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_AppPrivateSettingsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_AppPrivateSettingsSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_AppPrivateSettingsSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #Sys_AppPrivateSettingsSort="matSort"
+                        [dataSource]="Sys_AppPrivateSettingsService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_AppPrivateSettingsPaginator">
+                                    {{
+                                    Sys_AppPrivateSettingsPaginator.pageSize *
+                                    Sys_AppPrivateSettingsPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="Sys_AppPrivateSettingsSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="Sys_AppPrivateSettingsDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Setting_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Setting_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Setting_Id" name="Setting_Id" [(ngModel)]="element.Setting_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Group_Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Code</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Group_Code" name="Group_Code" [(ngModel)]="element.Group_Code"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Code">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Code" name="Code" [(ngModel)]="element.Code"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="User_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="User_Id" name="User_Id" [(ngModel)]="element.User_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Computer">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Computer</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Computer" name="Computer" [(ngModel)]="element.Computer"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Value">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Value" name="Value" [(ngModel)]="element.Value"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Description" name="Description" [(ngModel)]="element.Description"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreationDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CreationDate" name="CreationDate" [(ngModel)]="element.CreationDate">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="CreatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedBy</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CreatedBy" name="CreatedBy" [(ngModel)]="element.CreatedBy"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdateDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdateDate</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="LastUpdateDate" name="LastUpdateDate"
+                                    [(ngModel)]="element.LastUpdateDate"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="LastUpdatedBy">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>LastUpdatedBy</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="LastUpdatedBy" name="LastUpdatedBy"
+                                    [(ngModel)]="element.LastUpdatedBy"></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_AppPrivateSettingsService.DisplayColumns001">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_AppPrivateSettingsService.DisplayColumns001;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #Sys_AppPrivateSettingsPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Commands
+                        <span *ngIf="Sys_UserCommandsService.List">({{Sys_UserCommandsService.List.length}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_UserCommandsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_UserCommandsSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_UserCommandsSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #Sys_UserCommandsSort="matSort"
+                        [dataSource]="Sys_UserCommandsService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_UserCommandsPaginator">
+                                    {{
+                                    Sys_UserCommandsPaginator.pageSize *
+                                    Sys_UserCommandsPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <!-- <a (click)="Sys_UserCommandsSave(element)" style="color:#2196f3;">
+                                        <i class="material-icons">save</i>
+                                    </a>
+                                    <a (click)="Sys_UserCommandsDelete(element)" style="color: red;">
+                                        <i class="material-icons">delete_forever</i>
+                                    </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Command_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Command_Id</th>
+                            <td mat-cell *matCellDef="let element" style="width: 30%;">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                    name="element.Command_Id" class="browser-default" [(ngModel)]="element.Command_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_CommandsFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_CommandsService.ListFilter"
+                                        [value]="item.Command_Id" style="color:green;">
+                                        {{item.Command_Name}} - {{item.Command_Text}} [ID: {{item.Command_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Function_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Function_Id</th>
+                            <td mat-cell *matCellDef="let element" style="width: 30%;">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                    name="element.Function_Id" class="browser-default"
+                                    [(ngModel)]="element.Function_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_FunctionsFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_FunctionsService.ListFilter"
+                                        [value]="item.Function_Id" style="color:green;">
+                                        {{item.Function_Name}} - {{item.Function_Class}} [ID: {{item.Function_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Menu_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Menu_Id</th>
+                            <td mat-cell *matCellDef="let element" style="width: 30%;">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                    name="element.Menu_Id" class="browser-default" [(ngModel)]="element.Menu_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_MenusFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_MenusService.ListFilter" [value]="item.Menu_Id"
+                                        style="color:green;">
+                                        {{item.Menu_Name}} - {{item.Menu_Code}} [ID: {{item.Menu_Id}}] [Level:
+                                        {{item.Menu_Level}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_UserCommandsService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_UserCommandsService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #Sys_UserCommandsPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l6">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Menus
+                        <span *ngIf="Sys_UserMenusService.List">({{Sys_UserMenusService.List.length - 1}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_UserMenusService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_UserMenusSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_UserMenusSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #Sys_UserMenusSort="matSort"
+                        [dataSource]="Sys_UserMenusService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_UserMenusPaginator">
+                                    {{
+                                    Sys_UserMenusPaginator.pageSize *
+                                    Sys_UserMenusPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <!-- <a (click)="Sys_UserMenusSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a> -->
+                                <!-- <a (click)="Sys_UserMenusDelete(element)" style="color: red;">
+                                    <i class="material-icons">delete_forever</i>
+                                </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Menu_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Menu_Id</th>
+                            <td mat-cell *matCellDef="let element" style="width: 80%;">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                    name="element.Menu_Id" class="browser-default" [(ngModel)]="element.Menu_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_MenusFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_MenusService.ListFilter" [value]="item.Menu_Id"
+                                        style="color:green;">
+                                        {{item.Menu_Name}} - {{item.Menu_Code}} [ID: {{item.Menu_Id}}] [Level:
+                                        {{item.Menu_Level}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_UserMenusService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_UserMenusService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #Sys_UserMenusPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l6">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l6">
+                    <h6 class="card-title">Groups
+                        <span *ngIf="Sys_UserGroupsService.List">({{Sys_UserGroupsService.List.length - 1}}
+                            items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="Sys_UserGroupsService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="Sys_UserGroupsSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="Sys_UserGroupsSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #Sys_UserGroupsSort="matSort"
+                        [dataSource]="Sys_UserGroupsService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="Sys_UserGroupsPaginator">
+                                    {{
+                                    Sys_UserGroupsPaginator.pageSize *
+                                    Sys_UserGroupsPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <!-- <a (click)="Sys_UserMenusSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a> -->
+                                <!-- <a (click)="Sys_UserMenusDelete(element)" style="color: red;">
+                                    <i class="material-icons">delete_forever</i>
+                                </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Group_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Group_Id</th>
+                            <td mat-cell *matCellDef="let element" style="width: 80%;">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                    name="element.Group_Id" class="browser-default" [(ngModel)]="element.Group_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_GroupsFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_GroupsService.ListFilter"
+                                        [value]="item.Group_Id" style="color:green;">
+                                        {{item.Group_Name}} - {{item.Group_Code}} [ID: {{item.Group_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="Sys_UserGroupsService.DisplayColumns002">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: Sys_UserGroupsService.DisplayColumns002;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #Sys_UserGroupsPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="Sys_UsersService.IsShowLoading"></app-loading>

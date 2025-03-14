@@ -1,0 +1,388 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">
+                        Dịch vụ
+                        <span *ngIf="DM_DichVuService.List">({{DM_DichVuService.List.length-1}} items)</span>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="#" title="eHospital Dictionary">eHospital Dictionary</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a routerLink="/DMDichVu" title="DMDichVu">
+                                Dịch vụ
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l12">
+        <div class="card card card-default scrollspy">
+            <div class="card-content">
+                <div class="col s12 m12 l5">
+                    <mat-select
+                        style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                        name="DM_DichVuService.BaseParameter.NhomDichVu_Id" class="browser-default"
+                        [(ngModel)]="DM_DichVuService.BaseParameter.NhomDichVu_Id">
+                        <input placeholder="Tìm..." (keyup)="DM_NhomDichVuFilter($event.target.value)"
+                            style="color: blue;">
+                        <mat-option *ngFor="let item of DM_NhomDichVuService.ListFilter" [value]="item.NhomDichVu_Id"
+                            style="color:green;">
+                            {{item.TenNhomDichVu}} - {{item.MaNhomDichVu}} [{{item.NhomDichVu_Id}}]
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div class="col s12 m12 l5">
+                    <input [(ngModel)]="DM_DichVuService.BaseParameter.SearchString" placeholder="Tìm ..."
+                        class="form-control" (keyup.enter)="DM_DichVuSearch()">
+                </div>
+                <div class="col s12 m12 l1">
+                    <a style="color: green;" title="Tìm" (click)="DM_DichVuSearch()">
+                        <i class="material-icons">play_circle_filled</i>
+                    </a>
+                </div>
+                <div class="KhungOverflow">
+                    <table *ngIf="!NotificationService.IsMobile" mat-table matSort #DM_DichVuSort="matSort"
+                        [dataSource]="DM_DichVuService.DataSource">
+                        <ng-container matColumnDef="STT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                STT
+                            </th>
+                            <td mat-cell *matCellDef="let element; index as i;">
+                                <div *ngIf="DM_DichVuPaginator">
+                                    {{
+                                    DM_DichVuPaginator.pageSize *
+                                    DM_DichVuPaginator.pageIndex + i + 1
+                                    }}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Save">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <a (click)="DM_DichVuSave(element)" style="color:#2196f3;">
+                                    <i class="material-icons">save</i>
+                                </a>
+                                <!-- <a (click)="DM_DichVuDelete(element)" style="color: red;">
+            <i class="material-icons">delete_forever</i>
+        </a> -->
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DichVu_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DichVu_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DichVu_Id" name="DichVu_Id" [(ngModel)]="element.DichVu_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhomDichVu_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NhomDichVu_Id</th>
+                            <td mat-cell *matCellDef="let element">
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 300px;"
+                                    name="element.NhomDichVu_Id" class="browser-default"
+                                    [(ngModel)]="element.NhomDichVu_Id">
+                                    <input placeholder="Tìm..." (keyup)="DM_NhomDichVuFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of DM_NhomDichVuService.ListFilter"
+                                        [value]="item.NhomDichVu_Id" style="color:green;">
+                                        {{item.TenNhomDichVu}} - {{item.MaNhomDichVu}} [{{item.NhomDichVu_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaDichVu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaDichVu</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaDichVu" name="MaDichVu" [(ngModel)]="element.MaDichVu"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaDichVu_Seg01">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaDichVu_Seg01</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaDichVu_Seg01" name="MaDichVu_Seg01"
+                                    [(ngModel)]="element.MaDichVu_Seg01"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaDichVu_Seg02">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaDichVu_Seg02</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaDichVu_Seg02" name="MaDichVu_Seg02"
+                                    [(ngModel)]="element.MaDichVu_Seg02"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaDichVu_Seg03">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaDichVu_Seg03</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaDichVu_Seg03" name="MaDichVu_Seg03"
+                                    [(ngModel)]="element.MaDichVu_Seg03"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaDichVu_Seg04">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaDichVu_Seg04</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaDichVu_Seg04" name="MaDichVu_Seg04"
+                                    [(ngModel)]="element.MaDichVu_Seg04"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TenDichVu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenDichVu</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TenDichVu" name="TenDichVu" [(ngModel)]="element.TenDichVu"
+                                    style="width: 400px;"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TenDichVu_En">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenDichVu_En</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TenDichVu_En" name="TenDichVu_En" [(ngModel)]="element.TenDichVu_En">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="TenDichVu_Ru">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenDichVu_Ru</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TenDichVu_Ru" name="TenDichVu_Ru" [(ngModel)]="element.TenDichVu_Ru">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Cap">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cap</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Cap" name="Cap" [(ngModel)]="element.Cap"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CapTren_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CapTren_Id</th>
+                            <td mat-cell *matCellDef="let element">                                
+                                <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 300px;"
+                                    name="element.CapTren_Id" class="browser-default" [(ngModel)]="element.CapTren_Id">
+                                    <input placeholder="Tìm..." (keyup)="DM_DichVuFilter($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of DM_DichVuService.ListFilter"
+                                        [value]="item.DichVu_Id" style="color:green;">
+                                        {{item.TenDichVu}} - {{item.MaDichVu}} [{{item.DichVu_Id}}]
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="DonViTinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DonViTinh</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DonViTinh" name="DonViTinh" [(ngModel)]="element.DonViTinh"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Idx">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Idx</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Idx" name="Idx" [(ngModel)]="element.Idx"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ChonHetCapDuoi">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ChonHetCapDuoi</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ChonHetCapDuoi" name="ChonHetCapDuoi"
+                                    [(ngModel)]="element.ChonHetCapDuoi"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CoGiaDichVu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CoGiaDichVu</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CoGiaDichVu" name="CoGiaDichVu" [(ngModel)]="element.CoGiaDichVu"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="GiaCoDinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>GiaCoDinh</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="GiaCoDinh" name="GiaCoDinh" [(ngModel)]="element.GiaCoDinh"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ThucHienBenNgoai">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ThucHienBenNgoai</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ThucHienBenNgoai" name="ThucHienBenNgoai"
+                                    [(ngModel)]="element.ThucHienBenNgoai"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SoPhim">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SoPhim</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="SoPhim" name="SoPhim" [(ngModel)]="element.SoPhim"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaQuiDinh">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaQuiDinh</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaQuiDinh" name="MaQuiDinh" [(ngModel)]="element.MaQuiDinh"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TamNgung">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TamNgung</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TamNgung" name="TamNgung" [(ngModel)]="element.TamNgung"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="TenKhongDau">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenKhongDau</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="TenKhongDau" name="TenKhongDau" [(ngModel)]="element.TenKhongDau"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayTao">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayTao</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NgayTao" name="NgayTao" [(ngModel)]="element.NgayTao"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NguoiTao_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NguoiTao_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NguoiTao_Id" name="NguoiTao_Id" [(ngModel)]="element.NguoiTao_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NgayCapNhat">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NgayCapNhat</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NgayCapNhat" name="NgayCapNhat" [(ngModel)]="element.NgayCapNhat"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NguoiCapNhat_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NguoiCapNhat_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NguoiCapNhat_Id" name="NguoiCapNhat_Id"
+                                    [(ngModel)]="element.NguoiCapNhat_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CoGiaTriChuan">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CoGiaTriChuan</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CoGiaTriChuan" name="CoGiaTriChuan"
+                                    [(ngModel)]="element.CoGiaTriChuan"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Test">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Test</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Test" name="Test" [(ngModel)]="element.Test"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Attribute1">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Attribute1</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Attribute1" name="Attribute1" [(ngModel)]="element.Attribute1"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Attribute2">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Attribute2</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Attribute2" name="Attribute2" [(ngModel)]="element.Attribute2"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Attribute3">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Attribute3</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Attribute3" name="Attribute3" [(ngModel)]="element.Attribute3"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Attribute4">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Attribute4</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Attribute4" name="Attribute4" [(ngModel)]="element.Attribute4"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Attribute5">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Attribute5</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Attribute5" name="Attribute5" [(ngModel)]="element.Attribute5"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhomDichVu_Report_Local_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NhomDichVu_Report_Local_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NhomDichVu_Report_Local_Id" name="NhomDichVu_Report_Local_Id"
+                                    [(ngModel)]="element.NhomDichVu_Report_Local_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NhomDichVu_Report_Global_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NhomDichVu_Report_Global_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NhomDichVu_Report_Global_Id" name="NhomDichVu_Report_Global_Id"
+                                    [(ngModel)]="element.NhomDichVu_Report_Global_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ShortName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ShortName</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ShortName" name="ShortName" [(ngModel)]="element.ShortName"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="InputCode">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>InputCode</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="InputCode" name="InputCode" [(ngModel)]="element.InputCode"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="NoResult">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>NoResult</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="NoResult" name="NoResult" [(ngModel)]="element.NoResult"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ApplyFor">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ApplyFor</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ApplyFor" name="ApplyFor" [(ngModel)]="element.ApplyFor"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="PrintWhenNull">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>PrintWhenNull</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="PrintWhenNull" name="PrintWhenNull"
+                                    [(ngModel)]="element.PrintWhenNull"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ReportCode">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ReportCode</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ReportCode" name="ReportCode" [(ngModel)]="element.ReportCode"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="ReportTitle">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ReportTitle</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="ReportTitle" name="ReportTitle" [(ngModel)]="element.ReportTitle"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="DoUuTienDichVu">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>DoUuTienDichVu</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="DoUuTienDichVu" name="DoUuTienDichVu"
+                                    [(ngModel)]="element.DoUuTienDichVu"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaMay">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaMay</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaMay" name="MaMay" [(ngModel)]="element.MaMay"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="BHYT">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>BHYT</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="BHYT" name="BHYT" [(ngModel)]="element.BHYT"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="IsThongSo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>IsThongSo</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="IsThongSo" name="IsThongSo" [(ngModel)]="element.IsThongSo"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="CostCenter_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>CostCenter_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="CostCenter_Id" name="CostCenter_Id"
+                                    [(ngModel)]="element.CostCenter_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="SiteCode">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SiteCode</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="SiteCode" name="SiteCode" [(ngModel)]="element.SiteCode"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Mapping_Public_Id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mapping_Public_Id</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="Mapping_Public_Id" name="Mapping_Public_Id"
+                                    [(ngModel)]="element.Mapping_Public_Id"></td>
+                        </ng-container>
+                        <ng-container matColumnDef="MaChiSo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaChiSo</th>
+                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
+                                    placeholder="MaChiSo" name="MaChiSo" [(ngModel)]="element.MaChiSo"></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="DM_DichVuService.DisplayColumns001">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: DM_DichVuService.DisplayColumns001;">
+                        </tr>
+                    </table>
+                    <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_DichVuPaginator="matPaginator"
+                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="DM_DichVuService.IsShowLoading"></app-loading>

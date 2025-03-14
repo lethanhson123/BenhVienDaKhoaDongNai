@@ -1,0 +1,74 @@
+﻿import { Base } from "./Base.model";
+
+export class TiepNhanCapCuu extends Base{
+TiepNhanCapCuu_Id?: number;
+TiepNhan_Id?: number;
+BenhNhan_Id?: number;
+NoiLamViec?: string;
+DienThoaiNLV?: string;
+NguoiThan?: string;
+DienThoaiNT?: string;
+NoiDuaDen?: string;
+DienThoaiNDD?: string;
+NgayTaiNan?: Date;
+ThoiGianTaiNan?: Date;
+NgayCapCuu?: Date;
+ThoiGianCapCuu?: Date;
+NgayKhamBenh?: Date;
+ThoiGianKhamBenh?: Date;
+NoiBiTaiNan_Id?: number;
+TinhThanh_Id?: number;
+QuanHuyen_Id?: number;
+PhuongXa_Id?: number;
+DiaChi?: string;
+DienBienSauTN_Id?: number;
+NguyenNhan_Id?: number;
+NguyenNhan_ICD?: number;
+NguyenNhanChiTiet_Id?: number;
+ThuongTich_Id?: number;
+MucDo_Id?: number;
+ChiTietCapCuu?: string;
+NgayRa?: Date;
+ThoiGianRa?: Date;
+HoiChan?: string;
+TinhHinhXuat?: string;
+SoNgayNghi?: number;
+MatSuc?: number;
+KhoaNhap_Id?: number;
+ChuyenVien_Id?: number;
+BenhSu?: string;
+Mach?: number;
+NhipTho?: number;
+NhietDo?: number;
+CanNang?: number;
+HuyetAp?: string;
+HuyetApCao?: number;
+HuyetApThap?: number;
+ChieuCao?: number;
+KetQuaDieuTri_Id?: number;
+NhapKhoa_Id?: number;
+TienSuBenh?: string;
+CanLamSang?: string;
+ChanDoanLucVao?: string;
+ICD_Vao_Id?: number;
+ChanDoanLucRa?: string;
+ICD_Ra_Id?: number;
+XuTri?: string;
+NgayTao?: Date;
+NguoiTao_Id?: number;
+NgayCapNhat?: Date;
+NguoiCapNhat_Id?: number;
+TuVong?: boolean;
+NgayTuVong?: Date;
+ThoiGianTuVong?: Date;
+ThoiGianKhamNghiem?: Date;
+ThoiGianNhanTuThi?: Date;
+KetQuaKhamNghiem?: string;
+GhiChu?: string;
+ICD_TuVong_Id?: number;
+BacSiGhiNhanTuVong_Id?: number;
+BacSiKhamNghiem_Id?: number;
+
+}
+
+

@@ -1,0 +1,76 @@
+﻿import { Base } from "./Base.model";
+
+export class Cust_VienPhiNoiTru_Test2_Update extends Base{
+ID?: number;
+VienPhiNoiTru_Id?: number;
+SoChungTu?: string;
+LoaiChungTu?: string;
+BenhAn_Id?: number;
+LuuTru_Id?: number;
+PhatSinh_Noi_Id?: number;
+PhatSinh_Nguoi_Id?: number;
+PhatSinh_Ngay?: Date;
+PhatSinh_ThoiGian?: Date;
+Tra_Ngay?: Date;
+Tra_ThoiGian?: Date;
+Tra_Noi_Id?: number;
+Tra_Nguoi_Id?: number;
+ThuTien_Noi_Id?: number;
+ThuTien_Nguoi_Id?: number;
+ThuTien_Ngay?: Date;
+ThuTien_ThoiGian?: Date;
+Huy_Noi_Id?: number;
+Huy_Nguoi_Id?: number;
+Huy_Ngay?: Date;
+Huy_ThoiGian?: Date;
+DaThanhToan?: boolean;
+HuyHoaDon?: boolean;
+HoanTra?: boolean;
+GiaTriHoaDon?: string;
+TyleMienGiam?: number;
+GiaTriMienGiam?: number;
+TyLeThatThu?: number;
+GiaTriThatThu?: number;
+LoaiTien_Id?: string;
+TyGia?: number;
+TyLeVAT?: number;
+GiaTriVAT?: number;
+HinhThucThanhToan_Id?: number;
+HoaDonLienQuan_Id?: number;
+DangKyHoaDon_Id?: number;
+SoSerieVAT?: string;
+SoHoaDonVAT?: number;
+GhiChu?: string;
+TrangThai?: string;
+NgayTao?: Date;
+NguoiTao_Id?: number;
+NgayCapNhat?: Date;
+NguoiCapNhat_Id?: number;
+IDChuyen?: number;
+Status?: number;
+Transfer_VienPhi_Id?: number;
+DoiTuong_Id?: number;
+InLai_TamUng?: number;
+InLai_HoanUng?: number;
+InLai_BienLaiTaiChinh?: number;
+InLai_User_Id?: number;
+IDChuyenHuy?: number;
+IDChuyenHoan?: number;
+ThuHD_BL?: string;
+TenCongTy?: string;
+MaSoThue?: string;
+DiaChiCongTy?: string;
+ChuyenChungTuID?: number;
+ChuyenChungTuHoanID?: number;
+ChuyenChungTuHuyID?: number;
+ChuyenDoanhThuID?: number;
+ChuyenDoanhThuHoanID?: number;
+ChuyenDoanhThuHuyID?: number;
+ChungTuDoiUng?: string;
+OtherSite_VienPhiNoiTru_Id?: number;
+SiteCode?: string;
+DaChuyenKhu?: boolean;
+
+}
+
+

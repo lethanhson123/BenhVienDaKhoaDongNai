@@ -1,0 +1,104 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <h6 class="breadcrumbs-title">Thành viên:
+                        <b>{{ThanhVienService.FormDataLogin.Name}} [{{ThanhVienService.FormDataLogin.ID}}]</b>
+                    </h6>
+                </div>
+                <div class="col s12 m6 l6 right-align-md">
+                    <ol class="breadcrumbs mb-0">
+                        <li class="breadcrumb-item"><a href="javascript:history.back()" title="Quay lại">
+                                <<< Quay lại</a>
+                        </li>
+                        <li class="breadcrumb-item"><a routerLink="/Homepage" title="Trang chủ">Trang chủ</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section section-data-tables">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s6 m6 l4">
+                                <a title="Lưu thay đổi" (click)="ThanhVienSave()"><i class="material-icons">save</i></a>
+                            </div>
+                            <div class="col s6 m6 l4">
+                                <label>
+                                    <input type="checkbox" class="form-check-input" name="Active"
+                                        [(ngModel)]="ThanhVienService.FormDataLogin.Active" disabled />
+                                    <span>Kích hoạt</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l4">
+                                <div>
+                                    <label>Họ tên</label>
+                                    <input placeholder="Họ tên" [(ngModel)]="ThanhVienService.FormDataLogin.Name"
+                                        name="ThanhVienService.FormDataLogin.Name" type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label>Mã nhân viên</label>
+                                    <input placeholder="Mã nhân viên" [(ngModel)]="ThanhVienService.FormDataLogin.Code"
+                                        name="ThanhVienService.FormDataLogin.Code" type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label>CCCD</label>
+                                    <input placeholder="CCCD" [(ngModel)]="ThanhVienService.FormDataLogin.CCCD"
+                                        name="ThanhVienService.FormDataLogin.CCCD" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <div>
+                                    <label>Email</label>
+                                    <input placeholder="Email" [(ngModel)]="ThanhVienService.FormDataLogin.Email"
+                                        name="ThanhVienService.FormDataLogin.Email" type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label>Ghi chú</label>
+                                    <input placeholder="Ghi chú" [(ngModel)]="ThanhVienService.FormDataLogin.Note"
+                                        name="ThanhVienService.FormDataLogin.Note" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col s12 m12 l4">
+                                <div>
+                                    <label>Phân quyền
+                                        [{{ThanhVienService.FormDataLogin.ParentID}}]</label>
+                                    <select class="browser-default form-select" name="ParentID" disabled
+                                        [(ngModel)]="ThanhVienService.FormDataLogin.ParentID">
+                                        <option *ngFor="let item of DanhMucThanhVienService.List;" [value]="item.ID">
+                                            {{item.Name}} [{{item.ID}}]</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Tài khoản (Điện thoại)</label>
+                                    <input placeholder="Tài khoản (Điện thoại)"
+                                        [(ngModel)]="ThanhVienService.FormDataLogin.TaiKhoan"
+                                        name="ThanhVienService.FormDataLogin.TaiKhoan"
+                                        [disabled]="ThanhVienService.FormDataLogin && ThanhVienService.FormDataLogin.ID>0"
+                                        type="text" class="form-control">
+                                </div>
+                                <div>
+                                    <label>Mật khẩu <i class="material-icons" (click)="MatKhauChangeType()"
+                                            style="cursor: pointer;">remove_red_eye</i></label>
+                                    <input placeholder="Mật khẩu" [(ngModel)]="ThanhVienService.FormDataLogin.MatKhau"
+                                        name="ThanhVienService.FormDataLogin.MatKhau"
+                                        [type]="MatKhauIsActive ? 'password' : 'text'" type="password"
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="ThanhVienService.IsShowLoading"></app-loading>
