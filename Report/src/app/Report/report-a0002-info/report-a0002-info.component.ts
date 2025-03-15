@@ -5,6 +5,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from 'src/app/shared/Notification.service';
 import { DownloadService } from 'src/app/shared/Download.service';
@@ -17,11 +18,11 @@ import { ThongKeChiTietService } from 'src/app/shared/ThongKeChiTiet.service';
 import { ReportA0002DetailComponent } from '../report-a0002-detail/report-a0002-detail.component';
 
 @Component({
-  selector: 'app-report-a0002',
-  templateUrl: './report-a0002.component.html',
-  styleUrls: ['./report-a0002.component.css']
+  selector: 'app-report-a0002-info',
+  templateUrl: './report-a0002-info.component.html',
+  styleUrls: ['./report-a0002-info.component.css']
 })
-export class ReportA0002Component implements OnInit {
+export class ReportA0002InfoComponent implements OnInit {
 
   @ViewChild('ThongKeChiTietSort') ThongKeChiTietSort: MatSort;
   @ViewChild('ThongKeChiTietPaginator') ThongKeChiTietPaginator: MatPaginator;
@@ -33,138 +34,34 @@ export class ReportA0002Component implements OnInit {
   @ViewChild('ThongKeChiTietPaginator700') ThongKeChiTietPaginator700: MatPaginator;
 
   Image = new Image();
-  HienTai: number = 1;
-  Is1: boolean = false;
-  Is2: boolean = false;
-  Is3: boolean = false;
-  Is4: boolean = false;
-  Is5: boolean = false;
-  Is6: boolean = false;
-  Is7: boolean = false;
-  Is8: boolean = false;
-  Is9: boolean = false;
-  Is10: boolean = false;
-  Is11: boolean = false;
-  Is12: boolean = false;
-  Is13: boolean = false;
-  Is14: boolean = false;
+
   constructor(
+    public ActiveRouter: ActivatedRoute,
     public Dialog: MatDialog,
     public NotificationService: NotificationService,
     public DownloadService: DownloadService,
 
     public ThongKeService: ThongKeService,
     public ThongKeChiTietService: ThongKeChiTietService,
-
   ) { }
 
-
   ngOnInit(): void {
-
   }
   ngAfterViewInit() {
-    this.Image.src = environment.Logo312_80;
-    this.ThongKeService.BaseParameter.BatDau = new Date();
-    this.ThongKeService.BaseParameter.ParentID = 1;
-  }
-  ThongKeExport() {
-    let URL="/#/ReportA0002Info/" + this.ThongKeService.FormData.ID;
-    this.NotificationService.OpenWindowByURL(URL);
-  }
-  ParentIDChange(ParentID: number) {
-    this.ThongKeService.BaseParameter.ParentID = ParentID;
     this.ThongKeSearch();
-    this.Show(this.HienTai);
-  }
-  Show(Action: number) {
-    this.HienTai = Action;
-    this.Is1 = false;
-    this.Is2 = false;
-    this.Is3 = false;
-    this.Is4 = false;
-    this.Is5 = false;
-    this.Is6 = false;
-    this.Is7 = false;
-    this.Is8 = false;
-    this.Is9 = false;
-    this.Is10 = false;
-    this.Is11 = false;
-    this.Is12 = false;
-    this.Is13 = false;
-    this.Is14 = false;
-    switch (Action) {
-      case 1: {
-        this.Is1 = true;
-        break;
-      }
-      case 2: {
-        this.Is2 = true;
-        break;
-      }
-      case 3: {
-        this.Is3 = true;
-        break;
-      }
-      case 4: {
-        this.Is4 = true;
-        break;
-      }
-      case 5: {
-        this.Is5 = true;
-        break;
-      }
-      case 6: {
-        this.Is6 = true;
-        break;
-      }
-      case 7: {
-        this.Is7 = true;
-        break;
-      }
-      case 8: {
-        this.Is8 = true;
-        break;
-      }
-      case 9: {
-        this.Is9 = true;
-        break;
-      }
-      case 10: {
-        this.Is10 = true;
-        break;
-      }
-      case 11: {
-        this.Is11 = true;
-        break;
-      }
-      case 12: {
-        this.Is12 = true;
-        break;
-      }
-      case 13: {
-        this.Is13 = true;
-        break;
-      }
-      case 14: {
-        this.Is14 = true;
-        break;
-      }
-    }
-  }
-  DateBatDau(value) {
-    this.ThongKeService.BaseParameter.BatDau = new Date(value);
   }
   ThongKeSearch() {
+    this.ThongKeService.BaseParameter.BatDau = new Date();
     this.ThongKe001Search();
   }
   ThongKe001Search() {
     this.ThongKeService.IsShowLoading = true;
-    this.ThongKeService.GetByParentID_Year_Month_DayAsync().subscribe(
+    this.ThongKeService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
+    this.ThongKeService.GetByIDAsync().subscribe(
       res => {
         this.ThongKeService.FormData = (res as ThongKe);
         if (this.ThongKeService.FormData) {
           if (this.ThongKeService.FormData.ID > 0) {
-            this.Show(this.HienTai);
             this.ThongKeChiTietSearch();
           }
         }
@@ -528,11 +425,11 @@ export class ReportA0002Component implements OnInit {
           { data: DataArray400, label: Label204, stack: 'a', type: 'line', fill: false, },
           { data: DataArray300, label: Label203, stack: 'a', type: 'line', fill: false },
           //{ data: DataArray200, label: Label200, stack: 'a', type: 'line', fill: false },
-          { data: DataArray200, label: Label200, stack: 'a1'},
+          { data: DataArray200, label: Label200, stack: 'a1' },
           // { data: DataArray300, label: Label203, stack: 'a2', },
           // { data: DataArray400, label: Label204, stack: 'a3', },
         ];
-        
+
 
         let LabelArray600 = [];
         let DataArray600 = [];
@@ -586,18 +483,7 @@ export class ReportA0002Component implements OnInit {
       }
     );
   }
-  ReportA0002Add(element: ThongKeChiTiet) {
-    this.ThongKeChiTietService.List01 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 1 && item.DanhMucUngDungID == element.DanhMucUngDungID);
-    this.ThongKeChiTietService.List01 = this.ThongKeChiTietService.List01.sort((a, b) => (a.DanhMucUngDungID > b.DanhMucUngDungID ? 1 : -1));
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = environment.DialogConfigWidth;
-    dialogConfig.data = { ID: element.ID };
-    const dialog = this.Dialog.open(ReportA0002DetailComponent, dialogConfig);
-    dialog.afterClosed().subscribe(() => {
-    });
-  }
+
   public Report0001_0001_Option: ChartOptions = {
     responsive: true,
     legend: {
@@ -866,7 +752,7 @@ export class ReportA0002Component implements OnInit {
       ]
     },
   };
-  public Report0001_0005_Color: Color[] = [    
+  public Report0001_0005_Color: Color[] = [
   ]
   public Report0001_0005_Label: Label[] = [];
   public Report0001_0005_Type: ChartType = 'bar';

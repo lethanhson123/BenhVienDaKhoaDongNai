@@ -11,16 +11,19 @@
             <a class="link-primary" (click)="Show(6)" style="font-size: 12px;">So sánh</a>
         </div>
         <div class="col s12 m12 l3 right-align-md">
-            <div class="col s12 m12 l9">
+            <div class="col s12 m12 l8">
                 <input [ngModel]="ThongKeService.BaseParameter.BatDau | date:'yyyy-MM-dd'" style="text-align: right;"
                     (ngModelChange)="DateBatDau($event)" [ngModelOptions]="{ updateOn: 'blur' }" type="date"
                     class="form-control" autocomplete="off" (keyup.enter)="ThongKeSearch()">
             </div>
-            <div class="col s12 m12 l3">
+            <div class="col s12 m12 l4">
                 <a style="color: green;" title="Tìm" (click)="ThongKeSearch()">
                     <i class="material-icons">play_circle_filled</i>
                 </a>
-                <a class="toggle-fullscreen" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a>
+                <a style="color: green;" title="In hoặc xuất PDF" (click)="ThongKeExport()">
+                    <i class="material-icons">print</i></a>
+                <a class="toggle-fullscreen" href="javascript:void(0);"><i
+                        class="material-icons">settings_overscan</i></a>
             </div>
         </div>
     </div>
@@ -28,7 +31,8 @@
 <div class="row" *ngIf="Is1">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám theo nhóm phòng khám</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám theo Phòng khám
+            </h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
                 [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type" [colors]="Report0001_0001_Color"
                 [options]="Report0001_0001_Option" [plugins]="Report0001_0001_Plugin">
@@ -39,7 +43,8 @@
 <div class="row" *ngIf="Is2">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám theo nhóm phòng khám</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám theo Phòng khám
+            </h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0002_Data"
                 [labels]="Report0001_0002_Label" [chartType]="Report0001_0002_Type" [colors]="Report0001_0002_Color"
                 [options]="Report0001_0002_Option" [plugins]="Report0001_0001_Plugin">
@@ -50,7 +55,8 @@
 <div class="row" *ngIf="Is3">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh lượt khám trong tuần</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh lượt khám trong tuần
+            </h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0003_Data"
                 [labels]="Report0001_0003_Label" [chartType]="Report0001_0003_Type" [colors]="Report0001_0003_Color"
                 [options]="Report0001_0003_Option" [plugins]="Report0001_0001_Plugin">
@@ -61,7 +67,8 @@
 <div class="row" *ngIf="Is4">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh lượt khám trong tuần</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh lượt khám trong tuần
+            </h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0004_Data"
                 [labels]="Report0001_0004_Label" [chartType]="Report0001_0004_Type" [colors]="Report0001_0004_Color"
                 [options]="Report0001_0004_Option" [plugins]="Report0001_0001_Plugin">
@@ -178,7 +185,6 @@
     </div>
 </div>
 <div class="row" *ngIf="Is8">
-
     <div class="col s12 m12 l12">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
             <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Độ tuổi</h6>
@@ -190,7 +196,6 @@
     </div>
 </div>
 <div class="row" *ngIf="Is9">
-
     <div class="col s12 m12 l12">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
             <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Khu vực</h6>
@@ -202,7 +207,6 @@
     </div>
 </div>
 <div class="row" *ngIf="Is10">
-
     <div class="col s12 m12 l12">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
             <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Khu vực</h6>
@@ -214,7 +218,6 @@
     </div>
 </div>
 <div class="row" *ngIf="Is11">
-
     <div class="col s12 m12 l12">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
             <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Nhóm ICD (Lượt khám
@@ -227,7 +230,6 @@
     </div>
 </div>
 <div class="row" *ngIf="Is12">
-
     <div class="col s12 m12 l12">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
             <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Nhóm ICD (Lượt khám
@@ -241,7 +243,6 @@
 </div>
 <div class="row" *ngIf="Is13">
     <div class="col s12 m12 l12">
-
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
             <div class="KhungOverflow">
                 <table *ngIf="!NotificationService.IsMobile" mat-table matSort #ThongKeChiTietSort700="matSort"
