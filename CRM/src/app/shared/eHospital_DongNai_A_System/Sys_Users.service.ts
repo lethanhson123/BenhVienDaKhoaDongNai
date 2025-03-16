@@ -12,6 +12,7 @@ export class Sys_UsersService extends BaseService{
     DisplayColumns003: string[] = ['STT', 'Latin_Name', 'User_Id', 'User_Code', 'User_Name', 'Suspend', 'TrangThaiSuspend', 'User_Position', 'EmailAddress', 'PhoneNumber', 'UserOption3', 'Creation_Date', 'Created_By', 'Last_Update_Date', 'Last_Updated_By'];
     List: Sys_Users[] | undefined;
     ListFilter: Sys_Users[] | undefined;
+    ListFilter001: Sys_Users[] | undefined;
     FormData!: Sys_Users;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
@@ -24,6 +25,26 @@ export class Sys_UsersService extends BaseService{
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
-    
+    ComponentGetAllToListAsync(Service: BaseService) {       
+        if (this.List) {
+            if (this.List.length == 0) {
+                this.GetAllToListAsync().subscribe(
+                    res => {
+                        this.List = (res as any[]);
+                        this.ListFilter = this.List;
+                        this.ListFilter001 = this.List;
+                    },
+                    err => {
+                    },
+                    () => {                        
+                    }
+                );
+            }
+            else{            
+            }
+        }
+        else{           
+        }
+    }
 }
 

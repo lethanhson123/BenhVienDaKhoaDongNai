@@ -29,9 +29,11 @@ export class DMLoaiGiaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.DM_LoaiGiaSearch();
   }
-
   DM_LoaiGiaSearch() {
     this.DM_LoaiGiaService.SearchAll(this.DM_LoaiGiaSort, this.DM_LoaiGiaPaginator);
   }

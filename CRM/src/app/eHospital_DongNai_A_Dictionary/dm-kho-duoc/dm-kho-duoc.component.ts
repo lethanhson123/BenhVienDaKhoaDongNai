@@ -38,6 +38,9 @@ export class DMKhoDuocComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_NhomDichVuSearch();
     this.Lst_DictionarySearch();
   }
@@ -78,8 +81,7 @@ export class DMKhoDuocComponent implements OnInit {
       this.DM_KhoDuocService.IsShowLoading = true;
       this.DM_KhoDuocService.GetByPhongBan_IdAndEmptyToListAsync().subscribe(
         res => {
-          this.DM_KhoDuocService.List = (res as any[]);
-          //this.DM_DichVuService.List = (res as DM_DichVu[]).sort((a, b) => (a.CapTren_Id > b.CapTren_Id ? 1 : -1));
+          this.DM_KhoDuocService.List = (res as any[]);          
           this.DM_KhoDuocService.DataSource = new MatTableDataSource(this.DM_KhoDuocService.List);
           this.DM_KhoDuocService.DataSource.sort = this.DM_KhoDuocSort;
           this.DM_KhoDuocService.DataSource.paginator = this.DM_KhoDuocPaginator;

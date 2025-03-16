@@ -30,6 +30,9 @@ export class DMPhongBanComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.DM_PhongBanSearch();
   }
   DM_PhongBan001() {

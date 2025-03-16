@@ -444,14 +444,14 @@
                         </div>
                         <div>
                             <label>NgayTao</label>
-                            <input placeholder="NgayTao" [(ngModel)]="TiepNhanService.FormData.NgayTao" disabled
+                            <input placeholder="NgayTao" [(ngModel)]="TiepNhanService.FormData.NgayTao"
                                 name="TiepNhanService.FormData.NgayTao" type="text" class="form-control">
                         </div>
                         <div>
                             <label>NguoiTao_Id <a target="_blank" style="cursor: pointer;"
                                     title="{{TiepNhanService.FormData.NguoiTao_Id}}" class="link-primary"
                                     routerLink="/SysUsersInfo/{{TiepNhanService.FormData.NguoiTao_Id}}"><b>[{{TiepNhanService.FormData.NguoiTao_Id}}]</b></a></label>
-                            <select class="browser-default form-select" name="NguoiTao_Id" disabled
+                            <select class="browser-default form-select" name="NguoiTao_Id"
                                 [(ngModel)]="TiepNhanService.FormData.NguoiTao_Id">
                                 <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
                                     {{item.User_Name}} - {{item.User_Code}}</option>
@@ -459,14 +459,14 @@
                         </div>
                         <div>
                             <label>NgayCapNhat</label>
-                            <input placeholder="NgayCapNhat" [(ngModel)]="TiepNhanService.FormData.NgayCapNhat" disabled
+                            <input placeholder="NgayCapNhat" [(ngModel)]="TiepNhanService.FormData.NgayCapNhat"
                                 name="TiepNhanService.FormData.NgayCapNhat" type="text" class="form-control">
                         </div>
                         <div>
                             <label>NguoiCapNhat_Id <a target="_blank" style="cursor: pointer;"
                                     title="{{TiepNhanService.FormData.NguoiCapNhat_Id}}" class="link-primary"
                                     routerLink="/SysUsersInfo/{{TiepNhanService.FormData.NguoiCapNhat_Id}}"><b>[{{TiepNhanService.FormData.NguoiCapNhat_Id}}]</b></a></label>
-                            <select class="browser-default form-select" name="NguoiCapNhat_Id" disabled
+                            <select class="browser-default form-select" name="NguoiCapNhat_Id"
                                 [(ngModel)]="TiepNhanService.FormData.NguoiCapNhat_Id">
                                 <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
                                     {{item.User_Name}} - {{item.User_Code}}</option>

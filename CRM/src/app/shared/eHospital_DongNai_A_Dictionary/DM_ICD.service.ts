@@ -11,10 +11,32 @@ export class DM_ICDService extends BaseService{
 
     List: DM_ICD[] | undefined;
     ListFilter: DM_ICD[] | undefined;
+    ListFilter01: DM_ICD[] | undefined;
     FormData!: DM_ICD;
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "DM_ICD";
+    }
+    ComponentGetAllToListAsync(Service: BaseService) {       
+        if (this.List) {
+            if (this.List.length == 0) {
+                this.GetAllToListAsync().subscribe(
+                    res => {
+                        this.List = (res as any[]);
+                        this.ListFilter = this.List;
+                        this.ListFilter01 = this.List;
+                    },
+                    err => {
+                    },
+                    () => {                        
+                    }
+                );
+            }
+            else{            
+            }
+        }
+        else{           
+        }
     }
     GetByICD_Nhom_IdAndEmptyToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByICD_Nhom_IdAndEmptyToListAsync';

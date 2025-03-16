@@ -26,7 +26,7 @@
             if (PhongBan_Id > 0)
             {
                 result = await GetByCondition(item => item.PhongBan_Id == PhongBan_Id).FirstOrDefaultAsync();
-            }
+            }            
             if (result == null)
             {
                 result = new DM_PhongBan();

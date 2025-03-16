@@ -65,7 +65,7 @@ export class BenhAnInfoComponent implements OnInit {
   ngAfterViewInit() {
     this.BenhAnService.BaseParameter.BenhAn_Id = Number(this.ActiveRouter.snapshot.params.ID);
     this.BenhAnSearch();
-  }
+  } 
   DateNgayVaoVien(value) {
     this.BenhAnService.FormData.NgayVaoVien = new Date(value);
   }
@@ -93,6 +93,26 @@ export class BenhAnInfoComponent implements OnInit {
   Sys_UsersSearch() {
     this.Sys_UsersService.ComponentGetAllToListAsync(this.Sys_UsersService);
   }
+  Sys_UsersFilter(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.Sys_UsersService.ListFilter = this.Sys_UsersService.List.filter(item => item.User_Name.toLocaleLowerCase().indexOf(searchString) !== -1 || item.User_Code.toLocaleLowerCase().indexOf(searchString) !== -1 || item.User_Id.toString().toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.Sys_UsersService.ListFilter = this.Sys_UsersService.List;
+    }
+  }
+  Sys_UsersFilter001(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.Sys_UsersService.ListFilter001 = this.Sys_UsersService.List.filter(item => item.User_Name.toLocaleLowerCase().indexOf(searchString) !== -1 || item.User_Code.toLocaleLowerCase().indexOf(searchString) !== -1 || item.User_Id.toString().toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.Sys_UsersService.ListFilter001 = this.Sys_UsersService.List;
+    }
+  }
   DM_BenhNhanSearch() {
     this.DM_BenhNhanService.BaseParameter.BenhNhan_Id = this.BenhAnService.FormData.BenhNhan_Id;
     this.DM_BenhNhanService.GetByBenhNhan_IdAsync().subscribe(
@@ -117,6 +137,36 @@ export class BenhAnInfoComponent implements OnInit {
       () => {
       }
     );
+    this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = environment.Lst_Dictionary_TypeIDLyDoNhapVien;
+    this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.ListLyDoNhapVien = (res as Lst_Dictionary[]);
+      },
+      err => {
+      },
+      () => {
+      }
+    );
+    this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = environment.Lst_Dictionary_TypeIDLyDoXuatVien;
+    this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.ListLyDoXuatVien = (res as Lst_Dictionary[]);
+      },
+      err => {
+      },
+      () => {
+      }
+    );
+    this.Lst_DictionaryService.BaseParameter.Dictionary_Type_Id = environment.Lst_Dictionary_TypeIDKetQuaDieuTri;
+    this.Lst_DictionaryService.GetByDictionary_Type_IdToListAsync().subscribe(
+      res => {
+        this.Lst_DictionaryService.ListKetQuaDieuTri = (res as Lst_Dictionary[]);
+      },
+      err => {
+      },
+      () => {
+      }
+    );
   }
   DM_DoiTuongSearch() {
     this.DM_DoiTuongService.ComponentGetAllToListAsync(this.DM_DoiTuongService);
@@ -128,10 +178,20 @@ export class BenhAnInfoComponent implements OnInit {
     if (searchString.length > 0) {
       searchString = searchString.trim();
       searchString = searchString.toLocaleLowerCase();
-      this.DM_ICDService.ListFilter = this.DM_ICDService.List.filter(item => item.TenICD.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaICD.toLocaleLowerCase().indexOf(searchString) !== -1);
+      this.DM_ICDService.ListFilter = this.DM_ICDService.List.filter(item => item.TenICD.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaICD.toLocaleLowerCase().indexOf(searchString) !== -1 || item.ICD_Id.toString().toLocaleLowerCase().indexOf(searchString) !== -1);
     }
     else {
       this.DM_ICDService.ListFilter = this.DM_ICDService.List;
+    }
+  }
+  DM_ICDFilter01(searchString: string) {
+    if (searchString.length > 0) {
+      searchString = searchString.trim();
+      searchString = searchString.toLocaleLowerCase();
+      this.DM_ICDService.ListFilter01 = this.DM_ICDService.List.filter(item => item.TenICD.toLocaleLowerCase().indexOf(searchString) !== -1 || item.MaICD.toLocaleLowerCase().indexOf(searchString) !== -1 || item.ICD_Id.toString().toLocaleLowerCase().indexOf(searchString) !== -1);
+    }
+    else {
+      this.DM_ICDService.ListFilter01 = this.DM_ICDService.List;
     }
   }
   DM_PhongBanSearch() {

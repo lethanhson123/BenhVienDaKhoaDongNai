@@ -10,11 +10,14 @@ export class Lst_DictionaryService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'Dictionary_Id', 'Dictionary_Type_Id', 'Dictionary_Type_Code', 'Dictionary_Code', 'Dictionary_Name', 'Dictionary_Name_En', 'Dictionary_Name_Ru', 'Parent_Id', 'Idx', 'Enabled', 'Latin_Name', 'Attribute1', 'Attribute2', 'Attribute3', 'Attribute4', 'Creation_Date', 'Created_By', 'Last_Update_Date', 'Last_Updated_By'];
     DisplayColumns002: string[] = ['Save', 'STT', 'Dictionary_Type_Id', 'Dictionary_Type_Code', 'Dictionary_Code', 'Dictionary_Name', 'Dictionary_Name_En', 'Enabled', 'Latin_Name'];
     DisplayColumns003: string[] = ['Save', 'STT', 'Dictionary_Type_Id', 'Dictionary_Type_Code', 'Dictionary_Code', 'Dictionary_Name', 'Dictionary_Name_En', 'Enabled', 'Latin_Name'];
+    DisplayColumns004: string[] = ['Save', 'STT', 'Dictionary_Id', 'Dictionary_Type_Id', 'Dictionary_Type_Code', 'Dictionary_Code', 'Dictionary_Name', 'Dictionary_Name_En', 'Enabled', 'Latin_Name'];
 
     List: Lst_Dictionary[] | undefined;
     ListFilter: Lst_Dictionary[] | undefined;
     FormData!: Lst_Dictionary;
 
+    ListLyDoXuatVien: Lst_Dictionary[] | undefined;
+    ListKetQuaDieuTri: Lst_Dictionary[] | undefined;
     ListQuocTich: Lst_Dictionary[] | undefined;
     ListDanToc: Lst_Dictionary[] | undefined;
     ListNgheNghiep: Lst_Dictionary[] | undefined;

@@ -35,6 +35,8 @@ export const environment = {
   Lst_Dictionary_TypeIDLyDoChuyenVien: 224,
   Lst_Dictionary_TypeIDGiaiQuyetKhamBenh: 49,
   Lst_Dictionary_TypeIDLyDoNhapVien: 67,
+  Lst_Dictionary_TypeIDLyDoXuatVien: 68,
+  Lst_Dictionary_TypeIDKetQuaDieuTri: 63,
   Lst_Dictionary_TypeIDMucDichChungTu: 73,
   PageSize: 10,
   Interval: 10000,

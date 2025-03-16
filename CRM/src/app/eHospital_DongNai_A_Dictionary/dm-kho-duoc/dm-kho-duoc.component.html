@@ -40,6 +40,10 @@
                         [(ngModel)]="DM_KhoDuocService.BaseParameter.PhongBan_Id">
                         <input placeholder="Tìm..." (keyup)="DM_PhongBanFilter($event.target.value)"
                             style="color: blue;">
+                            <mat-option value="0"
+                            style="color:green;">
+                            Tất cả
+                        </mat-option>
                         <mat-option *ngFor="let item of DM_PhongBanService.ListFilter" [value]="item.PhongBan_Id"
                             style="color:green;">
                             {{item.TenPhongBan}} - {{item.MaPhongBan}} [{{item.PhongBan_Id}}]

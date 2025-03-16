@@ -39,10 +39,10 @@
                             <i class="material-icons">more</i>
                         </a>
                         <!--<a title="Thêm mới" (click)="BenhAnAdd()" style="color: green;"><i
-                class="material-icons">add_box</i></a>-->
+                class="material-icons">add_box</i></a>
                         <a title="Lưu thay đổi" (click)="BenhAnSave()" style="color:#2196f3;">
                             <i class="material-icons">save</i>
-                        </a>
+                        </a>-->
                     </div>
                     <div class="col s6 m6 l2">
                         <label>
@@ -179,8 +179,8 @@
                         </div>
                         <div>
                             <label>TiepNhan_Id <a target="_blank" style="cursor: pointer;"
-                                title="{{BenhAnService.FormData.TiepNhan_Id}}" class="link-primary"
-                                routerLink="/TiepNhanInfo/{{BenhAnService.FormData.TiepNhan_Id}}"><b>[{{BenhAnService.FormData.TiepNhan_Id}}]</b></a></label>
+                                    title="{{BenhAnService.FormData.TiepNhan_Id}}" class="link-primary"
+                                    routerLink="/TiepNhanInfo/{{BenhAnService.FormData.TiepNhan_Id}}"><b>[{{BenhAnService.FormData.TiepNhan_Id}}]</b></a></label>
                             <input placeholder="TiepNhan_Id" [(ngModel)]="BenhAnService.FormData.TiepNhan_Id"
                                 name="BenhAnService.FormData.TiepNhan_Id" type="text" class="form-control">
                         </div>
@@ -218,14 +218,27 @@
                                 name="BenhAnService.FormData.SoNgayDieuTri" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>LyDoNhapVien_Id</label>
-                            <input placeholder="LyDoNhapVien_Id" [(ngModel)]="BenhAnService.FormData.LyDoNhapVien_Id"
-                                name="BenhAnService.FormData.LyDoNhapVien_Id" type="text" class="form-control">
+                            <label>LyDoNhapVien_Id [{{BenhAnService.FormData.LyDoNhapVien_Id}}]</label>
+                            <select class="browser-default form-select" name="LyDoNhapVien_Id"
+                                [(ngModel)]="BenhAnService.FormData.LyDoNhapVien_Id">
+                                <option *ngFor="let item of Lst_DictionaryService.ListLyDoNhapVien;"
+                                    [value]="item.Dictionary_Id">
+                                    {{item.Dictionary_Name}} [{{item.Dictionary_Id}}]</option>
+                            </select>
                         </div>
                         <div>
-                            <label>LyDoXuatVien_Id</label>
-                            <input placeholder="LyDoXuatVien_Id" [(ngModel)]="BenhAnService.FormData.LyDoXuatVien_Id"
-                                name="BenhAnService.FormData.LyDoXuatVien_Id" type="text" class="form-control">
+                            <label>LyDoXuatVien_Id [{{BenhAnService.FormData.LyDoXuatVien_Id}}]</label>
+                            <select class="browser-default form-select" name="LyDoXuatVien_Id"
+                                [(ngModel)]="BenhAnService.FormData.LyDoXuatVien_Id">
+                                <option *ngFor="let item of Lst_DictionaryService.ListLyDoXuatVien;"
+                                    [value]="item.Dictionary_Id">
+                                    {{item.Dictionary_Name}} [{{item.Dictionary_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>XacNhanChiPhi_Id</label>
+                            <input placeholder="XacNhanChiPhi_Id" [(ngModel)]="BenhAnService.FormData.XacNhanChiPhi_Id"
+                                name="BenhAnService.FormData.XacNhanChiPhi_Id" type="text" class="form-control">
                         </div>
                         <div>
                             <label>NgayKhoaBenhAn</label>
@@ -262,42 +275,22 @@
                                 name="BenhAnService.FormData.SoCapCuu" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>NgayTuVong</label>
-                            <input placeholder="NgayTuVong" [(ngModel)]="BenhAnService.FormData.NgayTuVong"
-                                name="BenhAnService.FormData.NgayTuVong" type="text" class="form-control">
+                            <label>KetQuaKhamNghiem</label>
+                            <input placeholder="KetQuaKhamNghiem" [(ngModel)]="BenhAnService.FormData.KetQuaKhamNghiem"
+                                name="BenhAnService.FormData.KetQuaKhamNghiem" type="text" class="form-control">
                         </div>
+
                         <div>
-                            <label>ThoiGianTuVong</label>
-                            <input placeholder="ThoiGianTuVong" [(ngModel)]="BenhAnService.FormData.ThoiGianTuVong"
-                                name="BenhAnService.FormData.ThoiGianTuVong" type="text" class="form-control">
+                            <label>ICD_NguyenNhanXuatVien</label>
+                            <input placeholder="ICD_NguyenNhanXuatVien"
+                                [(ngModel)]="BenhAnService.FormData.ICD_NguyenNhanXuatVien"
+                                name="BenhAnService.FormData.ICD_NguyenNhanXuatVien" type="text" class="form-control">
                         </div>
                         <div>
                             <label>ThoiGianKhamNghiem</label>
                             <input placeholder="ThoiGianKhamNghiem"
                                 [(ngModel)]="BenhAnService.FormData.ThoiGianKhamNghiem"
                                 name="BenhAnService.FormData.ThoiGianKhamNghiem" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>ThoiGianNhanTuThi</label>
-                            <input placeholder="ThoiGianNhanTuThi"
-                                [(ngModel)]="BenhAnService.FormData.ThoiGianNhanTuThi"
-                                name="BenhAnService.FormData.ThoiGianNhanTuThi" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>KetQuaKhamNghiem</label>
-                            <input placeholder="KetQuaKhamNghiem" [(ngModel)]="BenhAnService.FormData.KetQuaKhamNghiem"
-                                name="BenhAnService.FormData.KetQuaKhamNghiem" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>XacNhanChiPhi_Id</label>
-                            <input placeholder="XacNhanChiPhi_Id" [(ngModel)]="BenhAnService.FormData.XacNhanChiPhi_Id"
-                                name="BenhAnService.FormData.XacNhanChiPhi_Id" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>ICD_NguyenNhanXuatVien</label>
-                            <input placeholder="ICD_NguyenNhanXuatVien"
-                                [(ngModel)]="BenhAnService.FormData.ICD_NguyenNhanXuatVien"
-                                name="BenhAnService.FormData.ICD_NguyenNhanXuatVien" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col s12 m12 l3">
@@ -306,7 +299,7 @@
                             <select class="browser-default form-select" name="DoiTuong_Id"
                                 [(ngModel)]="BenhAnService.FormData.DoiTuong_Id">
                                 <option *ngFor="let item of DM_DoiTuongService.List;" [value]="item.DoiTuong_Id">
-                                    {{item.TenDoiTuong}} [{{item.MaDoiTuong}}]</option>
+                                    {{item.TenDoiTuong}} - {{item.MaDoiTuong}} [{{item.DoiTuong_Id}}]</option>
                             </select>
                         </div>
                         <div>
@@ -425,24 +418,7 @@
                                 [(ngModel)]="BenhAnService.FormData.NguoiThanhToan_Id"
                                 name="BenhAnService.FormData.NguoiThanhToan_Id" type="text" class="form-control">
                         </div>
-                        <div>
-                            <label>NgayXacNhanDoanhThu</label>
-                            <input placeholder="NgayXacNhanDoanhThu"
-                                [(ngModel)]="BenhAnService.FormData.NgayXacNhanDoanhThu"
-                                name="BenhAnService.FormData.NgayXacNhanDoanhThu" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>ThoiGianXacNhanDoanhThu</label>
-                            <input placeholder="ThoiGianXacNhanDoanhThu"
-                                [(ngModel)]="BenhAnService.FormData.ThoiGianXacNhanDoanhThu"
-                                name="BenhAnService.FormData.ThoiGianXacNhanDoanhThu" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>NguoiXacNhanDoanhThu_Id</label>
-                            <input placeholder="NguoiXacNhanDoanhThu_Id"
-                                [(ngModel)]="BenhAnService.FormData.NguoiXacNhanDoanhThu_Id"
-                                name="BenhAnService.FormData.NguoiXacNhanDoanhThu_Id" type="text" class="form-control">
-                        </div>
+
                     </div>
                     <div class="col s12 m12 l3">
                         <div>
@@ -577,6 +553,34 @@
                             </mat-select>
                         </div>
                         <div>
+                            <label>ChanDoanRaVien</label>
+                            <input placeholder="ChanDoanRaVien" [(ngModel)]="BenhAnService.FormData.ChanDoanRaVien"
+                                name="BenhAnService.FormData.ChanDoanRaVien" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ICD_BenhChinh [{{BenhAnService.FormData.ICD_BenhChinh}}]</label>
+                            <mat-select
+                                style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                name="BenhAnService.FormData.ICD_BenhChinh" class="browser-default"
+                                [(ngModel)]="BenhAnService.FormData.ICD_BenhChinh">
+                                <input placeholder="Tìm..." (keyup)="DM_ICDFilter01($event.target.value)"
+                                    style="color: blue;">
+                                <mat-option *ngFor="let item of DM_ICDService.ListFilter01" [value]="item.ICD_Id"
+                                    style="color:green;">
+                                    {{item.TenICD}} - {{item.MaICD}} [{{item.ICD_Id}}]
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <div>
+                            <label>KetQuaDieuTri_Id [{{BenhAnService.FormData.KetQuaDieuTri_Id}}]</label>
+                            <select class="browser-default form-select" name="KetQuaDieuTri_Id"
+                                [(ngModel)]="BenhAnService.FormData.KetQuaDieuTri_Id">
+                                <option *ngFor="let item of Lst_DictionaryService.ListKetQuaDieuTri;"
+                                    [value]="item.Dictionary_Id">
+                                    {{item.Dictionary_Name}} [{{item.Dictionary_Id}}]</option>
+                            </select>
+                        </div>
+                        <div>
                             <label>TruongKhoa_Id</label>
                             <input placeholder="TruongKhoa_Id" [(ngModel)]="BenhAnService.FormData.TruongKhoa_Id"
                                 name="BenhAnService.FormData.TruongKhoa_Id" type="text" class="form-control">
@@ -614,29 +618,36 @@
                                 name="BenhAnService.FormData.ICD_KhamBenh" type="text" class="form-control">
                         </div>
                         <div>
-                            <label>ChanDoanRaVien</label>
-                            <input placeholder="ChanDoanRaVien" [(ngModel)]="BenhAnService.FormData.ChanDoanRaVien"
-                                name="BenhAnService.FormData.ChanDoanRaVien" type="text" class="form-control">
-                        </div>
-                        <div>
-                            <label>ICD_BenhChinh</label>
-                            <input placeholder="ICD_BenhChinh" [(ngModel)]="BenhAnService.FormData.ICD_BenhChinh"
-                                name="BenhAnService.FormData.ICD_BenhChinh" type="text" class="form-control">
-                        </div>
-                        <div>
                             <label>ICD_BenhPhu</label>
                             <input placeholder="ICD_BenhPhu" [(ngModel)]="BenhAnService.FormData.ICD_BenhPhu"
                                 name="BenhAnService.FormData.ICD_BenhPhu" type="text" class="form-control">
                         </div>
-                        <div>
-                            <label>KetQuaDieuTri_Id</label>
-                            <input placeholder="KetQuaDieuTri_Id" [(ngModel)]="BenhAnService.FormData.KetQuaDieuTri_Id"
-                                name="BenhAnService.FormData.KetQuaDieuTri_Id" type="text" class="form-control">
-                        </div>
+
                         <div>
                             <label>ICD_TuVong_Id</label>
                             <input placeholder="ICD_TuVong_Id" [(ngModel)]="BenhAnService.FormData.ICD_TuVong_Id"
                                 name="BenhAnService.FormData.ICD_TuVong_Id" type="text" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <div>
+                            <label>NgayXacNhanDoanhThu</label>
+                            <input placeholder="NgayXacNhanDoanhThu"
+                                [(ngModel)]="BenhAnService.FormData.NgayXacNhanDoanhThu"
+                                name="BenhAnService.FormData.NgayXacNhanDoanhThu" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ThoiGianXacNhanDoanhThu</label>
+                            <input placeholder="ThoiGianXacNhanDoanhThu"
+                                [(ngModel)]="BenhAnService.FormData.ThoiGianXacNhanDoanhThu"
+                                name="BenhAnService.FormData.ThoiGianXacNhanDoanhThu" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>NguoiXacNhanDoanhThu_Id</label>
+                            <input placeholder="NguoiXacNhanDoanhThu_Id"
+                                [(ngModel)]="BenhAnService.FormData.NguoiXacNhanDoanhThu_Id"
+                                name="BenhAnService.FormData.NguoiXacNhanDoanhThu_Id" type="text" class="form-control">
                         </div>
                         <div>
                             <label>BacSiGhiNhanTuVong_Id</label>
@@ -655,8 +666,22 @@
                             <input placeholder="ChuyenVien_Id" [(ngModel)]="BenhAnService.FormData.ChuyenVien_Id"
                                 name="BenhAnService.FormData.ChuyenVien_Id" type="text" class="form-control">
                         </div>
-                    </div>
-                    <div class="col s12 m12 l3">                       
+                        <div>
+                            <label>NgayTuVong</label>
+                            <input placeholder="NgayTuVong" [(ngModel)]="BenhAnService.FormData.NgayTuVong"
+                                name="BenhAnService.FormData.NgayTuVong" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ThoiGianTuVong</label>
+                            <input placeholder="ThoiGianTuVong" [(ngModel)]="BenhAnService.FormData.ThoiGianTuVong"
+                                name="BenhAnService.FormData.ThoiGianTuVong" type="text" class="form-control">
+                        </div>
+                        <div>
+                            <label>ThoiGianNhanTuThi</label>
+                            <input placeholder="ThoiGianNhanTuThi"
+                                [(ngModel)]="BenhAnService.FormData.ThoiGianNhanTuThi"
+                                name="BenhAnService.FormData.ThoiGianNhanTuThi" type="text" class="form-control">
+                        </div>
                         <div>
                             <label>KhoaChuyenDen_Id</label>
                             <input placeholder="KhoaChuyenDen_Id" [(ngModel)]="BenhAnService.FormData.KhoaChuyenDen_Id"
@@ -715,33 +740,45 @@
                         </div>
                         <div>
                             <label>NgayTao</label>
-                            <input placeholder="NgayTao" [(ngModel)]="BenhAnService.FormData.NgayTao" disabled
+                            <input placeholder="NgayTao" [(ngModel)]="BenhAnService.FormData.NgayTao"
                                 name="BenhAnService.FormData.NgayTao" type="text" class="form-control">
                         </div>
                         <div>
                             <label>NguoiTao_Id <a target="_blank" style="cursor: pointer;"
                                     title="{{BenhAnService.FormData.NguoiTao_Id}}" class="link-primary"
                                     routerLink="/SysUsersInfo/{{BenhAnService.FormData.NguoiTao_Id}}"><b>[{{BenhAnService.FormData.NguoiTao_Id}}]</b></a></label>
-                            <select class="browser-default form-select" name="NguoiTao_Id" disabled
+                            <mat-select
+                                style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                name="BenhAnService.FormData.NguoiTao_Id" class="browser-default"
                                 [(ngModel)]="BenhAnService.FormData.NguoiTao_Id">
-                                <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
-                                    {{item.User_Name}} - {{item.User_Code}}</option>
-                            </select>
+                                <input placeholder="Tìm..." (keyup)="Sys_UsersFilter($event.target.value)"
+                                    style="color: blue;">
+                                <mat-option *ngFor="let item of Sys_UsersService.ListFilter" [value]="item.User_Id"
+                                    style="color:green;">
+                                    {{item.User_Name}} - {{item.User_Code}} [{{item.User_Id}}]
+                                </mat-option>
+                            </mat-select>
                         </div>
                         <div>
                             <label>NgayCapNhat</label>
-                            <input placeholder="NgayCapNhat" [(ngModel)]="BenhAnService.FormData.NgayCapNhat" disabled
+                            <input placeholder="NgayCapNhat" [(ngModel)]="BenhAnService.FormData.NgayCapNhat"
                                 name="BenhAnService.FormData.NgayCapNhat" type="text" class="form-control">
                         </div>
                         <div>
                             <label>NguoiCapNhat_Id <a target="_blank" style="cursor: pointer;"
                                     title="{{BenhAnService.FormData.NguoiCapNhat_Id}}" class="link-primary"
                                     routerLink="/SysUsersInfo/{{BenhAnService.FormData.NguoiCapNhat_Id}}"><b>[{{BenhAnService.FormData.NguoiCapNhat_Id}}]</b></a></label>
-                            <select class="browser-default form-select" name="NguoiCapNhat_Id" disabled
-                                [(ngModel)]="BenhAnService.FormData.NguoiCapNhat_Id">
-                                <option *ngFor="let item of Sys_UsersService.List;" [value]="item.User_Id">
-                                    {{item.User_Name}} - {{item.User_Code}}</option>
-                            </select>
+                                    <mat-select
+                                    style="border-bottom-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; padding-bottom: 3px; color:green; width: 100%;"
+                                    name="BenhAnService.FormData.NguoiCapNhat_Id" class="browser-default"
+                                    [(ngModel)]="BenhAnService.FormData.NguoiCapNhat_Id">
+                                    <input placeholder="Tìm..." (keyup)="Sys_UsersFilter001($event.target.value)"
+                                        style="color: blue;">
+                                    <mat-option *ngFor="let item of Sys_UsersService.ListFilter001" [value]="item.User_Id"
+                                        style="color:green;">
+                                        {{item.User_Name}} - {{item.User_Code}} [{{item.User_Id}}]
+                                    </mat-option>
+                                </mat-select>
                         </div>
                     </div>
                 </div>
