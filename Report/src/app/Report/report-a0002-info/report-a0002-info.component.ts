@@ -114,6 +114,12 @@ export class ReportA0002InfoComponent implements OnInit {
         this.ThongKeChiTietService.List07 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 7);
         this.ThongKeChiTietService.List07 = this.ThongKeChiTietService.List07.sort((a, b) => (a.Name004 > b.Name004 ? 1 : -1));
 
+        this.ThongKeChiTietService.List800 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 800);
+        this.ThongKeChiTietService.List800 = this.ThongKeChiTietService.List800.sort((a, b) => (a.ThongKe000 > b.ThongKe000 ? 1 : -1));
+
+        this.ThongKeChiTietService.List900 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 900);
+        this.ThongKeChiTietService.List900 = this.ThongKeChiTietService.List900.sort((a, b) => (a.ThongKe000 > b.ThongKe000 ? 1 : -1));
+
 
         this.ThongKeChiTietService.DataSource = new MatTableDataSource(this.ThongKeChiTietService.ListFilter);
         this.ThongKeChiTietService.DataSource.sort = this.ThongKeChiTietSort;
@@ -428,6 +434,76 @@ export class ReportA0002InfoComponent implements OnInit {
           { data: DataArray200, label: Label200, stack: 'a1' },
           // { data: DataArray300, label: Label203, stack: 'a2', },
           // { data: DataArray400, label: Label204, stack: 'a3', },
+        ];
+
+        let LabelArray800 = [];
+        let DataArray800 = [];
+        this.ThongKeChiTietService.FormData = this.ThongKeChiTietService.List800[0];
+
+        LabelArray800.push("01 (" + this.ThongKeChiTietService.FormData.ThongKe001 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe001);
+        LabelArray800.push("02 (" + this.ThongKeChiTietService.FormData.ThongKe002 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe002);
+        LabelArray800.push("03 (" + this.ThongKeChiTietService.FormData.ThongKe003 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe003);
+        LabelArray800.push("04 (" + this.ThongKeChiTietService.FormData.ThongKe004 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe004);
+        LabelArray800.push("05 (" + this.ThongKeChiTietService.FormData.ThongKe005 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe005);
+        LabelArray800.push("06 (" + this.ThongKeChiTietService.FormData.ThongKe006 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe006);
+        LabelArray800.push("07 (" + this.ThongKeChiTietService.FormData.ThongKe007 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe007);
+        LabelArray800.push("08 (" + this.ThongKeChiTietService.FormData.ThongKe008 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe008);
+        LabelArray800.push("09 (" + this.ThongKeChiTietService.FormData.ThongKe009 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe009);
+        LabelArray800.push("10 (" + this.ThongKeChiTietService.FormData.ThongKe010 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe010);
+        LabelArray800.push("11 (" + this.ThongKeChiTietService.FormData.ThongKe011 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe011);
+        LabelArray800.push("12 (" + this.ThongKeChiTietService.FormData.ThongKe012 + ")");
+        DataArray800.push(this.ThongKeChiTietService.FormData.ThongKe012);
+
+        let Label800: string = 'Năm ' + this.ThongKeChiTietService.FormData.Year;
+
+        let LabelArray900 = [];
+        let DataArray900 = [];
+        this.ThongKeChiTietService.FormData = this.ThongKeChiTietService.List900[0];
+
+        LabelArray900.push("01 (" + this.ThongKeChiTietService.FormData.ThongKe001 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe001);
+        LabelArray900.push("02 (" + this.ThongKeChiTietService.FormData.ThongKe002 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe002);
+        LabelArray900.push("03 (" + this.ThongKeChiTietService.FormData.ThongKe003 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe003);
+        LabelArray900.push("04 (" + this.ThongKeChiTietService.FormData.ThongKe004 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe004);
+        LabelArray900.push("05 (" + this.ThongKeChiTietService.FormData.ThongKe005 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe005);
+        LabelArray900.push("06 (" + this.ThongKeChiTietService.FormData.ThongKe006 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe006);
+        LabelArray900.push("07 (" + this.ThongKeChiTietService.FormData.ThongKe007 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe007);
+        LabelArray900.push("08 (" + this.ThongKeChiTietService.FormData.ThongKe008 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe008);
+        LabelArray900.push("09 (" + this.ThongKeChiTietService.FormData.ThongKe009 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe009);
+        LabelArray900.push("10 (" + this.ThongKeChiTietService.FormData.ThongKe010 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe010);
+        LabelArray900.push("11 (" + this.ThongKeChiTietService.FormData.ThongKe011 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe011);
+        LabelArray900.push("12 (" + this.ThongKeChiTietService.FormData.ThongKe012 + ")");
+        DataArray900.push(this.ThongKeChiTietService.FormData.ThongKe012);
+        
+        let Label900: string = 'Năm ' + this.ThongKeChiTietService.FormData.Year;
+
+        this.Report0001_0015_Label = LabelArray900;
+
+
+        this.Report0001_0015_Data = [
+          { data: DataArray900, label: Label900, stack: 'a', type: 'line', fill: false, },          
+          { data: DataArray800, label: Label800, stack: 'a'},          
         ];
 
 
@@ -1119,5 +1195,77 @@ export class ReportA0002InfoComponent implements OnInit {
   ];
 
   public Report0001_0012_Data: ChartDataSets[] = [
+  ];
+
+  public Report0001_0015_Option: ChartOptions = {
+    responsive: true,
+    legend: {
+      display: true,
+      position: 'top'
+    },
+    animation: {
+      duration: 1,
+      onComplete: function () {
+        var chartInstance = this.chart,
+          ctx = chartInstance.ctx;
+        ctx.textAlign = 'center';
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        ctx.textBaseline = 'bottom';
+        this.data.datasets.forEach(function (dataset, i) {
+          var meta = chartInstance.controller.getDatasetMeta(i);
+          meta.data.forEach(function (bar, index) {
+            var data = dataset.data[index];
+            ctx.fillText(data, bar._model.x, bar._model.y - 5);
+
+          });
+        });
+      }
+    },
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          return Number(tooltipItem.yLabel).toFixed(0).replace(/./g, function (c, i, a) {
+            return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "." + c : c;
+          });
+        }
+      }
+    },
+    scales: {
+      yAxes: [
+        {
+          id: 'B',
+          position: 'right',
+        }
+      ]
+    },
+  };
+  public Report0001_0015_Color: Color[] = [    
+  ]
+  public Report0001_0015_Label: Label[] = [];
+  public Report0001_0015_Type: ChartType = 'bar';
+  public Report0001_0015_Legend = true;
+
+
+  public Report0001_0015_Plugin = [
+    {
+      id: 'customCanvasBackgroundImage',
+      beforeDraw: (chart) => {
+        if (this.Image.complete) {
+          const ctx = chart.ctx;
+          const { top, left, width, height } = chart.chartArea;
+          const x = left;
+          const y = top;
+          ctx.drawImage(this.Image, x, y, this.Image.width, this.Image.height);
+          // const x = left + width / 2 - this.Image.width / 2;
+          // const y = top + height / 2 - this.Image.height / 2;
+          // ctx.drawImage(this.Image, x, y);
+        } else {
+          this.Image.onload = () => chart.draw();
+        }
+      }
+    }
+  ];
+
+  public Report0001_0015_Data: ChartDataSets[] = [
   ];
 }

@@ -8,7 +8,8 @@
             <a class="link-primary" (click)="Show(2)" style="font-size: 12px;">Tổng hợp (Cột)</a>
             <a class="link-primary" (click)="Show(4)" style="font-size: 12px;">Ngày trong tuần (Cột)</a>
             <a class="link-primary" (click)="Show(5)" style="font-size: 12px;">Bảng kê</a>
-            <a class="link-primary" (click)="Show(6)" style="font-size: 12px;">So sánh</a>
+            <a class="link-primary" (click)="Show(6)" style="font-size: 12px;">So sánh ngày</a>
+            <a class="link-primary" (click)="Show(15)" style="font-size: 12px;">So sánh tháng</a>
         </div>
         <div class="col s12 m12 l3 right-align-md">
             <div class="col s12 m12 l8">
@@ -165,7 +166,7 @@
 <div class="row" *ngIf="Is6">
     <div class="col s12 m12 l11">
         <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh ngày</h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0005_Data"
                 [labels]="Report0001_0005_Label" [chartType]="Report0001_0005_Type" [colors]="Report0001_0005_Color"
                 [options]="Report0001_0005_Option" [plugins]="Report0001_0001_Plugin">
@@ -359,5 +360,15 @@
         </div>
     </div>
 </div>
-
+<div class="row" *ngIf="Is15">
+    <div class="col s12 m12 l11">
+        <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 2px;">
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh tháng</h6>
+            <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0015_Data"
+                [labels]="Report0001_0015_Label" [chartType]="Report0001_0015_Type" [colors]="Report0001_0015_Color"
+                [options]="Report0001_0015_Option" [plugins]="Report0001_0001_Plugin">
+            </canvas>
+        </div>
+    </div>
+</div>
 <app-loading *ngIf="ThongKeService.IsShowLoading"></app-loading>

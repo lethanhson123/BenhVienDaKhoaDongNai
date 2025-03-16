@@ -13,7 +13,7 @@
                         src="http://10.84.3.122:900/Image/logo.png" width="120" height="120" /></a>
             </td>
             <td style="width: 60%; text-align: center;">
-                <a style="font-size: 18px; text-transform: uppercase; font-weight: bold;">
+                <a href='javascript:window.print();' style="font-size: 18px; text-transform: uppercase; font-weight: bold;">
                     BỆNH VIỆN ĐA KHOA ĐỒNG NAI
                 </a>
                 <h3 style="font-size: 14px; text-align: center;">
@@ -159,10 +159,17 @@
         <br/>
         <br/>
         <div>
-            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh</h6>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh ngày</h6>
             <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0005_Data"
                 [labels]="Report0001_0005_Label" [chartType]="Report0001_0005_Type" [colors]="Report0001_0005_Color"
                 [options]="Report0001_0005_Option" [plugins]="Report0001_0001_Plugin">
+            </canvas>
+        </div>
+        <div>
+            <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">So sánh tháng</h6>
+            <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0015_Data"
+                [labels]="Report0001_0015_Label" [chartType]="Report0001_0015_Type" [colors]="Report0001_0015_Color"
+                [options]="Report0001_0015_Option" [plugins]="Report0001_0001_Plugin">
             </canvas>
         </div>
     </div>
