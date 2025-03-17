@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Service_eHospital_DongNai_A.Implement
 {
@@ -24,6 +25,16 @@ namespace Service_eHospital_DongNai_A.Implement
             if (result == null)
             {
                 result = new BenhAn();
+            }
+            return result;
+        }
+        public virtual async Task<List<BenhAn>> GetByBenhAn_IdToListAsync(int BenhAn_Id)
+        {
+            List<BenhAn> result = new List<BenhAn>();
+            result = await GetByCondition(item => item.BenhAn_Id == BenhAn_Id).ToListAsync();
+            if (result == null)
+            {
+                result = new List<BenhAn>();
             }
             return result;
         }
@@ -68,24 +79,7 @@ namespace Service_eHospital_DongNai_A.Implement
                         if (ListDM_BenhNhan.Count > 0)
                         {
                             List<int> ListDM_BenhNhanID = ListDM_BenhNhan.Select(item => item.BenhNhan_Id).ToList();
-                            foreach (var ID in ListDM_BenhNhanID)
-                            {
-                                try
-                                {
-                                    List<BenhAn> List = await GetByCondition(item => item.BenhNhan_Id == ID).ToListAsync();
-                                    if (List != null)
-                                    {
-                                        if (List.Count > 0)
-                                        {
-                                            result.AddRange(List);
-                                        }
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    string message = ex.Message;
-                                }
-                            }
+                            result = await GetByCondition(item => EF.Constant(ListDM_BenhNhanID).Contains(item.BenhNhan_Id.Value)).ToListAsync();                           
                         }
                     }
                 }

@@ -29,6 +29,22 @@
             return result;
         }
         [HttpPost]
+        [Route("GetByBenhAn_IdToListAsync")]
+        public virtual async Task<List<BenhAn>> GetByBenhAn_IdToListAsync()
+        {
+            List<BenhAn> result = new List<BenhAn>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _BenhAnService.GetByBenhAn_IdToListAsync(baseParameter.BenhAn_Id.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
         [Route("GetBySearchStringAsync")]
         public virtual async Task<BenhAn> GetBySearchStringAsync()
         {

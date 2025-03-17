@@ -35,24 +35,7 @@
                         if (ListDM_BenhNhan.Count > 0)
                         {
                             List<int> ListDM_BenhNhanID = ListDM_BenhNhan.Select(item => item.BenhNhan_Id).ToList();
-                            foreach (var ID in ListDM_BenhNhanID)
-                            {
-                                try
-                                {
-                                    List<KhamBenh_VaoVien> List = await GetByCondition(item => item.BenhNhan_Id == ID).ToListAsync();
-                                    if (List != null)
-                                    {
-                                        if (List.Count > 0)
-                                        {
-                                            result.AddRange(List);
-                                        }
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    string message = ex.Message;
-                                }
-                            }
+                            result = await GetByCondition(item => EF.Constant(ListDM_BenhNhanID).Contains(item.BenhNhan_Id.Value)).ToListAsync();
                         }
                     }
                 }

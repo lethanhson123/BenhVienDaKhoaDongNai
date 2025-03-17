@@ -148,6 +148,7 @@ import { DanhMucThongKeComponent } from './danh-muc-thong-ke/danh-muc-thong-ke.c
 import { ThongKeComponent } from './thong-ke/thong-ke.component';
 import { ThongKeInfoComponent } from './thong-ke-info/thong-ke-info.component';
 import { ReportA0002Component } from './Report/report-a0002/report-a0002.component';
+import { BenhAnViewComponent } from './eHospital_DongNai_A/benh-an-view/benh-an-view.component';
 
 
 
@@ -420,6 +421,9 @@ const routes: Routes = [
   },
   {
     path: 'BenhAnInfo/:ID', component: BenhAnInfoComponent,
+  },
+  {
+    path: 'BenhAnView/:ID', component: BenhAnViewComponent,
   },
   {
     path: 'TiepNhan', component: TiepNhanComponent,
