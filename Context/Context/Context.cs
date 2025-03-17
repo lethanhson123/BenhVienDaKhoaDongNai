@@ -10,6 +10,8 @@ namespace Data.Context
 			: base(options)
 		{
 		}
+
+        public virtual DbSet<DanhMucQRCode> DanhMucQRCode { get; set; }
         public virtual DbSet<DanhMucThongKe> DanhMucThongKe { get; set; }
         public virtual DbSet<ThongKe> ThongKe { get; set; }
         public virtual DbSet<ThongKeChiTiet> ThongKeChiTiet { get; set; }

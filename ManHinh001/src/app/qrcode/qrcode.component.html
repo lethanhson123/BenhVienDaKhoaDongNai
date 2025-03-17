@@ -1,0 +1,25 @@
+<div class="section" id="user-profile" style="margin: 0px; padding: 0px;">
+    <div class="row" style="margin: 0px; padding: 0px;">
+        <div class="col s6 m6 l6">
+            <img src="/image/logo001.png">
+        </div>      
+        <div class="col s6 m6 l6">
+            <h4><a class="link-primary">QR code sử dụng một lần mới sẽ xuất hiện sau: <b style="color: red;">{{Giay}}</b> giây</a></h4>
+        </div>
+    </div>
+    <div class="row" style="margin: 0px; padding: 0px;">
+        <div class="col s3 m3 l3" style="margin: 0px; padding: 0px; justify-content: center; justify-items: center;"
+            *ngFor="let item of DanhMucQRCodeService.List; index as i;">
+            <img src="{{item.FileName}}" width="300" height="300">
+            <h1><b>{{i+1}}</b></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12" style="margin: 0px; padding: 0px;">
+            <hr/>
+            <a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"><i
+                    class="material-icons">settings_overscan</i></a>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="DanhMucQRCodeService.IsShowLoading"></app-loading>

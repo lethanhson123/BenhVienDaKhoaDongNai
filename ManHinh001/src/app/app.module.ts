@@ -16,6 +16,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { GroupComponent } from './group/group.component';
 import { M2Component } from './m2/m2.component';
+import { QRCodeComponent } from './qrcode/qrcode.component';
 
 
 
@@ -26,6 +27,7 @@ import { M2Component } from './m2/m2.component';
     HomepageComponent,
     GroupComponent,
     M2Component,
+    QRCodeComponent,
 
   ],
   imports: [
