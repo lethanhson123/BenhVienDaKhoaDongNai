@@ -11,5 +11,7 @@ export class HRLichCongTacInfoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

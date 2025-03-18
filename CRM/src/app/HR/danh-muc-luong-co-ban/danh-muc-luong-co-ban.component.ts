@@ -11,5 +11,7 @@ export class DanhMucLuongCoBanComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

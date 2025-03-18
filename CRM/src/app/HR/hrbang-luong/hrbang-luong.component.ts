@@ -11,5 +11,7 @@ export class HRBangLuongComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

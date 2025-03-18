@@ -28,10 +28,11 @@ export class DanhMucNganHangComponent implements OnInit {
     public DanhMucNganHangService: DanhMucNganHangService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+  }
+  ngAfterViewInit() {
     this.DanhMucNganHangSearch();
   }
-
   DanhMucNganHangSearch() {
     this.DanhMucNganHangService.SearchAll(this.DanhMucNganHangSort, this.DanhMucNganHangPaginator);
   }

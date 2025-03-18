@@ -11,5 +11,7 @@ export class DanhMucChamCongComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+   
+  }
 }

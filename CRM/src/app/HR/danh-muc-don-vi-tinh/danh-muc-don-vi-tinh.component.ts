@@ -29,9 +29,11 @@ export class DanhMucDonViTinhComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucDonViTinhSearch();
   }
-
   DanhMucDonViTinhSearch() {
     this.DanhMucDonViTinhService.SearchAll(this.DanhMucDonViTinhSort, this.DanhMucDonViTinhPaginator);
   }

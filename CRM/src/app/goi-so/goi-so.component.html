@@ -26,17 +26,20 @@
         <div class="card card card-default scrollspy">
             <div class="card-content">
                 <div class="col s12 m12 l4">
-                    <input [ngModel]="GoiSoService.BaseParameter.NgayGhiNhan | date:'yyyy-MM-dd'" style="text-align: right;"
-                        (ngModelChange)="DateNgayGhiNhan($event)" [ngModelOptions]="{ updateOn: 'blur' }" type="date"
-                        class="form-control" autocomplete="off" (keyup.enter)="GoiSoSearch()">
+                    <input [ngModel]="GoiSoService.BaseParameter.NgayGhiNhan | date:'yyyy-MM-dd'"
+                        style="text-align: right;" (ngModelChange)="DateNgayGhiNhan($event)"
+                        [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off"
+                        (keyup.enter)="GoiSoSearch()">
                 </div>
-                <div class="col s12 m12 l7">
+                <div class="col s12 m12 l6">
                     <input [(ngModel)]="GoiSoService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="GoiSoSearch()">
                 </div>
-                <div class="col s12 m12 l1">
+                <div class="col s12 m12 l2">
                     <a style="color: green;" title="Tìm" (click)="GoiSoSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
+                    <a style="color: green;" title="Đồng bộ" (click)="GoiSoSync()"><i
+                            class="material-icons">all_inclusive</i></a>
                 </div>
                 <div class="KhungOverflow">
                     <table *ngIf="!NotificationService.IsMobile" mat-table matSort #GoiSoSort="matSort"
@@ -115,6 +118,8 @@
                             <td mat-cell *matCellDef="let element">
                                 <a (click)="GoiSoSave(element)" style="color:#2196f3;"><i
                                         class="material-icons">save</i></a>
+                                <a *ngIf="element.ID>0" (click)="GoiSoDelete(element)" style="color: red;"><i
+                                        class="material-icons">delete_forever</i></a>
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="GoiSoService.DisplayColumns04">

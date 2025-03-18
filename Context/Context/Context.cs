@@ -104,8 +104,6 @@ namespace Data.Context
         public virtual DbSet<ZaloToken> ZaloToken { get; set; }
         public virtual DbSet<ZaloZNS> ZaloZNS { get; set; }
 
-        public virtual DbSet<KhamSucKhoe> KhamSucKhoe { get; set; }
-        public virtual DbSet<KhamSucKhoeKetQua> KhamSucKhoeKetQua { get; set; }
         public virtual DbSet<TrucBanNhatKy> TrucBanNhatKy { get; set; }
 
         public virtual DbSet<QuanLyCongViec> QuanLyCongViec { get; set; }

@@ -29,9 +29,11 @@ export class DanhMucPhongBanComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucPhongBanSearch();
   }
-
   DanhMucPhongBanSearch() {
     this.DanhMucPhongBanService.SearchAll(this.DanhMucPhongBanSort, this.DanhMucPhongBanPaginator);
   }

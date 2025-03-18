@@ -18,29 +18,31 @@ import { DanhMucMayChamCongService } from 'src/app/shared/DanhMucMayChamCong.ser
 })
 export class DanhMucMayChamCongComponent implements OnInit {
 
- @ViewChild('DanhMucMayChamCongSort') DanhMucMayChamCongSort: MatSort;
-   @ViewChild('DanhMucMayChamCongPaginator') DanhMucMayChamCongPaginator: MatPaginator;
- 
-   constructor(
-     public NotificationService: NotificationService,
-     public DownloadService: DownloadService,
- 
-     public DanhMucMayChamCongService: DanhMucMayChamCongService,
-   ) { }
- 
-   ngOnInit(): void {
-     this.DanhMucMayChamCongSearch();
-   }
- 
-   DanhMucMayChamCongSearch() {
-     this.DanhMucMayChamCongService.SearchAll(this.DanhMucMayChamCongSort, this.DanhMucMayChamCongPaginator);
-   }
-   DanhMucMayChamCongSave(element: DanhMucMayChamCong) {
-     this.DanhMucMayChamCongService.FormData = element;
-     this.NotificationService.warn(this.DanhMucMayChamCongService.ComponentSaveAll(this.DanhMucMayChamCongSort, this.DanhMucMayChamCongPaginator));
-   }
-   DanhMucMayChamCongDelete(element: DanhMucMayChamCong) {
-     this.DanhMucMayChamCongService.FormData = element;
-     this.NotificationService.warn(this.DanhMucMayChamCongService.ComponentDeleteAll(this.DanhMucMayChamCongSort, this.DanhMucMayChamCongPaginator));
-   }
- }
+  @ViewChild('DanhMucMayChamCongSort') DanhMucMayChamCongSort: MatSort;
+  @ViewChild('DanhMucMayChamCongPaginator') DanhMucMayChamCongPaginator: MatPaginator;
+
+  constructor(
+    public NotificationService: NotificationService,
+    public DownloadService: DownloadService,
+
+    public DanhMucMayChamCongService: DanhMucMayChamCongService,
+  ) { }
+
+  ngOnInit(): void {
+
+  }
+  ngAfterViewInit() {
+    this.DanhMucMayChamCongSearch();
+  }
+  DanhMucMayChamCongSearch() {
+    this.DanhMucMayChamCongService.SearchAll(this.DanhMucMayChamCongSort, this.DanhMucMayChamCongPaginator);
+  }
+  DanhMucMayChamCongSave(element: DanhMucMayChamCong) {
+    this.DanhMucMayChamCongService.FormData = element;
+    this.NotificationService.warn(this.DanhMucMayChamCongService.ComponentSaveAll(this.DanhMucMayChamCongSort, this.DanhMucMayChamCongPaginator));
+  }
+  DanhMucMayChamCongDelete(element: DanhMucMayChamCong) {
+    this.DanhMucMayChamCongService.FormData = element;
+    this.NotificationService.warn(this.DanhMucMayChamCongService.ComponentDeleteAll(this.DanhMucMayChamCongSort, this.DanhMucMayChamCongPaginator));
+  }
+}

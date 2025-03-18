@@ -1,8 +1,8 @@
 ﻿namespace Service.Implement
 {
-    public class BaseService<T, TRepository> : IBaseService<T>
+    public class BaseService<T, TRepository> : Interface.IBaseService<T>
         where T : BaseModel
-        where TRepository : IBaseRepository<T>
+        where TRepository : Repository.Interface.IBaseRepository<T>
     {
         private readonly TRepository _repository;
         public BaseService(TRepository repository)

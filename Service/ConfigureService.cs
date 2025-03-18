@@ -1,5 +1,4 @@
-﻿
-namespace Service
+﻿namespace Service
 {
     public static class ConfigureService
     {
@@ -26,10 +25,14 @@ namespace Service
             services.AddDbContext<Context>(opts =>
             {
             });
+            services.AddDbContext<Data_eHospital_DongNai_A.Context.Context>(opts => { });
             return services;
         }
         public static IServiceCollection AddService(this IServiceCollection services)
         {
+            
+            services.AddTransient<ICLSYeuCauService, CLSYeuCauService>();
+
             services.AddTransient<IDanhMucQRCodeService, DanhMucQRCodeService>();
 
             services.AddTransient<IDanhMucThongKeService, DanhMucThongKeService>();
@@ -127,8 +130,8 @@ namespace Service
             services.AddTransient<IZaloTokenService, ZaloTokenService>();
             services.AddTransient<IZaloZNSService, ZaloZNSService>();
 
-            services.AddTransient<IKhamSucKhoeService, KhamSucKhoeService>();
-            services.AddTransient<IKhamSucKhoeKetQuaService, KhamSucKhoeKetQuaService>();
+            
+            
 
             services.AddTransient<ITrucBanNhatKyService, TrucBanNhatKyService>();
             services.AddTransient<IQuanLyCongViecService, QuanLyCongViecService>();
@@ -142,6 +145,8 @@ namespace Service
 
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
+            services.AddTransient<ICLSYeuCauRepository, CLSYeuCauRepository>();
+
             services.AddTransient<IDanhMucQRCodeRepository, DanhMucQRCodeRepository>();
 
             services.AddTransient<IDanhMucThongKeRepository, DanhMucThongKeRepository>();
@@ -238,9 +243,8 @@ namespace Service
 
             services.AddTransient<IZaloTokenRepository, ZaloTokenRepository>();
             services.AddTransient<IZaloZNSRepository, ZaloZNSRepository>();
-
-            services.AddTransient<IKhamSucKhoeRepository, KhamSucKhoeRepository>();
-            services.AddTransient<IKhamSucKhoeKetQuaRepository, KhamSucKhoeKetQuaRepository>();
+            
+            
 
             services.AddTransient<ITrucBanNhatKyRepository, TrucBanNhatKyRepository>();
             services.AddTransient<IQuanLyCongViecRepository, QuanLyCongViecRepository>();

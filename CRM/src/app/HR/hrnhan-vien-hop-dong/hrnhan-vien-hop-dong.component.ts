@@ -11,5 +11,7 @@ export class HRNhanVienHopDongComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

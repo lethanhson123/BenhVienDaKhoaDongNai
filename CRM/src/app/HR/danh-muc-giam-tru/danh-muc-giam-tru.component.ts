@@ -11,5 +11,7 @@ export class DanhMucGiamTruComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

@@ -19,28 +19,30 @@ import { DanhMucToChucDaoTaoService } from 'src/app/shared/DanhMucToChucDaoTao.s
 export class DanhMucToChucDaoTaoComponent implements OnInit {
 
   @ViewChild('DanhMucToChucDaoTaoSort') DanhMucToChucDaoTaoSort: MatSort;
-   @ViewChild('DanhMucToChucDaoTaoPaginator') DanhMucToChucDaoTaoPaginator: MatPaginator;
- 
-   constructor(
-     public NotificationService: NotificationService,
-     public DownloadService: DownloadService,
- 
-     public DanhMucToChucDaoTaoService: DanhMucToChucDaoTaoService,
-   ) { }
- 
-   ngOnInit(): void {
-     this.DanhMucToChucDaoTaoSearch();
-   }
- 
-   DanhMucToChucDaoTaoSearch() {
-     this.DanhMucToChucDaoTaoService.SearchAll(this.DanhMucToChucDaoTaoSort, this.DanhMucToChucDaoTaoPaginator);
-   }
-   DanhMucToChucDaoTaoSave(element: DanhMucToChucDaoTao) {
-     this.DanhMucToChucDaoTaoService.FormData = element;
-     this.NotificationService.warn(this.DanhMucToChucDaoTaoService.ComponentSaveAll(this.DanhMucToChucDaoTaoSort, this.DanhMucToChucDaoTaoPaginator));
-   }
-   DanhMucToChucDaoTaoDelete(element: DanhMucToChucDaoTao) {
-     this.DanhMucToChucDaoTaoService.FormData = element;
-     this.NotificationService.warn(this.DanhMucToChucDaoTaoService.ComponentDeleteAll(this.DanhMucToChucDaoTaoSort, this.DanhMucToChucDaoTaoPaginator));
-   }
- }
+  @ViewChild('DanhMucToChucDaoTaoPaginator') DanhMucToChucDaoTaoPaginator: MatPaginator;
+
+  constructor(
+    public NotificationService: NotificationService,
+    public DownloadService: DownloadService,
+
+    public DanhMucToChucDaoTaoService: DanhMucToChucDaoTaoService,
+  ) { }
+
+  ngOnInit(): void {
+
+  }
+  ngAfterViewInit() {
+    this.DanhMucToChucDaoTaoSearch();
+  }
+  DanhMucToChucDaoTaoSearch() {
+    this.DanhMucToChucDaoTaoService.SearchAll(this.DanhMucToChucDaoTaoSort, this.DanhMucToChucDaoTaoPaginator);
+  }
+  DanhMucToChucDaoTaoSave(element: DanhMucToChucDaoTao) {
+    this.DanhMucToChucDaoTaoService.FormData = element;
+    this.NotificationService.warn(this.DanhMucToChucDaoTaoService.ComponentSaveAll(this.DanhMucToChucDaoTaoSort, this.DanhMucToChucDaoTaoPaginator));
+  }
+  DanhMucToChucDaoTaoDelete(element: DanhMucToChucDaoTao) {
+    this.DanhMucToChucDaoTaoService.FormData = element;
+    this.NotificationService.warn(this.DanhMucToChucDaoTaoService.ComponentDeleteAll(this.DanhMucToChucDaoTaoSort, this.DanhMucToChucDaoTaoPaginator));
+  }
+}

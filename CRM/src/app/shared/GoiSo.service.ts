@@ -61,5 +61,11 @@ export class GoiSoService extends BaseService {
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
+    Sync_eHospital_DongNai_AAsync() {       
+        let url = this.APIURL + this.Controller + '/Sync_eHospital_DongNai_AAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

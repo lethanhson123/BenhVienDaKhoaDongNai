@@ -33,6 +33,9 @@ export class HRNhanVienComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  
+  }
+  ngAfterViewInit() {
     this.DanhMucPhongBanSearch();
     this.HRNhanVienSearch();
   }

@@ -11,5 +11,7 @@ export class HRChamCongComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    
+  }
 }

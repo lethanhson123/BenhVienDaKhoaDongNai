@@ -45,6 +45,9 @@ export class KhachHangInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.KhachHangService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);    
     this.KhachHangSearch();
   }

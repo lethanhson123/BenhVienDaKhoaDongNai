@@ -267,6 +267,22 @@
                 return int.Parse(builder.Build().GetSection("AppSettings").GetSection("CapSoBuocNhay").Value);
             }
         }
+        public static long eH_PhongBan_Id
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return long.Parse(builder.Build().GetSection("AppSettings").GetSection("eH_PhongBan_Id").Value);
+            }
+        }
+        public static int eH_NhomDichVu_Id
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return int.Parse(builder.Build().GetSection("AppSettings").GetSection("eH_NhomDichVu_Id").Value);
+            }
+        }
         public static long DanhMucTinhThanhID
         {
             get

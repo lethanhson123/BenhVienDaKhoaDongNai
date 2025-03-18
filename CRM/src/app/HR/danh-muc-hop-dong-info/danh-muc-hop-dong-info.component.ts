@@ -29,6 +29,9 @@ export class DanhMucHopDongInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {    
+    
+  }
+  ngAfterViewInit() {
     this.DanhMucHopDongSearch();
   }
   DanhMucHopDongAdd() {

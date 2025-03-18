@@ -1021,6 +1021,9 @@ export class BaseService {
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
     RemoveAsync() {
+        if ((this.BaseParameter.ID == null) || (this.BaseParameter.ID == environment.InitializationNumber)) {
+            this.BaseParameter.ID = this.FormData.ID;
+        }
         let url = this.APIURL + this.Controller + '/RemoveAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));

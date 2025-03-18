@@ -1,10 +1,14 @@
 ﻿
+using Data.Model;
+
 namespace Service.Implement
 {
     public class GoiSoChiTietService : BaseService<GoiSoChiTiet, IGoiSoChiTietRepository>
     , IGoiSoChiTietService
     {
         private readonly IGoiSoChiTietRepository _GoiSoChiTietRepository;
+
+        private readonly IGoiSoRepository _GoiSoRepository;
 
         private readonly IGoiSoChiTietPhongKhamService _GoiSoChiTietPhongKhamService;
 
@@ -20,8 +24,12 @@ namespace Service.Implement
         private readonly IDanhMucQuanHuyenRepository _DanhMucQuanHuyenRepository;
         private readonly IDanhMucXaPhuongRepository _DanhMucXaPhuongRepository;
 
+        private readonly ICLSYeuCauService _CLSYeuCauService;
+
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public GoiSoChiTietService(IGoiSoChiTietRepository GoiSoChiTietRepository
+
+            , IGoiSoRepository GoiSoRepository
 
             , IGoiSoChiTietPhongKhamService GoiSoChiTietPhongKhamService
 
@@ -37,11 +45,15 @@ namespace Service.Implement
             , IDanhMucQuanHuyenRepository DanhMucQuanHuyenRepository
             , IDanhMucXaPhuongRepository DanhMucXaPhuongRepository
 
+            , ICLSYeuCauService ICLSYeuCauService
+
             , IWebHostEnvironment WebHostEnvironment
 
             ) : base(GoiSoChiTietRepository)
         {
             _GoiSoChiTietRepository = GoiSoChiTietRepository;
+            _GoiSoRepository = GoiSoRepository;
+
             _GoiSoChiTietPhongKhamService = GoiSoChiTietPhongKhamService;
 
             _DanhMucDichVuRepository = danhMucDichVuRepository;
@@ -54,11 +66,47 @@ namespace Service.Implement
             _DanhMucQuanHuyenRepository = DanhMucQuanHuyenRepository;
             _DanhMucXaPhuongRepository = DanhMucXaPhuongRepository;
 
+            _CLSYeuCauService = ICLSYeuCauService;
+
+
             _WebHostEnvironment = WebHostEnvironment;
         }
         public override void Initialization(GoiSoChiTiet model)
         {
             BaseInitialization(model);
+
+            //if (model.ParentID == null)
+            //{
+            //    GoiSo GoiSo = _GoiSoRepository.GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.DanhMucQuayDichVuID == model.DanhMucQuayDichVuID && item.NgayGhiNhan.Value.Year == model.NgayCapSo.Value.Year && item.NgayGhiNhan.Value.Month == model.NgayCapSo.Value.Month && item.NgayGhiNhan.Value.Day == model.NgayCapSo.Value.Day).FirstOrDefault();
+            //    if (GoiSo == null)
+            //    {
+            //        GoiSo = new GoiSo();
+            //        GoiSo.NgayGhiNhan = model.NgayCapSo;
+            //        GoiSo.DanhMucDichVuID = model.DanhMucDichVuID;
+            //        GoiSo.DanhMucDichVuCode = model.DanhMucDichVuCode;
+            //        GoiSo.DanhMucDichVuName = model.DanhMucDichVuName;
+            //        GoiSo.DanhMucQuayDichVuID = model.DanhMucQuayDichVuID;
+            //        GoiSo.DanhMucQuayDichVuCode = model.DanhMucQuayDichVuCode;
+            //        GoiSo.DanhMucQuayDichVuName = model.DanhMucQuayDichVuName;
+            //        GoiSo.TongCong = 0;
+            //        GoiSo.SoHienTai = 0;
+            //        _GoiSoRepository.Add(GoiSo);
+            //    }
+            //    model.ParentID = GoiSo.ID;
+
+            //    GoiSo = _GoiSoRepository.GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.NgayGhiNhan.Value.Year == model.NgayCapSo.Value.Year && item.NgayGhiNhan.Value.Month == model.NgayCapSo.Value.Month && item.NgayGhiNhan.Value.Day == model.NgayCapSo.Value.Day).FirstOrDefault();
+            //    if (GoiSo == null)
+            //    {
+            //        GoiSo = new GoiSo();
+            //        GoiSo.NgayGhiNhan = model.NgayCapSo;
+            //        GoiSo.DanhMucDichVuID = model.DanhMucDichVuID;
+            //        GoiSo.DanhMucDichVuCode = model.DanhMucDichVuCode;
+            //        GoiSo.DanhMucDichVuName = model.DanhMucDichVuName;                   
+            //        GoiSo.TongCong = 0;
+            //        GoiSo.SoHienTai = 0;
+            //        _GoiSoRepository.Add(GoiSo);
+            //    }
+            //}
 
             if (model.GioiTinh == null)
             {
@@ -92,6 +140,16 @@ namespace Service.Implement
                     model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
                 }
             }
+            if (string.IsNullOrEmpty(model.Description))
+            {
+                if (!string.IsNullOrEmpty(model.Code))
+
+                    if (model.Code.Split('.').Length > 1)
+                    {
+                        model.Description = model.Code.Split('.')[1];
+                    }
+            }
+
             if (string.IsNullOrEmpty(model.CCCD))
             {
                 if (!string.IsNullOrEmpty(model.Code))
@@ -139,7 +197,23 @@ namespace Service.Implement
                 model.DanhMucPhongKhamName = DanhMucPhongKham.Name;
                 model.DanhMucPhongKhamCode = DanhMucPhongKham.Code;
             }
+            //if (model.NgayCapSoSoThuTu == null)
+            //{
+            //    GoiSo GoiSo = _GoiSoRepository.GetByID(model.ParentID.Value);
+            //    if (GoiSo != null)
+            //    {
+            //        GoiSo.TongCong = GoiSo.TongCong + 1;
+            //        _GoiSoRepository.Update(GoiSo);
+            //        model.NgayCapSoSoThuTu = GoiSo.TongCong;
+            //    }
 
+            //    GoiSo = _GoiSoRepository.GetByCondition(item => item.DanhMucDichVuID == model.DanhMucDichVuID && item.NgayGhiNhan.Value.Year == model.NgayCapSo.Value.Year && item.NgayGhiNhan.Value.Month == model.NgayCapSo.Value.Month && item.NgayGhiNhan.Value.Day == model.NgayCapSo.Value.Day).FirstOrDefault();
+            //    if (GoiSo != null)
+            //    {
+            //        GoiSo.TongCong = GoiSo.TongCong + 1;
+            //        _GoiSoRepository.Update(GoiSo);                    
+            //    }
+            //}
             if (model.NgayCapSoSoThuTu > 0)
             {
                 if (model.NgayCapSo == null)
@@ -394,47 +468,66 @@ namespace Service.Implement
         public override async Task<GoiSoChiTiet> SaveAsync(GoiSoChiTiet model)
         {
             int result = GlobalHelper.InitializationNumber;
+            
             if (model.ID > 0)
             {
                 result = await UpdateAsync(model);
             }
             else
             {
-                result = await AddAsync(model);
+                bool IsSave = true;
+                if (model.DanhMucNgonNguID > 0)
+                {
+                    GoiSoChiTiet GoiSoChiTiet = await GetByCondition(item => item.DanhMucNgonNguID == model.DanhMucNgonNguID).FirstOrDefaultAsync();
+                    if (GoiSoChiTiet != null)
+                    {
+                        if (GoiSoChiTiet.ID > 0)
+                        {
+                            IsSave = false;
+                        }
+                    }
+                }
+                if (IsSave == true)
+                {
+                    result = await AddAsync(model);
+                }
             }
             if (result > 0)
             {
                 await Sync(model);
             }
+
+
             return model;
         }
         public virtual async Task<GoiSoChiTiet> Sync(GoiSoChiTiet model)
         {
             if (model.ID > 0)
             {
-                if (!string.IsNullOrEmpty(model.Code))
-                {
-                    KhachHang KhachHang = await _KhachHangService.GetBySearchStringToAsync(model.Code);
-                    if (KhachHang.ID == 0)
-                    {
-                        KhachHang.Active = true;
-                        KhachHang.Code = model.Code;
-                        KhachHang.HoTen = model.HoTen;
-                        KhachHang.DienThoai = model.DienThoai;
-                        KhachHang.CCCD = model.CCCD;
-                        KhachHang.BHYT = model.BHYT;
-                        KhachHang.GioiTinh = model.GioiTinh;
-                        KhachHang.DanhMucTinhThanhID = model.DanhMucTinhThanhID;
-                        KhachHang.DanhMucQuanHuyenID = model.DanhMucQuanHuyenID;
-                        KhachHang.DanhMucXaPhuongID = model.DanhMucXaPhuongID;
-                        KhachHang = await _KhachHangService.SaveAsync(KhachHang);
-                    }
-                    if (KhachHang.ID > 0)
-                    {
-                        model.KhachHangID = KhachHang.ID;
-                        await _GoiSoChiTietRepository.UpdateAsync(model);
-                    }
-                }
+
+                //if (!string.IsNullOrEmpty(model.Code))
+                //{
+                //    KhachHang KhachHang = await _KhachHangService.GetBySearchStringToAsync(model.Code);
+                //    if (KhachHang.ID == 0)
+                //    {
+                //        KhachHang.Active = true;
+                //        KhachHang.Code = model.Code;
+                //        KhachHang.HoTen = model.HoTen;
+                //        KhachHang.DienThoai = model.DienThoai;
+                //        KhachHang.CCCD = model.CCCD;
+                //        KhachHang.BHYT = model.BHYT;
+                //        KhachHang.GioiTinh = model.GioiTinh;
+                //        KhachHang.DanhMucTinhThanhID = model.DanhMucTinhThanhID;
+                //        KhachHang.DanhMucQuanHuyenID = model.DanhMucQuanHuyenID;
+                //        KhachHang.DanhMucXaPhuongID = model.DanhMucXaPhuongID;
+                //        KhachHang = await _KhachHangService.SaveAsync(KhachHang);
+                //    }
+                //    if (KhachHang.ID > 0)
+                //    {
+                //        model.KhachHangID = KhachHang.ID;
+                //        await _GoiSoChiTietRepository.UpdateAsync(model);
+                //    }
+                //}
             }
             return model;
         }
@@ -932,6 +1025,8 @@ namespace Service.Implement
             }
             return result;
         }
+
+
     }
 }
 

@@ -38,3 +38,8 @@ global using Microsoft.AspNetCore.Hosting;
 
 global using Newtonsoft.Json;
 
+
+global using Repository_eHospital_DongNai_A.Implement;
+global using Repository_eHospital_DongNai_A.Interface;
+global using Service_eHospital_DongNai_A.Implement;
+global using Service_eHospital_DongNai_A.Interface;

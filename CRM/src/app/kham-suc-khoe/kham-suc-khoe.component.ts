@@ -29,9 +29,11 @@ export class KhamSucKhoeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit() {
     this.KhamSucKhoeSearch();
   }
-
   KhamSucKhoeSearch() {
     this.KhamSucKhoeService.SearchAllNotEmpty(this.KhamSucKhoeSort, this.KhamSucKhoePaginator);
   }

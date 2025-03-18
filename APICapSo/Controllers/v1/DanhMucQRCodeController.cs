@@ -36,7 +36,9 @@
             DanhMucQRCode result = new DanhMucQRCode();
             try
             {
-                result = await _DanhMucQRCodeService.GetByCodeAsync(Code);
+                //result = await _DanhMucQRCodeService.GetByCodeAsync(Code);
+
+
             }
             catch (Exception ex)
             {
@@ -44,6 +46,34 @@
             }
             return result;
         }
+        //[AllowAnonymous]
+        //[HttpGet]
+        //[Route("GetAllowAnonymousByCode001Async")]
+        //public async Task<string> GetAllowAnonymousByCode001Async(string Code)
+        //{
+        //    string result = GlobalHelper.InitializationString;
+        //    DanhMucQRCode model = new DanhMucQRCode();
+        //    try
+        //    {
+        //        //result = await _DanhMucQRCodeService.GetByCodeAsync(Code);
+        //        string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+        //        bool isFolderExists = System.IO.Directory.Exists(folderPath);
+        //        if (!isFolderExists)
+        //        {
+        //            System.IO.Directory.CreateDirectory(folderPath);
+        //        }
+
+        //        Helper.Model.QRCodeModel QRCodeModel = QRCodeHelper.CreateQRCodeURL(Code, Code, folderPath);
+
+        //        result = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + QRCodeModel.FileName;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string mes = ex.Message;
+        //    }
+        //    return result;
+        //}
     }
 }
 

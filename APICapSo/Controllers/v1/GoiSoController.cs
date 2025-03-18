@@ -197,6 +197,21 @@
             }
             return result;
         }
+        [HttpGet]
+        [Route("Sync_eHospital_DongNai_AAsync")]
+        public virtual async Task<int> Sync_eHospital_DongNai_AAsync()
+        {
+            int result = GlobalHelper.InitializationNumber;
+            try
+            {
+                result = await _GoiSoService.Sync_eHospital_DongNai_AAsync();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

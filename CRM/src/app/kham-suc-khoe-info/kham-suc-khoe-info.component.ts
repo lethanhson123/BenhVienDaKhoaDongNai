@@ -39,6 +39,9 @@ export class KhamSucKhoeInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+  }
+  ngAfterViewInit() {
     this.KhamSucKhoeService.BaseParameter.ID = Number(this.ActiveRouter.snapshot.params.ID);
     this.KhamSucKhoeSearch();
   }

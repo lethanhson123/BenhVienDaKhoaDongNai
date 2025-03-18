@@ -196,6 +196,7 @@
             List<T> result = new List<T>();
             try
             {
+                string GetConnectionString=_context.Database.GetConnectionString();
                 DataTable dt = await SQLHelper.FillDataTableAsync(_context.Database.GetConnectionString(), storedProcedureName, parameters);
                 result = SQLHelper.ToList<T>(dt);
             }

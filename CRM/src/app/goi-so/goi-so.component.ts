@@ -33,7 +33,7 @@ export class GoiSoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  
+
   }
   ngAfterViewInit() {
     this.GoiSoService.BaseParameter.NgayGhiNhan = new Date();
@@ -82,5 +82,36 @@ export class GoiSoComponent implements OnInit {
         this.GoiSoService.IsShowLoading = false;
       }
     );
+  }
+  GoiSoSync() {
+    this.GoiSoService.IsShowLoading = true;    
+    this.GoiSoService.Sync_eHospital_DongNai_AAsync().subscribe(
+      res => {        
+        this.GoiSoSearch();        
+      },
+      err => {        
+      },
+      () => {
+        this.GoiSoService.IsShowLoading = false;
+      }
+    );
+  }
+  GoiSoDelete(element: GoiSo) {
+    if (confirm(environment.DeleteConfirm)) {
+      this.GoiSoService.IsShowLoading = true;
+      this.GoiSoService.FormData = element;
+      this.GoiSoService.RemoveAsync().subscribe(
+        res => {
+          this.GoiSoSearch();
+          this.NotificationService.warn(environment.DeleteSuccess);
+        },
+        err => {
+          this.NotificationService.warn(environment.DeleteNotSuccess);
+        },
+        () => {
+          this.GoiSoService.IsShowLoading = false;
+        }
+      );
+    }
   }
 }

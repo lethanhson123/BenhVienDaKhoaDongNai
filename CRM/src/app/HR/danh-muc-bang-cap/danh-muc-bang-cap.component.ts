@@ -28,10 +28,11 @@ export class DanhMucBangCapComponent implements OnInit {
     public DanhMucBangCapService: DanhMucBangCapService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+  }
+  ngAfterViewInit() {
     this.DanhMucBangCapSearch();
   }
-
   DanhMucBangCapSearch() {
     this.DanhMucBangCapService.SearchAll(this.DanhMucBangCapSort, this.DanhMucBangCapPaginator);
   }
