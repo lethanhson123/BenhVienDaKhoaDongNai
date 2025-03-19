@@ -1335,7 +1335,21 @@
                                 GoiSoChiTiet.Code = CLSYeuCau.GhiChu;
                                 GoiSoChiTiet.NgayCapSo = CLSYeuCau.ThoiGianYeuCau;
 
-                                await SaveByGoiSoChiTietAsync(GoiSoChiTiet);
+                                if (GoiSoChiTiet.DanhMucNgonNguID > 0)
+                                {
+                                    GoiSoChiTiet GoiSoChiTietCheck = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucNgonNguID == GoiSoChiTiet.DanhMucNgonNguID).FirstOrDefaultAsync();
+                                    if (GoiSoChiTietCheck != null)
+                                    {
+                                        if (GoiSoChiTietCheck.ID > 0)
+                                        {                                           
+                                        }
+                                        else
+                                        {
+                                            await SaveByGoiSoChiTietAsync(GoiSoChiTiet);
+                                        }
+                                    }
+                                }
+                                
                             }
                         }
                     }
