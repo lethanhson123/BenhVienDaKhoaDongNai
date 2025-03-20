@@ -25,6 +25,7 @@
         public string? BHYT { get; set; }
         public string? DiaChi { get; set; }
         public bool? GioiTinh { get; set; }
+        public bool? IsUuTien { get; set; }
         public long? DanhMucTinhThanhID { get; set; }
         public string? DanhMucTinhThanhName { get; set; }
         public long? DanhMucQuanHuyenID { get; set; }

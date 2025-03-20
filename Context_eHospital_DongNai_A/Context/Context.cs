@@ -1,4 +1,5 @@
-﻿namespace Data_eHospital_DongNai_A.Context
+﻿
+namespace Data_eHospital_DongNai_A.Context
 {
     public partial class Context : DbContext
     {
@@ -419,7 +420,7 @@
         public virtual DbSet<Shift> Shift { get; set; }
         public virtual DbSet<ShiftDetail> ShiftDetail { get; set; }
         public virtual DbSet<SinhHieu> SinhHieu { get; set; }
-        
+
         public virtual DbSet<Sync_DM_BenhNhan_KeyGeneration> Sync_DM_BenhNhan_KeyGeneration { get; set; }
         public virtual DbSet<Sync_DM_BenhNhan_KeyGeneration_Backup_040317> Sync_DM_BenhNhan_KeyGeneration_Backup_040317 { get; set; }
         public virtual DbSet<Sync_DM_KeyGeneration> Sync_DM_KeyGeneration { get; set; }
@@ -583,6 +584,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(GlobalHelper.SQLServerConectionString_eHospital_DongNai_A);
@@ -590,8 +592,15 @@
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var decimalProps = modelBuilder.Model.GetEntityTypes().SelectMany(t => t.GetProperties()).Where(p => (System.Nullable.GetUnderlyingType(p.ClrType) ?? p.ClrType) == typeof(decimal));
+            foreach (var property in decimalProps)
+            {
+                property.SetPrecision(18);
+                property.SetScale(2);
+            }
             OnModelCreatingPartial(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

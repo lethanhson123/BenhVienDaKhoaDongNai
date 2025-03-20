@@ -498,7 +498,7 @@ export class ReportA0002InfoComponent implements OnInit {
         
         let Label900: string = 'Năm ' + this.ThongKeChiTietService.FormData.Year;
 
-        this.Report0001_0015_Label = LabelArray900;
+        this.Report0001_0015_Label = LabelArray800;
 
 
         this.Report0001_0015_Data = [

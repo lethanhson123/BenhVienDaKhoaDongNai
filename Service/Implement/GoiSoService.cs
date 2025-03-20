@@ -1312,47 +1312,40 @@
                     DateTime Now = GlobalHelper.InitializationDateTime;
                     int eH_PhongBan_Id = (int)DanhMucDichVu.DanhMucUngDungID;
                     List<Data_eHospital_DongNai_A.Model.CLSYeuCau> ListCLSYeuCau = await _CLSYeuCauService.ReportACLSYeuCau0004ToListAsync(GlobalHelper.eH_NhomDichVu_Id, eH_PhongBan_Id, Now.Year, Now.Month, Now.Day);
-
-                    List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVu.ID).OrderBy(item => item.SortOrder).ToListAsync();
-
-                    foreach (DanhMucQuayDichVu DanhMucQuayDichVu in ListDanhMucQuayDichVu)
+                    if (ListCLSYeuCau.Count > 0)
                     {
-                        List<Data_eHospital_DongNai_A.Model.CLSYeuCau> ListCLSYeuCauSub = ListCLSYeuCau.Where(item => item.NoiThucHien_Id == DanhMucQuayDichVu.DanhMucUngDungID).OrderBy(item => item.ThoiGianYeuCau).ToList();
-                        if (ListCLSYeuCauSub.Count > 0)
+                        List<DanhMucQuayDichVu> ListDanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByCondition(item => item.DanhMucDichVuID == DanhMucDichVu.ID).OrderBy(item => item.SortOrder).ToListAsync();
+                        foreach (DanhMucQuayDichVu DanhMucQuayDichVu in ListDanhMucQuayDichVu)
                         {
-                            foreach (Data_eHospital_DongNai_A.Model.CLSYeuCau CLSYeuCau in ListCLSYeuCauSub)
+                            List<Data_eHospital_DongNai_A.Model.CLSYeuCau> ListCLSYeuCauSub = ListCLSYeuCau.Where(item => item.NoiThucHien_Id == DanhMucQuayDichVu.DanhMucUngDungID).OrderBy(item => item.ThoiGianYeuCau).ToList();
+                            if (ListCLSYeuCauSub.Count > 0)
                             {
-                                GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
-                                GoiSoChiTiet.DanhMucDichVuID = DanhMucDichVu.ID;
-                                GoiSoChiTiet.DanhMucDichVuName = DanhMucDichVu.Name;
-                                GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
-                                GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
-                                GoiSoChiTiet.DanhMucNgonNguID = CLSYeuCau.CLSYeuCau_Id;
-                                GoiSoChiTiet.DanhMucUngDungID = CLSYeuCau.TiepNhan_Id;
-                                GoiSoChiTiet.KhachHangID = CLSYeuCau.BenhNhan_Id;
-                                GoiSoChiTiet.HoTen = CLSYeuCau.ChanDoan;
-                                GoiSoChiTiet.NamSinh = CLSYeuCau.NamYeuCau;
-                                GoiSoChiTiet.Code = CLSYeuCau.GhiChu;
-                                GoiSoChiTiet.NgayCapSo = CLSYeuCau.ThoiGianYeuCau;
-
-                                if (GoiSoChiTiet.DanhMucNgonNguID > 0)
+                                foreach (Data_eHospital_DongNai_A.Model.CLSYeuCau CLSYeuCau in ListCLSYeuCauSub)
                                 {
-                                    GoiSoChiTiet GoiSoChiTietCheck = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucNgonNguID == GoiSoChiTiet.DanhMucNgonNguID).FirstOrDefaultAsync();
-                                    if (GoiSoChiTietCheck != null)
+                                    GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                    GoiSoChiTiet.DanhMucDichVuID = DanhMucDichVu.ID;
+                                    GoiSoChiTiet.DanhMucDichVuName = DanhMucDichVu.Name;
+                                    GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                    GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                    GoiSoChiTiet.DanhMucNgonNguID = CLSYeuCau.CLSYeuCau_Id;
+                                    GoiSoChiTiet.DanhMucUngDungID = CLSYeuCau.TiepNhan_Id;
+                                    GoiSoChiTiet.KhachHangID = CLSYeuCau.BenhNhan_Id;
+                                    GoiSoChiTiet.HoTen = CLSYeuCau.ChanDoan;
+                                    GoiSoChiTiet.NamSinh = CLSYeuCau.NamYeuCau;
+                                    GoiSoChiTiet.Code = CLSYeuCau.GhiChu;
+                                    GoiSoChiTiet.NgayCapSo = CLSYeuCau.ThoiGianYeuCau;
+                                    if (GoiSoChiTiet.DanhMucNgonNguID > 0)
                                     {
-                                        if (GoiSoChiTietCheck.ID > 0)
-                                        {                                           
-                                        }
-                                        else
+                                        GoiSoChiTiet GoiSoChiTietCheck = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucNgonNguID == GoiSoChiTiet.DanhMucNgonNguID).FirstOrDefaultAsync();
+                                        if (GoiSoChiTietCheck == null)
                                         {
                                             await SaveByGoiSoChiTietAsync(GoiSoChiTiet);
                                         }
                                     }
                                 }
-                                
                             }
                         }
-                    }
+                    }                   
                 }
             }
             return result;
