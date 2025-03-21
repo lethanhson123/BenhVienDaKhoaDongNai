@@ -3,8 +3,9 @@
 export class DanhMucDichVu extends Base{
 
     IsBHYT?: boolean;
-    IsHangDoiPhanNhanh?: boolean;
+    IsHangDoiPhanNhanh?: boolean;    
     BuocNhay?: number;
+    BuocNhayUuTien?: number;
     GroupOrder?: number;
 }
 

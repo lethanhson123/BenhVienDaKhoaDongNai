@@ -23,6 +23,7 @@ export class GoiSoChiTiet extends Base {
     BHYT?: string;
     DiaChi?: string;
     GioiTinh?: boolean;
+    IsUuTien?: boolean;
     DanhMucTinhThanhID?: number;
     DanhMucTinhThanhName?: string;
     DanhMucQuanHuyenID?: number;
@@ -44,7 +45,7 @@ export class GoiSoChiTiet extends Base {
     NgayLinhThuoc?: Date;
     NgayLinhThuocSoThuTu?: number;
     NgayLinhThuocSoThuTuString?: string;
-
+    
 }
 
 

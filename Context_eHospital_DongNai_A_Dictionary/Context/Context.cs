@@ -45,7 +45,13 @@ namespace Data_eHospital_DongNai_A_Dictionary.Context
 		}
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			OnModelCreatingPartial(modelBuilder);
+            var decimalProps = modelBuilder.Model.GetEntityTypes().SelectMany(t => t.GetProperties()).Where(p => (System.Nullable.GetUnderlyingType(p.ClrType) ?? p.ClrType) == typeof(decimal));
+            foreach (var property in decimalProps)
+            {
+                property.SetPrecision(18);
+                property.SetScale(2);
+            }
+            OnModelCreatingPartial(modelBuilder);
             modelBuilder.Entity<DM_PhongBan>().ToTable(tb => tb.UseSqlOutputClause(false));
         }
 		partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

@@ -18,6 +18,9 @@ import { GroupComponent } from './group/group.component';
 import { M2Component } from './m2/m2.component';
 import { QRCodeComponent } from './qrcode/qrcode.component';
 import { C5Component } from './c5/c5.component';
+import { M24Component } from './m24/m24.component';
+import { M4Component } from './m4/m4.component';
+import { M6Component } from './m6/m6.component';
 
 
 
@@ -30,6 +33,9 @@ import { C5Component } from './c5/c5.component';
     M2Component,
     QRCodeComponent,
     C5Component,
+    M24Component,
+    M4Component,
+    M6Component,
 
   ],
   imports: [

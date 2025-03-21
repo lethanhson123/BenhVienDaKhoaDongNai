@@ -666,8 +666,7 @@ export class BaseService {
         return environment.SaveSuccess;
     }
     ComponentSaveAll(sort: MatSort, paginator: MatPaginator) {
-        this.IsShowLoading = true;
-        console.log(this.FormData);
+        this.IsShowLoading = true;        
         this.SaveAsync().subscribe(
             res => {
                 this.SearchAll(sort, paginator);

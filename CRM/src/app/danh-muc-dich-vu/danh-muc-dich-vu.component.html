@@ -28,7 +28,7 @@
     <div class="col s12 m12 l12">
         <div class="card card card-default scrollspy">
             <div class="card-content">
-                <div class="col s12 m12 l9">
+                <div class="col s12 m12 l10">
                     <input [(ngModel)]="DanhMucDichVuService.BaseParameter.SearchString" placeholder="Tìm ..."
                         class="form-control" (keyup.enter)="DanhMucDichVuSearch()">
                 </div>
@@ -36,10 +36,10 @@
                     <a style="color: green;" title="Tìm" (click)="DanhMucDichVuSearch()"><i
                             class="material-icons">play_circle_filled</i></a>
                 </div>
-                <div class="col s12 m12 l1">
+                <!-- <div class="col s12 m12 l1">
                     <a style="color: #2196f3;" title="Lưu thay đổi" (click)="DanhMucDichVuSaveList()"><i
                             class="material-icons">save</i></a>
-                </div>
+                </div> -->
                 <div class="col s12 m12 l1">
                     <a style="color: green;" title="Khôi phục" (click)="DanhMucDichVuKhoiPhuc()"><i
                         class="material-icons">all_inclusive</i></a>
@@ -114,6 +114,14 @@
                             <td mat-cell *matCellDef="let element">
                                 <input class="form-control" type="number" placeholder="0" name="BuocNhay{{element.ID}}"
                                     [(ngModel)]="element.BuocNhay" style="text-align: right;">
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="BuocNhayUuTien">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ưu tiên
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <input class="form-control" type="number" placeholder="0" name="BuocNhayUuTien{{element.ID}}"
+                                    [(ngModel)]="element.BuocNhayUuTien" style="text-align: right;">
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="GroupOrder">
@@ -216,9 +224,9 @@
                                         class="material-icons">delete_forever</i></a> -->
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="DanhMucDichVuService.DisplayColumns09">
+                        <tr mat-header-row *matHeaderRowDef="DanhMucDichVuService.DisplayColumns10">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DanhMucDichVuService.DisplayColumns09;">
+                        <tr mat-row *matRowDef="let row; columns: DanhMucDichVuService.DisplayColumns10;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DanhMucDichVuPaginator="matPaginator"

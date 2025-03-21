@@ -87,8 +87,8 @@ export class M2Component implements OnInit {
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
             this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan06ToListAsync().subscribe(
               res => {
-                this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
-                this.GoiSoChiTietService.List03 = this.GoiSoChiTietService.List.filter(item => item.Active == true);
+                this.GoiSoChiTietService.ListFilter = (res as GoiSoChiTiet[]);
+                this.GoiSoChiTietService.List03 = this.GoiSoChiTietService.ListFilter.filter(item => item.Active == true);
                 for (let i = 0; i < this.GoiSoChiTietService.List03.length; i++) {
                   if (this.GoiSoChiTietService.List03[i].NgayTiepNhanSoThuTuString) {
                   }
@@ -96,7 +96,7 @@ export class M2Component implements OnInit {
                     this.GoiSoChiTietService.List03[i].NgayTiepNhanSoThuTuString = "0000";
                   }
                 }
-                this.GoiSoChiTietService.List04 = this.GoiSoChiTietService.List.filter(item => item.Active == false);
+                this.GoiSoChiTietService.List04 = this.GoiSoChiTietService.ListFilter.filter(item => item.Active == false);
                 for (let i = 0; i < this.GoiSoChiTietService.List04.length; i++) {                  
                   if (this.GoiSoChiTietService.List04[i].NgayCapSoSoThuTuString) {
                   }

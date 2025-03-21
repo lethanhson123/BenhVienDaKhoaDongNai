@@ -19,6 +19,7 @@ export class DanhMucQuayDichVuService extends BaseService {
     DisplayColumns09: string[] = ['STT', 'ParentID', 'DanhMucDichVuID', 'Name', 'Code', 'Display', 'Note', 'TypeName', 'SortOrder', 'IsTiepNhan', 'IsBannerShow', 'Active'];
     DisplayColumns10: string[] = ['STT', 'ParentID', 'DanhMucDichVuID', 'Name', 'Code', 'Display', 'Note', 'TypeName', 'SortOrder', 'IsTiepNhan', 'IsBannerShow', 'Active', 'Save'];
     DisplayColumns11: string[] = ['STT', 'ParentID', 'DanhMucDichVuID', 'Name', 'Code', 'Display', 'Note', 'TypeName', 'DanhMucUngDungID', 'SortOrder', 'IsTiepNhan', 'IsBannerShow', 'Active', 'Save'];
+    DisplayColumns12: string[] = ['STT', 'ID', 'ParentID', 'DanhMucDichVuID', 'Name', 'Code', 'Display', 'Note', 'TypeName', 'DanhMucUngDungID', 'SortOrder', 'IsTiepNhan', 'IsBannerShow', 'Active', 'Save'];
 
     List: DanhMucQuayDichVu[] | undefined;
     ListFilter: DanhMucQuayDichVu[] | undefined;

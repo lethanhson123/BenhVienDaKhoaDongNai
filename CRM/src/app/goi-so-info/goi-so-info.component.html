@@ -208,7 +208,14 @@
                             <td mat-cell *matCellDef="let element">
                                 {{element.Code}}
                             </td>
-                        </ng-container>                       
+                        </ng-container>                  
+                        <ng-container matColumnDef="Description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã y tế
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <b>{{element.Description}}</b>
+                            </td>
+                        </ng-container>               
                         <ng-container matColumnDef="HoTen">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ tên
                             </th>
@@ -222,14 +229,25 @@
                             <td mat-cell *matCellDef="let element">
                                 {{element.NamSinh}}
                             </td>
-                        </ng-container>                        
-                        <tr mat-header-row *matHeaderRowDef="GoiSoChiTietService.DisplayColumns006">
+                        </ng-container>      
+                        <ng-container matColumnDef="IsUuTien">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ưu tiên
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" name="IsUuTien{{element.ID}}"
+                                        [(ngModel)]="element.IsUuTien">
+                                    <span></span>
+                                </label>
+                            </td>
+                        </ng-container>                  
+                        <tr mat-header-row *matHeaderRowDef="GoiSoChiTietService.DisplayColumns008">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: GoiSoChiTietService.DisplayColumns006;">
+                        <tr mat-row *matRowDef="let row; columns: GoiSoChiTietService.DisplayColumns008;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #GoiSoChiTietPaginator="matPaginator"
-                        [pageSizeOptions]="[10,20,50,100]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
+                        [pageSizeOptions]="[10,20,50,100,1000]" [pageSize]="20" [showFirstLastButtons]></mat-paginator>
                 </div>
             </div>
         </div>
