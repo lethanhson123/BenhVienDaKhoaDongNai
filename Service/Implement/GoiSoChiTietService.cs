@@ -97,32 +97,33 @@ namespace Service.Implement
             {
                 model.DanhMucXaPhuongName = _DanhMucTinhThanhRepository.GetByID(model.DanhMucXaPhuongID.Value).Name;
             }
-
-            //if (string.IsNullOrEmpty(model.Barcode))
-            //{
-            //    if (!string.IsNullOrEmpty(model.Code))
-            //    {
-            //        string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
-            //        bool isFolderExists = System.IO.Directory.Exists(folderPath);
-            //        if (!isFolderExists)
-            //        {
-            //            System.IO.Directory.CreateDirectory(folderPath);
-            //        }
-            //        Barcode Barcode = GlobalHelper.CreateBarcode128(folderPath, model.Code);
-            //        model.Barcode = Barcode.Code;
-            //        model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
-            //    }
-            //}
-
-            if (string.IsNullOrEmpty(model.Description))
+            if (string.IsNullOrEmpty(model.Code))
             {
-                if (!string.IsNullOrEmpty(model.Code))
+                if (!string.IsNullOrEmpty(model.Description))
 
-                    if (model.Code.Split('.').Length > 1)
+                    if (model.Description.Split('.').Length > 1)
                     {
-                        model.Description = model.Code.Split('.')[1];
+                        model.Code = model.Description.Split('.')[1];
                     }
             }
+
+            if (string.IsNullOrEmpty(model.Barcode))
+            {
+                if (!string.IsNullOrEmpty(model.Code))
+                {
+                    string folderPath = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
+                    bool isFolderExists = System.IO.Directory.Exists(folderPath);
+                    if (!isFolderExists)
+                    {
+                        System.IO.Directory.CreateDirectory(folderPath);
+                    }
+                    Barcode Barcode = GlobalHelper.CreateBarcode128(folderPath, model.Code);
+                    model.Barcode = Barcode.Code;
+                    model.BarcodeFileName = GlobalHelper.APISite + "/" + model.GetType().Name + "/" + Barcode.FileName;
+                }
+            }
+
+
 
             if (string.IsNullOrEmpty(model.CCCD))
             {
@@ -969,6 +970,241 @@ namespace Service.Implement
             if (result == null)
             {
                 result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan08ToListAsync(long DanhMucQuayDichVuID, int Number)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                if (DanhMucQuayDichVuID > 0)
+                {
+                    if (Number > 0)
+                    {
+                        DateTime Now = GlobalHelper.InitializationDateTime;
+                        DanhMucQuayDichVu DanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByIDAsync(DanhMucQuayDichVuID);
+                        if (DanhMucQuayDichVu != null)
+                        {
+                            DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucQuayDichVu.DanhMucDichVuID.Value);
+                            if (DanhMucDichVu != null)
+                            {
+                                List<GoiSoChiTiet> ListGoiSoChiTiet01 = await GetByCondition(item => item.IsUuTien == false && item.Active == true && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayTiepNhan.Value.Year == Now.Year && item.NgayTiepNhan.Value.Month == Now.Month && item.NgayTiepNhan.Value.Day == Now.Day).OrderByDescending(item => item.NgayTiepNhanSoThuTu).Take(DanhMucDichVu.BuocNhay.Value).ToListAsync();
+                                List<GoiSoChiTiet> ListGoiSoChiTiet02 = await GetByCondition(item => item.IsUuTien == true && item.Active == true && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayTiepNhan.Value.Year == Now.Year && item.NgayTiepNhan.Value.Month == Now.Month && item.NgayTiepNhan.Value.Day == Now.Day).OrderByDescending(item => item.NgayTiepNhanSoThuTu).Take(DanhMucDichVu.BuocNhayUuTien.Value).ToListAsync();
+                                if (ListGoiSoChiTiet01.Count < DanhMucDichVu.BuocNhay)
+                                {
+                                    for (int i = ListGoiSoChiTiet01.Count; i < DanhMucDichVu.BuocNhay; i++)
+                                    {
+                                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                        GoiSoChiTiet.Active = true;
+                                        GoiSoChiTiet.IsUuTien = false;
+                                        GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                        GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                        GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                                        GoiSoChiTiet.NgayTiepNhan = Now;
+                                        ListGoiSoChiTiet01.Add(GoiSoChiTiet);
+                                    }
+                                }
+                                if (ListGoiSoChiTiet02.Count < DanhMucDichVu.BuocNhayUuTien)
+                                {
+                                    for (int i = ListGoiSoChiTiet02.Count; i < DanhMucDichVu.BuocNhayUuTien; i++)
+                                    {
+                                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                        GoiSoChiTiet.Active = true;
+                                        GoiSoChiTiet.IsUuTien = true;
+                                        GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                        GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                        GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                                        GoiSoChiTiet.NgayTiepNhan = Now;
+                                        ListGoiSoChiTiet02.Add(GoiSoChiTiet);
+                                    }
+                                }
+                                List<GoiSoChiTiet> ListGoiSoChiTiet03 = await GetByCondition(item => item.IsUuTien == false && item.Active == false && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day).OrderBy(item => item.NgayCapSoSoThuTu).Take(DanhMucDichVu.BuocNhay.Value).ToListAsync();
+                                List<GoiSoChiTiet> ListGoiSoChiTiet04 = await GetByCondition(item => item.IsUuTien == true && item.Active == false && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day).OrderBy(item => item.NgayCapSoSoThuTu).Take(DanhMucDichVu.BuocNhayUuTien.Value).ToListAsync();
+                                if (ListGoiSoChiTiet03.Count < Number)
+                                {
+                                    for (int i = ListGoiSoChiTiet03.Count; i < DanhMucDichVu.BuocNhay; i++)
+                                    {
+                                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                        GoiSoChiTiet.Active = false;
+                                        GoiSoChiTiet.IsUuTien = false;
+                                        GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                        GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                        GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                                        GoiSoChiTiet.NgayTiepNhan = Now;
+                                        ListGoiSoChiTiet03.Add(GoiSoChiTiet);
+                                    }
+                                }
+                                if (ListGoiSoChiTiet04.Count < Number)
+                                {
+                                    for (int i = ListGoiSoChiTiet04.Count; i < DanhMucDichVu.BuocNhayUuTien; i++)
+                                    {
+                                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                        GoiSoChiTiet.Active = false;
+                                        GoiSoChiTiet.IsUuTien = true;
+                                        GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                        GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                        GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                                        GoiSoChiTiet.NgayTiepNhan = Now;
+                                        ListGoiSoChiTiet04.Add(GoiSoChiTiet);
+                                    }
+                                }
+                                result.AddRange(ListGoiSoChiTiet01);
+                                result.AddRange(ListGoiSoChiTiet02);
+                                result.AddRange(ListGoiSoChiTiet03);
+                                result.AddRange(ListGoiSoChiTiet04);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan09ToListAsync(long DanhMucQuayDichVuID, int Number)
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                if (DanhMucQuayDichVuID > 0)
+                {
+                    if (Number > 0)
+                    {
+                        DateTime Now = GlobalHelper.InitializationDateTime;
+                        DanhMucQuayDichVu DanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByIDAsync(DanhMucQuayDichVuID);
+                        if (DanhMucQuayDichVu != null)
+                        {
+                            DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucQuayDichVu.DanhMucDichVuID.Value);
+                            if (DanhMucDichVu != null)
+                            {
+                                List<GoiSoChiTiet> ListGoiSoChiTiet01 = await GetByCondition(item => item.Active == true && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayTiepNhan.Value.Year == Now.Year && item.NgayTiepNhan.Value.Month == Now.Month && item.NgayTiepNhan.Value.Day == Now.Day).OrderByDescending(item => item.NgayTiepNhan).Take(DanhMucDichVu.BuocNhayUuTien.Value).ToListAsync();
+                                if (ListGoiSoChiTiet01.Count < DanhMucDichVu.BuocNhayUuTien)
+                                {
+                                    for (int i = ListGoiSoChiTiet01.Count; i < DanhMucDichVu.BuocNhayUuTien; i++)
+                                    {
+                                        GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                                        GoiSoChiTiet.Active = true;
+                                        GoiSoChiTiet.IsUuTien = false;
+                                        GoiSoChiTiet.DanhMucDichVuID = DanhMucQuayDichVu.ParentID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVu.ID;
+                                        GoiSoChiTiet.DanhMucQuayDichVuName = DanhMucQuayDichVu.Name;
+                                        GoiSoChiTiet.DanhMucQuayDichVuCode = DanhMucQuayDichVu.Code;
+                                        GoiSoChiTiet.DanhMucQuayDichVuDisplay = DanhMucQuayDichVu.Display;
+                                        GoiSoChiTiet.NgayTiepNhan = Now;
+                                        ListGoiSoChiTiet01.Add(GoiSoChiTiet);
+                                    }
+                                }
+                                result.AddRange(ListGoiSoChiTiet01);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            if (result == null)
+            {
+                result = new List<GoiSoChiTiet>();
+            }
+            return result;
+        }
+        public virtual async Task<GoiSoChiTiet> GetByCode_NowAsync(string Code)
+        {
+            GoiSoChiTiet result = new GoiSoChiTiet();
+            if (!string.IsNullOrEmpty(Code))
+            {
+                DateTime Now = GlobalHelper.InitializationDateTime;                
+                result = await GetByCondition(item => item.Code == Code && item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    if (result.ID > 0)
+                    {
+                        result = await CreateHTML002ByModelAsync(result);
+                    }
+                }
+            }
+            if (result == null)
+            {
+                result = new GoiSoChiTiet();
+            }
+            return result;
+        }
+        public virtual async Task<GoiSoChiTiet> CreateHTML002ByModelAsync(GoiSoChiTiet result)
+        {
+            try
+            {
+                string Code = result.Code;
+
+                result.FileName = GlobalHelper.APISite + "/" + result.GetType().Name + "/" + Code + ".html";
+
+                string contentHTML = GlobalHelper.InitializationString;
+                string physicalPathOpen = Path.Combine(_WebHostEnvironment.WebRootPath, GlobalHelper.Download, result.GetType().Name + ".html");
+                using (FileStream fs = new FileStream(physicalPathOpen, FileMode.Open))
+                {
+                    using (StreamReader r = new StreamReader(fs, Encoding.UTF8))
+                    {
+                        contentHTML = r.ReadToEnd();
+                    }
+                }
+                DateTime NgayIn = GlobalHelper.InitializationDateTime;
+
+                contentHTML = contentHTML.Replace("[NgayIn]", NgayIn.ToString("dd/MM/yyyy HH:mm:ss"));
+
+                contentHTML = contentHTML.Replace("[APISite]", GlobalHelper.APISite);
+
+                contentHTML = contentHTML.Replace("[DanhMucDichVuName]", result.DanhMucDichVuName);
+                contentHTML = contentHTML.Replace("[Note]", result.Note);
+                contentHTML = contentHTML.Replace("[NgayCapSoSoThuTuString]", result.NgayCapSoSoThuTuString);
+
+                if (!string.IsNullOrEmpty(result.Code))
+                {
+                    string Barcode = @"<img src=""" + result.BarcodeFileName + @""" width=""150"" height=""40"" />";
+                    contentHTML = contentHTML.Replace("[Barcode]", Barcode);
+                    contentHTML = contentHTML.Replace("[Code]", result.Code);
+                }
+                else
+                {
+                    contentHTML = contentHTML.Replace("[Barcode]", GlobalHelper.InitializationString);
+                    contentHTML = contentHTML.Replace("[Code]", GlobalHelper.InitializationString);
+                }
+
+                string physicalPathCreate = Path.Combine(_WebHostEnvironment.WebRootPath, result.GetType().Name);
+                bool isFolderExists = System.IO.Directory.Exists(physicalPathCreate);
+                if (!isFolderExists)
+                {
+                    System.IO.Directory.CreateDirectory(physicalPathCreate);
+                }
+
+                string fileName = Code + ".html";
+                physicalPathCreate = Path.Combine(physicalPathCreate, fileName);
+                using (FileStream fs = new FileStream(physicalPathCreate, FileMode.Create))
+                {
+                    using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                    {
+                        w.WriteLine(contentHTML);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
             }
             return result;
         }

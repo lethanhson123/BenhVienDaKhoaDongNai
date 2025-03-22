@@ -39,6 +39,7 @@
             txtMatKhau = new TextBox();
             txtTaiKhoan = new TextBox();
             groupBox2 = new GroupBox();
+            txtCode = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -73,10 +74,10 @@
             // 
             btnSoTiepTheo.BackColor = Color.Cyan;
             btnSoTiepTheo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnSoTiepTheo.Location = new Point(6, 109);
+            btnSoTiepTheo.Location = new Point(6, 138);
             btnSoTiepTheo.Name = "btnSoTiepTheo";
             btnSoTiepTheo.Size = new Size(210, 40);
-            btnSoTiepTheo.TabIndex = 3;
+            btnSoTiepTheo.TabIndex = 5;
             btnSoTiepTheo.Text = "SỐ TIẾP THEO (F1)";
             btnSoTiepTheo.UseVisualStyleBackColor = false;
             btnSoTiepTheo.Click += btnSoTiepTheo_Click;
@@ -106,7 +107,7 @@
             btnDangNhap.Location = new Point(6, 80);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(210, 40);
-            btnDangNhap.TabIndex = 4;
+            btnDangNhap.TabIndex = 3;
             btnDangNhap.Text = "Đăng nhập";
             btnDangNhap.UseVisualStyleBackColor = false;
             btnDangNhap.Click += btnDangNhap_Click;
@@ -118,7 +119,7 @@
             txtMatKhau.PasswordChar = '*';
             txtMatKhau.PlaceholderText = "Mật khẩu";
             txtMatKhau.Size = new Size(210, 23);
-            txtMatKhau.TabIndex = 5;
+            txtMatKhau.TabIndex = 2;
             // 
             // txtTaiKhoan
             // 
@@ -126,21 +127,32 @@
             txtTaiKhoan.Name = "txtTaiKhoan";
             txtTaiKhoan.PlaceholderText = "Tài khoản";
             txtTaiKhoan.Size = new Size(210, 23);
-            txtTaiKhoan.TabIndex = 4;
+            txtTaiKhoan.TabIndex = 1;
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(txtCode);
             groupBox2.Controls.Add(cbbDanhMucDichVu);
             groupBox2.Controls.Add(cbbDanhMucQuayDichVu);
             groupBox2.Controls.Add(btnSoTiepTheo);
             groupBox2.Controls.Add(txtSoHienTai);
             groupBox2.Location = new Point(239, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(221, 159);
+            groupBox2.Size = new Size(221, 186);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Gọi số";
             groupBox2.Visible = false;
+            // 
+            // txtCode
+            // 
+            txtCode.Location = new Point(5, 109);
+            txtCode.Name = "txtCode";
+            txtCode.PlaceholderText = "Mã Y Tế";
+            txtCode.Size = new Size(210, 23);
+            txtCode.TabIndex = 4;
+            txtCode.TextAlign = HorizontalAlignment.Right;
+            txtCode.Leave += txtCode_Leave;
             // 
             // Form1
             // 
@@ -152,6 +164,7 @@
             Name = "Form1";
             Text = "Đồng Nai";
             Load += Form1_Load;
+            Shown += Form1_Shown;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -171,5 +184,6 @@
         private TextBox txtTaiKhoan;
         private TextBox txtMatKhau;
         private Button btnDangNhap;
+        private TextBox txtCode;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace TiepNhanWinform
 {
@@ -22,8 +23,9 @@ namespace TiepNhanWinform
             StartPosition = FormStartPosition.Manual;
             Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
             this.TopMost = true;
-            APICapSoSite = "http://10.84.3.124:901";
-            //APICapSoSite = "http://localhost:5097";
+
+            //APICapSoSite = "http://10.84.3.124:901";
+            APICapSoSite = "http://localhost:5097";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -239,6 +241,36 @@ namespace TiepNhanWinform
                     GetListDanhMucDichVu();
                     SetGroupBox();
                 }
+            }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            txtCode.Focus();
+        }
+
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                string Code = txtCode.Text.Trim();
+                txtCode.Focus();
+                txtCode.Text = "";
+                string url = APICapSoSite + "/api/v1/GoiSoChiTiet/GetByCode_NowAsync?Code=" + Code;
+                HttpClient client = new HttpClient();
+                string response = client.GetStringAsync(url).Result;
+
+                DanhMucDichVu DanhMucDichVu = JsonConvert.DeserializeObject<DanhMucDichVu>(response);
+                ProcessStartInfo psInfo = new ProcessStartInfo
+                {
+                    FileName = DanhMucDichVu.Name,
+                    UseShellExecute = true
+                };
+                Process.Start(psInfo);
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
             }
         }
     }

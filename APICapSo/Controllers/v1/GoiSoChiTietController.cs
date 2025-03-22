@@ -270,7 +270,54 @@
             }
             return result;
         }
-
+        [HttpPost]
+        [Route("GetGoiSoChiTietTiepNhan08ToListAsync")]
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan08ToListAsync()
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietTiepNhan08ToListAsync(baseParameter.DanhMucQuayDichVuID.Value, baseParameter.Number.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpPost]
+        [Route("GetGoiSoChiTietTiepNhan09ToListAsync")]
+        public virtual async Task<List<GoiSoChiTiet>> GetGoiSoChiTietTiepNhan09ToListAsync()
+        {
+            List<GoiSoChiTiet> result = new List<GoiSoChiTiet>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _GoiSoChiTietService.GetGoiSoChiTietTiepNhan09ToListAsync(baseParameter.DanhMucQuayDichVuID.Value, baseParameter.Number.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
+        [HttpGet]
+        [Route("GetByCode_NowAsync")]
+        public virtual async Task<DanhMucDichVu> GetByCode_NowAsync(string Code)
+        {
+            DanhMucDichVu result = new DanhMucDichVu();
+            try
+            {
+                GoiSoChiTiet GoiSoChiTiet = await _GoiSoChiTietService.GetByCode_NowAsync(Code);
+                result.Name = GoiSoChiTiet.FileName;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

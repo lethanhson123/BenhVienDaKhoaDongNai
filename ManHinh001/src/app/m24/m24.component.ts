@@ -62,7 +62,7 @@ export class M24Component implements OnInit {
                    }
                    else {
                      this.GoiSoChiTietService.List02[i].NgayTiepNhanSoThuTuString = "T1118-UT000";
-                     this.GoiSoChiTietService.List02[i].Name = "0000";
+                     this.GoiSoChiTietService.List02[i].Name = "UT000";
                    }
                  }
                  this.GoiSoChiTietService.List03 = this.GoiSoChiTietService.List.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));
@@ -123,7 +123,7 @@ export class M24Component implements OnInit {
                    }
                    else {
                      this.GoiSoChiTietService.List12[i].NgayTiepNhanSoThuTuString = "T1119-UT000";
-                     this.GoiSoChiTietService.List12[i].Name = "0000";
+                     this.GoiSoChiTietService.List12[i].Name = "UT000";
                    }
                  }
                  this.GoiSoChiTietService.List13 = this.GoiSoChiTietService.ListFilter.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));

@@ -1,0 +1,335 @@
+<div class="section" id="user-profile" style="margin: 0px; padding: 0px;">
+    <div class="row" style="margin: 0px; padding: 0px;">
+        <div class="col s2 m2 l2" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{DanhMucQuayDichVuService.FormData01.Name}}
+                        </th>
+                    </tr>
+                </thead>
+            </table>                   
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 4vh; font-weight: bolder; padding: 0px; line-height: 6vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>
+            </table>  
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List04; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List03; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>       
+        <div class="col s2 m2 l2" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="brown darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{DanhMucQuayDichVuService.FormData02.Name}}
+                        </th>
+                    </tr>
+                </thead>
+            </table>                   
+            <table class="striped" style="width: 100%;">
+                <thead class="brown darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 4vh; font-weight: bolder; padding: 0px; line-height: 6vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>
+            </table>  
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List14; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List13; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>   
+        <div class="col s2 m2 l2" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{DanhMucQuayDichVuService.FormData03.Name}}
+                        </th>
+                    </tr>
+                </thead>
+            </table>                  
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 4vh; font-weight: bolder; padding: 0px; line-height: 6vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>
+            </table>  
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List24; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List23; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>   
+        <div class="col s2 m2 l2" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="brown darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{DanhMucQuayDichVuService.FormData04.Name}}
+                        </th>
+                    </tr>
+                </thead>
+            </table>                  
+            <table class="striped" style="width: 100%;">
+                <thead class="brown darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 4vh; font-weight: bolder; padding: 0px; line-height: 6vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>
+            </table>  
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List34; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List33; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>   
+        <div class="col s2 m2 l2" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{DanhMucQuayDichVuService.FormData05.Name}}
+                        </th>
+                    </tr>
+                </thead>
+            </table>                  
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 4vh; font-weight: bolder; padding: 0px; line-height: 6vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>
+            </table>  
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List44; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List43; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>   
+        <div class="col s2 m2 l2" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="brown darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{DanhMucQuayDichVuService.FormData06.Name}}
+                        </th>
+                    </tr>
+                </thead>
+            </table>                  
+            <table class="striped" style="width: 100%;">
+                <thead class="brown darken-4 white-text"
+                    style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th
+                            style="text-transform: uppercase; text-align: center; font-size: 4vh; font-weight: bolder; padding: 0px; line-height: 6vh;">
+                            Số tiếp theo
+                        </th>
+                    </tr>
+                </thead>
+            </table>  
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List54; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 8vh; font-weight: bolder; padding: 0px; line-height: 10vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="striped" style="width: 100%;">
+                <tbody *ngFor="let item of GoiSoChiTietService.List53; index as i"
+                    style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: 0px; color: #ffffff; text-align: center; font-size: 10vh; font-weight: bolder; padding: 0px; line-height: 12vh;">
+                            {{item.Display}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>   
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12" style="margin: 0px; padding: 0px;">
+            <a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"><i
+                    class="material-icons">settings_overscan</i></a>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>

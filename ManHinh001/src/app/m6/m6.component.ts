@@ -44,7 +44,7 @@ export class M6Component implements OnInit {
           if (this.DanhMucQuayDichVuService.FormData01.ID > 0) {
             this.GoiSoChiTietService.BaseParameter.DanhMucQuayDichVuID = this.DanhMucQuayDichVuService.FormData01.ID;
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan07ToListAsync().subscribe(
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan08ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
                 this.GoiSoChiTietService.List01 = this.GoiSoChiTietService.List.filter(item => item.Active == true).sort((a, b) => (a.IsUuTien < b.IsUuTien ? 1 : -1));
@@ -64,9 +64,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List04[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List04[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List04.pop();
-                this.GoiSoChiTietService.List04.pop();
+                }               
                 this.GoiSoChiTietService.List03 = this.GoiSoChiTietService.List.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));
                 for (let i = 0; i < this.GoiSoChiTietService.List03.length; i++) {
                   if (this.GoiSoChiTietService.List03[i].NgayCapSoSoThuTuString) {
@@ -75,8 +73,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List03[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List03[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List03.pop();
+                }                
               },
               err => {
               },
@@ -99,7 +96,7 @@ export class M6Component implements OnInit {
           if (this.DanhMucQuayDichVuService.FormData02.ID > 0) {
             this.GoiSoChiTietService.BaseParameter.DanhMucQuayDichVuID = this.DanhMucQuayDichVuService.FormData02.ID;
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan07ToListAsync().subscribe(
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan08ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
                 this.GoiSoChiTietService.List11 = this.GoiSoChiTietService.List.filter(item => item.Active == true).sort((a, b) => (a.IsUuTien < b.IsUuTien ? 1 : -1));
@@ -119,9 +116,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List14[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List14[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List14.pop();
-                this.GoiSoChiTietService.List14.pop();
+                }            
                 this.GoiSoChiTietService.List13 = this.GoiSoChiTietService.List.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));
                 for (let i = 0; i < this.GoiSoChiTietService.List13.length; i++) {
                   if (this.GoiSoChiTietService.List13[i].NgayCapSoSoThuTuString) {
@@ -130,8 +125,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List13[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List13[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List13.pop();
+                }                
               },
               err => {
               },
@@ -154,7 +148,7 @@ export class M6Component implements OnInit {
           if (this.DanhMucQuayDichVuService.FormData03.ID > 0) {
             this.GoiSoChiTietService.BaseParameter.DanhMucQuayDichVuID = this.DanhMucQuayDichVuService.FormData03.ID;
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan07ToListAsync().subscribe(
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan08ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
                 this.GoiSoChiTietService.List21 = this.GoiSoChiTietService.List.filter(item => item.Active == true).sort((a, b) => (a.IsUuTien < b.IsUuTien ? 1 : -1));
@@ -174,9 +168,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List24[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List24[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List24.pop();
-                this.GoiSoChiTietService.List24.pop();
+                }              
                 this.GoiSoChiTietService.List23 = this.GoiSoChiTietService.List.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));
                 for (let i = 0; i < this.GoiSoChiTietService.List23.length; i++) {
                   if (this.GoiSoChiTietService.List23[i].NgayCapSoSoThuTuString) {
@@ -185,8 +177,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List23[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List23[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List23.pop();
+                }                
               },
               err => {
               },
@@ -209,7 +200,7 @@ export class M6Component implements OnInit {
           if (this.DanhMucQuayDichVuService.FormData04.ID > 0) {
             this.GoiSoChiTietService.BaseParameter.DanhMucQuayDichVuID = this.DanhMucQuayDichVuService.FormData04.ID;
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan07ToListAsync().subscribe(
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan08ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
                 this.GoiSoChiTietService.List31 = this.GoiSoChiTietService.List.filter(item => item.Active == true).sort((a, b) => (a.IsUuTien < b.IsUuTien ? 1 : -1));
@@ -229,9 +220,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List34[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List34[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List34.pop();
-                this.GoiSoChiTietService.List34.pop();
+                }              
                 this.GoiSoChiTietService.List33 = this.GoiSoChiTietService.List.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));
                 for (let i = 0; i < this.GoiSoChiTietService.List33.length; i++) {
                   if (this.GoiSoChiTietService.List33[i].NgayCapSoSoThuTuString) {
@@ -240,8 +229,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List33[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List33[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List33.pop();
+                }                
               },
               err => {
               },
@@ -264,7 +252,7 @@ export class M6Component implements OnInit {
           if (this.DanhMucQuayDichVuService.FormData05.ID > 0) {            
             this.GoiSoChiTietService.BaseParameter.DanhMucQuayDichVuID = this.DanhMucQuayDichVuService.FormData05.ID;
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan07ToListAsync().subscribe(
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan08ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
                 this.GoiSoChiTietService.List41 = this.GoiSoChiTietService.List.filter(item => item.Active == true).sort((a, b) => (a.IsUuTien < b.IsUuTien ? 1 : -1));
@@ -284,9 +272,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List44[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List44[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List44.pop();
-                this.GoiSoChiTietService.List44.pop();
+                }             
                 this.GoiSoChiTietService.List43 = this.GoiSoChiTietService.List.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));
                 for (let i = 0; i < this.GoiSoChiTietService.List43.length; i++) {
                   if (this.GoiSoChiTietService.List43[i].NgayCapSoSoThuTuString) {
@@ -295,8 +281,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List43[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List43[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List43.pop();
+                }                
               },
               err => {
               },
@@ -319,7 +304,7 @@ export class M6Component implements OnInit {
           if (this.DanhMucQuayDichVuService.FormData06.ID > 0) {      
             this.GoiSoChiTietService.BaseParameter.DanhMucQuayDichVuID = this.DanhMucQuayDichVuService.FormData06.ID;
             this.GoiSoChiTietService.BaseParameter.Number = this.ActiveRouter.snapshot.params.Number;
-            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan07ToListAsync().subscribe(
+            this.GoiSoChiTietService.GetGoiSoChiTietTiepNhan08ToListAsync().subscribe(
               res => {
                 this.GoiSoChiTietService.List = (res as GoiSoChiTiet[]);
                 this.GoiSoChiTietService.List51 = this.GoiSoChiTietService.List.filter(item => item.Active == true).sort((a, b) => (a.IsUuTien < b.IsUuTien ? 1 : -1));
@@ -339,9 +324,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List54[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List54[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List54.pop();
-                this.GoiSoChiTietService.List54.pop();
+                }               
                 this.GoiSoChiTietService.List53 = this.GoiSoChiTietService.List.filter(item => item.Active == false && item.IsUuTien == false).sort((a, b) => (a.NgayCapSoSoThuTu > b.NgayCapSoSoThuTu ? 1 : -1));
                 for (let i = 0; i < this.GoiSoChiTietService.List53.length; i++) {
                   if (this.GoiSoChiTietService.List53[i].NgayCapSoSoThuTuString) {
@@ -350,8 +333,7 @@ export class M6Component implements OnInit {
                     this.GoiSoChiTietService.List53[i].NgayCapSoSoThuTuString = "0000";
                     this.GoiSoChiTietService.List53[i].Display = "0000";
                   }
-                }
-                this.GoiSoChiTietService.List53.pop();
+                }                
               },
               err => {
               },

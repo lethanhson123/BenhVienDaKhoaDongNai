@@ -1,4 +1,6 @@
-﻿namespace Service.Implement
+﻿using Data.Model;
+
+namespace Service.Implement
 {
     public class GoiSoService : BaseService<GoiSo, IGoiSoRepository>
     , IGoiSoService
@@ -613,6 +615,7 @@
         {
             GoiSo result = new GoiSo();
             DanhMucDichVu DanhMucDichVu = await _DanhMucDichVuRepository.GetByIDAsync(DanhMucDichVuID);
+            DanhMucQuayDichVu DanhMucQuayDichVu = await _DanhMucQuayDichVuRepository.GetByIDAsync(DanhMucQuayDichVuID);
             DateTime Now = GlobalHelper.InitializationDateTime;
             if (DanhMucDichVu.BuocNhay == null)
             {
@@ -674,7 +677,14 @@
                         {
                             if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
                             {
-                                GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day && item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                                if (DanhMucQuayDichVu.DanhMucUngDungID > 0)
+                                {
+                                    GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.IsUuTien == false && item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day && item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                                }
+                                else
+                                {
+                                    GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day && item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID && item.NgayCapSoSoThuTu == i).FirstOrDefaultAsync();
+                                }
                             }
                             else
                             {
@@ -695,6 +705,47 @@
                         catch (Exception ex)
                         {
                             string mes = ex.Message;
+                        }
+                    }
+                }
+            }
+
+            if (DanhMucQuayDichVu.DanhMucUngDungID > 0)
+            {
+                BatDau = 1;
+                KetThuc = DanhMucDichVu.BuocNhayUuTien.Value;
+                for (int i = BatDau; i <= KetThuc; i++)
+                {
+                    if (i > 0)
+                    {
+                        if (i <= result.TongCong)
+                        {
+                            GoiSoChiTiet GoiSoChiTiet = new GoiSoChiTiet();
+                            try
+                            {
+                                if (DanhMucDichVu.IsHangDoiPhanNhanh == true)
+                                {
+                                    if (DanhMucQuayDichVu.DanhMucUngDungID > 0)
+                                    {
+                                        GoiSoChiTiet = await _GoiSoChiTietService.GetByCondition(item => item.IsUuTien == true && item.Active == false && item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day && item.DanhMucDichVuID == DanhMucDichVuID && item.DanhMucQuayDichVuID == DanhMucQuayDichVuID).OrderBy(item=> item.NgayCapSoSoThuTu).Take(1).FirstOrDefaultAsync();
+                                    }                                   
+                                }                               
+                                if (GoiSoChiTiet != null)
+                                {
+                                    if (string.IsNullOrEmpty(GoiSoChiTiet.Code))
+                                    {
+                                        GoiSoChiTiet.Code = Code;
+                                    }
+                                    GoiSoChiTiet.DanhMucQuayDichVuID = DanhMucQuayDichVuID;
+                                    GoiSoChiTiet.NgayTiepNhanSoThuTu = GoiSoChiTiet.NgayCapSoSoThuTu;
+                                    GoiSoChiTiet.Active = true;
+                                    await _GoiSoChiTietService.SaveAsync(GoiSoChiTiet);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                string mes = ex.Message;
+                            }
                         }
                     }
                 }
@@ -1312,9 +1363,7 @@
         public virtual async Task<int> Sync_eHospital_DongNai_AAsync()
         {
             int result = GlobalHelper.InitializationNumber;
-
-            DateTime Now = GlobalHelper.InitializationDateTime;
-
+            DateTime Now = GlobalHelper.InitializationDateTime;            
             List<GoiSoChiTiet> ListGoiSoChiTietExist = await _GoiSoChiTietService.GetByCondition(item => item.DanhMucNgonNguID > 0 && item.NgayCapSo.Value.Year == Now.Year && item.NgayCapSo.Value.Month == Now.Month && item.NgayCapSo.Value.Day == Now.Day).ToListAsync();
             string ListCLSYeuCau_Id = GlobalHelper.InitializationString;
             if (ListGoiSoChiTietExist.Count > 0)
@@ -1330,7 +1379,7 @@
             }
 
             int count = ListCLSYeuCau_Id.Split(';').Length;
-            int count001= ListCLSYeuCau_Id.Length;
+            int count001 = ListCLSYeuCau_Id.Length;
 
             List<Data_eHospital_DongNai_A.Model.CLSYeuCau> ListCLSYeuCau = await _CLSYeuCauService.ReportACLSYeuCau0004ToListAsync(ListCLSYeuCau_Id, Now.Year, Now.Month, Now.Day);
             if (ListCLSYeuCau.Count > 0)
@@ -1353,7 +1402,7 @@
                             GoiSoChiTiet.KhachHangID = CLSYeuCau.BenhNhan_Id;
                             GoiSoChiTiet.HoTen = CLSYeuCau.ChanDoan;
                             GoiSoChiTiet.NamSinh = CLSYeuCau.NamYeuCau;
-                            GoiSoChiTiet.Code = CLSYeuCau.GhiChu;
+                            GoiSoChiTiet.Description = CLSYeuCau.GhiChu;
                             GoiSoChiTiet.NgayCapSo = CLSYeuCau.ThoiGianYeuCau;
                             GoiSoChiTiet.IsUuTien = CLSYeuCau.Khan;
 

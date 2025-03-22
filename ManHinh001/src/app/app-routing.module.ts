@@ -9,11 +9,15 @@ import { C5Component } from './c5/c5.component';
 import { M24Component } from './m24/m24.component';
 import { M4Component } from './m4/m4.component';
 import { M6Component } from './m6/m6.component';
+import { M40Component } from './m40/m40.component';
+import { M60Component } from './m60/m60.component';
+import { M12Component } from './m12/m12.component';
+import { M120Component } from './m120/m120.component';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/M6/T118/T119/T98/T99/T120/T121/3', pathMatch: 'full' },
+  { path: '', redirectTo: '/M120/T118/T119/T120/T121/T98/T99/T158/T159/T160/T187/T195/T196/3', pathMatch: 'full' },
   {
     path: 'Homepage/:Code01/:Code02/:Number', component: HomepageComponent,
   }, 
@@ -30,7 +34,19 @@ const routes: Routes = [
     path: 'M4/:Code01/:Code02/:Code03/:Code04/:Number', component: M4Component,
   }, 
   {
+    path: 'M40/:Code01/:Code02/:Code03/:Code04/:Number', component: M40Component,
+  }, 
+  {
     path: 'M6/:Code01/:Code02/:Code03/:Code04/:Code05/:Code06/:Number', component: M6Component,
+  },
+  {
+    path: 'M60/:Code01/:Code02/:Code03/:Code04/:Code05/:Code06/:Number', component: M60Component,
+  },
+  {
+    path: 'M12/:Code01/:Code02/:Code03/:Code04/:Code05/:Code06/:Code07/:Code08/:Code09/:Code10/:Code11/:Code12/:Number', component: M12Component,
+  },
+  {
+    path: 'M120/:Code01/:Code02/:Code03/:Code04/:Code05/:Code06/:Code07/:Code08/:Code09/:Code10/:Code11/:Code12/:Number', component: M120Component,
   },
   {
     path: 'C5/:Code01/:Number', component: C5Component,

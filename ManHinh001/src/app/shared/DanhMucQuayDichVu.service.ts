@@ -23,6 +23,12 @@ export class DanhMucQuayDichVuService extends BaseService {
     FormData04!: DanhMucQuayDichVu;
     FormData05!: DanhMucQuayDichVu;
     FormData06!: DanhMucQuayDichVu;
+    FormData07!: DanhMucQuayDichVu;
+    FormData08!: DanhMucQuayDichVu;
+    FormData09!: DanhMucQuayDichVu;
+    FormData10!: DanhMucQuayDichVu;
+    FormData11!: DanhMucQuayDichVu;
+    FormData12!: DanhMucQuayDichVu;
 
     constructor(public httpClient: HttpClient) {
         super(httpClient);
@@ -30,14 +36,11 @@ export class DanhMucQuayDichVuService extends BaseService {
         this.ListFull = [];
         this.List01 = [];
         this.List02 = [];        
-        this.List03 = [];  
+        this.List03 = [];         
         this.FormData01 = {
             ID: environment.InitializationNumber,
         };
         this.FormData02 = {
-            ID: environment.InitializationNumber,
-        };
-        this.FormData01 = {
             ID: environment.InitializationNumber,
         };
         this.FormData03 = {
@@ -52,6 +55,24 @@ export class DanhMucQuayDichVuService extends BaseService {
         this.FormData06 = {
             ID: environment.InitializationNumber,
         };       
+        this.FormData07 = {
+            ID: environment.InitializationNumber,
+        };
+        this.FormData08 = {
+            ID: environment.InitializationNumber,
+        };
+        this.FormData09 = {
+            ID: environment.InitializationNumber,
+        };
+        this.FormData10 = {
+            ID: environment.InitializationNumber,
+        };
+        this.FormData11 = {
+            ID: environment.InitializationNumber,
+        };
+        this.FormData12 = {
+            ID: environment.InitializationNumber,
+        };            
     }
 
     GetAllToListAsync() {

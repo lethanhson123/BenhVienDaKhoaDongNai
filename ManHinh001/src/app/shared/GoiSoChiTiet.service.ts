@@ -41,6 +41,30 @@ export class GoiSoChiTietService extends BaseService{
     List52: GoiSoChiTiet[] | undefined;    
     List53: GoiSoChiTiet[] | undefined;    
     List54: GoiSoChiTiet[] | undefined; 
+    List61: GoiSoChiTiet[] | undefined;
+    List62: GoiSoChiTiet[] | undefined;    
+    List63: GoiSoChiTiet[] | undefined;    
+    List64: GoiSoChiTiet[] | undefined; 
+    List71: GoiSoChiTiet[] | undefined;
+    List72: GoiSoChiTiet[] | undefined;    
+    List73: GoiSoChiTiet[] | undefined;    
+    List74: GoiSoChiTiet[] | undefined; 
+    List81: GoiSoChiTiet[] | undefined;
+    List82: GoiSoChiTiet[] | undefined;    
+    List83: GoiSoChiTiet[] | undefined;    
+    List84: GoiSoChiTiet[] | undefined; 
+    List91: GoiSoChiTiet[] | undefined;
+    List92: GoiSoChiTiet[] | undefined;    
+    List93: GoiSoChiTiet[] | undefined;    
+    List94: GoiSoChiTiet[] | undefined; 
+    List101: GoiSoChiTiet[] | undefined;
+    List102: GoiSoChiTiet[] | undefined;    
+    List103: GoiSoChiTiet[] | undefined;    
+    List104: GoiSoChiTiet[] | undefined; 
+    List111: GoiSoChiTiet[] | undefined;
+    List112: GoiSoChiTiet[] | undefined;    
+    List113: GoiSoChiTiet[] | undefined;    
+    List114: GoiSoChiTiet[] | undefined; 
     FormData01!: GoiSoChiTiet;
     FormData02!: GoiSoChiTiet;
     FormData03!: GoiSoChiTiet;
@@ -142,6 +166,18 @@ export class GoiSoChiTietService extends BaseService{
     }  
     GetGoiSoChiTietTiepNhan07ToListAsync() {
         let url = this.APIURL + this.Controller + '/GetGoiSoChiTietTiepNhan07ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }  
+    GetGoiSoChiTietTiepNhan08ToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetGoiSoChiTietTiepNhan08ToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }  
+    GetGoiSoChiTietTiepNhan09ToListAsync() {
+        let url = this.APIURL + this.Controller + '/GetGoiSoChiTietTiepNhan09ToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
