@@ -7,6 +7,7 @@
         Task<BenhAn> GetBySearchStringAsync(string SearchString);
         Task<List<BenhAn>> GetByNgayVaoVien_SearchStringToListAsync(DateTime NgayVaoVien, string SearchString);
         Task<List<BenhAn>> GetByYear_Month_Day_SearchStringToListAsync(int Year, int Month, int Day, string SearchString);
+        Task<List<BenhAn>> GetByBenhNhan_Id_Year_Month_DayToListAsync(int BenhNhan_Id, int Year, int Month, int Day);
     }
 }
 

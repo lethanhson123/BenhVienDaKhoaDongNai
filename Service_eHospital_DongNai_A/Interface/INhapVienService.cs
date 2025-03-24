@@ -2,6 +2,7 @@
 {
     public interface INhapVienService : IBaseService<NhapVien>
     {
+        Task<List<NhapVien>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

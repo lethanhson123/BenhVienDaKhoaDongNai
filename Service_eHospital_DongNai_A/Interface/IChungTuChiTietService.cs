@@ -2,6 +2,7 @@
 {
     public interface IChungTuChiTietService : IBaseService<ChungTuChiTiet>
     {
+        Task<List<ChungTuChiTiet>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

@@ -6,6 +6,7 @@ export class BaseParameter extends Base{
     ListYear?: number[];  
     ListMonth?: number[];  
     ListIDString?: string[];  
+    ListID?: number[];  
     IsSearchAPI?: boolean;  
     BatDau?: Date;    
     KetThuc?: Date;    
@@ -13,6 +14,7 @@ export class BaseParameter extends Base{
     Page?: number;
     PageSize?: number;     
     BenhAn_Id?: number;        
+    BenhNhan_Id?: number;        
     PhongBan_Id?: number;      
     TiepNhan_Id?: number; 
     KhamBenh_Id?: number; 

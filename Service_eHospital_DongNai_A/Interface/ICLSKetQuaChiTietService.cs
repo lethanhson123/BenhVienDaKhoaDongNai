@@ -2,6 +2,7 @@
 {
     public interface ICLSKetQuaChiTietService : IBaseService<CLSKetQuaChiTiet>
     {
+        Task<List<CLSKetQuaChiTiet>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

@@ -2,6 +2,7 @@
 {
     public interface ICLSYeuCauChiTietService : IBaseService<CLSYeuCauChiTiet>
     {
+        Task<List<CLSYeuCauChiTiet>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

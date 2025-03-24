@@ -2,6 +2,7 @@
 {
     public interface ICLSKetQuaService : IBaseService<CLSKetQua>
     {
+        Task<List<CLSKetQua>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

@@ -141,6 +141,17 @@ namespace Service_eHospital_DongNai_A.Implement
             }
             return result;
         }
+
+        public virtual async Task<List<TiepNhan>> GetByBenhNhan_Id_Year_Month_DayToListAsync(int BenhNhan_Id, int Year, int Month, int Day)
+        {
+            List<TiepNhan> result = new List<TiepNhan>();
+            result = await GetByCondition(item => item.BenhNhan_Id == BenhNhan_Id && item.NgayTiepNhan.Value.Year == Year && item.NgayTiepNhan.Value.Month == Month && item.NgayTiepNhan.Value.Day == Day).ToListAsync();
+            if (result == null)
+            {
+                result = new List<TiepNhan>();
+            }
+            return result;
+        }
     }
 }
 

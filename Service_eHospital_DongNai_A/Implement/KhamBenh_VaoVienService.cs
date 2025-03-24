@@ -105,6 +105,16 @@
             }
             return result;
         }
+        public virtual async Task<List<KhamBenh_VaoVien>> GetByBenhNhan_Id_Year_Month_DayToListAsync(int BenhNhan_Id, int Year, int Month, int Day)
+        {
+            List<KhamBenh_VaoVien> result = new List<KhamBenh_VaoVien>();
+            result = await GetByCondition(item => item.BenhNhan_Id == BenhNhan_Id && item.NgayKham.Value.Year == Year && item.NgayKham.Value.Month == Month && item.NgayKham.Value.Day == Day).ToListAsync();
+            if (result == null)
+            {
+                result = new List<KhamBenh_VaoVien>();
+            }
+            return result;
+        }
     }
 }
 

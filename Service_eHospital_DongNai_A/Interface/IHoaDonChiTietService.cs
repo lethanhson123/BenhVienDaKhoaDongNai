@@ -2,6 +2,7 @@
 {
     public interface IHoaDonChiTietService : IBaseService<HoaDonChiTiet>
     {
+        Task<List<HoaDonChiTiet>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

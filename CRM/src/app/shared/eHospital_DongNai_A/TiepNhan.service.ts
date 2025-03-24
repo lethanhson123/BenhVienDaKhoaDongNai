@@ -270,5 +270,17 @@ export class TiepNhanService extends BaseService {
     formUpload.append('data', JSON.stringify(this.BaseParameter));
     return this.httpClient.post(url, formUpload, { headers: this.Headers });
   }
+  GetByBenhNhan_Id_Year_Month_DayToListAsync() {
+    if (this.BaseParameter.BatDau == null) {
+      this.BaseParameter.BatDau = new Date();
+    }
+    this.BaseParameter.Year = this.BaseParameter.BatDau.getFullYear();
+    this.BaseParameter.Month = this.BaseParameter.BatDau.getMonth() + 1;
+    this.BaseParameter.Day = this.BaseParameter.BatDau.getDate();
+    let url = this.APIURL + this.Controller + '/GetByBenhNhan_Id_Year_Month_DayToListAsync';
+    const formUpload: FormData = new FormData();
+    formUpload.append('data', JSON.stringify(this.BaseParameter));
+    return this.httpClient.post(url, formUpload, { headers: this.Headers });
+  }
 }
 

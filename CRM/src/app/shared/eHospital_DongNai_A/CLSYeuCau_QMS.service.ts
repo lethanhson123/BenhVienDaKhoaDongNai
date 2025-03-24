@@ -16,5 +16,11 @@ export class CLSYeuCau_QMSService extends BaseService{
         super(httpClient);
         this.Controller = "CLSYeuCau_QMS";
     }
+    GetByListIDToListAsync() {       
+        let url = this.APIURL + this.Controller + '/GetByListIDToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

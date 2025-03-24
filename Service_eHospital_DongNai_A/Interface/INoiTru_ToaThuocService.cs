@@ -2,6 +2,7 @@
 {
     public interface INoiTru_ToaThuocService : IBaseService<NoiTru_ToaThuoc>
     {
+        Task<List<NoiTru_ToaThuoc>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

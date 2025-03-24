@@ -40,24 +40,7 @@ namespace Service_eHospital_DongNai_A.Implement
                     {
                         List<KhamBenh> ListKhamBenh = await _KhamBenhService.GetBySearchStringToListAsync(searchString);
                         List<int?> ListID = ListKhamBenh.Select(item => item.KhamBenh_Id).ToList();
-                        foreach (var ID in ListID)
-                        {
-                            try
-                            {
-                                List<KhamBenh_ToaThuoc> List = await GetByCondition(item => item.KhamBenh_Id == ID).ToListAsync();
-                                if (List != null)
-                                {
-                                    if (List.Count > 0)
-                                    {
-                                        result.AddRange(List);
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                string message = ex.Message;
-                            }
-                        }
+                        result = await GetByCondition(item => EF.Constant(ListID).Contains(item.KhamBenh_Id.Value)).ToListAsync();
                     }
                 }
             }
@@ -96,7 +79,7 @@ namespace Service_eHospital_DongNai_A.Implement
             if (result == null)
             {
                 result = new List<KhamBenh_ToaThuoc>();
-            }            
+            }
             return result;
         }
         public virtual async Task<List<KhamBenh_ToaThuoc>> GetByYear_Month_DayToListAsync(int Year, int Month, int Day)
@@ -119,6 +102,19 @@ namespace Service_eHospital_DongNai_A.Implement
             else
             {
                 result = await GetByYear_Month_DayToListAsync(Year, Month, Day);
+            }
+            if (result == null)
+            {
+                result = new List<KhamBenh_ToaThuoc>();
+            }
+            return result;
+        }
+        public virtual async Task<List<KhamBenh_ToaThuoc>> GetByListIDToListAsync(List<int?> ListID)
+        {
+            List<KhamBenh_ToaThuoc> result = new List<KhamBenh_ToaThuoc>();
+            if (ListID.Count > 0)
+            {
+                result = await GetByCondition(item => EF.Constant(ListID).Contains(item.KhamBenh_Id.Value)).ToListAsync();
             }
             if (result == null)
             {

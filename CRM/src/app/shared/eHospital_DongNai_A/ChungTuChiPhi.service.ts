@@ -16,5 +16,7 @@ export class ChungTuChiPhiService extends BaseService{
         super(httpClient);
         this.Controller = "ChungTuChiPhi";
     }
+
+    
 }
 

@@ -16,5 +16,11 @@ export class KhamBenh_SinhHieuService extends BaseService{
         super(httpClient);
         this.Controller = "KhamBenh_SinhHieu";
     }
+    GetByBenhNhan_IdToListAsync() {       
+        let url = this.APIURL + this.Controller + '/GetByBenhNhan_IdToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
 }
 

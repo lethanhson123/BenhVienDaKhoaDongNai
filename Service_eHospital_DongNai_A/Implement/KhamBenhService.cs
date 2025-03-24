@@ -106,6 +106,16 @@
             }
             return result;
         }
+        public virtual async Task<List<KhamBenh>> GetByBenhNhan_Id_Year_Month_DayToListAsync(int BenhNhan_Id, int Year, int Month, int Day)
+        {
+            List<KhamBenh> result = new List<KhamBenh>();
+            result = await GetByCondition(item => item.BenhNhan_Id == BenhNhan_Id && item.NgayKham.Value.Year == Year && item.NgayKham.Value.Month == Month && item.NgayKham.Value.Day == Day).ToListAsync();
+            if (result == null)
+            {
+                result = new List<KhamBenh>();
+            }
+            return result;
+        }
     }
 }
 

@@ -5,13 +5,29 @@
     [ApiVersion("1.0")]
     public class CLSYeuCau_QMSController : BaseController<CLSYeuCau_QMS, ICLSYeuCau_QMSService>
     {
-    private readonly ICLSYeuCau_QMSService _CLSYeuCau_QMSService;
-    private readonly IWebHostEnvironment _WebHostEnvironment;
-    public CLSYeuCau_QMSController(ICLSYeuCau_QMSService CLSYeuCau_QMSService, IWebHostEnvironment WebHostEnvironment) : base(CLSYeuCau_QMSService, WebHostEnvironment)
-    {
-    _CLSYeuCau_QMSService = CLSYeuCau_QMSService;
-    _WebHostEnvironment = WebHostEnvironment;
+        private readonly ICLSYeuCau_QMSService _CLSYeuCau_QMSService;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
+        public CLSYeuCau_QMSController(ICLSYeuCau_QMSService CLSYeuCau_QMSService, IWebHostEnvironment WebHostEnvironment) : base(CLSYeuCau_QMSService, WebHostEnvironment)
+        {
+            _CLSYeuCau_QMSService = CLSYeuCau_QMSService;
+            _WebHostEnvironment = WebHostEnvironment;
+        }
+        [HttpPost]
+        [Route("GetByListIDToListAsync")]
+        public virtual async Task<List<CLSYeuCau_QMS>> GetByListIDToListAsync()
+        {
+            List<CLSYeuCau_QMS> result = new List<CLSYeuCau_QMS>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _CLSYeuCau_QMSService.GetByListIDToListAsync(baseParameter.ListID);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
-    }
-    }
+}
 

@@ -5,13 +5,29 @@
     [ApiVersion("1.0")]
     public class NoiTru_LuuTruChiTietController : BaseController<NoiTru_LuuTruChiTiet, INoiTru_LuuTruChiTietService>
     {
-    private readonly INoiTru_LuuTruChiTietService _NoiTru_LuuTruChiTietService;
-    private readonly IWebHostEnvironment _WebHostEnvironment;
-    public NoiTru_LuuTruChiTietController(INoiTru_LuuTruChiTietService NoiTru_LuuTruChiTietService, IWebHostEnvironment WebHostEnvironment) : base(NoiTru_LuuTruChiTietService, WebHostEnvironment)
-    {
-    _NoiTru_LuuTruChiTietService = NoiTru_LuuTruChiTietService;
-    _WebHostEnvironment = WebHostEnvironment;
+        private readonly INoiTru_LuuTruChiTietService _NoiTru_LuuTruChiTietService;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
+        public NoiTru_LuuTruChiTietController(INoiTru_LuuTruChiTietService NoiTru_LuuTruChiTietService, IWebHostEnvironment WebHostEnvironment) : base(NoiTru_LuuTruChiTietService, WebHostEnvironment)
+        {
+            _NoiTru_LuuTruChiTietService = NoiTru_LuuTruChiTietService;
+            _WebHostEnvironment = WebHostEnvironment;
+        }
+        [HttpPost]
+        [Route("GetByListIDToListAsync")]
+        public virtual async Task<List<NoiTru_LuuTruChiTiet>> GetByListIDToListAsync()
+        {
+            List<NoiTru_LuuTruChiTiet> result = new List<NoiTru_LuuTruChiTiet>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _NoiTru_LuuTruChiTietService.GetByListIDToListAsync(baseParameter.ListID);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
-    }
-    }
+}
 

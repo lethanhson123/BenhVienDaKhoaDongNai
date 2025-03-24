@@ -2,6 +2,7 @@
 {
     public interface ICLSKetQuaKhangSinhDoService : IBaseService<CLSKetQuaKhangSinhDo>
     {
+        Task<List<CLSKetQuaKhangSinhDo>> GetByListIDToListAsync(List<int?> ListID);
     }
-    }
+}
 

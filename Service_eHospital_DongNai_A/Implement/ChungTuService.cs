@@ -30,10 +30,10 @@
                     if (result.Count == GlobalHelper.InitializationNumber)
                     {
                         result = await GetByCondition(item => item.MaChungTu.Trim().Contains(searchString)).ToListAsync();
-                    }                    
+                    }
                     if (result.Count == GlobalHelper.InitializationNumber)
                     {
-                     
+
                     }
                 }
             }
@@ -96,6 +96,16 @@
             {
                 result = await GetByYear_Month_DayToListAsync(Year, Month, Day);
             }
+            if (result == null)
+            {
+                result = new List<ChungTu>();
+            }
+            return result;
+        }
+        public virtual async Task<List<ChungTu>> GetByBenhNhan_Id_Year_Month_DayToListAsync(int BenhNhan_Id, int Year, int Month, int Day)
+        {
+            List<ChungTu> result = new List<ChungTu>();
+            result = await GetByCondition(item => item.BenhNhan_Id == BenhNhan_Id && item.NgayChungTu.Value.Year == Year && item.NgayChungTu.Value.Month == Month && item.NgayChungTu.Value.Day == Day).ToListAsync();
             if (result == null)
             {
                 result = new List<ChungTu>();

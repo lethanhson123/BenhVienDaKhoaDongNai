@@ -79,7 +79,7 @@ namespace Service_eHospital_DongNai_A.Implement
                         if (ListDM_BenhNhan.Count > 0)
                         {
                             List<int> ListDM_BenhNhanID = ListDM_BenhNhan.Select(item => item.BenhNhan_Id).ToList();
-                            result = await GetByCondition(item => EF.Constant(ListDM_BenhNhanID).Contains(item.BenhNhan_Id.Value)).ToListAsync();                           
+                            result = await GetByCondition(item => EF.Constant(ListDM_BenhNhanID).Contains(item.BenhNhan_Id.Value)).ToListAsync();
                         }
                     }
                 }
@@ -153,6 +153,16 @@ namespace Service_eHospital_DongNai_A.Implement
             {
                 result = await GetByYear_Month_DayToListAsync(Year, Month, Day);
             }
+            if (result == null)
+            {
+                result = new List<BenhAn>();
+            }
+            return result;
+        }
+        public virtual async Task<List<BenhAn>> GetByBenhNhan_Id_Year_Month_DayToListAsync(int BenhNhan_Id, int Year, int Month, int Day)
+        {
+            List<BenhAn> result = new List<BenhAn>();
+            result = await GetByCondition(item => item.BenhNhan_Id == BenhNhan_Id && item.NgayVaoVien.Value.Year == Year && item.NgayVaoVien.Value.Month == Month && item.NgayVaoVien.Value.Day == Day).ToListAsync();
             if (result == null)
             {
                 result = new List<BenhAn>();

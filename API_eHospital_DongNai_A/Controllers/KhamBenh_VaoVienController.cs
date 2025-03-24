@@ -60,6 +60,22 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByBenhNhan_Id_Year_Month_DayToListAsync")]
+        public virtual async Task<List<KhamBenh_VaoVien>> GetByBenhNhan_Id_Year_Month_DayToListAsync()
+        {
+            List<KhamBenh_VaoVien> result = new List<KhamBenh_VaoVien>();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _KhamBenh_VaoVienService.GetByBenhNhan_Id_Year_Month_DayToListAsync(baseParameter.BenhNhan_Id.Value, baseParameter.Year.Value, baseParameter.Month.Value, baseParameter.Day.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

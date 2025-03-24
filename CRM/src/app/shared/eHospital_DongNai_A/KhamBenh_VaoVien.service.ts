@@ -48,21 +48,21 @@ export class KhamBenh_VaoVienService extends BaseService {
     public DM_BenhNhanService: DM_BenhNhanService,
     public DM_DoiTuongService: DM_DoiTuongService,
     public DM_ICDService: DM_ICDService,
-    public DM_PhongBanService: DM_PhongBanService,    
+    public DM_PhongBanService: DM_PhongBanService,
     public NS_NHANVIENService: NS_NHANVIENService,
   ) {
     super(httpClient);
     this.Controller = "KhamBenh_VaoVien";
 
-    this.Sys_UsersSearch();    
+    this.Sys_UsersSearch();
     this.DM_DoiTuongSearch();
     this.DM_ICDSearch();
-    this.DM_PhongBanSearch();    
+    this.DM_PhongBanSearch();
     this.NS_NHANVIENSearch();
   }
   Sys_UsersSearch() {
     this.Sys_UsersService.ComponentGetAllToListAsync(this.Sys_UsersService);
-  }   
+  }
   DM_DoiTuongSearch() {
     this.DM_DoiTuongService.ComponentGetAllToListAsync(this.DM_DoiTuongService);
   }
@@ -71,12 +71,12 @@ export class KhamBenh_VaoVienService extends BaseService {
   }
   DM_PhongBanSearch() {
     this.DM_PhongBanService.ComponentGetAllToListAsync(this.DM_PhongBanService);
-  } 
+  }
   NS_NHANVIENSearch() {
     this.NS_NHANVIENService.ComponentGetAllToListAsync(this.NS_NHANVIENService);
   }
   RenderToListTransfer(Sort: MatSort, Paginator: MatPaginator) {
-    
+
     var List = [...new Map(this.List.map(item => [item.NhapKhoa_Id, item])).values()];
     var ListID = List.map(function (a) { return a.NhapKhoa_Id; });
     this.BaseParameter.Note = environment.InitializationString;
@@ -175,6 +175,12 @@ export class KhamBenh_VaoVienService extends BaseService {
     this.BaseParameter.Month = this.BaseParameter.BatDau.getMonth() + 1;
     this.BaseParameter.Day = this.BaseParameter.BatDau.getDate();
     let url = this.APIURL + this.Controller + '/GetByYear_Month_Day_SearchStringToListAsync';
+    const formUpload: FormData = new FormData();
+    formUpload.append('data', JSON.stringify(this.BaseParameter));
+    return this.httpClient.post(url, formUpload, { headers: this.Headers });
+  }
+  GetByListIDToListAsync() {       
+    let url = this.APIURL + this.Controller + '/GetByListIDToListAsync';
     const formUpload: FormData = new FormData();
     formUpload.append('data', JSON.stringify(this.BaseParameter));
     return this.httpClient.post(url, formUpload, { headers: this.Headers });
