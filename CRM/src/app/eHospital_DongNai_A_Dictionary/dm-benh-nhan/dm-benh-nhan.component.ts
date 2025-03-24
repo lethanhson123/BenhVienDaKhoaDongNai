@@ -33,11 +33,11 @@ export class DMBenhNhanComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+
   }
   ngAfterViewInit() {
     this.DM_DonViHanhChinhSearchTinhThanh();
-    this.DM_BenhNhanSearch();   
+    this.DM_BenhNhanSearch();
   }
 
   DM_DonViHanhChinhSearchTinhThanh() {
@@ -85,19 +85,24 @@ export class DMBenhNhanComponent implements OnInit {
     this.DM_BenhNhanService.IsShowLoading = true;
     this.DM_BenhNhanService.BaseParameter.Page = 0;
     this.DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToCountAsync().subscribe(
-      res => {        
-        let PageCount = (res as number);        
-        for (let i = 0; i <= PageCount; i++) {          
+      res => {
+        let PageCount = (res as number);
+        for (let i = 0; i <= PageCount; i++) {
           this.DM_BenhNhanService.IsShowLoading = true;
           this.DM_BenhNhanService.BaseParameter.Page = i;
           this.DM_BenhNhanService.GetByTinhThanh_Id_QuanHuyen_Id_XaPhuong_Id_SearchString_PageToListAsync().subscribe(
-            res => {              
+            res => {
               if (res) {
                 let List = (res as DM_BenhNhan[]);
                 if (List) {
-                  for (let j = 0; j < List.length; j++) {
-                    this.DM_BenhNhanService.List.push(List[j]);
-                  }                  
+                  if (this.DM_BenhNhanService.BaseParameter.SearchString.length > 0) {
+                    this.DM_BenhNhanService.List = List;
+                  }
+                  else {
+                    for (let j = 0; j < List.length; j++) {
+                      this.DM_BenhNhanService.List.push(List[j]);
+                    }
+                  }
                   this.DM_BenhNhanService.List = this.DM_BenhNhanService.List.sort((a, b) => (a.TenBenhNhan > b.TenBenhNhan ? 1 : -1));
                   this.DM_BenhNhanService.DataSource = new MatTableDataSource(this.DM_BenhNhanService.List);
                   this.DM_BenhNhanService.DataSource.sort = this.DM_BenhNhanSort;

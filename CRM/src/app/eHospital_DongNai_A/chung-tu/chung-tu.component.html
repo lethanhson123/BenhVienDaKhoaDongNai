@@ -114,13 +114,13 @@
                         <ng-container matColumnDef="MaChungTu">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã chứng từ</th>
                             <td mat-cell *matCellDef="let element">
-                                <b>{{element.ChungTu_Id}}</b>
+                                {{element.MaChungTu}}
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="SoChungTu">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Số chứng từ</th>
                             <td mat-cell *matCellDef="let element">
-                                {{element.SoChungTu}}
+                                <b>{{element.SoChungTu}}</b>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="XuatThuocBANgoaiTru">
@@ -154,7 +154,7 @@
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="SoChungTuGoc">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số chứng từ</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Số chứng từ gốc</th>
                             <td mat-cell *matCellDef="let element">
                                 {{element.SoChungTuGoc}}
                             </td>
@@ -303,9 +303,9 @@
                             </td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="ChungTuService.DisplayColumns003">
+                        <tr mat-header-row *matHeaderRowDef="ChungTuService.DisplayColumns004">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: ChungTuService.DisplayColumns003;">
+                        <tr mat-row *matRowDef="let row; columns: ChungTuService.DisplayColumns004;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #ChungTuPaginator="matPaginator"

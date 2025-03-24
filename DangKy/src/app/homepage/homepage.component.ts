@@ -12,6 +12,9 @@ import { GoiSoService } from 'src/app/shared/GoiSo.service';
 
 import { ThanhVien } from 'src/app/shared/ThanhVien.model';
 import { ThanhVienService } from 'src/app/shared/ThanhVien.service';
+
+import { interval } from 'rxjs';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -33,16 +36,23 @@ export class HomepageComponent implements OnInit {
     document.getElementById("Code").focus();
     this.ThanhVienService.GetLogin();
     this.DanhMucDichVuSearch();
+    this.StartTimerInterval();
   }
-
-  DanhMucDichVuSearch() {    
+  StartTimerInterval() {
+    setInterval(() => {
+      if (this.GoiSoService.IsShowLoading == true) {
+        this.GoiSoService.IsShowLoading = false;
+      }
+    }, environment.Interval)
+  }
+  DanhMucDichVuSearch() {
     if (this.ThanhVienService.FormDataLogin.ID > 0) {
       this.GoiSoService.IsShowLoading = true;
       this.DanhMucDichVuService.BaseParameter.ThanhVienID = this.ThanhVienService.FormDataLogin.ID;
       this.DanhMucDichVuService.BaseParameter.Active = true;
       this.DanhMucDichVuService.GetByThanhVienID_ActiveToListAsync().subscribe(
         res => {
-          this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));          
+          this.DanhMucDichVuService.List = (res as any[]).sort((a, b) => (a.SortOrder > b.SortOrder ? 1 : -1));
           this.DanhMucDichVuService.List001 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == true);
           this.DanhMucDichVuService.List002 = this.DanhMucDichVuService.List.filter(item => item.IsBHYT == false || item.IsBHYT == null);
         },

@@ -21,6 +21,8 @@ import { ReportService } from 'src/app/shared/APIReport/Report.service';
 export class KhamBenh_ToaThuocService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'KhamBenh_ToaThuoc_Id', 'SoThuTuToa', 'LoaiToaThuoc', 'KhamBenh_Id', 'BacSi_Id', 'NgayToaThuoc', 'ThoiGianToaThuoc', 'HuyToaThuoc', 'GhiChu', 'ChungTuPhatThuoc_Id', 'TrangThai', 'NgayTao', 'NguoiTao_Id', 'NgayCapNhat', 'NguoiCapNhat_Id', 'KhoXuat_Id', 'Duyet', 'NgayDuyet', 'ThoiGianDuyet', 'NguoiDuyet_Id', 'ThoiGianTao'];
     DisplayColumns002: string[] = ['STT', 'KhamBenh_ToaThuoc_Id', 'SoThuTuToa', 'LoaiToaThuoc', 'KhamBenh_Id', 'KhoXuat_Id', 'ChungTuPhatThuoc_Id', 'BacSi_Id', 'ThoiGianTao', 'ThoiGianToaThuoc', 'HuyToaThuoc', 'GhiChu', 'NgayTao', 'NguoiTao_Id', 'NgayCapNhat', 'NguoiCapNhat_Id'];
+    DisplayColumns003: string[] = ['Save', 'STT', 'KhamBenh_ToaThuoc_Id', 'SoThuTuToa', 'LoaiToaThuoc', 'KhamBenh_Id', 'NgayToaThuoc', 'ThoiGianToaThuoc', 'ThoiGianTao', 'KhoXuat_Id', 'BacSi_Id', 'HuyToaThuoc', 'Duyet', 'NgayDuyet', 'ThoiGianDuyet', 'NguoiDuyet_Id', 'GhiChu', 'ChungTuPhatThuoc_Id', 'TrangThai', 'NgayTao', 'NguoiTao_Id', 'NgayCapNhat', 'NguoiCapNhat_Id'];
+
     List: KhamBenh_ToaThuoc[] | undefined;
     ListFilter: KhamBenh_ToaThuoc[] | undefined;
     FormData!: KhamBenh_ToaThuoc;
