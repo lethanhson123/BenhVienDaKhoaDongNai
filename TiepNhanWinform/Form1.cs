@@ -24,7 +24,7 @@ namespace TiepNhanWinform
             Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
             this.TopMost = true;
 
-            APICapSoSite = "http://10.84.3.122:901";
+            APICapSoSite = "http://10.84.3.124:901";
             //APICapSoSite = "http://localhost:5097";
         }
 
@@ -246,7 +246,7 @@ namespace TiepNhanWinform
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            txtCode.Focus();
+            //txtCode.Focus();
         }
 
         private void txtCode_Leave(object sender, EventArgs e)

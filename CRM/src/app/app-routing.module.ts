@@ -150,6 +150,7 @@ import { ThongKeInfoComponent } from './thong-ke-info/thong-ke-info.component';
 import { ReportA0002Component } from './Report/report-a0002/report-a0002.component';
 import { BenhAnViewComponent } from './eHospital_DongNai_A/benh-an-view/benh-an-view.component';
 import { BenhNhan001Component } from './eHospital_DongNai_A/benh-nhan001/benh-nhan001.component';
+import { DanhMucQuayDichVuKhoaKhamBenhComponent } from './danh-muc-quay-dich-vu-khoa-kham-benh/danh-muc-quay-dich-vu-khoa-kham-benh.component';
 
 
 
@@ -206,6 +207,9 @@ const routes: Routes = [
   },
   {
     path: 'DanhMucQuayDichVu', component: DanhMucQuayDichVuComponent,
+  },
+  {
+    path: 'DanhMucQuayDichVuKhoaKhamBenh', component: DanhMucQuayDichVuKhoaKhamBenhComponent,
   },
 
   {
