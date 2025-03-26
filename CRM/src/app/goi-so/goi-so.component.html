@@ -75,6 +75,13 @@
                                 </div>
                             </td>
                         </ng-container>
+                        <ng-container matColumnDef="DanhMucUngDungID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Sắp xếp
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.DanhMucUngDungID}}
+                            </td>
+                        </ng-container>
                         <ng-container matColumnDef="DanhMucDichVuName">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Nhóm Quầy | Nhóm Phòng khám
                             </th>
@@ -86,22 +93,21 @@
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Quầy | Phòng khám
                             </th>
                             <td mat-cell *matCellDef="let element">
-                                {{element.DanhMucQuayDichVuName}}
+                                <b>{{element.DanhMucQuayDichVuName}}</b>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="DanhMucPhongKhamName">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng khám
                             </th>
                             <td mat-cell *matCellDef="let element">
-                                {{element.DanhMucPhongKhamName}}
+                                <b>{{element.DanhMucPhongKhamName}}</b>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="TongCong">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>Tổng cộng
                             </th>
-                            <td mat-cell *matCellDef="let element" style="text-align: center;">
-                                <input class="form-control" type="number" placeholder="0" name="TongCong{{element.ID}}"
-                                    [(ngModel)]="element.TongCong" style="text-align: right;">
+                            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                <b>{{element.TongCong}}</b>
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="SoHienTai">
@@ -122,9 +128,9 @@
                                         class="material-icons">delete_forever</i></a> -->
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="GoiSoService.DisplayColumns05">
+                        <tr mat-header-row *matHeaderRowDef="GoiSoService.DisplayColumns06">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: GoiSoService.DisplayColumns05;">
+                        <tr mat-row *matRowDef="let row; columns: GoiSoService.DisplayColumns06;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #GoiSoPaginator="matPaginator"

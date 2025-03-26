@@ -76,6 +76,7 @@ namespace Service.Implement
                 DanhMucDichVu DanhMucDichVu = _DanhMucDichVuRepository.GetByID(model.DanhMucDichVuID.Value);
                 model.DanhMucDichVuName = DanhMucDichVu.Name;
                 model.Note = DanhMucDichVu.Note;
+                model.DanhMucUngDungID = DanhMucDichVu.GroupOrder;
             }
 
             if (model.DanhMucQuayDichVuID > 0)
