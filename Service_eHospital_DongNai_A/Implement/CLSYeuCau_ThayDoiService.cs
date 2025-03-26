@@ -11,10 +11,17 @@
         public virtual async Task<List<CLSYeuCau_ThayDoi>> GetByListIDToListAsync(List<int?> ListID)
         {
             List<CLSYeuCau_ThayDoi> result = new List<CLSYeuCau_ThayDoi>();
-            if (ListID.Count > 0)
+            try
             {
-                result = await GetByCondition(item => EF.Constant(ListID).Contains(item.CLSYeuCau_Id.Value)).ToListAsync();
+                if (ListID.Count > 0)
+                {
+                    result = await GetByCondition(item => EF.Constant(ListID).Contains(item.CLSYeuCau_Id.Value)).ToListAsync();
+                }
             }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }            
             if (result == null)
             {
                 result = new List<CLSYeuCau_ThayDoi>();

@@ -6,6 +6,9 @@ export class BaseParameter extends Base{
     SearchString?: string;    
     Page?: number;
     PageSize?: number;     
+    IsSearchAPI?: boolean;  
+    BatDau?: Date;    
+    KetThuc?: Date;    
     Dictionary_Type_Id?: number;        
     CapDonVi?: number;      
     CapTren_Id?: number;      

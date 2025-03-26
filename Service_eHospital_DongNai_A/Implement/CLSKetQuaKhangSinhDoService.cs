@@ -11,9 +11,16 @@
         public virtual async Task<List<CLSKetQuaKhangSinhDo>> GetByListIDToListAsync(List<int?> ListID)
         {
             List<CLSKetQuaKhangSinhDo> result = new List<CLSKetQuaKhangSinhDo>();
-            if (ListID.Count > 0)
+            try
             {
-                result = await GetByCondition(item => EF.Constant(ListID).Contains(item.CLSKetQua_Id.Value)).ToListAsync();
+                if (ListID.Count > 0)
+                {
+                    result = await GetByCondition(item => EF.Constant(ListID).Contains(item.CLSKetQua_Id.Value)).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
             }
             if (result == null)
             {

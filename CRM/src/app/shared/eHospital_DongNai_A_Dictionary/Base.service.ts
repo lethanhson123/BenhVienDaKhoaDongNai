@@ -36,7 +36,10 @@ export class BaseService {
         };
         this.BaseParameter = {
             SearchString: environment.InitializationString,       
-            ListID: [],              
+            ListID: [],        
+            IsSearchAPI: true,
+            BatDau: new Date(),      
+            KetThuc: new Date(),
             TinhThanh_Id: environment.InitializationNumber,         
             QuanHuyen_Id: environment.InitializationNumber,         
             XaPhuong_Id: environment.InitializationNumber,         

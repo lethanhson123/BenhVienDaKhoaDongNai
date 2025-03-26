@@ -11,9 +11,16 @@
         public virtual async Task<List<CLSKetQua_XQ>> GetByListIDToListAsync(List<int?> ListID)
         {
             List<CLSKetQua_XQ> result = new List<CLSKetQua_XQ>();
-            if (ListID.Count > 0)
+            try
             {
-                result = await GetByCondition(item => EF.Constant(ListID).Contains(item.CLSYeuCau_Id.Value)).ToListAsync();
+                if (ListID.Count > 0)
+                {
+                    result = await GetByCondition(item => EF.Constant(ListID).Contains(item.CLSYeuCau_Id.Value)).ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
             }
             if (result == null)
             {

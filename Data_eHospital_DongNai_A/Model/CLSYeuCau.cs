@@ -7,8 +7,8 @@
         public string? SoPhieuYeuCau { get; set; }
         public DateTime? NgayYeuCau { get; set; }
         public DateTime? ThoiGianYeuCau { get; set; }
-        public int? NamYeuCau { get; set; }
-        public int? ThangYeuCau { get; set; }
+        public short? NamYeuCau { get; set; }
+        public byte? ThangYeuCau { get; set; }
         public int? NoiYeuCau_Id { get; set; }
         public int? BacSiChiDinh_Id { get; set; }
         public int? NoiThucHien_Id { get; set; }
@@ -32,8 +32,8 @@
         public string? GhiChu { get; set; }
         public bool? Khan { get; set; }
         public bool? ThanhToanTruoc { get; set; }
-        public int? SoDichVuYeuCau { get; set; }
-        public int? SoDichVuDongTien { get; set; }
+        public short? SoDichVuYeuCau { get; set; }
+        public short? SoDichVuDongTien { get; set; }
         public bool? DuocPhepThucHien { get; set; }
         public bool? HuyYeuCau { get; set; }
         public bool? KhoaDuLieu { get; set; }
@@ -53,7 +53,7 @@
         public string? NoiDungChiTiet { get; set; }
         public int? NoiThucHienThayDoi_Id { get; set; }
         public DateTime? NgayGioYeuCau { get; set; }
-        public int? GioYeuCau { get; set; }
+        public byte? GioYeuCau { get; set; }
         public bool? DaNhanBenhPham { get; set; }
         public string? BenhPham { get; set; }
         public DateTime? NgayNhanBenhPham { get; set; }

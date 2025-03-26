@@ -6,7 +6,7 @@ import { BaseService } from './Base.service';
 @Injectable({
     providedIn: 'root'
 })
-export class ChungTuChiTietService extends BaseService{
+export class ChungTuChiTietService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'ChungTuChiTiet_Id', 'ChungTu_Id', 'Duoc_Id', 'SoLoNhap_Id', 'SoKiemSoat', 'SoVisa', 'DonViTinh_Id', 'SoLuongYeuCau', 'SoLuongThucTe', 'SoLuongDaXuat', 'TienTe_Id', 'TyGia', 'DonGiaMua', 'DonGiaBan', 'DonGiaVon', 'DonGiaThanhToan', 'SoQuyen', 'SoHoaDonVAT', 'TyLeVAT', 'GiaTriVAT', 'MienPhi', 'LyDoMienPhi_Id', 'SoChungTuKeToan', 'SoChungTuTienMat', 'TrangThai', 'DaPhatSinhPhieuXuat', 'DaPhatSinhPhieuHoanTra', 'KhuyenMai', 'DonDatHang_Id', 'GhiChuChiTiet', 'NgayTao', 'NguoiTao_Id', 'NgayCapNhat', 'NguoiCapNhat_Id', 'NguonHang_Id', 'DonGiaVonVAT', 'ThanhTienMua', 'ThanhTienVon', 'IsTachLo', 'DonViTinhBanDau_Id', 'SoLuongBanDau', 'GoiThau_Id', 'DonGiaThau', 'MaThongTu', 'MaQuyetDinh', 'SoNamHopDong'];
 
     List: ChungTuChiTiet[] | undefined;
@@ -16,11 +16,11 @@ export class ChungTuChiTietService extends BaseService{
         super(httpClient);
         this.Controller = "ChungTuChiTiet";
     }
-    GetByListIDToListAsync() {       
+    GetByListIDToListAsync() {
         let url = this.APIURL + this.Controller + '/GetByListIDToListAsync';
         const formUpload: FormData = new FormData();
         formUpload.append('data', JSON.stringify(this.BaseParameter));
         return this.httpClient.post(url, formUpload, { headers: this.Headers });
-      }
+    }
 }
 

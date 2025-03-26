@@ -4,9 +4,9 @@
     {
         [Key]
         public int? CLSKetQua_XQ_Id { get; set; }
-public string? SoPhieu { get; set; }
-public int? CLSYeuCau_Id { get; set; }
-public string? ID_CT { get; set; }
+        public string? SoPhieu { get; set; }
+        public int? CLSYeuCau_Id { get; set; }
+        public string? ID_CT { get; set; }
 
         public CLSKetQua_XQ()
         {

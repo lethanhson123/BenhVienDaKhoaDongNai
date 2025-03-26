@@ -183,6 +183,7 @@ import { ThongKeInfoComponent } from './thong-ke-info/thong-ke-info.component';
 import { ReportA0002Component } from './Report/report-a0002/report-a0002.component';
 import { ReportA0002DetailComponent } from './Report/report-a0002-detail/report-a0002-detail.component';
 import { BenhAnViewComponent } from './eHospital_DongNai_A/benh-an-view/benh-an-view.component';
+import { BenhNhan001Component } from './eHospital_DongNai_A/benh-nhan001/benh-nhan001.component';
 
 
 
@@ -343,7 +344,7 @@ import { BenhAnViewComponent } from './eHospital_DongNai_A/benh-an-view/benh-an-
     HRBangLuongComponent,    
     HRChamCongComponent,    
     HRLichCongTacComponent,    
-    HRNhanVienComponent, DanhMucDonViTinhComponent, DanhMucMayChamCongComponent, HRNhanVienHopDongComponent, HRNhanVienInfoComponent, HRBangLuongInfoComponent, HRLichCongTacInfoComponent, HRChamCongInfoComponent, HRNhanVienHopDongInfoComponent, DanhMucPhongBanComponent, DanhMucHopDongInfoComponent, ReportNSTLA0001Component, DanhMucThongKeComponent, ThongKeComponent, ThongKeInfoComponent, ReportA0002Component, ReportA0002DetailComponent, BenhAnViewComponent,    
+    HRNhanVienComponent, DanhMucDonViTinhComponent, DanhMucMayChamCongComponent, HRNhanVienHopDongComponent, HRNhanVienInfoComponent, HRBangLuongInfoComponent, HRLichCongTacInfoComponent, HRChamCongInfoComponent, HRNhanVienHopDongInfoComponent, DanhMucPhongBanComponent, DanhMucHopDongInfoComponent, ReportNSTLA0001Component, DanhMucThongKeComponent, ThongKeComponent, ThongKeInfoComponent, ReportA0002Component, ReportA0002DetailComponent, BenhAnViewComponent, BenhNhan001Component,    
     
     
 
