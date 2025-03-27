@@ -1,4 +1,6 @@
-﻿namespace API.Controllers.v1
+﻿using System.Security.Cryptography;
+
+namespace API.Controllers.v1
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
@@ -92,6 +94,7 @@
             }
             return result;
         }
+       
     }
 }
 

@@ -1,4 +1,7 @@
 ﻿using System.Data.SqlClient;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
 
 namespace APIReport.Controllers.v1
 {
@@ -67,7 +70,7 @@ namespace APIReport.Controllers.v1
             List<Report> result = new List<Report>();
             Report model = new Report();
             try
-            {                
+            {
                 result = await _ReportService.ReportDictionary0004ToListAsync();
                 string folderPathRoot = Path.Combine(_WebHostEnvironment.WebRootPath, model.GetType().Name);
                 bool isFolderExists = System.IO.Directory.Exists(folderPathRoot);
@@ -79,7 +82,7 @@ namespace APIReport.Controllers.v1
                 string path = Path.Combine(folderPathRoot, fileName);
                 bool isFileExists = System.IO.File.Exists(path);
                 if (!isFileExists)
-                {                    
+                {
                     string json = JsonConvert.SerializeObject(result);
                     using (FileStream fs = new FileStream(path, FileMode.Create))
                     {
@@ -145,6 +148,129 @@ namespace APIReport.Controllers.v1
             }
             return result;
         }
+        [HttpGet]
+        [Route("BaoHiemXaHoiAsync")]
+        public async Task<string> BaoHiemXaHoiAsync()
+        {
+            string result = GlobalHelper.InitializationString;
+            try
+            {
+                //ThongTinBenhNhan ThongTinBenhNhan = new ThongTinBenhNhan();
+                //ThongTinBenhNhan.maThe = "GD4757523268412";
+                //ThongTinBenhNhan.hoTen = "NGUYỄN KHÁNH HIỀN";
+                //ThongTinBenhNhan.ngaySinh = "1952";
+                //ThongTinBenhNhan.hoTenCb = "Nguyễn Khánh Thoại";
+                //ThongTinBenhNhan.cccdCb = "075087002073";
+                //string _serviceURL = "http://10.84.2.177:8083/";
+                //using (HttpClient httpClient = new HttpClient())
+                //{
+                //    httpClient.BaseAddress = new Uri(_serviceURL);
+                //    httpClient.DefaultRequestHeaders.Accept.Clear();
+                //    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //    HttpResponseMessage result2 = httpClient.PostAsJsonAsync("/CheckTheBHYT", ThongTinBenhNhan).Result;
+                //    if (result2.IsSuccessStatusCode)
+                //    {
+                //        try
+                //        {
+                //            var result3 = result2.Content.ReadAsStringAsync().Result;
+                //        }
+                //        catch (Exception ex)
+                //        {
+                //        }
+                //    }
+                //}
+
+
+                string username = "75001_075087002073";
+                string PasswordDecrypt = "Thoai@123";
+                string password = "Thoai@123";
+                MD5 md5 = new MD5CryptoServiceProvider();
+                md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(PasswordDecrypt));
+                byte[] PasswordResult = md5.Hash;
+                StringBuilder strBuilder = new StringBuilder();
+                for (int i = 0; i < PasswordResult.Length; i++)
+                {
+                    strBuilder.Append(PasswordResult[i].ToString("x2"));
+                }
+
+                password = strBuilder.ToString();
+                result = password;
+
+                string URL = "https://egw.baohiemxahoi.gov.vn/api/token/take";
+                HttpClient HttpClient = new HttpClient();
+                StringContent HttpContent = new StringContent(@"{ ""username"": """ + username + @""", ""password"": """ + password + @""" }", Encoding.UTF8, "application/json");
+                var response = await HttpClient.PostAsync(URL, HttpContent);
+
+                var resultAPI = await response.Content.ReadAsStringAsync();
+
+                BaoHiemXaHoi BaoHiemXaHoi = JsonConvert.DeserializeObject<BaoHiemXaHoi>(resultAPI);
+
+                if (BaoHiemXaHoi.maKetQua == "200")
+                {
+                    string maThe = "GD4757523268412";
+                    string hoTen = "NGUYỄN KHÁNH HIỀN";
+                    string ngaySinh = "1952";
+                    string hoTenCb = "Nguyễn Khánh Thoại";
+                    string cccdCb = "075087002073";
+
+                    string URL001 = "http://egw.baohiemxahoi.gov.vn/api/egw/KQNhanLichSuKCB2019?token=" + BaoHiemXaHoi.APIKey.access_token + "&id_token=" + BaoHiemXaHoi.APIKey.id_token + "&username=" + username + "&password=" + password;
+                    //string URL001 = "https://egw.baohiemxahoi.gov.vn/api/egw/KQNhanLichSuKCB2024";
+                    HttpClient HttpClient001 = new HttpClient();
+                    //StringContent HttpContent001 = new StringContent(@"{ ""maThe"": """ + maThe + @""", ""hoTen"": """ + hoTen + @""", ""ngaySinh"": """ + ngaySinh + @""", ""hoTenCb"": """ + hoTenCb + @""", ""cccdCb"": """ + cccdCb + @"""}", Encoding.UTF8, "application/json");
+                    StringContent HttpContent001 = new StringContent(@"{ ""maThe"": """ + maThe + @""", ""hoTen"": """ + hoTen + @""", ""ngaySinh"": """ + ngaySinh + @"""}", Encoding.UTF8, "application/json");
+                    HttpClient001.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BaoHiemXaHoi.APIKey.access_token);
+                    var response001 = await HttpClient001.PostAsync(URL001, HttpContent001);
+
+                    var resultAPI001 = await response001.Content.ReadAsStringAsync();
+
+
+                }
+
+                //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                //var httpWebRequest = (HttpWebRequest)WebRequest.Create(URL);
+                //httpWebRequest.ContentType = "application/json";
+                //httpWebRequest.Method = "POST";
+
+                //using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                //{
+                //    string json = @"{""username"": """ + username + @""",""password"":""" + password + @"""}";
+                //    streamWriter.Write(json);
+                //}
+
+                //var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                //{
+                //    var resultAPI = streamReader.ReadToEnd();
+
+                //    BaoHiemXaHoi BaoHiemXaHoi = JsonConvert.DeserializeObject<BaoHiemXaHoi>(resultAPI);
+
+                //    string URL001 = "https://egw.baohiemxahoi.gov.vn/api/egw/KQNhanLichSuKCB2024";
+                //    string maThe = "GD4757523268412";
+                //    string hoTen = "NGUYỄN KHÁNH HIỀN";
+                //    string ngaySinh = "1952";
+                //    string hoTenCb = "Nguyễn Khánh Thoại";
+                //    string cccdCb = "075087002073";
+
+                //    var httpWebRequest001 = (HttpWebRequest)WebRequest.Create(URL001);
+                //    httpWebRequest001.ContentType = "application/json";
+                //    httpWebRequest001.Method = "POST";
+                //    httpWebRequest001.Headers
+
+                //    using (var streamWriter001 = new StreamWriter(httpWebRequest001.GetRequestStream()))
+                //    {
+                //        string json001 = @"{""maThe"": """ + maThe + @""",""hoTen"":""" + hoTen + @""",""ngaySinh"":""" + ngaySinh + @""",""hoTenCb"":""" + hoTenCb + @""",""cccdCb"":""" + cccdCb + @"""}";
+                //        streamWriter001.Write(json001);
+                //    }
+
+                //}
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
         //[HttpPost]
         //[Route("CovertDataAsync")]
         //public async Task<List<Report>> CovertDataAsync()
@@ -164,7 +290,7 @@ namespace APIReport.Controllers.v1
         //        {
         //            foreach (DataRow row in dataTable.Rows)
         //            {                      
-                      
+
         //                StringBuilder txt = new StringBuilder();
         //                txt.Append(@"INSERT INTO DanhMucChucDanh(ID, Code, Name, Active, ParentID, ParentName)");
         //                txt.Append(@"VALUES(");

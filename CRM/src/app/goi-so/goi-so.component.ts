@@ -49,7 +49,9 @@ export class GoiSoComponent implements OnInit {
         this.GoiSoService.List = (res as GoiSo[]).sort((a, b) => (a.DanhMucDichVuID > b.DanhMucDichVuID ? 1 : -1));
         this.GoiSoService.BaseParameter.Page = environment.InitializationNumber;
         for (let i = 0; i < this.GoiSoService.List.length; i++) {
-          this.GoiSoService.BaseParameter.Page = this.GoiSoService.BaseParameter.Page + this.GoiSoService.List[i].TongCong;
+          if(this.GoiSoService.List[i].DanhMucQuayDichVuID>0){
+            this.GoiSoService.BaseParameter.Page = this.GoiSoService.BaseParameter.Page + this.GoiSoService.List[i].TongCong;
+          }          
         }
         this.GoiSoService.DataSource = new MatTableDataSource(this.GoiSoService.List);
         this.GoiSoService.DataSource.sort = this.GoiSoSort;
