@@ -109,6 +109,38 @@
         }
         #endregion
         #region AppSettings 
+        public static string BaoHiemXaHoiAPISite
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("BaoHiemXaHoiAPISite").Value;
+            }
+        }
+        public static string BaoHiemXaHoiController
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("BaoHiemXaHoiController").Value;
+            }
+        }
+        public static string BaoHiemXaHoihoTenCb
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("BaoHiemXaHoihoTenCb").Value;
+            }
+        }
+        public static string BaoHiemXaHoicccdCb
+        {
+            get
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                return builder.Build().GetSection("AppSettings").GetSection("BaoHiemXaHoicccdCb").Value;
+            }
+        }
         public static string PageTitle
         {
             get

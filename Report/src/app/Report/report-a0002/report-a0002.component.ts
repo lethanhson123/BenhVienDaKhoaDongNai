@@ -218,7 +218,7 @@ export class ReportA0002Component implements OnInit {
         this.ThongKeChiTietService.List70 = this.ThongKeChiTietService.List70.sort((a, b) => (a.ThongKe001 > b.ThongKe001 ? 1 : -1));        
 
         this.ThongKeChiTietService.List700 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 70);
-        this.ThongKeChiTietService.List700 = this.ThongKeChiTietService.List700.sort((a, b) => (a.ThongKe001 > b.ThongKe001 ? 1 : -1));        
+        this.ThongKeChiTietService.List700 = this.ThongKeChiTietService.List700.sort((a, b) => (a.ThongKe001 < b.ThongKe001 ? 1 : -1));        
 
         this.ThongKeChiTietService.List07 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 7);
         this.ThongKeChiTietService.List07 = this.ThongKeChiTietService.List07.sort((a, b) => (a.Name004 > b.Name004 ? 1 : -1));

@@ -173,6 +173,7 @@ namespace APIReport.Controllers.v1
                 //        try
                 //        {
                 //            var result3 = result2.Content.ReadAsStringAsync().Result;
+                //            KQLichSuKCB KQLichSuKCB = JsonConvert.DeserializeObject<KQLichSuKCB>(result3);
                 //        }
                 //        catch (Exception ex)
                 //        {
@@ -213,11 +214,11 @@ namespace APIReport.Controllers.v1
                     string hoTenCb = "Nguyễn Khánh Thoại";
                     string cccdCb = "075087002073";
 
-                    string URL001 = "http://egw.baohiemxahoi.gov.vn/api/egw/KQNhanLichSuKCB2019?token=" + BaoHiemXaHoi.APIKey.access_token + "&id_token=" + BaoHiemXaHoi.APIKey.id_token + "&username=" + username + "&password=" + password;
-                    //string URL001 = "https://egw.baohiemxahoi.gov.vn/api/egw/KQNhanLichSuKCB2024";
+                    //string URL001 = "http://egw.baohiemxahoi.gov.vn/api/egw/KQNhanLichSuKCB2019?token=" + BaoHiemXaHoi.APIKey.access_token + "&id_token=" + BaoHiemXaHoi.APIKey.id_token + "&username=" + username + "&password=" + password;
+                    string URL001 = "https://egw.baohiemxahoi.gov.vn/api/egw/KQNhanLichSuKCB2024";
                     HttpClient HttpClient001 = new HttpClient();
-                    //StringContent HttpContent001 = new StringContent(@"{ ""maThe"": """ + maThe + @""", ""hoTen"": """ + hoTen + @""", ""ngaySinh"": """ + ngaySinh + @""", ""hoTenCb"": """ + hoTenCb + @""", ""cccdCb"": """ + cccdCb + @"""}", Encoding.UTF8, "application/json");
-                    StringContent HttpContent001 = new StringContent(@"{ ""maThe"": """ + maThe + @""", ""hoTen"": """ + hoTen + @""", ""ngaySinh"": """ + ngaySinh + @"""}", Encoding.UTF8, "application/json");
+                    StringContent HttpContent001 = new StringContent(@"{ ""maThe"": """ + maThe + @""", ""hoTen"": """ + hoTen + @""", ""ngaySinh"": """ + ngaySinh + @""", ""hoTenCb"": """ + hoTenCb + @""", ""cccdCb"": """ + cccdCb + @"""}", Encoding.UTF8, "application/json");
+                    //StringContent HttpContent001 = new StringContent(@"{ ""maThe"": """ + maThe + @""", ""hoTen"": """ + hoTen + @""", ""ngaySinh"": """ + ngaySinh + @"""}", Encoding.UTF8, "application/json");
                     HttpClient001.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BaoHiemXaHoi.APIKey.access_token);
                     var response001 = await HttpClient001.PostAsync(URL001, HttpContent001);
 
@@ -271,6 +272,43 @@ namespace APIReport.Controllers.v1
             }
             return result;
         }
+        [HttpPost]
+        [Route("BaoHiemXaHoiKiemTraThongTuyenAsync")]
+        public async Task<string> BaoHiemXaHoiKiemTraThongTuyenAsync()
+        {
+            string result = GlobalHelper.InitializationString;
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);                
+                baseParameter.ThongTinBenhNhan.hoTenCb = GlobalHelper.BaoHiemXaHoihoTenCb;
+                baseParameter.ThongTinBenhNhan.cccdCb = GlobalHelper.BaoHiemXaHoicccdCb;
+                string _serviceURL = GlobalHelper.BaoHiemXaHoiAPISite;
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(_serviceURL);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage result2 = httpClient.PostAsJsonAsync(GlobalHelper.BaoHiemXaHoiController, baseParameter.ThongTinBenhNhan).Result;
+                    if (result2.IsSuccessStatusCode)
+                    {
+                        try
+                        {
+                            var result3 = result2.Content.ReadAsStringAsync().Result;
+                            KQLichSuKCB KQLichSuKCB = JsonConvert.DeserializeObject<KQLichSuKCB>(result3);
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                }           
+            }
+            catch (Exception ex)
+            {
+                string mes = ex.Message;
+            }
+            return result;
+        }
+
         //[HttpPost]
         //[Route("CovertDataAsync")]
         //public async Task<List<Report>> CovertDataAsync()

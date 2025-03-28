@@ -13,6 +13,7 @@
         public List<string>? ListIDString { get; set; }
         public int? ID { get; set; }
         public int? PhongBanID { get; set; }
+        public ThongTinBenhNhan? ThongTinBenhNhan { get; set; }
         public BaseParameter()
 		{
 		}
