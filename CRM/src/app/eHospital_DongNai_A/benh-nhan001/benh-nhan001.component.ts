@@ -152,9 +152,7 @@ export class BenhNhan001Component implements OnInit {
     this.KhamBenhService.GetByBenhNhan_Id_Year_Month_DayToListAsync().subscribe(
       res => {
         this.KhamBenhService.List = (res as KhamBenh[]).sort((a, b) => (a.ThoiGianKham > b.ThoiGianKham ? 1 : -1));
-        this.KhamBenhService.DataSource = new MatTableDataSource(this.KhamBenhService.List);
-        this.KhamBenhService.DataSource.sort = this.KhamBenhSort;
-        this.KhamBenhService.DataSource.paginator = this.KhamBenhPaginator;
+        this.KhamBenhService.RenderToListTransfer(this.KhamBenhSort, this.KhamBenhPaginator);      
       },
       err => {
       },
@@ -168,9 +166,8 @@ export class BenhNhan001Component implements OnInit {
     this.TiepNhanService.GetByBenhNhan_Id_Year_Month_DayToListAsync().subscribe(
       res => {
         this.TiepNhanService.List = (res as TiepNhan[]).sort((a, b) => (a.ThoiGianTiepNhan > b.ThoiGianTiepNhan ? 1 : -1));
-        this.TiepNhanService.DataSource = new MatTableDataSource(this.TiepNhanService.List);
-        this.TiepNhanService.DataSource.sort = this.TiepNhanSort;
-        this.TiepNhanService.DataSource.paginator = this.TiepNhanPaginator;
+        this.TiepNhanService.RenderToListTransfer(this.TiepNhanSort, this.TiepNhanPaginator);
+
       },
       err => {
       },
