@@ -223,7 +223,16 @@
 		mat-option div {
 			font-size: 12px;
 		}
-	</style>	
+	</style>
+	<script>
+		window.onload = function () {
+			var el = document.documentElement,
+				rfs = el.requestFullScreen
+					|| el.webkitRequestFullScreen
+					|| el.mozRequestFullScreen;
+			rfs.call(el);
+		};
+	</script>
 </head>
 
 <body class="horizontal-layout page-header-light horizontal-menu 2-columns  " data-open="click"

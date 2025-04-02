@@ -94,7 +94,7 @@ export class HomepageComponent implements OnInit {
         // if ((this.DanhMucQuayDichVuService.FormData01.ID == 0) || (this.DanhMucQuayDichVuService.FormData02.ID == 0)) {
         //   this.GoiSoThamSoService.FormData.Name = "col s6 m6 l6";
         //   this.GoiSoThamSoService.FormData.Code = "col s6 m6 l6";
-        // }
+        // }        
         this.GoiSoChiTietDangKy();        
       },
       err => {
