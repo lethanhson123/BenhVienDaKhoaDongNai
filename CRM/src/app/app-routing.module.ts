@@ -152,6 +152,7 @@ import { BenhAnViewComponent } from './eHospital_DongNai_A/benh-an-view/benh-an-
 import { BenhNhan001Component } from './eHospital_DongNai_A/benh-nhan001/benh-nhan001.component';
 import { DanhMucQuayDichVuKhoaKhamBenhComponent } from './danh-muc-quay-dich-vu-khoa-kham-benh/danh-muc-quay-dich-vu-khoa-kham-benh.component';
 import { SysAppSettingsCheckKeToanComponent } from './eHospital_DongNai_A_Config/sys-app-settings-check-ke-toan/sys-app-settings-check-ke-toan.component';
+import { ReportA0005Component } from './Report/report-a0005/report-a0005.component';
 
 
 
@@ -539,6 +540,9 @@ const routes: Routes = [
   },
   {
     path: 'ReportA0002', component: ReportA0002Component,
+  },
+  {
+    path: 'ReportA0005', component: ReportA0005Component,
   },
 
   {

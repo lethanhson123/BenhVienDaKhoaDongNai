@@ -19,6 +19,7 @@ Month?: number;
 Day?: number;
 Hour?: number;
 Week?: number;
+Quarter?: number;
 ThongKe000?: number;
 ThongKe001?: number;
 ThongKe002?: number;

@@ -19,6 +19,7 @@
         public int? Day { get; set; }
         public int? Hour { get; set; }
         public int? Week { get; set; }
+        public int? Quarter { get; set; }
         public decimal? ThongKe000 { get; set; }
         public decimal? ThongKe001 { get; set; }
         public decimal? ThongKe002 { get; set; }
@@ -52,6 +53,11 @@
         public decimal? ThongKe030 { get; set; }
         public decimal? ThongKe031 { get; set; }
         public decimal? ThongKe032 { get; set; }
+        public DateTime? DateTime001 { get; set; }
+        public DateTime? DateTime002 { get; set; }
+        public DateTime? DateTime003 { get; set; }
+        public DateTime? DateTime004 { get; set; }
+        public DateTime? DateTime005 { get; set; }
 
         public ThongKeChiTiet()
         {

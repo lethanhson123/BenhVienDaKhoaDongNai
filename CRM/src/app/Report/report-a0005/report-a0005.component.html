@@ -1,0 +1,290 @@
+<div class="row">
+    <div id="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12 l9">
+                    <b style="font-size: 16px;">{{ThongKeService.FormData.Name}}</b>
+                </div>
+                <div class="col s12 m12 l3 right-align-md">
+                    <div class="col s12 m12 l9">
+                        <label>Chọn tháng</label>
+                        <input [ngModel]="ThongKeService.BaseParameter.BatDau | date:'yyyy-MM-dd'"
+                            style="text-align: right;" (ngModelChange)="DateBatDau($event)"
+                            [ngModelOptions]="{ updateOn: 'blur' }" type="date" class="form-control" autocomplete="off"
+                            (keyup.enter)="ThongKeSearch()">
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <br />
+                        <a style="color: green;" title="Tìm" (click)="ThongKeSearch()">
+                            <i class="material-icons">play_circle_filled</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col s12 m12 l6">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám quý
+                    {{ThongKeService.FormData.Quarter}} năm {{ThongKeService.FormData.Year}}</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
+                    [labels]="Report0001_0001_Label" [chartType]="Report0001_0001_Type" [colors]="Report0001_0001_Color"
+                    [options]="Report0001_0001_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+        <div class="col s12 m12 l6">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Lượt khám quý
+                    {{ThongKeService.FormData.Quarter}} năm {{ThongKeService.FormData.Year}}</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0001_Data"
+                    [labels]="Report0001_0001_Label" [chartType]="Report0001_0002_Type" [colors]="Report0001_0001_Color"
+                    [options]="Report0001_0002_Option" [plugins]="Report0001_0002_Plugin">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col s12 m12 l10">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6 style="text-transform: uppercase; text-align: center; font-weight: bolder;">Thời gian chờ khám trung
+                    bình quý {{ThongKeService.FormData.Quarter}} năm {{ThongKeService.FormData.Year}} (Đơn vị tính:
+                    Phút)</h6>
+                <canvas style="font-size: 30px;" baseChart [datasets]="Report0001_0003_Data"
+                    [labels]="Report0001_0003_Label" [chartType]="Report0001_0003_Type" [colors]="Report0001_0001_Color"
+                    [options]="Report0001_0003_Option" [plugins]="Report0001_0001_Plugin">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <style>
+            table thead th{
+                text-align: center;
+            }
+            table tbody tr td{
+                text-align: right;
+            }
+            table tbody tr:last-child td{
+                font-weight: bold;
+            }
+        </style>
+        <div class="col s12 m12 l12">
+            <div style="border-color: #000000; border-width: 1px; border-style: solid; padding: 10px;">
+                <h6>Kết quả khảo sát Tháng {{ThongKeChiTietService.FormData3000.Month}}/{{ThongKeChiTietService.FormData3000.Year}} (Số mẫu thực hiện: {{ThongKeChiTietService.FormData3000.ThongKe011}} lượt khám)(Đơn vị tính: Phút)</h6>               
+                <table style="font-size: 20px;">
+                    <thead>
+                        <th>STT</th>
+                        <th>Năm</th>
+                        <th>Tháng</th>
+                        <th>Lâm sàng</th>
+                        <th>LS + 01 CLS</th>
+                        <th>LS + 02 CLS</th>
+                        <th>LS + 03 CLS</th>
+                        <th>LS + 04 CLS</th>
+                        <th>LS + 05 CLS</th>
+                        <th>LS + 06 CLS</th>
+                        <th>LS + 07 CLS</th>
+                        <th>LS + 08 CLS</th>
+                        <th>LS + 09 CLS</th>
+                        <th>Trung bình</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="ThongKeChiTietService.List300 && ThongKeChiTietService.List300.length>0">
+                            <td style="text-align: center;">01</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List300[0].Year}}</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List300[0].Month}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe011}}</td>
+                        </tr>
+                        <tr *ngIf="ThongKeChiTietService.List400 && ThongKeChiTietService.List400.length>0">
+                            <td style="text-align: center;">02</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List400[0].Year}}</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List400[0].Month}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List400[0].ThongKe011}}</td>
+                        </tr>
+                        <tr *ngIf="ThongKeChiTietService.List03 && ThongKeChiTietService.List03.length>0">
+                            <td style="text-align: center;">03</td>
+                            <td style="text-align: center;"></td>
+                            <td style="text-align: center;">So sánh</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List03[0].ThongKe011}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6>Kết quả khảo sát Tháng {{ThongKeChiTietService.FormData2000.Month}}/{{ThongKeChiTietService.FormData2000.Year}} (Số mẫu thực hiện: {{ThongKeChiTietService.FormData2000.ThongKe011}} lượt khám)(Đơn vị tính: Phút)</h6>               
+                <table style="font-size: 20px;">
+                    <thead>
+                        <th>STT</th>
+                        <th>Năm</th>
+                        <th>Tháng</th>
+                        <th>Lâm sàng</th>
+                        <th>LS + 01 CLS</th>
+                        <th>LS + 02 CLS</th>
+                        <th>LS + 03 CLS</th>
+                        <th>LS + 04 CLS</th>
+                        <th>LS + 05 CLS</th>
+                        <th>LS + 06 CLS</th>
+                        <th>LS + 07 CLS</th>
+                        <th>LS + 08 CLS</th>
+                        <th>LS + 09 CLS</th>
+                        <th>Trung bình</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="ThongKeChiTietService.List200 && ThongKeChiTietService.List200.length>0">
+                            <td style="text-align: center;">01</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List200[0].Year}}</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List200[0].Month}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe011}}</td>
+                        </tr>
+                        <tr *ngIf="ThongKeChiTietService.List300 && ThongKeChiTietService.List300.length>0">
+                            <td style="text-align: center;">02</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List300[0].Year}}</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List300[0].Month}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List300[0].ThongKe011}}</td>
+                        </tr>
+                        <tr *ngIf="ThongKeChiTietService.List02 && ThongKeChiTietService.List02.length>0">
+                            <td style="text-align: center;">03</td>
+                            <td style="text-align: center;"></td>
+                            <td style="text-align: center;">So sánh</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List02[0].ThongKe011}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6>Kết quả khảo sát Tháng {{ThongKeChiTietService.FormData1000.Month}}/{{ThongKeChiTietService.FormData1000.Year}} (Số mẫu thực hiện: {{ThongKeChiTietService.FormData1000.ThongKe011}} lượt khám)(Đơn vị tính: Phút)</h6>               
+                <table style="font-size: 20px;">
+                    <thead>
+                        <th>STT</th>
+                        <th>Năm</th>
+                        <th>Tháng</th>
+                        <th>Lâm sàng</th>
+                        <th>LS + 01 CLS</th>
+                        <th>LS + 02 CLS</th>
+                        <th>LS + 03 CLS</th>
+                        <th>LS + 04 CLS</th>
+                        <th>LS + 05 CLS</th>
+                        <th>LS + 06 CLS</th>
+                        <th>LS + 07 CLS</th>
+                        <th>LS + 08 CLS</th>
+                        <th>LS + 09 CLS</th>
+                        <th>Trung bình</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="ThongKeChiTietService.List100 && ThongKeChiTietService.List100.length>0">
+                            <td style="text-align: center;">01</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List100[0].Year}}</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List100[0].Month}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List100[0].ThongKe011}}</td>
+                        </tr>
+                        <tr *ngIf="ThongKeChiTietService.List200 && ThongKeChiTietService.List200.length>0">
+                            <td style="text-align: center;">02</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List200[0].Year}}</td>
+                            <td style="text-align: center;">{{ThongKeChiTietService.List200[0].Month}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List200[0].ThongKe011}}</td>
+                        </tr>
+                        <tr *ngIf="ThongKeChiTietService.List01 && ThongKeChiTietService.List01.length>0">
+                            <td style="text-align: center;">03</td>
+                            <td style="text-align: center;"></td>
+                            <td style="text-align: center;">So sánh</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe000}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe001}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe002}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe003}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe004}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe005}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe006}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe007}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe008}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe009}}</td>
+                            <td>{{ThongKeChiTietService.List01[0].ThongKe011}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+</div>
+<app-loading *ngIf="ThongKeService.IsShowLoading"></app-loading>

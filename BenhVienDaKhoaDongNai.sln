@@ -75,6 +75,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceReport", "ServiceRep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIReport", "APIReport\APIReport.csproj", "{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITest", "APITest\APITest.csproj", "{774E1E5E-56A0-4C65-802F-5F496D5346F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignWinForm", "SignWinForm\SignWinForm.csproj", "{0CFBDD3A-ABCF-4E67-996D-611A6454D9F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -225,6 +229,14 @@ Global
 		{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ADB6218-E0F3-410D-8AAF-CBDBFB6345DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{774E1E5E-56A0-4C65-802F-5F496D5346F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774E1E5E-56A0-4C65-802F-5F496D5346F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774E1E5E-56A0-4C65-802F-5F496D5346F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774E1E5E-56A0-4C65-802F-5F496D5346F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CFBDD3A-ABCF-4E67-996D-611A6454D9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CFBDD3A-ABCF-4E67-996D-611A6454D9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CFBDD3A-ABCF-4E67-996D-611A6454D9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CFBDD3A-ABCF-4E67-996D-611A6454D9F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

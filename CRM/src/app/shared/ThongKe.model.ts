@@ -9,6 +9,7 @@ Month?: number;
 Day?: number;
 Hour?: number;
 Week?: number;
+Quarter?: number;
 
 }
 

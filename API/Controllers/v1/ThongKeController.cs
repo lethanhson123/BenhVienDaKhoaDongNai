@@ -29,6 +29,23 @@
             }
             return result;
         }
+        [HttpPost]
+        [Route("GetByParentID_Year_MonthAsync")]
+        public virtual async Task<ThongKe> GetByParentID_Year_MonthAsync()
+        {
+            ThongKe result = new ThongKe();
+            try
+            {
+                BaseParameter baseParameter = JsonConvert.DeserializeObject<BaseParameter>(Request.Form["data"]);
+                result = await _ThongKeService.GetByParentID_Year_MonthAsync(baseParameter.ParentID.Value, baseParameter.Year.Value, baseParameter.Month.Value);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                result.Note = message;
+            }
+            return result;
+        }
     }
 }
 
