@@ -86,11 +86,26 @@ export class ReportA0005Component implements OnInit {
 
         this.ThongKeChiTietService.List1000 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 1000);
         this.ThongKeChiTietService.List2000 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 2000);
-        this.ThongKeChiTietService.List3000 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 3000);
+        this.ThongKeChiTietService.List3000 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 3000);      
 
         this.ThongKeChiTietService.FormData1000 = this.ThongKeChiTietService.List1000[0];
         this.ThongKeChiTietService.FormData2000 = this.ThongKeChiTietService.List2000[0];
         this.ThongKeChiTietService.FormData3000 = this.ThongKeChiTietService.List3000[0];
+
+        this.ThongKeChiTietService.List04 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 123);
+        this.ThongKeChiTietService.List05 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 123900);
+        this.ThongKeChiTietService.List06 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 12390);
+        this.ThongKeChiTietService.List07 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 456);
+        this.ThongKeChiTietService.List08 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 123456);
+        this.ThongKeChiTietService.List90 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 90);
+        this.ThongKeChiTietService.List900 = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 900);
+
+        this.ThongKeChiTietService.List07[0].Year=this.ThongKeChiTietService.List400[0].Year;
+        this.ThongKeChiTietService.List07[0].Quarter=this.ThongKeChiTietService.List400[0].Quarter;
+
+        // this.ThongKeChiTietService.FormData1000 = this.ThongKeChiTietService.List1000[0];
+        // this.ThongKeChiTietService.FormData2000 = this.ThongKeChiTietService.List2000[0];
+        // this.ThongKeChiTietService.FormData3000 = this.ThongKeChiTietService.List3000[0];
 
         let ThongKe011Sum = this.ThongKeChiTietService.List1000[0].ThongKe011 + this.ThongKeChiTietService.List2000[0].ThongKe011 + this.ThongKeChiTietService.List3000[0].ThongKe011;
 

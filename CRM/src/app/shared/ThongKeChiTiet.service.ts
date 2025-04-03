@@ -57,6 +57,12 @@ export class ThongKeChiTietService extends BaseService {
     List4000: ThongKeChiTiet[] | undefined;
     List10000: ThongKeChiTiet[] | undefined;
 
+    FormData001!: ThongKeChiTiet;
+    FormData002!: ThongKeChiTiet;
+    FormData003!: ThongKeChiTiet;
+    FormData004!: ThongKeChiTiet;
+    FormData005!: ThongKeChiTiet;
+    FormData006!: ThongKeChiTiet;    
     FormData1000!: ThongKeChiTiet;
     FormData2000!: ThongKeChiTiet;
     FormData3000!: ThongKeChiTiet;
@@ -64,6 +70,19 @@ export class ThongKeChiTietService extends BaseService {
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "ThongKeChiTiet";
+        this.FormData001 = {
+        };
+        this.FormData002 = {
+        };
+        this.FormData003 = {
+        };
+        this.FormData004 = {
+        };
+        this.FormData005 = {
+        };
+        this.FormData006 = {
+        };
+
         this.FormData1000 = {
         };
         this.FormData2000 = {
