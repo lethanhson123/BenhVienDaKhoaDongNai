@@ -1,0 +1,83 @@
+<div class="section" id="user-profile" style="margin: 0px; padding: 0px;">
+    <div class="row" style="margin: 0px; padding: 0px;">
+        <div *ngIf="DanhMucQuayDichVuService.FormData01.Active" class="{{GoiSoThamSoService.FormData.Name}}" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-right: 1px solid #ffffff;">
+                    <tr>
+                        <th style="text-transform: uppercase; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu001}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu001 + 4}}vh;"
+                            *ngIf="GoiSoChiTietService.FormData01 && GoiSoChiTietService.FormData01.DanhMucQuayDichVuName">
+                            {{GoiSoChiTietService.FormData01.DanhMucQuayDichVuName}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of GoiSoChiTietService.List01; index as i">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            {{item.NgayTiepNhanSoThuTuString}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            {{item.NgayTiepNhanSoThuTuString}}</td>
+                    </tr>                    
+                </tbody>               
+            </table>
+        </div>
+        <div *ngIf="DanhMucQuayDichVuService.FormData02.Active" class="{{GoiSoThamSoService.FormData.Name}}" style="margin: 0px; padding: 0px;">
+            <table class="striped" style="width: 100%;">
+                <thead class="yellow darken-4 white-text" style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr>
+                        <th style="text-transform: uppercase; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu001}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu001 + 4}}vh;"
+                            *ngIf="GoiSoChiTietService.FormData02 && GoiSoChiTietService.FormData02.DanhMucQuayDichVuName">
+                            {{GoiSoChiTietService.FormData02.DanhMucQuayDichVuName}}</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of GoiSoChiTietService.List02; index as i" style="background-color: transparent; border-width: 0px; border-left: 1px solid #ffffff;">
+                    <tr *ngIf="i % 2 == 0" class="light-blue darken-2 white-text">
+                        <td
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            {{item.NgayTiepNhanSoThuTuString}}</td>
+                    </tr>
+                    <tr *ngIf="i % 2 == 1" class="light-blue darken-4 white-text">
+                        <td
+                            style="letter-spacing: {{GoiSoThamSoService.FormData.KichThuocChu007}}px; color: {{DanhMucQuayDichVuService.FormData01.TypeName}}; text-align: center; font-size: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh; font-weight: bolder; padding: 0px; line-height: {{GoiSoThamSoService.FormData.KichThuocChu002}}vh;">
+                            {{item.NgayTiepNhanSoThuTuString}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="DanhMucQuayDichVuService.FormData01.IsBannerShow" class="{{GoiSoThamSoService.FormData.Code}}" style="margin: 0px; padding: 0px;">           
+            <div *ngIf="IsBHYT==true"
+                style="text-align: center; text-transform: uppercase; color: #1565c0; font-weight: bolder; font-family: 'Arial Narrow', sans-serif; font-size: {{GoiSoThamSoService.FormData.KichThuocChu003}}vh;">
+                Đăng ký cho bệnh nhân                
+            </div>
+            <div *ngIf="IsBHYT==true"
+                style="margin-top: -8px; text-align: center; text-transform: uppercase; color: #1565c0; font-weight: bolder; font-family: 'Arial Narrow', sans-serif; font-size: {{GoiSoThamSoService.FormData.KichThuocChu003}}vh;">                
+                Khám ngoại trú bảo hiểm y tế
+            </div>
+            <div *ngIf="IsBHYT==false"
+                style="text-align: center; text-transform: uppercase; color: #1565c0; font-weight: bolder; font-family: 'Arial Narrow', sans-serif; font-size: {{GoiSoThamSoService.FormData.KichThuocChu004}}vh;">
+                Đăng ký - thanh toán cho bệnh nhân               
+            </div>
+            <div *ngIf="IsBHYT==false"
+                style="text-align: center; text-transform: uppercase; color: #1565c0; font-weight: bolder; font-family: 'Arial Narrow', sans-serif; font-size: {{GoiSoThamSoService.FormData.KichThuocChu004}}vh;">              
+                Khám ngoại trú không bảo hiểm y tế
+            </div>
+            <img *ngIf="ManHinhTapTinDinhKemService.FormData.IsHinhAnh==true" style="width: 100%;" [src]="videoSrc" />
+            <video *ngIf="ManHinhTapTinDinhKemService.FormData.IsHinhAnh==false" type="video/mp4" style="width: 100%;"
+                [src]="videoSrc" controls loop muted autoplay oncanplay="this.play()"
+                onloadedmetadata="this.muted = true">
+            </video>
+            <div style="color: black; font-size: {{GoiSoThamSoService.FormData.KichThuocChu005}}vh;">
+                {{ManHinhThongBaoService.FormData.Description}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12" style="margin: 0px; padding: 0px;">
+            <a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a>
+        </div>
+    </div>
+</div>
+<app-loading *ngIf="GoiSoChiTietService.IsShowLoading"></app-loading>

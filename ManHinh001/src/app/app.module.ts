@@ -25,6 +25,7 @@ import { M40Component } from './m40/m40.component';
 import { M60Component } from './m60/m60.component';
 import { M12Component } from './m12/m12.component';
 import { M120Component } from './m120/m120.component';
+import { BHYTComponent } from './bhyt/bhyt.component';
 
 
 
@@ -44,6 +45,7 @@ import { M120Component } from './m120/m120.component';
     M60Component,
     M12Component,
     M120Component,
+    BHYTComponent,
 
   ],
   imports: [

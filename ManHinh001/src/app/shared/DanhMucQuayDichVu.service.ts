@@ -39,39 +39,50 @@ export class DanhMucQuayDichVuService extends BaseService {
         this.List03 = [];         
         this.FormData01 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData02 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData03 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData04 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData05 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData06 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };       
         this.FormData07 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData08 = {
             ID: environment.InitializationNumber,
         };
         this.FormData09 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData10 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData11 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };
         this.FormData12 = {
             ID: environment.InitializationNumber,
+            Interval: environment.Interval15,
         };            
     }
 

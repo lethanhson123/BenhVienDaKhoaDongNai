@@ -17,7 +17,7 @@ import { M120Component } from './m120/m120.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/Homepage/6/7/3', pathMatch: 'full' },
+  { path: '', redirectTo: '/Homepage/1/2/3', pathMatch: 'full' },
   {
     path: 'Homepage/:Code01/:Code02/:Number', component: HomepageComponent,
   }, 

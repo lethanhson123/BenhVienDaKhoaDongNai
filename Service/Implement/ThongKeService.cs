@@ -24,7 +24,8 @@
                 DanhMucThongKe DanhMucThongKe = _DanhMucThongKeRepository.GetByID(model.ParentID.Value);
                 if (DanhMucThongKe != null)
                 {
-                    model.ParentName = DanhMucThongKe.Note;
+                    model.ParentName = DanhMucThongKe.Name;
+                    model.Note = DanhMucThongKe.Note;
                 }
             }
             if (model.BatDau == null)
@@ -44,10 +45,10 @@
                 switch (model.ParentID)
                 {
                     case 1:
-                        model.Name = model.ParentName + " TUẦN " + model.Week + " THÁNG " + model.Month + " NĂM " + model.Year + " (" + model.BatDau.Value.ToString("dd/MM/yyyy") + " - " + model.KetThuc.Value.ToString("dd/MM/yyyy") + ")";
+                        model.Name = model.Note + " TUẦN " + model.Week + " THÁNG " + model.Month + " NĂM " + model.Year + " (" + model.BatDau.Value.ToString("dd/MM/yyyy") + " - " + model.KetThuc.Value.ToString("dd/MM/yyyy") + ")";
                         break;
                     case 2:
-                        model.Name = model.ParentName + " TUẦN " + model.Week + " THÁNG " + model.Month + " NĂM " + model.Year + " (" + model.BatDau.Value.ToString("dd/MM/yyyy") + " - " + model.KetThuc.Value.ToString("dd/MM/yyyy") + ")";
+                        model.Name = model.Note + " TUẦN " + model.Week + " THÁNG " + model.Month + " NĂM " + model.Year + " (" + model.BatDau.Value.ToString("dd/MM/yyyy") + " - " + model.KetThuc.Value.ToString("dd/MM/yyyy") + ")";
                         break;
                     case 3:
                         model.Quarter = 1;
@@ -70,10 +71,10 @@
                                 break;
                         }
                         model.Display = "Quý " + model.Quarter + " năm " + model.Year;
-                        model.Name = model.ParentName + " " + model.Display;
+                        model.Name = model.Note + " " + model.Display;
                         break;
                     case 4:
-                        model.Name = model.ParentName + " THÁNG " + model.Month + " NĂM " + model.Year;
+                        model.Name = model.Note + " THÁNG " + model.Month + " NĂM " + model.Year;
                         break;
                 }
             }

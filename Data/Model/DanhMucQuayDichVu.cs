@@ -9,6 +9,7 @@
         public string? DanhMucDichVuName { get; set; }
         public bool? IsBannerShow { get; set; }
         public bool? IsPhongKham { get; set; }
+        public int? Interval { get; set; }
         public DanhMucQuayDichVu()
         {
         }

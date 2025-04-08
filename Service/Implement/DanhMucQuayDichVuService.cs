@@ -27,12 +27,20 @@
         }
         public override void Initialization(DanhMucQuayDichVu model)
         {
-            BaseInitialization(model);    
-            
+            BaseInitialization(model);
+
             if (model.ParentID > 0)
             {
                 model.ParentName = _DanhMucKhuVucRepository.GetByID(model.ParentID.Value).Name;
-            }            
+            }
+            if (model.TypeName == null)
+            {
+                model.TypeName = GlobalHelper.ManHinhMauChu;
+            }
+            if (model.Interval == null)
+            {
+                model.Interval = GlobalHelper.Interval;
+            }
         }
         public override async Task<DanhMucQuayDichVu> SaveAsync(DanhMucQuayDichVu model)
         {

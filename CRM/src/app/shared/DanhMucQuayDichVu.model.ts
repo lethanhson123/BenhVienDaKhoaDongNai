@@ -8,7 +8,8 @@ export class DanhMucQuayDichVu extends Base{
     DanhMucDichVuID?: number;
     DanhMucDichVuName?: boolean;
     IsBannerShow?: boolean;
-    
+    IsPhongKham?: boolean;
+    Interval?: number;
 }
 
 

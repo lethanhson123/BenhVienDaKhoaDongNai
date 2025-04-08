@@ -16,6 +16,7 @@ export const environment = {
   GoiSoThamSoID: 1,
   PageSize: 10,
   Interval: 5000,
+  Interval15: 15000,
   Number: 4,
   AG: 1,
   C5: 3,

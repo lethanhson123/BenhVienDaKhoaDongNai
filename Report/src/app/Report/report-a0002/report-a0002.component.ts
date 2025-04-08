@@ -169,7 +169,7 @@ export class ReportA0002Component implements OnInit {
       res => {
         this.ThongKeService.FormData = (res as ThongKe);
         if (this.ThongKeService.FormData) {
-          if (this.ThongKeService.FormData.ID > 0) {
+          if (this.ThongKeService.FormData.ID > 0) {            
             this.Show(this.HienTai);
             this.ThongKeChiTietSearch();
           }
@@ -189,6 +189,8 @@ export class ReportA0002Component implements OnInit {
       res => {
         this.ThongKeChiTietService.List = (res as ThongKeChiTiet[]);
 
+        console.log(this.ThongKeChiTietService.List);
+        
         this.ThongKeChiTietService.ListFilter = this.ThongKeChiTietService.List.filter(item => item.SortOrder == 10 || item.SortOrder == 100);
         this.ThongKeChiTietService.ListFilter = this.ThongKeChiTietService.ListFilter.sort((a, b) => (a.RowVersion > b.RowVersion ? 1 : -1));
 
