@@ -102,6 +102,7 @@
         Task<string> ExecuteNonQueryByStoredProcedureAsync(string storedProcedureName, params SqlParameter[] parameters);
         List<T> GetByStoredProcedureToList(string storedProcedureName, params SqlParameter[] parameters);
         Task<List<T>> GetByStoredProcedureToListAsync(string storedProcedureName, params SqlParameter[] parameters);
+        Task<List<T>> GetByStoredProcedureToListAsync(string ConnectionString, string storedProcedureName, params SqlParameter[] parameters);
         List<T> GetAllAndEmptyToList();
         Task<List<T>> GetAllAndEmptyToListAsync();
         List<T> GetByParentIDAndEmptyToList(long parentID);

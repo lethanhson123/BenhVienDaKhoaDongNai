@@ -35,10 +35,10 @@ export class DMBenhVienComponent implements OnInit {
     this.DM_BenhVienSearch();
   }
   DM_BenhVien001() {
-    this.DM_BenhVienService.DisplayColumns003 = this.DM_BenhVienService.DisplayColumns001;
+    this.DM_BenhVienService.DisplayColumns004 = this.DM_BenhVienService.DisplayColumns001;
   }
   DM_BenhVien002() {
-    this.DM_BenhVienService.DisplayColumns003 = this.DM_BenhVienService.DisplayColumns002;
+    this.DM_BenhVienService.DisplayColumns004 = this.DM_BenhVienService.DisplayColumns002;
   }
   DM_BenhVienSearch() {
     this.DM_BenhVienService.SearchBySearchStringAndEmptyToListAsync(this.DM_BenhVienSort, this.DM_BenhVienPaginator);

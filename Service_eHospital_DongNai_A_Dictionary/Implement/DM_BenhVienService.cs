@@ -20,6 +20,10 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             {
                 model.TenBenhVien_Ru = GlobalHelper.SetName(model.TenBenhVien);
             }
+            if (model.TamNgung == null)
+            {
+                model.TamNgung = false;
+            }
         }
         public override async Task<DM_BenhVien> SaveAsync(DM_BenhVien model)
         {
@@ -39,7 +43,7 @@ namespace Service_eHospital_DongNai_A_Dictionary.Implement
             if (!string.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.Trim();
-                result = await GetByCondition(item => item.MaBenhVien.Contains(searchString) || item.TenBenhVien.Contains(searchString)).ToListAsync();               
+                result = await GetByCondition(item => item.MaBenhVien.Contains(searchString) || item.TenBenhVien.Contains(searchString)).ToListAsync();
             }
             else
             {

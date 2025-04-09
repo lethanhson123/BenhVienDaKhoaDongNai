@@ -8,8 +8,9 @@ import { BaseService } from './Base.service';
 })
 export class DM_BenhVienService extends BaseService {
     DisplayColumns001: string[] = ['Save', 'STT', 'BenhVien_Id', 'MaBenhVien', 'TenBenhVien', 'TenBenhVien_En', 'TenBenhVien_Ru', 'DiaChi', 'Hang_Id', 'Loai_Id', 'Tuyen_Id', 'CapQuanLy_Id', 'TinhThanhPho_Id', 'TamNgung', 'NgayTao', 'NguoiTao_Id', 'NgayCapNhat', 'NguoiCapNhat_Id', 'SiteCode', 'Mapping_Public_Id'];
-    DisplayColumns002: string[] = ['Save', 'STT', 'MaBenhVien', 'TenBenhVien', 'TenBenhVien_En', 'TenBenhVien_Ru', 'TamNgung'];
-    DisplayColumns003: string[] = ['Save', 'STT', 'MaBenhVien', 'TenBenhVien', 'TenBenhVien_En', 'TenBenhVien_Ru', 'TamNgung'];
+    DisplayColumns002: string[] = ['Save', 'STT', 'BenhVien_Id', 'MaBenhVien', 'TenBenhVien', 'TenBenhVien_En', 'TenBenhVien_Ru', 'TamNgung'];
+    DisplayColumns003: string[] = ['Save', 'STT', 'BenhVien_Id', 'MaBenhVien', 'TenBenhVien', 'TenBenhVien_En', 'TenBenhVien_Ru', 'TamNgung'];
+    DisplayColumns004: string[] = ['Save', 'STT', 'BenhVien_Id', 'MaBenhVien', 'TenBenhVien', 'TenBenhVien_En', 'TenBenhVien_Ru', 'TamNgung'];
 
     List: DM_BenhVien[] | undefined;
     ListFilter: DM_BenhVien[] | undefined;

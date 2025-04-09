@@ -81,30 +81,31 @@
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="BenhVien_Id">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>BenhVien_Id</th>
-                            <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="BenhVien_Id" name="BenhVien_Id" [(ngModel)]="element.BenhVien_Id"></td>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let element">
+                                <b>{{element.BenhVien_Id}}</b>
+                            </td>
                         </ng-container>
                         <ng-container matColumnDef="MaBenhVien">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MaBenhVien</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã Cơ sở (Cổng BHXH)</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="MaBenhVien" name="MaBenhVien" [(ngModel)]="element.MaBenhVien"></td>
+                                    placeholder="Mã Cơ sở (Cổng BHXH)" name="MaBenhVien" [(ngModel)]="element.MaBenhVien"></td>
                         </ng-container>
                         <ng-container matColumnDef="TenBenhVien">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenBenhVien</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cơ sở khám chữa bệnh ban đầu</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TenBenhVien" name="TenBenhVien" [(ngModel)]="element.TenBenhVien"></td>
+                                    placeholder="Cơ sở khám chữa bệnh ban đầu" name="TenBenhVien" [(ngModel)]="element.TenBenhVien"></td>
                         </ng-container>
                         <ng-container matColumnDef="TenBenhVien_En">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenBenhVien_En</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenBenhVien_En (Tự động)</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TenBenhVien_En" name="TenBenhVien_En"
+                                    placeholder="TenBenhVien_En (Tự động)" name="TenBenhVien_En"
                                     [(ngModel)]="element.TenBenhVien_En"></td>
                         </ng-container>
                         <ng-container matColumnDef="TenBenhVien_Ru">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenBenhVien_Ru</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TenBenhVien_Ru (Tự động)</th>
                             <td mat-cell *matCellDef="let element"><input class="form-control" type="text"
-                                    placeholder="TenBenhVien_Ru" name="TenBenhVien_Ru"
+                                    placeholder="TenBenhVien_Ru (Tự động)" name="TenBenhVien_Ru"
                                     [(ngModel)]="element.TenBenhVien_Ru"></td>
                         </ng-container>
                         <ng-container matColumnDef="DiaChi">
@@ -140,7 +141,7 @@
                                     [(ngModel)]="element.TinhThanhPho_Id"></td>
                         </ng-container>
                         <ng-container matColumnDef="TamNgung">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>TamNgung</th>
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tạm ngưng</th>
                             <td mat-cell *matCellDef="let element">
                                 <label>
                                     <input class="form-check-input" type="checkbox" name="TamNgung"
@@ -182,9 +183,9 @@
                                     [(ngModel)]="element.Mapping_Public_Id"></td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="DM_BenhVienService.DisplayColumns003">
+                        <tr mat-header-row *matHeaderRowDef="DM_BenhVienService.DisplayColumns004">
                         </tr>
-                        <tr mat-row *matRowDef="let row; columns: DM_BenhVienService.DisplayColumns003;">
+                        <tr mat-row *matRowDef="let row; columns: DM_BenhVienService.DisplayColumns004;">
                         </tr>
                     </table>
                     <mat-paginator *ngIf="!NotificationService.IsMobile" #DM_BenhVienPaginator="matPaginator"

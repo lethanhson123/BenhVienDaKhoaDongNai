@@ -187,6 +187,9 @@ import { BenhNhan001Component } from './eHospital_DongNai_A/benh-nhan001/benh-nh
 import { DanhMucQuayDichVuKhoaKhamBenhComponent } from './danh-muc-quay-dich-vu-khoa-kham-benh/danh-muc-quay-dich-vu-khoa-kham-benh.component';
 import { SysAppSettingsCheckKeToanComponent } from './eHospital_DongNai_A_Config/sys-app-settings-check-ke-toan/sys-app-settings-check-ke-toan.component';
 import { ReportA0005Component } from './Report/report-a0005/report-a0005.component';
+import { DMPhongBanThongKeComponent } from './eHospital_DongNai_A_Dictionary/dm-phong-ban-thong-ke/dm-phong-ban-thong-ke.component';
+import { ThongKeChiTiet001Component } from './thong-ke-chi-tiet001/thong-ke-chi-tiet001.component';
+
 
 
 
@@ -201,9 +204,9 @@ import { ReportA0005Component } from './Report/report-a0005/report-a0005.compone
     DanhMucUngDungComponent,
     DanhMucChucNangComponent,
     ThanhVienComponent,
-    ThanhVienThongTinComponent,    
-    ThanhVienInfoComponent,   
-   
+    ThanhVienThongTinComponent,
+    ThanhVienInfoComponent,
+
     DanhMucTinhThanhComponent,
     DanhMucQuanHuyenComponent,
     DanhMucXaPhuongComponent,
@@ -213,7 +216,7 @@ import { ReportA0005Component } from './Report/report-a0005/report-a0005.compone
     DanhMucKhuVucComponent,
     DanhMucPhongKhamComponent,
     DanhMucQuayDichVuComponent,
-    
+
     GioiThieuComponent,
     GoiSoComponent,
     GoiSoInfoComponent,
@@ -344,12 +347,12 @@ import { ReportA0005Component } from './Report/report-a0005/report-a0005.compone
     DanhMucLuongCoBanComponent,
     DanhMucNganHangComponent,
     DanhMucThueComponent,
-    HRBangLuongComponent,    
-    HRChamCongComponent,    
-    HRLichCongTacComponent,    
-    HRNhanVienComponent, DanhMucDonViTinhComponent, DanhMucMayChamCongComponent, HRNhanVienHopDongComponent, HRNhanVienInfoComponent, HRBangLuongInfoComponent, HRLichCongTacInfoComponent, HRChamCongInfoComponent, HRNhanVienHopDongInfoComponent, DanhMucPhongBanComponent, DanhMucHopDongInfoComponent, ReportNSTLA0001Component, DanhMucThongKeComponent, ThongKeComponent, ThongKeInfoComponent, ReportA0002Component, ReportA0002DetailComponent, BenhAnViewComponent, BenhNhan001Component, DanhMucQuayDichVuKhoaKhamBenhComponent, SysAppSettingsCheckKeToanComponent, ReportA0005Component,    
-    
-    
+    HRBangLuongComponent,
+    HRChamCongComponent,
+    HRLichCongTacComponent,
+    HRNhanVienComponent, DanhMucDonViTinhComponent, DanhMucMayChamCongComponent, HRNhanVienHopDongComponent, HRNhanVienInfoComponent, HRBangLuongInfoComponent, HRLichCongTacInfoComponent, HRChamCongInfoComponent, HRNhanVienHopDongInfoComponent, DanhMucPhongBanComponent, DanhMucHopDongInfoComponent, ReportNSTLA0001Component, DanhMucThongKeComponent, ThongKeComponent, ThongKeInfoComponent, ReportA0002Component, ReportA0002DetailComponent, BenhAnViewComponent, BenhNhan001Component, DanhMucQuayDichVuKhoaKhamBenhComponent, SysAppSettingsCheckKeToanComponent, ReportA0005Component, DMPhongBanThongKeComponent, ThongKeChiTiet001Component, 
+
+
 
   ],
   imports: [

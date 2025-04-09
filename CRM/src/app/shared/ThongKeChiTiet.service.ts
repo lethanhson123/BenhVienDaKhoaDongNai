@@ -62,11 +62,11 @@ export class ThongKeChiTietService extends BaseService {
     FormData003!: ThongKeChiTiet;
     FormData004!: ThongKeChiTiet;
     FormData005!: ThongKeChiTiet;
-    FormData006!: ThongKeChiTiet;    
+    FormData006!: ThongKeChiTiet;
     FormData1000!: ThongKeChiTiet;
     FormData2000!: ThongKeChiTiet;
     FormData3000!: ThongKeChiTiet;
-    
+
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.Controller = "ThongKeChiTiet";
@@ -101,6 +101,24 @@ export class ThongKeChiTietService extends BaseService {
         this.List3000 = [];
         this.List4000 = [];
         this.List10000 = [];
+    }
+    ReportAToaThuoc_MinhToListAsync() {
+        if (this.BaseParameter.SearchString) {
+            this.BaseParameter.SearchString = this.BaseParameter.SearchString.trim();
+        }
+        let url = this.APIURL + this.Controller + '/ReportAToaThuoc_MinhToListAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
+    }
+    ReportAToaThuoc_MinhToExcelAsync() {
+        if (this.BaseParameter.SearchString) {
+            this.BaseParameter.SearchString = this.BaseParameter.SearchString.trim();
+        }
+        let url = this.APIURL + this.Controller + '/ReportAToaThuoc_MinhToExcelAsync';
+        const formUpload: FormData = new FormData();
+        formUpload.append('data', JSON.stringify(this.BaseParameter));
+        return this.httpClient.post(url, formUpload, { headers: this.Headers });
     }
 }
 
