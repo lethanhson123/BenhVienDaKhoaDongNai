@@ -4,7 +4,7 @@ export const environment = {
   DomainDestination: "",
   APIURL: "http://localhost:5097/api/v1/",
   APIRootURL: "http://localhost:5097/",
-  TiepNhanURL: "http://localhost:4200/#/",
+  TiepNhanURL: "https://dangky.dongnai.sohu.vn/#/",
   IPRegistry: "https://ipv4.myexternalip.com/json",
   IPRegistryURL: "https://api.ipregistry.co/?key=tryout",
   LoadingFile: "loading.gif",

@@ -28,7 +28,7 @@ export class HomepageComponent implements OnInit {
     public KhachHangService: KhachHangService,
   ) {
     this.GoiSoService.BaseParameter.IsInPhieu = true;
-    this.GoiSoService.BaseParameter.IsGuiZalo = false;
+    this.GoiSoService.BaseParameter.IsGuiZalo = true;
   }
 
   ngOnInit(): void {
